@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/data/model/response/base/api_response.dart';
-import 'package:pcgo/data/model/response/notification_model.dart';
-import 'package:pcgo/data/repository/notification_repo.dart';
-import 'package:pcgo/helper/api_checker.dart';
+import 'package:byher/data/model/response/base/api_response.dart';
+import 'package:byher/data/model/response/notification_model.dart';
+import 'package:byher/data/repository/notification_repo.dart';
+import 'package:byher/helper/api_checker.dart';
 
 class NotificationProvider extends ChangeNotifier {
   final NotificationRepo notificationRepo;

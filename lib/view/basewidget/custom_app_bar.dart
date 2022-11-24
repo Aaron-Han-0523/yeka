@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/provider/theme_provider.dart';
-import 'package:pcgo/utill/custom_themes.dart';
-import 'package:pcgo/utill/dimensions.dart';
-import 'package:pcgo/utill/images.dart';
+import 'package:byher/provider/theme_provider.dart';
+import 'package:byher/utill/custom_themes.dart';
+import 'package:byher/utill/dimensions.dart';
+import 'package:byher/utill/images.dart';
 import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget {

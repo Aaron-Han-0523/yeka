@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/data/datasource/remote/dio/dio_client.dart';
-import 'package:pcgo/utill/app_constants.dart';
+import 'package:byher/data/datasource/remote/dio/dio_client.dart';
+import 'package:byher/utill/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalizationProvider extends ChangeNotifier {

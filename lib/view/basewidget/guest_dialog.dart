@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/localization/language_constrants.dart';
-import 'package:pcgo/utill/custom_themes.dart';
-import 'package:pcgo/utill/dimensions.dart';
-import 'package:pcgo/utill/images.dart';
+import 'package:byher/localization/language_constrants.dart';
+import 'package:byher/utill/custom_themes.dart';
+import 'package:byher/utill/dimensions.dart';
+import 'package:byher/utill/images.dart';
 
 class GuestDialog extends StatelessWidget {
   @override

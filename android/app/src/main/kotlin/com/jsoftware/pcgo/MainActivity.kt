@@ -1,4 +1,4 @@
-package com.jsoftware.pcgo
+package com.jsoftware.byher
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/utill/custom_themes.dart';
+import 'package:byher/utill/custom_themes.dart';
 
 class SingleTextAlertDialog extends StatelessWidget {
   final String message;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/provider/theme_provider.dart';
-import 'package:pcgo/utill/color_resources.dart';
-import 'package:pcgo/utill/custom_themes.dart';
-import 'package:pcgo/utill/dimensions.dart';
-import 'package:pcgo/utill/images.dart';
+import 'package:byher/provider/theme_provider.dart';
+import 'package:byher/utill/color_resources.dart';
+import 'package:byher/utill/custom_themes.dart';
+import 'package:byher/utill/dimensions.dart';
+import 'package:byher/utill/images.dart';
 import 'package:provider/provider.dart';
 
 class MainPageTextButton extends StatelessWidget {

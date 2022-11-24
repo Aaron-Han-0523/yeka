@@ -1,5 +1,5 @@
-import 'package:pcgo/data/model/response/cart_model.dart';
-import 'package:pcgo/data/model/response/product_model.dart';
+import 'package:byher/data/model/response/cart_model.dart';
+import 'package:byher/data/model/response/product_model.dart';
 
 class OrderPlaceModel {
   CustomerInfo _customerInfo;

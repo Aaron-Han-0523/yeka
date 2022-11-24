@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/utill/color_resources.dart';
+import 'package:byher/utill/color_resources.dart';
 
 void showCustomSnackBar(String message, BuildContext context, {bool isError = true}) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/view/screen/home/home_screens.dart';
+import 'package:byher/view/screen/home/home_screens.dart';
 
 class HomeButton extends StatelessWidget {
   final Color color;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/localization/language_constrants.dart';
-import 'package:pcgo/utill/color_resources.dart';
-import 'package:pcgo/utill/custom_themes.dart';
-import 'package:pcgo/utill/dimensions.dart';
-import 'package:pcgo/view/basewidget/button/custom_button.dart';
+import 'package:byher/localization/language_constrants.dart';
+import 'package:byher/utill/color_resources.dart';
+import 'package:byher/utill/custom_themes.dart';
+import 'package:byher/utill/dimensions.dart';
+import 'package:byher/view/basewidget/button/custom_button.dart';
 
 class MyDialog extends StatelessWidget {
   final bool isFailed;

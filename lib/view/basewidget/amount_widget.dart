@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pcgo/utill/custom_themes.dart';
-import 'package:pcgo/utill/dimensions.dart';
+import 'package:byher/utill/custom_themes.dart';
+import 'package:byher/utill/dimensions.dart';
 
 class AmountWidget extends StatelessWidget {
   final String title;
