@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:byher/localization/language_constrants.dart';
+import 'package:yeka/localization/language_constrants.dart';
 
 class NetworkInfo {
   final Connectivity connectivity;

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:byher/data/datasource/remote/dio/logging_interceptor.dart';
-import 'package:byher/utill/app_constants.dart';
+import 'package:yeka/data/datasource/remote/dio/logging_interceptor.dart';
+import 'package:yeka/utill/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DioClient {

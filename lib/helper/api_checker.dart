@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:byher/data/model/response/base/api_response.dart';
-// import 'package:byher/provider/auth_provider.dart';
-// import 'package:byher/provider/profile_provider.dart';
-// import 'package:byher/view/screen/auth/auth_screen.dart';
+import 'package:yeka/data/model/response/base/api_response.dart';
+// import 'package:yeka/provider/auth_provider.dart';
+// import 'package:yeka/provider/profile_provider.dart';
+// import 'package:yeka/view/screen/auth/auth_screen.dart';
 import 'package:provider/provider.dart';
 
 class ApiChecker {

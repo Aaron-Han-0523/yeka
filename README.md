@@ -85,7 +85,7 @@ sudo npm i -g nodemon
 sudo npm i -g pm2
 sudo npm i -g sequelize-cli
 sudo apt install nginx
-sudo vi /etc/nginx/sites-available/byher
+sudo vi /etc/nginx/sites-available/yeka
 sudo vi /etc/nginx/nginx.conf 
 pm2 init simple
 vi ecosystem.config.js 
@@ -97,8 +97,8 @@ vi .sequelizerc
 npm start
 sudo service nginx status
 vi /etc/nginx/nginx.conf 
-ln /etc/nginx/sites-available/byher /etc/nginx/sites-enabled/byher
-sudo ln /etc/nginx/sites-available/byher /etc/nginx/sites-enabled/byher
+ln /etc/nginx/sites-available/yeka /etc/nginx/sites-enabled/yeka
+sudo ln /etc/nginx/sites-available/yeka /etc/nginx/sites-enabled/yeka
 sudo service nginx restart
 ```
 

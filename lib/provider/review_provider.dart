@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:byher/data/model/response/review_model.dart';
-import 'package:byher/data/repository/review_repo.dart';
+import 'package:yeka/data/model/response/review_model.dart';
+import 'package:yeka/data/repository/review_repo.dart';
 
 import '../data/model/response/base/api_response.dart';
 import '../helper/api_checker.dart';

@@ -1,10 +1,10 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:byher/localization/language_constrants.dart';
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/custom_themes.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/utill/images.dart';
+import 'package:yeka/localization/language_constrants.dart';
+import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/utill/custom_themes.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/utill/images.dart';
 
 class NoInternetOrDataScreen extends StatelessWidget {
   final bool isNoInternet;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:byher/utill/color_resources.dart';
+import 'package:yeka/utill/color_resources.dart';
 
 class SplashPainter extends CustomPainter {
   @override

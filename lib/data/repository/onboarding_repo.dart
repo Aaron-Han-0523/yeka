@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:byher/data/datasource/remote/dio/dio_client.dart';
-import 'package:byher/data/datasource/remote/exception/api_error_handler.dart';
-import 'package:byher/data/model/response/base/api_response.dart';
-import 'package:byher/data/model/response/onboarding_model.dart';
-import 'package:byher/localization/language_constrants.dart';
-import 'package:byher/utill/app_constants.dart';
+import 'package:yeka/data/datasource/remote/dio/dio_client.dart';
+import 'package:yeka/data/datasource/remote/exception/api_error_handler.dart';
+import 'package:yeka/data/model/response/base/api_response.dart';
+import 'package:yeka/data/model/response/onboarding_model.dart';
+import 'package:yeka/localization/language_constrants.dart';
+import 'package:yeka/utill/app_constants.dart';
 
 import '../../utill/images.dart';
 

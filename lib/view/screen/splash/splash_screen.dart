@@ -1,12 +1,11 @@
 import 'dart:async';
+import 'package:yeka/view/screen/auth/auth_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:byher/localization/language_constrants.dart';
-import 'package:byher/provider/splash_provider.dart';
-import 'package:byher/provider/theme_provider.dart';
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/images.dart';
-import 'package:byher/view/screen/onboarding/onboarding_screen.dart';
+import 'package:yeka/localization/language_constrants.dart';
+import 'package:yeka/provider/splash_provider.dart';
+import 'package:yeka/provider/theme_provider.dart';
+import 'package:yeka/utill/images.dart';
 import 'package:provider/provider.dart';
 
 import '../home/home_screens.dart';
@@ -62,21 +61,20 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _route() {
-    Provider.of<SplashProvider>(context, listen: false)
-        .initSharedPrefData();
+    Provider.of<SplashProvider>(context, listen: false).initSharedPrefData();
 
     Provider.of<SplashProvider>(context, listen: false).enableIntro();
 
     Timer(Duration(seconds: 1), () {
       if (Provider.of<SplashProvider>(context, listen: false).showIntro()) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => OnBoardingScreen(
-              indicatorColor: ColorResources.GREY,
-              selectedIndicatorColor: Theme.of(context).primaryColor,
-            )));
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (BuildContext context) => HomePage(),
+          ),
+        );
       } else {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => HomePage()));
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) => AuthScreen()));
       }
     });
   }
@@ -84,36 +82,35 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _globalKey,
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: Provider.of<ThemeProvider>(context).darkTheme
-                ? Colors.black
-                : Color(0XFF2434D7),
-            // child: CustomPaint(
-            //   painter: SplashPainter(),
-            // ),
-          ),
-          Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  Images.splash_logo,
-                  height: 250.0,
-                  fit: BoxFit.scaleDown,
-                  width: 250.0,
-                  color: Colors.white,
-                ),
-              ],
+        key: _globalKey,
+        body: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              color: Provider.of<ThemeProvider>(context).darkTheme
+                  ? Colors.black
+                  : Color(0XFF2434D7),
+              // child: CustomPaint(
+              //   painter: SplashPainter(),
+              // ),
             ),
-          ),
-        ],
-      )
-    );
+            Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    Images.splash_logo,
+                    height: 250.0,
+                    fit: BoxFit.scaleDown,
+                    width: 250.0,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ));
   }
 }

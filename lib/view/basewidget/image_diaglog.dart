@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/utill/images.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/utill/images.dart';
 
 
 class ImageDialog extends StatelessWidget {

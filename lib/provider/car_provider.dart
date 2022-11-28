@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:byher/data/model/response/car_model.dart';
-import 'package:byher/data/repository/car_repo.dart';
+import 'package:yeka/data/model/response/car_model.dart';
+import 'package:yeka/data/repository/car_repo.dart';
 
 import '../data/model/response/base/api_response.dart';
 

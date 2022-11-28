@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:byher/provider/splash_provider.dart';
+import 'package:yeka/provider/splash_provider.dart';
 import 'package:provider/provider.dart';
 
 class PriceConverter {

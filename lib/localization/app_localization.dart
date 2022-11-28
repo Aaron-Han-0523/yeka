@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:byher/utill/app_constants.dart';
+import 'package:yeka/utill/app_constants.dart';
 
 class AppLocalization {
   AppLocalization(this.locale);

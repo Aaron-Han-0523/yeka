@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/view/screen/home/widget/footer_screens.dart';
-import 'package:byher/view/screen/myprocess/myprocess_loading_check_car_status_screen.dart';
+import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import 'package:yeka/view/screen/myprocess/myprocess_loading_check_car_status_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/process_model.dart';

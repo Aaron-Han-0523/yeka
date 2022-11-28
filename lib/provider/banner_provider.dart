@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:byher/data/model/response/banner_model.dart';
-import 'package:byher/data/model/response/base/api_response.dart';
-import 'package:byher/data/repository/banner_repo.dart';
-import 'package:byher/helper/api_checker.dart';
+import 'package:yeka/data/model/response/banner_model.dart';
+import 'package:yeka/data/model/response/base/api_response.dart';
+import 'package:yeka/data/repository/banner_repo.dart';
+import 'package:yeka/helper/api_checker.dart';
 
 class BannerProvider extends ChangeNotifier {
   final BannerRepo bannerRepo;

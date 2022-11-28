@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/dimensions.dart';
+import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/utill/dimensions.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProductShimmer extends StatelessWidget {

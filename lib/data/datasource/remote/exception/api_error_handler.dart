@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:byher/data/model/response/base/error_response.dart';
+import 'package:yeka/data/model/response/base/error_response.dart';
 
 class ApiErrorHandler {
   static dynamic getMessage(error) {

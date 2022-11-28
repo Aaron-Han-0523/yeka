@@ -1,4 +1,4 @@
-import 'package:byher/data/model/response/product_model.dart';
+import 'package:yeka/data/model/response/product_model.dart';
 class CartModel {
   int _id;
   String _image;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/view/basewidget/button/custom_elevated_button.dart';
-import 'package:byher/view/screen/disposal/car_number_screen.dart';
+import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
+import 'package:yeka/view/screen/disposal/car_number_screen.dart';
 
 import '../../../localization/language_constrants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';

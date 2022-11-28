@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/utill/images.dart';
-import 'package:byher/view/screen/disposal/agree_screen.dart';
-import 'package:byher/view/screen/home/widget/banners_view.dart';
-import 'package:byher/view/screen/home/widget/footer_screens.dart';
+import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/utill/images.dart';
+import 'package:yeka/view/screen/disposal/agree_screen.dart';
+import 'package:yeka/view/screen/home/widget/banners_view.dart';
+import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
 import '../../../localization/language_constrants.dart';
 import '../../../provider/banner_provider.dart';
 import '../../../provider/review_provider.dart';
 import '../../basewidget/button/main_page_text_button.dart';
+import '../consultant/consultant_list_screen.dart';
 import '../myprocess/myprocess_login_screen.dart';
 import '../review/review_list_screen.dart';
 import '../review/review_login_screen.dart';
@@ -55,50 +56,42 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   centerTitle: false,
                   automaticallyImplyLeading: false,
                   backgroundColor: Theme.of(context).highlightColor,
-                  title: Center(
-                      child: Image.asset(
-                    Images.main_logo,
-                    height: 25,
-                  )),
+                  leading: Center(
+                    child: Image.asset(
+                      Images.main_logo,
+                      height: 25,
+                    ),
+                  ),
+                  title: Center(child: Text("예카", style: TextStyle(color: Colors.black87,), textAlign: TextAlign.center,)),
+                  actions: [Text("예카", style: TextStyle(color: Colors.black87,), textAlign: TextAlign.center,),],
                 ),
 
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      BannersView(),
-                      SizedBox(height: Dimensions.HOME_PAGE_PADDING),
+                      // BannersView(),
+                      // SizedBox(height: Dimensions.HOME_PAGE_PADDING),
 
                       // 폐차견적 버튼
                       MainPageTextButton(
                         onTap: () => {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AgreePage()))
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //     builder: (context) => ImageUploadPage()))
                         },
                         buttonImage: Images.main_text_1,
-                        detailButtonText: "${getTranslated('MAIN_TEXT1', context)}",
+                        detailButtonText:
+                            "AI 테스트 시작",
                       ),
 
                       // 내 진행 현황 버튼
                       MainPageTextButton(
                         onTap: () => {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MyProcessLoginPage()))
+                              builder: (context) => ConsultantListScreen()))
                         },
                         buttonImage: Images.main_text_2,
-                        detailButtonText: "${getTranslated('MAIN_TEXT2', context)}",
-                      ),
-
-                      // 후기 작성하기 버튼
-                      MainPageTextButton(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ReviewLoginPage()));
-                          setState(() {
-
-                          });
-                        },
-                        buttonImage: Images.main_text_3,
-                        detailButtonText: "${getTranslated('MAIN_TEXT3', context)}",
+                        detailButtonText:
+                            "컨설턴트 상담",
                       ),
 
                       // 폐차GO 이용 후기 버튼
@@ -106,27 +99,16 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       Padding(
                         padding:
                             const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
-                        child: Row(children: [
-                          Container(
-                            // width: 170,
-                            child: Text(
-                              "${getTranslated('MAIN_TEXT4', context)}",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black87,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                        child: Container(
+                          // width: 170,
+                          child: Text(
+                            "뷰티상품",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold),
                           ),
-                          Expanded(
-                            child: const Divider(
-                              // height: 20,
-                              thickness: 2,
-                              indent: 10,
-                              endIndent: 10,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ]),
+                        ),
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
@@ -135,33 +117,34 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         scrollController: _scrollController,
                       ),
 
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.fromLTRB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    textStyle: const TextStyle(fontSize: 20),
-                                    padding: const EdgeInsets.all(8.0),
-                                    backgroundColor: Color(0XFF2434D7),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            ReviewListScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Text("${getTranslated('MORE', context)}",),
-                                ),
-                              ),
-                            ),
-                          ],
+                      Padding(
+                        padding:
+                        const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
+                        child: Container(
+                          // width: 170,
+                          child: Text(
+                            "커뮤니티",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+
+                      Padding(
+                        padding:
+                        const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
+                        child: Container(
+                          // width: 170,
+                          child: Text(
+                            "커뮤니티의 내용물이 들어갈 자리",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
 

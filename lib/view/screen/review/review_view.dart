@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/view/basewidget/product_shimmer.dart';
-import 'package:byher/view/basewidget/review_widget.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/view/basewidget/product_shimmer.dart';
+import 'package:yeka/view/basewidget/consultant_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
@@ -81,7 +81,7 @@ class _ReviewViewState extends State<ReviewView> {
                       shrinkWrap: true,
                       staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
                       itemBuilder: (BuildContext context, int index) {
-                        return ReviewWidget(reviewModel: reviewList[index]);
+                        return ConsultantWidget(reviewModel: reviewList[index]);
                       },
                     )
                   : SizedBox.shrink()

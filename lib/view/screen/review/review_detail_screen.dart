@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/utill/images.dart';
-import 'package:byher/view/basewidget/rating_bar.dart';
-import 'package:byher/view/basewidget/textarea/custom_textarea.dart';
-import 'package:byher/view/screen/home/widget/footer_screens.dart';
+import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/utill/images.dart';
+import 'package:yeka/view/basewidget/rating_bar.dart';
+import 'package:yeka/view/basewidget/textarea/custom_textarea.dart';
+import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/base/api_response.dart';

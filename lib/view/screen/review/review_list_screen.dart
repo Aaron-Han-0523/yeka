@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:byher/utill/dimensions.dart';
+import 'package:yeka/utill/dimensions.dart';
 import 'package:provider/provider.dart';
 
-import 'package:byher/provider/review_provider.dart';
+import 'package:yeka/provider/review_provider.dart';
 import '../../../localization/language_constrants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'review_view.dart';

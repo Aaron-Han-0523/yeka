@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:byher/data/model/response/clients_model.dart';
-import 'package:byher/data/repository/clients_repo.dart';
+import 'package:yeka/data/model/response/clients_model.dart';
+import 'package:yeka/data/repository/clients_repo.dart';
 
 import '../data/model/response/base/api_response.dart';
 import '../data/model/response/base/error_response.dart';

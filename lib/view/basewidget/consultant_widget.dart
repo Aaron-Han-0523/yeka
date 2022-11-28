@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:byher/helper/price_converter.dart';
-import 'package:byher/utill/app_constants.dart';
-import 'package:byher/utill/custom_themes.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/utill/images.dart';
+import 'package:yeka/helper/price_converter.dart';
+import 'package:yeka/utill/app_constants.dart';
+import 'package:yeka/utill/custom_themes.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/utill/images.dart';
 import 'package:provider/provider.dart';
 import '../../data/model/response/review_model.dart';
 import '../../provider/review_provider.dart';
 import '../screen/review/review_detail_screen.dart';
 
-class ReviewWidget extends StatelessWidget {
+class ConsultantWidget extends StatelessWidget {
   final ReviewModel reviewModel;
 
-  ReviewWidget({@required this.reviewModel});
+  ConsultantWidget({@required this.reviewModel});
 
   @override
   Widget build(BuildContext context) {

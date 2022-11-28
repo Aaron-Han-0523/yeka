@@ -1,4 +1,4 @@
-import 'package:byher/data/model/response/language_model.dart';
+import 'package:yeka/data/model/response/language_model.dart';
 
 class AppConstants {
   static const String APP_NAME = 'PECHAGO';
@@ -59,6 +59,17 @@ class AppConstants {
   static const String SEND_MESSAGE_URI = '/api/v1/customer/chat/send-message';
   static const String TOKEN_URI = '/api/v1/customer/cm-firebase-token';
   static const String NOTIFICATION_URI = '/api/v1/notifications';
+
+  static const String REGISTRATION_URI = '/api/v1/auth/register';
+  static const String LOGIN_URI = '/api/v1/auth/login';
+  static const String FORGET_PASSWORD_URI = '/api/v1/auth/forgot-password';
+  static const String CHECK_PHONE_URI = '/api/v1/auth/check-phone';
+  static const String VERIFY_PHONE_URI = '/api/v1/auth/verify-phone';
+  static const String SOCIAL_LOGIN_URI = '/api/v1/auth/social-login';
+  static const String CHECK_EMAIL_URI = '/api/v1/auth/check-email';
+  static const String VERIFY_EMAIL_URI = '/api/v1/auth/verify-email';
+  static const String RESET_PASSWORD_URI = '/api/v1/auth/reset-password';
+  static const String VERIFY_OTP_URI = '/api/v1/auth/verify-otp';
 
   static List<LanguageModel> languages = [
     LanguageModel(imageUrl: '', languageName: '한국어', countryCode: 'KR', languageCode: 'ko'),

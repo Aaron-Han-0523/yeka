@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:byher/data/model/response/clients_model.dart';
+import 'package:yeka/data/model/response/clients_model.dart';
 
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/dimensions.dart';
-import 'package:byher/utill/images.dart';
-import 'package:byher/view/screen/disposal/estimate_screen.dart';
-import 'package:byher/view/screen/home/widget/footer_screens.dart';
+import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/utill/images.dart';
+import 'package:yeka/view/screen/disposal/estimate_screen.dart';
+import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../data/model/response/process_model.dart';

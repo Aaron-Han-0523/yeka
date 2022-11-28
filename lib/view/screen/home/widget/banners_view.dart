@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:byher/provider/banner_provider.dart';
-import 'package:byher/utill/app_constants.dart';
-import 'package:byher/utill/color_resources.dart';
-import 'package:byher/utill/images.dart';
+import 'package:yeka/provider/banner_provider.dart';
+import 'package:yeka/utill/app_constants.dart';
+import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/utill/images.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 

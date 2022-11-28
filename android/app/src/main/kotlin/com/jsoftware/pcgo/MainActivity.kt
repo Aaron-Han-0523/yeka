@@ -1,4 +1,4 @@
-package com.jsoftware.byher
+package com.jsoftware.yeka
 
 import io.flutter.embedding.android.FlutterActivity
 

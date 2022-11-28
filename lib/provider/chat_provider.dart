@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:byher/data/model/body/MessageBody.dart';
-import 'package:byher/data/model/response/base/api_response.dart';
-import 'package:byher/data/model/response/chat_info_model.dart';
-import 'package:byher/data/model/response/chat_model.dart';
-import 'package:byher/data/repository/chat_repo.dart';
-import 'package:byher/helper/api_checker.dart';
-import 'package:byher/helper/date_converter.dart';
+import 'package:yeka/data/model/body/MessageBody.dart';
+import 'package:yeka/data/model/response/base/api_response.dart';
+import 'package:yeka/data/model/response/chat_info_model.dart';
+import 'package:yeka/data/model/response/chat_model.dart';
+import 'package:yeka/data/repository/chat_repo.dart';
+import 'package:yeka/helper/api_checker.dart';
+import 'package:yeka/helper/date_converter.dart';
 
 class ChatProvider extends ChangeNotifier {
   final ChatRepo chatRepo;
