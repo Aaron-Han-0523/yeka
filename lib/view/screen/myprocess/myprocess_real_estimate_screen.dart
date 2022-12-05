@@ -13,7 +13,7 @@ import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
 import '../../basewidget/textfield/custom_alert_text_textfield.dart';
-import '../../basewidget/textfield/custom_text_textfield.dart';
+import '../../basewidget/textfield/custom_label_textfield.dart';
 import 'myprocess_main_screen.dart';
 
 class MyProcessRealEstimatePage extends StatefulWidget {
@@ -164,7 +164,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${widget.processModel.model}",
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
@@ -178,7 +178,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${widget.processModel.yearModel}년",
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
@@ -192,7 +192,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${getTimeToString(widget.processModel.registerDate)}",
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
@@ -206,7 +206,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${widget.processModel.detailModel}",
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
@@ -220,7 +220,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${NumberFormat('###,###,###,###').format(widget.processModel.displacement)} cc",
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
@@ -234,7 +234,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${carConditionList[widget.processModel.carCondition??0]}",
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
@@ -248,7 +248,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             // ),
                             // SizedBox(
                             //     height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            // CustomTextField(
+                            // CustomLabelTextField(
                             //   hintText: "전체파손",
                             // ),
                             // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
@@ -262,7 +262,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${aluminumWheelList[widget.processModel.aluminumWheel??0]}",
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
@@ -276,7 +276,7 @@ class _MyProcessRealEstimatePageState extends State<MyProcessRealEstimatePage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${getTranslated('ATTACHMENT', context)} ${widget.processModel.attachment ?? 0}${getTranslated('COUNT_UNIT', context)} / ${getTranslated('MORTGAGE', context)} ${widget.processModel.mortgage ?? 0}${getTranslated('COUNT_UNIT', context)}",
 
                             ),

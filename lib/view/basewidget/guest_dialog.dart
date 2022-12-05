@@ -15,7 +15,7 @@ class GuestDialog extends StatelessWidget {
           left: 0, right: 0, top: -50,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(40),
-            child: Image.asset(Images.login, height: 80, width: 80),
+            child: Image.asset(Images.login_id, height: 80, width: 80),
           ),
         ),
 

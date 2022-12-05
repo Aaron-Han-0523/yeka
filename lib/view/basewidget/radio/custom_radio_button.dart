@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../utill/images.dart';
+
 class CustomRadioButton extends StatelessWidget {
   final bool _value;
   final String text;
-  Color color;
+  final Color color;
 
   CustomRadioButton(this._value, this.text, [this.color]);
 
@@ -19,12 +21,12 @@ class CustomRadioButton extends StatelessWidget {
             // color: Colors.red,
             child: _value
                 ? SvgPicture.asset(
-                    "assets/icons/radio_button_checked_FILL0_wght400_GRAD0_opsz48.svg",
+                    Images.radio_button_checked,
                     width: 22,
                     color: Color(0XFF2434D7),
                   )
                 : SvgPicture.asset(
-                    "assets/icons/radio_button_unchecked_FILL0_wght400_GRAD0_opsz48.svg",
+                    Images.radio_button_unchecked,
                     width: 22,
                     color: color == null ? Colors.grey : color,
                   )),

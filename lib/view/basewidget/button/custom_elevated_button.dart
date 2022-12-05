@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/provider/theme_provider.dart';
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/custom_themes.dart';
-import 'package:yeka/utill/dimensions.dart';
-import 'package:provider/provider.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final Function onTap;
@@ -15,7 +10,7 @@ class CustomElevatedButton extends StatelessWidget {
   CustomElevatedButton({
     @required this.onTap,
     @required this.buttonText,
-    this.backgroundColor = const Color(0XFF2434D7),
+    this.backgroundColor = const Color(0XFF121212),
     this.textColor,
     this.child,
   });
@@ -27,13 +22,13 @@ class CustomElevatedButton extends StatelessWidget {
         Expanded(
             child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            textStyle: const TextStyle(
-              fontSize: 20,
-            ),
-            padding: const EdgeInsets.all(8.0),
+            // textStyle: const TextStyle(
+            //   fontSize: 12,
+            // ),
+            padding: const EdgeInsets.all(4.0),
             backgroundColor: backgroundColor,
             shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(10.0),
+              borderRadius: new BorderRadius.circular(25.0),
             ),
           ),
           onPressed: onTap,
@@ -44,7 +39,7 @@ class CustomElevatedButton extends StatelessWidget {
                 : Text(
                     buttonText,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 10,
                       color: textColor,
                     ),
                   ),

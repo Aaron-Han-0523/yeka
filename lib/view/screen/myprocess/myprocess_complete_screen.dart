@@ -17,7 +17,6 @@ import '../../../utill/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
-import '../../basewidget/textfield/custom_text_textfield.dart';
 import '../home/home_screens.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 
@@ -120,7 +119,7 @@ class _MyProcessCompletePageState extends State<MyProcessCompletePage>
                                       Padding(
                                         padding: const EdgeInsets.all(16.0),
                                         child: Image.asset(
-                                          Images.certificate,
+                                          Images.consult,
                                           height: 45,
                                         ),
                                       ),
@@ -160,7 +159,7 @@ class _MyProcessCompletePageState extends State<MyProcessCompletePage>
                                       Padding(
                                         padding: const EdgeInsets.all(16.0),
                                         child: Image.asset(
-                                          Images.quotation,
+                                          Images.consult,
                                           height: 45,
                                         ),
                                       ),
@@ -234,7 +233,7 @@ class _MyProcessCompletePageState extends State<MyProcessCompletePage>
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Image.asset(
-                        Images.finish_character,
+                        Images.consult,
                       ),
                       Container(
                         alignment: Alignment.centerRight,

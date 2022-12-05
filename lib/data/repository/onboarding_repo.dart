@@ -17,22 +17,22 @@ class OnBoardingRepo{
     try {
       List<OnboardingModel> onBoardingList = [
         OnboardingModel(
-          Images.onboarding_image_one,
+          Images.consult,
           'not used',
           'not used',
         ),
         OnboardingModel(
-          Images.onboarding_image_two,
+          Images.consult,
           'not used',
           'not used',
         ),
         OnboardingModel(
-          Images.onboarding_image_three,
+          Images.consult,
           'not used',
           'not used',
         ),
         OnboardingModel(
-          Images.onboarding_image_four,
+          Images.consult,
           'not used',
           'not used',
         ),

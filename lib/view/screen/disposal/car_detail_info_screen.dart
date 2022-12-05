@@ -17,7 +17,7 @@ import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/radio/custom_small_radio_button.dart';
 import '../../basewidget/textfield/custom_alert_text_textfield.dart';
 import '../../basewidget/textfield/custom_small_car_number_textfield.dart';
-import '../../basewidget/textfield/custom_text_textfield.dart';
+import '../../basewidget/textfield/custom_label_textfield.dart';
 
 class CarDetailInfoPage extends StatefulWidget {
   final ProcessModel processModel;
@@ -148,7 +148,7 @@ class _CarDetailInfoPageState extends State<CarDetailInfoPage>
                                     ],
                                   ),
                                   Image.asset(
-                                    Images.inquiry_car,
+                                    Images.consult,
                                     height: 45,
                                   ),
                                 ],
@@ -172,7 +172,7 @@ class _CarDetailInfoPageState extends State<CarDetailInfoPage>
                               ),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${widget.processModel.ownerName}",
                               isBorder: true,
                               borderColor: Colors.black12,
@@ -189,7 +189,7 @@ class _CarDetailInfoPageState extends State<CarDetailInfoPage>
                               ),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${widget.processModel.detailModel}",
                               isBorder: true,
                               borderColor: Colors.black12,
@@ -206,7 +206,7 @@ class _CarDetailInfoPageState extends State<CarDetailInfoPage>
                               ),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               // hintText: "1,999 cc",
                               hintText:
                                   "${NumberFormat('###,###,###,###').format(widget.processModel.displacement)} cc",
@@ -503,7 +503,7 @@ class _CarDetailInfoPageState extends State<CarDetailInfoPage>
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.asset(
-                                  Images.scrap_metal,
+                                  Images.consult,
                                   fit: BoxFit.fill,
                                 ), // Text(key['title']),
                               ),
@@ -512,26 +512,26 @@ class _CarDetailInfoPageState extends State<CarDetailInfoPage>
                         ),
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      Container(
-                        alignment: Alignment.centerRight,
-                        margin: const EdgeInsets.all(16.0),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Color(0XFF2434D7),
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          color: Colors.white,
-                        ),
-                        child: InkWell(
-                          onTap: () {
-                            _showDialog();
-                          },
-                          child: CustomSmallRadioButton(
-                              _infoValue, "${getTranslated('AGREE_TEXT', context)}"),
-                        ),
-                      ),
+                      // Container(
+                      //   alignment: Alignment.centerRight,
+                      //   margin: const EdgeInsets.all(16.0),
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   decoration: BoxDecoration(
+                      //     border: Border.all(
+                      //       width: 1,
+                      //       color: Color(0XFF2434D7),
+                      //     ),
+                      //     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      //     color: Colors.white,
+                      //   ),
+                      //   child: InkWell(
+                      //     onTap: () {
+                      //       _showDialog();
+                      //     },
+                      //     child: CustomSmallRadioButton(
+                      //         _infoValue, "${getTranslated('AGREE_TEXT', context)}"),
+                      //   ),
+                      // ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -808,24 +808,24 @@ class _CarDetailInfoPageState extends State<CarDetailInfoPage>
                       ),
                     ),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                    StatefulBuilder(
-                      // You need this, notice the parameters below:
-                      builder: (BuildContext context, StateSetter setState) {
-                        _setState = setState;
-                        return Material(
-                          child: Container(
-                            decoration: BoxDecoration(color: Colors.white),
-                            // padding: EdgeInsets.all(8.0),
-                            child: InkWell(
-                                onTap: () => _setState(() {
-                                      _phoneInfoValue = !_phoneInfoValue;
-                                    }),
-                                child: CustomSmallRadioButton(_phoneInfoValue,
-                                    "${getTranslated('AGREE_TEXT11', context)}")),
-                          ),
-                        );
-                      },
-                    ),
+                    // StatefulBuilder(
+                    //   // You need this, notice the parameters below:
+                    //   builder: (BuildContext context, StateSetter setState) {
+                    //     _setState = setState;
+                    //     return Material(
+                    //       child: Container(
+                    //         decoration: BoxDecoration(color: Colors.white),
+                    //         // padding: EdgeInsets.all(8.0),
+                    //         child: InkWell(
+                    //             onTap: () => _setState(() {
+                    //                   _phoneInfoValue = !_phoneInfoValue;
+                    //                 }),
+                    //             child: CustomSmallRadioButton(_phoneInfoValue,
+                    //                 "${getTranslated('AGREE_TEXT11', context)}")),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   ],
                 ),

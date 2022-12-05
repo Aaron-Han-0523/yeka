@@ -31,9 +31,9 @@ class ImageDialog extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: FadeInImage.assetNetwork(
-                  placeholder: Images.placeholder, image: imageUrl, fit: BoxFit.contain,
+                  placeholder: Images.placeholder1, image: imageUrl, fit: BoxFit.contain,
                   imageErrorBuilder: (c, o, s) => Image.asset(
-                    Images.placeholder, height: MediaQuery.of(context).size.width - 130,
+                    Images.placeholder1, height: MediaQuery.of(context).size.width - 130,
                     width: MediaQuery.of(context).size.width, fit: BoxFit.cover,
                   ),
                 ),

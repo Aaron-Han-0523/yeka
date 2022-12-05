@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/provider/theme_provider.dart';
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/custom_themes.dart';
-import 'package:yeka/utill/dimensions.dart';
-import 'package:provider/provider.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   final Function onTap;
@@ -18,8 +13,8 @@ class CustomOutlinedButton extends StatelessWidget {
     @required this.buttonText,
     this.backgroundColor = Colors.white,
     this.child,
-    this.borderColor = const Color(0XFF2434D7),
-    this.textColor = const Color(0XFF2434D7),
+    this.borderColor = const Color(0XFF121212),
+    this.textColor = const Color(0XFF121212),
   });
 
   @override
@@ -29,18 +24,18 @@ class CustomOutlinedButton extends StatelessWidget {
         Expanded(
           child: OutlinedButton(
             style: ElevatedButton.styleFrom(
-              textStyle: TextStyle(
-                fontSize: 20,
-                color: textColor,
-              ),
-              padding: const EdgeInsets.all(8.0),
+              // textStyle: TextStyle(
+              //   fontSize: 20,
+              //   color: textColor,
+              // ),
+              padding: const EdgeInsets.all(4.0),
               side: BorderSide(
                 width: 1.0,
                 color: borderColor,
               ),
               backgroundColor: backgroundColor,
               shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0),
+                borderRadius: new BorderRadius.circular(25.0),
               ),
             ),
             onPressed: onTap,
@@ -51,7 +46,7 @@ class CustomOutlinedButton extends StatelessWidget {
                   : Text(
                       buttonText,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 10,
                         color: textColor,
                         fontWeight: FontWeight.bold,
                       ),

@@ -3,19 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
-import 'package:yeka/view/screen/disposal/agree_screen.dart';
-import 'package:yeka/view/screen/home/widget/banners_view.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
-import '../../../localization/language_constrants.dart';
 import '../../../provider/banner_provider.dart';
-import '../../../provider/review_provider.dart';
-import '../../basewidget/button/main_page_text_button.dart';
+import '../aitest/image_upload_screen.dart';
+import '../auth/auth_screen.dart';
 import '../consultant/consultant_list_screen.dart';
-import '../myprocess/myprocess_login_screen.dart';
-import '../review/review_list_screen.dart';
-import '../review/review_login_screen.dart';
 import 'widget/review_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,6 +35,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var titleList = [
+      "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
+      "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
+      "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
+      "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
+    ];
     return Scaffold(
       backgroundColor: ColorResources.getHomeBg(context),
       resizeToAvoidBottomInset: false,
@@ -56,98 +56,225 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   centerTitle: false,
                   automaticallyImplyLeading: false,
                   backgroundColor: Theme.of(context).highlightColor,
-                  leading: Center(
+                  leading: Container(),
+                  title: Center(
                     child: Image.asset(
-                      Images.main_logo,
-                      height: 25,
+                      Images.logo_b,
+                      height: 30,
                     ),
                   ),
-                  title: Center(child: Text("예카", style: TextStyle(color: Colors.black87,), textAlign: TextAlign.center,)),
-                  actions: [Text("예카", style: TextStyle(color: Colors.black87,), textAlign: TextAlign.center,),],
+                  actions: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+                        child: Image.asset(
+                          Images.login_id,
+                          height: 17,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(4.0, 4.0, 12.0, 4.0),
+                        child: InkWell(
+                          onTap: () => {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => AuthScreen()))
+                          },
+                          child: Image.asset(
+                            Images.mypage,
+                            height: 17,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
 
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      // BannersView(),
-                      // SizedBox(height: Dimensions.HOME_PAGE_PADDING),
-
-                      // 폐차견적 버튼
-                      MainPageTextButton(
-                        onTap: () => {
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (context) => ImageUploadPage()))
-                        },
-                        buttonImage: Images.main_text_1,
-                        detailButtonText:
-                            "AI 테스트 시작",
-                      ),
-
-                      // 내 진행 현황 버튼
-                      MainPageTextButton(
-                        onTap: () => {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ConsultantListScreen()))
-                        },
-                        buttonImage: Images.main_text_2,
-                        detailButtonText:
-                            "컨설턴트 상담",
-                      ),
-
-                      // 폐차GO 이용 후기 버튼
-                      // 4개씩 가져오기
                       Padding(
                         padding:
-                            const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
-                        child: Container(
-                          // width: 170,
-                          child: Text(
-                            "뷰티상품",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.bold),
+                            const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
+                        child: InkWell(
+                          onTap: () => {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ImageUploadPage()))
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image(
+                              image: AssetImage(
+                                Images.ai_test2,
+                              ),
+                            ),
                           ),
                         ),
                       ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
+                        child: InkWell(
+                          onTap: () => {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ConsultantListScreen()))
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image(
+                              image: AssetImage(
+                                Images.consult,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
+                        child: Stack(
+                          children: [
+                            Center(
+                              // width: 170,
+                              child: Text(
+                                "뷰티상품",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              // width: 170,
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "VIEW MORE >",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
+                      const Divider(
+                        height: 5,
+                        thickness: 1,
+                        indent: 180,
+                        endIndent: 180,
+                        color: Colors.black12,
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       ReviewWidget(
                         isHomePage: true,
                         scrollController: _scrollController,
                       ),
-
                       Padding(
                         padding:
                         const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
-                        child: Container(
-                          // width: 170,
-                          child: Text(
-                            "커뮤니티",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.bold),
-                          ),
+                        child: Stack(
+                          children: [
+                            Center(
+                              // width: 170,
+                              child: Text(
+                                "커뮤니티",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              // width: 170,
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "VIEW MORE >",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
+
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                      const Divider(
+                        height: 5,
+                        thickness: 1,
+                        indent: 180,
+                        endIndent: 180,
+                        color: Colors.black12,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
-                      Padding(
-                        padding:
-                        const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
-                        child: Container(
-                          // width: 170,
-                          child: Text(
-                            "커뮤니티의 내용물이 들어갈 자리",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.bold),
-                          ),
+                      const Divider(
+                        height: 3,
+                        thickness: 1,
+                        indent: 0,
+                        endIndent: 0,
+                        color: Colors.black,
+                      ),
+                      Container(
+                        height: 200,
+                        child: ListView.builder(
+                          itemBuilder: (context, position) {
+                            return Column(
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          12.0, 12.0, 12.0, 6.0),
+                                      child: Text(
+                                        titleList[position],
+                                        style: TextStyle(
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        ">",
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                position == titleList.length - 1
+                                    ? const Divider(
+                                        height: 3,
+                                        thickness: 1,
+                                        indent: 0,
+                                        endIndent: 0,
+                                        color: Colors.black,
+                                      )
+                                    : Divider(
+                                        height: 2.0,
+                                        color: Colors.grey,
+                                      ),
+                              ],
+                            );
+                          },
+                          itemCount: titleList.length,
                         ),
                       ),
-
                       FooterPage(),
                     ],
                   ),

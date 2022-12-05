@@ -36,7 +36,7 @@ class _MyProcessLoadingDisposalPageState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(
-                        Images.loading_disposal,
+                        Images.consult,
                         // height: 35,
                       ),
                       FooterPage(),

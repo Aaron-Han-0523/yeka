@@ -34,7 +34,7 @@ class VerificationScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(height: 55),
-                      Image.asset(Images.login, width: 100, height: 100,),
+                      Image.asset(Images.login_id, width: 100, height: 100,),
                       SizedBox(height: 40),
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utill/images.dart';
 import '../button/home_button.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -48,14 +49,30 @@ class CustomSliverAppBar extends StatelessWidget {
         ),
       ),
       actions: [
-        Container(
-            padding: const EdgeInsets.fromLTRB(
-              0.0,
-              0.0,
-              12.0,
-              0.0,
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+            child: Image.asset(
+              Images.login_id,
+              height: 17,
             ),
-            child: HomeButton(Colors.black)),
+          ),
+        ),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(4.0, 4.0, 12.0, 4.0),
+            child: InkWell(
+              onTap: () => {
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => AuthScreen()))
+              },
+              child: Image.asset(
+                Images.mypage,
+                height: 17,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

@@ -35,7 +35,7 @@ class _MyProcessLoadingReceiveCarPageState extends State<MyProcessLoadingReceive
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(
-                        Images.loading_receive_car,
+                        Images.consult,
                         // height: 35,
                       ),
                       FooterPage(),

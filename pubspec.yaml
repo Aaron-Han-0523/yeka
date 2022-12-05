@@ -88,3 +88,6 @@ flutter:
           weight: 500
         - asset: assets/fonts/ubuntu/Ubuntu-Bold.ttf
           weight: 600
+    - family: Nanum Square
+      fonts:
+        - asset: assets/fonts/NanumSquareAcB.ttf

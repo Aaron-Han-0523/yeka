@@ -10,8 +10,11 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/process_model.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../provider/process_provider.dart';
+import '../../../utill/images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
+import '../../basewidget/button/custom_outlined_button.dart';
 import '../../basewidget/radio/custom_radio_button.dart';
 import '../home/home_screens.dart';
 
@@ -41,7 +44,7 @@ class _AIResultPageState extends State<AIResultPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("내 차량번호 입력").getAppbar(),
+              CustomSliverAppBar("AI 테스트 결과").getAppbar(),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -59,143 +62,410 @@ class _AIResultPageState extends State<AIResultPage>
                         color: Colors.black12,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                      Container(
-                        alignment: Alignment.centerRight,
-                        margin: const EdgeInsets.fromLTRB(
-                          16.0,
-                          16.0,
-                          16.0,
-                          0.0,
-                        ),
-                        padding: const EdgeInsets.all(32.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.white,
+                      Center(
+                        child: Text(
+                          "OOO님의 AI 테스트 결과입니다.",
+                          style: TextStyle(
+                            fontSize: 14,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          color: Colors.black12,
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 0.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "폐차 견적을 위해",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xff212121),
-                                      // fontWeight: FontWeight.bold,
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      Center(
+                        child: Text(
+                          "당신은 Spring 봄 라이트 입니다.",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                      Center(
+                        child: Text(
+                          "맑고 따뜻한 색이 잘 어울리는 봄 라이트",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+
+                      // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      Center(
+                        child: Text(
+                          "#가벼운 #여성스러운 #싱그러운 #따뜻한 #아기자기한 #로멘틱한",
+                          style: TextStyle(
+                            fontSize: 11,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      Row(
+                        children: [
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
                                     ),
+                                    color: Colors.lightGreenAccent,
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "조회하실 차량 정보",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xff212121),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "를 입력해주세요.",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xff212121),
-                                          // fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Colors.lightGreenAccent,
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CustomCarNumberTextField(
-                                _textEditingController,
-                                function: setStateButtonValue,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Colors.lightGreenAccent,
+                                  ),
+                                ),
                               ),
-                            ),
-                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              margin: const EdgeInsets.all(8.0),
-                              padding: const EdgeInsets.fromLTRB(
-                                  16.0, 4.0, 0.0, 4.0),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Colors.lightGreenAccent,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 230,
+                              width: 230,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 2,
-                                  color: Color(0XFF2434D7),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(230),
                                 ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
-                                color: Colors.white,
-                              ),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _radioValue = !_radioValue;
-                                  });
-                                },
-                                child: CustomRadioButton(
-                                  _radioValue,
-                                  "개인정보 수집 동의",
-                                  Color(0XFF2434D7),
-                                ),
+                                color: Colors.lightGreenAccent,
                               ),
                             ),
-                          ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Colors.lightGreenAccent,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Colors.lightGreenAccent,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Colors.lightGreenAccent,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Colors.lightGreenAccent,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            Images.consult,
+                            height: 25,
+                            color: Colors.black,
+                          ),
+                          Text(
+                            "봄 라이트 사람들이 베이직하게 쓸 수 있는 컬러",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.all(
+                                //   Radius.circular(50),
+                                // ),
+                                color: Colors.lightGreenAccent,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.all(
+                                //   Radius.circular(50),
+                                // ),
+                                color: Colors.lightGreenAccent,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.all(
+                                //   Radius.circular(50),
+                                // ),
+                                color: Colors.lightGreenAccent,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.all(
+                                //   Radius.circular(50),
+                                // ),
+                                color: Colors.lightGreenAccent,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          // height: 50,
+                          // width: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                            border: Border.all(
+                              width: 1,
+                              color: Colors.grey,
+                              style: BorderStyle.solid,
+                            ),
+                            // color: Colors.lightGreenAccent,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      Images.consult,
+                                      height: 25,
+                                      color: Colors.black,
+                                    ),
+                                    Text("봄 라이트", style: TextStyle(fontSize: 20, color: Colors.black,),),
+                                  ],
+                                ),
+                                Text("맑고 따뜻한 색이 잘 어울리는 봄 라이트", style: TextStyle(fontSize: 11, color: Colors.grey,),),
+                                Text("#가벼운 #여성스러운 #싱그러운 # 따뜻한 #아기자기한 #밝은 #로맨틱한", style: TextStyle(fontSize: 11, color: Colors.grey,),),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: _radioValue && _inputFormValue
-                            ? CustomElevatedButton(
-                                onTap: () async {
-                                  //ref 국토부 조회 api 연동
-                                  String model = "K7";
-                                  String yearModel = "22년형";
-                                  String enrollDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(DateFormat('yyyy-MM-ddTHH:mm:ssZ').parse('2020-01-02T03:04:05Z'));
 
-                                  ProcessModel processModel = ProcessModel(
-                                    // state: 1,
-                                    carNum: _textEditingController.text,
-                                    model: model,
-                                    yearModel: yearModel,
-                                    registerDate: enrollDate,
-                                  );
-
-                                  await Provider.of<ProcessProvider>(context, listen: false)
-                                      .getProcessByCarNum(processModel);
-
-                                  //ref 기존 차판번호가 등록되어 있으면서, process state 가 1 이면 '폐라를 진행중입니다.' 알럿을 띄우고 홈으로 간다. 아니면 그냥 진행한다.
-                                  if(Provider.of<ProcessProvider>(context, listen: false).process == null) {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => AIResultPage(),
-                                      ),
-                                    );
-                                  } else {
-                                    _showDialog();
-                                  }
-                                },
-                                buttonText: '내 차 정보 보기',
-                              )
-                            : CustomElevatedButton(
-                                onTap: () {},
-                                buttonText: '내 차 정보 보기',
-                                backgroundColor: Colors.grey,
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 20,
+                            width: 20,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
                               ),
+                              color: Colors.lightGreenAccent,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "1",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "패션",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
                       ),
+
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                      Text(
+                        "따뜻한 파스텔 계열이 잘 어울리는 봄 라이트는 밝은 색이 중요하기에 어둡거나 선명한 색상은 피하는게 좋습니다. 대비감이 어울리지 않기에 비슷한 느낌의 색상으로 자연스럽게 매치하는 것이 좋습니다. 옷의 패턴과 악세사리는 꽃, 하트, 땡땡이 리본과 곡선적인 라인이 좋고 큰 사이즈보다는 중간 ~ 작은 사이즈가 좋고 악세사리는 로즈골드, 샴페인골드 색상이 좋습니다.",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 20,
+                            width: 20,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                              color: Colors.lightGreenAccent,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "2",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "헤어",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                      Text(
+                        "허니 브라운, 밀크 브라운, 내추럴 브라운, 애쉬 브라운, 라이트 브라운 과 같이 밝은 브라운이 잘 어울리고 너무 노란 골드 브라운, 채도가 높은 체리레드, 명도가 낮은 블랙은 피해주시는게 좋습니다.",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                      Text(
+                        "* 데이터와 질문지를 조합한 결과이므로 정확하지 않을 수 있습니다.",
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.fromLTRB(
+                                  0.0, 0.0, 4.0, 0.0),
+                              child: CustomElevatedButton(
+                                onTap: () {
+                                  Navigator.of(context)
+                                      .pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              HomePage()),
+                                          (route) => false);
+                                },
+                                buttonText: "${getTranslated('CONFIRM', context)}",
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.fromLTRB(
+                                  4.0, 0.0, 0.0, 0.0),
+                              child: CustomOutlinedButton(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                buttonText: "${getTranslated('CANCEL', context)}",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),
@@ -212,59 +482,60 @@ class _AIResultPageState extends State<AIResultPage>
     showDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          // title: new Text("Dialog Title"),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  // fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-              Row(
+              // title: new Text("Dialog Title"),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "폐차 진행 중입니다.",
+                    "",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                  Row(
+                    children: [
+                      Text(
+                        "폐차 진행 중입니다.",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: Text("취소"),
-              onPressed: () {
-                return Navigator.pop(context);
-              },
-            ),
-            Container(
-              child: CupertinoDialogAction(
-                child: Container(
-                  child: Text(
-                    "확인",
-                    style: TextStyle(color: Colors.white),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: Text("취소"),
+                  onPressed: () {
+                    return Navigator.pop(context);
+                  },
+                ),
+                Container(
+                  child: CupertinoDialogAction(
+                    child: Container(
+                      child: Text(
+                        "확인",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (_) => HomePage()),
+                          (route) => false);
+                    },
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0XFF2434D7),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
-                },
-              ),
-              decoration: BoxDecoration(
-                color: Color(0XFF2434D7),
-              ),
-            ),
-          ],
-        ));
+              ],
+            ));
   }
 }

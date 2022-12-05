@@ -1,229 +1,239 @@
+import 'dart:math';
+
+import 'package:yeka/view/screen/auth/join_screen.dart';
 import 'package:yeka/view/screen/auth/widget/sign_in_widget.dart';
 import 'package:yeka/view/screen/auth/widget/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:yeka/localization/language_constrants.dart';
 import 'package:yeka/provider/auth_provider.dart';
+
 // import 'package:flutter_sixvalley_ecommerce/provider/profile_provider.dart';
 // import 'package:flutter_sixvalley_ecommerce/provider/theme_provider.dart';
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
+
 // import 'package:flutter_sixvalley_ecommerce/view/screen/auth/widget/sign_in_widget.dart';
 // import 'package:flutter_sixvalley_ecommerce/view/screen/auth/widget/sign_up_widget.dart';
 import 'package:provider/provider.dart';
 
-class AuthScreen extends StatelessWidget{
+import '../../basewidget/appbar/custom_sliver_app_bar.dart';
+import '../../basewidget/button/custom_elevated_button.dart';
+import '../../basewidget/button/custom_outlined_button.dart';
+import '../../basewidget/radio/custom_radio_button.dart';
+import '../../basewidget/textfield/custom_alert_text_textfield.dart';
+
+class AuthScreen extends StatefulWidget {
   final int initialPage;
+
   AuthScreen({this.initialPage = 0});
 
   @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  TextEditingController idController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  bool _value1 = false;
+
+  @override
   Widget build(BuildContext context) {
-    // Provider.of<ProfileProvider>(context, listen: false).initAddressTypeList(context);
-    // Provider.of<AuthProvider>(context, listen: false).isRemember;
-    PageController _pageController = PageController(initialPage: initialPage);
-
     return Scaffold(
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
+        backgroundColor: ColorResources.getHomeBg(context),
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              // App Bar
+              CustomSliverAppBar("${getTranslated('LOGIN', context)}")
+                  .getAppbar(),
 
-          // Provider.of<ThemeProvider>(context).darkTheme ? SizedBox()
-          //     : Image.asset(Images.background, fit: BoxFit.fill,
-          //     height: MediaQuery.of(context).size.height,
-          //     width: MediaQuery.of(context).size.width),
-          SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: Dimensions.topSpace),
-                Image.asset(Images.logo_with_name_image, height: 150, width: 200),
-
-
-                Padding(
-                  padding: EdgeInsets.all(Dimensions.MARGIN_SIZE_LARGE),
-                  child: Stack(
-                    clipBehavior: Clip.none,
+              SliverToBoxAdapter(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  width: MediaQuery.of(context).size.width + 100,
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Positioned(bottom: 0,
-                        right: Dimensions.MARGIN_SIZE_EXTRA_SMALL, left: 0,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 1, color: ColorResources.getGainsBoro(context),
+                      const Divider(
+                        height: 5,
+                        thickness: 1,
+                        indent: 0,
+                        endIndent: 0,
+                        color: Colors.black12,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                            SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                            Center(
+                              child: Image.asset(
+                                Images.logo_b,
+                                height: 50,
+                              ),
+                            ),
+                            SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                            SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                            SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                            SizedBox(
+                              height: 20,
+                              child: TextFormField(
+                                onChanged: (value) {},
+                                controller: idController,
+                                // textAlignVertical: TextAlignVertical.center,
+                                decoration: InputDecoration(
+                                  hintText:
+                                      "${getTranslated('INSERT_ID', context)}",
+                                  hintStyle: TextStyle(fontSize: 12.0),
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  prefixIcon: Image(
+                                    image: AssetImage(
+                                      Images.login_id,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                            const Divider(
+                              height: 5,
+                              thickness: 1,
+                              indent: 10,
+                              endIndent: 10,
+                              color: Colors.black12,
+                            ),
+                            SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                            SizedBox(
+                              height: 20,
+                              child: TextFormField(
+                                onChanged: (value) {},
+                                textAlignVertical: TextAlignVertical.center,
+                                decoration: InputDecoration(
+                                  hintText:
+                                      "${getTranslated('INSERT_PW', context)}",
+                                  hintStyle: TextStyle(fontSize: 12.0),
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  prefixIcon: Image(
+                                    image: AssetImage(
+                                      Images.login_pw,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                            const Divider(
+                              height: 5,
+                              thickness: 1,
+                              indent: 10,
+                              endIndent: 10,
+                              color: Colors.black12,
+                            ),
+                            SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                          ],
+                        ),
+                      ),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+                        child: CustomElevatedButton(
+                          onTap: () {
+                            // ClientsModel clientsModel = ClientsModel(
+                            //   phoneNum: phoneNumberTextEditingController.text,
+                            //   password: passwordTextEditingController.text,
+                            // );
+                            //
+                            // Provider.of<ClientsProvider>(context, listen: false)
+                            //     .login(clientsModel, route);
+                          },
+                          buttonText: "${getTranslated('LOGIN', context)}",
                         ),
                       ),
 
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
                       Row(
                         children: [
-                          InkWell(
-                            onTap: () => _pageController.animateToPage(0, duration: Duration(seconds: 1), curve: Curves.easeInOut),
-                            child: Column(
-                              children: [
-                                Text("getTranslated('SIGN_IN', context)",
-                                    // style: authProvider.selectedIndex == 0 ?
-                                    // titilliumSemiBold : titilliumRegular,
-                                ),
-                                Container(
-                                  height: 1, width: 40,
-                                  margin: EdgeInsets.only(top: 8),
-                                  // color: authProvider.selectedIndex == 0 ?
-                                  // Theme.of(context).primaryColor : Colors.transparent,
-                                ),
-                              ],
+                          Container(
+                            margin: EdgeInsets.fromLTRB(
+                              8.0,
+                              0.0,
+                              0.0,
+                              0.0,
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  // _value = !_value;
+                                  // _value1 = _value;
+                                  // _value2 = _value;
+                                  // _value3 = _value;
+                                  //
+                                  // if (_value1 && _value2 && _value3)
+                                  //   _value = true;
+                                  // else
+                                  //   _value = false;
+                                  // if (_value1 && _value2)
+                                  //   _confirmButton = true;
+                                  // else
+                                  //   _confirmButton = false;
+                                });
+                              },
+                              child: CustomRadioButton(
+                                _value1,
+                                "${getTranslated('AUTO_LOGIN', context)}",
+                              ),
                             ),
                           ),
-                          SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-
-
-                          InkWell(
-                            onTap: () => _pageController.animateToPage(1,
-                                duration: Duration(seconds: 1), curve: Curves.easeInOut),
-                            child: Column(
-                              children: [
-
-                                Text("getTranslated('SIGN_UP', context)",
-                                    // style: authProvider.selectedIndex == 1 ?
-                                    // titilliumSemiBold : titilliumRegular
-                                ),
-
-                                Container(height: 1, width: 50,
-                                    margin: EdgeInsets.only(top: 8),
-                                    // color: authProvider.selectedIndex == 1 ?
-                                    // Theme.of(context).primaryColor : Colors.transparent
-                                ),
-                              ],
-                            ),
-                          ),
-
+                          Text("${getTranslated('FIND_ID', context)}"),
+                          Text("${getTranslated('FIND_PW', context)}"),
                         ],
                       ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                      Center(
+                          child: Text(
+                              "${getTranslated('MEMBER_JOIN_QUESTION', context)}")),
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+                        child: CustomOutlinedButton(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => JoinScreen()));
+                          },
+                          buttonText:
+                              "${getTranslated('MEMBER_JOIN', context)}",
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      // FooterPage(),
                     ],
                   ),
                 ),
-
-
-                Expanded(
-                  child: Consumer<AuthProvider>(
-                    builder: (context,authProvider,child)=>PageView.builder(
-                      itemCount: 2,
-                      controller: _pageController,
-                      itemBuilder: (context, index) {
-                        if (authProvider.selectedIndex == 0) {
-                          return SignInWidget();
-                        } else {
-                          return SignUpWidget();
-                        }
-                      },
-                      onPageChanged: (index) {
-                        authProvider.updateSelectedIndex(index);
-                      },
-                    ),
-                  ),
-                ),
-
-              ],
-            ),
+              )
+            ],
           ),
-          // Consumer<AuthProvider>(
-          //   builder: (context, auth, child) => SafeArea(
-          //     child: Column(
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: [
-          //         SizedBox(height: Dimensions.topSpace),
-          //         Image.asset(Images.logo_with_name_image, height: 150, width: 200),
-          //
-          //
-          //         Padding(
-          //           padding: EdgeInsets.all(Dimensions.MARGIN_SIZE_LARGE),
-          //           child: Stack(
-          //             clipBehavior: Clip.none,
-          //             children: [
-          //               Positioned(bottom: 0,
-          //                 right: Dimensions.MARGIN_SIZE_EXTRA_SMALL, left: 0,
-          //                 child: Container(
-          //                   width: MediaQuery.of(context).size.width,
-          //                   height: 1, color: ColorResources.getGainsBoro(context),
-          //                 ),
-          //               ),
-          //
-          //
-          //               Consumer<AuthProvider>(
-          //                 builder: (context,authProvider,child)=>Row(
-          //                   children: [
-          //                     InkWell(
-          //                       onTap: () => _pageController.animateToPage(0, duration: Duration(seconds: 1), curve: Curves.easeInOut),
-          //                       child: Column(
-          //                         children: [
-          //                           Text(getTranslated('SIGN_IN', context),
-          //                               style: authProvider.selectedIndex == 0 ?
-          //                               titilliumSemiBold : titilliumRegular),
-          //                           Container(
-          //                             height: 1, width: 40,
-          //                             margin: EdgeInsets.only(top: 8),
-          //                             color: authProvider.selectedIndex == 0 ?
-          //                             Theme.of(context).primaryColor : Colors.transparent,
-          //                           ),
-          //                         ],
-          //                       ),
-          //                     ),
-          //                     SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-          //
-          //
-          //                     InkWell(
-          //                       onTap: () => _pageController.animateToPage(1,
-          //                           duration: Duration(seconds: 1), curve: Curves.easeInOut),
-          //                       child: Column(
-          //                         children: [
-          //
-          //                           Text(getTranslated('SIGN_UP', context),
-          //                               style: authProvider.selectedIndex == 1 ?
-          //                               titilliumSemiBold : titilliumRegular),
-          //
-          //                           Container(height: 1, width: 50,
-          //                               margin: EdgeInsets.only(top: 8),
-          //                               color: authProvider.selectedIndex == 1 ?
-          //                               Theme.of(context).primaryColor : Colors.transparent
-          //                           ),
-          //                         ],
-          //                       ),
-          //                     ),
-          //
-          //                   ],
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //
-          //
-          //         Expanded(
-          //           child: Consumer<AuthProvider>(
-          //             builder: (context,authProvider,child)=>PageView.builder(
-          //               itemCount: 2,
-          //               controller: _pageController,
-          //               itemBuilder: (context, index) {
-          //                 if (authProvider.selectedIndex == 0) {
-          //                   return SignInWidget();
-          //                 } else {
-          //                   return SignUpWidget();
-          //                 }
-          //               },
-          //               onPageChanged: (index) {
-          //                 authProvider.updateSelectedIndex(index);
-          //               },
-          //             ),
-          //           ),
-          //         ),
-          //
-          //       ],
-          //     ),
-          //   ),
-          // ),
-        ],
-      ),
-    );
+        ));
   }
 }
-

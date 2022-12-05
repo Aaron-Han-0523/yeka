@@ -46,7 +46,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: Provider.of<ThemeProvider>(context).darkTheme ? null :
-          DecorationImage(image: AssetImage(Images.review_img1), fit: BoxFit.fill),
+          DecorationImage(image: AssetImage(Images.consult), fit: BoxFit.fill),
         ),
 
 
@@ -65,7 +65,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
                 Padding(
                   padding: EdgeInsets.all(50),
-                  child: Image.asset(Images.logo_with_name_image, height: 150, width: 200),
+                  child: Image.asset(Images.consult, height: 150, width: 200),
                 ),
                 Text(getTranslated('FORGET_PASSWORD', context), style: titilliumSemiBold),
 

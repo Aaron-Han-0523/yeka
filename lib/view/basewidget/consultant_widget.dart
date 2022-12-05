@@ -42,7 +42,7 @@ class ConsultantWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               child: FadeInImage.assetNetwork(
-                placeholder: Images.placeholder,
+                placeholder: Images.placeholder1,
                 fit: BoxFit.fitHeight,
                 image: AppConstants.BASE_URL + "/" + (reviewModel.attachedFilepath1??""),
                 // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'

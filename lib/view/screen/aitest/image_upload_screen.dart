@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../../../data/model/response/process_model.dart';
 import '../../../provider/process_provider.dart';
+import '../../../utill/images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/radio/custom_radio_button.dart';
 import '../home/home_screens.dart';
@@ -42,7 +43,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("내 차량번호 입력").getAppbar(),
+              CustomSliverAppBar("AI 테스트").getAppbar(),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -52,30 +53,23 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Divider(
-                        height: 5,
-                        thickness: 1,
-                        indent: 0,
-                        endIndent: 0,
-                        color: Colors.black12,
-                      ),
-                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      // const Divider(
+                      //   height: 5,
+                      //   thickness: 1,
+                      //   indent: 0,
+                      //   endIndent: 0,
+                      //   color: Colors.black12,
+                      // ),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Container(
-                        alignment: Alignment.centerRight,
-                        margin: const EdgeInsets.fromLTRB(
-                          16.0,
-                          16.0,
-                          16.0,
-                          0.0,
-                        ),
-                        padding: const EdgeInsets.all(32.0),
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.white,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          color: Colors.black12,
+                          // border: Border.all(
+                          //   width: 2,
+                          //   color: Color(0XFF2434D7),
+                          // ),
+                          // borderRadius:
+                          // BorderRadius.all(Radius.circular(8.0)),
+                          color: Colors.grey,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,33 +80,55 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "폐차 견적을 위해",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xff212121),
-                                      // fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                  Stack(
                                     children: [
-                                      Text(
-                                        "조회하실 차량 정보",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xff212121),
-                                          fontWeight: FontWeight.bold,
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Text(
+                                          "AI TEST",
+                                          style: TextStyle(
+                                            fontSize: 78,
+                                            color: Colors.black12,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
-                                      Text(
-                                        "를 입력해주세요.",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xff212121),
-                                          // fontWeight: FontWeight.bold,
+                                      Center(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
+                                            Text(
+                                              "사진을 업로드 해주세요!",
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                color: Color(0xff212121),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              "사진은 필터 없이 정면을 바라보고 창문 앞에서",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xff212121),
+                                                // fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              "촬영해주시면 좀 더 정확한 결과를 받아볼 수 있습니다.",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xff212121),
+                                                // fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
+                                      )
                                     ],
                                   ),
                                 ],
@@ -120,90 +136,78 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CustomCarNumberTextField(
-                                _textEditingController,
-                                function: setStateButtonValue,
-                              ),
+                              padding: const EdgeInsets.all(24.0),
+                              child: Container(
+                                height: MediaQuery.of(context).size.width * 0.9,
+                                  decoration: BoxDecoration(
+                                    // border: Border.all(
+                                    //   width: 2,
+                                    //   color: Color(0XFF2434D7),
+                                    // ),
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                                    color: Colors.blue,
+                                  ),
+                                  child: Center(child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Dd"),
+                                      Text("Dd"),
+                                    ],
+                                  ))
+                              )
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              margin: const EdgeInsets.all(8.0),
-                              padding: const EdgeInsets.fromLTRB(
-                                  16.0, 4.0, 0.0, 4.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 2,
-                                  color: Color(0XFF2434D7),
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
-                                color: Colors.white,
-                              ),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _radioValue = !_radioValue;
-                                  });
-                                },
-                                child: CustomRadioButton(
-                                  _radioValue,
-                                  "개인정보 수집 동의",
-                                  Color(0XFF2434D7),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: _radioValue && _inputFormValue
-                            ? CustomElevatedButton(
-                                onTap: () async {
-                                  //ref 국토부 조회 api 연동
-                                  String model = "K7";
-                                  String yearModel = "22년형";
-                                  String enrollDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(DateFormat('yyyy-MM-ddTHH:mm:ssZ').parse('2020-01-02T03:04:05Z'));
-
-                                  ProcessModel processModel = ProcessModel(
-                                    // state: 1,
-                                    carNum: _textEditingController.text,
-                                    model: model,
-                                    yearModel: yearModel,
-                                    registerDate: enrollDate,
-                                  );
-
-                                  await Provider.of<ProcessProvider>(context, listen: false)
-                                      .getProcessByCarNum(processModel);
-
-                                  //ref 기존 차판번호가 등록되어 있으면서, process state 가 1 이면 '폐라를 진행중입니다.' 알럿을 띄우고 홈으로 간다. 아니면 그냥 진행한다.
-                                  if(Provider.of<ProcessProvider>(context, listen: false).process == null) {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => OXPage(),
-                                      ),
-                                    );
-                                  } else {
-                                    _showDialog();
-                                  }
-                                },
-                                buttonText: '내 차 정보 보기',
-                              )
-                            : CustomElevatedButton(
-                                onTap: () {},
-                                buttonText: '내 차 정보 보기',
-                                backgroundColor: Colors.grey,
+                        child: Center(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (_) => OXPage()),);
+                            },
+                            child: Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(50),
+                                ),
+                                border: Border.all(
+                                  width: 2,
+                                  color: Colors.green,
+                                  style: BorderStyle.solid,
+                                ),
                               ),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      Images.cloud,
+                                      height: 25,
+                                      color: Colors.black,
+                                    ),
+                                    Text(
+                                      "Start",
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
-                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ));

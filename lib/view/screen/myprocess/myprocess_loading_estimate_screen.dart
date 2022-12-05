@@ -37,7 +37,7 @@ class _MyProcessLoadingEstimatePageState extends State<MyProcessLoadingEstimateP
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(
-                        Images.loading_estimate,
+                        Images.consult,
                         // height: 35,
                       ),
                       FooterPage(),

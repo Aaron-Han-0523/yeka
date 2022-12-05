@@ -35,7 +35,7 @@ class _MyProcessLoadingCheckCarStatusPageState extends State<MyProcessLoadingChe
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(
-                        Images.loading_check_car_status,
+                        Images.consult,
                         // height: 35,
                       ),
                       FooterPage(),

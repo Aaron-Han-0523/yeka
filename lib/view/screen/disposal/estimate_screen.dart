@@ -987,14 +987,14 @@ class _EstimatePageState extends State<EstimatePage>
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Image.asset(Images.aluminum_wheel1,
+                          child: Image.asset(Images.consult,
                               height: 100, fit: BoxFit.fill),
                         ),
                       ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Image.asset(Images.aluminum_wheel2,
+                          child: Image.asset(Images.consult,
                               height: 100, fit: BoxFit.fill),
                         ),
                       ),
@@ -1025,14 +1025,14 @@ class _EstimatePageState extends State<EstimatePage>
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Image.asset(Images.iron_wheel1,
+                          child: Image.asset(Images.consult,
                               height: 100, fit: BoxFit.fill),
                         ),
                       ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Image.asset(Images.iron_wheel2,
+                          child: Image.asset(Images.consult,
                               height: 100, fit: BoxFit.fill),
                         ),
                       ),

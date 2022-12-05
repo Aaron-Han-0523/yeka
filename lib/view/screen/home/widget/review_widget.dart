@@ -80,7 +80,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
             ? ConstrainedBox(
                 constraints: reviewList.length > 0
                     ? BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.width / 1.05)
+                        maxHeight: MediaQuery.of(context).size.width / 1.75)
                     : BoxConstraints(maxHeight: 0),
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -116,7 +116,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                           });
                         },
                         child: Container(
-                          width: MediaQuery.of(context).size.width / 1.7,
+                          width: MediaQuery.of(context).size.width / 2.7,
                           // height: MediaQuery.of(context).size.width / 1.6,
                           margin: EdgeInsets.all(8),
                           child: Column(
@@ -124,12 +124,12 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                               children: [
                                 Container(
                                   height:
-                                      MediaQuery.of(context).size.width / 1.7,
+                                      MediaQuery.of(context).size.width / 2.7,
                                   child: ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     child: FadeInImage.assetNetwork(
-                                      placeholder: Images.placeholder,
+                                      placeholder: Images.placeholder1,
                                       fit: BoxFit.fitHeight,
                                       image: AppConstants.BASE_URL +
                                           "/" +
@@ -150,7 +150,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(reviewModel.title ?? '',
+                                      Text(reviewModel.title ?? '-',
                                           textAlign: TextAlign.center,
                                           style: robotoRegular.copyWith(
                                               fontSize:
@@ -170,105 +170,6 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                                         height:
                                             Dimensions.PADDING_SIZE_EXTRA_SMALL,
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            reviewModel.grade.toString() ?? '',
-                                            textAlign: TextAlign.center,
-                                            style: robotoRegular.copyWith(
-                                              fontSize:
-                                                  Dimensions.FONT_SIZE_DEFAULT,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.grey,
-                                            ),
-                                            // maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Text(
-                                            "${getTranslated('SCORE', context)}",
-                                            textAlign: TextAlign.center,
-                                            style: robotoRegular.copyWith(
-                                              fontSize:
-                                                  Dimensions.FONT_SIZE_DEFAULT,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.grey,
-                                            ),
-                                            // maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          // Text('some',
-                                          //     textAlign: TextAlign.center,
-                                          //     style: robotoRegular.copyWith(
-                                          //       fontSize: Dimensions
-                                          //           .FONT_SIZE_DEFAULT,
-                                          //       fontWeight: FontWeight.w400,
-                                          //       color: Colors.grey,
-                                          //     ),
-                                          //     // maxLines: 2,
-                                          //     overflow: TextOverflow.ellipsis),
-                                          // Text('20.308km',
-                                          //     textAlign: TextAlign.center,
-                                          //     style: robotoRegular.copyWith(
-                                          //       fontSize: Dimensions
-                                          //           .FONT_SIZE_DEFAULT,
-                                          //       fontWeight: FontWeight.w400,
-                                          //       color: Colors.grey,
-                                          //     ),
-                                          //     // maxLines: 2,
-                                          //     overflow: TextOverflow.ellipsis),
-                                        ],
-                                      ),
-                                      // SizedBox(
-                                      //   height: Dimensions.PADDING_SIZE_SMALL,
-                                      // ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          reviewModel.title != null &&
-                                                  reviewModel.title.length > 0
-                                              ? Text(
-                                                  PriceConverter.convertPrice(
-                                                          context,
-                                                          double.parse(
-                                                              reviewModel
-                                                                      .custom3 ??
-                                                                  "0")) +
-                                                      "${getTranslated('MONEY_UNIT', context)}",
-                                                  style: titleRegular.copyWith(
-                                                      color: Color(0XFF2434D7),
-                                                      // decoration: TextDecoration.lineThrough,
-                                                      fontSize: Dimensions
-                                                          .FONT_SIZE_DEFAULT,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                )
-                                              : SizedBox.shrink(),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Icon(
-                                                Icons.remove_red_eye_outlined,
-                                                color: Colors.grey,
-                                              ),
-                                              Text(
-                                                ' ${reviewModel.custom1 ?? 0}',
-                                                style: robotoRegular.copyWith(
-                                                  fontSize: Dimensions
-                                                      .FONT_SIZE_DEFAULT,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                          height: Dimensions
-                                              .PADDING_SIZE_EXTRA_SMALL),
                                     ],
                                   ),
                                 ),

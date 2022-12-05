@@ -36,7 +36,7 @@ class TitleRow extends StatelessWidget {
             isFlash?
             Padding(
               padding: isFlash?  EdgeInsets.only(left: Dimensions.PADDING_SIZE_EXTRA_SMALL):EdgeInsets.all(0),
-              child: Image.asset(Images.flash_deal, scale: 4,),
+              child: Image.asset(Images.consult, scale: 4,),
             ):SizedBox(),
             Text(title, style: titleHeader),
             Spacer(),
@@ -64,7 +64,7 @@ class TitleRow extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child:  SvgPicture.asset(
-                    Images.filter_image,
+                    Images.consult,
                     height: Dimensions.ICON_SIZE_DEFAULT,
                     width: Dimensions.ICON_SIZE_DEFAULT,
                     color: ColorResources.getPrimary(context),

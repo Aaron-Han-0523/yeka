@@ -166,7 +166,7 @@ class _CarBasicInfoPageState extends State<CarBasicInfoPage>
                                     ],
                                   ),
                                   Image.asset(
-                                    Images.inquiry_car,
+                                    Images.consult,
                                     height: 45,
                                   ),
                                 ],

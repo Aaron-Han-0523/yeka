@@ -22,7 +22,7 @@ import '../../../provider/review_provider.dart';
 import '../../../utill/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
-import '../../basewidget/textfield/custom_text_textfield.dart';
+import '../../basewidget/textfield/custom_label_textfield.dart';
 import '../home/home_screens.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -162,7 +162,7 @@ class _ReviewDetailPageState extends State<ReviewDetailPage>
                   child: existFile
                       ? widget.reviewModel.attachedFilepath1 != null
                           ? FadeInImage.assetNetwork(
-                              placeholder: Images.placeholder,
+                              placeholder: Images.placeholder1,
                               // fit: BoxFit.none,
                               fit: BoxFit.fitHeight,
                               // fit: BoxFit.cover,
@@ -283,7 +283,7 @@ class _ReviewDetailPageState extends State<ReviewDetailPage>
                             ),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            CustomTextField(
+                            CustomLabelTextField(
                               hintText: "${getTranslated('TITLE_HINT', context)}",
                               isBorder: true,
                               boxColor: Colors.white,

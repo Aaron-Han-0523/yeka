@@ -20,7 +20,7 @@ class CustomAppBar extends StatelessWidget {
       ClipRRect(
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5), bottomRight: Radius.circular(5)),
         child: Image.asset(
-          Images.toolbar_background, fit: BoxFit.fill,
+          Images.left_arrow, fit: BoxFit.fill,
           height: 50+MediaQuery.of(context).padding.top, width: MediaQuery.of(context).size.width,
           color: Provider.of<ThemeProvider>(context).darkTheme ? Colors.black : Colors.white,
         ),

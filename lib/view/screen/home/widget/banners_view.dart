@@ -66,7 +66,7 @@ class BannersView extends StatelessWidget {
                                       //   // height: 35,
                                       // ),
                                       FadeInImage.assetNetwork(
-                                    placeholder: Images.placeholder,
+                                    placeholder: Images.placeholder1,
                                     fit: BoxFit.cover,
                                     image: index == 0
                                         ? '${AppConstants.BASE_URL}/${bannerProvider.mainBannerJson.noticeImagePath}'
