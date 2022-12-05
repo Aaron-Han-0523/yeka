@@ -42,6 +42,10 @@
   "FOOTER_TEXT4": "주소 : 서울시 강남구 OO로 OO",
   "FOOTER_TEXT5": "COPYRIGHT YEKA.ALL RIGHTS RESERVED.",
 
+  "CONSULTANT_LIST": "컨설턴트 목록",
+  "SELECT_CATEGORY": "카테고리를 선택해주세요.",
+  "SELECT_ORDER": "인기순",
+
 
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",

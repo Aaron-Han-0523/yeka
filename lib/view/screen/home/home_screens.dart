@@ -10,6 +10,7 @@ import '../../../provider/banner_provider.dart';
 import '../aitest/image_upload_screen.dart';
 import '../auth/auth_screen.dart';
 import '../consultant/consultant_list_screen.dart';
+import '../product/product_list_screen.dart';
 import 'widget/review_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -149,14 +150,24 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Container(
                               // width: 170,
                               alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "VIEW MORE >",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProductListScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "VIEW MORE >",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -179,7 +190,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                       Padding(
                         padding:
-                        const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
+                            const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
                         child: Stack(
                           children: [
                             Center(
@@ -196,14 +207,17 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Container(
                               // width: 170,
                               alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "VIEW MORE >",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold,
+                              child: InkWell(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "VIEW MORE >",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -211,7 +225,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       const Divider(
                         height: 5,

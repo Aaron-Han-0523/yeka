@@ -11,7 +11,7 @@ import '../../../../helper/price_converter.dart';
 import '../../../../localization/language_constrants.dart';
 import '../../../../provider/review_provider.dart';
 import '../../../../utill/app_constants.dart';
-import '../../review/review_detail_screen.dart';
+// import '../../consultant/review_detail_screen.dart';
 
 class ReviewWidget extends StatefulWidget {
   final bool isHomePage;
@@ -99,16 +99,16 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                           Provider.of<ReviewProvider>(context, listen: false)
                               .updateReview(reviewModel);
 
-                          await Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              transitionDuration: Duration(milliseconds: 1000),
-                              pageBuilder: (context, anim1, anim2) =>
-                                  ReviewDetailPage(
-                                      isCreateScreen: false,
-                                      reviewModel: reviewModel),
-                            ),
-                          );
+                          // await Navigator.push(
+                          //   context,
+                          //   PageRouteBuilder(
+                          //     transitionDuration: Duration(milliseconds: 1000),
+                          //     pageBuilder: (context, anim1, anim2) =>
+                          //         ConsultantDetailPage(
+                          //             isCreateScreen: false,
+                          //             reviewModel: reviewModel),
+                          //   ),
+                          // );
 
                           setState(() {
                             Provider.of<ReviewProvider>(context, listen: false)

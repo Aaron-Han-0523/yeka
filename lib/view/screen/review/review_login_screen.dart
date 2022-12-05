@@ -5,7 +5,7 @@ import 'package:yeka/provider/process_provider.dart';
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
-import 'package:yeka/view/screen/review/review_detail_screen.dart';
+// import 'package:yeka/view/screen/consultant/review_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/clients_model.dart';
@@ -181,14 +181,14 @@ class _ReviewLoginPageState extends State<ReviewLoginPage>
           Provider.of<ProcessProvider>(context, listen: false).process.custom1;
 
       if (state >= 9 && reviewId == null) {
-        ReviewModel reviewModel = ReviewModel();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => ReviewDetailPage(
-              reviewModel: reviewModel,
-            ),
-          ),
-        );
+        // ReviewModel reviewModel = ReviewModel();
+        // Navigator.of(context).pushReplacement(
+        //   MaterialPageRoute(
+        //     builder: (context) => ConsultantDetailPage(
+        //       reviewModel: reviewModel,
+        //     ),
+        //   ),
+        // );
       } else {
         showDialog(
           context: context,
