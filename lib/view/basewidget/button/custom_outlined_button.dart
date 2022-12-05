@@ -46,7 +46,7 @@ class CustomOutlinedButton extends StatelessWidget {
                   : Text(
                       buttonText,
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 13,
                         color: textColor,
                         fontWeight: FontWeight.bold,
                       ),

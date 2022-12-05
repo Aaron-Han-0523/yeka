@@ -32,12 +32,12 @@ class CustomSmallRadioButton extends StatelessWidget {
                     ? SvgPicture.asset(
                         "assets/icons/radio_button_checked_FILL0_wght400_GRAD0_opsz48.svg",
                         width: 14,
-                        color: Color(0XFF2434D7),
+                        color: Color(0XFF000000),
                       )
                     : SvgPicture.asset(
                         "assets/icons/radio_button_unchecked_FILL0_wght400_GRAD0_opsz48.svg",
                         width: 14,
-                        color: Color(0XFF2434D7),
+                        color: Color(0XFF000000),
                       ),
               ),
             ],
@@ -51,12 +51,12 @@ class CustomSmallRadioButton extends StatelessWidget {
                     ? SvgPicture.asset(
                         "assets/icons/radio_button_checked_FILL0_wght400_GRAD0_opsz48.svg",
                         width: 14,
-                        color: Color(0XFF2434D7),
+                        color: Color(0XFF000000),
                       )
                     : SvgPicture.asset(
                         "assets/icons/radio_button_unchecked_FILL0_wght400_GRAD0_opsz48.svg",
                         width: 14,
-                        color: Color(0XFF2434D7),
+                        color: Color(0XFF000000),
                       ),
               ),
               Container(
@@ -66,7 +66,7 @@ class CustomSmallRadioButton extends StatelessWidget {
                   text,
                   // maxLines: 4,
                   style: TextStyle(
-                      fontSize: 9,
+                      fontSize: 12,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
                 ),

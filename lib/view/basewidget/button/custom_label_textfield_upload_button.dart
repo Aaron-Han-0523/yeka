@@ -81,14 +81,14 @@ class CustomLabelTextFieldUploadButton extends StatelessWidget {
                 Text(
                   labelText,
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 15,
                   ),
                 ),
                 Text(
                   essentialLabelText,
                   style: TextStyle(
                     color: Color(0xffff0000),
-                    fontSize: 10,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -106,7 +106,7 @@ class CustomLabelTextFieldUploadButton extends StatelessWidget {
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(Color(0xff121212)),
                   ),
-                  child: Text('파일 선택',style: TextStyle(fontSize: 9),),
+                  child: Text('파일 선택',style: TextStyle(fontSize: 12),),
                   onPressed: () async {
                     var picked = await FilePicker.platform.pickFiles();
 

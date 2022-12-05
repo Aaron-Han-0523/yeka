@@ -39,7 +39,7 @@ class CustomTextarea extends StatelessWidget {
                 Text(
                   "$labelText",
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 15,
                   ),
                 ),
                 Text(
@@ -86,7 +86,7 @@ class CustomTextarea extends StatelessWidget {
                     maxLines: null,
                     minLines: 10,
                     decoration: InputDecoration(
-                      hintStyle: TextStyle(fontSize: 7),
+                      hintStyle: TextStyle(fontSize: 9),
                       hintText:
                           '서비스 이용약관 제1조',
                       hintMaxLines: 5,

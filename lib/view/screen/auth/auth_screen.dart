@@ -79,6 +79,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               child: Image.asset(
                                 Images.logo_b,
                                 height: 50,
+                                width: 88,
                               ),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
@@ -95,7 +96,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       "${getTranslated('INSERT_ID', context)}",
                                   hintStyle: TextStyle(fontSize: 12.0),
                                   contentPadding:
-                                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+                                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 6.0),
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   prefixIcon: Image(
@@ -126,7 +127,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       "${getTranslated('INSERT_PW', context)}",
                                   hintStyle: TextStyle(fontSize: 12.0),
                                   contentPadding:
-                                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+                                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 6.0),
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   prefixIcon: Image(
@@ -154,7 +155,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       Padding(
                         padding:
-                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
                         child: CustomElevatedButton(
                           onTap: () {
                             // ClientsModel clientsModel = ClientsModel(
@@ -169,15 +170,15 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                       ),
 
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                      //SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
                       Row(
                         children: [
                           Container(
                             margin: EdgeInsets.fromLTRB(
-                              8.0,
+                              20.0,
                               0.0,
-                              0.0,
+                              145.0,
                               0.0,
                             ),
                             child: InkWell(
@@ -204,14 +205,23 @@ class _AuthScreenState extends State<AuthScreen> {
                               ),
                             ),
                           ),
-                          Text("${getTranslated('FIND_ID', context)}"),
-                          Text("${getTranslated('FIND_PW', context)}"),
+                          Padding(
+                            padding: const EdgeInsets.all(25.0),
+                            child: Text("${getTranslated('FIND_ID', context)}",
+                              style: TextStyle(fontSize: 9)),
+                          ),
+
+                          Text("${getTranslated('FIND_PW', context)}",
+                              style: TextStyle(fontSize: 9)),
                         ],
                       ),
-                      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                      //SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       Center(
                           child: Text(
-                              "${getTranslated('MEMBER_JOIN_QUESTION', context)}")),
+                            "${getTranslated('MEMBER_JOIN_QUESTION', context)}",
+                            style: TextStyle(color: Color(0xff9d9d9d), fontSize: 9.0),
+                          )
+                      ),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                       Padding(
                         padding:

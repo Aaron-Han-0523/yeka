@@ -255,14 +255,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   Text(
                     "성별 ",
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 15,
                     ),
                   ),
                   Text(
                     " *",
                     style: TextStyle(
                       color: Color(0xffff0000),
-                      fontSize: 10,
+                      fontSize: 9,
                     ),
                   ),
                 ],
@@ -292,11 +292,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               ),
             ),
             Expanded(
-              child: CustomLabelTextField(
-                controller: _firstNameController,
-                labelText: "",
-                essentialLabelText: "",
-                hintText: "${getTranslated('SELECT_DISTINCT', context)}",
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                child: CustomLabelTextField(
+                  controller: _firstNameController,
+                  labelText: "",
+                  essentialLabelText: "",
+                  hintText: "${getTranslated('SELECT_DISTINCT', context)}",
+                ),
               ),
             ),
           ],

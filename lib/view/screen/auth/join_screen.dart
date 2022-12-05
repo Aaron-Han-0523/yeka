@@ -81,10 +81,11 @@ class _JoinScreenState extends State<JoinScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(4.0),
+                                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 7),
                                   child: Image.asset(
                                     Images.logo_b,
                                     height: 28,
+                                    width: 45,
                                   ),
                                 ),
                                 Row(
@@ -98,9 +99,9 @@ class _JoinScreenState extends State<JoinScreen> {
                                       ),
                                     ),
                                     Text(
-                                      " 여러분 ",
+                                      " 여러분",
                                       style: TextStyle(
-                                        // color: Color(0xff0123b4),
+                                        color: Color(0xff0123b4),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),
@@ -165,9 +166,10 @@ class _JoinScreenState extends State<JoinScreen> {
                               color: Colors.black12,
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                            SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                            SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                             SignUpWidget(),
-                            SizedBox(
-                                height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                            SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                           ],
                         ),
                       ),

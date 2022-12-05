@@ -13,7 +13,7 @@ class CustomRadioButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      // crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
@@ -22,21 +22,21 @@ class CustomRadioButton extends StatelessWidget {
             child: _value
                 ? SvgPicture.asset(
                     Images.radio_button_checked,
-                    width: 22,
+                    width: 10,
                     color: Color(0XFF2434D7),
                   )
                 : SvgPicture.asset(
                     Images.radio_button_unchecked,
-                    width: 22,
+                    width: 10,
                     color: color == null ? Colors.grey : color,
                   )),
         Container(
-          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 12.0),
+          padding: const EdgeInsets.fromLTRB(8.0, 12.0, 8.0, 12.0),
           // color: Colors.lightBlue,
           child: Text(
             text,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 9,
               color: color == null ? Colors.black87 : color,
               fontWeight: FontWeight.bold,
             ),

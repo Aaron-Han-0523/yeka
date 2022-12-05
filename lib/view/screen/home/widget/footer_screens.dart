@@ -42,7 +42,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
                   "${getTranslated('FOOTER_TEXT1', context)}",
                   style: TextStyle(
                     color: Color(0xFFFFFFFF),
-                    fontSize: 10,
+                    fontSize: 6,
                   ),
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
@@ -50,7 +50,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
                   "${getTranslated('FOOTER_TEXT2', context)}",
                   style: TextStyle(
                     color: Color(0xFFFFFFFF),
-                    fontSize: 10,
+                    fontSize: 6,
                   ),
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
@@ -58,7 +58,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
                   "${getTranslated('FOOTER_TEXT3', context)}",
                   style: TextStyle(
                     color: Color(0xFFFFFFFF),
-                    fontSize: 10,
+                    fontSize: 6,
                   ),
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
@@ -66,33 +66,36 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
                   "${getTranslated('FOOTER_TEXT4', context)}",
                   style: TextStyle(
                     color: Color(0xFFFFFFFF),
-                    fontSize: 10,
+                    fontSize: 6,
                   ),
                 ),
-                SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                Text(
-                  "${getTranslated('FOOTER_TEXT5', context)}",
-                  style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontSize: 10,
-                  ),
-                ),
+                // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                // Text(
+                //   "${getTranslated('FOOTER_TEXT5', context)}",
+                //   style: TextStyle(
+                //     color: Color(0xFFFFFFFF),
+                //     fontSize: 10,
+                //   ),
+                // ),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
               ],
             ),
-            Column(
-              children: [
-                Image(
-                  image: AssetImage(
-                    Images.logo_w,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+              child: Column(
+                children: [
+                  Image(
+                    image: AssetImage(
+                      Images.logo_w,
+                    ),
+                    height: 33,
                   ),
-                  height: 30,
-                ),
-                SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
-              ],
+                  //SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                ],
+              ),
             ),
           ],
         ),
