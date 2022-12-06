@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../../../provider/banner_provider.dart';
 import '../aitest/image_upload_screen.dart';
 import '../auth/auth_screen.dart';
+import '../community/community_home_screen.dart';
 import '../consultant/consultant_list_screen.dart';
 import '../product/product_list_screen.dart';
 import 'widget/review_widget.dart';
@@ -208,7 +209,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               // width: 170,
                               alignment: Alignment.centerRight,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          CommunityHomeScreen(),
+                                    ),
+                                  );
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
@@ -242,8 +250,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         color: Colors.black,
                       ),
                       Container(
-                        height: 200,
                         child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
                           itemBuilder: (context, position) {
                             return Column(
                               children: <Widget>[

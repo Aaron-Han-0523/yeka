@@ -15,7 +15,8 @@ class CustomTextarea extends StatelessWidget {
     this.isBorder = true,
     this.textEditingController,
     this.enabled = true,
-    this.labelText = "", this.radioText = "",
+    this.labelText = "",
+    this.radioText = "",
   });
 
   @override
@@ -50,11 +51,13 @@ class CustomTextarea extends StatelessWidget {
                   ),
                 ),
 
-                CustomSmallRadioButton(
-                  value: true,
-                  text: radioText,
-                  reverse: true,
-                ),
+                radioText != ""
+                    ? CustomSmallRadioButton(
+                        value: true,
+                        text: radioText,
+                        reverse: true,
+                      )
+                    : Container(),
               ],
             ),
           ),
@@ -87,8 +90,7 @@ class CustomTextarea extends StatelessWidget {
                     minLines: 10,
                     decoration: InputDecoration(
                       hintStyle: TextStyle(fontSize: 9),
-                      hintText:
-                          '서비스 이용약관 제1조',
+                      hintText: '서비스 이용약관 제1조',
                       hintMaxLines: 5,
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(10),

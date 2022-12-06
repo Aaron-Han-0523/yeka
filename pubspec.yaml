@@ -28,6 +28,7 @@ dependencies:
   shimmer: ^2.0.0-nullsafety.0
   url_launcher: ^6.0.2
   image_picker: ^0.8.4+8
+  images_picker: ^1.2.11
 #  webview_flutter: ^3.0.0
 #  flutter_html: ^3.0.0-alpha.3
   share: ^2.0.1
@@ -66,6 +67,7 @@ dependencies:
   intl:
 #  downloads_path_provider_28: ^0.1.2
   scrolling_page_indicator: ^0.1.2
+  youtube_player_flutter: ^8.1.1
 
 dev_dependencies:
   flutter_test:
