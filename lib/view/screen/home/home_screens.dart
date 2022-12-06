@@ -11,6 +11,7 @@ import '../aitest/image_upload_screen.dart';
 import '../auth/auth_screen.dart';
 import '../community/community_home_screen.dart';
 import '../consultant/consultant_list_screen.dart';
+import '../mypage/mypage_home_screen.dart';
 import '../product/product_list_screen.dart';
 import 'widget/review_widget.dart';
 
@@ -69,9 +70,15 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
-                        child: Image.asset(
-                          Images.login_id,
-                          height: 17,
+                        child: InkWell(
+                          onTap: () => {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => MyPageHomeScreen()))
+                          },
+                          child: Image.asset(
+                            Images.login_id,
+                            height: 17,
+                          ),
                         ),
                       ),
                     ),

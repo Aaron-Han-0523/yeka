@@ -68,6 +68,7 @@ dependencies:
 #  downloads_path_provider_28: ^0.1.2
   scrolling_page_indicator: ^0.1.2
   youtube_player_flutter: ^8.1.1
+  syncfusion_flutter_datepicker: ^20.3.59
 
 dev_dependencies:
   flutter_test:

@@ -16,19 +16,19 @@ import '../../basewidget/textfield/custom_label_textfield.dart';
 import '../home/home_screens.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 
-class ProductOrderPage extends StatefulWidget {
+class MyPageOrderDetailPage extends StatefulWidget {
   final bool isCreateScreen;
   final ReviewModel reviewModel;
 
-  const ProductOrderPage(
+  const MyPageOrderDetailPage(
       {Key key, this.isCreateScreen = true, this.reviewModel})
       : super(key: key);
 
   @override
-  State<ProductOrderPage> createState() => _ProductOrderPageState();
+  State<MyPageOrderDetailPage> createState() => _MyPageOrderDetailPageState();
 }
 
-class _ProductOrderPageState extends State<ProductOrderPage>
+class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
     with TickerProviderStateMixin {
   TextEditingController _firstNameController = TextEditingController();
   bool radioButton = false;
@@ -66,51 +66,6 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 20,
-                            ), // Text(key['title']),
-                          ),
-                          Text(
-                            "주문내역을 확인해주세요 :)",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          Text(
-                            "다른 상품들은",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            "'마이페이지 > 주문내역'",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            "에서 확인할 수 있어요.",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
 
                       Row(
                         children: [
