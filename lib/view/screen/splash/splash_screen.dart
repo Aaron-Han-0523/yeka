@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: MediaQuery.of(context).size.height,
               color: Provider.of<ThemeProvider>(context).darkTheme
                   ? Colors.black
-                  : Color(0XFF2434D7),
+                  : Color(0XFF121212),
               // child: CustomPaint(
               //   painter: SplashPainter(),
               // ),
@@ -101,11 +101,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset(
-                    Images.consult,
+                    Images.logo_w,
                     height: 250.0,
                     fit: BoxFit.scaleDown,
                     width: 250.0,
-                    color: Colors.white,
+                    color: Color(0xffffffff),
                   ),
                 ],
               ),
