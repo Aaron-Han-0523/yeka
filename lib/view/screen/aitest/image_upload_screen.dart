@@ -10,6 +10,7 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/process_model.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../provider/process_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
@@ -103,7 +104,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
                                             Text(
-                                              "사진을 업로드 해주세요!",
+                                              "${getTranslated('PLEASE_UPLOAD_PICTURE', context)}",
                                               style: TextStyle(
                                                 fontSize: 18,
                                                 color: Color(0xff212121),
@@ -111,7 +112,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                               ),
                                             ),
                                             Text(
-                                              "사진은 필터 없이 정면을 바라보고 창문 앞에서",
+                                              "${getTranslated('FRONT_PICTURE', context)}",
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xff212121),
@@ -119,7 +120,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                               ),
                                             ),
                                             Text(
-                                              "촬영해주시면 좀 더 정확한 결과를 받아볼 수 있습니다.",
+                                              "${getTranslated('CORRECT_PICTURE', context)}",
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 color: Color(0xff212121),
@@ -192,7 +193,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                       color: Colors.black,
                                     ),
                                     Text(
-                                      "Start",
+                                      "${getTranslated('START', context)}",
                                     ),
                                   ],
                                 ),

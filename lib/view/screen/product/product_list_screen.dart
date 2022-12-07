@@ -43,7 +43,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "뷰티 상품",
+                  "${getTranslated('BEAUTY_PRODUCT', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
@@ -132,7 +132,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                 isHomePage: false,
                                 scrollController: _scrollController),
                             CustomElevatedButton(
-                                onTap: () {}, buttonText: "더보기 ∨"),
+                                onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}"),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                           ],

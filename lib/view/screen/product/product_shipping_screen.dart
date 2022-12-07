@@ -86,7 +86,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(7, 16, 0, 0),
                             child: Text(
-                              "잠깐 !",
+                              "${getTranslated('STOP', context)}",
                               style: TextStyle(
                                 color: Color(0xff121212),
                                 fontSize: 20,
@@ -99,7 +99,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
                         child: Text(
-                          "구매하시려는 상품정보를 반드시 확인해주세요 :)",
+                          "${getTranslated('PLEASE_CHECK_IT', context)}",
                           style: TextStyle(
                             color: Color(0xff000000),
                             fontSize: 14,
@@ -134,7 +134,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                 Row(
                                   children: [
                                     Text(
-                                      "색상 : 투명",
+                                      "${getTranslated('COLOR', context)} : 투명",
                                       style: TextStyle(
                                         color: Color(0xff999999),
                                         fontSize: 12,
@@ -143,7 +143,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                                       child: Text(
-                                        "|",
+                                        "${getTranslated('|', context)}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -151,7 +151,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                       ),
                                     ),
                                     Text(
-                                      "수량 : 1개",
+                                      "${getTranslated('AMOUNT', context)} : 1개",
                                       style: TextStyle(
                                         color: Color(0xff999999),
                                         fontSize: 12,
@@ -163,7 +163,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "판매가",
+                                      "${getTranslated('SELLING_PRICE', context)}",
                                       style: TextStyle(
                                         color: Color(0xff999999),
                                         fontSize: 11,
@@ -185,7 +185,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "배송비",
+                                      "${getTranslated('DELIVERY_CHARGE', context)}",
                                       style: TextStyle(
                                         color: Color(0xff999999),
                                         fontSize: 11,
@@ -216,7 +216,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "결제금액",
+                                      "${getTranslated('PAYMENT_AMOUNT', context)}",
                                       style: TextStyle(
                                         color: Color(0xff999999),
                                         fontSize: 11,
@@ -253,7 +253,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                         child: Text(
-                          "주문하시는 분",
+                          "${getTranslated('ORDERED_CUSTOMER', context)}",
                           style: TextStyle(
                             color: Color(0xff333333),
                             fontSize: 21,
@@ -297,7 +297,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                 Text(""),
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
-                                  child: CustomElevatedButton(onTap: () {}, buttonText: "검색",),
+                                  child: CustomElevatedButton(onTap: () {}, buttonText: "${getTranslated('SEARCH', context)}",),
                                 ),
                               ],
                             ),
@@ -337,7 +337,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
                         child: Text(
-                          "받으시는 분",
+                          "${getTranslated('RECEIVED_CUSTOMER', context)}",
                           style: TextStyle(
                             color: Color(0xff333333),
                             fontSize: 20,
@@ -353,7 +353,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
 
                       CustomLabelTextField(
                         controller: _firstNameController,
-                        labelText: "배송지 ",
+                        labelText: "${getTranslated('GRADATION_IFO', context)}",
                         essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),
@@ -417,7 +417,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                             ),
                           );
                         },
-                        buttonText: "결제하러 가기",
+                        buttonText: "${getTranslated('GO_TO_PAY', context)}",
                       ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),

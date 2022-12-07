@@ -150,7 +150,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                         tabs: [
                           Tab(
                             child: Text(
-                              "상세정보",
+                              "${getTranslated('DETAIL_INFO', context)}",
                               style: TextStyle(
                               //   color: Color(0xff333333),
                                 fontSize: 12,
@@ -159,7 +159,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           ),
                           Tab(
                             child: Text(
-                              "상담메뉴",
+                              "${getTranslated('CONSULTATION_MENU', context)}",
                               style: TextStyle(
                                 //   color: Color(0xff333333),
                                 fontSize: 12,
@@ -168,7 +168,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           ),
                           Tab(
                             child: Text(
-                              "포트폴리오",
+                              "${getTranslated('PORTFOLIO', context)}",
                               style: TextStyle(
                                 //   color: Color(0xff333333),
                                 fontSize: 12,

@@ -7,6 +7,7 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
@@ -80,7 +81,7 @@ class _CommunityFreeBoardDetailScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "커뮤니티",
+                  "${getTranslated('COMMUNITY', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
@@ -182,7 +183,7 @@ class _CommunityFreeBoardDetailScreenState
                             width: 15,
                           ),
                           Text(
-                            "다음 소식도 궁금해요!",
+                            "${getTranslated('WANT_NEXT_NEWS', context)}",
                             style: TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,

@@ -82,7 +82,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
                             child: Text(
-                              "주문내역을 확인해주세요 :)",
+                              "${getTranslated('CHECK_YOUR_ORDER', context)}",
                               style: TextStyle(
                                 color: Color(0xff121212),
                                 fontSize: 18,
@@ -97,7 +97,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(20, 12, 0, 18),
                             child: Text(
-                              "다른 상품들은 ",
+                              "${getTranslated('OTHER_PRODUCT', context)}",
                               style: TextStyle(
                                 color: Color(0xff121212),
                                 fontSize: 12,
@@ -107,7 +107,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 12, 0, 18),
                             child: Text(
-                              "'마이페이지 > 주문내역'",
+                              "${getTranslated('MY_PAGE_ORDERED_LIST', context)}",
                               style: TextStyle(
                                 color: Color(0xff0123B4),
                                 fontSize: 12,
@@ -117,7 +117,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 12, 0, 18),
                             child: Text(
-                              " 에서 확인할 수 있어요.",
+                              "${getTranslated('CAN_CHECK', context)}",
                               style: TextStyle(
                                 color: Color(0xff121212),
                                 fontSize: 12,
@@ -147,7 +147,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                 Row(
                                   children: [
                                     Text(
-                                      "주문서번호:2022112492135423",
+                                      "${getTranslated('ORDER_NUMBER', context)}:2022112492135423",
                                       style: TextStyle(
                                         color: Color(0xff999999),
                                         fontSize: 9,
@@ -156,7 +156,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
                                       child: Text(
-                                        "결제 완료",
+                                        "${getTranslated('PAYMENT_COMPLETED', context)}",
                                         style: TextStyle(
                                           color: Color(0xff7700FF),
                                           fontSize: 10,
@@ -175,7 +175,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                 Row(
                                   children: [
                                     Text(
-                                      "색상 : 투명",
+                                      "${getTranslated('COLOR', context)} : 투명",
                                       style: TextStyle(
                                         color: Color(0xff999999),
                                         fontSize: 13,
@@ -192,7 +192,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                       ),
                                     ),
                                     Text(
-                                      "수량 : 1개",
+                                      "${getTranslated('AMOUNT', context)} : 1개",
                                       style: TextStyle(
                                         color: Color(0xff999999),
                                         fontSize: 13,
@@ -201,7 +201,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                       child: Text(
-                                        "|",
+                                        "${getTranslated('|', context)}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 13,
@@ -243,7 +243,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 5, 0, 15),
                         child: Text(
-                          "주문하시는 분",
+                          "${getTranslated('ORDERED_CUSTOMER', context)}",
                           style: TextStyle(
                             color: Color(0xff333333),
                             fontSize: 20,
@@ -315,7 +315,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
                         child: Text(
-                          "받으시는 분",
+                          "${getTranslated('RECEIVED_CUSTOMER', context)}",
                           style: TextStyle(
                             color: Color(0xff333333),
                             fontSize: 20,
@@ -323,15 +323,15 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                         ),
                       ),
 
-                      CustomSmallRadioButton(
-                        value: radioButton,
-                        text: "주문자와 동일",
-                        // reverse: true,
-                      ),
+                      // CustomSmallRadioButton(
+                      //   value: radioButton,
+                      //   text: "주문자와 동일",
+                      //   // reverse: true,
+                      // ),
 
                       CustomLabelTextField(
                         controller: _firstNameController,
-                        labelText: "배송지 ",
+                        labelText: "${getTranslated('DESTINATION', context)} ",
                         essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),

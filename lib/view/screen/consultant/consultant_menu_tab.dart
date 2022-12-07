@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
+import '../../../localization/language_constrants.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import 'consultant_reserve_screen.dart';
 
@@ -89,7 +90,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                               pageBuilder: (context, anim1, anim2) => ConsultantReserveScreen(),
                             ));
                       },
-                      buttonText: '예약하기',
+                      buttonText: '${getTranslated('RESERVE', context)}',
                     ),
                   ),
                 ),

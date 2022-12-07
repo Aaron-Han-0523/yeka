@@ -39,7 +39,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "커뮤니티",
+                  "${getTranslated('COMMUNITY', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
@@ -54,7 +54,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                       Row(
                         children: [
                           Text(
-                            "사진",
+                            "${getTranslated('PICTURE', context)}",
                             style: TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
@@ -62,7 +62,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                             ),
                           ),
                           Text(
-                            "(선택)",
+                            "${getTranslated('ROUND_BRACKETS_SELECT', context)}",
                             style: TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
@@ -72,7 +72,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                         ],
                       ),
                       Text(
-                        "원하는 사진을 올려보세요.",
+                        "${getTranslated('UPLOAD_PICTURE', context)}",
                         style: TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.bold,
@@ -187,13 +187,13 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomTextarea(
-                        labelText: "내용",
+                        labelText: "${getTranslated('CONTENT', context)}",
                         enabled: false,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomLabelTextField(
                         controller: _firstNameController,
-                        labelText: "영상링크 ",
+                        labelText: "${getTranslated('MOVIE_LINK', context)}",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),
@@ -211,7 +211,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                             // Provider.of<ClientsProvider>(context, listen: false)
                             //     .login(clientsModel, route);
                           },
-                          buttonText: "확인",
+                          buttonText: "${getTranslated('CONFIRMATION', context)}",
                         ),
                       ),
                       FooterPage(),

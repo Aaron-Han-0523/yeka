@@ -111,7 +111,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                                 isHomePage: false,
                                 scrollController: _scrollController),
 
-                            CustomElevatedButton(onTap: () {}, buttonText: "더보기 ∨"),
+                            CustomElevatedButton(onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}"),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                           ],

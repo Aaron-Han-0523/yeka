@@ -11,6 +11,7 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/process_model.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../provider/process_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
@@ -170,7 +171,7 @@ class _OXPageState extends State<OXPage>
                                 child: Column(
                                   children: [
                                     Text(
-                                      "Start",
+                                      "${getTranslated('START', context)}",
                                     ),
                                     Container(
                                       height: 60,
@@ -195,7 +196,7 @@ class _OXPageState extends State<OXPage>
                                               color: Colors.black,
                                             ),
                                             Text(
-                                              "Start",
+                                              "${getTranslated('START', context)}",
                                             ),
                                           ],
                                         ),
@@ -217,7 +218,7 @@ class _OXPageState extends State<OXPage>
                                 child: Column(
                                   children: [
                                     Text(
-                                      "Start",
+                                      "${getTranslated('START', context)}",
                                     ),
                                     Container(
                                       height: 60,
@@ -242,7 +243,7 @@ class _OXPageState extends State<OXPage>
                                               color: Colors.black,
                                             ),
                                             Text(
-                                              "Start",
+                                              "${getTranslated('START', context)}",
                                             ),
                                           ],
                                         ),

@@ -226,7 +226,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 child: Text(
-                                                  "수량",
+                                                  "${getTranslated('AMOUNT', context)}",
                                                   style: TextStyle(
                                                     color: Color(0xFF999999),
                                                     fontSize: 14,
@@ -283,7 +283,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 0, 25, 0),
                                       child: Text(
-                                        "배송비",
+                                        "${getTranslated('DELIVERY_CHARGE', context)}",
                                         style: TextStyle(
                                           color: Color(0xFF999999),
                                           fontSize: 12,
@@ -318,7 +318,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       padding: const EdgeInsets.fromLTRB(
                                           15, 0, 0, 0),
                                       child: Text(
-                                        "최종결제금액",
+                                        "${getTranslated('최종결제금액', context)}",
                                         style: TextStyle(
                                           color: Color(0xFF999999),
                                           fontSize: 12,
@@ -346,7 +346,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       ),
                                     );
                                   },
-                                  buttonText: "주문하러 가기",
+                                  buttonText: "${getTranslated('GO_TO_ORDER', context)}",
                                 ),
                                 SizedBox(
                                   height: Dimensions.PADDING_SIZE_EXTRA_LARGE,

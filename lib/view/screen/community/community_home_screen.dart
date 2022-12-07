@@ -5,6 +5,7 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'community_free_board_detail_screen.dart';
@@ -87,7 +88,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                       // height: MediaQuery.of(context).size.width * 0.4,
                                     ),
                                     Text(
-                                      "유튜브 및 칼럼 게시판",
+                                      "${getTranslated('BOARD_YOUTUBE_COLUMN', context)}",
                                       style: TextStyle(
                                         fontSize: 20,
                                         color: Colors.black87,
@@ -108,7 +109,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      "VIEW MORE >",
+                                      "${getTranslated('VIEW_MORE', context)}",
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.black87,
@@ -264,7 +265,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                       // height: MediaQuery.of(context).size.width * 0.4,
                                     ),
                                     Text(
-                                      "자유게시판",
+                                      "${getTranslated('FREE_BULLETIN_BOARD', context)}",
                                       style: TextStyle(
                                         fontSize: 20,
                                         color: Colors.black87,
@@ -285,7 +286,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      "VIEW MORE >",
+                                      "${getTranslated('VIEW_MORE', context)}",
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.black87,

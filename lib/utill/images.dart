@@ -21,6 +21,7 @@ class Images {
   static const String consult_minus = "assets/images/consult_minus.png";
   static const String consult_plus = "assets/images/consult_plus.png";
   static const String down_bt = "assets/images/down_bt.png";
+  static const String error = "assets/images/error.png";
   static const String eye1 = "assets/images/eye1.png";
   static const String free = "assets/images/free.png";
   static const String heart = "assets/images/heart.png";

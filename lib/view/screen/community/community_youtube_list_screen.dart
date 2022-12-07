@@ -5,6 +5,7 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'community_crud_screen.dart';
@@ -215,7 +216,7 @@ class ActionButton extends StatelessWidget {
           ),
         );
       },
-      buttonText: '작성하러 가기',
+      buttonText: '${getTranslated('GO_WRITING', context)}',
     );
   }
 }

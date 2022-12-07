@@ -62,13 +62,22 @@ class _AIResultPageState extends State<AIResultPage>
                         color: Colors.black12,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                      Center(
-                        child: Text(
-                          "OOO님의 AI 테스트 결과입니다.",
-                          style: TextStyle(
-                            fontSize: 14,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "OOO",
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
+                          Text(
+                            "${getTranslated('AI_TEST_RESULT', context)}",
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Center(
@@ -368,7 +377,7 @@ class _AIResultPageState extends State<AIResultPage>
                             ),
                           ),
                           Text(
-                            "패션",
+                            "${getTranslated('FASHION', context)}",
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -425,7 +434,7 @@ class _AIResultPageState extends State<AIResultPage>
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       Text(
-                        "* 데이터와 질문지를 조합한 결과이므로 정확하지 않을 수 있습니다.",
+                        "${getTranslated('IS_NOT_PRECISE', context)}",
                         style: TextStyle(
                           fontSize: 12,
                         ),
@@ -447,7 +456,7 @@ class _AIResultPageState extends State<AIResultPage>
                                               HomePage()),
                                           (route) => false);
                                 },
-                                buttonText: "${getTranslated('CONFIRM', context)}",
+                                buttonText: "${getTranslated('DO_OVER', context)}",
                               ),
                             ),
                           ),
@@ -459,7 +468,7 @@ class _AIResultPageState extends State<AIResultPage>
                                 onTap: () {
                                   Navigator.of(context).pop();
                                 },
-                                buttonText: "${getTranslated('CANCEL', context)}",
+                                buttonText: "${getTranslated('CONSULT_WITH_CONSULTANT)', context)}",
                               ),
                             ),
                           ),

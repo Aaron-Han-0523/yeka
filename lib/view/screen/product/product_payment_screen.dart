@@ -65,7 +65,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Text(
-                          "결제정보",
+                          "${getTranslated('PAYMENT_INFO', context)}",
                           style: TextStyle(
                             color: Color(0xff000000),
                             fontSize: 18,
@@ -85,7 +85,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "계좌번호",
+                              "${getTranslated('GRADATION_INFO', context)}",
                               style: TextStyle(
                                 color: Color(0xffbbbbbb),
                                 fontSize: 10,
@@ -109,7 +109,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
                               child: Text(
-                                "예금주",
+                                "${getTranslated('DISCOUNT_HOLDER', context)}",
                                 style: TextStyle(
                                   color: Color(0xffbbbbbb),
                                   fontSize: 10,
@@ -134,7 +134,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
                               child: Text(
-                                "결제금액",
+                                "${getTranslated('PAYMENT_AMOUNT', context)}",
                                 style: TextStyle(
                                   color: Color(0xffbbbbbb),
                                   fontSize: 10,
@@ -159,7 +159,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 53, 0),
                               child: Text(
-                                "배송비",
+                                "${getTranslated('DELIVERY_CHARGE', context)}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 10,
@@ -190,7 +190,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "최종결제금액",
+                              "${getTranslated('FINAL_PAYMENT_AMOUNT', context)}",
                               style: TextStyle(
                                 color: Color(0xffbbbbbb),
                                 fontSize: 10,
@@ -215,14 +215,14 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                             child: Column(
                               children: [
                                 Text(
-                                  "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)",
+                                  "${getTranslated('DEPOSIT_WARNING', context)}",
                                   style: TextStyle(
                                     color: Color(0xff979797),
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  "입금이 확인되면 다음단계로 넘어갑니다.",
+                                  "${getTranslated('DEPOSIT_WARNING_NEXT', context)}",
                                   style: TextStyle(
                                     color: Color(0xff979797),
                                     fontSize: 12,
@@ -246,7 +246,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             );
                           },
-                          buttonText: "확인",
+                          buttonText: "${getTranslated('CONFIRMATION', context)}",
                         ),
                       ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
