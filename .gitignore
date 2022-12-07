@@ -44,3 +44,4 @@ app.*.map.json
 /android/app/release
 android/.idea/gradle.xml
 pubspec.lock
+nodejs/node_modules
