@@ -96,7 +96,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             slivers: [
               // App Bar
               CustomSliverAppBar(
-                "${getTranslated('REVIEW_WRITE', context)}",
+                "${getTranslated('PRODUCT_DETAIL_INFO', context)}",
               ).getAppbar(),
 
               SliverToBoxAdapter(
@@ -187,13 +187,17 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 20, 0, 5),
                                   child: Text(
-                                    "상품설명",
+                                    "${getTranslated('PRODUCT_DETAIL_PRODUCT_DESC', context)}",
                                     style: TextStyle(
                                       color: Color(0xFF333333),
                                       fontSize: 15,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
+                                SizedBox(
+                                    height: Dimensions
+                                        .PADDING_SIZE_EXTRA_EXTRA_SMALL),
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 0, 4, 0),
@@ -211,145 +215,73 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                 Row(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(10, 25, 12, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 10, 12, 0),
                                       child: Card(
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                "수량",
-                                                style: TextStyle(
-                                                  color: Color(0xFF999999),
-                                                  fontSize: 12,
+                                        child: Container(
+                                          height: 35,
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  "수량",
+                                                  style: TextStyle(
+                                                    color: Color(0xFF999999),
+                                                    fontSize: 14,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            _itemCount != 0
-                                                ? IconButton(
-                                                    icon: Icon(Icons.remove),
-                                                    onPressed: () => setState(
-                                                        () => _itemCount--),
-                                                  )
-                                                : IconButton(
-                                                    icon: Icon(Icons.remove),
-                                                    onPressed: null,
-                                                  ),
-                                            Text(_itemCount.toString()),
-                                            IconButton(
-                                              icon: Icon(Icons.add),
-                                              onPressed: () =>
-                                                  setState(() => _itemCount++),
-                                            ),
-                                          ],
+                                              _itemCount != 0
+                                                  ? IconButton(
+                                                      icon: Icon(Icons.remove),
+                                                      onPressed: () => setState(
+                                                          () => _itemCount--),
+                                                    )
+                                                  : IconButton(
+                                                      icon: Icon(Icons.remove),
+                                                      onPressed: null,
+                                                    ),
+                                              Text(_itemCount.toString()),
+                                              IconButton(
+                                                icon: Icon(
+                                                  Icons.add,
+                                                ),
+                                                onPressed: () => setState(
+                                                    () => _itemCount++),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(20, 25, 0, 0),
-                                      child: Card(
-                                        child: CustomDropdownButton2(
-                                          hint:
-                                              '${getTranslated('SELECT_ORDER', context)}',
-                                          icon: const Icon(
-                                              Icons.keyboard_arrow_down),
-                                          iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                          dropdownItems: dongDropdownItems,
-                                          // value: "",
-                                          onChanged: (value) {
-                                            // setState(() {
-                                            //   receiveTimeEnd = value + "";
-                                            // });
-                                          },
-                                        ),
+                                    Container(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          20, 25, 0, 0),
+                                      child: CustomDropdownButton2(
+                                        hint:
+                                            '${getTranslated('PRODUCT_DETAIL_PRODUCT_OPTION_DESC', context)}',
+                                        icon: const Icon(
+                                            Icons.keyboard_arrow_down),
+                                        iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                                        dropdownItems: dongDropdownItems,
+                                        // value: "",
+                                        onChanged: (value) {
+                                          // setState(() {
+                                          //   receiveTimeEnd = value + "";
+                                          // });
+                                        },
                                       ),
                                     ),
                                   ],
-                                ),
-                                Container(
-                                  // alignment: Alignment.centerRight,
-                                  margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                                  padding: const EdgeInsets.fromLTRB(
-                                      8.0, 10.0, 8.0, 0.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(10.0)),
-                                    color: Color(0xfff7f7f7),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                                            child: Text(
-                                              "색상 및 종류",
-                                              style: TextStyle(
-                                                color: Color(0xFF333333),
-                                                fontSize: 8,
-                                              ),
-                                            ),
-                                          ),
-                                          CustomDropdownButton2(
-                                            hint:
-                                                '${getTranslated('SELECT_ORDER', context)}',
-                                            icon: const Icon(
-                                                Icons.keyboard_arrow_down),
-                                            iconSize:
-                                                Dimensions.ICON_SIZE_DEFAULT,
-                                            dropdownItems: dongDropdownItems,
-                                            // value: "",
-                                            onChanged: (value) {
-                                              // setState(() {
-                                              //   receiveTimeEnd = value + "";
-                                              // });
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                                            child: Text(
-                                              "유분크림함유(유, 무 중 택1)",
-                                              style: TextStyle(
-                                                color: Color(0xFF333333),
-                                                fontSize: 8,
-                                              ),
-                                            ),
-                                          ),
-                                          CustomDropdownButton2(
-                                            hint:
-                                                '${getTranslated('SELECT_ORDER', context)}',
-                                            icon: const Icon(
-                                                Icons.keyboard_arrow_down),
-                                            iconSize:
-                                                Dimensions.ICON_SIZE_DEFAULT,
-                                            dropdownItems: dongDropdownItems,
-                                            // value: "",
-                                            onChanged: (value) {
-                                              // setState(() {
-                                              //   receiveTimeEnd = value + "";
-                                              // });
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 0, 25, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 0, 25, 0),
                                       child: Text(
                                         "배송비",
                                         style: TextStyle(
@@ -359,7 +291,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 6, 15, 5),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 6, 15, 5),
                                       child: Text(
                                         "+ 2,500 원",
                                         style: TextStyle(
@@ -378,10 +311,12 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   color: Color(0xffdddddd),
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          15, 0, 0, 0),
                                       child: Text(
                                         "최종결제금액",
                                         style: TextStyle(
@@ -391,7 +326,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 10, 15, 10),
                                       child: Text(
                                         "10,500 원",
                                         style: TextStyle(
@@ -416,7 +352,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 25),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 0, 15, 25),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),
                                     child: Container(
@@ -425,8 +362,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                         // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                                         'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                                         fit: BoxFit.cover,
-                                        width: MediaQuery.of(context).size.width *
-                                            0.9,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
                                         height:
                                             MediaQuery.of(context).size.width *
                                                 1.5,
@@ -435,7 +373,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 40),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 0, 15, 40),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),
                                     child: Container(
@@ -444,8 +383,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                         // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                                         'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                                         fit: BoxFit.cover,
-                                        width: MediaQuery.of(context).size.width *
-                                            0.9,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
                                         height:
                                             MediaQuery.of(context).size.width *
                                                 1.2,

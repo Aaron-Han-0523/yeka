@@ -13,6 +13,7 @@ import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
 import '../../basewidget/radio/custom_small_radio_button.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
+import '../../basewidget/textfield/custom_textfield.dart';
 import '../home/home_screens.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 
@@ -288,21 +289,36 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                               hintText: "${getTranslated('SELECT_CITY', context)}",
                             ),
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                              child: CustomLabelTextField(
-                                controller: _firstNameController,
-                                labelText: "",
-                                essentialLabelText: "",
-                                hintText: "${getTranslated('SELECT_DISTINCT', context)}",
-                              ),
+                          Container(
+                            width: 120,
+                            // alignment: Alignment.bottomCenter,
+                            child: Column(
+                              children: [
+                                Text(""),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
+                                  child: CustomElevatedButton(onTap: () {}, buttonText: "검색",),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
 
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+
                       CustomLabelTextField(
+                        isTextable: false,
+                        controller: _firstNameController,
+                        labelText: "",
+                        essentialLabelText: "",
+                        hintText: "${getTranslated('SELECT_DISTINCT', context)}",
+                      ),
+
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+
+                      CustomLabelTextField(
+                        isTextable: false,
                         controller: _firstNameController,
                         // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
                         // essentialLabelText: " *",

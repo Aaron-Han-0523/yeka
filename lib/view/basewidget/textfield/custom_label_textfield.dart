@@ -34,6 +34,7 @@ class CustomLabelTextField extends StatelessWidget {
   final Color boxColor;
   final double height;
   final bool enabled;
+  final bool isTextable;
 
   CustomLabelTextField({
     this.labelText = "",
@@ -59,6 +60,7 @@ class CustomLabelTextField extends StatelessWidget {
     this.boxColor = Colors.white,
     this.height = 25,
     this.enabled = true,
+    this.isTextable = true,
   });
 
   @override
@@ -72,28 +74,30 @@ class CustomLabelTextField extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 2.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    labelText,
-                    style: TextStyle(
-                      fontSize: 15,
+            isTextable
+                ? Padding(
+                    padding: const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 2.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          labelText,
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          essentialLabelText,
+                          style: TextStyle(
+                            color: Color(0xffff0000),
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  Text(
-                    essentialLabelText,
-                    style: TextStyle(
-                      color: Color(0xffff0000),
-                      fontSize: 15,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                  )
+                : Container(),
             Container(
               // width: double.infinity,
               // padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 12.0),

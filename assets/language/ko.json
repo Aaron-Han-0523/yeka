@@ -46,6 +46,10 @@
   "SELECT_CATEGORY": "카테고리를 선택해주세요.",
   "SELECT_ORDER": "인기순",
 
+  "PRODUCT_DETAIL_INFO": "상품 상세정보",
+  "PRODUCT_DETAIL_PRODUCT_DESC": "상품설명",
+  "PRODUCT_DETAIL_PRODUCT_OPTION_DESC": "상품옵션을 선택해주세요.",
+
 
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",

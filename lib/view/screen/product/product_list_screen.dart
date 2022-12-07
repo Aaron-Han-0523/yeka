@@ -48,12 +48,21 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      Padding(
+                      const Divider(
+                        height: 5,
+                        thickness: 1,
+                        indent: 0,
+                        endIndent: 0,
+                        color: Color(0xffdddddd),
+                      ),
+                      Container(
                         padding: EdgeInsets.fromLTRB(
-                            Dimensions.HOME_PAGE_PADDING,
-                            Dimensions.PADDING_SIZE_SMALL,
-                            Dimensions.PADDING_SIZE_DEFAULT,
-                            Dimensions.PADDING_SIZE_SMALL),
+                          Dimensions.HOME_PAGE_PADDING,
+                          Dimensions.PADDING_SIZE_SMALL,
+                          Dimensions.PADDING_SIZE_DEFAULT,
+                          Dimensions.PADDING_SIZE_SMALL,
+                        ),
+                        decoration: BoxDecoration(color: Colors.white),
                         child: Column(
                           children: [
                             SizedBox(
@@ -63,34 +72,37 @@ class _ProductListScreenState extends State<ProductListScreen> {
                               children: [
                                 Flexible(
                                   flex: 2,
-                                  child: Material(
-                                    // elevation: 20.0,
-                                    // shadowColor: Color(0XFF2434D7),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8.0)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Material(
+                                      // elevation: 20.0,
+                                      // shadowColor: Color(0XFF2434D7),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8.0)),
 
-                                    child: CustomDropdownButton2(
-                                      dropdownWidth: 300,
-                                      buttonWidth: 300,
-                                      hint:
-                                          '${getTranslated('SELECT_CATEGORY', context)}',
-                                      icon:
-                                          const Icon(Icons.keyboard_arrow_down),
-                                      iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                      dropdownItems: sidoDropdownItems,
-                                      // value: receiveTimeStart,
-                                      onChanged: (value) {
-                                        // setState(() {
-                                        //   receiveTimeStart = value + "";
-                                        // });
-                                      },
+                                      child: CustomDropdownButton2(
+                                        dropdownWidth: 300,
+                                        buttonWidth: 300,
+                                        hint:
+                                            '${getTranslated('SELECT_CATEGORY', context)}',
+                                        icon:
+                                            const Icon(Icons.keyboard_arrow_down),
+                                        iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                                        dropdownItems: sidoDropdownItems,
+                                        // value: receiveTimeStart,
+                                        onChanged: (value) {
+                                          // setState(() {
+                                          //   receiveTimeStart = value + "";
+                                          // });
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Flexible(
                                   flex: 1,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.fromLTRB(4.0,0.0,4.0,0.0,),
                                     child: Material(
                                       // elevation: 20.0,
                                       // shadowColor: Color(0XFF2434D7),

@@ -35,7 +35,7 @@ class ProductWidget extends StatelessWidget {
         );
       },
       child: Container(
-        height: MediaQuery.of(context).size.width / 1.4,
+        height: MediaQuery.of(context).size.width / 1.7,
         margin: EdgeInsets.fromLTRB(6, 0, 6, 0),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
