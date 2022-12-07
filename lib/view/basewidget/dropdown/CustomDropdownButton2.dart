@@ -63,7 +63,7 @@ class CustomDropdownButton2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 18.5),
         child: DropdownButton2(
           //To avoid long text overflowing.
           isExpanded: true,
@@ -102,8 +102,8 @@ class CustomDropdownButton2 extends StatelessWidget {
           iconSize: iconSize ?? 12,
           iconEnabledColor: iconEnabledColor,
           iconDisabledColor: iconDisabledColor,
-          buttonHeight: buttonHeight ?? 35,
-          buttonWidth: buttonWidth ?? 163,
+          buttonHeight: buttonHeight ?? 27,
+          buttonWidth: buttonWidth ?? 165.5,
           buttonPadding:
           buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
           buttonDecoration: buttonDecoration ??

@@ -261,6 +261,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                     Center(
                       child: Container(
                         decoration: BoxDecoration(color: Color(0xfff8f8f8)),
+                        padding: EdgeInsets.fromLTRB(65, 0, 65, 0),
                         child: Column(
                           children: [
                             Text(

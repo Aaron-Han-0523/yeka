@@ -114,7 +114,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                                   //     builder: (context) => AuthScreen()))
                                 },
                                 child: Image.asset(
-                                  Images.mypage,
+                                  Images.user,
                                   height: 64,
                                 ),
                               ),

@@ -36,7 +36,7 @@ class ProductWidget extends StatelessWidget {
       },
       child: Container(
         height: MediaQuery.of(context).size.width / 1.4,
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.fromLTRB(6, 0, 6, 0),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Stack(
@@ -94,11 +94,11 @@ class ProductWidget extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(
                         6.0,
                         2.0,
-                        6.0,
+                        5.0,
                         2.0,
                       ),
                       margin: const EdgeInsets.fromLTRB(
-                        6.0,
+                        11.0,
                         2.0,
                         6.0,
                         2.0,
@@ -107,9 +107,9 @@ class ProductWidget extends StatelessWidget {
                           color: Color(0xff000000),
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        "Test",
+                        "#노화된 피부",
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 6,
                           color: Color(0xffffffff),
                         ),
                       ),
@@ -118,7 +118,7 @@ class ProductWidget extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(
                         6.0,
                         2.0,
-                        6.0,
+                        5.0,
                         2.0,
                       ),
                       margin: const EdgeInsets.fromLTRB(
@@ -131,9 +131,9 @@ class ProductWidget extends StatelessWidget {
                           color: Color(0xff000000),
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        "Test11",
+                        "#여드름 제거",
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 6,
                           color: Color(0xffffffff),
                         ),
                       ),
@@ -142,7 +142,7 @@ class ProductWidget extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(
                         6.0,
                         2.0,
-                        6.0,
+                        5.0,
                         2.0,
                       ),
                       margin: const EdgeInsets.fromLTRB(
@@ -155,9 +155,9 @@ class ProductWidget extends StatelessWidget {
                           color: Color(0xff000000),
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        "Test222333",
+                        "여드름 제거",
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 6,
                           color: Color(0xffffffff),
                         ),
                       ),
@@ -177,7 +177,7 @@ class ProductWidget extends StatelessWidget {
                   '[블랑]비비크림',
                   textAlign: TextAlign.center,
                   style: robotoRegular.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                    fontSize: Dimensions.FONT_SIZE_SMALL,
                     fontWeight: FontWeight.bold,
                   ),
                   // maxLines: 2,
@@ -190,7 +190,7 @@ class ProductWidget extends StatelessWidget {
                         reviewModel.custom2 ?? '마르지 않는 피부의 비밀마르지안는',
                         textAlign: TextAlign.center,
                         style: robotoRegular.copyWith(
-                          fontSize: 10,
+                          fontSize: 7,
                           fontWeight: FontWeight.bold,
                         ),
                         // maxLines: 2,

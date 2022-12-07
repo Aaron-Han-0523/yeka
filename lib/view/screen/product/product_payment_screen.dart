@@ -57,145 +57,197 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                   //   color: Color(0xffcfcbc3),
                   // ),
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      Text(
-                        "결제정보",
-                        style: TextStyle(
-                          color: Color(0xff000000),
-                          fontSize: 18,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
+                        child: Text(
+                          "결제정보",
+                          style: TextStyle(
+                            color: Color(0xff000000),
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                       const Divider(
                         height: 3,
                         thickness: 1,
-                        indent: 0,
-                        endIndent: 0,
-                        color: Colors.black,
+                        indent: 20,
+                        endIndent: 20,
+                        color: Color(0xffDDDDDD),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "계좌번호",
-                            style: TextStyle(
-                              color: Color(0xffbbbbbb),
-                              fontSize: 10,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 18, 20, 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "계좌번호",
+                              style: TextStyle(
+                                color: Color(0xffbbbbbb),
+                                fontSize: 10,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "국민은행 0000-00-000000",
-                            style: TextStyle(
-                              color: Color(0xffff3d3d),
-                              fontSize: 11,
+                            Text(
+                              "국민은행 0000-00-000000",
+                              style: TextStyle(
+                                color: Color(0xff333333),
+                                fontSize: 11,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "예금주",
-                            style: TextStyle(
-                              color: Color(0xffbbbbbb),
-                              fontSize: 10,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
+                              child: Text(
+                                "예금주",
+                                style: TextStyle(
+                                  color: Color(0xffbbbbbb),
+                                  fontSize: 10,
+                                ),
+                              ),
                             ),
-                          ),
-                          Text(
-                            "임지은",
-                            style: TextStyle(
-                              color: Color(0xffff3d3d),
-                              fontSize: 11,
+                            Text(
+                              "BYHER(바이허)",
+                              style: TextStyle(
+                                color: Color(0xff333333),
+                                fontSize: 11,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "결제금액",
-                            style: TextStyle(
-                              color: Color(0xffbbbbbb),
-                              fontSize: 10,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+                              child: Text(
+                                "결제금액",
+                                style: TextStyle(
+                                  color: Color(0xffbbbbbb),
+                                  fontSize: 10,
+                                ),
+                              ),
                             ),
-                          ),
-                          Text(
-                            "25,000원",
-                            style: TextStyle(
-                              color: Color(0xff0123b4),
-                              fontSize: 15,
+                            Text(
+                              "8,000원",
+                              style: TextStyle(
+                                color: Color(0xff0123b4),
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "배송비",
-                            style: TextStyle(
-                              color: Color(0xff0123b4),
-                              fontSize: 10,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 20, 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 53, 0),
+                              child: Text(
+                                "배송비",
+                                style: TextStyle(
+                                  color: Color(0xff333333),
+                                  fontSize: 10,
+                                ),
+                              ),
                             ),
-                          ),
-                          Text(
-                            "+2,500원",
-                            style: TextStyle(
-                              color: Color(0xff0123b4),
-                              fontSize: 9,
+                            Text(
+                              "+ 2,500원",
+                              style: TextStyle(
+                                color: Color(0xff333333),
+                                fontSize: 9,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
 
                       const Divider(
                         height: 3,
                         thickness: 1,
-                        indent: 0,
-                        endIndent: 0,
-                        color: Colors.black,
+                        indent: 20,
+                        endIndent: 20,
+                        color: Color(0xffDDDDDD),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "최종결제금액",
-                            style: TextStyle(
-                              color: Color(0xffbbbbbb),
-                              fontSize: 10,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 8, 20, 23),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "최종결제금액",
+                              style: TextStyle(
+                                color: Color(0xffbbbbbb),
+                                fontSize: 10,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "22,500원",
-                            style: TextStyle(
-                              color: Color(0xffff3d3d),
-                              fontSize: 15,
+                            Text(
+                              "22,500원",
+                              style: TextStyle(
+                                color: Color(0xffff3d3d),
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(color: Color(0xfff8f8f8)),
-                        child: Text(
-                          "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :) \n 입금이 확인되면 다음단계로 넘어갑니다.",
-                          style: TextStyle(
-                            color: Color(0xffbbbbbb),
-                            fontSize: 12,
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
+                        child: Container(
+                          decoration: BoxDecoration(color: Color(0xfff8f8f8)),
+                          width: double.infinity,
+                          child: Center(
+                            child: Column(
+                              children: [
+                                Text(
+                                  "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)",
+                                  style: TextStyle(
+                                    color: Color(0xff979797),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Text(
+                                  "입금이 확인되면 다음단계로 넘어갑니다.",
+                                  style: TextStyle(
+                                    color: Color(0xff979797),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
 
                       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                      CustomElevatedButton(
-                        onTap: () async {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => ProductOrderPage(),
-                            ),
-                          );
-                        },
-                        buttonText: "확인",
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 272.5),
+                        child: CustomElevatedButton(
+                          onTap: () async {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => ProductOrderPage(),
+                              ),
+                            );
+                          },
+                          buttonText: "확인",
+                        ),
                       ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),

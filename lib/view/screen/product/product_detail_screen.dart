@@ -43,13 +43,16 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   }
 
   Widget buildPage(String text, Color color) {
-    return Container(
-      // width: MediaQuery.of(context).size.width * 0.6,
-      // height: MediaQuery.of(context).size.width * 0.6,
-      child: Image.network(
-        // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-        'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-        fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        // width: MediaQuery.of(context).size.width * 0.6,
+        // height: MediaQuery.of(context).size.width * 0.6,
+        child: Image.network(
+          // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
+          'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -147,102 +150,127 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "광합성 100% 함유된 알로에 마스크! 피부에 양보하세요 :)",
-                                  style: TextStyle(
-                                    color: Color(0xFF999999),
-                                    fontSize: 12,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                  child: Text(
+                                    "광합성 100% 함유된 알로에 마스크! 피부에 양보하세요 :)",
+                                    style: TextStyle(
+                                      color: Color(0xFF999999),
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  "광합성 100% 함유된 알로에 마스크! 피부에 양보하세요 :)",
-                                  style: TextStyle(
-                                    color: Color(0xFF999999),
-                                    fontSize: 12,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 5, 0, 0),
+                                  child: Text(
+                                    "[ALOS] 마스크팩 3입",
+                                    style: TextStyle(
+                                      color: Color(0xFF000000),
+                                      fontSize: 24,
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  "[ALOS] 마스크팩 3입",
-                                  style: TextStyle(
-                                    color: Color(0xFF999999),
-                                    fontSize: 12,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                  child: Text(
+                                    "8,000 원",
+                                    style: TextStyle(
+                                      color: Color(0xFF0123B4),
+                                      fontSize: 24,
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  "8,000원",
-                                  style: TextStyle(
-                                    color: Color(0xFF999999),
-                                    fontSize: 12,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 20, 0, 5),
+                                  child: Text(
+                                    "상품설명",
+                                    style: TextStyle(
+                                      color: Color(0xFF333333),
+                                      fontSize: 15,
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  "상품설명",
-                                  style: TextStyle(
-                                    color: Color(0xFF999999),
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                Text(
-                                  "피부는 우리의 생활 그 자체로써, 우리가 먹는 것, 우리가 생활하는 방식이 바로 우리의 피부입니다. 하루에 한 번 마스크팩을 사용하여 숙면을 취하는게 중요하다는 이야기를 드리고 싶다. 식생활과 생활습관이 바뀌어야 우리의 피부도 속에서부터의 근본",
-                                  style: TextStyle(
-                                    color: Color(0xFF999999),
-                                    fontSize: 12,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 0, 4, 0),
+                                  child: Text(
+                                    "피부는 우리의 생활 그 자체로써, 우리가 먹는 것, 우리가 생활하는 방식이 바로 우리의 피부입니다. "
+                                    "하루에 한 번 마스크팩을 사용하여 숙면을 취하는게 중요하다 는 이야기를 드리고 싶다. "
+                                    "식생활과 생활습관이 바뀌어야 우리의 피부도 속에서부 터의 근본적 변화가 가능하다. "
+                                    "하지만 저희 ALOS 마스크팩은 팩 수분내에 단백 질 함유가 내장되어 있어, 식습관에 관여하지 않고 탄탄하고 매끄러운 피부를 가 지실 수 있습니다.",
+                                    style: TextStyle(
+                                      color: Color(0xFF333333),
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ),
                                 Row(
                                   children: [
-                                    Card(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "수량",
-                                            style: TextStyle(
-                                              color: Color(0xFF999999),
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                          _itemCount != 0
-                                              ? IconButton(
-                                                  icon: Icon(Icons.remove),
-                                                  onPressed: () => setState(
-                                                      () => _itemCount--),
-                                                )
-                                              : IconButton(
-                                                  icon: Icon(Icons.remove),
-                                                  onPressed: null,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(10, 25, 12, 0),
+                                      child: Card(
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                "수량",
+                                                style: TextStyle(
+                                                  color: Color(0xFF999999),
+                                                  fontSize: 12,
                                                 ),
-                                          Text(_itemCount.toString()),
-                                          IconButton(
-                                            icon: Icon(Icons.add),
-                                            onPressed: () =>
-                                                setState(() => _itemCount++),
-                                          ),
-                                        ],
+                                              ),
+                                            ),
+                                            _itemCount != 0
+                                                ? IconButton(
+                                                    icon: Icon(Icons.remove),
+                                                    onPressed: () => setState(
+                                                        () => _itemCount--),
+                                                  )
+                                                : IconButton(
+                                                    icon: Icon(Icons.remove),
+                                                    onPressed: null,
+                                                  ),
+                                            Text(_itemCount.toString()),
+                                            IconButton(
+                                              icon: Icon(Icons.add),
+                                              onPressed: () =>
+                                                  setState(() => _itemCount++),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                    Card(
-                                      child: CustomDropdownButton2(
-                                        hint:
-                                            '${getTranslated('SELECT_ORDER', context)}',
-                                        icon: const Icon(
-                                            Icons.keyboard_arrow_down),
-                                        iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                        dropdownItems: dongDropdownItems,
-                                        // value: "",
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   receiveTimeEnd = value + "";
-                                          // });
-                                        },
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(20, 25, 0, 0),
+                                      child: Card(
+                                        child: CustomDropdownButton2(
+                                          hint:
+                                              '${getTranslated('SELECT_ORDER', context)}',
+                                          icon: const Icon(
+                                              Icons.keyboard_arrow_down),
+                                          iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                                          dropdownItems: dongDropdownItems,
+                                          // value: "",
+                                          onChanged: (value) {
+                                            // setState(() {
+                                            //   receiveTimeEnd = value + "";
+                                            // });
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 Container(
-                                  alignment: Alignment.centerRight,
-                                  // margin: const EdgeInsets.all(8.0),
+                                  // alignment: Alignment.centerRight,
+                                  margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                                   padding: const EdgeInsets.fromLTRB(
-                                      8.0, 0.0, 8.0, 0.0),
+                                      8.0, 10.0, 8.0, 0.0),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(10.0)),
@@ -253,12 +281,16 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "색상 및 종류",
-                                            style: TextStyle(
-                                              color: Color(0xFF999999),
-                                              fontSize: 12,
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                            child: Text(
+                                              "색상 및 종류",
+                                              style: TextStyle(
+                                                color: Color(0xFF333333),
+                                                fontSize: 8,
+                                              ),
                                             ),
                                           ),
                                           CustomDropdownButton2(
@@ -281,12 +313,16 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "유분크림함유(유, 무 중 택1)",
-                                            style: TextStyle(
-                                              color: Color(0xFF999999),
-                                              fontSize: 12,
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                            child: Text(
+                                              "유분크림함유(유, 무 중 택1)",
+                                              style: TextStyle(
+                                                color: Color(0xFF333333),
+                                                fontSize: 8,
+                                              ),
                                             ),
                                           ),
                                           CustomDropdownButton2(
@@ -310,19 +346,26 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   ),
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
-                                      "배송비",
-                                      style: TextStyle(
-                                        color: Color(0xFF999999),
-                                        fontSize: 12,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 25, 0),
+                                      child: Text(
+                                        "배송비",
+                                        style: TextStyle(
+                                          color: Color(0xFF999999),
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ),
-                                    Text(
-                                      "+ 2,500 원",
-                                      style: TextStyle(
-                                        color: Color(0xFF999999),
-                                        fontSize: 12,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 6, 15, 5),
+                                      child: Text(
+                                        "+ 2,500 원",
+                                        style: TextStyle(
+                                          color: Color(0xFF333333),
+                                          fontSize: 13,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -330,35 +373,41 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                 const Divider(
                                   height: 5,
                                   thickness: 1,
-                                  indent: 0,
-                                  endIndent: 0,
+                                  indent: 12,
+                                  endIndent: 12,
                                   color: Color(0xffdddddd),
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "최종결제금액",
-                                      style: TextStyle(
-                                        color: Color(0xFF999999),
-                                        fontSize: 12,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                      child: Text(
+                                        "최종결제금액",
+                                        style: TextStyle(
+                                          color: Color(0xFF999999),
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ),
-                                    Text(
-                                      "10,500 원",
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 20,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
+                                      child: Text(
+                                        "10,500 원",
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 20,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-
                                 CustomElevatedButton(
                                   onTap: () async {
                                     Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (_) => ProductShippingPage(),
-                                        ),
+                                      MaterialPageRoute(
+                                        builder: (_) => ProductShippingPage(),
+                                      ),
                                     );
                                   },
                                   buttonText: "주문하러 가기",
@@ -366,68 +415,41 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                 SizedBox(
                                   height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: Container(
-                                    child: Image.network(
-                                      // widget.reviewModel.attachedFilepath1,
-                                      // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                      fit: BoxFit.cover,
-                                      width: MediaQuery.of(context).size.width * 0.9,
-                                      height: MediaQuery.of(context).size.width * 0.9,
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 25),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: Container(
+                                      child: Image.network(
+                                        // widget.reviewModel.attachedFilepath1,
+                                        // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
+                                        'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+                                        fit: BoxFit.cover,
+                                        width: MediaQuery.of(context).size.width *
+                                            0.9,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                1.5,
+                                      ),
                                     ),
                                   ),
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: Container(
-                                    child: Image.network(
-                                      // widget.reviewModel.attachedFilepath1,
-                                      // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                      fit: BoxFit.cover,
-                                      width: MediaQuery.of(context).size.width * 0.9,
-                                      height: MediaQuery.of(context).size.width * 0.9,
-                                    ),
-                                  ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: Container(
-                                    child: Image.network(
-                                      // widget.reviewModel.attachedFilepath1,
-                                      // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                      fit: BoxFit.cover,
-                                      width: MediaQuery.of(context).size.width * 0.9,
-                                      height: MediaQuery.of(context).size.width * 0.9,
-                                    ),
-                                  ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: Container(
-                                    child: Image.network(
-                                      // widget.reviewModel.attachedFilepath1,
-                                      // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                      fit: BoxFit.cover,
-                                      width: MediaQuery.of(context).size.width * 0.9,
-                                      height: MediaQuery.of(context).size.width * 0.9,
-                                    ),
-                                  ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: Container(
-                                    child: Image.network(
-                                      // widget.reviewModel.attachedFilepath1,
-                                      // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                      fit: BoxFit.cover,
-                                      width: MediaQuery.of(context).size.width * 0.9,
-                                      height: MediaQuery.of(context).size.width * 0.9,
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 40),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: Container(
+                                      child: Image.network(
+                                        // widget.reviewModel.attachedFilepath1,
+                                        // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
+                                        'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+                                        fit: BoxFit.cover,
+                                        width: MediaQuery.of(context).size.width *
+                                            0.9,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                1.2,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -435,7 +457,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                             ),
                           ),
                           Positioned(
-                            top: 10,
+                            top: 0,
                             right: 30,
                             child: Container(
                               padding: EdgeInsets.all(10.0),

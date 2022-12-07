@@ -63,30 +63,27 @@ class _ProductListScreenState extends State<ProductListScreen> {
                               children: [
                                 Flexible(
                                   flex: 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Material(
-                                      // elevation: 20.0,
-                                      // shadowColor: Color(0XFF2434D7),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(8.0)),
+                                  child: Material(
+                                    // elevation: 20.0,
+                                    // shadowColor: Color(0XFF2434D7),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8.0)),
 
-                                      child: CustomDropdownButton2(
-                                        dropdownWidth: 300,
-                                        buttonWidth: 300,
-                                        hint:
-                                            '${getTranslated('SELECT_CATEGORY', context)}',
-                                        icon:
-                                            const Icon(Icons.keyboard_arrow_down),
-                                        iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                        dropdownItems: sidoDropdownItems,
-                                        // value: receiveTimeStart,
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   receiveTimeStart = value + "";
-                                          // });
-                                        },
-                                      ),
+                                    child: CustomDropdownButton2(
+                                      dropdownWidth: 300,
+                                      buttonWidth: 300,
+                                      hint:
+                                          '${getTranslated('SELECT_CATEGORY', context)}',
+                                      icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                      iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                                      dropdownItems: sidoDropdownItems,
+                                      // value: receiveTimeStart,
+                                      onChanged: (value) {
+                                        // setState(() {
+                                        //   receiveTimeStart = value + "";
+                                        // });
+                                      },
                                     ),
                                   ),
                                 ),

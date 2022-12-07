@@ -66,55 +66,68 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 20,
-                            ), // Text(key['title']),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(150.0),
+                              child: Image.network(
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                                fit: BoxFit.fill,
+                                height: 20,
+                              ), // Text(key['title']),
+                            ),
                           ),
-                          Text(
-                            "잠깐",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(7, 16, 0, 0),
+                            child: Text(
+                              "잠깐 !",
+                              style: TextStyle(
+                                color: Color(0xff121212),
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                         ],
                       ),
 
-                      Text(
-                        "구매하시려는 상품정보를 반드시 확인해주세요 :)",
-                        style: TextStyle(
-                          color: Color(0xff000000),
-                          fontSize: 14,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
+                        child: Text(
+                          "구매하시려는 상품정보를 반드시 확인해주세요 :)",
+                          style: TextStyle(
+                            color: Color(0xff000000),
+                            fontSize: 14,
+                          ),
                         ),
                       ),
 
                       Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 80,
-                            ), // Text(key['title']),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(150.0),
+                              child: Image.network(
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                                fit: BoxFit.fill,
+                                height: 80,
+                              ), // Text(key['title']),
+                            ),
                           ),
                           Expanded(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   "[ALOS]마스크팩 3입",
                                   style: TextStyle(
                                     color: Color(0xff121212),
-                                    fontSize: 22,
+                                    fontSize: 16,
                                   ),
                                 ),
                                 Row(
@@ -122,58 +135,69 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                     Text(
                                       "색상 : 투명",
                                       style: TextStyle(
-                                        color: Color(0xffbbbbbb),
+                                        color: Color(0xff999999),
                                         fontSize: 12,
                                       ),
                                     ),
-                                    Text(
-                                      "|",
-                                      style: TextStyle(
-                                        color: Color(0xffbbbbbb),
-                                        fontSize: 12,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                                      child: Text(
+                                        "|",
+                                        style: TextStyle(
+                                          color: Color(0xff999999),
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ),
                                     Text(
                                       "수량 : 1개",
                                       style: TextStyle(
-                                        color: Color(0xff333333),
+                                        color: Color(0xff999999),
                                         fontSize: 12,
                                       ),
                                     ),
                                   ],
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "판매가",
                                       style: TextStyle(
-                                        color: Color(0xffbbbbbb),
-                                        fontSize: 12,
+                                        color: Color(0xff999999),
+                                        fontSize: 11,
                                       ),
                                     ),
-                                    Text(
-                                      "8,000원",
-                                      style: TextStyle(
-                                        color: Color(0xff333333),
-                                        fontSize: 12,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                      child: Text(
+                                        "8,000원",
+                                        style: TextStyle(
+                                          color: Color(0xff333333),
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "배송비",
                                       style: TextStyle(
-                                        color: Color(0xffbbbbbb),
-                                        fontSize: 12,
+                                        color: Color(0xff999999),
+                                        fontSize: 11,
                                       ),
                                     ),
-                                    Text(
-                                      "2,500원",
-                                      style: TextStyle(
-                                        color: Color(0xff333333),
-                                        fontSize: 12,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                      child: Text(
+                                        "+ 2,500원",
+                                        style: TextStyle(
+                                          color: Color(0xff333333),
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -183,24 +207,28 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   height: 5,
                                   thickness: 1,
                                   indent: 0,
-                                  endIndent: 0,
-                                  color: Color(0xffff0000),
+                                  endIndent: 20,
+                                  color: Color(0xEEEEEE),
                                 ),
 
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "결제금액",
                                       style: TextStyle(
-                                        color: Color(0xffbbbbbb),
-                                        fontSize: 12,
+                                        color: Color(0xff999999),
+                                        fontSize: 11,
                                       ),
                                     ),
-                                    Text(
-                                      "10,500원",
-                                      style: TextStyle(
-                                        color: Color(0xff333333),
-                                        fontSize: 12,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                      child: Text(
+                                        "10,500원",
+                                        style: TextStyle(
+                                          color: Color(0xff0123B4),
+                                          fontSize: 14,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -214,18 +242,21 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                       const Divider(
                         height: 5,
                         thickness: 1,
-                        indent: 0,
-                        endIndent: 0,
-                        color: Color(0xffff0000),
+                        indent: 20,
+                        endIndent: 20,
+                        color: Color(0xffDDDDDD),
                       ),
                       
                       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                      Text(
-                        "주문하시는 분",
-                        style: TextStyle(
-                          color: Color(0xff333333),
-                          fontSize: 12,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: Text(
+                          "주문하시는 분",
+                          style: TextStyle(
+                            color: Color(0xff333333),
+                            fontSize: 21,
+                          ),
                         ),
                       ),
 
@@ -287,11 +318,14 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                         hintText: "${getTranslated('HINT_EMAIL', context)}",
                       ),
 
-                      Text(
-                        "받으시는 분",
-                        style: TextStyle(
-                          color: Color(0xff333333),
-                          fontSize: 12,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
+                        child: Text(
+                          "받으시는 분",
+                          style: TextStyle(
+                            color: Color(0xff333333),
+                            fontSize: 20,
+                          ),
                         ),
                       ),
 
