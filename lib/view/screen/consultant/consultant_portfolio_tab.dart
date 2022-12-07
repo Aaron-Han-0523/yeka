@@ -28,13 +28,14 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget>
           children: [
             ClipRRect(
               child: Container(
+                padding: EdgeInsets.fromLTRB(10, 0, 1, 0),
                 child: Image.network(
                   // widget.reviewModel.attachedFilepath1,
                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                   'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                   fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.28,
+                  height: MediaQuery.of(context).size.width * 0.28,
                 ),
               ),
             ),
@@ -45,20 +46,21 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget>
                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                   'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                   fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.28,
+                  height: MediaQuery.of(context).size.width * 0.28,
                 ),
               ),
             ),
             ClipRRect(
               child: Container(
+                padding: EdgeInsets.fromLTRB(1, 0, 10, 0),
                 child: Image.network(
                   // widget.reviewModel.attachedFilepath1,
                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                   'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                   fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.28,
+                  height: MediaQuery.of(context).size.width * 0.28,
                 ),
               ),
             ),
@@ -72,13 +74,14 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget>
           children: [
             ClipRRect(
               child: Container(
+                padding: EdgeInsets.fromLTRB(10, 0, 1, 0),
                 child: Image.network(
                   // widget.reviewModel.attachedFilepath1,
                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                   'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                   fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.28,
+                  height: MediaQuery.of(context).size.width * 0.28,
                 ),
               ),
             ),
@@ -89,27 +92,28 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget>
                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                   'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                   fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.28,
+                  height: MediaQuery.of(context).size.width * 0.28,
                 ),
               ),
             ),
             ClipRRect(
               child: Container(
+                padding: EdgeInsets.fromLTRB(1, 0, 10, 0),
                 child: Image.network(
                   // widget.reviewModel.attachedFilepath1,
                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                   'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                   fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.28,
+                  height: MediaQuery.of(context).size.width * 0.28,
                 ),
               ),
             ),
           ],
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(20),
           child: CustomElevatedButton(
             onTap: null,
             buttonText: '더보기 ∨',

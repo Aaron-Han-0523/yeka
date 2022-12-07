@@ -51,44 +51,54 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                     Row(
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "반갑습니다 고객님 :)",
-                              style: TextStyle(
-                                color: Color(0xff333333),
-                                fontSize: 16,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 19, 0, 0),
+                              child: Text(
+                                "반갑습니다 고객님 :)",
+                                style: TextStyle(
+                                  color: Color(0xff333333),
+                                  fontSize: 16,
+                                ),
                               ),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  "현재",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 16,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "현재",
+                                    style: TextStyle(
+                                      color: Color(0xff333333),
+                                      fontSize: 16,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "상담진행 중",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 22,
+                                  Text(
+                                    " 상담진행 중 ",
+                                    style: TextStyle(
+                                      color: Color(0xff0123b4),
+                                      fontSize: 22,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "입니다.",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 16,
+                                  Text(
+                                    "입니다.",
+                                    style: TextStyle(
+                                      color: Color(0xff333333),
+                                      fontSize: 16,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                            Text(
-                              "지금 바로 나의 컨설턴트를 만나보세요.",
-                              style: TextStyle(
-                                color: Color(0xff333333),
-                                fontSize: 12,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 23, 0, 45),
+                              child: Text(
+                                "지금 바로 나의 컨설턴트를 만나보세요.",
+                                style: TextStyle(
+                                  color: Color(0xff333333),
+                                  fontSize: 12,
+                                ),
                               ),
                             ),
                           ],
@@ -97,7 +107,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                           child: Center(
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(
-                                  4.0, 4.0, 12.0, 4.0),
+                                  62.0, 0.0, 0.0, 38.0),
                               child: InkWell(
                                 onTap: () => {
                                   // Navigator.of(context).push(MaterialPageRoute(
@@ -105,7 +115,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                                 },
                                 child: Image.asset(
                                   Images.mypage,
-                                  height: 40,
+                                  height: 64,
                                 ),
                               ),
                             ),
@@ -113,11 +123,14 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         ),
                       ],
                     ),
-                    Text(
-                      "내 컨설턴트 정보",
-                      style: TextStyle(
-                        color: Color(0xff333333),
-                        fontSize: 12,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 15),
+                      child: Text(
+                        "내 컨설턴트 정보",
+                        style: TextStyle(
+                          color: Color(0xff333333),
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                     Center(
@@ -129,33 +142,42 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                             'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
                             fit: BoxFit.cover,
-                            width: MediaQuery.of(context).size.width * 0.85,
-                            height: MediaQuery.of(context).size.width * 0.85,
+                            width: MediaQuery.of(context).size.width * 0.89333,
+                            height: MediaQuery.of(context).size.width * 0.89333,
                           ),
                         ),
                       ),
                     ),
-                    Text(
-                      "#피부관련전공 #전문과정수료 #블로그 운영",
-                      style: TextStyle(
-                        color: Color(0xff333333),
-                        fontSize: 12,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 5, 0, 9),
+                      child: Text(
+                        "#피부관련전공   #전문과정수료   #블로그 운영",
+                        style: TextStyle(
+                          color: Color(0xff0123B4),
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                     Row(
                       children: [
-                        Text(
-                          "임지은",
-                          style: TextStyle(
-                            color: Color(0xff121212),
-                            fontSize: 22,
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 5, 16),
+                          child: Text(
+                            "임지은",
+                            style: TextStyle(
+                              color: Color(0xff121212),
+                              fontSize: 22,
+                            ),
                           ),
                         ),
-                        Text(
-                          "컨설턴트",
-                          style: TextStyle(
-                            color: Color(0xffcccccc),
-                            fontSize: 14,
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 0, 0, 14),
+                          child: Text(
+                            "컨설턴트",
+                            style: TextStyle(
+                              color: Color(0xffcccccc),
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ],
@@ -172,11 +194,14 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             Container(
                               // height: 32,
                               // color: Colors.green,
-                              child: Text(
-                                "연락처",
-                                style: TextStyle(
-                                  color: Color(0xffbbbbbb),
-                                  fontSize: 12,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(20, 0, 54, 14.5),
+                                child: Text(
+                                  "연락처",
+                                  style: TextStyle(
+                                    color: Color(0xffbbbbbb),
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ),
@@ -198,11 +223,14 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             Container(
                               // height: 32,
                               // color: Colors.green,
-                              child: Text(
-                                "지역",
-                                style: TextStyle(
-                                  color: Color(0xffbbbbbb),
-                                  fontSize: 12,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(20, 4, 64, 12),
+                                child: Text(
+                                  "지역",
+                                  style: TextStyle(
+                                    color: Color(0xffbbbbbb),
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ),
@@ -222,11 +250,14 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         TableRow(
                           children: [
                             Container(
-                              child: Text(
-                                "주소",
-                                style: TextStyle(
-                                  color: Color(0xffbbbbbb),
-                                  fontSize: 12,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(20, 4, 64, 35),
+                                child: Text(
+                                  "주소",
+                                  style: TextStyle(
+                                    color: Color(0xffbbbbbb),
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ),
@@ -244,11 +275,14 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         TableRow(
                           children: [
                             Container(
-                              child: Text(
-                                "예약일",
-                                style: TextStyle(
-                                  color: Color(0xffbbbbbb),
-                                  fontSize: 12,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(20, 4, 54, 18),
+                                child: Text(
+                                  "예약일",
+                                  style: TextStyle(
+                                    color: Color(0xffbbbbbb),
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ),
@@ -266,17 +300,21 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         TableRow(
                           children: [
                             Container(
-                              child: Text(
-                                "자격현황 및 이력",
-                                style: TextStyle(
-                                  color: Color(0xffbbbbbb),
-                                  fontSize: 12,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(20, 4, 7.5 , 153),
+                                child: Text(
+                                  "자격현황 및 이력",
+                                  style: TextStyle(
+                                    color: Color(0xffbbbbbb),
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ),
                             Container(
                               child: Text(
-                                "인천대학교 메이크업아티스트 학과 전공\n피부미용사자격증 1급\n피부미용사자격증 1급\n피부미용사자격증 1급\n피부미용사자격증 1급",
+                                "인천대학교 메이크업아티스트 학과 전공\n피부미용사자격증 1급\n올댓뷰티아카데미 피부관리강사 경력 6년\n베스트 공모전 입상"
+                                    "\n올댓뷰티아카데미 전문교육수료\nYOUTUBE 개인 채널 운영\n피부관련 개인 블로그 운영",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -288,11 +326,14 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         TableRow(
                           children: [
                             Container(
-                              child: Text(
-                                "사업자등록번호",
-                                style: TextStyle(
-                                  color: Color(0xffbbbbbb),
-                                  fontSize: 12,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(20, 0, 13.5, 16),
+                                child: Text(
+                                  "사업자등록번호",
+                                  style: TextStyle(
+                                    color: Color(0xffbbbbbb),
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ),
@@ -312,17 +353,20 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                     const Divider(
                       height: 3,
                       thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                      color: Colors.black,
+                      indent: 20,
+                      endIndent: 20,
+                      color: Color(0xffDDDDDD),
                     ),
                     Container(
-                      decoration: BoxDecoration(color: Color(0xfff8f8f8)),
-                      child: Text(
-                        "반드시 상담이 모두 종료된 후에 \"상담완료 \" 버튼을 눌러주세요.",
-                        style: TextStyle(
-                          color: Color(0xffbbbbbb),
-                          fontSize: 12,
+                      // decoration: BoxDecoration(color: Color(0xfff8f8f8)),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(39, 9, 0, 10),
+                        child: Text(
+                          "반드시 상담이 모두 종료된 후에 \"상담완료\" 버튼을 눌러주세요.",
+                          style: TextStyle(
+                            color: Color(0xff333333),
+                            fontSize: 11,
+                          ),
                         ),
                       ),
                     ),

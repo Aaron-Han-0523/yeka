@@ -51,154 +51,193 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                         height: MediaQuery.of(context).size.height * 0.8,
                         child: Column(
                           children: [
-                            Text(
-                              "상담정보",
-                              style: TextStyle(
-                                color: Color(0xff000000),
-                                fontSize: 18,
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(20, 24, 0, 10),
+                                  child: Text(
+                                    "상담정보",
+                                    style: TextStyle(
+                                      color: Color(0xff000000),
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Divider(
+                              height: 3,
+                              thickness: 1,
+                              indent: 20,
+                              endIndent: 20,
+                              color: Color(0xffDDDDDD),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 15, 20, 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "상담일",
+                                    style: TextStyle(
+                                      color: Color(0xffbbbbbb),
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                  Text(
+                                    "2022.11.22(금)",
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(
+                                      color: Color(0xff333333),
+                                      fontSize: 11,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "상담명",
+                                    style: TextStyle(
+                                      color: Color(0xffbbbbbb),
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                  Text(
+                                    "톡으로 만나는 나만의 피부 진단 :)",
+                                    style: TextStyle(
+                                      color: Color(0xff333333),
+                                      fontSize: 11,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "예약금액",
+                                    style: TextStyle(
+                                      color: Color(0xffbbbbbb),
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                  Text(
+                                    "2,500원",
+                                    style: TextStyle(
+                                      color: Color(0xff0123B4),
+                                      fontSize: 11,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 30),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "* 예약금액은 전체 금액의 10%입니다.",
+                                    style: TextStyle(
+                                      color: Color(0xff0123b4),
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "결제정보",
+                                    style: TextStyle(
+                                      color: Color(0xff000000),
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             const Divider(
                               height: 3,
                               thickness: 1,
-                              indent: 0,
-                              endIndent: 0,
-                              color: Colors.black,
+                              indent: 20,
+                              endIndent: 20,
+                              color: Color(0xffDDDDDD),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  "상담일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "계좌번호",
+                                    style: TextStyle(
+                                      color: Color(0xffbbbbbb),
+                                      fontSize: 10,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "2022.11.22(금)",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 10,
+                                  Text(
+                                    "국민은행 0000-00-000000",
+                                    style: TextStyle(
+                                      color: Color(0xff333333),
+                                      fontSize: 11,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "상담일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "2022.11.22(금)",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "상담일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "2022.11.22(금)",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              "* 예약금액은 전체 금액의 10%입니다.",
-                              style: TextStyle(
-                                color: Color(0xff0123b4),
-                                fontSize: 16,
+                                ],
                               ),
                             ),
-                            Text(
-                              "결제정보",
-                              style: TextStyle(
-                                color: Color(0xff000000),
-                                fontSize: 18,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 11, 20, 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "예금주",
+                                    style: TextStyle(
+                                      color: Color(0xffbbbbbb),
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                  Text(
+                                    "임지은",
+                                    style: TextStyle(
+                                      color: Color(0xff333333),
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            const Divider(
-                              height: 3,
-                              thickness: 1,
-                              indent: 0,
-                              endIndent: 0,
-                              color: Colors.black,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "계좌번호",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
+                            Container(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xff979797),
+                                      fontSize: 10,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "국민은행 0000-00-000000",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 10,
+                                  Text(
+                                    "입금이 확인되면 다음단계로 넘어갑니다.",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xff979797),
+                                      fontSize: 10,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "예금주",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "임지은",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)",
-                                        style: TextStyle(
-                                          color: Color(0xff121212),
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                      Text(
-                                        "입금이 확인되면 다음단계로 넘어갑니다.",
-                                        style: TextStyle(
-                                          color: Color(0xff121212),
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                ],
                               ),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),

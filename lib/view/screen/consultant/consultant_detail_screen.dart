@@ -109,7 +109,8 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           ),
                         ),
                       ),
-                      SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       !widget.isCreateScreen
                           ? Container()
                           : Container(
@@ -136,13 +137,11 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                                     buttonText:
                                         "${getTranslated('ENROLL', context)}",
                                   ),
-                                  SizedBox(
-                                    height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                                  ),
+                                  SizedBox( height: Dimensions.PADDING_SIZE_EXTRA_LARGE, ),
                                 ],
                               ),
                             ),
-                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       TabBar(
                         controller: _tabController,
                         unselectedLabelColor: Color(0xffdddddd),
@@ -152,25 +151,28 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           Tab(
                             child: Text(
                               "상세정보",
-                              // style: TextStyle(
+                              style: TextStyle(
                               //   color: Color(0xff333333),
-                              // ),
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                           Tab(
                             child: Text(
                               "상담메뉴",
-                              // style: TextStyle(
-                              //   color: Color(0xff333333),
-                              // ),
+                              style: TextStyle(
+                                //   color: Color(0xff333333),
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                           Tab(
                             child: Text(
                               "포트폴리오",
-                              // style: TextStyle(
-                              //   color: Color(0xff333333),
-                              // ),
+                              style: TextStyle(
+                                //   color: Color(0xff333333),
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ],
