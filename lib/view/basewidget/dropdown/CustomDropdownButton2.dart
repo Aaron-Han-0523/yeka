@@ -102,16 +102,23 @@ class CustomDropdownButton2 extends StatelessWidget {
           iconSize: iconSize ?? 12,
           iconEnabledColor: iconEnabledColor,
           iconDisabledColor: iconDisabledColor,
-          buttonHeight: buttonHeight ?? 27,
+          buttonHeight: buttonHeight ?? 35,
           buttonWidth: buttonWidth ?? 165.5,
           buttonPadding:
           buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
           buttonDecoration: buttonDecoration ??
               BoxDecoration(
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: Colors.black45,
-                ),
+                border: null,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 0,
+                    blurRadius: 1.0,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
               ),
           buttonElevation: buttonElevation,
           itemHeight: itemHeight ?? 40,

@@ -12,12 +12,10 @@ import '../../basewidget/textfield/custom_label_textfield.dart';
 
 class MyPageUpdateScreen extends StatefulWidget {
   @override
-  State<MyPageUpdateScreen> createState() =>
-      _MyPageUpdateScreenState();
+  State<MyPageUpdateScreen> createState() => _MyPageUpdateScreenState();
 }
 
-class _MyPageUpdateScreenState
-    extends State<MyPageUpdateScreen> {
+class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
   final ScrollController _scrollController = ScrollController();
 
   TextEditingController _firstNameController = TextEditingController();
@@ -45,68 +43,57 @@ class _MyPageUpdateScreenState
                     children: [
                       Column(
                         children: [
-                          SizedBox(
-                              height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-
+                          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                           CustomLabelTextField(
                             controller: _firstNameController,
                             labelText: "${getTranslated('ID', context)} ",
                             essentialLabelText: " *",
                             hintText: "${getTranslated('HINT_ID', context)}",
                           ),
-
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                           CustomLabelTextField(
                             controller: _firstNameController,
                             labelText: "${getTranslated('PW', context)} ",
                             essentialLabelText: " *",
                             hintText: "${getTranslated('HINT_PW', context)}",
                           ),
-
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                           CustomLabelTextField(
                             controller: _firstNameController,
-                            labelText: "${getTranslated('CONFIRM_PW', context)} ",
+                            labelText:
+                                "${getTranslated('CONFIRM_PW', context)} ",
                             essentialLabelText: " *",
-                            hintText: "${getTranslated('HINT_CONFIRM_PW', context)}",
+                            hintText:
+                                "${getTranslated('HINT_CONFIRM_PW', context)}",
                           ),
-
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                           CustomLabelTextField(
                             controller: _firstNameController,
                             labelText: "${getTranslated('NAME', context)} ",
                             essentialLabelText: " *",
                             hintText: "${getTranslated('HINT_NAME', context)}",
                           ),
-
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                           CustomLabelTextField(
                             controller: _firstNameController,
                             labelText: "${getTranslated('PHONE', context)} ",
                             essentialLabelText: " *",
                             hintText: "${getTranslated('HINT_PHONE', context)}",
                           ),
-
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                           CustomLabelTextField(
                             controller: _firstNameController,
                             labelText: "${getTranslated('EMAIL', context)} ",
                             essentialLabelText: " *",
                             hintText: "${getTranslated('HINT_EMAIL', context)}",
                           ),
-
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                           Container(
                             margin: EdgeInsets.only(
                                 left: Dimensions.MARGIN_SIZE_DEFAULT,
                                 right: Dimensions.MARGIN_SIZE_DEFAULT),
-                            padding: const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
+                            padding:
+                                const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
                             child: Column(
                               children: [
                                 Row(
@@ -130,70 +117,71 @@ class _MyPageUpdateScreenState
                                   children: [
                                     CustomSmallRadioButton(
                                         value: radioButton,
-                                        text: "${getTranslated('MALE', context)}"),
+                                        text:
+                                            "${getTranslated('MALE', context)}"),
                                     CustomSmallRadioButton(
                                         value: radioButton,
-                                        text: "${getTranslated('FEMALE', context)}"),
+                                        text:
+                                            "${getTranslated('FEMALE', context)}"),
                                   ],
                                 ),
                               ],
                             ),
                           ),
-
                           Row(
                             children: [
                               Expanded(
                                 child: CustomLabelTextField(
                                   controller: _firstNameController,
-                                  labelText: "${getTranslated('ADDRESS', context)} ",
+                                  labelText:
+                                      "${getTranslated('ADDRESS', context)} ",
                                   essentialLabelText: " *",
-                                  hintText: "${getTranslated('SELECT_CITY', context)}",
+                                  hintText:
+                                      "${getTranslated('SELECT_CITY', context)}",
                                 ),
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                   child: CustomLabelTextField(
                                     controller: _firstNameController,
                                     labelText: "",
                                     essentialLabelText: "",
-                                    hintText: "${getTranslated('SELECT_DISTINCT', context)}",
+                                    hintText:
+                                        "${getTranslated('SELECT_DISTINCT', context)}",
                                   ),
                                 ),
                               ),
                             ],
                           ),
-
                           CustomLabelTextField(
                             controller: _firstNameController,
                             // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
-                            // essentialLabelText: " *",
-                            hintText: "${getTranslated('ETC_ADDRESS', context)}",
+                            essentialLabelText: " *",
+                            hintText:
+                                "${getTranslated('ETC_ADDRESS', context)}",
                           ),
-
-
                           SizedBox(
                             height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                           ),
-
                           CustomLabelTextField(
                             controller: _firstNameController,
                             labelText:
-                            "${getTranslated('COMPANY_REGISTRATION_NUMBER', context)} ",
-                            // essentialLabelText: " *",
+                                "${getTranslated('COMPANY_REGISTRATION_NUMBER', context)} ",
+                            essentialLabelText: " *",
                             hintText:
-                            "${getTranslated('HINT_COMPANY_REGISTRATION_NUMBER', context)}",
+                                "${getTranslated('HINT_COMPANY_REGISTRATION_NUMBER', context)}",
                           ),
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                           CustomLabelTextFieldUploadButton(
                               labelText:
-                              "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}"),
-
+                                  "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}"),
                           SizedBox(
                             height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                           ),
-
-                          CustomElevatedButton(onTap: () {}, buttonText: "정보 수정하기")
+                          CustomElevatedButton(
+                              onTap: () {}, buttonText: "정보 수정하기")
                         ],
                       ),
                       FooterPage(),

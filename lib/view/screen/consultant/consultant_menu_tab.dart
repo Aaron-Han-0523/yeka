@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
-import '../../basewidget/button/custom_elevated_button_small.dart';
+import '../../basewidget/button/custom_elevated_button.dart';
 import 'consultant_reserve_screen.dart';
 
 class ConsultantMenuWidget extends StatefulWidget {
@@ -79,7 +79,8 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                   padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                   child: Container(
                     width: 73,
-                    child: CustomElevatedButton_SMALL(
+                    child: CustomElevatedButton(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       onTap: () {
                         Navigator.push(
                             context,

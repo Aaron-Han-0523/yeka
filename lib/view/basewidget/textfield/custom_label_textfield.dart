@@ -84,13 +84,13 @@ class CustomLabelTextField extends StatelessWidget {
                       fontSize: 15,
                     ),
                   ),
-                  // Text(
-                  //   essentialLabelText,
-                  //   style: TextStyle(
-                  //     color: Color(0xffff0000),
-                  //     fontSize: 15,
-                  //   ),
-                  // ),
+                  Text(
+                    essentialLabelText,
+                    style: TextStyle(
+                      color: Color(0xffff0000),
+                      fontSize: 15,
+                    ),
+                  ),
                 ],
               ),
             ),
