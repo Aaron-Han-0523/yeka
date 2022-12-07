@@ -1,4 +1,5 @@
 class Dimensions {
+  static const double FONT_SIZE_EXTRA_MORE_SMALL = 8.0;
   static const double FONT_SIZE_EXTRA_SMALL = 10.0;
   static const double FONT_SIZE_SMALL = 12.0;
   static const double FONT_SIZE_DEFAULT = 14.0;

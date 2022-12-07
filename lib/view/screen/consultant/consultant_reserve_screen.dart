@@ -219,6 +219,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               ),
                             ),
                             Container(
+                              decoration: BoxDecoration(color: Color(0xfff8f8f8)),
                               child: Column(
                                 children: [
                                   Text(

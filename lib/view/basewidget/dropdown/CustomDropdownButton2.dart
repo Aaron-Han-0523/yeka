@@ -62,73 +62,76 @@ class CustomDropdownButton2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
-      child: DropdownButton2(
-        //To avoid long text overflowing.
-        isExpanded: true,
-        hint: Container(
-          alignment: hintAlignment,
-          child: Text(
-            hint,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: TextStyle(
-              fontSize: 14,
-              color: Theme.of(context).hintColor,
-            ),
-          ),
-        ),
-        value: value,
-        items: dropdownItems
-            .map((item) => DropdownMenuItem<String>(
-          value: item,
-          child: Container(
-            alignment: valueAlignment,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+        child: DropdownButton2(
+          //To avoid long text overflowing.
+          isExpanded: true,
+          hint: Container(
+            alignment: hintAlignment,
             child: Text(
-              item,
+              hint,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: 12,
+                color: Theme.of(context).hintColor,
               ),
             ),
           ),
-        ))
-            .toList(),
-        onChanged: onChanged,
-        selectedItemBuilder: selectedItemBuilder,
-        icon: icon ?? const Icon(Icons.arrow_forward_ios_outlined),
-        iconSize: iconSize ?? 12,
-        iconEnabledColor: iconEnabledColor,
-        iconDisabledColor: iconDisabledColor,
-        buttonHeight: buttonHeight ?? 50,
-        buttonWidth: buttonWidth ?? 180,
-        buttonPadding:
-        buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
-        buttonDecoration: buttonDecoration ??
-            BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: Colors.black45,
+          value: value,
+          items: dropdownItems
+              .map((item) => DropdownMenuItem<String>(
+            value: item,
+            child: Container(
+              alignment: valueAlignment,
+              child: Text(
+                item,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: const TextStyle(
+                  fontSize: 12,
+                ),
               ),
             ),
-        buttonElevation: buttonElevation,
-        itemHeight: itemHeight ?? 40,
-        itemPadding: itemPadding ?? const EdgeInsets.only(left: 14, right: 14),
-        //Max height for the dropdown menu & becoming scrollable if there are more items. If you pass Null it will take max height possible for the items.
-        dropdownMaxHeight: dropdownHeight ?? 200,
-        dropdownWidth: dropdownWidth ?? 140,
-        dropdownPadding: dropdownPadding,
-        dropdownDecoration: dropdownDecoration ??
-            BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-            ),
-        dropdownElevation: dropdownElevation ?? 8,
-        scrollbarRadius: scrollbarRadius ?? const Radius.circular(40),
-        scrollbarThickness: scrollbarThickness,
-        scrollbarAlwaysShow: scrollbarAlwaysShow,
-        //Null or Offset(0, 0) will open just under the button. You can edit as you want.
-        offset: offset,
-        dropdownOverButton: false, //Default is false to show menu below button
+          ))
+              .toList(),
+          onChanged: onChanged,
+          selectedItemBuilder: selectedItemBuilder,
+          icon: icon ?? const Icon(Icons.arrow_forward_ios_outlined),
+          iconSize: iconSize ?? 12,
+          iconEnabledColor: iconEnabledColor,
+          iconDisabledColor: iconDisabledColor,
+          buttonHeight: buttonHeight ?? 35,
+          buttonWidth: buttonWidth ?? 163,
+          buttonPadding:
+          buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
+          buttonDecoration: buttonDecoration ??
+              BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: Colors.black45,
+                ),
+              ),
+          buttonElevation: buttonElevation,
+          itemHeight: itemHeight ?? 40,
+          itemPadding: itemPadding ?? const EdgeInsets.only(left: 14, right: 14),
+          //Max height for the dropdown menu & becoming scrollable if there are more items. If you pass Null it will take max height possible for the items.
+          dropdownMaxHeight: dropdownHeight ?? 200,
+          dropdownWidth: dropdownWidth ?? 140,
+          dropdownPadding: dropdownPadding,
+          dropdownDecoration: dropdownDecoration ??
+              BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
+          dropdownElevation: dropdownElevation ?? 8,
+          scrollbarRadius: scrollbarRadius ?? const Radius.circular(40),
+          scrollbarThickness: scrollbarThickness,
+          scrollbarAlwaysShow: scrollbarAlwaysShow,
+          //Null or Offset(0, 0) will open just under the button. You can edit as you want.
+          offset: offset,
+          dropdownOverButton: false, //Default is false to show menu below button
+        ),
       ),
     );
   }

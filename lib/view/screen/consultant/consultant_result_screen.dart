@@ -87,13 +87,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   ),
                                 ],
                               ),
-                              // const Divider(
-                              //   height: 1,
-                              //   thickness: 1,
-                              //   indent: 110,
-                              //   endIndent: 20,
-                              //   color: Color(0xffDDDDDD),
-                              // ), Pass
+                              Container(
+                                width: 200,
+                                child: const Divider(
+                                  height: 1,
+                                  thickness: 1,
+                                  indent: 0,
+                                  endIndent: 0,
+                                  color: Color(0xffDDDDDD),
+                                ),
+                              ),
                               Row(
                                 children: [
                                   Padding(

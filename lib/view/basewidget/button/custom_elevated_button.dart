@@ -10,7 +10,7 @@ class CustomElevatedButton extends StatelessWidget {
   CustomElevatedButton({
     @required this.onTap,
     @required this.buttonText,
-    this.backgroundColor = const Color(0XFF121212),
+    this.backgroundColor = const Color(0Xff121212),
     this.textColor,
     this.child,
   });
@@ -41,7 +41,7 @@ class CustomElevatedButton extends StatelessWidget {
               buttonText,
               style: TextStyle(
                 fontSize: 12,
-                color: Color(0XFFFFFFFF),
+                color: Color(0Xffffffff),
               ),
             ),
         ),

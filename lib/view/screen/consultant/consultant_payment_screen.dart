@@ -260,18 +260,26 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                     ),
                     Center(
                       child: Container(
-                        width: 335,
-                        height: 45,
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         decoration: BoxDecoration(color: Color(0xfff8f8f8)),
-                        child: Center(
-                          child: Text(
-                            "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)\n입금이 확인되면 다음단계로 넘어갑니다.",
-                            style: TextStyle(
-                              color: Color(0xffbbbbbb),
-                              fontSize: 10,
+                        child: Column(
+                          children: [
+                            Text(
+                              "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xff979797),
+                                fontSize: 10,
+                              ),
                             ),
-                          ),
+                            Text(
+                              "입금이 확인되면 다음단계로 넘어갑니다.",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xff979797),
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

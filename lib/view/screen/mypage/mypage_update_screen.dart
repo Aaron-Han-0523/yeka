@@ -193,7 +193,7 @@ class _MyPageUpdateScreenState
                             height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                           ),
 
-                          CustomElevatedButton(onTap: null, buttonText: "정보 수정하기")
+                          CustomElevatedButton(onTap: () {}, buttonText: "정보 수정하기")
                         ],
                       ),
                       FooterPage(),

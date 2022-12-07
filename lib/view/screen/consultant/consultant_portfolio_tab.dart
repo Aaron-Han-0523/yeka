@@ -15,8 +15,7 @@ class ConsultantPortfolioWidget extends StatefulWidget {
   State<ConsultantPortfolioWidget> createState() => _ConsultantPortfolioWidgetState();
 }
 
-class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget>
-    with TickerProviderStateMixin {
+class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -115,7 +114,7 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget>
         Padding(
           padding: const EdgeInsets.all(20),
           child: CustomElevatedButton(
-            onTap: null,
+            onTap: () {},
             buttonText: '더보기 ∨',
           ),
         ),

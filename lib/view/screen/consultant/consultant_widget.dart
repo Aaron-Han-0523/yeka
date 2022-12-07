@@ -37,27 +37,30 @@ class ConsultantWidget extends StatelessWidget {
         margin: EdgeInsets.all(5),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Container(
-            height: MediaQuery.of(context).size.width / 2.5,
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              child: FadeInImage.assetNetwork(
-                placeholder: Images.placeholder1,
-                fit: BoxFit.fitHeight,
-                image: AppConstants.BASE_URL + "/" + (reviewModel.attachedFilepath1??""),
-                // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
-                //     '/${bannerProvider.mainBannerList[index].photo}',
-                imageErrorBuilder: (c, o, s) => Image.asset(
-                    Images.placeholder_3x1,
-                    fit: BoxFit.fitHeight),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
+            child: Container(
+              height: MediaQuery.of(context).size.width / 2.5,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                child: FadeInImage.assetNetwork(
+                  placeholder: Images.placeholder1,
+                  fit: BoxFit.fitHeight,
+                  image: AppConstants.BASE_URL + "/" + (reviewModel.attachedFilepath1??""),
+                  // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
+                  //     '/${bannerProvider.mainBannerList[index].photo}',
+                  imageErrorBuilder: (c, o, s) => Image.asset(
+                      Images.placeholder_3x1,
+                      fit: BoxFit.fitHeight),
+                ),
+
+
+                // Image.asset(
+                //   Images.review_img1,
+                //   fit: BoxFit.fitHeight,
+                //   // height: 35,
+                // ),
               ),
-
-
-              // Image.asset(
-              //   Images.review_img1,
-              //   fit: BoxFit.fitHeight,
-              //   // height: 35,
-              // ),
             ),
           ), // process quotation 실견적 최종견적
           Container(
@@ -80,7 +83,7 @@ class ConsultantWidget extends StatelessWidget {
                     Text("컨설턴트",
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                        fontSize: Dimensions.FONT_SIZE_SMALL,
                         fontWeight: FontWeight.bold,
                         color: Color(0xffcccccc)
                       ),
@@ -94,12 +97,12 @@ class ConsultantWidget extends StatelessWidget {
                   thickness: 1,
                   indent: 0,
                   endIndent: 0,
-                  color: Colors.black,
+                  color: Color(0XFFCCCCCC),
                 ),
                 Text(reviewModel.custom2 ?? '- 인천대학교',
                     textAlign: TextAlign.center,
                     style: robotoRegular.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                        fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
                         fontWeight: FontWeight.bold,
                     ),
                     // maxLines: 2,
@@ -108,7 +111,7 @@ class ConsultantWidget extends StatelessWidget {
                 Text(reviewModel.custom2 ?? '- 피부미용사자격증',
                   textAlign: TextAlign.center,
                   style: robotoRegular.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                    fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
                     fontWeight: FontWeight.bold,
                   ),
                   // maxLines: 2,
@@ -117,7 +120,7 @@ class ConsultantWidget extends StatelessWidget {
                 Text(reviewModel.custom2 ?? '- 올댓뷰티아카데미',
                   textAlign: TextAlign.center,
                   style: robotoRegular.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                    fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
                     fontWeight: FontWeight.bold,
                   ),
                   // maxLines: 2,
