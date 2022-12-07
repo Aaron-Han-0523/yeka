@@ -160,12 +160,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               alignment: Alignment.centerRight,
                               child: InkWell(
                                 onTap: () {
-                                  // Navigator.of(context).push(
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) =>
-                                  //         ProductListScreen(),
-                                  //   ),
-                                  // );
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProductListScreen(),
+                                    ),
+                                  );
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
