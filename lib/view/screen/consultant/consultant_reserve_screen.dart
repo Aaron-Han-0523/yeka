@@ -33,7 +33,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('REVIEW_WRITE', context)}",
+              "${getTranslated('CONSULTING_RESERVE', context)}",
             ).getAppbar(),
 
             SliverToBoxAdapter(
@@ -47,10 +47,22 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Divider(
+                      height: 1,
+                      color: Color(0xffDDDDDD),
+                      indent: 0,
+                      endIndent: 0,
+                    ),
                     Container(
                         height: MediaQuery.of(context).size.height * 0.8,
                         child: Column(
                           children: [
+                            Divider(
+                              height: 1,
+                              color: Color(0xffDDDDDD),
+                              indent: 0,
+                              endIndent: 0,
+                            ),
                             Row(
                               children: [
                                 Padding(
@@ -220,7 +232,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                             ),
                             Container(
                               decoration: BoxDecoration(color: Color(0xfff8f8f8)),
-                              padding: EdgeInsets.fromLTRB(65, 0, 65, 0),
+                              padding: EdgeInsets.fromLTRB(65, 8, 65, 8),
                               child: Column(
                                 children: [
                                   Text(

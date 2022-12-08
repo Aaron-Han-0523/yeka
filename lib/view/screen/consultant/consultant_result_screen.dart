@@ -34,7 +34,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('REVIEW_WRITE', context)}",
+              "${getTranslated('RESULT_CONSULTING', context)}",
             ).getAppbar(),
 
             SliverToBoxAdapter(
@@ -48,6 +48,12 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Divider(
+                      height: 2,
+                      color: Color(0xffDDDDDD),
+                      indent: 0,
+                      endIndent: 0,
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 14.5, 12.5, 27),
                       child: Row(
@@ -88,7 +94,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                 ],
                               ),
                               Container(
-                                width: 200,
+                                width: 250,
                                 child: const Divider(
                                   height: 1,
                                   thickness: 1,

@@ -7,6 +7,8 @@ class CustomElevatedButton extends StatelessWidget {
   final Color textColor;
   final Widget child;
   final EdgeInsets padding;
+  final double width;
+  final double fontSize;
 
   CustomElevatedButton({
     @required this.onTap,
@@ -15,12 +17,15 @@ class CustomElevatedButton extends StatelessWidget {
     this.textColor,
     this.child,
     this.padding = const EdgeInsets.fromLTRB(20, 0, 20, 0),
+    this.width,
+    this.fontSize = 12,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30,
+      height: 25,
+      width: this.width,
       child: Padding(
         padding: padding, // 20, 38.5, 20, 0
         child: ElevatedButton(
@@ -44,7 +49,7 @@ class CustomElevatedButton extends StatelessWidget {
             : Text(
                 buttonText,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: this.fontSize,
                   color: textColor,
                 ),
               ),

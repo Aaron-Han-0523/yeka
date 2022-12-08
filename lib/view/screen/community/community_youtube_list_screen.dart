@@ -49,7 +49,7 @@ class _CommunityYoutubeListScreenState
             controller: _scrollController,
             slivers: [
               CustomSliverAppBar(
-                "커뮤니티",
+                "${getTranslated('YTUBE_MOVIE_AND_COLUM', context)}",
               ).getAppbar(),
               SliverToBoxAdapter(
                 child: Column(
@@ -57,12 +57,12 @@ class _CommunityYoutubeListScreenState
                     Padding(
                       padding: EdgeInsets.fromLTRB(
                           Dimensions.HOME_PAGE_PADDING,
-                          Dimensions.PADDING_SIZE_SMALL,
+                          0,
                           Dimensions.PADDING_SIZE_DEFAULT,
                           Dimensions.PADDING_SIZE_SMALL),
                       child: Column(
                         children: [
-                          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                          // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                           // CustomElevatedButton(
                           //     onTap: () {}, buttonText: "더보기 ∨"),
                           Container(
@@ -81,96 +81,112 @@ class _CommunityYoutubeListScreenState
                                           ),
                                         );
                                       },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: <Widget>[
-                                          Expanded(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      12.0, 12.0, 12.0, 6.0),
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
                                               child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     titleList[position],
                                                     style: TextStyle(
-                                                      fontSize: 12.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      fontSize: 11.0,
+                                                      fontWeight: FontWeight.bold,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                     ),
                                                   ),
                                                   Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
                                                     children: [
                                                       Text(
-                                                        "BYHER(바이허) | 7일전",
+                                                        "BYHER(바이허)",
                                                         style: TextStyle(
-                                                          fontSize: 12.0,
+                                                          fontSize: 7.0,
                                                           fontWeight:
-                                                              FontWeight.bold,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                                          FontWeight.bold,
+                                                          overflow:
+                                                          TextOverflow.ellipsis,
+                                                          color: Color(0xff999999),
                                                         ),
                                                       ),
-                                                      Row(
-                                                        children: [
-                                                          Image.asset(
-                                                            Images.eye1,
-                                                            fit: BoxFit.cover,
-                                                            width: 15,
-                                                          ),
-                                                          Text(
-                                                            "723회",
-                                                            style: TextStyle(
-                                                              fontSize: 12.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
+                                                      Text(
+                                                        "${getTranslated('|', context)}",
+                                                        style: TextStyle(
+                                                          fontSize: 7.0,
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          overflow:
+                                                          TextOverflow.ellipsis,
+                                                          color: Color(0xff999999),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        "7일전",
+                                                        style: TextStyle(
+                                                          fontSize: 7.0,
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          overflow:
+                                                          TextOverflow.ellipsis,
+                                                          color: Color(0xff999999),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.fromLTRB(158, 0, 0, 0),
+                                                        child: Row(
+                                                          children: [
+                                                            Image.asset(
+                                                              Images.eye1,
+                                                              fit: BoxFit.cover,
+                                                              width: 12,
                                                             ),
-                                                          ),
-                                                        ],
+                                                            Text(
+                                                              "723회",
+                                                              style: TextStyle(
+                                                                fontSize: 7.0,
+                                                                fontWeight:
+                                                                FontWeight.bold,
+                                                                overflow: TextOverflow
+                                                                    .ellipsis,
+                                                                color: Color(0xff999999),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            width: 80,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
+
+                                            Container(
+                                              width: 82,
                                               child: Image.network(
                                                 // widget.reviewModel.attachedFilepath1,
                                                 // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                                                 YoutubeThumbnailConverter
                                                     .getYoutubeThumbnail(
                                                         "https://www.youtube.com/watch?v=-QhZnyAgKZk"),
-                                                fit: BoxFit.fitHeight,
-                                                // width: 30,
+                                                fit: BoxFit.fitWidth,
+                                                width: 165,
                                                 height: 49,
                                                 // height: MediaQuery.of(context).size.width * 0.4,
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     const Divider(
-                                      height: 3,
-                                      thickness: 1,
+                                      height: 1,
                                       indent: 0,
                                       endIndent: 0,
-                                      color: Colors.grey,
+                                      color: Color(0xffEEEEEE),
                                     ),
                                   ],
                                 );
@@ -183,6 +199,10 @@ class _CommunityYoutubeListScreenState
                       ),
                     ),
                     ActionButton(),
+
+                    SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                    SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+
                     FooterPage(),
                   ],
                 ),
@@ -209,6 +229,7 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomElevatedButton(
+      width: 150,
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(

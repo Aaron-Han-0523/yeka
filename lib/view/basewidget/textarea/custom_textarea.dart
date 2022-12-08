@@ -10,6 +10,8 @@ class CustomTextarea extends StatelessWidget {
   final TextEditingController textEditingController;
   final String labelText;
   final String radioText;
+  final double label_fontSize;
+  final EdgeInsets padding;
 
   CustomTextarea({
     this.isBorder = true,
@@ -17,6 +19,8 @@ class CustomTextarea extends StatelessWidget {
     this.enabled = true,
     this.labelText = "",
     this.radioText = "",
+    this.label_fontSize = 15,
+    this.padding = const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
   });
 
   @override
@@ -31,7 +35,7 @@ class CustomTextarea extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
+            padding: this.padding,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,7 +44,7 @@ class CustomTextarea extends StatelessWidget {
                 Text(
                   "$labelText",
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: this.label_fontSize,
                   ),
                 ),
                 Text(

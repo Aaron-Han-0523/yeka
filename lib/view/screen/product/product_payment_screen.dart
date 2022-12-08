@@ -45,7 +45,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
             slivers: [
               // App Bar
               CustomSliverAppBar(
-                "${getTranslated('REVIEW_WRITE', context)}",
+                "${getTranslated('PAYMENT_PRODUCT', context)}",
               ).getAppbar(),
 
               SliverToBoxAdapter(
@@ -59,6 +59,12 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Divider(
+                        height: 2,
+                        color: Color(0xffDDDDDD),
+                        indent: 0,
+                        endIndent: 0,
+                      ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
@@ -102,7 +108,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -127,7 +133,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -179,7 +185,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
 
                       const Divider(
                         height: 3,
-                        thickness: 1,
+                        thickness: 2,
                         indent: 20,
                         endIndent: 20,
                         color: Color(0xffDDDDDD),
@@ -197,7 +203,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "22,500원",
+                              "10,500원",
                               style: TextStyle(
                                 color: Color(0xffff3d3d),
                                 fontSize: 15,
@@ -210,22 +216,24 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                         padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
                         child: Container(
                           decoration: BoxDecoration(color: Color(0xfff8f8f8)),
+                          height: 45,
                           width: double.infinity,
                           child: Center(
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   "${getTranslated('DEPOSIT_WARNING', context)}",
                                   style: TextStyle(
                                     color: Color(0xff979797),
-                                    fontSize: 12,
+                                    fontSize: 10,
                                   ),
                                 ),
                                 Text(
                                   "${getTranslated('DEPOSIT_WARNING_NEXT', context)}",
                                   style: TextStyle(
                                     color: Color(0xff979797),
-                                    fontSize: 12,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ],

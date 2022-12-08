@@ -34,7 +34,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('REVIEW_WRITE', context)}",
+              "${getTranslated('PAY_CONSULTING', context)}",
             ).getAppbar(),
 
             SliverToBoxAdapter(
@@ -48,6 +48,12 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Divider(
+                      height: 2,
+                      color: Color(0xffDDDDDD),
+                      indent: 0,
+                      endIndent: 0,
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 31.5, 0, 21),
                       child: Text(
@@ -261,7 +267,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                     Center(
                       child: Container(
                         decoration: BoxDecoration(color: Color(0xfff8f8f8)),
-                        padding: EdgeInsets.fromLTRB(65, 0, 65, 0),
+                        padding: EdgeInsets.fromLTRB(65, 8, 65, 8),
                         child: Column(
                           children: [
                             Text(

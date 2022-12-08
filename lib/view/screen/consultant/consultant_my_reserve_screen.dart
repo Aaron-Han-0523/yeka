@@ -36,7 +36,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('REVIEW_WRITE', context)}",
+              "${getTranslated('MY_RESERVATION', context)}",
             ).getAppbar(),
 
             SliverToBoxAdapter(
@@ -50,6 +50,12 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Divider(
+                      height: 2,
+                      color: Color(0xffDDDDDD),
+                      indent: 0,
+                      endIndent: 0,
+                    ),
                     Row(
                       children: [
                         Column(

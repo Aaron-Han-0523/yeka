@@ -39,55 +39,69 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('COMMUNITY', context)}",
+                  "${getTranslated('WRITE_BOARD', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
                       const Divider(
-                        height: 3,
+                        height: 1,
                         thickness: 1,
                         indent: 0,
                         endIndent: 0,
-                        color: Colors.grey,
+                        color: Color(0xffeeeeee),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "${getTranslated('PICTURE', context)}",
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 30, 20, 4),
+                        child: Row(
+                          children: [
+                            Text(
+                              "${getTranslated('PICTURE', context)}",
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "${getTranslated('ROUND_BRACKETS_SELECT', context)}",
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(2, 3, 0, 0),
+                              child: Text(
+                                "${getTranslated('ROUND_BRACKETS_SELECT', context)}",
+                                style: TextStyle(
+                                  fontSize: 9.0,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                  color: Color(0xff999999)
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        "${getTranslated('UPLOAD_PICTURE', context)}",
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                          overflow: TextOverflow.ellipsis,
+                          ],
                         ),
                       ),
-                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
+                        child: Container(
+                          width: 500,
+                          child: Text(
+                            "${getTranslated('UPLOAD_PICTURE', context)}",
+                            style: TextStyle(
+                              fontSize: 8.0,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+
                       Container(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              height: 60,
-                              width: 60,
+                              height: 50,
+                              width: 50,
                               child: InkWell(
                                 onTap: () async {
                                   thumbnailLists = [];
@@ -152,14 +166,11 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                               ),
                             ),
                             for (var i = 0; i < thumbnailLists.length; i++)
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(5.0),
-                                child: Image.file(
-                                  File(thumbnailLists[i]),
-                                  fit: BoxFit.cover,
-                                  height: 60,
-                                  width: 60,
-                                ),
+                              Image.file(
+                                File(thumbnailLists[i]),
+                                fit: BoxFit.cover,
+                                height: 60,
+                                width: 60,
                               ),
                             for (var i = thumbnailLists.length; i < 5; i++)
                               Container(
@@ -181,21 +192,29 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomLabelTextField(
                         controller: _firstNameController,
-                        labelText: "${getTranslated('NAME', context)} ",
+                        labelText: "${getTranslated('TITLE', context)}",
+                        label_fontSize: 12,
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                         // essentialLabelText: " *",
-                        hintText: "${getTranslated('HINT_NAME', context)}",
+                        hintText: "${getTranslated('INPUT_TITLE', context)}",
+                        hintSize_InputDecoration: 9,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomTextarea(
                         labelText: "${getTranslated('CONTENT', context)}",
                         enabled: false,
+                        label_fontSize: 12,
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomLabelTextField(
                         controller: _firstNameController,
                         labelText: "${getTranslated('MOVIE_LINK', context)}",
+                        label_fontSize: 12,
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                         // essentialLabelText: " *",
-                        hintText: "${getTranslated('HINT_NAME', context)}",
+                        hintText: "${getTranslated('LINK', context)}",
+                        hintSize_InputDecoration: 9,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Padding(
@@ -212,6 +231,8 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                             //     .login(clientsModel, route);
                           },
                           buttonText: "${getTranslated('CONFIRMATION', context)}",
+                          fontSize: 10,
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         ),
                       ),
                       FooterPage(),

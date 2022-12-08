@@ -35,6 +35,11 @@ class CustomLabelTextField extends StatelessWidget {
   final double height;
   final bool enabled;
   final bool isTextable;
+  final double label_fontSize;
+  final EdgeInsets padding;
+  final double hintSize;
+  final double hintSize_InputDecoration;
+
 
   CustomLabelTextField({
     this.labelText = "",
@@ -61,6 +66,10 @@ class CustomLabelTextField extends StatelessWidget {
     this.height = 25,
     this.enabled = true,
     this.isTextable = true,
+    this.label_fontSize: 15,
+    this.padding = const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 2.0),
+    this.hintSize = 12,
+    this.hintSize_InputDecoration = 12,
   });
 
   @override
@@ -76,7 +85,7 @@ class CustomLabelTextField extends StatelessWidget {
           children: [
             isTextable
                 ? Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 2.0),
+                    padding: this.padding,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +93,7 @@ class CustomLabelTextField extends StatelessWidget {
                         Text(
                           labelText,
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: this.label_fontSize,
                           ),
                         ),
                         Text(
@@ -122,7 +131,7 @@ class CustomLabelTextField extends StatelessWidget {
               child: TextFormField(
                 enabled: enabled,
                 style: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: this.hintSize,
                   color: textColor,
                 ),
                 textAlign: textAlign,
@@ -154,7 +163,9 @@ class CustomLabelTextField extends StatelessWidget {
                 },
                 decoration: InputDecoration(
                   hintText: hintText ?? '',
-                  hintStyle: TextStyle(fontSize: 12),
+                  hintStyle: TextStyle(
+                      fontSize: this.hintSize_InputDecoration,
+                  ),
                   filled: fillColor != null,
                   fillColor: fillColor,
                   contentPadding: EdgeInsets.fromLTRB(8.0, 2.0, 4.0, 2.0),

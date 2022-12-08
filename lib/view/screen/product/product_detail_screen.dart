@@ -318,7 +318,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       padding: const EdgeInsets.fromLTRB(
                                           15, 0, 0, 0),
                                       child: Text(
-                                        "${getTranslated('최종결제금액', context)}",
+                                        "${getTranslated('FINAL_PAYMENT_AMOUNT', context)}",
                                         style: TextStyle(
                                           color: Color(0xFF999999),
                                           fontSize: 12,

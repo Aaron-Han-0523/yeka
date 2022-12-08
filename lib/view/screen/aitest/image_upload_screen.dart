@@ -106,24 +106,24 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                             Text(
                                               "${getTranslated('PLEASE_UPLOAD_PICTURE', context)}",
                                               style: TextStyle(
-                                                fontSize: 18,
-                                                color: Color(0xff212121),
+                                                fontSize: 26,
+                                                color: Color(0xffFFFFFF),
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             Text(
                                               "${getTranslated('FRONT_PICTURE', context)}",
                                               style: TextStyle(
-                                                fontSize: 14,
-                                                color: Color(0xff212121),
+                                                fontSize: 12,
+                                                color: Color(0xffFFFFFF),
                                                 // fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             Text(
                                               "${getTranslated('CORRECT_PICTURE', context)}",
                                               style: TextStyle(
-                                                fontSize: 14,
-                                                color: Color(0xff212121),
+                                                fontSize: 12,
+                                                color: Color(0xffFFFFFF),
                                                 // fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -189,11 +189,20 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                   children: [
                                     Image.asset(
                                       Images.cloud,
-                                      height: 25,
+                                      height: 38,
                                       color: Colors.black,
                                     ),
-                                    Text(
-                                      "${getTranslated('START', context)}",
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                      child: Text(
+                                        "${getTranslated('START', context)}",
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w900,
+                                          fontFamily: "SB Aggro",
+                                          // fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

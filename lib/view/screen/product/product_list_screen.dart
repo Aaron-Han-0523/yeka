@@ -81,7 +81,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                           BorderRadius.all(Radius.circular(8.0)),
 
                                       child: CustomDropdownButton2(
-                                        dropdownWidth: 300,
+                                        dropdownWidth: 220,
                                         buttonWidth: 300,
                                         hint:
                                             '${getTranslated('SELECT_CATEGORY', context)}',
@@ -116,6 +116,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                             const Icon(Icons.keyboard_arrow_down),
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
                                         dropdownItems: dongDropdownItems,
+                                        dropdownWidth: 100,
                                         // value: "",
                                         onChanged: (value) {
                                           // setState(() {

@@ -83,9 +83,8 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
             slivers: [
               // App Bar
               CustomSliverAppBar(
-                "${getTranslated('REVIEW_WRITE', context)}",
+                "${getTranslated('CONSULTANT_DETAIL_INFO', context)}",
               ).getAppbar(),
-
               SliverToBoxAdapter(
                 child: Container(
                   alignment: Alignment.centerLeft,
@@ -95,6 +94,12 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      Divider(
+                        height: 2,
+                        color: Color(0xffDDDDDD),
+                        indent: 0,
+                        endIndent: 0,
+                      ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),

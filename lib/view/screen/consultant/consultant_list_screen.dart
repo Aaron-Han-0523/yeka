@@ -46,6 +46,12 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
+                      Divider(
+                        height: 1,
+                        color: Color(0xffDDDDDD),
+                        indent: 0,
+                        endIndent: 0,
+                      ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(
                             Dimensions.HOME_PAGE_PADDING,
