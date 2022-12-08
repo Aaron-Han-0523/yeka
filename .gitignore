@@ -45,3 +45,4 @@ app.*.map.json
 android/.idea/gradle.xml
 pubspec.lock
 nodejs/node_modules
+nodejs/yarn.lock
