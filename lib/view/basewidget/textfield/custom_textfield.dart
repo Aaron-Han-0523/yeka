@@ -24,6 +24,7 @@ class CustomTextField extends StatelessWidget {
   final Color fillColor;
   final TextCapitalization capitalization;
   final bool isBorder;
+  final EdgeInsetsGeometry contentPadding;
 
   CustomTextField(
       {this.controller,
@@ -39,6 +40,7 @@ class CustomTextField extends StatelessWidget {
       this.capitalization = TextCapitalization.none,
       this.fillColor,
       this.isBorder = false,
+      this.contentPadding = const EdgeInsets.symmetric(vertical: 12.0, horizontal: 15),
       });
 
   @override
@@ -83,7 +85,7 @@ class CustomTextField extends StatelessWidget {
           hintText: hintText ?? '',
           filled: fillColor != null,
           fillColor: fillColor,
-          contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15),
+          contentPadding: contentPadding,
           isDense: true,
           counterText: '',
           focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor)),

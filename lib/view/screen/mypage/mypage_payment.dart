@@ -28,7 +28,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stack(
           children: [
@@ -36,914 +36,452 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "날짜 선택",
+                  "정산 금액",
                 ).getAppbar(),
                 SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 126),
+                      color: Colors.white,
+                      child: Column(
+                        children: [
 
-                      Container(
-                        padding: EdgeInsets.all(8.0),
-                        margin: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Color(0xff999999),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(12, 10, 15, 10),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 1,
+                                color: Color(0xffEEEEEE),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "고객명",
+                                      style: TextStyle(
+                                        color: Color(0xffbbbbbb),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "정하운",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "결제일",
+                                      style: TextStyle(
+                                        color: Color(0xffbbbbbb),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "22.11.09",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "상담명",
+                                      style: TextStyle(
+                                        color: Color(0xffbbbbbb),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "톡으로 만나는 나만의 피부 진단 :)",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "결제금액",
+                                      style: TextStyle(
+                                        color: Color(0xffbbbbbb),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "300,000원",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "결제상태",
+                                      style: TextStyle(
+                                        color: Color(0xffbbbbbb),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "예약금입금완료",
+                                      style: TextStyle(
+                                        color: Color(0xffFF9924),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "수수료",
+                                      style: TextStyle(
+                                          color: Color(0xffbbbbbb),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "20%",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                const Divider(
+                                  height: 11,
+                                  thickness: 1,
+                                  indent: 0,
+                                  endIndent: 0,
+                                  color: Color(0xffeeeeee),
+                                ),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "최종금액",
+                                      style: TextStyle(
+                                        color: Color(0xffbbbbbb),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+
+                                    Text(
+                                      "240,000원",
+                                      style: TextStyle(
+                                          color: Color(0xffFF0000),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
+                          Container(
+                            padding: EdgeInsets.fromLTRB(12, 10, 15, 10),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 1,
+                                color: Color(0xffEEEEEE),
+                              ),
+                            ),
+                            child: Column(
                               children: [
-                                Text(
-                                  "고객명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "고객명",
+                                      style: TextStyle(
+                                          color: Color(0xffbbbbbb),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "정하운",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  "정하운",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "결제일",
+                                      style: TextStyle(
+                                          color: Color(0xffbbbbbb),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "22.11.09",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "상담명",
+                                      style: TextStyle(
+                                          color: Color(0xffbbbbbb),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "톡으로 만나는 나만의 피부 진단 :)",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "결제금액",
+                                      style: TextStyle(
+                                          color: Color(0xffbbbbbb),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "300,000원",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "결제상태",
+                                      style: TextStyle(
+                                          color: Color(0xffbbbbbb),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "예약금입금완료",
+                                      style: TextStyle(
+                                          color: Color(0xff0123B4),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "수수료",
+                                      style: TextStyle(
+                                          color: Color(0xffbbbbbb),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      "20%",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                const Divider(
+                                  height: 11,
+                                  thickness: 1,
+                                  indent: 0,
+                                  endIndent: 0,
+                                  color: Color(0xffeeeeee),
+                                ),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "최종금액",
+                                      style: TextStyle(
+                                          color: Color(0xffbbbbbb),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+
+                                    Text(
+                                      "240,000원",
+                                      style: TextStyle(
+                                          color: Color(0xffFF0000),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
+                          ),
+                          SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
+                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+
+                          Row(children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Text(
+                                "출금가능액",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 5,
-                              thickness: 1,
-                              indent: 10,
-                              endIndent: 10,
-                              color: Colors.black12,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
+                            Expanded(
+                              child: CustomTextField(
+                                contentPadding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 10),
+
+                                // controller: _firstNameController,
+                                // essentialLabelText: " *",
+                                // hintText: "${getTranslated('HINT_NAME', context)}",
+                              ),
                             ),
                           ],
-                        ),
-                      ),
+                          ),
 
-                      Container(
-                        padding: EdgeInsets.all(8.0),
-                        margin: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Color(0xff999999),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "고객명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "정하운",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 5,
-                              thickness: 1,
-                              indent: 10,
-                              endIndent: 10,
-                              color: Colors.black12,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                          SizedBox(height: 13),
 
-                      Container(
-                        padding: EdgeInsets.all(8.0),
-                        margin: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Color(0xff999999),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "고객명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "정하운",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
+                          Row(children: [
+                            Text("내 계좌",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 5,
-                              thickness: 1,
-                              indent: 10,
-                              endIndent: 10,
-                              color: Colors.black12,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(8.0),
-                        margin: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Color(0xff999999),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "고객명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "정하운",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 5,
-                              thickness: 1,
-                              indent: 10,
-                              endIndent: 10,
-                              color: Colors.black12,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
 
-                      Container(
-                        padding: EdgeInsets.all(8.0),
-                        margin: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Color(0xff999999),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "고객명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "정하운",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
+                            Expanded(child: CustomDropdownButton2(
+                              padding: const EdgeInsets.fromLTRB(20, 10, 7.5, 10),
+                              borderRadius: 5,
+                              borderColor: Color(0xffeeeeee),
+                              hint: '은행선택',
+                              icon:
+                              const Icon(Icons.keyboard_arrow_down),
+                              iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                              dropdownItems: dongDropdownItems,
+                              // value: "",
+                              onChanged: (value) {
+                                // setState(() {
+                                //   receiveTimeEnd = value + "";
+                                // });
+                              },
+                            ),),
+                            Expanded(
+                              child: CustomTextField(
+                                contentPadding: const EdgeInsets.fromLTRB(10, 7.5, 0, 7.5),
+                                // controller: _firstNameController,
+                                // essentialLabelText: " *",
+                                hintText:
+                                "계좌번호를 입력해주세요",
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 5,
-                              thickness: 1,
-                              indent: 10,
-                              endIndent: 10,
-                              color: Colors.black12,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      Container(
-                        padding: EdgeInsets.all(8.0),
-                        margin: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Color(0xff999999),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "고객명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "정하운",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "결제일",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "22.11.09",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 5,
-                              thickness: 1,
-                              indent: 10,
-                              endIndent: 10,
-                              color: Colors.black12,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "상담명",
-                                  style: TextStyle(
-                                    color: Color(0xffbbbbbb),
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  "톡으로 만나는 나만의 피부 진단 :)",
-                                  style: TextStyle(
-                                    color: Color(0xff0123b4),
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      Row(children: [
-                        Text("출금가능액"),
-                        Expanded(
-                          child: CustomTextField(
-                            // controller: _firstNameController,
-                            // essentialLabelText: " *",
-                            hintText:
-                            "${getTranslated('HINT_NAME', context)}",
-                          ),
-                        ),
-                      ],),
-
-                      Row(children: [
-                        Text("내 계좌"),
-                        Expanded(child: CustomDropdownButton2(
-                          hint:
-                          '${getTranslated('SELECT_ORDER', context)}',
-                          icon:
-                          const Icon(Icons.keyboard_arrow_down),
-                          iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                          dropdownItems: dongDropdownItems,
-                          // value: "",
-                          onChanged: (value) {
-                            // setState(() {
-                            //   receiveTimeEnd = value + "";
-                            // });
-                          },
-                        ),),
-                        Expanded(
-                          child: CustomTextField(
-                            // controller: _firstNameController,
-                            // essentialLabelText: " *",
-                            hintText:
-                            "${getTranslated('HINT_NAME', context)}",
-                          ),
-                        ),
-                      ],),
+                          ],),
 
 
-                      const Divider(
-                        height: 5,
-                        thickness: 1,
-                        indent: 10,
-                        endIndent: 10,
-                        color: Colors.black12,
+                            Container(
+                              padding: EdgeInsets.only(top: 30),
+                              child: CustomElevatedButton(
+                                onTap: () {
+                                  // ClientsModel clientsModel = ClientsModel(
+                                  //   phoneNum: phoneNumberTextEditingController.text,
+                                  //   password: passwordTextEditingController.text,
+                                  // );
+                                  //
+                                  // Provider.of<ClientsProvider>(context, listen: false)
+                                  //     .login(clientsModel, route);
+                                },
+                                buttonText: "출금 신청",
+                              ),
+                            ),
+                          // ),
+                        ],
                       ),
-                      Padding(
-                        padding:
-                        const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-                        child: Container(
-                          width: 100,
-                          child: CustomElevatedButton(
-                            onTap: () {
-                              // ClientsModel clientsModel = ClientsModel(
-                              //   phoneNum: phoneNumberTextEditingController.text,
-                              //   password: passwordTextEditingController.text,
-                              // );
-                              //
-                              // Provider.of<ClientsProvider>(context, listen: false)
-                              //     .login(clientsModel, route);
-                            },
-                            buttonText: "출금 신청",
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                    ],
+                    ),
                   ),
-                ),
               ],
             ),
             Positioned(

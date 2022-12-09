@@ -34,7 +34,7 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "뷰티 상품",
+                  "찜 목록",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
@@ -42,20 +42,19 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(
                             Dimensions.HOME_PAGE_PADDING,
-                            Dimensions.PADDING_SIZE_SMALL,
-                            Dimensions.PADDING_SIZE_DEFAULT,
-                            Dimensions.PADDING_SIZE_SMALL),
+                            Dimensions.HOME_PAGE_PADDING,
+                            Dimensions.HOME_PAGE_PADDING,
+                            Dimensions.PADDING_SIZE_LARGE),
                         child: Column(
                           children: [
-                            SizedBox(
-                                height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+
                             ProductView(
                                 isHomePage: false,
                                 scrollController: _scrollController),
                             CustomElevatedButton(
-                                onTap: () {}, buttonText: "더보기 ∨"),
+                                onTap: () {}, buttonText: "더보기 ∨", padding: EdgeInsets.symmetric(horizontal: 4)),
                             SizedBox(
-                                height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                                height: Dimensions.PADDING_SIZE_LARGE),
                           ],
                         ),
                       ),

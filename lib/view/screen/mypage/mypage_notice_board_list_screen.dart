@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
@@ -43,12 +44,13 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "커뮤니티",
+                  "공지사항",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
                       Container(
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 75),
                         child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -66,57 +68,82 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                                   },
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.start,
                                     children: <Widget>[
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                          const EdgeInsets.fromLTRB(
-                                              12.0, 12.0, 12.0, 6.0),
+                                          const EdgeInsets.symmetric(vertical: 15),
                                           child: Column(
                                             children: [
-                                              Text(
-                                                titleList[position],
-                                                style: TextStyle(
-                                                  fontSize: 12.0,
-                                                  fontWeight:
-                                                  FontWeight.bold,
-                                                  overflow:
-                                                  TextOverflow.ellipsis,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "[공지사항] ",
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                      color: Color(0xFF333333),
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+
+                                                  Text(
+                                                    titleList[position],
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                      color: Color(0xFF333333),
+                                                      fontWeight: FontWeight.bold,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceEvenly,
+                                                MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text(
-                                                    "BYHER(바이허) | 7일전",
-                                                    style: TextStyle(
-                                                      fontSize: 12.0,
-                                                      fontWeight:
-                                                      FontWeight.bold,
-                                                      overflow: TextOverflow
-                                                          .ellipsis,
-                                                    ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        "BYHER(바이허) |",
+                                                        style: TextStyle(
+                                                          fontSize: 8.0,
+                                                          color: Color(0xFF999999),
+                                                          fontWeight: FontWeight.bold,
+                                                        ),
+                                                      ),
+
+                                                      Text(
+                                                        "7일전",
+                                                        style: TextStyle(
+                                                          fontSize: 8.0,
+                                                          color: Color(0xFF999999),
+                                                          // fontWeight: FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                   Row(
                                                     children: [
                                                       Image.asset(
                                                         Images.eye1,
                                                         fit: BoxFit.cover,
-                                                        width: 15,
+                                                        width: 8,
                                                       ),
+
+                                                      SizedBox(width: 4),
+
                                                       Text(
                                                         "723회",
                                                         style: TextStyle(
-                                                          fontSize: 12.0,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold,
-                                                          overflow:
-                                                          TextOverflow
-                                                              .ellipsis,
+                                                          fontSize: 8.0,
+                                                          color: Color(0xff999999),
+                                                          fontWeight: FontWeight.bold,
+                                                          // overflow: TextOverflow.ellipsis,
                                                         ),
                                                       ),
                                                     ],
@@ -131,11 +158,11 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                                   ),
                                 ),
                                 const Divider(
-                                  height: 3,
+                                  height: 0,
                                   thickness: 1,
                                   indent: 0,
                                   endIndent: 0,
-                                  color: Colors.grey,
+                                  color: Color(0xffdddddd),
                                 ),
                               ],
                             );
