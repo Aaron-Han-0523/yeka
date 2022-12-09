@@ -1,0 +1,3 @@
+class AutoModel {
+  String id;
+}
