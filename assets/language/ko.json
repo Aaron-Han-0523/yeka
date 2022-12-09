@@ -168,7 +168,9 @@
   "TITLE" : "제목",
   "INPUT_TITLE" : "제목을 입력해주세요.",
   "LINK" : "http://",
-  "" : "",
+  "REGISTRATION_IMAGE" : "이미지를 등록해주세요.",
+  "YES_BUTTON" : "그렇다",
+  "NO_BUTTON" : "아니다",
   "" : "",
 
 

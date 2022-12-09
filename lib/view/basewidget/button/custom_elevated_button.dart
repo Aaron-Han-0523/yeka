@@ -24,7 +24,7 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 25,
+      height: 30,
       width: this.width,
       child: Padding(
         padding: padding, // 20, 38.5, 20, 0

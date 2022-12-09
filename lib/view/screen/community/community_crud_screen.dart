@@ -140,6 +140,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                                           height: 50,
                                           decoration: BoxDecoration(
                                             color: Color(0xfff1f1f1),
+                                            borderRadius: BorderRadius.circular(10),
                                           ),
                                           child: Image.asset(
                                             Images.upload,
@@ -178,6 +179,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                                 width: 50,
                                 height: 50,
                                 decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
                                   color: Color(0xfff1f1f1),
                                 ),
                                 child: Image.asset(

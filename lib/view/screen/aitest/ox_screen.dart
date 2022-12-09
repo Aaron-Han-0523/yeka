@@ -89,7 +89,7 @@ class _OXPageState extends State<OXPage>
                                         child: Text(
                                           "AI TEST",
                                           style: TextStyle(
-                                            fontSize: 78,
+                                            fontSize: 60,
                                             color: Colors.black12,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -102,15 +102,15 @@ class _OXPageState extends State<OXPage>
                             ),
                             // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                             Padding(
-                                padding: const EdgeInsets.fromLTRB(24.0, 12.0, 24.0, 0.0),
+                                padding: const EdgeInsets.fromLTRB(24.0, 14.0, 24.0, 0.0),
                                 child:
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: Image.asset(
                                     Images.no_internet,
                                     fit: BoxFit.cover,
-                                    height: MediaQuery.of(context).size.width * 0.9,
-                                    width: MediaQuery.of(context).size.width * 0.9,
+                                    height: MediaQuery.of(context).size.width * 0.89,
+                                    width: MediaQuery.of(context).size.width * 0.89,
                                     // color: Colors.black,
                                   ),
                                 )
@@ -138,23 +138,14 @@ class _OXPageState extends State<OXPage>
                           ],
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.all(8.0),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6),
-                          ),
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.green,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "피부가 노랗다",
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+                        child: Image.asset(
+                          Images.ball2on,
+                          fit: BoxFit.fill,
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: MediaQuery.of(context).size.width * 0.22,
+
                         ),
                       ),
                       Row(
@@ -171,34 +162,37 @@ class _OXPageState extends State<OXPage>
                                 child: Column(
                                   children: [
                                     Text(
-                                      "${getTranslated('START', context)}",
+                                      "${getTranslated('YES_BUTTON', context)}",
                                     ),
-                                    Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(50),
+                                    Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Container(
+                                        height: 60,
+                                        width: 60,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(50),
+                                          ),
+                                          border: Border.all(
+                                            width: 2,
+                                            color: Colors.green,
+                                            style: BorderStyle.solid,
+                                          ),
                                         ),
-                                        border: Border.all(
-                                          width: 2,
-                                          color: Colors.green,
-                                          style: BorderStyle.solid,
-                                        ),
-                                      ),
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              Images.no_internet,
-                                              height: 25,
-                                              color: Colors.black,
-                                            ),
-                                            Text(
-                                              "${getTranslated('START', context)}",
-                                            ),
-                                          ],
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Image.asset(
+                                                Images.yes_bt,
+                                                height: 25,
+                                                color: Colors.black,
+                                              ),
+                                              // Text(
+                                              //   "${getTranslated('NO_BUTTON', context)}",
+                                              // ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -218,34 +212,37 @@ class _OXPageState extends State<OXPage>
                                 child: Column(
                                   children: [
                                     Text(
-                                      "${getTranslated('START', context)}",
+                                      "${getTranslated('NO_BUTTON', context)}",
                                     ),
-                                    Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(50),
+                                    Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Container(
+                                        height: 60,
+                                        width: 60,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(50),
+                                          ),
+                                          border: Border.all(
+                                            width: 2,
+                                            color: Colors.green,
+                                            style: BorderStyle.solid,
+                                          ),
                                         ),
-                                        border: Border.all(
-                                          width: 2,
-                                          color: Colors.green,
-                                          style: BorderStyle.solid,
-                                        ),
-                                      ),
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              Images.no_internet,
-                                              height: 25,
-                                              color: Colors.black,
-                                            ),
-                                            Text(
-                                              "${getTranslated('START', context)}",
-                                            ),
-                                          ],
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Image.asset(
+                                                Images.no_bt,
+                                                height: 25,
+                                                color: Colors.black,
+                                              ),
+                                              // Text(
+                                              //   "${getTranslated('START', context)}",
+                                              // ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),

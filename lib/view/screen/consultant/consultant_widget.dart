@@ -35,7 +35,7 @@ class ConsultantWidget extends StatelessWidget {
             ));
       },
       child: Container(
-        height: MediaQuery.of(context).size.width / 1.64,
+        height: MediaQuery.of(context).size.width * 0.68,
         margin: EdgeInsets.all(5),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -74,21 +74,24 @@ class ConsultantWidget extends StatelessWidget {
                       reviewModel.title ?? '',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                        fontSize: Dimensions.FONT_SIZE_LARGE,
                         fontWeight: FontWeight.bold,
                       ),
                       // maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Text(
-                      "${getTranslated('CERTIFICATE_CONSULTANT', context)}",
-                      textAlign: TextAlign.center,
-                      style: robotoRegular.copyWith(
-                          fontSize: Dimensions.FONT_SIZE_SMALL,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xffcccccc)),
-                      // maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 12),
+                      child: Text(
+                        "${getTranslated('CERTIFICATE_CONSULTANT', context)}",
+                        textAlign: TextAlign.center,
+                        style: robotoRegular.copyWith(
+                            fontSize: Dimensions.FONT_SIZE_SMALL,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffcccccc)),
+                        // maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -99,6 +102,7 @@ class ConsultantWidget extends StatelessWidget {
                   endIndent: 0,
                   color: Color(0XFFCCCCCC),
                 ),
+                SizedBox(height: Dimensions.PADDING_SIZE_SMALL,),
                 Text(
                   reviewModel.custom2 ?? '- 인천대학교',
                   textAlign: TextAlign.center,
@@ -129,7 +133,7 @@ class ConsultantWidget extends StatelessWidget {
                   // maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               ],
             ),
           ),

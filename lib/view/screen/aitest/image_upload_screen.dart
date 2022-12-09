@@ -70,28 +70,24 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                           // ),
                           // borderRadius:
                           // BorderRadius.all(Radius.circular(8.0)),
-                          color: Colors.grey,
+                          color: Color(0xff333333),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
                               padding:
-                                  const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 0.0),
+                                  const EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Stack(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Text(
-                                          "AI TEST",
-                                          style: TextStyle(
-                                            fontSize: 78,
-                                            color: Colors.black12,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                      Text(
+                                        "AI TEST",
+                                        style: TextStyle(
+                                          fontSize: 60,
+                                          color: Color(0xff444444),
                                         ),
                                       ),
                                       Center(
@@ -152,8 +148,14 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                   child: Center(child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text("Dd"),
-                                      Text("Dd"),
+                                      Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Image.asset(
+                                          Images.help,
+                                          width: 23,
+                                        ),
+                                      ),
+                                      Text("${getTranslated('REGISTRATION_IMAGE', context)}"),
                                     ],
                                   ))
                               )

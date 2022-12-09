@@ -166,16 +166,19 @@ class _CommunityYoutubeListScreenState
 
                                             Container(
                                               width: 82,
-                                              child: Image.network(
-                                                // widget.reviewModel.attachedFilepath1,
-                                                // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                                YoutubeThumbnailConverter
-                                                    .getYoutubeThumbnail(
-                                                        "https://www.youtube.com/watch?v=-QhZnyAgKZk"),
-                                                fit: BoxFit.fitWidth,
-                                                width: 165,
-                                                height: 49,
-                                                // height: MediaQuery.of(context).size.width * 0.4,
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(5),
+                                                child: Image.network(
+                                                  // widget.reviewModel.attachedFilepath1,
+                                                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
+                                                  YoutubeThumbnailConverter
+                                                      .getYoutubeThumbnail(
+                                                          "https://www.youtube.com/watch?v=-QhZnyAgKZk"),
+                                                  fit: BoxFit.fitWidth,
+                                                  width: 165,
+                                                  height: 49,
+                                                  // height: MediaQuery.of(context).size.width * 0.4,
+                                                ),
                                               ),
                                             ),
                                           ],
