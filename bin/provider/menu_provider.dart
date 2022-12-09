@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/data/model/response/auto_model.dart';
-import 'package:yeka/data/repository/auto_repo.dart';
+import 'package:yeka/data/model/response/menu_model.dart';
+import 'package:yeka/data/repository/menu_repo.dart';
 
 import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
-class AutoProvider extends ChangeNotifier {
-  final AutoRepo autoRepo;
+class MenuProvider extends ChangeNotifier {
+  final MenuRepo menuRepo;
 
-  AutoProvider({@required this.autoRepo});
+  MenuProvider({@required this.menuRepo});
 
-  AutoModel _auto;
+  MenuModel _menu;
 
-  AutoModel get auto => _auto;
+  MenuModel get menu => _menu;
 
   bool _filterIsLoading = false;
   bool _filterFirstLoading = true;
@@ -20,12 +20,12 @@ class AutoProvider extends ChangeNotifier {
 
   int _latestPageSize;
 
-  List<AutoModel> _latestAutoList = [];
+  List<MenuModel> _latestMenuList = [];
   List<int> _offsetList = [];
   int _lOffset = 0;
   int limit = 6;
 
-  List<AutoModel> get latestAutoList => _latestAutoList;
+  List<MenuModel> get latestMenuList => _latestMenuList;
 
   int get lOffset => _lOffset;
 
@@ -35,33 +35,33 @@ class AutoProvider extends ChangeNotifier {
 
   int get latestPageSize => _latestPageSize;
 
-  void addAuto(AutoModel autoModel) {
-    autoRepo.addAuto(autoModel);
+  void addMenu(MenuModel menuModel) {
+    menuRepo.addMenu(menuModel);
     notifyListeners();
   }
 
-  void updateAuto(AutoModel autoModel) {
-    autoRepo.updateAuto(autoModel);
+  void updateMenu(MenuModel menuModel) {
+    menuRepo.updateMenu(menuModel);
     notifyListeners();
   }
 
-  void deleteAuto(AutoModel autoModel) {
-    autoRepo.deleteAuto(autoModel);
+  void deleteMenu(MenuModel menuModel) {
+    menuRepo.deleteMenu(menuModel);
     notifyListeners();
   }
 
-  Future<AutoModel> getAuto(AutoModel autoModel) async {
-    ApiResponse apiResponse = await autoRepo.getAuto(autoModel);
-    _auto = AutoModel.fromJson(apiResponse.response.data);
+  Future<MenuModel> getMenu(MenuModel menuModel) async {
+    ApiResponse apiResponse = await menuRepo.getMenu(menuModel);
+    _menu = MenuModel.fromJson(apiResponse.response.data);
     notifyListeners();
-    return _auto;
+    return _menu;
   }
 
-  Future<void> getLatestAutoList(int offset, BuildContext context,
+  Future<void> getLatestMenuList(int offset, BuildContext context,
       {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
-      _latestAutoList = [];
+      _latestMenuList = [];
     }
 
     _lOffset = offset;
@@ -71,11 +71,11 @@ class AutoProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await autoRepo.getAutoList(limit, offset * limit);
+      ApiResponse apiResponse = await menuRepo.getMenuList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestAutoList.addAll(AutoList.fromJson(apiResponse.response.data).autoList);
-        _latestPageSize = AutoList.fromJson(apiResponse.response.data).count;
+        _latestMenuList.addAll(MenuList.fromJson(apiResponse.response.data).menuList);
+        _latestPageSize = MenuList.fromJson(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/data/model/response/auto_model.dart';
-import 'package:yeka/data/repository/auto_repo.dart';
+import 'package:yeka/data/model/response/image_model.dart';
+import 'package:yeka/data/repository/image_repo.dart';
 
 import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
-class AutoProvider extends ChangeNotifier {
-  final AutoRepo autoRepo;
+class ImageProvider extends ChangeNotifier {
+  final ImageRepo imageRepo;
 
-  AutoProvider({@required this.autoRepo});
+  ImageProvider({@required this.imageRepo});
 
-  AutoModel _auto;
+  ImageModel _image;
 
-  AutoModel get auto => _auto;
+  ImageModel get image => _image;
 
   bool _filterIsLoading = false;
   bool _filterFirstLoading = true;
@@ -20,12 +20,12 @@ class AutoProvider extends ChangeNotifier {
 
   int _latestPageSize;
 
-  List<AutoModel> _latestAutoList = [];
+  List<ImageModel> _latestImageList = [];
   List<int> _offsetList = [];
   int _lOffset = 0;
   int limit = 6;
 
-  List<AutoModel> get latestAutoList => _latestAutoList;
+  List<ImageModel> get latestImageList => _latestImageList;
 
   int get lOffset => _lOffset;
 
@@ -35,33 +35,33 @@ class AutoProvider extends ChangeNotifier {
 
   int get latestPageSize => _latestPageSize;
 
-  void addAuto(AutoModel autoModel) {
-    autoRepo.addAuto(autoModel);
+  void addImage(ImageModel imageModel) {
+    imageRepo.addImage(imageModel);
     notifyListeners();
   }
 
-  void updateAuto(AutoModel autoModel) {
-    autoRepo.updateAuto(autoModel);
+  void updateImage(ImageModel imageModel) {
+    imageRepo.updateImage(imageModel);
     notifyListeners();
   }
 
-  void deleteAuto(AutoModel autoModel) {
-    autoRepo.deleteAuto(autoModel);
+  void deleteImage(ImageModel imageModel) {
+    imageRepo.deleteImage(imageModel);
     notifyListeners();
   }
 
-  Future<AutoModel> getAuto(AutoModel autoModel) async {
-    ApiResponse apiResponse = await autoRepo.getAuto(autoModel);
-    _auto = AutoModel.fromJson(apiResponse.response.data);
+  Future<ImageModel> getImage(ImageModel imageModel) async {
+    ApiResponse apiResponse = await imageRepo.getImage(imageModel);
+    _image = ImageModel.fromJson(apiResponse.response.data);
     notifyListeners();
-    return _auto;
+    return _image;
   }
 
-  Future<void> getLatestAutoList(int offset, BuildContext context,
+  Future<void> getLatestImageList(int offset, BuildContext context,
       {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
-      _latestAutoList = [];
+      _latestImageList = [];
     }
 
     _lOffset = offset;
@@ -71,11 +71,11 @@ class AutoProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await autoRepo.getAutoList(limit, offset * limit);
+      ApiResponse apiResponse = await imageRepo.getImageList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestAutoList.addAll(AutoList.fromJson(apiResponse.response.data).autoList);
-        _latestPageSize = AutoList.fromJson(apiResponse.response.data).count;
+        _latestImageList.addAll(ImageList.fromJson(apiResponse.response.data).imageList);
+        _latestPageSize = ImageList.fromJson(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

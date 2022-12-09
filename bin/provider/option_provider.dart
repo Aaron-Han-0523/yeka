@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/data/model/response/auto_model.dart';
-import 'package:yeka/data/repository/auto_repo.dart';
+import 'package:yeka/data/model/response/option_model.dart';
+import 'package:yeka/data/repository/option_repo.dart';
 
 import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
-class AutoProvider extends ChangeNotifier {
-  final AutoRepo autoRepo;
+class OptionProvider extends ChangeNotifier {
+  final OptionRepo optionRepo;
 
-  AutoProvider({@required this.autoRepo});
+  OptionProvider({@required this.optionRepo});
 
-  AutoModel _auto;
+  OptionModel _option;
 
-  AutoModel get auto => _auto;
+  OptionModel get option => _option;
 
   bool _filterIsLoading = false;
   bool _filterFirstLoading = true;
@@ -20,12 +20,12 @@ class AutoProvider extends ChangeNotifier {
 
   int _latestPageSize;
 
-  List<AutoModel> _latestAutoList = [];
+  List<OptionModel> _latestOptionList = [];
   List<int> _offsetList = [];
   int _lOffset = 0;
   int limit = 6;
 
-  List<AutoModel> get latestAutoList => _latestAutoList;
+  List<OptionModel> get latestOptionList => _latestOptionList;
 
   int get lOffset => _lOffset;
 
@@ -35,33 +35,33 @@ class AutoProvider extends ChangeNotifier {
 
   int get latestPageSize => _latestPageSize;
 
-  void addAuto(AutoModel autoModel) {
-    autoRepo.addAuto(autoModel);
+  void addOption(OptionModel optionModel) {
+    optionRepo.addOption(optionModel);
     notifyListeners();
   }
 
-  void updateAuto(AutoModel autoModel) {
-    autoRepo.updateAuto(autoModel);
+  void updateOption(OptionModel optionModel) {
+    optionRepo.updateOption(optionModel);
     notifyListeners();
   }
 
-  void deleteAuto(AutoModel autoModel) {
-    autoRepo.deleteAuto(autoModel);
+  void deleteOption(OptionModel optionModel) {
+    optionRepo.deleteOption(optionModel);
     notifyListeners();
   }
 
-  Future<AutoModel> getAuto(AutoModel autoModel) async {
-    ApiResponse apiResponse = await autoRepo.getAuto(autoModel);
-    _auto = AutoModel.fromJson(apiResponse.response.data);
+  Future<OptionModel> getOption(OptionModel optionModel) async {
+    ApiResponse apiResponse = await optionRepo.getOption(optionModel);
+    _option = OptionModel.fromJson(apiResponse.response.data);
     notifyListeners();
-    return _auto;
+    return _option;
   }
 
-  Future<void> getLatestAutoList(int offset, BuildContext context,
+  Future<void> getLatestOptionList(int offset, BuildContext context,
       {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
-      _latestAutoList = [];
+      _latestOptionList = [];
     }
 
     _lOffset = offset;
@@ -71,11 +71,11 @@ class AutoProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await autoRepo.getAutoList(limit, offset * limit);
+      ApiResponse apiResponse = await optionRepo.getOptionList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestAutoList.addAll(AutoList.fromJson(apiResponse.response.data).autoList);
-        _latestPageSize = AutoList.fromJson(apiResponse.response.data).count;
+        _latestOptionList.addAll(OptionList.fromJson(apiResponse.response.data).optionList);
+        _latestPageSize = OptionList.fromJson(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

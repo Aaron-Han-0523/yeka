@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/data/model/response/auto_model.dart';
-import 'package:yeka/data/repository/auto_repo.dart';
+import 'package:yeka/data/model/response/product_model.dart';
+import 'package:yeka/data/repository/product_repo.dart';
 
 import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
-class AutoProvider extends ChangeNotifier {
-  final AutoRepo autoRepo;
+class ProductProvider extends ChangeNotifier {
+  final ProductRepo productRepo;
 
-  AutoProvider({@required this.autoRepo});
+  ProductProvider({@required this.productRepo});
 
-  AutoModel _auto;
+  ProductModel _product;
 
-  AutoModel get auto => _auto;
+  ProductModel get product => _product;
 
   bool _filterIsLoading = false;
   bool _filterFirstLoading = true;
@@ -20,12 +20,12 @@ class AutoProvider extends ChangeNotifier {
 
   int _latestPageSize;
 
-  List<AutoModel> _latestAutoList = [];
+  List<ProductModel> _latestProductList = [];
   List<int> _offsetList = [];
   int _lOffset = 0;
   int limit = 6;
 
-  List<AutoModel> get latestAutoList => _latestAutoList;
+  List<ProductModel> get latestProductList => _latestProductList;
 
   int get lOffset => _lOffset;
 
@@ -35,33 +35,33 @@ class AutoProvider extends ChangeNotifier {
 
   int get latestPageSize => _latestPageSize;
 
-  void addAuto(AutoModel autoModel) {
-    autoRepo.addAuto(autoModel);
+  void addProduct(ProductModel productModel) {
+    productRepo.addProduct(productModel);
     notifyListeners();
   }
 
-  void updateAuto(AutoModel autoModel) {
-    autoRepo.updateAuto(autoModel);
+  void updateProduct(ProductModel productModel) {
+    productRepo.updateProduct(productModel);
     notifyListeners();
   }
 
-  void deleteAuto(AutoModel autoModel) {
-    autoRepo.deleteAuto(autoModel);
+  void deleteProduct(ProductModel productModel) {
+    productRepo.deleteProduct(productModel);
     notifyListeners();
   }
 
-  Future<AutoModel> getAuto(AutoModel autoModel) async {
-    ApiResponse apiResponse = await autoRepo.getAuto(autoModel);
-    _auto = AutoModel.fromJson(apiResponse.response.data);
+  Future<ProductModel> getProduct(ProductModel productModel) async {
+    ApiResponse apiResponse = await productRepo.getProduct(productModel);
+    _product = ProductModel.fromJson(apiResponse.response.data);
     notifyListeners();
-    return _auto;
+    return _product;
   }
 
-  Future<void> getLatestAutoList(int offset, BuildContext context,
+  Future<void> getLatestProductList(int offset, BuildContext context,
       {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
-      _latestAutoList = [];
+      _latestProductList = [];
     }
 
     _lOffset = offset;
@@ -71,11 +71,11 @@ class AutoProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await autoRepo.getAutoList(limit, offset * limit);
+      ApiResponse apiResponse = await productRepo.getProductList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestAutoList.addAll(AutoList.fromJson(apiResponse.response.data).autoList);
-        _latestPageSize = AutoList.fromJson(apiResponse.response.data).count;
+        _latestProductList.addAll(ProductList.fromJson(apiResponse.response.data).productList);
+        _latestPageSize = ProductList.fromJson(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

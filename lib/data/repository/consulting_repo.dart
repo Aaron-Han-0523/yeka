@@ -3,29 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:yeka/data/datasource/remote/dio/dio_client.dart';
 import 'package:yeka/data/datasource/remote/exception/api_error_handler.dart';
 import 'package:yeka/data/model/response/base/api_response.dart';
-import 'package:yeka/data/model/response/auto_model.dart';
+import 'package:yeka/data/model/response/consulting_model.dart';
 import 'package:yeka/utill/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AutoRepo {
+class ConsultingRepo {
   final DioClient dioClient;
   final SharedPreferences sharedPreferences;
 
-  AutoRepo({@required this.dioClient, @required this.sharedPreferences});
+  ConsultingRepo({@required this.dioClient, @required this.sharedPreferences});
 
-  Future<ApiResponse> addAuto(AutoModel autoModel) async {
+  Future<ApiResponse> addConsulting(ConsultingModel consultingModel) async {
 
     List<MultipartFile> uploadFiles = [];
 
-    // if(autoModel.attachedFilepath1 != null) uploadFiles.add(await MultipartFile.fromFile(autoModel.attachedFilepath1));
-    // if(autoModel.attachedFilepath2 != null) uploadFiles.add(await MultipartFile.fromFile(autoModel.attachedFilepath2));
-    // if(autoModel.attachedFilepath3 != null) uploadFiles.add(await MultipartFile.fromFile(autoModel.attachedFilepath3));
+    // if(consultingModel.attachedFilepath1 != null) uploadFiles.add(await MultipartFile.fromFile(consultingModel.attachedFilepath1));
+    // if(consultingModel.attachedFilepath2 != null) uploadFiles.add(await MultipartFile.fromFile(consultingModel.attachedFilepath2));
+    // if(consultingModel.attachedFilepath3 != null) uploadFiles.add(await MultipartFile.fromFile(consultingModel.attachedFilepath3));
 
     var formData = FormData.fromMap({
       // 'files' : uploadFiles,
-      // 'title': autoModel.title,
-      // 'content': autoModel.content,
-      // 'grade': autoModel.grade,
+      // 'title': consultingModel.title,
+      // 'content': consultingModel.content,
+      // 'grade': consultingModel.grade,
       // 'clients_id': sharedPreferences.getInt("clients_id"),
     });
 
@@ -41,30 +41,30 @@ class AutoRepo {
     }
   }
 
-  Future<ApiResponse> updateAuto(AutoModel autoModel) async {
+  Future<ApiResponse> updateConsulting(ConsultingModel consultingModel) async {
     Map<String, dynamic> _data = {
       // 'clients_id': sharedPreferences.getInt("clients_id"),
-      // 'title': autoModel.title,
-      // 'content': autoModel.content,
-      // 'grade': autoModel.grade,
-      // 'auto_id': autoModel.auto_id,
-      // 'custom1': autoModel.custom1,
+      // 'title': consultingModel.title,
+      // 'content': consultingModel.content,
+      // 'grade': consultingModel.grade,
+      // 'consulting_id': consultingModel.consulting_id,
+      // 'custom1': consultingModel.custom1,
     };
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${autoModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${consultingModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
 
-  Future<ApiResponse> deleteAuto(AutoModel autoModel) async {
+  Future<ApiResponse> deleteConsulting(ConsultingModel consultingModel) async {
     try {
       final response = await dioClient.delete(
         AppConstants.DELETE_AUTO_URI +
-            "/${autoModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
+            "/${consultingModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -73,7 +73,7 @@ class AutoRepo {
   }
 
   // limit = pageSize, skip = offset
-  Future<ApiResponse> getAutoList(int limit, int skip) async {
+  Future<ApiResponse> getConsultingList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
         AppConstants.LIST_AUTO_URI + "?limit=$limit&skip=$skip",
@@ -84,10 +84,10 @@ class AutoRepo {
     }
   }
 
-  Future<ApiResponse> getAuto(AutoModel autoModel) async {
+  Future<ApiResponse> getConsulting(ConsultingModel consultingModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_AUTO_URI + "/${autoModel.id}",
+        AppConstants.GET_AUTO_URI + "/${consultingModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
