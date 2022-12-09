@@ -33,7 +33,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('REVIEW_WRITE', context)}",
+              "${getTranslated('CONSULTING_RESERVE', context)}",
             ).getAppbar(),
 
             SliverToBoxAdapter(
@@ -47,16 +47,28 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Divider(
+                      height: 1,
+                      color: Color(0xffDDDDDD),
+                      indent: 0,
+                      endIndent: 0,
+                    ),
                     Container(
                         height: MediaQuery.of(context).size.height * 0.8,
                         child: Column(
                           children: [
+                            Divider(
+                              height: 1,
+                              color: Color(0xffDDDDDD),
+                              indent: 0,
+                              endIndent: 0,
+                            ),
                             Row(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(20, 24, 0, 10),
                                   child: Text(
-                                    "상담정보",
+                                    "${getTranslated('CONSULTATION_INFO', context)}",
                                     style: TextStyle(
                                       color: Color(0xff000000),
                                       fontSize: 18,
@@ -78,7 +90,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "상담일",
+                                    "${getTranslated('COUNSELING', context)}",
                                     style: TextStyle(
                                       color: Color(0xffbbbbbb),
                                       fontSize: 10,
@@ -101,7 +113,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "상담명",
+                                    "${getTranslated('COUNSELING_NAME', context)}",
                                     style: TextStyle(
                                       color: Color(0xffbbbbbb),
                                       fontSize: 10,
@@ -123,7 +135,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "예약금액",
+                                    "${getTranslated('RESERVATION_AMOUNT', context)}",
                                     style: TextStyle(
                                       color: Color(0xffbbbbbb),
                                       fontSize: 10,
@@ -144,7 +156,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               child: Row(
                                 children: [
                                   Text(
-                                    "* 예약금액은 전체 금액의 10%입니다.",
+                                    "${getTranslated('DISCOUNT_10%', context)}",
                                     style: TextStyle(
                                       color: Color(0xff0123b4),
                                       fontSize: 10,
@@ -158,7 +170,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               child: Row(
                                 children: [
                                   Text(
-                                    "결제정보",
+                                    "${getTranslated('PAYMENT_INFO', context)}",
                                     style: TextStyle(
                                       color: Color(0xff000000),
                                       fontSize: 18,
@@ -180,7 +192,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "계좌번호",
+                                    "${getTranslated('GRADATION_INFO', context)}",
                                     style: TextStyle(
                                       color: Color(0xffbbbbbb),
                                       fontSize: 10,
@@ -202,7 +214,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "예금주",
+                                    "${getTranslated('DISCOUNT_HOLDER', context)}",
                                     style: TextStyle(
                                       color: Color(0xffbbbbbb),
                                       fontSize: 10,
@@ -220,10 +232,11 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                             ),
                             Container(
                               decoration: BoxDecoration(color: Color(0xfff8f8f8)),
+                              padding: EdgeInsets.fromLTRB(65, 8, 65, 8),
                               child: Column(
                                 children: [
                                   Text(
-                                    "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)",
+                                    "${getTranslated('DEPOSIT_WARNING', context)}",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color(0xff979797),
@@ -231,7 +244,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "입금이 확인되면 다음단계로 넘어갑니다.",
+                                    "${getTranslated('DEPOSIT_WARNING_NEXT', context)}",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color(0xff979797),

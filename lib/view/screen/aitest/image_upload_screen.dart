@@ -10,6 +10,7 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/process_model.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../provider/process_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
@@ -69,28 +70,24 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                           // ),
                           // borderRadius:
                           // BorderRadius.all(Radius.circular(8.0)),
-                          color: Colors.grey,
+                          color: Color(0xff333333),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
                               padding:
-                                  const EdgeInsets.fromLTRB(8.0, 0.0, 0.0, 0.0),
+                                  const EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Stack(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Text(
-                                          "AI TEST",
-                                          style: TextStyle(
-                                            fontSize: 78,
-                                            color: Colors.black12,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                      Text(
+                                        "AI TEST",
+                                        style: TextStyle(
+                                          fontSize: 60,
+                                          color: Color(0xff444444),
                                         ),
                                       ),
                                       Center(
@@ -103,26 +100,26 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
                                             Text(
-                                              "사진을 업로드 해주세요!",
+                                              "${getTranslated('PLEASE_UPLOAD_PICTURE', context)}",
                                               style: TextStyle(
-                                                fontSize: 18,
-                                                color: Color(0xff212121),
+                                                fontSize: 26,
+                                                color: Color(0xffFFFFFF),
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             Text(
-                                              "사진은 필터 없이 정면을 바라보고 창문 앞에서",
+                                              "${getTranslated('FRONT_PICTURE', context)}",
                                               style: TextStyle(
-                                                fontSize: 14,
-                                                color: Color(0xff212121),
+                                                fontSize: 12,
+                                                color: Color(0xffFFFFFF),
                                                 // fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             Text(
-                                              "촬영해주시면 좀 더 정확한 결과를 받아볼 수 있습니다.",
+                                              "${getTranslated('CORRECT_PICTURE', context)}",
                                               style: TextStyle(
-                                                fontSize: 14,
-                                                color: Color(0xff212121),
+                                                fontSize: 12,
+                                                color: Color(0xffFFFFFF),
                                                 // fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -151,8 +148,14 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                   child: Center(child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text("Dd"),
-                                      Text("Dd"),
+                                      Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Image.asset(
+                                          Images.help,
+                                          width: 23,
+                                        ),
+                                      ),
+                                      Text("${getTranslated('REGISTRATION_IMAGE', context)}"),
                                     ],
                                   ))
                               )
@@ -188,11 +191,20 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                   children: [
                                     Image.asset(
                                       Images.cloud,
-                                      height: 25,
+                                      height: 38,
                                       color: Colors.black,
                                     ),
-                                    Text(
-                                      "Start",
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                      child: Text(
+                                        "${getTranslated('START', context)}",
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w900,
+                                          fontFamily: "SB Aggro",
+                                          // fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

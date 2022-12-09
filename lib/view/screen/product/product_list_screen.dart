@@ -43,17 +43,26 @@ class _ProductListScreenState extends State<ProductListScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "뷰티 상품",
+                  "${getTranslated('BEAUTY_PRODUCT', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      Padding(
+                      const Divider(
+                        height: 5,
+                        thickness: 1,
+                        indent: 0,
+                        endIndent: 0,
+                        color: Color(0xffdddddd),
+                      ),
+                      Container(
                         padding: EdgeInsets.fromLTRB(
-                            Dimensions.HOME_PAGE_PADDING,
-                            Dimensions.PADDING_SIZE_SMALL,
-                            Dimensions.PADDING_SIZE_DEFAULT,
-                            Dimensions.PADDING_SIZE_SMALL),
+                          Dimensions.HOME_PAGE_PADDING,
+                          Dimensions.PADDING_SIZE_SMALL,
+                          Dimensions.PADDING_SIZE_DEFAULT,
+                          Dimensions.PADDING_SIZE_SMALL,
+                        ),
+                        decoration: BoxDecoration(color: Colors.white),
                         child: Column(
                           children: [
                             SizedBox(
@@ -64,7 +73,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                 Flexible(
                                   flex: 2,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Material(
                                       // elevation: 20.0,
                                       // shadowColor: Color(0XFF2434D7),
@@ -72,7 +81,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                           BorderRadius.all(Radius.circular(8.0)),
 
                                       child: CustomDropdownButton2(
-                                        dropdownWidth: 300,
+                                        dropdownWidth: 220,
                                         buttonWidth: 300,
                                         hint:
                                             '${getTranslated('SELECT_CATEGORY', context)}',
@@ -93,7 +102,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                 Flexible(
                                   flex: 1,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.fromLTRB(4.0,0.0,4.0,0.0,),
                                     child: Material(
                                       // elevation: 20.0,
                                       // shadowColor: Color(0XFF2434D7),
@@ -107,6 +116,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                             const Icon(Icons.keyboard_arrow_down),
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
                                         dropdownItems: dongDropdownItems,
+                                        dropdownWidth: 100,
                                         // value: "",
                                         onChanged: (value) {
                                           // setState(() {
@@ -123,7 +133,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                 isHomePage: false,
                                 scrollController: _scrollController),
                             CustomElevatedButton(
-                                onTap: () {}, buttonText: "더보기 ∨"),
+                                onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}"),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                           ],

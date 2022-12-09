@@ -46,6 +46,12 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
+                      Divider(
+                        height: 1,
+                        color: Color(0xffDDDDDD),
+                        indent: 0,
+                        endIndent: 0,
+                      ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(
                             Dimensions.HOME_PAGE_PADDING,
@@ -111,7 +117,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                                 isHomePage: false,
                                 scrollController: _scrollController),
 
-                            CustomElevatedButton(onTap: () {}, buttonText: "더보기 ∨"),
+                            CustomElevatedButton(onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}"),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                           ],

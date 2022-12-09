@@ -114,9 +114,9 @@ class CustomDropdownButton2 extends StatelessWidget {
           buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
           buttonDecoration: buttonDecoration ??
               BoxDecoration(
-                borderRadius: BorderRadius.circular(borderRadius),
+                borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: borderColor,
+                  color: Colors.black45,
                 ),
               ),
           buttonElevation: buttonElevation,

@@ -83,9 +83,8 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
             slivers: [
               // App Bar
               CustomSliverAppBar(
-                "${getTranslated('REVIEW_WRITE', context)}",
+                "${getTranslated('CONSULTANT_DETAIL_INFO', context)}",
               ).getAppbar(),
-
               SliverToBoxAdapter(
                 child: Container(
                   alignment: Alignment.centerLeft,
@@ -95,6 +94,12 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      Divider(
+                        height: 2,
+                        color: Color(0xffDDDDDD),
+                        indent: 0,
+                        endIndent: 0,
+                      ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
@@ -150,7 +155,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                         tabs: [
                           Tab(
                             child: Text(
-                              "상세정보",
+                              "${getTranslated('DETAIL_INFO', context)}",
                               style: TextStyle(
                               //   color: Color(0xff333333),
                                 fontSize: 12,
@@ -159,7 +164,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           ),
                           Tab(
                             child: Text(
-                              "상담메뉴",
+                              "${getTranslated('CONSULTATION_MENU', context)}",
                               style: TextStyle(
                                 //   color: Color(0xff333333),
                                 fontSize: 12,
@@ -168,7 +173,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           ),
                           Tab(
                             child: Text(
-                              "포트폴리오",
+                              "${getTranslated('PORTFOLIO', context)}",
                               style: TextStyle(
                                 //   color: Color(0xff333333),
                                 fontSize: 12,

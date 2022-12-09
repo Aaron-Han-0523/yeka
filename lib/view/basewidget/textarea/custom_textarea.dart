@@ -10,12 +10,8 @@ class CustomTextarea extends StatelessWidget {
   final TextEditingController textEditingController;
   final String labelText;
   final String radioText;
-  final String hintText;
-  final Color hintTextColor;
-  final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry labelPadding;
-  final EdgeInsetsGeometry contentPadding;
-  final double labelFontSize;
+  final double label_fontSize;
+  final EdgeInsets padding;
 
   CustomTextarea({
     this.isBorder = true,
@@ -23,19 +19,15 @@ class CustomTextarea extends StatelessWidget {
     this.enabled = true,
     this.labelText = "",
     this.radioText = "",
-    this.hintText = "서비스 이용약관 제1조",
-    this.hintTextColor,
-    this.padding = const EdgeInsets.all(4),
-    this.labelPadding = const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
-    this.contentPadding = const EdgeInsets.all(10),
-    this.labelFontSize = 15,
+    this.label_fontSize = 15,
+    this.padding = const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: padding,
+      padding: EdgeInsets.all(4.0),
       margin: EdgeInsets.only(
         left: Dimensions.MARGIN_SIZE_DEFAULT,
         right: Dimensions.MARGIN_SIZE_DEFAULT,
@@ -43,7 +35,7 @@ class CustomTextarea extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: labelPadding,
+            padding: this.padding,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +44,7 @@ class CustomTextarea extends StatelessWidget {
                 Text(
                   "$labelText",
                   style: TextStyle(
-                    fontSize: labelFontSize,
+                    fontSize: this.label_fontSize,
                   ),
                 ),
                 Text(
@@ -101,13 +93,11 @@ class CustomTextarea extends StatelessWidget {
                     maxLines: null,
                     minLines: 10,
                     decoration: InputDecoration(
-                      hintStyle: TextStyle(
-                          fontSize: 9,
-                          color: hintTextColor),
-                      hintText: hintText,
+                      hintStyle: TextStyle(fontSize: 9),
+                      hintText: '서비스 이용약관 제1조',
                       hintMaxLines: 5,
                       border: InputBorder.none,
-                      contentPadding: contentPadding,
+                      contentPadding: EdgeInsets.all(10),
                     ),
                     // readOnly: true,
                     style: TextStyle(

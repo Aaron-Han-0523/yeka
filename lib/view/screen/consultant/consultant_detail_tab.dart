@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../localization/language_constrants.dart';
+
 class ConsultantDetailWidget extends StatefulWidget {
   final bool isCreateScreen;
 
@@ -48,7 +50,7 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
               child: Text(
-                "컨설턴트",
+                "${getTranslated('CERTIFICATE_CONSULTANT', context)}",
                 style: TextStyle(
                   color: Color(0xffcccccc),
                   fontSize: 14,
@@ -69,7 +71,7 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             Padding(
               padding: const EdgeInsets.fromLTRB(23, 10, 0, 5),
               child: Text(
-                "자격현황 및 이력",
+                "${getTranslated('DETAIL_INFO', context)}",
                 style: TextStyle(
                   color: Color(0xff333333),
                   fontSize: 16,
@@ -188,7 +190,7 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             Padding(
               padding: const EdgeInsets.fromLTRB(23, 15, 0, 5),
               child: Text(
-                "상담 가능 시간",
+                "${getTranslated('CONSULTATION_AVAILABLE_TIME', context)}",
                 style: TextStyle(
                   color: Color(0xff333333),
                   fontSize: 16,
@@ -251,7 +253,7 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             Padding(
               padding: const EdgeInsets.fromLTRB(23, 15, 0, 0),
               child: Text(
-                "사업장 주소",
+                "${getTranslated('PLACE_OF_BUSINESS', context)}",
                 style: TextStyle(
                   color: Color(0xff333333),
                   fontSize: 16,

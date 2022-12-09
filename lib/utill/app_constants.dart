@@ -3,10 +3,82 @@ import 'package:yeka/data/model/response/language_model.dart';
 class AppConstants {
   static const String APP_NAME = 'PECHAGO';
   static const String APP_VERSION = '1.0';
+
   // static const String BASE_URL = 'https://6valley.6amtech.com';
   static const String BASE_URL = 'http://52.79.240.88';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
+
+  // AUTO (autoGen sample)
+  static const String ADD_AUTO_URI = "";
+  static const String UPDATE_AUTO_URI = "";
+  static const String DELETE_AUTO_URI = "";
+  static const String LIST_AUTO_URI = "";
+  static const String GET_AUTO_URI = "";
+
+  // PRODUCT
+  static const String ADD_PRODUCT_URI = "";
+  static const String UPDATE_PRODUCT_URI = "";
+  static const String DELETE_PRODUCT_URI = "";
+  static const String LIST_PRODUCT_URI = "";
+  static const String GET_PRODUCT_URI = "";
+
+// ORDER
+  static const String ADD_ORDER_URI = "";
+  static const String UPDATE_ORDER_URI = "";
+  static const String DELETE_ORDER_URI = "";
+  static const String LIST_ORDER_URI = "";
+  static const String GET_ORDER_URI = "";
+
+// USER
+  static const String ADD_USER_URI = "";
+  static const String UPDATE_USER_URI = "";
+  static const String DELETE_USER_URI = "";
+  static const String LIST_USER_URI = "";
+  static const String GET_USER_URI = "";
+
+// CONSULTING
+  static const String ADD_CONSULTING_URI = "";
+  static const String UPDATE_CONSULTING_URI = "";
+  static const String DELETE_CONSULTING_URI = "";
+  static const String LIST_CONSULTING_URI = "";
+  static const String GET_CONSULTING_URI = "";
+
+// MENU
+  static const String ADD_MENU_URI = "";
+  static const String UPDATE_MENU_URI = "";
+  static const String DELETE_MENU_URI = "";
+  static const String LIST_MENU_URI = "";
+  static const String GET_MENU_URI = "";
+
+// COMMUNITY
+  static const String ADD_COMMUNITY_URI = "";
+  static const String UPDATE_COMMUNITY_URI = "";
+  static const String DELETE_COMMUNITY_URI = "";
+  static const String LIST_COMMUNITY_URI = "";
+  static const String GET_COMMUNITY_URI = "";
+
+// LIKE_COMMUNITY
+  static const String ADD_LIKE_COMMUNITY_URI = "";
+  static const String UPDATE_LIKE_COMMUNITY_URI = "";
+  static const String DELETE_LIKE_COMMUNITY_URI = "";
+  static const String LIST_LIKE_COMMUNITY_URI = "";
+  static const String GET_LIKE_COMMUNITY_URI = "";
+
+// IMAGE
+  static const String ADD_IMAGE_URI = "";
+  static const String UPDATE_IMAGE_URI = "";
+  static const String DELETE_IMAGE_URI = "";
+  static const String LIST_IMAGE_URI = "";
+  static const String GET_IMAGE_URI = "";
+
+// OPTION
+  static const String ADD_OPTION_URI = "";
+  static const String UPDATE_OPTION_URI = "";
+  static const String DELETE_OPTION_URI = "";
+  static const String LIST_OPTION_URI = "";
+  static const String GET_OPTION_URI = "";
+
 
   static const String MAIN_BANNER_URI = '/api/imageSetting';
   static const String ADD_CLIENTS_URI = '/api/clients/add';
@@ -72,9 +144,18 @@ class AppConstants {
   static const String VERIFY_OTP_URI = '/api/v1/auth/verify-otp';
 
   static List<LanguageModel> languages = [
-    LanguageModel(imageUrl: '', languageName: '한국어', countryCode: 'KR', languageCode: 'ko'),
-    LanguageModel(imageUrl: '', languageName: 'English', countryCode: 'US', languageCode: 'en'),
-    LanguageModel(imageUrl: '', languageName: 'Arabic', countryCode: 'SA', languageCode: 'ar'),
+    LanguageModel(imageUrl: '',
+        languageName: '한국어',
+        countryCode: 'KR',
+        languageCode: 'ko'),
+    LanguageModel(imageUrl: '',
+        languageName: 'English',
+        countryCode: 'US',
+        languageCode: 'en'),
+    LanguageModel(imageUrl: '',
+        languageName: 'Arabic',
+        countryCode: 'SA',
+        languageCode: 'ar'),
   ];
 
 /*

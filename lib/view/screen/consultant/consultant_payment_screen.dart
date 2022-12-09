@@ -34,7 +34,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('REVIEW_WRITE', context)}",
+              "${getTranslated('PAY_CONSULTING', context)}",
             ).getAppbar(),
 
             SliverToBoxAdapter(
@@ -48,10 +48,16 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Divider(
+                      height: 2,
+                      color: Color(0xffDDDDDD),
+                      indent: 0,
+                      endIndent: 0,
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 31.5, 0, 21),
                       child: Text(
-                        "나의 상담내역",
+                        "${getTranslated('MY_CONSULTATION', context)}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 18,
@@ -64,7 +70,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "상담일",
+                            "${getTranslated('COUNSELING', context)}",
                             style: TextStyle(
                               color: Color(0xffbbbbbb),
                               fontSize: 10,
@@ -86,7 +92,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "상담명",
+                            "${getTranslated('COUNSELING_NAME', context)}",
                             style: TextStyle(
                               color: Color(0xffbbbbbb),
                               fontSize: 10,
@@ -108,7 +114,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "결제정보",
+                            "${getTranslated('PAYMENT_INFO', context)}",
                             style: TextStyle(
                               color: Color(0xffbbbbbb),
                               fontSize: 10,
@@ -130,7 +136,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(255, 0, 0, 7.5),
                           child: Text(
-                            "예약금액",
+                            "${getTranslated('RESERVATION_AMOUNT', context)}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 9,
@@ -162,7 +168,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "최종결제금액",
+                            "${getTranslated('FINAL_PAYMENT_AMOUNT', context)}",
                             style: TextStyle(
                               color: Color(0xffbbbbbb),
                               fontSize: 10,
@@ -181,7 +187,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 28),
                       child: Text(
-                        "* 최종결제금액은 사전에 결제하셨던 예약금액에서 차감된 금액입니다.",
+                        "${getTranslated('FINAL_PAYMENT_DEDUCTED_AMOUNT', context)}",
                         style: TextStyle(
                           color: Color(0xff0123b4),
                           fontSize: 10,
@@ -200,7 +206,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 7.75),
                       child: Text(
-                        "결제정보",
+                        "${getTranslated('PAYMENT_INFO', context)}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 18,
@@ -220,7 +226,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "계좌번호",
+                            "${getTranslated('GRADATION_INFO', context)}",
                             style: TextStyle(
                               color: Color(0xffbbbbbb),
                               fontSize: 10,
@@ -242,7 +248,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "예금주",
+                            "${getTranslated('DISCOUNT_HOLDER', context)}",
                             style: TextStyle(
                               color: Color(0xffbbbbbb),
                               fontSize: 10,
@@ -261,10 +267,11 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                     Center(
                       child: Container(
                         decoration: BoxDecoration(color: Color(0xfff8f8f8)),
+                        padding: EdgeInsets.fromLTRB(65, 8, 65, 8),
                         child: Column(
                           children: [
                             Text(
-                              "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)",
+                              "${getTranslated('DEPOSIT_WARNING', context)}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color(0xff979797),
@@ -272,7 +279,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                               ),
                             ),
                             Text(
-                              "입금이 확인되면 다음단계로 넘어갑니다.",
+                              "${getTranslated('DEPOSIT_WARNING_NEXT', context)}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color(0xff979797),
@@ -292,7 +299,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           );
                         },
-                        buttonText: "확인"),
+                        buttonText: "${getTranslated('CONFIRMATION', context)}"),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     FooterPage(),
                   ],

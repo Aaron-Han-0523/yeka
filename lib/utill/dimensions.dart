@@ -14,6 +14,7 @@ class Dimensions {
   static const double PADDING_SIZE_DEFAULT = 15.0;
   static const double HOME_PAGE_PADDING = 16.0;
   static const double PADDING_SIZE_DEFAULT_ADDRESS = 17.0;
+  static const double PADDING_SIZE_SMALL_LARGE = 18.0;
   static const double PADDING_SIZE_LARGE = 20.0;
   static const double PADDING_SIZE_EXTRA_LARGE = 25.0;
   static const double PADDING_SIZE_Thirty_Five = 35.0;

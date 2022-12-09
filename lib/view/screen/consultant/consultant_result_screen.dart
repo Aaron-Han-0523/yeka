@@ -34,7 +34,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('REVIEW_WRITE', context)}",
+              "${getTranslated('RESULT_CONSULTING', context)}",
             ).getAppbar(),
 
             SliverToBoxAdapter(
@@ -48,6 +48,12 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Divider(
+                      height: 2,
+                      color: Color(0xffDDDDDD),
+                      indent: 0,
+                      endIndent: 0,
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 14.5, 12.5, 27),
                       child: Row(
@@ -78,7 +84,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                                     child: Text(
-                                      "컨설턴트",
+                                      "${getTranslated('CERTIFICATE_CONSULTANT', context)}",
                                       style: TextStyle(
                                         color: Color(0xffBBBBBB),
                                         fontSize: 14,
@@ -88,7 +94,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                 ],
                               ),
                               Container(
-                                width: 200,
+                                width: 250,
                                 child: const Divider(
                                   height: 1,
                                   thickness: 1,
@@ -102,7 +108,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 0, 14.5, 0),
                                     child: Text(
-                                      "상담명",
+                                      "${getTranslated('COUNSELING_NAME', context)}",
                                       style: TextStyle(
                                         color: Color(0xffbbbbbb),
                                         fontSize: 12,
@@ -138,7 +144,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                             ),
                           ),
                           Text(
-                            "님의 상담결과 알려드릴게요.",
+                            "${getTranslated('SHOW_YOUR_RESULT', context)}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 13,
@@ -162,7 +168,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                             child: Text(
-                              "색상",
+                              "${getTranslated('COLOR', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 18,
@@ -430,7 +436,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Text(
-                            "패션",
+                            "${getTranslated('FASHION', context)}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 18,
@@ -476,7 +482,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                             child: Text(
-                              "헤어",
+                              "${getTranslated('HAIR', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 18,
@@ -511,7 +517,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                             child: Text(
-                              "향수",
+                              "${getTranslated('PERFUME', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 18,
@@ -546,7 +552,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           Padding(
                             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                             child: Text(
-                              "메이크업",
+                              "${getTranslated('MAKE_UP', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 18,
@@ -581,7 +587,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                     child: Text(
-                                      "베이스",
+                                      "${getTranslated('BASE', context)}",
                                       style: TextStyle(
                                         color: Color(0xff333333),
                                         fontSize: 16,
@@ -607,7 +613,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                       child: Text(
-                                        "아이",
+                                        "${getTranslated('EYE', context)}",
                                         style: TextStyle(
                                           color: Color(0xff333333),
                                           fontSize: 16,
@@ -637,7 +643,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                     child: Text(
-                                      "블러셔",
+                                      "${getTranslated('BLUSHER', context)}",
                                       style: TextStyle(
                                         color: Color(0xff333333),
                                         fontSize: 16,
@@ -662,7 +668,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                     child: Text(
-                                      "립",
+                                      "${getTranslated('LIP', context)}",
                                       style: TextStyle(
                                         color: Color(0xff333333),
                                         fontSize: 16,
@@ -692,7 +698,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text("웜"),
+                          Text("${getTranslated('WARM', context)}"),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
                             child: Slider(
@@ -709,7 +715,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("쿨"),
+                            child: Text("${getTranslated('COOL', context)}"),
                           ),
                         ],
                       ),
@@ -719,7 +725,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text("청"),
+                          Text("${getTranslated('CLEAR', context)}"),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
                             child: Slider(
@@ -736,7 +742,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("탁"),
+                            child: Text("${getTranslated('BLUE', context)}"),
                           ),
                         ],
                       ),
@@ -748,7 +754,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         children: [
                           Padding(
                             padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
-                            child: Text("고대비"),
+                            child: Text("${getTranslated('HIGH_CONTRAST_IMAGE', context)}"),
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
@@ -766,7 +772,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("저대비"),
+                            child: Text("${getTranslated('LOW_CONTRAST_IMAGE', context)}"),
                           ),
                         ],
                       ),
@@ -778,7 +784,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         children: [
                           Padding(
                             padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
-                            child: Text("고명도"),
+                            child: Text("${getTranslated('HIGH_BRIGHTNESS', context)}"),
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
@@ -796,7 +802,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("저명도"),
+                            child: Text("${getTranslated('LOW_BRIGHTNESS', context)}"),
                           ),
                         ],
                       ),
@@ -808,7 +814,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         children: [
                           Padding(
                             padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
-                            child: Text("광택"),
+                            child: Text("${getTranslated('GLOSS', context)}"),
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
@@ -826,7 +832,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 17, 0),
-                            child: Text("무광"),
+                            child: Text("${getTranslated('MATT', context)}"),
                           ),
                         ],
                       ),
@@ -862,7 +868,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                   child: Text(
-                                    "컨설턴트 최종 평가",
+                                    "${getTranslated('CONSULT_FINAL_EVALUATION', context)}",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 18,
@@ -886,7 +892,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       ),
                     ),
                     // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                    CustomElevatedButton(onTap: () {}, buttonText: "나에게 맞는 뷰티상품 보러가기"),
+                    CustomElevatedButton(onTap: () {}, buttonText: "${getTranslated('CHECK_PRODUCT_FOR_ME', context)}"),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     FooterPage(),
                   ],

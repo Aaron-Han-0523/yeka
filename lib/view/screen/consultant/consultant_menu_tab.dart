@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
+import '../../../localization/language_constrants.dart';
+import '../../basewidget/button/custom_elevated_button.dart';
 import 'consultant_reserve_screen.dart';
 
 class ConsultantMenuWidget extends StatefulWidget {
@@ -25,7 +27,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
           // crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(23, 30, 0, 0),
+              padding: const EdgeInsets.fromLTRB(23, 35, 0, 0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Container(
@@ -79,6 +81,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                   child: Container(
                     width: 73,
                     child: CustomElevatedButton(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -87,7 +90,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                               pageBuilder: (context, anim1, anim2) => ConsultantReserveScreen(),
                             ));
                       },
-                      buttonText: '예약하기',
+                      buttonText: '${getTranslated('RESERVE', context)}',
                     ),
                   ),
                 ),

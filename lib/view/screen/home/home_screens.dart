@@ -6,6 +6,7 @@ import 'package:yeka/utill/images.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
+import '../../../localization/language_constrants.dart';
 import '../../../provider/banner_provider.dart';
 import '../aitest/image_upload_screen.dart';
 import '../auth/auth_screen.dart';
@@ -147,7 +148,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Center(
                               // width: 170,
                               child: Text(
-                                "뷰티상품",
+                                "${getTranslated('BEAUTY_PRODUCT', context)}",
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.black87,
@@ -170,7 +171,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "VIEW MORE >",
+                                    "${getTranslated('VIEW_MORE', context)}",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.black87,
@@ -204,7 +205,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Center(
                               // width: 170,
                               child: Text(
-                                "커뮤니티",
+                                "${getTranslated('COMMUNITY', context)}",
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.black87,
@@ -227,7 +228,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "VIEW MORE >",
+                                    "${getTranslated('VIEW_MORE', context)}",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.black87,

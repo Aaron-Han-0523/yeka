@@ -6,6 +6,7 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/community/community_crud_screen.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'community_free_board_detail_screen.dart';
@@ -48,17 +49,13 @@ class _CommunityFreeBoardListScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "커뮤니티",
+                  "${getTranslated('FREE_BULLETIN_BOARD', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            Dimensions.HOME_PAGE_PADDING,
-                            Dimensions.PADDING_SIZE_SMALL,
-                            Dimensions.PADDING_SIZE_DEFAULT,
-                            Dimensions.PADDING_SIZE_SMALL),
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         child: Column(
                           children: [
                             SizedBox(
@@ -86,18 +83,17 @@ class _CommunityFreeBoardListScreenState
                                               MainAxisAlignment.spaceEvenly,
                                           children: <Widget>[
                                             Container(
-                                              width: 80,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                              width: 83,
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(5),
                                                 child: Image.network(
                                                   // widget.reviewModel.attachedFilepath1,
                                                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                                                   YoutubeThumbnailConverter
                                                       .getYoutubeThumbnail(
                                                           "https://www.youtube.com/watch?v=-QhZnyAgKZk"),
-                                                  fit: BoxFit.fitHeight,
-                                                  // width: 30,
+                                                  fit: BoxFit.fitWidth,
+                                                  width: 30,
                                                   height: 49,
                                                   // height: MediaQuery.of(context).size.width * 0.4,
                                                 ),
@@ -107,13 +103,15 @@ class _CommunityFreeBoardListScreenState
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
-                                                        12.0, 12.0, 12.0, 6.0),
+                                                        15.0, 10.0, 0.0, 20.0),
                                                 child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       titleList[position],
                                                       style: TextStyle(
-                                                        fontSize: 12.0,
+                                                        fontSize: 11.0,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         overflow: TextOverflow
@@ -121,41 +119,76 @@ class _CommunityFreeBoardListScreenState
                                                       ),
                                                     ),
                                                     Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
                                                       children: [
                                                         Text(
-                                                          "BYHER(바이허) | 7일전",
+                                                          "BYHER(바이허)",
                                                           style: TextStyle(
-                                                            fontSize: 12.0,
+                                                            fontSize: 7.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis,
+                                                            color: Color(
+                                                                0xff999999),
                                                           ),
                                                         ),
-                                                        Row(
-                                                          children: [
-                                                            Image.asset(
-                                                              Images.eye1,
-                                                              fit: BoxFit.cover,
-                                                              width: 15,
-                                                            ),
-                                                            Text(
-                                                              "723회",
-                                                              style: TextStyle(
-                                                                fontSize: 12.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                        Text(
+                                                          "${getTranslated('|', context)}",
+                                                          style: TextStyle(
+                                                            fontSize: 7.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            color: Color(
+                                                                0xff999999),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "7일전",
+                                                          style: TextStyle(
+                                                            fontSize: 7.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            color: Color(
+                                                                0xff999999),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  150, 0, 0, 0),
+                                                          child: Row(
+                                                            children: [
+                                                              Image.asset(
+                                                                Images.eye1,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                width: 12,
                                                               ),
-                                                            ),
-                                                          ],
+                                                              Text(
+                                                                "723회",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 7.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  color: Color(
+                                                                      0xff999999),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -167,8 +200,7 @@ class _CommunityFreeBoardListScreenState
                                         ),
                                       ),
                                       const Divider(
-                                        height: 3,
-                                        thickness: 1,
+                                        height: 1,
                                         indent: 0,
                                         endIndent: 0,
                                         color: Colors.grey,
@@ -185,6 +217,8 @@ class _CommunityFreeBoardListScreenState
                         ),
                       ),
                       ActionButton(),
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       FooterPage(),
                     ],
                   ),
@@ -210,15 +244,16 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomElevatedButton(
+      fontSize: 10,
+      width: 150,
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) =>
-                CommunityCRUDScreen(),
+            builder: (context) => CommunityCRUDScreen(),
           ),
         );
       },
-      buttonText: '작성하러 가기',
+      buttonText: '${getTranslated('GO_WRITING', context)}',
     );
   }
 }

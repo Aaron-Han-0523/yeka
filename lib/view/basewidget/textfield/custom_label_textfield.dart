@@ -34,9 +34,6 @@ class CustomLabelTextField extends StatelessWidget {
   final Color boxColor;
   final double height;
   final bool enabled;
-  final EdgeInsetsGeometry outerPadding;
-  final EdgeInsetsGeometry innerPadding;
-
 
   CustomLabelTextField({
     this.labelText = "",
@@ -62,113 +59,123 @@ class CustomLabelTextField extends StatelessWidget {
     this.boxColor = Colors.white,
     this.height = 25,
     this.enabled = true,
-    this.outerPadding = const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
-    this.innerPadding = const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+    this.isTextable = true,
+    this.label_fontSize: 15,
+    this.padding = const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 2.0),
+    this.hintSize = 12,
+    this.hintSize_InputDecoration = 12,
   });
 
   @override
   Widget build(context) {
-    return Container(
-      margin: EdgeInsets.only(
-        left: Dimensions.MARGIN_SIZE_DEFAULT,
-        right: Dimensions.MARGIN_SIZE_DEFAULT,
-      ),
-      child: Column(
-        children: [
-          Padding(
-            padding: outerPadding,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  labelText,
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-                Text(
-                  essentialLabelText,
-                  style: TextStyle(
-                    color: Color(0xffff0000),
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            // width: double.infinity,
-            padding: innerPadding,
-            height: height,
-            decoration: BoxDecoration(
-              border:
-                  isBorder ? Border.all(width: 1, color: borderColor) : null,
-              color: boxColor,
-              borderRadius: isPhoneNumber
-                  ? BorderRadius.only(
-                      topRight: Radius.circular(6),
-                      bottomRight: Radius.circular(6))
-                  : BorderRadius.all(Radius.circular(borderRadius)),
-              // boxShadow: [
-              //   BoxShadow(
-              //       color: Colors.grey.withOpacity(0.1),
-              //       spreadRadius: 1,
-              //       blurRadius: 3,
-              //       offset: Offset(0, 1)) // changes position of shadow
-              // ],
-            ),
-            child: TextFormField(
-              enabled: enabled,
-              style: TextStyle(
-                fontSize: 14.0,
-                color: textColor,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(6, 0, 6, 0),
+      child: Container(
+        margin: EdgeInsets.only(
+          left: Dimensions.MARGIN_SIZE_DEFAULT,
+          right: Dimensions.MARGIN_SIZE_DEFAULT,
+        ),
+        child: Column(
+          children: [
+            isTextable
+                ? Padding(
+                    padding: this.padding,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          labelText,
+                          style: TextStyle(
+                            fontSize: this.label_fontSize,
+                          ),
+                        ),
+                        Text(
+                          essentialLabelText,
+                          style: TextStyle(
+                            color: Color(0xffff0000),
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+            Container(
+              // width: double.infinity,
+              // padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 12.0),
+              height: height,
+              decoration: BoxDecoration(
+                border:
+                    isBorder ? Border.all(width: 1, color: borderColor) : null,
+                color: boxColor,
+                borderRadius: isPhoneNumber
+                    ? BorderRadius.only(
+                        topRight: Radius.circular(6),
+                        bottomRight: Radius.circular(6))
+                    : BorderRadius.all(Radius.circular(borderRadius)),
+                // boxShadow: [
+                //   BoxShadow(
+                //       color: Colors.grey.withOpacity(0.1),
+                //       spreadRadius: 1,
+                //       blurRadius: 3,
+                //       offset: Offset(0, 1)) // changes position of shadow
+                // ],
               ),
-              textAlign: textAlign,
-              controller: controller,
-              maxLines: maxLine ?? 1,
-              textCapitalization: capitalization,
-              maxLength: isPhoneNumber ? 15 : null,
-              focusNode: focusNode,
-              keyboardType: textInputType ?? TextInputType.text,
-              //keyboardType: TextInputType.number,
-              initialValue: null,
-              textInputAction: textInputAction ?? TextInputAction.next,
-              onFieldSubmitted: (v) {
-                FocusScope.of(context).requestFocus(nextNode);
-              },
-              //autovalidate: true,
-              inputFormatters: [
-                isPhoneNumber
-                    ? FilteringTextInputFormatter.digitsOnly
-                    : FilteringTextInputFormatter.singleLineFormatter
-              ],
-              validator: (input) {
-                if (input.isEmpty) {
-                  if (isValidator) {
-                    return validatorMessage ?? "";
+              child: TextFormField(
+                enabled: enabled,
+                style: TextStyle(
+                  fontSize: this.hintSize,
+                  color: textColor,
+                ),
+                textAlign: textAlign,
+                controller: controller,
+                maxLines: maxLine ?? 1,
+                textCapitalization: capitalization,
+                maxLength: isPhoneNumber ? 15 : null,
+                focusNode: focusNode,
+                keyboardType: textInputType ?? TextInputType.text,
+                //keyboardType: TextInputType.number,
+                initialValue: null,
+                textInputAction: textInputAction ?? TextInputAction.next,
+                onFieldSubmitted: (v) {
+                  FocusScope.of(context).requestFocus(nextNode);
+                },
+                //autovalidate: true,
+                inputFormatters: [
+                  isPhoneNumber
+                      ? FilteringTextInputFormatter.digitsOnly
+                      : FilteringTextInputFormatter.singleLineFormatter
+                ],
+                validator: (input) {
+                  if (input.isEmpty) {
+                    if (isValidator) {
+                      return validatorMessage ?? "";
+                    }
                   }
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                hintText: hintText ?? '',
-                hintStyle: TextStyle(fontSize: 12),
-                filled: fillColor != null,
-                fillColor: fillColor,
-                contentPadding: EdgeInsets.fromLTRB(8.0, 2.0, 4.0, 2.0),
-                // contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15),
-                isDense: true,
-                counterText: '',
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white)),
-                // hintStyle: titilliumRegular.copyWith(color: Theme.of(context).hintColor),
-                errorStyle: TextStyle(height: 1.5),
-                border: InputBorder.none,
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: hintText ?? '',
+                  hintStyle: TextStyle(
+                      fontSize: this.hintSize_InputDecoration,
+                  ),
+                  filled: fillColor != null,
+                  fillColor: fillColor,
+                  contentPadding: EdgeInsets.fromLTRB(8.0, 2.0, 4.0, 2.0),
+                  // contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15),
+                  isDense: true,
+                  counterText: '',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
+                  // hintStyle: titilliumRegular.copyWith(color: Theme.of(context).hintColor),
+                  errorStyle: TextStyle(height: 1.5),
+                  border: InputBorder.none,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -49,7 +49,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
             slivers: [
               // App Bar
               CustomSliverAppBar(
-                "${getTranslated('REVIEW_WRITE', context)}",
+                "${getTranslated('ORDER_DETAIL_LIST', context)}",
               ).getAppbar(),
 
               SliverToBoxAdapter(
@@ -61,26 +61,35 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                   //   color: Color(0xffcfcbc3),
                   // ),
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                      Divider(
+                        height: 2,
+                        color: Color(0xffDDDDDD),
+                        indent: 0,
+                        endIndent: 0,
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                      // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(24, 0, 8, 0),
+                            child: Image.asset(
+                              Images.online_shop,
                               fit: BoxFit.fill,
-                              height: 20,
-                            ), // Text(key['title']),
+                              height: 22.5,
+                            ),
                           ),
-                          Text(
-                            "주문내역을 확인해주세요 :)",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+                            child: Text(
+                              "${getTranslated('CHECK_YOUR_ORDER', context)}",
+                              style: TextStyle(
+                                color: Color(0xff121212),
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                         ],
@@ -88,25 +97,34 @@ class _ProductOrderPageState extends State<ProductOrderPage>
 
                       Row(
                         children: [
-                          Text(
-                            "다른 상품들은",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 12, 0, 18),
+                            child: Text(
+                              "${getTranslated('OTHER_PRODUCT', context)}",
+                              style: TextStyle(
+                                color: Color(0xff121212),
+                                fontSize: 12,
+                              ),
                             ),
                           ),
-                          Text(
-                            "'마이페이지 > 주문내역'",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 12, 0, 18),
+                            child: Text(
+                              "${getTranslated('MY_PAGE_ORDERED_LIST', context)}",
+                              style: TextStyle(
+                                color: Color(0xff0123B4),
+                                fontSize: 12,
+                              ),
                             ),
                           ),
-                          Text(
-                            "에서 확인할 수 있어요.",
-                            style: TextStyle(
-                              color: Color(0xff121212),
-                              fontSize: 14,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 12, 0, 18),
+                            child: Text(
+                              "${getTranslated('CAN_CHECK', context)}",
+                              style: TextStyle(
+                                color: Color(0xff121212),
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ],
@@ -114,89 +132,107 @@ class _ProductOrderPageState extends State<ProductOrderPage>
 
                       Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 80,
-                            ), // Text(key['title']),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(150.0),
+                              child: Image.network(
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                                fit: BoxFit.fill,
+                                height: 107,
+                              ), // Text(key['title']),
+                            ),
                           ),
                           Expanded(
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "주문서번호:2022112492135423",
-                                      style: TextStyle(
-                                        color: Color(0xffbbbbbb),
-                                        fontSize: 12,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "${getTranslated('ORDER_NUMBER', context)}:2022112492135423",
+                                        style: TextStyle(
+                                          color: Color(0xff999999),
+                                          fontSize: 9,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "결제 완료",
-                                      style: TextStyle(
-                                        color: Color(0xff333333),
-                                        fontSize: 12,
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
+                                        child: Text(
+                                          "${getTranslated('PAYMENT_COMPLETED', context)}",
+                                          style: TextStyle(
+                                            color: Color(0xff7700FF),
+                                            fontSize: 10,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  "[ALOS]마스크팩 3입",
-                                  style: TextStyle(
-                                    color: Color(0xff121212),
-                                    fontSize: 22,
+                                    ],
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "색상 : 투명",
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                    child: Text(
+                                      "[ALOS] 마스크팩 3입",
                                       style: TextStyle(
-                                        color: Color(0xffbbbbbb),
-                                        fontSize: 12,
+                                        color: Color(0xff000000),
+                                        fontSize: 16,
+                                        height: 1.2,
                                       ),
                                     ),
-                                    Text(
-                                      "|",
-                                      style: TextStyle(
-                                        color: Color(0xffbbbbbb),
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    Text(
-                                      "수량 : 1개",
-                                      style: TextStyle(
-                                        color: Color(0xff333333),
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    Text(
-                                      "|",
-                                      style: TextStyle(
-                                        color: Color(0xffbbbbbb),
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    Text(
-                                      "2022.11.21",
-                                      style: TextStyle(
-                                        color: Color(0xff333333),
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  "10,500원",
-                                  style: TextStyle(
-                                    color: Color(0xff333333),
-                                    fontSize: 12,
                                   ),
-                                ),
-                              ],
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "${getTranslated('COLOR', context)} : 투명",
+                                        style: TextStyle(
+                                          color: Color(0xff999999),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${getTranslated('|', context)}",
+                                        style: TextStyle(
+                                          color: Color(0xff999999),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${getTranslated('AMOUNT', context)} : 1개",
+                                        style: TextStyle(
+                                          color: Color(0xff999999),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${getTranslated('|', context)}",
+                                        style: TextStyle(
+                                          color: Color(0xff999999),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Text(
+                                        "2022.11.21",
+                                        style: TextStyle(
+                                          color: Color(0xff999999),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                    child: Text(
+                                      "10,500원",
+                                      style: TextStyle(
+                                        color: Color(0xff0123B4),
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -205,25 +241,28 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       const Divider(
                         height: 5,
                         thickness: 1,
-                        indent: 0,
-                        endIndent: 0,
-                        color: Color(0xffff0000),
+                        indent: 20,
+                        endIndent: 20,
+                        color: Color(0xffDDDDDD),
                       ),
 
                       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                      Text(
-                        "주문하시는 분",
-                        style: TextStyle(
-                          color: Color(0xff333333),
-                          fontSize: 22,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 5, 0, 15),
+                        child: Text(
+                          "${getTranslated('ORDERED_CUSTOMER', context)}",
+                          style: TextStyle(
+                            color: Color(0xff333333),
+                            fontSize: 20,
+                          ),
                         ),
                       ),
 
                       CustomLabelTextField(
                         controller: _firstNameController,
                         labelText: "${getTranslated('NAME', context)} ",
-                        essentialLabelText: " *",
+                        // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),
 
@@ -232,7 +271,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       CustomLabelTextField(
                         controller: _firstNameController,
                         labelText: "${getTranslated('PHONE', context)} ",
-                        essentialLabelText: " *",
+                        // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_PHONE', context)}",
                       ),
 
@@ -245,11 +284,14 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                               controller: _firstNameController,
                               labelText:
                                   "${getTranslated('ADDRESS', context)} ",
-                              essentialLabelText: " *",
+                              // essentialLabelText: " *",
                               hintText:
                                   "${getTranslated('SELECT_CITY', context)}",
                             ),
                           ),
+
+                          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
@@ -265,7 +307,10 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                         ],
                       ),
 
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+
                       CustomLabelTextField(
+                        isTextable: false,
                         controller: _firstNameController,
                         // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
                         // essentialLabelText: " *",
@@ -277,28 +322,31 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       CustomLabelTextField(
                         controller: _firstNameController,
                         labelText: "${getTranslated('EMAIL', context)} ",
-                        essentialLabelText: " *",
+                        // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_EMAIL', context)}",
                       ),
 
-                      Text(
-                        "받으시는 분",
-                        style: TextStyle(
-                          color: Color(0xff333333),
-                          fontSize: 22,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
+                        child: Text(
+                          "${getTranslated('RECEIVED_CUSTOMER', context)}",
+                          style: TextStyle(
+                            color: Color(0xff333333),
+                            fontSize: 20,
+                          ),
                         ),
                       ),
 
-                      CustomSmallRadioButton(
-                        value: radioButton,
-                        text: "주문자와 동일",
-                        // reverse: true,
-                      ),
+                      // CustomSmallRadioButton(
+                      //   value: radioButton,
+                      //   text: "주문자와 동일",
+                      //   // reverse: true,
+                      // ),
 
                       CustomLabelTextField(
                         controller: _firstNameController,
-                        labelText: "배송지 ",
-                        essentialLabelText: " *",
+                        labelText: "${getTranslated('DESTINATION', context)} ",
+                        // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),
 
@@ -307,7 +355,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       CustomLabelTextField(
                         controller: _firstNameController,
                         labelText: "${getTranslated('NAME', context)} ",
-                        essentialLabelText: " *",
+                        // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),
 
@@ -316,7 +364,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       CustomLabelTextField(
                         controller: _firstNameController,
                         labelText: "${getTranslated('PHONE', context)} ",
-                        essentialLabelText: " *",
+                        // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_PHONE', context)}",
                       ),
 
@@ -324,16 +372,16 @@ class _ProductOrderPageState extends State<ProductOrderPage>
 
                       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                      CustomElevatedButton(
-                        onTap: () async {
-                          Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                builder: (_) => HomePage(),
-                              ),
-                              (route) => false);
-                        },
-                        buttonText: "홈으로",
-                      ),
+                      // CustomElevatedButton(
+                      //   onTap: () async {
+                      //     Navigator.of(context).pushAndRemoveUntil(
+                      //         MaterialPageRoute(
+                      //           builder: (_) => HomePage(),
+                      //         ),
+                      //         (route) => false);
+                      //   },
+                      //   buttonText: "홈으로",
+                      // ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),
                     ],

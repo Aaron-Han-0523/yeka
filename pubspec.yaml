@@ -95,3 +95,11 @@ flutter:
     - family: Nanum Square
       fonts:
         - asset: assets/fonts/NanumSquareAcB.ttf
+    - family: SB Aggro
+      fonts:
+        - asset: assets/fonts/sbaggro/SB-aggro-L.ttf
+          weight: 400
+        - asset: assets/fonts/sbaggro/SB-aggro-M.ttf
+          weight: 500
+        - asset: assets/fonts/sbaggro/SB-aggro-B.ttf
+          weight: 600

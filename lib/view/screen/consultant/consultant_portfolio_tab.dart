@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../localization/language_constrants.dart';
 import '../../../utill/dimensions.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 
@@ -115,7 +116,7 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
           padding: const EdgeInsets.all(20),
           child: CustomElevatedButton(
             onTap: () {},
-            buttonText: '더보기 ∨',
+            buttonText: '${getTranslated('LOOK_MORE', context)}',
           ),
         ),
       ],
