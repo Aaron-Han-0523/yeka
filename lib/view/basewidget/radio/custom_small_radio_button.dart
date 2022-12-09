@@ -5,8 +5,17 @@ class CustomSmallRadioButton extends StatelessWidget {
   final bool value;
   final String text;
   final bool reverse;
+  final EdgeInsetsGeometry padding;
+  final double fontSize;
 
-  CustomSmallRadioButton({this.value, this.text, this.reverse = false});
+
+  CustomSmallRadioButton({
+    this.value,
+    this.text,
+    this.reverse = false,
+    this.padding = const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 2.0),
+    this.fontSize = 12,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +69,13 @@ class CustomSmallRadioButton extends StatelessWidget {
                       ),
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 2.0),
+                padding: padding,
                 // width: MediaQuery.of(context).size.width * 0.5,
                 child: Text(
                   text,
                   // maxLines: 4,
                   style: TextStyle(
-                      fontSize: 12,
+                      fontSize: fontSize,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
                 ),

@@ -6,6 +6,7 @@ class CustomElevatedButton extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
   final Widget child;
+  final EdgeInsetsGeometry padding;
 
   CustomElevatedButton({
     @required this.onTap,
@@ -13,11 +14,13 @@ class CustomElevatedButton extends StatelessWidget {
     this.backgroundColor = const Color(0Xff121212),
     this.textColor,
     this.child,
+    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: padding,
       height: 30,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

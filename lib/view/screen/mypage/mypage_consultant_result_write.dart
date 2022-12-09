@@ -44,285 +44,381 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "날짜 선택",
+                  "컨설팅 상담결과 작성",
                 ).getAppbar(),
                 SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      const Divider(
-                        height: 5,
-                        thickness: 1,
-                        indent: 10,
-                        endIndent: 10,
-                        color: Colors.black12,
-                      ),
+                  child: Container(
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        const Divider(
+                          height: 1,
+                          thickness: 1,
+                          indent: 0,
+                          endIndent: 0,
+                          color: Color(0xffDDDDDD),
+                        ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Material(
-                                // elevation: 20.0,
-                                // shadowColor: Color(0XFF2434D7),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 25),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Material(
+                                    // elevation: 20.0,
+                                    // shadowColor: Color(0XFF2434D7),
+                                    // borderRadius:
+                                    // BorderRadius.all(Radius.circular(8.0)),
 
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "계절",
-                                      style: TextStyle(
-                                        color: Color(0xFF999999),
-                                        fontSize: 12,
-                                      ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "계절",
+                                          style: TextStyle(
+                                            color: Color(0xFF333333),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                        CustomDropdownButton2(
+                                          dropdownWidth: 157,
+                                          buttonWidth: 157,
+                                          buttonPadding: const EdgeInsets.only(left: 10, right: 5),
+                                          padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                          hint:
+                                          '계절을 선택해주세요',
+                                          icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                          iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                                          dropdownItems: sidoDropdownItems,
+                                          // value: receiveTimeStart,
+                                          onChanged: (value) {
+                                            // setState(() {
+                                            //   receiveTimeStart = value + "";
+                                            // });
+                                          },
+                                        ),
+                                      ],
                                     ),
-                                    CustomDropdownButton2(
-                                      dropdownWidth: 300,
-                                      buttonWidth: 300,
-                                      hint:
-                                      '${getTranslated('SELECT_CATEGORY', context)}',
-                                      icon:
-                                      const Icon(Icons.keyboard_arrow_down),
-                                      iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                      dropdownItems: sidoDropdownItems,
-                                      // value: receiveTimeStart,
-                                      onChanged: (value) {
-                                        // setState(() {
-                                        //   receiveTimeStart = value + "";
-                                        // });
-                                      },
+                                  ),
+                              ),
+
+                              Flexible(
+                                child: Material(
+                                    // elevation: 20.0,
+                                    // shadowColor: Color(0XFF2434D7),
+                                    // borderRadius:
+                                    // BorderRadius.all(Radius.circular(8.0)),
+
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "분류",
+                                          style: TextStyle(
+                                            color: Color(0xFF333333),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                        CustomDropdownButton2(
+                                          dropdownWidth: 157,
+                                          buttonWidth: 157,
+                                          buttonPadding: const EdgeInsets.only(left: 10, right: 5),
+                                          padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                          hint:
+                                          '분류를 선택해주세요',
+                                          icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                          iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                                          dropdownItems: dongDropdownItems,
+                                          // value: "",
+                                          onChanged: (value) {
+                                            // setState(() {
+                                            //   receiveTimeEnd = value + "";
+                                            // });
+                                          },
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.only(bottom: 25),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "세부분류",
+                                style: TextStyle(
+                                    color: Color(0xFF333333),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold
                                 ),
                               ),
+                              CustomDropdownButton2(
+                                dropdownWidth: 500,
+                                buttonWidth: 157,
+                                buttonPadding: const EdgeInsets.only(left: 10, right: 5),
+                                padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                hint:
+                                '세부분류를 선택해주세요',
+                                icon:
+                                const Icon(Icons.keyboard_arrow_down),
+                                iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                                dropdownItems: dongDropdownItems,
+                                // value: "",
+                                onChanged: (value) {
+                                  // setState(() {
+                                  //   receiveTimeEnd = value + "";
+                                  // });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          child: CustomTextarea(
+                            padding : const EdgeInsets.all(0),
+                            labelPadding: const EdgeInsets.fromLTRB(0, 0 ,0 , 10),
+                            labelText: "상담내용 작성",
+                            labelFontSize: 12,
+                            hintText: "상세 상담내용을 작성해주세요",
+                            hintTextColor: Color(0xffdddddd),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 8),
+
+                          ),
+                        ),
+
+
+                        Container(
+                            padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text("웜",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff333333),
+                                  ),
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width * 0.7,
+                                  child: Slider(
+                                    value: _currentSliderValue,
+                                    max: 100,
+                                    divisions: 100,
+                                    label: _currentSliderValue.round().toString(),
+                                    onChanged: (double value) {
+                                      setState(() {
+                                        _currentSliderValue = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Text("쿨",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff333333),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Flexible(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Material(
-                                // elevation: 20.0,
-                                // shadowColor: Color(0XFF2434D7),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
 
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "분류(동양식, 서양식)",
-                                      style: TextStyle(
-                                        color: Color(0xFF999999),
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    CustomDropdownButton2(
-                                      hint:
-                                      '${getTranslated('SELECT_ORDER', context)}',
-                                      icon:
-                                      const Icon(Icons.keyboard_arrow_down),
-                                      iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                      dropdownItems: dongDropdownItems,
-                                      // value: "",
-                                      onChanged: (value) {
-                                        // setState(() {
-                                        //   receiveTimeEnd = value + "";
-                                        // });
-                                      },
-                                    ),
-                                  ],
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text("청",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff333333),
                                 ),
                               ),
-                            ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: Slider(
+                                  value: _currentSliderValue,
+                                  max: 100,
+                                  divisions: 100,
+                                  label: _currentSliderValue.round().toString(),
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      _currentSliderValue = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                              Text("탁",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff333333),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
 
-                      Column(
-                        children: [
-                          Text(
-                            "세부분류(비비드, 페일, 라이트 등)",
-                            style: TextStyle(
-                              color: Color(0xFF999999),
-                              fontSize: 12,
-                            ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+
+                                  Text("고대비",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xff333333),
+                                    ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: Slider(
+                                  value: _currentSliderValue,
+                                  max: 100,
+                                  divisions: 100,
+                                  label: _currentSliderValue.round().toString(),
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      _currentSliderValue = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                              Text("저대비",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff333333),
+                                ),
+                              ),
+                            ],
                           ),
-                          CustomDropdownButton2(
-                            hint:
-                            '${getTranslated('SELECT_ORDER', context)}',
-                            icon:
-                            const Icon(Icons.keyboard_arrow_down),
-                            iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                            dropdownItems: dongDropdownItems,
-                            // value: "",
-                            onChanged: (value) {
-                              // setState(() {
-                              //   receiveTimeEnd = value + "";
-                              // });
+                        ),
+
+                        Container(
+                          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text("고명도",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff333333),
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: Slider(
+                                  value: _currentSliderValue,
+                                  max: 100,
+                                  divisions: 100,
+                                  label: _currentSliderValue.round().toString(),
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      _currentSliderValue = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                              Text("저명도",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff333333),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text("광택",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff333333),
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: Slider(
+                                  value: _currentSliderValue,
+                                  max: 100,
+                                  divisions: 100,
+                                  label: _currentSliderValue.round().toString(),
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      _currentSliderValue = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                              Text("무광",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff333333),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+
+                        Padding(
+                          padding:
+                          const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 0.0),
+                          child: CustomElevatedButton(
+                            onTap: () {
+                              // ClientsModel clientsModel = ClientsModel(
+                              //   phoneNum: phoneNumberTextEditingController.text,
+                              //   password: passwordTextEditingController.text,
+                              // );
+                              //
+                              // Provider.of<ClientsProvider>(context, listen: false)
+                              //     .login(clientsModel, route);
                             },
+                            buttonText: "상담 완료",
                           ),
-                        ],
-                      ),
+                        ),
 
-                      CustomTextarea(
-                        labelText: "상담내용 작성",
-                        enabled: false,
-                      ),
 
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text("웜"),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              child: Slider(
-                                value: _currentSliderValue,
-                                max: 100,
-                                divisions: 100,
-                                label: _currentSliderValue.round().toString(),
-                                onChanged: (double value) {
-                                  setState(() {
-                                    _currentSliderValue = value;
-                                  });
-                                },
-                              ),
-                            ),
-                            Text("쿨"),
-                          ],
+                        SizedBox(
+                          height: Dimensions.PADDING_SIZE_OVER_LARGE,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text("청"),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              child: Slider(
-                                value: _currentSliderValue,
-                                max: 100,
-                                divisions: 100,
-                                label: _currentSliderValue.round().toString(),
-                                onChanged: (double value) {
-                                  setState(() {
-                                    _currentSliderValue = value;
-                                  });
-                                },
-                              ),
-                            ),
-                            Text("탁"),
-                          ],
+                        SizedBox(
+                          height: Dimensions.PADDING_SIZE_Thirty_Five,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text("고대비"),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              child: Slider(
-                                value: _currentSliderValue,
-                                max: 100,
-                                divisions: 100,
-                                label: _currentSliderValue.round().toString(),
-                                onChanged: (double value) {
-                                  setState(() {
-                                    _currentSliderValue = value;
-                                  });
-                                },
-                              ),
-                            ),
-                            Text("저대비"),
-                          ],
+                        SizedBox(
+                          height: Dimensions.PADDING_SIZE_OVER_LARGE,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text("고명도"),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              child: Slider(
-                                value: _currentSliderValue,
-                                max: 100,
-                                divisions: 100,
-                                label: _currentSliderValue.round().toString(),
-                                onChanged: (double value) {
-                                  setState(() {
-                                    _currentSliderValue = value;
-                                  });
-                                },
-                              ),
-                            ),
-                            Text("저명도"),
-                          ],
+                        SizedBox(
+                          height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text("광택"),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              child: Slider(
-                                value: _currentSliderValue,
-                                max: 100,
-                                divisions: 100,
-                                label: _currentSliderValue.round().toString(),
-                                onChanged: (double value) {
-                                  setState(() {
-                                    _currentSliderValue = value;
-                                  });
-                                },
-                              ),
-                            ),
-                            Text("무광"),
-                          ],
-                        ),
-                      ),
-
-                      Padding(
-                        padding:
-                        const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-                        child: CustomElevatedButton(
-                          onTap: () {
-                            // ClientsModel clientsModel = ClientsModel(
-                            //   phoneNum: phoneNumberTextEditingController.text,
-                            //   password: passwordTextEditingController.text,
-                            // );
-                            //
-                            // Provider.of<ClientsProvider>(context, listen: false)
-                            //     .login(clientsModel, route);
-                          },
-                          buttonText: "상담 완료",
-                        ),
-                      ),
-
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],

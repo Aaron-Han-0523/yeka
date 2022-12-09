@@ -27,6 +27,9 @@ class CustomDropdownButton2 extends StatelessWidget {
   final double scrollbarThickness;
   final bool scrollbarAlwaysShow;
   final Offset offset;
+  final EdgeInsetsGeometry padding;
+  final double borderRadius;
+  final Color borderColor;
 
   const CustomDropdownButton2({
     this.hint = "",
@@ -56,6 +59,9 @@ class CustomDropdownButton2 extends StatelessWidget {
     this.scrollbarThickness,
     this.scrollbarAlwaysShow,
     this.offset,
+    this.padding = const EdgeInsets.fromLTRB(20, 10, 20, 0),
+    this.borderRadius = 8,
+    this.borderColor = Colors.black45,
     Key key,
   }) : super(key: key);
 
@@ -63,7 +69,7 @@ class CustomDropdownButton2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+        padding: padding,
         child: DropdownButton2(
           //To avoid long text overflowing.
           isExpanded: true,
@@ -108,9 +114,9 @@ class CustomDropdownButton2 extends StatelessWidget {
           buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
           buttonDecoration: buttonDecoration ??
               BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(borderRadius),
                 border: Border.all(
-                  color: Colors.black45,
+                  color: borderColor,
                 ),
               ),
           buttonElevation: buttonElevation,

@@ -34,6 +34,9 @@ class CustomLabelTextField extends StatelessWidget {
   final Color boxColor;
   final double height;
   final bool enabled;
+  final EdgeInsetsGeometry outerPadding;
+  final EdgeInsetsGeometry innerPadding;
+
 
   CustomLabelTextField({
     this.labelText = "",
@@ -59,6 +62,8 @@ class CustomLabelTextField extends StatelessWidget {
     this.boxColor = Colors.white,
     this.height = 25,
     this.enabled = true,
+    this.outerPadding = const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
+    this.innerPadding = const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
   });
 
   @override
@@ -71,7 +76,7 @@ class CustomLabelTextField extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
+            padding: outerPadding,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -86,7 +91,7 @@ class CustomLabelTextField extends StatelessWidget {
                   essentialLabelText,
                   style: TextStyle(
                     color: Color(0xffff0000),
-                    fontSize: 15,
+                    fontSize: 14,
                   ),
                 ),
               ],
@@ -94,7 +99,7 @@ class CustomLabelTextField extends StatelessWidget {
           ),
           Container(
             // width: double.infinity,
-            // padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 12.0),
+            padding: innerPadding,
             height: height,
             decoration: BoxDecoration(
               border:

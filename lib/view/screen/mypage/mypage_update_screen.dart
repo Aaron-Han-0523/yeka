@@ -38,169 +38,196 @@ class _MyPageUpdateScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "커뮤니티",
+                  "개인정보 수정",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
                       Column(
-                        children: [
-                          SizedBox(
-                              height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                          children: [
+                            SizedBox(height: Dimensions.HOME_PAGE_PADDING),
 
-                          CustomLabelTextField(
-                            controller: _firstNameController,
-                            labelText: "${getTranslated('ID', context)} ",
-                            essentialLabelText: " *",
-                            hintText: "${getTranslated('HINT_ID', context)}",
-                          ),
+                            CustomLabelTextField(
+                              controller: _firstNameController,
+                              labelText: "${getTranslated('ID', context)} ",
+                              essentialLabelText: " *",
+                              innerPadding: const EdgeInsets.only(top: 5),
+                              boxColor: Colors.black,
+                              textColor:Colors.white,
+                              hintText: "${getTranslated('HINT_ID', context)}",
+                            ),
 
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-                          CustomLabelTextField(
-                            controller: _firstNameController,
-                            labelText: "${getTranslated('PW', context)} ",
-                            essentialLabelText: " *",
-                            hintText: "${getTranslated('HINT_PW', context)}",
-                          ),
+                            CustomLabelTextField(
+                              controller: _firstNameController,
+                              labelText: "${getTranslated('PW', context)} ",
+                              essentialLabelText: " *",
+                              innerPadding: const EdgeInsets.only(top: 5),
+                              hintText: "${getTranslated('HINT_PW', context)}",
+                            ),
 
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-                          CustomLabelTextField(
-                            controller: _firstNameController,
-                            labelText: "${getTranslated('CONFIRM_PW', context)} ",
-                            essentialLabelText: " *",
-                            hintText: "${getTranslated('HINT_CONFIRM_PW', context)}",
-                          ),
+                            CustomLabelTextField(
+                              controller: _firstNameController,
+                              labelText: "${getTranslated('CONFIRM_PW', context)} ",
+                              essentialLabelText: " *",
+                              innerPadding: const EdgeInsets.only(top: 5),
+                              hintText: "${getTranslated('HINT_CONFIRM_PW', context)}",
+                            ),
 
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-                          CustomLabelTextField(
-                            controller: _firstNameController,
-                            labelText: "${getTranslated('NAME', context)} ",
-                            essentialLabelText: " *",
-                            hintText: "${getTranslated('HINT_NAME', context)}",
-                          ),
+                            CustomLabelTextField(
+                              controller: _firstNameController,
+                              labelText: "${getTranslated('NAME', context)} ",
+                              essentialLabelText: " *",
+                              innerPadding: const EdgeInsets.only(top: 5),
+                              hintText: "${getTranslated('HINT_NAME', context)}",
+                            ),
 
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-                          CustomLabelTextField(
-                            controller: _firstNameController,
-                            labelText: "${getTranslated('PHONE', context)} ",
-                            essentialLabelText: " *",
-                            hintText: "${getTranslated('HINT_PHONE', context)}",
-                          ),
+                            CustomLabelTextField(
+                              controller: _firstNameController,
+                              labelText: "${getTranslated('PHONE', context)} ",
+                              essentialLabelText: " *",
+                              innerPadding: const EdgeInsets.only(top: 5),
+                              hintText: "${getTranslated('HINT_PHONE', context)}",
+                            ),
 
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-                          CustomLabelTextField(
-                            controller: _firstNameController,
-                            labelText: "${getTranslated('EMAIL', context)} ",
-                            essentialLabelText: " *",
-                            hintText: "${getTranslated('HINT_EMAIL', context)}",
-                          ),
+                            CustomLabelTextField(
+                              controller: _firstNameController,
+                              labelText: "${getTranslated('EMAIL', context)} ",
+                              essentialLabelText: " *",
+                              innerPadding: const EdgeInsets.only(top: 5),
+                              hintText: "${getTranslated('HINT_EMAIL', context)}",
+                            ),
 
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: Dimensions.MARGIN_SIZE_DEFAULT,
-                                right: Dimensions.MARGIN_SIZE_DEFAULT),
-                            padding: const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
-                            child: Column(
+                            Container(
+                              margin: EdgeInsets.only(
+                                  left: Dimensions.MARGIN_SIZE_DEFAULT,
+                                  right: Dimensions.MARGIN_SIZE_DEFAULT),
+                              padding: const EdgeInsets.fromLTRB(2.0, 0, 16.0, 2.0),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "성별 ",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+
+                                        Text(
+                                        " *",
+                                        style: TextStyle(
+                                          color: Color(0xffff0000),
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 7),
+                                  Row(
+                                    children: [
+                                      CustomSmallRadioButton(
+                                          value: radioButton,
+                                          text: "${getTranslated('MALE', context)}",
+                                          padding: const EdgeInsets.only(right: 27)
+                                      ),
+                                      CustomSmallRadioButton(
+                                          value: radioButton,
+                                          text: "${getTranslated('FEMALE', context)}"
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+
+                            Row(
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "성별 ",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                    Text(
-                                      " *",
-                                      style: TextStyle(
-                                        color: Color(0xffff0000),
-                                        fontSize: 9,
-                                      ),
-                                    ),
-                                  ],
+                                Expanded(
+                                  child: CustomLabelTextField(
+                                    controller: _firstNameController,
+                                    labelText: "${getTranslated('ADDRESS', context)} ",
+                                    essentialLabelText: " *",
+                                    innerPadding: const EdgeInsets.only(top: 5),
+                                    hintText: "${getTranslated('SELECT_CITY', context)}",
+                                  ),
                                 ),
-                                Row(
-                                  children: [
-                                    CustomSmallRadioButton(
-                                        value: radioButton,
-                                        text: "${getTranslated('MALE', context)}"),
-                                    CustomSmallRadioButton(
-                                        value: radioButton,
-                                        text: "${getTranslated('FEMALE', context)}"),
-                                  ],
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    child: CustomLabelTextField(
+                                      controller: _firstNameController,
+                                      labelText: "",
+                                      essentialLabelText: "",
+                                      innerPadding: const EdgeInsets.only(top: 5),
+                                      hintText: "${getTranslated('SELECT_DISTINCT', context)}",
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
 
-                          Row(
-                            children: [
-                              Expanded(
-                                child: CustomLabelTextField(
-                                  controller: _firstNameController,
-                                  labelText: "${getTranslated('ADDRESS', context)} ",
-                                  essentialLabelText: " *",
-                                  hintText: "${getTranslated('SELECT_CITY', context)}",
-                                ),
+                             CustomLabelTextField(
+                               controller: _firstNameController,
+                               // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
+                               // essentialLabelText: " *",
+                               outerPadding: const EdgeInsets.only(top: 0),
+                               innerPadding: const EdgeInsets.only(top: 5),
+                               hintText: "${getTranslated('ETC_ADDRESS', context)}",
                               ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                  child: CustomLabelTextField(
-                                    controller: _firstNameController,
-                                    labelText: "",
-                                    essentialLabelText: "",
-                                    hintText: "${getTranslated('SELECT_DISTINCT', context)}",
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
 
-                          CustomLabelTextField(
-                            controller: _firstNameController,
-                            // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
-                            // essentialLabelText: " *",
-                            hintText: "${getTranslated('ETC_ADDRESS', context)}",
-                          ),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-
-                          SizedBox(
-                            height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                          ),
-
-                          CustomLabelTextField(
-                            controller: _firstNameController,
-                            labelText:
-                            "${getTranslated('COMPANY_REGISTRATION_NUMBER', context)} ",
-                            // essentialLabelText: " *",
-                            hintText:
-                            "${getTranslated('HINT_COMPANY_REGISTRATION_NUMBER', context)}",
-                          ),
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                          CustomLabelTextFieldUploadButton(
+                            CustomLabelTextField(
+                              controller: _firstNameController,
                               labelText:
-                              "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}"),
+                              "${getTranslated('COMPANY_REGISTRATION_NUMBER', context)} ",
+                              // essentialLabelText: " *",
+                              innerPadding: const EdgeInsets.only(top: 5),
+                              hintText:
+                              "${getTranslated('HINT_COMPANY_REGISTRATION_NUMBER', context)}",
+                            ),
 
-                          SizedBox(
-                            height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                          ),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-                          CustomElevatedButton(onTap: () {}, buttonText: "정보 수정하기")
-                        ],
-                      ),
-                      FooterPage(),
-                    ],
-                  ),
+                            CustomLabelTextFieldUploadButton(
+                                labelText:
+                                "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}"),
+
+                            SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+
+                            CustomElevatedButton(
+                              onTap: () {},
+                              buttonText: "정보 수정하기",
+                              padding: const EdgeInsets.symmetric(horizontal: 15),)
+                          ],
+                        ),
+                      SizedBox(height: 123),
+
+                      ],
+                    ),
+
                 ),
               ],
+            ),
+            Positioned(
+              bottom: 0,
+              child: FooterPage(),
             ),
           ]),
         ));

@@ -52,6 +52,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                   child: Column(
                     children: [
                       Container(
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 123),
                         child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -67,95 +68,123 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                       ),
                                     );
                                   },
-                                  child: Row(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 80,
-                                        ), // Text(key['title']),
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "주문서번호:2022112492135423",
-                                                  style: TextStyle(
-                                                    color: Color(0xffbbbbbb),
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "결제 완료",
-                                                  style: TextStyle(
-                                                    color: Color(0xff333333),
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Text(
-                                              "[ALOS]마스크팩 3입",
-                                              style: TextStyle(
-                                                color: Color(0xff121212),
-                                                fontSize: 22,
-                                              ),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "색상 : 투명",
-                                                  style: TextStyle(
-                                                    color: Color(0xffbbbbbb),
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "|",
-                                                  style: TextStyle(
-                                                    color: Color(0xffbbbbbb),
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "수량 : 1개",
-                                                  style: TextStyle(
-                                                    color: Color(0xff333333),
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "|",
-                                                  style: TextStyle(
-                                                    color: Color(0xffbbbbbb),
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "2022.11.21",
-                                                  style: TextStyle(
-                                                    color: Color(0xff333333),
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-
-                                            Text(
-                                              "10,500원",
-                                              style: TextStyle(
-                                                color: Color(0xff333333),
-                                                fontSize: 12,
-                                              ),
-                                            ),
-                                          ],
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(vertical: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.only(right: 20),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(150.0),
+                                            child: Image.network(
+                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                                              fit: BoxFit.fill,
+                                              width: 100,
+                                              height: 100,
+                                            ), // Text(key['title']),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        Expanded(
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "주문서번호:2022112492135423",
+                                                    style: TextStyle(
+                                                      color: Color(0xff999999),
+                                                      fontSize: 7,
+                                                      fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "결제 완료",
+                                                    style: TextStyle(
+                                                      color: Color(0xff0123B4),
+                                                      fontSize: 10,
+                                                      fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "[ALOS]마스크팩 3입",
+                                                    style: TextStyle(
+                                                        color: Color(0xff000000),
+                                                        fontSize: 13,
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "색상 : 투명",
+                                                    style: TextStyle(
+                                                      color: Color(0xff999999),
+                                                      fontSize: 9,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    " | ",
+                                                    style: TextStyle(
+                                                      color: Color(0xff999999),
+                                                      fontSize: 9,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "수량 : 1개",
+                                                    style: TextStyle(
+                                                      color: Color(0xff999999),
+                                                      fontSize: 9,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    " | ",
+                                                    style: TextStyle(
+                                                      color: Color(0xff999999),
+                                                      fontSize: 9,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "2022.11.21",
+                                                    style: TextStyle(
+                                                      color: Color(0xff999999),
+                                                      fontSize: 9,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                              SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "10,500원",
+                                                    style: TextStyle(
+                                                      color: Color(0xff0123B4),
+                                                      fontSize: 13,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 const Divider(
