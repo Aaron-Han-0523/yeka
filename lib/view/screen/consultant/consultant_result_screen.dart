@@ -78,6 +78,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                       style: TextStyle(
                                         color: Color(0xff121212),
                                         fontSize: 22,
+                                        letterSpacing: 8.0,
                                       ),
                                     ),
                                   ),
@@ -893,6 +894,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                     ),
                     // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     CustomElevatedButton(onTap: () {}, buttonText: "${getTranslated('CHECK_PRODUCT_FOR_ME', context)}"),
+                    SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                    SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     FooterPage(),
                   ],

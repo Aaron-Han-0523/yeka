@@ -186,7 +186,7 @@ class _OXPageState extends State<OXPage>
                                               Image.asset(
                                                 Images.yes_bt,
                                                 height: 25,
-                                                color: Colors.black,
+                                                // color: Colors.black,
                                               ),
                                               // Text(
                                               //   "${getTranslated('NO_BUTTON', context)}",

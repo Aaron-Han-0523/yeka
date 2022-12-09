@@ -36,7 +36,7 @@ class ConsultantWidget extends StatelessWidget {
       },
       child: Container(
         height: MediaQuery.of(context).size.width * 0.68,
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.fromLTRB(5,5,5,0),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Container(
@@ -62,80 +62,85 @@ class ConsultantWidget extends StatelessWidget {
               // ),
             ),
           ), // process quotation 실견적 최종견적
-          Container(
-            padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      reviewModel.title ?? '',
-                      textAlign: TextAlign.center,
-                      style: robotoRegular.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_LARGE,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      // maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 12),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 90,
+                    height: 20,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0,2,0,0),
                       child: Text(
-                        "${getTranslated('CERTIFICATE_CONSULTANT', context)}",
+                        reviewModel.title ?? '',
                         textAlign: TextAlign.center,
                         style: robotoRegular.copyWith(
-                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xffcccccc)),
+                          fontSize: Dimensions.FONT_SIZE_LARGE,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 8.0,
+                        ),
                         // maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                  ],
-                ),
-                const Divider(
-                  height: 3,
-                  thickness: 1,
-                  indent: 0,
-                  endIndent: 0,
-                  color: Color(0XFFCCCCCC),
-                ),
-                SizedBox(height: Dimensions.PADDING_SIZE_SMALL,),
-                Text(
-                  reviewModel.custom2 ?? '- 인천대학교',
-                  textAlign: TextAlign.center,
-                  style: robotoRegular.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
-                    fontWeight: FontWeight.bold,
                   ),
-                  // maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  reviewModel.custom2 ?? '- 피부미용사자격증',
-                  textAlign: TextAlign.center,
-                  style: robotoRegular.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
-                    fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0,10,0, 10),
+                    child: Text(
+                      "${getTranslated('CERTIFICATE_CONSULTANT', context)}",
+                      textAlign: TextAlign.center,
+                      style: robotoRegular.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_SMALL,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xffcccccc)),
+                      // maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  // maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                ],
+              ),
+              const Divider(
+                height: 3,
+                thickness: 1,
+                indent: 0,
+                endIndent: 0,
+                color: Color(0XFFDDDDDD),
+              ),
+              SizedBox(height: Dimensions.PADDING_SIZE_SMALL,),
+              Text(
+                reviewModel.custom2 ?? '- 인천대학교',
+                textAlign: TextAlign.center,
+                style: robotoRegular.copyWith(
+                  fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
+                  fontWeight: FontWeight.bold,
                 ),
-                Text(
-                  reviewModel.custom2 ?? '- 올댓뷰티아카데미',
-                  textAlign: TextAlign.center,
-                  style: robotoRegular.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  // maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                // maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                reviewModel.custom2 ?? '- 피부미용사자격증',
+                textAlign: TextAlign.center,
+                style: robotoRegular.copyWith(
+                  fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-              ],
-            ),
+                // maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                reviewModel.custom2 ?? '- 올댓뷰티아카데미',
+                textAlign: TextAlign.center,
+                style: robotoRegular.copyWith(
+                  fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
+                  fontWeight: FontWeight.bold,
+                ),
+                // maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+            ],
           ),
         ]),
       ),

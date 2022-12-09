@@ -29,6 +29,9 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
     "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
   ];
 
+  String var1 ="";
+  String var2 ="";
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -167,7 +170,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "YEKA(예카)",
+                                                          "${var1} ${getTranslated('|', context)} ${var2}",
                                                           style: TextStyle(
                                                               fontSize: 7.0,
                                                               fontWeight:
@@ -176,30 +179,6 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                                                   .ellipsis,
                                                               color:
                                                                   Color(0xff999999)
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "${getTranslated('|', context)}",
-                                                          style: TextStyle(
-                                                            fontSize: 7.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            overflow: TextOverflow
-                                                                .ellipsis,
-                                                              color:
-                                                              Color(0xff999999)
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "7일전",
-                                                          style: TextStyle(
-                                                            fontSize: 7.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            overflow: TextOverflow
-                                                                .ellipsis,
-                                                              color:
-                                                              Color(0xff999999)
                                                           ),
                                                         ),
                                                         Padding(

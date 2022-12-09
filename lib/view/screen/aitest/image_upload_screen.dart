@@ -143,7 +143,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                     // ),
                                     borderRadius:
                                     BorderRadius.all(Radius.circular(8.0)),
-                                    color: Colors.blue,
+                                    color: Color(0xfff1f1f1),
                                   ),
                                   child: Center(child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,

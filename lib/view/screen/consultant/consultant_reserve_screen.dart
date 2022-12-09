@@ -146,6 +146,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     style: TextStyle(
                                       color: Color(0xff0123B4),
                                       fontSize: 11,
+                                      fontWeight: FontWeight.w900,
                                     ),
                                   ),
                                 ],
@@ -160,6 +161,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     style: TextStyle(
                                       color: Color(0xff0123b4),
                                       fontSize: 10,
+                                      fontWeight: FontWeight.w900,
                                     ),
                                   ),
                                 ],

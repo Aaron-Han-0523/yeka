@@ -135,12 +135,12 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                                       child: Container(
                                         alignment: Alignment.center,
                                         child: Container(
-                                          padding: const EdgeInsets.all(10.0),
-                                          width: 50,
+                                          padding: const EdgeInsets.fromLTRB(11.5,11.5,11.5,20.0,),
+                                          width: 55,
                                           height: 50,
                                           decoration: BoxDecoration(
                                             color: Color(0xfff1f1f1),
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius: BorderRadius.circular(5),
                                           ),
                                           child: Image.asset(
                                             Images.upload,
@@ -156,7 +156,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                                         child: Text(
                                           "${thumbnailLists.length ?? 0} / 5",
                                           style: TextStyle(
-                                            fontSize: 12.0,
+                                            fontSize: 10.0,
                                             color: Color(0xff999999),
                                           ),
                                         ),
@@ -175,11 +175,11 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                               ),
                             for (var i = thumbnailLists.length; i < 5; i++)
                               Container(
-                                padding: const EdgeInsets.all(10.0),
-                                width: 50,
+                                padding: const EdgeInsets.fromLTRB(11.5,11.5,11.5,20.0,),
+                                width: 55,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(5.0),
                                   color: Color(0xfff1f1f1),
                                 ),
                                 child: Image.asset(

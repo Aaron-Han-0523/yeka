@@ -338,6 +338,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
+
                                 CustomElevatedButton(
                                   onTap: () async {
                                     Navigator.of(context).push(

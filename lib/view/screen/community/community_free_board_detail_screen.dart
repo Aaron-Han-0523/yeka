@@ -90,26 +90,40 @@ class _CommunityFreeBoardDetailScreenState
                       //   controller: _youtubeController,
                       //   liveUIColor: Colors.amber,
                       // ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 1,
-                        height: MediaQuery.of(context).size.width * 0.56,
-                        child: PageView(
-                          children: items,
-                          controller: _pageController,
-                        ),
+                      Stack(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 1,
+                            height: MediaQuery.of(context).size.width * 0.56,
+                            child: PageView(
+                              children: items,
+                              controller: _pageController,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 1,
+                            height: MediaQuery.of(context).size.width * 0.56,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.all(24.0),
+                                child: ScrollingPageIndicator(
+                                  dotColor: Colors.grey,
+                                  dotSelectedColor: Colors.deepPurple,
+                                  dotSize: 7,
+                                  dotSelectedSize: 7,
+                                  dotSpacing: 18,
+                                  controller: _pageController,
+                                  itemCount: items.length,
+                                  orientation: Axis.horizontal,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-                      ScrollingPageIndicator(
-                        dotColor: Colors.grey,
-                        dotSelectedColor: Colors.deepPurple,
-                        dotSize: 7,
-                        dotSelectedSize: 7,
-                        dotSpacing: 18,
-                        controller: _pageController,
-                        itemCount: items.length,
-                        orientation: Axis.horizontal,
 
-                      ),
                       Padding(
                         padding:
                             const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 6.0),
@@ -157,7 +171,8 @@ class _CommunityFreeBoardDetailScreenState
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(238, 0, 0, 0),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(238, 0, 0, 0),
                                     child: Row(
                                       children: [
                                         Image.asset(
@@ -255,9 +270,11 @@ class _CommunityFreeBoardDetailScreenState
                                         MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
                                       Padding(
-                                        padding: const EdgeInsets.fromLTRB(20, 10, 15, 10),
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 10, 15, 10),
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           child: Image.network(
                                             // widget.reviewModel.attachedFilepath1,
                                             // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
@@ -273,28 +290,26 @@ class _CommunityFreeBoardDetailScreenState
                                       ),
                                       Expanded(
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               titleList[position],
                                               style: TextStyle(
                                                 fontSize: 11.0,
                                                 fontWeight: FontWeight.bold,
-                                                overflow:
-                                                    TextOverflow.ellipsis,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
                                             ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .start,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "BYHER(바이허)",
                                                   style: TextStyle(
                                                     fontSize: 7.0,
-                                                    fontWeight:
-                                                        FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     color: Color(0xff999999),
@@ -304,10 +319,9 @@ class _CommunityFreeBoardDetailScreenState
                                                   "${getTranslated('|', context)}",
                                                   style: TextStyle(
                                                     fontSize: 7.0,
-                                                    fontWeight:
-                                                    FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                     overflow:
-                                                    TextOverflow.ellipsis,
+                                                        TextOverflow.ellipsis,
                                                     color: Color(0xff999999),
                                                   ),
                                                 ),
@@ -315,15 +329,16 @@ class _CommunityFreeBoardDetailScreenState
                                                   "7일전",
                                                   style: TextStyle(
                                                     fontSize: 7.0,
-                                                    fontWeight:
-                                                    FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                     overflow:
-                                                    TextOverflow.ellipsis,
+                                                        TextOverflow.ellipsis,
                                                     color: Color(0xff999999),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.fromLTRB(145, 0, 22, 0),
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          145, 0, 22, 0),
                                                   child: Row(
                                                     children: [
                                                       Image.asset(
@@ -339,7 +354,8 @@ class _CommunityFreeBoardDetailScreenState
                                                               FontWeight.bold,
                                                           overflow: TextOverflow
                                                               .ellipsis,
-                                                          color: Color(0xff999999),
+                                                          color:
+                                                              Color(0xff999999),
                                                         ),
                                                       ),
                                                     ],

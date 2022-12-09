@@ -406,6 +406,8 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         },
                         buttonText: "${getTranslated('CONSULTANT_COMPLETE', context)}"),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                    SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                    SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     FooterPage(),
                   ],
                 ),
