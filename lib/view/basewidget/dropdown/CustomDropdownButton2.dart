@@ -27,13 +27,7 @@ class CustomDropdownButton2 extends StatelessWidget {
   final double scrollbarThickness;
   final bool scrollbarAlwaysShow;
   final Offset offset;
-<<<<<<< HEAD
   final EdgeInsets padding;
-=======
-  final EdgeInsetsGeometry padding;
-  final double borderRadius;
-  final Color borderColor;
->>>>>>> c2c2d9e0d5cb750f66a2cdec3a148d2d2a190304
 
   const CustomDropdownButton2({
     this.hint = "",
@@ -63,13 +57,7 @@ class CustomDropdownButton2 extends StatelessWidget {
     this.scrollbarThickness,
     this.scrollbarAlwaysShow,
     this.offset,
-<<<<<<< HEAD
     this.padding = const EdgeInsets.fromLTRB(0, 0, 0, 18.5),
-=======
-    this.padding = const EdgeInsets.fromLTRB(20, 10, 20, 0),
-    this.borderRadius = 8,
-    this.borderColor = Colors.black45,
->>>>>>> c2c2d9e0d5cb750f66a2cdec3a148d2d2a190304
     Key key,
   }) : super(key: key);
 
@@ -77,11 +65,7 @@ class CustomDropdownButton2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: Padding(
-<<<<<<< HEAD
         padding: this.padding,
-=======
-        padding: padding,
->>>>>>> c2c2d9e0d5cb750f66a2cdec3a148d2d2a190304
         child: DropdownButton2(
           //To avoid long text overflowing.
           isExpanded: true,
@@ -121,13 +105,13 @@ class CustomDropdownButton2 extends StatelessWidget {
           iconEnabledColor: iconEnabledColor,
           iconDisabledColor: iconDisabledColor,
           buttonHeight: buttonHeight ?? 35,
-          buttonWidth: buttonWidth ?? 163,
+          buttonWidth: buttonWidth ?? 165.5,
           buttonPadding:
           buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
           buttonDecoration: buttonDecoration ??
               BoxDecoration(
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
-<<<<<<< HEAD
                 border: null,
                 boxShadow: [
                   BoxShadow(
@@ -137,18 +121,13 @@ class CustomDropdownButton2 extends StatelessWidget {
                     offset: Offset(0, 3), // changes position of shadow
                   ),
                 ],
-=======
-                border: Border.all(
-                  color: Colors.black45,
-                ),
->>>>>>> c2c2d9e0d5cb750f66a2cdec3a148d2d2a190304
               ),
           buttonElevation: buttonElevation,
           itemHeight: itemHeight ?? 40,
           itemPadding: itemPadding ?? const EdgeInsets.only(left: 14, right: 14),
           //Max height for the dropdown menu & becoming scrollable if there are more items. If you pass Null it will take max height possible for the items.
           dropdownMaxHeight: dropdownHeight ?? 200,
-          dropdownWidth: dropdownWidth ?? 140,
+          dropdownWidth: dropdownWidth ?? 165,
           dropdownPadding: dropdownPadding,
           dropdownDecoration: dropdownDecoration ??
               BoxDecoration(

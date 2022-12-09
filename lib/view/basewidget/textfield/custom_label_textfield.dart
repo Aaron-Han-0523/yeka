@@ -34,6 +34,11 @@ class CustomLabelTextField extends StatelessWidget {
   final Color boxColor;
   final double height;
   final bool enabled;
+  final bool isTextable;
+  final double label_fontSize;
+  final EdgeInsets padding;
+  final double hintSize;
+  final double hintSize_InputDecoration;
 
   CustomLabelTextField({
     this.labelText = "",

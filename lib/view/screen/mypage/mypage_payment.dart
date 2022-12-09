@@ -436,8 +436,8 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
 
                             Expanded(child: CustomDropdownButton2(
                               padding: const EdgeInsets.fromLTRB(20, 10, 7.5, 10),
-                              borderRadius: 5,
-                              borderColor: Color(0xffeeeeee),
+                   //           borderRadius: 5,
+                   //           borderColor: Color(0xffeeeeee),
                               hint: '은행선택',
                               icon:
                               const Icon(Icons.keyboard_arrow_down),

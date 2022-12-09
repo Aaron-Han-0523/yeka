@@ -189,12 +189,12 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: CustomTextarea(
                             padding : const EdgeInsets.all(0),
-                            labelPadding: const EdgeInsets.fromLTRB(0, 0 ,0 , 10),
+                    //        labelPadding: const EdgeInsets.fromLTRB(0, 0 ,0 , 10),
                             labelText: "상담내용 작성",
-                            labelFontSize: 12,
-                            hintText: "상세 상담내용을 작성해주세요",
-                            hintTextColor: Color(0xffdddddd),
-                            contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                    //        labelFontSize: 12,
+                    //        hintText: "상세 상담내용을 작성해주세요",
+                    //        hintTextColor: Color(0xffdddddd),
+                    //        contentPadding: const EdgeInsets.symmetric(vertical: 8),
 
                           ),
                         ),

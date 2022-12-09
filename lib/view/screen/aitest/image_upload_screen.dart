@@ -63,6 +63,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                       // ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Container(
+                        // height: 500,
                         decoration: BoxDecoration(
                           // border: Border.all(
                           //   width: 2,
@@ -76,8 +77,8 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              padding:
-                                  const EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
+                              padding: const EdgeInsets.fromLTRB(
+                                  20.0, 0.0, 0.0, 0.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -86,25 +87,37 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                       Text(
                                         "AI TEST",
                                         style: TextStyle(
-                                          fontSize: 60,
+                                          fontSize: 72,
                                           color: Color(0xff444444),
+                                          fontWeight: FontWeight.w900,
+                                          letterSpacing: 5,
                                         ),
                                       ),
                                       Center(
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
-                                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-
-                                            Text(
-                                              "${getTranslated('PLEASE_UPLOAD_PICTURE', context)}",
-                                              style: TextStyle(
-                                                fontSize: 26,
-                                                color: Color(0xffFFFFFF),
-                                                fontWeight: FontWeight.bold,
+                                            SizedBox(
+                                                height: Dimensions
+                                                    .PADDING_SIZE_DEFAULT),
+                                            SizedBox(
+                                                height: Dimensions
+                                                    .PADDING_SIZE_DEFAULT),
+                                            SizedBox(
+                                                height: Dimensions
+                                                    .PADDING_SIZE_DEFAULT),
+                                            SizedBox(
+                                                height: Dimensions
+                                                    .PADDING_SIZE_DEFAULT),
+                                            Container(
+                                              child: Text(
+                                                "${getTranslated('PLEASE_UPLOAD_PICTURE', context)}",
+                                                style: TextStyle(
+                                                  fontSize: 26,
+                                                  color: Color(0xffFFFFFF),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                             Text(
@@ -132,33 +145,47 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                               ),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                            Padding(
-                              padding: const EdgeInsets.all(24.0),
-                              child: Container(
-                                height: MediaQuery.of(context).size.width * 0.9,
-                                  decoration: BoxDecoration(
-                                    // border: Border.all(
-                                    //   width: 2,
-                                    //   color: Color(0XFF2434D7),
-                                    // ),
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
-                                    color: Color(0xfff1f1f1),
-                                  ),
-                                  child: Center(child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: Image.asset(
-                                          Images.help,
-                                          width: 23,
+                            Container(
+                              height: 370,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.width * 0.8,
+                                        decoration: BoxDecoration(
+                                          // border: Border.all(
+                                          //   width: 2,
+                                          //   color: Color(0XFF2434D7),
+                                          // ),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8.0)),
+                                          color: Color(0xffF1F1F1),
                                         ),
-                                      ),
-                                      Text("${getTranslated('REGISTRATION_IMAGE', context)}"),
-                                    ],
-                                  ))
-                              )
+                                        child: Center(
+                                            child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(15.0),
+                                              child: Image.asset(
+                                                Images.help,
+                                                width: 23,
+                                              ),
+                                            ),
+                                            Text(
+                                                "${getTranslated('REGISTRATION_IMAGE', context)}",
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w900
+                                              ),
+                                            ),
+
+                                          ],
+                                        ))),
+                                  )),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                           ],
@@ -170,7 +197,8 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                           child: InkWell(
                             onTap: () {
                               Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (_) => OXPage()),);
+                                MaterialPageRoute(builder: (_) => OXPage()),
+                              );
                             },
                             child: Container(
                               height: 100,
@@ -180,8 +208,8 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                   Radius.circular(50),
                                 ),
                                 border: Border.all(
-                                  width: 2,
-                                  color: Colors.green,
+                                  width: 1,
+                                  color: Color(0xff121212),
                                   style: BorderStyle.solid,
                                 ),
                               ),
@@ -195,7 +223,8 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                       color: Colors.black,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                       child: Text(
                                         "${getTranslated('START', context)}",
                                         style: TextStyle(
@@ -229,59 +258,60 @@ class _ImageUploadPageState extends State<ImageUploadPage>
     showDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          // title: new Text("Dialog Title"),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  // fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-              Row(
+              // title: new Text("Dialog Title"),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "폐차 진행 중입니다.",
+                    "",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                  Row(
+                    children: [
+                      Text(
+                        "폐차 진행 중입니다.",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: Text("취소"),
-              onPressed: () {
-                return Navigator.pop(context);
-              },
-            ),
-            Container(
-              child: CupertinoDialogAction(
-                child: Container(
-                  child: Text(
-                    "확인",
-                    style: TextStyle(color: Colors.white),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: Text("취소"),
+                  onPressed: () {
+                    return Navigator.pop(context);
+                  },
+                ),
+                Container(
+                  child: CupertinoDialogAction(
+                    child: Container(
+                      child: Text(
+                        "확인",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (_) => HomePage()),
+                          (route) => false);
+                    },
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0XFF2434D7),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
-                },
-              ),
-              decoration: BoxDecoration(
-                color: Color(0XFF2434D7),
-              ),
-            ),
-          ],
-        ));
+              ],
+            ));
   }
 }

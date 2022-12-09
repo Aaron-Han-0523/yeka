@@ -50,12 +50,12 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                   children: [
                     Divider(
                       height: 2,
-                      color: Color(0xffDDDDDD),
+                      color: Color(0xff666666),
                       indent: 0,
                       endIndent: 0,
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 31.5, 0, 21),
+                      padding: const EdgeInsets.fromLTRB(20, 17, 0, 15),
                       child: Text(
                         "${getTranslated('MY_CONSULTATION', context)}",
                         style: TextStyle(
@@ -81,6 +81,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ],
@@ -103,13 +104,14 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 30.5),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -125,6 +127,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             style: TextStyle(
                               color: Color(0xff0123b4),
                               fontSize: 15,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ],
@@ -134,12 +137,13 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(255, 0, 0, 7.5),
+                          padding: const EdgeInsets.fromLTRB(255, 0, 0, 10),
                           child: Text(
                             "${getTranslated('RESERVATION_AMOUNT', context)}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 9,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ),
@@ -150,6 +154,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 9,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ),
@@ -179,13 +184,14 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             style: TextStyle(
                               color: Color(0xffff3d3d),
                               fontSize: 15,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 28),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 23),
                       child: Text(
                         "${getTranslated('FINAL_PAYMENT_DEDUCTED_AMOUNT', context)}",
                         style: TextStyle(
@@ -237,6 +243,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ],
@@ -259,6 +266,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ],
@@ -267,7 +275,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                     Center(
                       child: Container(
                         decoration: BoxDecoration(color: Color(0xfff8f8f8)),
-                        padding: EdgeInsets.fromLTRB(65, 8, 65, 8),
+                        padding: EdgeInsets.fromLTRB(65, 8, 65, 15),
                         child: Column(
                           children: [
                             Text(
@@ -300,7 +308,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                           );
                         },
                         buttonText: "${getTranslated('CONFIRMATION', context)}"),
-                    SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                    SizedBox(height: 150),
                     FooterPage(),
                   ],
                 ),

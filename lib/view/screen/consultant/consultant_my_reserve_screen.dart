@@ -52,7 +52,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                   children: [
                     Divider(
                       height: 2,
-                      color: Color(0xffDDDDDD),
+                      color: Color(0xff666666),
                       indent: 0,
                       endIndent: 0,
                     ),
@@ -100,7 +100,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 23, 0, 45),
+                              padding: const EdgeInsets.fromLTRB(20, 23, 0, 30),
                               child: Text(
                                 "${getTranslated('MEET_MY_CONSULTANT', context)}",
                                 style: TextStyle(
@@ -145,6 +145,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Container(
+                          height: 340,
                           child: Image.network(
                             // widget.reviewModel.attachedFilepath1,
                             // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',

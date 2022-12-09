@@ -50,7 +50,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                   children: [
                     Divider(
                       height: 2,
-                      color: Color(0xffDDDDDD),
+                      color: Color(0xff666666),
                       indent: 0,
                       endIndent: 0,
                     ),
@@ -72,7 +72,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 9.75),
+                                    padding: const EdgeInsets.fromLTRB(
+                                        0, 0, 5, 9.75),
                                     child: Text(
                                       "임지은",
                                       style: TextStyle(
@@ -83,7 +84,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 0, 0, 5),
                                     child: Text(
                                       "${getTranslated('CERTIFICATE_CONSULTANT', context)}",
                                       style: TextStyle(
@@ -107,7 +109,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 0, 14.5, 0),
+                                    padding: const EdgeInsets.fromLTRB(
+                                        0, 0, 14.5, 0),
                                     child: Text(
                                       "${getTranslated('COUNSELING_NAME', context)}",
                                       style: TextStyle(
@@ -117,7 +120,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 1, 0, 0),
                                     child: Text(
                                       "톡으로 만나는 나만의 피부 진단 :)",
                                       style: TextStyle(
@@ -158,21 +162,31 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 17),
                       child: Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 17.5,
-                            ), // Text(key['title']),
+                          Container(
+                            height: 20,
+                            width: 20,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                              color: Color(0xffFECB03),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "1",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xffEEEEEE),
+                                ),
+                              ),
+                            ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: Text(
                               "${getTranslated('COLOR', context)}",
                               style: TextStyle(
-                                color: Color(0xff333333),
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -196,18 +210,20 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(7.5, 16.5, 12.5, 13),
+                                  padding: const EdgeInsets.fromLTRB(
+                                      7.5, 16.5, 12.5, 13),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(150.0),
-                                    child: Image.network(
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                                    child: Image.asset(
+                                      Images.chk,
                                       fit: BoxFit.fill,
                                       height: 15,
                                     ), // Text(key['title']),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                   child: Text(
                                     "봄 라이트",
                                     style: TextStyle(
@@ -235,7 +251,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(9, 0, 0, 3),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(9, 0, 0, 3),
                                   child: Text(
                                     "#가벼운 #여성스러운 #싱그러운 #따뜻한 #아기자기한 #밝은 #로멘틱한",
                                     style: TextStyle(
@@ -277,138 +294,102 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               children: [
                                 TableRow(
                                   children: [
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 TableRow(
                                   children: [
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 TableRow(
                                   children: [
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
-                                    Container(
-                                      // height: 32,
-                                      // color: Colors.green,
-                                      padding: EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: ClipRRect(
-                                        // borderRadius:
-                                        //     BorderRadius.circular(150.0),
-                                        child: Image.network(
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                          fit: BoxFit.fill,
-                                          height: 42.5,
-                                        ), // Text(key['title']),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffFECB03),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -419,32 +400,42 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 5, 13.5),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 17.5,
-                            ), // Text(key['title']),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Text(
-                            "${getTranslated('FASHION', context)}",
-                            style: TextStyle(
-                              color: Color(0xff333333),
-                              fontSize: 18,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                color: Color(0xffFECB03),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "2",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xffEEEEEE),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                          Text(
+                            "${getTranslated('FASHION', context)}",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -467,27 +458,37 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 5, 13.5),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 17.5,
-                            ), // Text(key['title']),
-                          ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                            child: Text(
-                              "${getTranslated('HAIR', context)}",
-                              style: TextStyle(
-                                color: Color(0xff333333),
-                                fontSize: 18,
+                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                color: Color(0xffFECB03),
                               ),
+                              child: Center(
+                                child: Text(
+                                  "3",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xffEEEEEE),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "${getTranslated('HAIR', context)}",
+                            style: TextStyle(
+                              fontSize: 16,
                             ),
                           ),
                         ],
@@ -504,25 +505,37 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 5, 13.5),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 17.5,
-                            ), // Text(key['title']),
-                          ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                            child: Text(
-                              "${getTranslated('PERFUME', context)}",
-                              style: TextStyle(
-                                color: Color(0xff333333),
-                                fontSize: 18,
+                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                color: Color(0xffFECB03),
                               ),
+                              child: Center(
+                                child: Text(
+                                  "4",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xffEEEEEE),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "${getTranslated('PERFUME', context)}",
+                            style: TextStyle(
+                              fontSize: 16,
                             ),
                           ),
                         ],
@@ -539,25 +552,37 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 5, 13.5),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(150.0),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                              fit: BoxFit.fill,
-                              height: 17.5,
-                            ), // Text(key['title']),
-                          ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                            child: Text(
-                              "${getTranslated('MAKE_UP', context)}",
-                              style: TextStyle(
-                                color: Color(0xff333333),
-                                fontSize: 18,
+                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                color: Color(0xffFECB03),
                               ),
+                              child: Center(
+                                child: Text(
+                                  "4",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xffEEEEEE),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "${getTranslated('MAKE_UP', context)}",
+                            style: TextStyle(
+                              fontSize: 16,
                             ),
                           ),
                         ],
@@ -577,7 +602,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           outside: BorderSide.none,
                           inside: const BorderSide(
                               width: 1,
-                              color: Colors.grey,
+                              color: Color(0xffDDDDDD),
                               style: BorderStyle.solid),
                         ),
                         children: [
@@ -586,7 +611,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                     child: Text(
                                       "${getTranslated('BASE', context)}",
                                       style: TextStyle(
@@ -596,7 +622,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
                                       "뉴트럴 컬러의 얇고 촉촉하며 은은한 광",
                                       textAlign: TextAlign.center,
@@ -612,7 +639,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                 child: Column(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                       child: Text(
                                         "${getTranslated('EYE', context)}",
                                         style: TextStyle(
@@ -622,7 +650,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                       child: Text(
                                         "피치코랄, 따뜻한 색감이 많이 느껴지지 않는 베이지",
                                         textAlign: TextAlign.center,
@@ -642,7 +671,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                     child: Text(
                                       "${getTranslated('BLUSHER', context)}",
                                       style: TextStyle(
@@ -652,7 +682,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
                                       "피치코랄",
                                       textAlign: TextAlign.center,
@@ -667,7 +698,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 8, 0, 0),
                                     child: Text(
                                       "${getTranslated('LIP', context)}",
                                       style: TextStyle(
@@ -677,7 +709,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
                                       "웜톤이라고 고체도의 오렌지나 다홍색은 피해주시고 코랄 같은 핑크 계열",
                                       textAlign: TextAlign.center,
@@ -748,99 +781,95 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
-                            child: Text("${getTranslated('HIGH_CONTRAST_IMAGE', context)}"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
+                          child: Text(
+                              "${getTranslated('HIGH_CONTRAST_IMAGE', context)}"),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Slider(
+                            value: _currentSliderValue,
+                            max: 100,
+                            divisions: 100,
+                            label: _currentSliderValue.round().toString(),
+                            onChanged: (double value) {
+                              setState(() {
+                                _currentSliderValue = value;
+                              });
+                            },
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.65,
-                            child: Slider(
-                              value: _currentSliderValue,
-                              max: 100,
-                              divisions: 100,
-                              label: _currentSliderValue.round().toString(),
-                              onChanged: (double value) {
-                                setState(() {
-                                  _currentSliderValue = value;
-                                });
-                              },
-                            ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
+                          child: Text(
+                              "${getTranslated('LOW_CONTRAST_IMAGE', context)}"),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
+                          child: Text(
+                              "${getTranslated('HIGH_BRIGHTNESS', context)}"),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Slider(
+                            value: _currentSliderValue,
+                            max: 100,
+                            divisions: 100,
+                            label: _currentSliderValue.round().toString(),
+                            onChanged: (double value) {
+                              setState(() {
+                                _currentSliderValue = value;
+                              });
+                            },
                           ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("${getTranslated('LOW_CONTRAST_IMAGE', context)}"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
+                          child: Text(
+                              "${getTranslated('LOW_BRIGHTNESS', context)}"),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
+                          child: Text("${getTranslated('GLOSS', context)}"),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Slider(
+                            value: _currentSliderValue,
+                            max: 100,
+                            divisions: 100,
+                            label: _currentSliderValue.round().toString(),
+                            onChanged: (double value) {
+                              setState(() {
+                                _currentSliderValue = value;
+                              });
+                            },
                           ),
-                        ],
-                      ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 17, 0),
+                          child: Text("${getTranslated('MATT', context)}"),
+                        ),
+                      ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
-                            child: Text("${getTranslated('HIGH_BRIGHTNESS', context)}"),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.65,
-                            child: Slider(
-                              value: _currentSliderValue,
-                              max: 100,
-                              divisions: 100,
-                              label: _currentSliderValue.round().toString(),
-                              onChanged: (double value) {
-                                setState(() {
-                                  _currentSliderValue = value;
-                                });
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("${getTranslated('LOW_BRIGHTNESS', context)}"),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
-                            child: Text("${getTranslated('GLOSS', context)}"),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.65,
-                            child: Slider(
-                              value: _currentSliderValue,
-                              max: 100,
-                              divisions: 100,
-                              label: _currentSliderValue.round().toString(),
-                              onChanged: (double value) {
-                                setState(() {
-                                  _currentSliderValue = value;
-                                });
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 17, 0),
-                            child: Text("${getTranslated('MATT', context)}"),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
                       child: Container(
+                        height: 175,
                         decoration: BoxDecoration(
                           // color: Color(0xfff8f8f8),
                           border: Border.all(
@@ -859,15 +888,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   padding: const EdgeInsets.all(10.0),
                                   child: ClipRRect(
                                     // borderRadius: BorderRadius.circular(150.0),
-                                    child: Image.network(
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                                    child: Image.asset(
+                                      Images.chat,
                                       fit: BoxFit.fill,
-                                      height: 20,
+                                      height: 25,
                                     ), // Text(key['title']),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                   child: Text(
                                     "${getTranslated('CONSULT_FINAL_EVALUATION', context)}",
                                     style: TextStyle(
@@ -893,7 +923,10 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       ),
                     ),
                     // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                    CustomElevatedButton(onTap: () {}, buttonText: "${getTranslated('CHECK_PRODUCT_FOR_ME', context)}"),
+                    CustomElevatedButton(
+                        onTap: () {},
+                        buttonText:
+                            "${getTranslated('CHECK_PRODUCT_FOR_ME', context)}"),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),

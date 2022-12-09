@@ -205,7 +205,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           labelText: "${getTranslated('NAME', context)} ",
                           // essentialLabelText: " *",
-                          innerPadding: const EdgeInsets.only(top: 5),
+                    //      innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_NAME', context)}",
                         ),
 
@@ -215,7 +215,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           labelText: "${getTranslated('PHONE', context)} ",
                           // essentialLabelText: " *",
-                          innerPadding: const EdgeInsets.only(top: 5),
+                    //      innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_PHONE', context)}",
                         ),
 
@@ -228,7 +228,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                 controller: _firstNameController,
                                 labelText: "${getTranslated('ADDRESS', context)} ",
                                 // essentialLabelText: " *",
-                                innerPadding: const EdgeInsets.only(top: 5),
+                        //        innerPadding: const EdgeInsets.only(top: 5),
                                 hintText: "${getTranslated('SELECT_CITY', context)}",
                               ),
                             ),
@@ -239,7 +239,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                   controller: _firstNameController,
                                   labelText: "",
                                   essentialLabelText: "",
-                                  innerPadding: const EdgeInsets.only(top: 5),
+                           //       innerPadding: const EdgeInsets.only(top: 5),
                                   hintText: "${getTranslated('SELECT_DISTINCT', context)}",
                                 ),
                               ),
@@ -251,8 +251,8 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
                           // essentialLabelText: " *",
-                          outerPadding: const EdgeInsets.only(top: 0),
-                          innerPadding: const EdgeInsets.only(top: 5),
+                  //        outerPadding: const EdgeInsets.only(top: 0),
+                     //     innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('ETC_ADDRESS', context)}",
                         ),
 
@@ -262,7 +262,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           labelText: "${getTranslated('EMAIL', context)} ",
                           // essentialLabelText: " *",
-                          innerPadding: const EdgeInsets.only(top: 5),
+                   //       innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_EMAIL', context)}",
                         ),
 
@@ -287,7 +287,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           child: CustomSmallRadioButton(
                             value: radioButton,
                             text: "주문자와 동일",
-                            fontSize: 15,
+                    //        fontSize: 15,
                             // reverse: true,
                           ),
                         ),
@@ -298,7 +298,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           labelText: "배송지 ",
                           // essentialLabelText: " *",
-                          innerPadding: const EdgeInsets.only(top: 5),
+                    //      innerPadding: const EdgeInsets.only(top: 5),
                           // hintText: "${getTranslated('HINT_NAME', context)}",
                         ),
 
@@ -308,7 +308,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           labelText: "${getTranslated('NAME', context)} ",
                           // essentialLabelText: " *",
-                          innerPadding: const EdgeInsets.only(top: 5),
+                   //       innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_NAME', context)}",
                         ),
 
@@ -318,7 +318,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           labelText: "${getTranslated('PHONE', context)} ",
                           // essentialLabelText: " *",
-                          innerPadding: const EdgeInsets.only(top: 5),
+                    //      innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_PHONE', context)}",
                         ),
 

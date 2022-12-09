@@ -85,7 +85,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               color: Color(0xffDDDDDD),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 15, 20, 10),
+                              padding: const EdgeInsets.fromLTRB(20, 16, 20, 10),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -108,7 +108,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -130,7 +130,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              padding: const EdgeInsets.fromLTRB(20, 5, 20, 12),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -168,7 +168,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
+                              padding: const EdgeInsets.fromLTRB(20, 5, 0, 10),
                               child: Row(
                                 children: [
                                   Text(
@@ -189,7 +189,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               color: Color(0xffDDDDDD),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -205,6 +205,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 11,
+                                      fontWeight: FontWeight.w900,
                                     ),
                                   ),
                                 ],
@@ -227,6 +228,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 10,
+                                      fontWeight: FontWeight.w900,
                                     ),
                                   ),
                                 ],
@@ -256,7 +258,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                 ],
                               ),
                             ),
-                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                            SizedBox(height: 25),
                             CustomElevatedButton(
                                 onTap: () {
                                   Navigator.of(context).push(

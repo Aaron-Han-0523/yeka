@@ -69,6 +69,7 @@ class _AIResultPageState extends State<AIResultPage>
                             "OOO",
                             style: TextStyle(
                               fontSize: 14,
+                              color: Color(0xff0123B4),
                             ),
                           ),
                           Text(
@@ -93,7 +94,6 @@ class _AIResultPageState extends State<AIResultPage>
                             "봄 라이트", //형광
                             style: TextStyle(
                               fontSize: 20,
-
                             ),
                           ),
                           Text(
@@ -128,54 +128,86 @@ class _AIResultPageState extends State<AIResultPage>
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Container(
-                          height: MediaQuery.of(context).size.width *0.598,
-                              width: MediaQuery.of(context).size.width * 1,
-                              child: Row(
+                        height: MediaQuery.of(context).size.width * 0.598,
+                        width: MediaQuery.of(context).size.width * 1,
+                        child: Row(
                           children: [
                             Expanded(
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(20, 0, 26, 18),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                        Images.yes_bt,
-                                        height: MediaQuery.of(context).size.width * 0.11,
-                                        // width: MediaQuery.of(context).size.width * 0.11,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 26, 18),
+                                    child: Container(
+                                      height: 42.5,
+                                      width: 42.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.green,
+                                          style: BorderStyle.solid,
+                                          // width: MediaQuery.of(context).size.width * 0.11,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(20, 0, 26, 18),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                        Images.yes_bt,
-                                        height: MediaQuery.of(context).size.width * 0.11,
-                                        // width: MediaQuery.of(context).size.width * 0.11,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 26, 18),
+                                    child: Container(
+                                      height: 42.5,
+                                      width: 42.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.green,
+                                          style: BorderStyle.solid,
+                                          // width: MediaQuery.of(context).size.width * 0.11,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(20, 0, 26, 18),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                        Images.yes_bt,
-                                        height: MediaQuery.of(context).size.width * 0.11,
-                                        // width: MediaQuery.of(context).size.width * 0.11,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 26, 18),
+                                    child: Container(
+                                      height: 42.5,
+                                      width: 42.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.green,
+                                          style: BorderStyle.solid,
+                                          // width: MediaQuery.of(context).size.width * 0.11,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(20, 0, 26, 0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                        Images.yes_bt,
-                                        height: MediaQuery.of(context).size.width * 0.11,
-                                        // width: MediaQuery.of(context).size.width * 0.11,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 26, 10),
+                                    child: Container(
+                                      height: 42.5,
+                                      width: 42.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.green,
+                                          style: BorderStyle.solid,
+                                          // width: MediaQuery.of(context).size.width * 0.11,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -196,46 +228,78 @@ class _AIResultPageState extends State<AIResultPage>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(26, 0, 20, 18),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                        Images.yes_bt,
-                                        height: MediaQuery.of(context).size.width * 0.11,
-                                        // width: MediaQuery.of(context).size.width * 0.11,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 26, 18),
+                                    child: Container(
+                                      height: 42.5,
+                                      width: 42.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.green,
+                                          style: BorderStyle.solid,
+                                          // width: MediaQuery.of(context).size.width * 0.11,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(26, 0, 20, 18),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                        Images.yes_bt,
-                                        height: MediaQuery.of(context).size.width * 0.11,
-                                        // width: MediaQuery.of(context).size.width * 0.11,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 26, 18),
+                                    child: Container(
+                                      height: 42.5,
+                                      width: 42.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.green,
+                                          style: BorderStyle.solid,
+                                          // width: MediaQuery.of(context).size.width * 0.11,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(26, 0, 20, 18),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                        Images.yes_bt,
-                                        height: MediaQuery.of(context).size.width * 0.11,
-                                        // width: MediaQuery.of(context).size.width * 0.11,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 26, 18),
+                                    child: Container(
+                                      height: 42.5,
+                                      width: 42.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.green,
+                                          style: BorderStyle.solid,
+                                          // width: MediaQuery.of(context).size.width * 0.11,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(26, 0, 20, 0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                        Images.yes_bt,
-                                        height: MediaQuery.of(context).size.width * 0.11,
-                                        // width: MediaQuery.of(context).size.width * 0.11,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 26, 10),
+                                    child: Container(
+                                      height: 42.5,
+                                      width: 42.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.green,
+                                          style: BorderStyle.solid,
+                                          // width: MediaQuery.of(context).size.width * 0.11,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -251,7 +315,7 @@ class _AIResultPageState extends State<AIResultPage>
                         // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 8, 9, 13),
+                            padding: const EdgeInsets.fromLTRB(20, 0, 9, 0),
                             child: Image.asset(
                               Images.painting,
                               height: MediaQuery.of(context).size.width * 0.058,
@@ -267,34 +331,64 @@ class _AIResultPageState extends State<AIResultPage>
                       ),
 
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
-                            child: Image.asset(
-                              Images.no_data,
-                              height: MediaQuery.of(context).size.width * 0.11,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  // borderRadius: BorderRadius.all(
+                                  //   Radius.circular(50),
+                                  // ),
+                                  color: Colors.lightGreenAccent,
+                                ),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                            child: Image.asset(
-                              Images.no_data,
-                              height: MediaQuery.of(context).size.width * 0.11,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  // borderRadius: BorderRadius.all(
+                                  //   Radius.circular(50),
+                                  // ),
+                                  color: Colors.lightGreenAccent,
+                                ),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                            child: Image.asset(
-                              Images.no_data,
-                              height: MediaQuery.of(context).size.width * 0.11,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  // borderRadius: BorderRadius.all(
+                                  //   Radius.circular(50),
+                                  // ),
+                                  color: Colors.lightGreenAccent,
+                                ),
+                              ),
                             ),
-                          ),
-                          Image.asset(
-                            Images.no_data,
-                            height: MediaQuery.of(context).size.width * 0.11,
-                          ),
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  // borderRadius: BorderRadius.all(
+                                  //   Radius.circular(50),
+                                  // ),
+                                  color: Colors.lightGreenAccent,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
 
                       SizedBox(height: Dimensions.MARGIN_SIZE_EXTRA_LARGE),
@@ -324,22 +418,45 @@ class _AIResultPageState extends State<AIResultPage>
                                 Row(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(7, 0, 15, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          7, 0, 15, 0),
                                       child: Image.asset(
-                                        Images.heart,
-                                        height: MediaQuery.of(context).size.width * 0.04,
+                                        Images.chk,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                0.04,
                                       ),
                                     ),
-                                    Text("봄 라이트", style: TextStyle(fontSize: 18, color: Colors.black,),),
+                                    Text(
+                                      "봄 라이트",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(9, 0, 0, 0),
-                                  child: Text("맑고 따뜻한 색이 잘 어울리는 봄 라이트", style: TextStyle(fontSize: 11, color: Colors.grey,),),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(9, 0, 0, 0),
+                                  child: Text(
+                                    "맑고 따뜻한 색이 잘 어울리는 봄 라이트",
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(9, 0, 0, 0),
-                                  child: Text("#가벼운 #여성스러운 #싱그러운 # 따뜻한 #아기자기한 #밝은 #로맨틱한", style: TextStyle(fontSize: 11, color: Colors.grey,),),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(9, 0, 0, 0),
+                                  child: Text(
+                                    "#가벼운 #여성스러운 #싱그러운 # 따뜻한 #아기자기한 #밝은 #로맨틱한",
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -457,20 +574,18 @@ class _AIResultPageState extends State<AIResultPage>
                           Expanded(
                             child: Container(
                               height: 40.0,
-                              padding: const EdgeInsets.fromLTRB(
-                                  0.0, 0.0, 4.0, 0.0),
+                              padding:
+                                  const EdgeInsets.fromLTRB(0.0, 0.0, 4.0, 0.0),
                               child: CustomElevatedButton(
                                 onTap: () {
-                                  Navigator.of(context)
-                                      .pushAndRemoveUntil(
+                                  Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
-                                          builder: (_) =>
-                                              HomePage()),
-                                          (route) => false);
+                                          builder: (_) => HomePage()),
+                                      (route) => false);
                                 },
-
-                                buttonText: "${getTranslated('DO_OVER', context)}",
-                                 fontSize: 13,
+                                buttonText:
+                                    "${getTranslated('DO_OVER', context)}",
+                                fontSize: 13,
                               ),
                             ),
                           ),
@@ -483,7 +598,8 @@ class _AIResultPageState extends State<AIResultPage>
                                   onTap: () {
                                     Navigator.of(context).pop();
                                   },
-                                  buttonText: "${getTranslated('CONSULT_WITH_CONSULTANT', context)}",
+                                  buttonText:
+                                      "${getTranslated('CONSULT_WITH_CONSULTANT', context)}",
                                 ),
                               ),
                             ),
@@ -491,7 +607,6 @@ class _AIResultPageState extends State<AIResultPage>
                         ],
                       ),
 
-                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),
                     ],
@@ -564,4 +679,3 @@ class _AIResultPageState extends State<AIResultPage>
             ));
   }
 }
-

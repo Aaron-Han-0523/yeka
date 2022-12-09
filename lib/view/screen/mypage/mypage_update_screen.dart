@@ -51,7 +51,7 @@ class _MyPageUpdateScreenState
                               controller: _firstNameController,
                               labelText: "${getTranslated('ID', context)} ",
                               essentialLabelText: " *",
-                              innerPadding: const EdgeInsets.only(top: 5),
+                           //   innerPadding: const EdgeInsets.only(top: 5),
                               boxColor: Colors.black,
                               textColor:Colors.white,
                               hintText: "${getTranslated('HINT_ID', context)}",
@@ -63,7 +63,7 @@ class _MyPageUpdateScreenState
                               controller: _firstNameController,
                               labelText: "${getTranslated('PW', context)} ",
                               essentialLabelText: " *",
-                              innerPadding: const EdgeInsets.only(top: 5),
+                          //    innerPadding: const EdgeInsets.only(top: 5),
                               hintText: "${getTranslated('HINT_PW', context)}",
                             ),
 
@@ -73,7 +73,7 @@ class _MyPageUpdateScreenState
                               controller: _firstNameController,
                               labelText: "${getTranslated('CONFIRM_PW', context)} ",
                               essentialLabelText: " *",
-                              innerPadding: const EdgeInsets.only(top: 5),
+                            //  innerPadding: const EdgeInsets.only(top: 5),
                               hintText: "${getTranslated('HINT_CONFIRM_PW', context)}",
                             ),
 
@@ -83,7 +83,7 @@ class _MyPageUpdateScreenState
                               controller: _firstNameController,
                               labelText: "${getTranslated('NAME', context)} ",
                               essentialLabelText: " *",
-                              innerPadding: const EdgeInsets.only(top: 5),
+                           //   innerPadding: const EdgeInsets.only(top: 5),
                               hintText: "${getTranslated('HINT_NAME', context)}",
                             ),
 
@@ -93,7 +93,7 @@ class _MyPageUpdateScreenState
                               controller: _firstNameController,
                               labelText: "${getTranslated('PHONE', context)} ",
                               essentialLabelText: " *",
-                              innerPadding: const EdgeInsets.only(top: 5),
+                         //     innerPadding: const EdgeInsets.only(top: 5),
                               hintText: "${getTranslated('HINT_PHONE', context)}",
                             ),
 
@@ -103,7 +103,7 @@ class _MyPageUpdateScreenState
                               controller: _firstNameController,
                               labelText: "${getTranslated('EMAIL', context)} ",
                               essentialLabelText: " *",
-                              innerPadding: const EdgeInsets.only(top: 5),
+                         //     innerPadding: const EdgeInsets.only(top: 5),
                               hintText: "${getTranslated('HINT_EMAIL', context)}",
                             ),
 
@@ -142,7 +142,7 @@ class _MyPageUpdateScreenState
                                       CustomSmallRadioButton(
                                           value: radioButton,
                                           text: "${getTranslated('MALE', context)}",
-                                          padding: const EdgeInsets.only(right: 27)
+                                  //        padding: const EdgeInsets.only(right: 27)
                                       ),
                                       CustomSmallRadioButton(
                                           value: radioButton,
@@ -163,7 +163,7 @@ class _MyPageUpdateScreenState
                                     controller: _firstNameController,
                                     labelText: "${getTranslated('ADDRESS', context)} ",
                                     essentialLabelText: " *",
-                                    innerPadding: const EdgeInsets.only(top: 5),
+                                //    innerPadding: const EdgeInsets.only(top: 5),
                                     hintText: "${getTranslated('SELECT_CITY', context)}",
                                   ),
                                 ),
@@ -174,7 +174,7 @@ class _MyPageUpdateScreenState
                                       controller: _firstNameController,
                                       labelText: "",
                                       essentialLabelText: "",
-                                      innerPadding: const EdgeInsets.only(top: 5),
+                               //       innerPadding: const EdgeInsets.only(top: 5),
                                       hintText: "${getTranslated('SELECT_DISTINCT', context)}",
                                     ),
                                   ),
@@ -186,8 +186,8 @@ class _MyPageUpdateScreenState
                                controller: _firstNameController,
                                // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
                                // essentialLabelText: " *",
-                               outerPadding: const EdgeInsets.only(top: 0),
-                               innerPadding: const EdgeInsets.only(top: 5),
+                            //   outerPadding: const EdgeInsets.only(top: 0),
+                             //  innerPadding: const EdgeInsets.only(top: 5),
                                hintText: "${getTranslated('ETC_ADDRESS', context)}",
                               ),
 
@@ -198,7 +198,7 @@ class _MyPageUpdateScreenState
                               labelText:
                               "${getTranslated('COMPANY_REGISTRATION_NUMBER', context)} ",
                               // essentialLabelText: " *",
-                              innerPadding: const EdgeInsets.only(top: 5),
+                             // innerPadding: const EdgeInsets.only(top: 5),
                               hintText:
                               "${getTranslated('HINT_COMPANY_REGISTRATION_NUMBER', context)}",
                             ),
