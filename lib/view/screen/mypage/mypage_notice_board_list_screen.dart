@@ -49,8 +49,16 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
+                      const Divider(
+                        height: 1,
+                        thickness: 1,
+                        indent: 0,
+                        endIndent: 0,
+                        color: Color(0xffDDDDDD),
+                      ),
                       Container(
                         padding: EdgeInsets.fromLTRB(20, 0, 20, 75),
+                        color: Colors.white,
                         child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -122,7 +130,7 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                                                         style: TextStyle(
                                                           fontSize: 8.0,
                                                           color: Color(0xFF999999),
-                                                          // fontWeight: FontWeight.bold,
+                                                          fontWeight: FontWeight.bold,
                                                         ),
                                                       ),
                                                     ],

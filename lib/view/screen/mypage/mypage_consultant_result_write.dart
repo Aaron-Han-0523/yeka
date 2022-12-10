@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
@@ -36,7 +36,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stack(
           children: [
@@ -188,14 +188,10 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: CustomTextarea(
-                            padding : const EdgeInsets.all(0),
-                    //        labelPadding: const EdgeInsets.fromLTRB(0, 0 ,0 , 10),
+                            padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
                             labelText: "상담내용 작성",
-                    //        labelFontSize: 12,
-                    //        hintText: "상세 상담내용을 작성해주세요",
-                    //        hintTextColor: Color(0xffdddddd),
-                    //        contentPadding: const EdgeInsets.symmetric(vertical: 8),
-
+                            hintText: "상세 상담내용을 작성해주세요",
+                            contentPadding: const EdgeInsets.symmetric(vertical: 0),
                           ),
                         ),
 
@@ -405,28 +401,22 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                         ),
 
 
-                        SizedBox(
-                          height: Dimensions.PADDING_SIZE_OVER_LARGE,
-                        ),
-                        SizedBox(
-                          height: Dimensions.PADDING_SIZE_Thirty_Five,
-                        ),
-                        SizedBox(
-                          height: Dimensions.PADDING_SIZE_OVER_LARGE,
-                        ),
-                        SizedBox(
-                          height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                        ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                        SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                        SizedBox(height: Dimensions.PADDING_SIZE_Thirty_Five),
+
+                        FooterPage(),
                       ],
                     ),
                   ),
                 ),
               ],
             ),
-            Positioned(
-              bottom: 0,
-              child: FooterPage(),
-            ),
+            // Positioned(
+            //   bottom: 0,
+            //   child: FooterPage(),
+            // ),
           ],
         ),
       ),

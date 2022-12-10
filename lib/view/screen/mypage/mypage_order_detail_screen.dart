@@ -42,7 +42,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Stack(children: [
             CustomScrollView(
@@ -51,20 +51,26 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                 CustomSliverAppBar(
                   "주문 상세내역",
                 ).getAppbar(),
-
                 SliverToBoxAdapter(
-
                   child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 4),
+                  color: Colors.white,
 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const Divider(
+                          height: 1,
+                          thickness: 1,
+                          indent: 0,
+                          endIndent: 0,
+                          color: Color(0xffDDDDDD),
+                        ),
 
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                           child: Row(
                             children: [
+
                               Container(
                                 padding: const EdgeInsets.only(right: 20),
                                 child: ClipRRect(
@@ -205,21 +211,19 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           labelText: "${getTranslated('NAME', context)} ",
                           // essentialLabelText: " *",
-                    //      innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_NAME', context)}",
                         ),
 
-                        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
                         CustomLabelTextField(
                           controller: _firstNameController,
                           labelText: "${getTranslated('PHONE', context)} ",
                           // essentialLabelText: " *",
-                    //      innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_PHONE', context)}",
                         ),
 
-                        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
                         Row(
                           children: [
@@ -228,7 +232,6 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                 controller: _firstNameController,
                                 labelText: "${getTranslated('ADDRESS', context)} ",
                                 // essentialLabelText: " *",
-                        //        innerPadding: const EdgeInsets.only(top: 5),
                                 hintText: "${getTranslated('SELECT_CITY', context)}",
                               ),
                             ),
@@ -239,7 +242,6 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                   controller: _firstNameController,
                                   labelText: "",
                                   essentialLabelText: "",
-                           //       innerPadding: const EdgeInsets.only(top: 5),
                                   hintText: "${getTranslated('SELECT_DISTINCT', context)}",
                                 ),
                               ),
@@ -251,12 +253,11 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
                           // essentialLabelText: " *",
-                  //        outerPadding: const EdgeInsets.only(top: 0),
-                     //     innerPadding: const EdgeInsets.only(top: 5),
+                          padding: const EdgeInsets.only(top: 0),
                           hintText: "${getTranslated('ETC_ADDRESS', context)}",
                         ),
 
-                        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
                         CustomLabelTextField(
                           controller: _firstNameController,
@@ -269,7 +270,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                         SizedBox(height: Dimensions.PADDING_SIZE_Thirty_Five),
 
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
                             "받으시는 분",
                             style: TextStyle(
@@ -282,15 +283,13 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
 
                         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16),
-                          child: CustomSmallRadioButton(
-                            value: radioButton,
-                            text: "주문자와 동일",
-                    //        fontSize: 15,
-                            // reverse: true,
-                          ),
-                        ),
+                       CustomSmallRadioButton(
+                         value: radioButton,
+                         text: "주문자와 동일",
+                         //  fontSize: 15,
+                         // reverse: true,
+                       ),
+
 
                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
@@ -298,27 +297,24 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                           controller: _firstNameController,
                           labelText: "배송지 ",
                           // essentialLabelText: " *",
-                    //      innerPadding: const EdgeInsets.only(top: 5),
                           // hintText: "${getTranslated('HINT_NAME', context)}",
                         ),
 
-                        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
                         CustomLabelTextField(
                           controller: _firstNameController,
                           labelText: "${getTranslated('NAME', context)} ",
                           // essentialLabelText: " *",
-                   //       innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_NAME', context)}",
                         ),
 
-                        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
                         CustomLabelTextField(
                           controller: _firstNameController,
                           labelText: "${getTranslated('PHONE', context)} ",
                           // essentialLabelText: " *",
-                    //      innerPadding: const EdgeInsets.only(top: 5),
                           hintText: "${getTranslated('HINT_PHONE', context)}",
                         ),
 
@@ -338,17 +334,21 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                         // ),
                         // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
 
-                        SizedBox(height: 123),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        SizedBox(height: Dimensions.PADDING_SIZE_Thirty_Five),
+
+                        FooterPage(),
+
                       ],
                     ),
                   ),
                 )
               ],
             ),
-            Positioned(
-              bottom: 0,
-              child: FooterPage(),
-            ),
+            // Positioned(
+            //   bottom: 0,
+            //   child: FooterPage(),
+            // ),
           ]),
 
         ));

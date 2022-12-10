@@ -40,12 +40,21 @@ class _MyPageClientListScreenState extends State<MyPageClientListScreen> {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      Padding(
+                      const Divider(
+                        height: 1,
+                        thickness: 1,
+                        indent: 0,
+                        endIndent: 0,
+                        color: Color(0xffDDDDDD),
+                      ),
+
+                      Container(
                         padding: EdgeInsets.fromLTRB(
                             Dimensions.HOME_PAGE_PADDING,
                             Dimensions.HOME_PAGE_PADDING,
                             Dimensions.HOME_PAGE_PADDING,
                             Dimensions.PADDING_SIZE_LARGE),
+                        color: Colors.white,
                         child: Column(
                           children: [
 
