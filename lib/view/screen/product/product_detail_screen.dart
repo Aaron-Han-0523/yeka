@@ -5,7 +5,7 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_shipping_screen.dart';
 
-import '../../../data/model/response/review_model.dart';
+import '../../../data/model/response/product_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -16,10 +16,10 @@ import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final bool isCreateScreen;
-  final ReviewModel reviewModel;
+  final ProductModel productModel;
 
   const ProductDetailPage(
-      {Key key, this.isCreateScreen = true, this.reviewModel})
+      {Key key, this.isCreateScreen = true, this.productModel})
       : super(key: key);
 
   @override
@@ -68,9 +68,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     );
 
     if (widget.isCreateScreen == false) {
-      titleController.text = widget.reviewModel.title;
-      contentController.text = widget.reviewModel.content;
-      gradeController.text = widget.reviewModel.grade.toString();
+      titleController.text = widget.productModel.title;
+      // contentController.text = widget.productModel.content;
+      // gradeController.text = widget.productModel.grade.toString();
     } else {
       titleController.text = '';
       contentController.text = '';

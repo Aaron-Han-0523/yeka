@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:provider/provider.dart';
 
-import 'package:yeka/provider/review_provider.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_view.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/product_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
 
@@ -23,8 +23,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
   var dongDropdownItems = ["c", "D"];
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    Provider.of<ReviewProvider>(context, listen: false)
-        .getLatestReviewList(0, context, reload: reload);
+    Provider.of<ProductProvider>(context, listen: false)
+        .getLatestProductList(0, context, reload: reload);
   }
 
   @override

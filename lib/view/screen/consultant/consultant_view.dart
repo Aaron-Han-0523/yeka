@@ -5,8 +5,8 @@ import 'package:yeka/view/screen/consultant/consultant_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/model/response/review_model.dart';
-import '../../../provider/review_provider.dart';
+import '../../../data/model/response/consulting_model.dart';
+import '../../../provider/consulting_provider.dart';
 
 class ConsultantView extends StatefulWidget {
   final bool isHomePage;
@@ -30,17 +30,17 @@ class _ConsultantViewState extends State<ConsultantView> {
     widget.scrollController.addListener(() {
       if (widget.scrollController.position.maxScrollExtent ==
           widget.scrollController.position.pixels &&
-          Provider.of<ReviewProvider>(context, listen: false)
-              .latestReviewList
+          Provider.of<ConsultingProvider>(context, listen: false)
+              .latestConsultingList
               .length !=
               0 &&
-          !Provider.of<ReviewProvider>(context, listen: false)
+          !Provider.of<ConsultingProvider>(context, listen: false)
               .filterIsLoading) {
-        int pageSize = (Provider.of<ReviewProvider>(context, listen: false)
+        int pageSize = (Provider.of<ConsultingProvider>(context, listen: false)
             .latestPageSize /
             6)
             .ceil();
-        offset = Provider.of<ReviewProvider>(context, listen: false).lOffset;
+        offset = Provider.of<ConsultingProvider>(context, listen: false).lOffset;
 
         if (offset <= pageSize) {
           print('offset =====>$offset and page size ====>$pageSize');
@@ -51,16 +51,16 @@ class _ConsultantViewState extends State<ConsultantView> {
           // Provider.of<ReviewProvider>(context, listen: false)
           //     .showBottomLoader();
 
-          Provider.of<ReviewProvider>(context, listen: false)
-              .getLatestReviewList(offset, context);
+          Provider.of<ConsultingProvider>(context, listen: false)
+              .getLatestConsultingList(offset, context);
         }
       }
     });
 
-    return Consumer<ReviewProvider>(
+    return Consumer<ConsultingProvider>(
       builder: (context, reviewProvider, child) {
-        List<ReviewModel> reviewList = [];
-        reviewList = reviewProvider.latestReviewList;
+        List<ConsultingModel> reviewList = [];
+        reviewList = reviewProvider.latestConsultingList;
 
         print('========hello hello===>${reviewList.length}');
 
@@ -81,7 +81,7 @@ class _ConsultantViewState extends State<ConsultantView> {
                       shrinkWrap: true,
                       staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
                       itemBuilder: (BuildContext context, int index) {
-                        return ConsultantWidget(reviewModel: reviewList[index]);
+                        return ConsultantWidget(consultingModel: reviewList[index]);
                       },
                     )
                   : SizedBox.shrink()

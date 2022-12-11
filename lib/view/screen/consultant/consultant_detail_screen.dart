@@ -1,30 +1,15 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
-import 'package:yeka/utill/images.dart';
-import 'package:yeka/view/basewidget/rating_bar.dart';
-import 'package:yeka/view/basewidget/textarea/custom_textarea.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
-import 'package:provider/provider.dart';
 
-import '../../../data/model/response/base/api_response.dart';
-import '../../../data/model/response/clients_model.dart';
-import '../../../data/model/response/process_model.dart';
-import '../../../data/model/response/review_model.dart';
+import '../../../data/model/response/consulting_model.dart';
 import '../../../localization/language_constrants.dart';
-import '../../../provider/clients_provider.dart';
-import '../../../provider/process_provider.dart';
-import '../../../provider/review_provider.dart';
-import '../../../utill/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
-import '../../basewidget/textfield/custom_label_textfield.dart';
 import '../home/home_screens.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'consultant_detail_tab.dart';
 import 'consultant_menu_tab.dart';
@@ -32,10 +17,10 @@ import 'consultant_portfolio_tab.dart';
 
 class ConsultantDetailPage extends StatefulWidget {
   final bool isCreateScreen;
-  final ReviewModel reviewModel;
+  final ConsultingModel consultingModel;
 
   const ConsultantDetailPage(
-      {Key key, this.isCreateScreen = true, this.reviewModel})
+      {Key key, this.isCreateScreen = true, this.consultingModel})
       : super(key: key);
 
   @override
@@ -66,9 +51,9 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
     );
 
     if (widget.isCreateScreen == false) {
-      titleController.text = widget.reviewModel.title;
-      contentController.text = widget.reviewModel.content;
-      gradeController.text = widget.reviewModel.grade.toString();
+      // titleController.text = widget.consultingModel.title;
+      // contentController.text = widget.consultingModel.content;
+      // gradeController.text = widget.consultingModel.grade.toString();
     } else {
       titleController.text = '';
       contentController.text = '';

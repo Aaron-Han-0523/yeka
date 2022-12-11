@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/product_shimmer.dart';
-import 'package:yeka/view/screen/consultant/consultant_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/view/screen/product/product_widget.dart';
 
-import '../../../data/model/response/review_model.dart';
-import '../../../provider/review_provider.dart';
+import '../../../data/model/response/product_model.dart';
+import '../../../provider/product_provider.dart';
 
 class ProductView extends StatefulWidget {
   final bool isHomePage;
@@ -31,17 +30,17 @@ class _ProductViewState extends State<ProductView> {
     widget.scrollController.addListener(() {
       if (widget.scrollController.position.maxScrollExtent ==
           widget.scrollController.position.pixels &&
-          Provider.of<ReviewProvider>(context, listen: false)
-              .latestReviewList
+          Provider.of<ProductProvider>(context, listen: false)
+              .latestProductList
               .length !=
               0 &&
-          !Provider.of<ReviewProvider>(context, listen: false)
+          !Provider.of<ProductProvider>(context, listen: false)
               .filterIsLoading) {
-        int pageSize = (Provider.of<ReviewProvider>(context, listen: false)
+        int pageSize = (Provider.of<ProductProvider>(context, listen: false)
             .latestPageSize /
             6)
             .ceil();
-        offset = Provider.of<ReviewProvider>(context, listen: false).lOffset;
+        offset = Provider.of<ProductProvider>(context, listen: false).lOffset;
 
         if (offset <= pageSize) {
           print('offset =====>$offset and page size ====>$pageSize');
@@ -49,31 +48,31 @@ class _ProductViewState extends State<ProductView> {
           print('offset =====>$offset and page size ====>$pageSize');
 
           print('end of the current page');
-          // Provider.of<ReviewProvider>(context, listen: false)
+          // Provider.of<ProductProvider>(context, listen: false)
           //     .showBottomLoader();
 
-          Provider.of<ReviewProvider>(context, listen: false)
-              .getLatestReviewList(offset, context);
+          Provider.of<ProductProvider>(context, listen: false)
+              .getLatestProductList(offset, context);
         }
       }
     });
 
-    return Consumer<ReviewProvider>(
-      builder: (context, reviewProvider, child) {
-        List<ReviewModel> reviewList = [];
-        reviewList = reviewProvider.latestReviewList;
+    return Consumer<ProductProvider>(
+      builder: (context, productProvider, child) {
+        List<ProductModel> productList = [];
+        productList = productProvider.latestProductList;
 
-        print('========hello hello===>${reviewList.length}');
+        print('========hello hello===>${productList.length}');
 
         return Column(children: [
-          !reviewProvider.filterFirstLoading
-              ? reviewList.length != 0
+          !productProvider.filterFirstLoading
+              ? productList.length != 0
                   ? StaggeredGridView.countBuilder(
                       itemCount: widget.isHomePage
-                          ? reviewList.length > 4
+                          ? productList.length > 4
                               ? 4
-                              : reviewList.length
-                          : reviewList.length,
+                              : productList.length
+                          : productList.length,
                       crossAxisCount: 2,
                       padding: EdgeInsets.all(0),
                       physics: NeverScrollableScrollPhysics(),
@@ -82,13 +81,13 @@ class _ProductViewState extends State<ProductView> {
                       shrinkWrap: true,
                       staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
                       itemBuilder: (BuildContext context, int index) {
-                        return ProductWidget(reviewModel: reviewList[index]);
+                        return ProductWidget(productModel: productList[index]);
                       },
                     )
                   : SizedBox.shrink()
               : ProductShimmer(
-                  isHomePage: widget.isHomePage, isEnabled: reviewProvider.firstLoading),
-          reviewProvider.filterIsLoading
+                  isHomePage: widget.isHomePage, isEnabled: productProvider.firstLoading),
+          productProvider.filterIsLoading
               ? Center(
                   child: Padding(
                   padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),

@@ -3,11 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:yeka/provider/car_provider.dart';
-import 'package:yeka/provider/clients_provider.dart';
-import 'package:yeka/provider/process_provider.dart';
-import 'package:yeka/provider/request_provider.dart';
-import 'package:yeka/provider/review_provider.dart';
 import 'package:yeka/provider/localization_provider.dart';
 import 'package:yeka/provider/onboarding_provider.dart';
 import 'package:yeka/provider/splash_provider.dart';
@@ -21,7 +16,6 @@ import 'package:provider/provider.dart';
 import 'di_container.dart' as di;
 import 'helper/custom_delegate.dart';
 import 'localization/app_localization.dart';
-import 'provider/banner_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,16 +25,10 @@ Future<void> main() async {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => di.sl<BannerProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OnBoardingProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<SplashProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<ClientsProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<ProcessProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<RequestProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<ReviewProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<CarProvider>()),
     ],
     child: MyApp(orderId: _orderID),
   ));

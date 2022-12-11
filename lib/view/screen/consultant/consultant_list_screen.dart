@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:provider/provider.dart';
 
-import 'package:yeka/provider/review_provider.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../localization/language_constrants.dart';
@@ -22,15 +21,10 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
   var sidoDropdownItems = ["a","B"];
   var dongDropdownItems = ["c","D"];
 
-  Future<void> _loadData(BuildContext context, bool reload) async {
-    Provider.of<ReviewProvider>(context, listen: false)
-        .getLatestReviewList(0, context, reload: reload);
-  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _loadData(context, false);
   }
 
   @override

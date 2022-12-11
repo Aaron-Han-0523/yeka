@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 
 import '../../../data/model/response/process_model.dart';
 import '../../../localization/language_constrants.dart';
-import '../../../provider/process_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/radio/custom_radio_button.dart';

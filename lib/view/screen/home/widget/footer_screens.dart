@@ -4,7 +4,6 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 
 import '../../../../localization/language_constrants.dart';
-import '../../chat/chat_screen.dart';
 
 class FooterPage extends StatefulWidget {
   @override

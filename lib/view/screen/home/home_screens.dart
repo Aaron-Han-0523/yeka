@@ -7,14 +7,12 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 
 import '../../../localization/language_constrants.dart';
-import '../../../provider/banner_provider.dart';
 import '../aitest/image_upload_screen.dart';
 import '../auth/auth_screen.dart';
 import '../community/community_home_screen.dart';
 import '../consultant/consultant_list_screen.dart';
 import '../mypage/mypage_home_screen.dart';
 import '../product/product_list_screen.dart';
-import 'widget/review_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,17 +22,9 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
-  Future<void> _loadData(BuildContext context, bool reload) async {
-    Provider.of<BannerProvider>(context, listen: false)
-        .getBannerJson(reload, context);
-    // Provider.of<ReviewProvider>(context, listen: false)
-    //     .getLatestReviewList(0, context, reload: reload);
-  }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _loadData(context, false);
   }
 
   @override
@@ -193,10 +183,10 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         color: Colors.black12,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                      ReviewWidget(
-                        isHomePage: true,
-                        scrollController: _scrollController,
-                      ),
+                      // ReviewWidget(
+                      //   isHomePage: true,
+                      //   scrollController: _scrollController,
+                      // ),
                       Padding(
                         padding:
                             const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
