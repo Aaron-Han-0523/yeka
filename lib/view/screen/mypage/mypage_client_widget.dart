@@ -9,7 +9,6 @@ import 'package:yeka/utill/images.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/mypage/mypage_consultant_result_write.dart';
 import '../../../data/model/response/product_model.dart';
-import '../../../data/model/response/review_model.dart';
 import 'mypage_calendar.dart';
 
 class MyPageClientWidget extends StatelessWidget {

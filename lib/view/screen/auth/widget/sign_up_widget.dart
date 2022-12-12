@@ -13,7 +13,6 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_button.dart';
 import 'package:yeka/view/basewidget/textfield/custom_password_textfield.dart';
 import 'package:yeka/view/basewidget/textfield/custom_label_textfield.dart';
-import 'package:yeka/view/screen/auth/widget/social_login_widget.dart';
 
 // import 'package:yeka/view/screen/dashboard/dashboard_screen.dart';
 import 'package:provider/provider.dart';

@@ -13,7 +13,6 @@ import 'package:yeka/view/basewidget/textfield/custom_password_textfield.dart';
 import 'package:yeka/view/basewidget/textfield/custom_textfield.dart';
 import 'package:yeka/view/screen/auth/forget_password_screen.dart';
 import 'package:yeka/view/screen/auth/widget/mobile_verify_screen.dart';
-import 'package:yeka/view/screen/auth/widget/social_login_widget.dart';
 // import 'package:yeka/view/screen/dashboard/dashboard_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -181,11 +180,11 @@ class _SignInWidgetState extends State<SignInWidget> {
                 child: CircularProgressIndicator(
                   valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor,),),) :
               CustomButton(onTap: loginUser, buttonText: getTranslated('SIGN_IN', context)),),
-            SizedBox(width: Dimensions.PADDING_SIZE_DEFAULT),
+            // SizedBox(width: Dimensions.PADDING_SIZE_DEFAULT),
 
 
 
-            SocialLoginWidget(),
+            // SocialLoginWidget(),
             SizedBox(width: Dimensions.PADDING_SIZE_DEFAULT),
 
             Center(child: Text(getTranslated('OR', context),

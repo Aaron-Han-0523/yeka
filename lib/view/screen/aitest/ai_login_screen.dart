@@ -1,16 +1,12 @@
-import 'package:yeka/view/screen/aitest/ai_result_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/basewidget/textfield/custom_car_number_textfield.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
-import 'package:provider/provider.dart';
 
-import '../../../data/model/response/process_model.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/radio/custom_radio_button.dart';
 import '../home/home_screens.dart';

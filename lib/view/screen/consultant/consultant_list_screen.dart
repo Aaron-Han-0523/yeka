@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:yeka/utill/dimensions.dart';
-import 'package:provider/provider.dart';
 
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
@@ -20,12 +19,6 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
 
   var sidoDropdownItems = ["a","B"];
   var dongDropdownItems = ["c","D"];
-
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +46,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                               Dimensions.HOME_PAGE_PADDING,
                               20,
                               Dimensions.PADDING_SIZE_DEFAULT,
-                              Dimensions.PADDING_SIZE_SMALL),
+                              Dimensions.PADDING_SIZE_SMALL,),
                           child: Column(
                             children: [
                               SizedBox(

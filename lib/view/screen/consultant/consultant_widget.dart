@@ -4,16 +4,13 @@ import 'package:yeka/utill/app_constants.dart';
 import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
-import 'package:provider/provider.dart';
-import '../../../data/model/response/consulting_model.dart';
-import '../../../data/model/response/review_model.dart';
+import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
-import 'consultant_detail_screen.dart';
 
 class ConsultantWidget extends StatelessWidget {
-  final ConsultingModel consultingModel;
+  final UserModel userModel;
 
-  ConsultantWidget({@required this.consultingModel});
+  ConsultantWidget({@required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +39,7 @@ class ConsultantWidget extends StatelessWidget {
                 fit: BoxFit.fitHeight,
                 image: AppConstants.BASE_URL +
                     "/" +
-                    (consultingModel.client_image ?? ""),
+                    (userModel.bank1 ?? ""),
                 // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                 //     '/${bannerProvider.mainBannerList[index].photo}',
                 imageErrorBuilder: (c, o, s) =>
@@ -68,7 +65,7 @@ class ConsultantWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0,2,0,0),
                       child: Text(
-                        consultingModel.client_name ?? '',
+                        userModel.bank1 ?? '',
                         textAlign: TextAlign.center,
                         style: robotoRegular.copyWith(
                           fontSize: Dimensions.FONT_SIZE_LARGE,
@@ -104,7 +101,7 @@ class ConsultantWidget extends StatelessWidget {
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL,),
               Text(
-                consultingModel.create_date ?? '- 인천대학교',
+                userModel.create_date ?? '- 인천대학교',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
@@ -114,7 +111,7 @@ class ConsultantWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                consultingModel.consulting_title ?? '- 피부미용사자격증',
+                userModel.bank1 ?? '- 피부미용사자격증',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
@@ -124,7 +121,7 @@ class ConsultantWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                consultingModel.payment_date ?? '- 올댓뷰티아카데미',
+                userModel.bank1 ?? '- 올댓뷰티아카데미',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,

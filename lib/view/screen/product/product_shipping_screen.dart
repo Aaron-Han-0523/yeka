@@ -5,24 +5,20 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_payment_screen.dart';
 
-import '../../../data/model/response/review_model.dart';
+import '../../../data/model/response/order_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
-import '../../basewidget/dropdown/CustomDropdownButton2.dart';
 import '../../basewidget/radio/custom_small_radio_button.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
-import '../../basewidget/textfield/custom_textfield.dart';
-import '../home/home_screens.dart';
-import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 
 class ProductShippingPage extends StatefulWidget {
   final bool isCreateScreen;
-  final ReviewModel reviewModel;
+  final OrderModel orderModel;
 
   const ProductShippingPage(
-      {Key key, this.isCreateScreen = true, this.reviewModel})
+      {Key key, this.isCreateScreen = true, this.orderModel})
       : super(key: key);
 
   @override
