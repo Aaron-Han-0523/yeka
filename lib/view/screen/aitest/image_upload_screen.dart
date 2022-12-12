@@ -146,9 +146,9 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                             Container(
-                              height: 370,
+                              height: 340,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
                                     child: Container(
@@ -187,7 +187,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                         ))),
                                   )),
                             ),
-                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                            // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                           ],
                         ),
                       ),

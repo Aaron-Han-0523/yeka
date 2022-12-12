@@ -73,7 +73,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                           color: Color(0xff333333),
                         ),
                         child: Container(
-                          height: 475,
+                          height: 460,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -142,11 +142,13 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                     // )
                                     ),
                               ),
-                              SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                              // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                             ],
                           ),
                         ),
                       ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
                       Stack(
                         children: [
                           Container(

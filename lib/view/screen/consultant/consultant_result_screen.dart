@@ -735,7 +735,11 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           Text("${getTranslated('WARM', context)}"),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
+                            height: 29,
                             child: Slider(
+                              activeColor: Color(0xffdddddd),
+                              inactiveColor: Color(0xffdddddd),
+                              thumbColor: Colors.white70,
                               value: _currentSliderValue,
                               max: 100,
                               divisions: 100,
@@ -762,7 +766,11 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           Text("${getTranslated('CLEAR', context)}"),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
+                            height: 29,
                             child: Slider(
+                              activeColor: Color(0xffdddddd),
+                              inactiveColor: Color(0xffdddddd),
+                              thumbColor: Colors.white70,
                               value: _currentSliderValue,
                               max: 100,
                               divisions: 100,
@@ -791,7 +799,11 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.65,
+                          height: 29,
                           child: Slider(
+                            activeColor: Color(0xffdddddd),
+                            inactiveColor: Color(0xffdddddd),
+                            thumbColor: Colors.white70,
                             value: _currentSliderValue,
                             max: 100,
                             divisions: 100,
@@ -820,7 +832,11 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.65,
+                          height: 29,
                           child: Slider(
+                            activeColor: Color(0xffdddddd),
+                            inactiveColor: Color(0xffdddddd),
+                            thumbColor: Colors.white70,
                             value: _currentSliderValue,
                             max: 100,
                             divisions: 100,
@@ -848,7 +864,11 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.65,
+                          height: 29,
                           child: Slider(
+                            activeColor: Color(0xffdddddd),
+                            inactiveColor: Color(0xffdddddd),
+                            thumbColor: Colors.white70,
                             value: _currentSliderValue,
                             max: 100,
                             divisions: 100,
@@ -866,6 +886,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ),
                       ],
                     ),
+                    SizedBox(height: Dimensions.ICON_SIZE_DEFAULT,),
+                    SizedBox(height: Dimensions.ICON_SIZE_DEFAULT,),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
                       child: Container(
