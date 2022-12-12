@@ -12,6 +12,7 @@ import 'package:yeka/provider/menu_provider.dart';
 import 'package:yeka/provider/onboarding_provider.dart';
 import 'package:yeka/provider/option_provider.dart';
 import 'package:yeka/provider/order_provider.dart';
+import 'package:yeka/provider/product_provider.dart';
 import 'package:yeka/provider/splash_provider.dart';
 import 'package:yeka/provider/theme_provider.dart';
 import 'package:yeka/provider/user_provider.dart';
@@ -45,8 +46,9 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<MenuProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<CustomImageProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LikeCommunityProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
     ],
     child: MyApp(orderId: _orderID),
   ));
