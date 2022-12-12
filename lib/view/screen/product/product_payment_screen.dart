@@ -5,21 +5,17 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_order_screen.dart';
 
-import '../../../data/model/response/review_model.dart';
+import '../../../data/model/response/order_model.dart';
 import '../../../localization/language_constrants.dart';
-import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
-import '../../basewidget/dropdown/CustomDropdownButton2.dart';
-import '../home/home_screens.dart';
-import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 
 class ProductPaymentPage extends StatefulWidget {
   final bool isCreateScreen;
-  final ReviewModel reviewModel;
+  final OrderModel orderModel;
 
   const ProductPaymentPage(
-      {Key key, this.isCreateScreen = true, this.reviewModel})
+      {Key key, this.isCreateScreen = true, this.orderModel})
       : super(key: key);
 
   @override

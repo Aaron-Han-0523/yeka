@@ -5,8 +5,8 @@ import 'package:yeka/view/screen/consultant/consultant_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/model/response/review_model.dart';
-import '../../../provider/review_provider.dart';
+import '../../../data/model/response/user_model.dart';
+import '../../../provider/user_provider.dart';
 
 class ConsultantView extends StatefulWidget {
   final bool isHomePage;
@@ -30,17 +30,17 @@ class _ConsultantViewState extends State<ConsultantView> {
     widget.scrollController.addListener(() {
       if (widget.scrollController.position.maxScrollExtent ==
           widget.scrollController.position.pixels &&
-          Provider.of<ReviewProvider>(context, listen: false)
-              .latestReviewList
+          Provider.of<UserProvider>(context, listen: false)
+              .latestUserList
               .length !=
               0 &&
-          !Provider.of<ReviewProvider>(context, listen: false)
+          !Provider.of<UserProvider>(context, listen: false)
               .filterIsLoading) {
-        int pageSize = (Provider.of<ReviewProvider>(context, listen: false)
+        int pageSize = (Provider.of<UserProvider>(context, listen: false)
             .latestPageSize /
             6)
             .ceil();
-        offset = Provider.of<ReviewProvider>(context, listen: false).lOffset;
+        offset = Provider.of<UserProvider>(context, listen: false).lOffset;
 
         if (offset <= pageSize) {
           print('offset =====>$offset and page size ====>$pageSize');
@@ -48,31 +48,29 @@ class _ConsultantViewState extends State<ConsultantView> {
           print('offset =====>$offset and page size ====>$pageSize');
 
           print('end of the current page');
-          // Provider.of<ReviewProvider>(context, listen: false)
-          //     .showBottomLoader();
 
-          Provider.of<ReviewProvider>(context, listen: false)
-              .getLatestReviewList(offset, context);
+          Provider.of<UserProvider>(context, listen: false)
+              .getLatestUserList(offset, context);
         }
       }
     });
 
-    return Consumer<ReviewProvider>(
-      builder: (context, reviewProvider, child) {
-        List<ReviewModel> reviewList = [];
-        reviewList = reviewProvider.latestReviewList;
+    return Consumer<UserProvider>(
+      builder: (context, userProvider, child) {
+        List<UserModel> userList = [];
+        userList = userProvider.latestUserList;
 
-        print('========hello hello===>${reviewList.length}');
+        print('========hello hello===>${userList.length}');
 
         return Column(children: [
-          !reviewProvider.filterFirstLoading
-              ? reviewList.length != 0
+          !userProvider.filterFirstLoading
+              ? userList.length != 0
                   ? StaggeredGridView.countBuilder(
                       itemCount: widget.isHomePage
-                          ? reviewList.length > 4
+                          ? userList.length > 4
                               ? 4
-                              : reviewList.length
-                          : reviewList.length,
+                              : userList.length
+                          : userList.length,
                       crossAxisCount: 2,
                       padding: EdgeInsets.all(0),
                       physics: NeverScrollableScrollPhysics(),
@@ -81,13 +79,13 @@ class _ConsultantViewState extends State<ConsultantView> {
                       shrinkWrap: true,
                       staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
                       itemBuilder: (BuildContext context, int index) {
-                        return ConsultantWidget(reviewModel: reviewList[index]);
+                        return ConsultantWidget(userModel: userList[index]);
                       },
                     )
                   : SizedBox.shrink()
               : ProductShimmer(
-                  isHomePage: widget.isHomePage, isEnabled: reviewProvider.firstLoading),
-          reviewProvider.filterIsLoading
+                  isHomePage: widget.isHomePage, isEnabled: userProvider.firstLoading),
+          userProvider.filterIsLoading
               ? Center(
                   child: Padding(
                   padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),

@@ -8,7 +8,6 @@ import 'package:yeka/data/datasource/remote/exception/api_error_handler.dart';
 import 'package:yeka/data/model/body/login_model.dart';
 import 'package:yeka/data/model/body/register_model.dart';
 import 'package:yeka/data/model/response/base/api_response.dart';
-import 'package:yeka/data/model/response/social_login_model.dart';
 import 'package:yeka/utill/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,20 +15,6 @@ class AuthRepo {
   final DioClient dioClient;
   final SharedPreferences sharedPreferences;
   AuthRepo({@required this.dioClient, @required this.sharedPreferences});
-
-
-  Future<ApiResponse> socialLogin(SocialLoginModel socialLogin) async {
-    try {
-      Response response = await dioClient.post(
-        AppConstants.SOCIAL_LOGIN_URI,
-        data: socialLogin.toJson(),
-      );
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-
 
 
   Future<ApiResponse> registration(RegisterModel register) async {

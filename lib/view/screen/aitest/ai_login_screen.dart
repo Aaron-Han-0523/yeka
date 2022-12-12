@@ -1,17 +1,12 @@
-import 'package:yeka/view/screen/aitest/ai_result_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/basewidget/textfield/custom_car_number_textfield.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
-import 'package:provider/provider.dart';
 
-import '../../../data/model/response/process_model.dart';
-import '../../../provider/process_provider.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/radio/custom_radio_button.dart';
 import '../home/home_screens.dart';
@@ -162,32 +157,7 @@ class _AILoginPageState extends State<AILoginPage>
                         child: _radioValue && _inputFormValue
                             ? CustomElevatedButton(
                                 onTap: () async {
-                                  //ref 국토부 조회 api 연동
-                                  String model = "K7";
-                                  String yearModel = "22년형";
-                                  String enrollDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(DateFormat('yyyy-MM-ddTHH:mm:ssZ').parse('2020-01-02T03:04:05Z'));
 
-                                  ProcessModel processModel = ProcessModel(
-                                    // state: 1,
-                                    carNum: _textEditingController.text,
-                                    model: model,
-                                    yearModel: yearModel,
-                                    registerDate: enrollDate,
-                                  );
-
-                                  await Provider.of<ProcessProvider>(context, listen: false)
-                                      .getProcessByCarNum(processModel);
-
-                                  //ref 기존 차판번호가 등록되어 있으면서, process state 가 1 이면 '폐라를 진행중입니다.' 알럿을 띄우고 홈으로 간다. 아니면 그냥 진행한다.
-                                  if(Provider.of<ProcessProvider>(context, listen: false).process == null) {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => AIResultPage(),
-                                      ),
-                                    );
-                                  } else {
-                                    _showDialog();
-                                  }
                                 },
                                 buttonText: '내 차 정보 보기',
                               )

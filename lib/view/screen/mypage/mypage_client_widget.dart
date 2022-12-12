@@ -6,17 +6,15 @@ import 'package:yeka/utill/app_constants.dart';
 import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
-import 'package:provider/provider.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/mypage/mypage_consultant_result_write.dart';
-import '../../../data/model/response/review_model.dart';
-import '../../../provider/review_provider.dart';
+import '../../../data/model/response/product_model.dart';
 import 'mypage_calendar.dart';
 
 class MyPageClientWidget extends StatelessWidget {
-  final ReviewModel reviewModel;
+  final ProductModel productModel;
 
-  MyPageClientWidget({@required this.reviewModel});
+  MyPageClientWidget({@required this.productModel});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +53,7 @@ class MyPageClientWidget extends StatelessWidget {
                 fit: BoxFit.fitHeight,
                 image: AppConstants.BASE_URL +
                     "/" +
-                    (reviewModel.attachedFilepath1 ?? ""),
+                    (productModel.tag ?? ""),
                 // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                 //     '/${bannerProvider.mainBannerList[index].photo}',
                 imageErrorBuilder: (c, o, s) => Image.asset(
@@ -105,7 +103,7 @@ class MyPageClientWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      reviewModel.custom2 ?? '상담명',
+                      productModel.tag ?? '상담명',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -115,7 +113,7 @@ class MyPageClientWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      reviewModel.custom2 ?? '피부 ? 나한테 모든지 물어봐 !',
+                      productModel.tag ?? '피부 ? 나한테 모든지 물어봐 !',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -129,7 +127,7 @@ class MyPageClientWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      reviewModel.custom2 ?? '연락처',
+                      productModel.tag ?? '연락처',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -138,7 +136,7 @@ class MyPageClientWidget extends StatelessWidget {
                       // maxLines: 2,
                     ),
                     Text(
-                      reviewModel.custom2 ?? '010-0000-0000',
+                      productModel.tag ?? '010-0000-0000',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -156,7 +154,7 @@ class MyPageClientWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      reviewModel.custom2 ?? '상담 진행 대기',
+                      productModel.tag ?? '상담 진행 대기',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -167,7 +165,7 @@ class MyPageClientWidget extends StatelessWidget {
                     Container(
                       width: 80,
                       child:
-                      reviewModel.carInfo_id??Random().nextInt(2) == 1?
+                      productModel.tag??Random().nextInt(2) == 1?
                       CustomElevatedButton(
                         onTap: () {
                           Navigator.push(

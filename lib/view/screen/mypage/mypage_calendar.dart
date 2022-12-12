@@ -42,35 +42,79 @@ class _MyPageCalendarScreenState extends State<MyPageCalendarScreen> {
                   "날짜 선택",
                 ).getAppbar(),
                 SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                      // CustomElevatedButton(
-                      //     onTap: () {}, buttonText: "더보기 ∨"),
-                      Text("$selectDate"),
-
-                      Container(
-                        child: SfDateRangePicker(
-                          onSelectionChanged: _onSelectionChanged,
-                          selectionMode: DateRangePickerSelectionMode.single,
+                  child: Container(
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        const Divider(
+                          height: 1,
+                          thickness: 1,
+                          indent: 0,
+                          endIndent: 0,
+                          color: Color(0xffDDDDDD),
                         ),
-                      ),
 
-                      const Divider(
-                        height: 5,
-                        thickness: 1,
-                        indent: 10,
-                        endIndent: 10,
-                        color: Colors.black12,
-                      ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                        // CustomElevatedButton(
+                        //     onTap: () {}, buttonText: "더보기 ∨"),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                              children: [
+                                Container(
+                                  width: 92,
+                                  height: 25,
+                                  padding: EdgeInsets.fromLTRB(10, 7, 10, 7),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xff121212),
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Text(
+                                      "$selectDate",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ),
 
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                      SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                      ),
-                    ],
+
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+
+                          child: SfDateRangePicker(
+                            onSelectionChanged: _onSelectionChanged,
+                            selectionMode: DateRangePickerSelectionMode.single,
+                          ),
+                        ),
+
+                        const Divider(
+                          height: 0,
+                          thickness: 1,
+                          indent: 0,
+                          endIndent: 0,
+                          color: Colors.black12,
+                        ),
+
+                        // CustomElevatedButton(
+                        //   onTap: () {},
+                        //   buttonText: "적용",
+                        //   padding: const EdgeInsets.symmetric(horizontal: 15),
+                        // ),
+
+
+                        SizedBox(
+                          height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
+                        ),
+                        // SizedBox(
+                        //   height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
+                        // ),
+                      ],
+                    ),
                   ),
                 ),
               ],

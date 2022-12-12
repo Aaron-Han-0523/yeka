@@ -3,15 +3,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:yeka/provider/car_provider.dart';
-import 'package:yeka/provider/clients_provider.dart';
-import 'package:yeka/provider/process_provider.dart';
-import 'package:yeka/provider/request_provider.dart';
-import 'package:yeka/provider/review_provider.dart';
+import 'package:yeka/provider/auth_provider.dart';
+import 'package:yeka/provider/community_provider.dart';
+import 'package:yeka/provider/consulting_provider.dart';
+import 'package:yeka/provider/like_community_provider.dart';
 import 'package:yeka/provider/localization_provider.dart';
+import 'package:yeka/provider/menu_provider.dart';
 import 'package:yeka/provider/onboarding_provider.dart';
+import 'package:yeka/provider/option_provider.dart';
+import 'package:yeka/provider/order_provider.dart';
+import 'package:yeka/provider/product_provider.dart';
 import 'package:yeka/provider/splash_provider.dart';
 import 'package:yeka/provider/theme_provider.dart';
+import 'package:yeka/provider/user_provider.dart';
+import 'package:yeka/provider/image_provider.dart';
 import 'package:yeka/theme/dark_theme.dart';
 import 'package:yeka/theme/light_theme.dart';
 import 'package:yeka/utill/app_constants.dart';
@@ -21,7 +26,6 @@ import 'package:provider/provider.dart';
 import 'di_container.dart' as di;
 import 'helper/custom_delegate.dart';
 import 'localization/app_localization.dart';
-import 'provider/banner_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,16 +35,20 @@ Future<void> main() async {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => di.sl<BannerProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OnBoardingProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<SplashProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<ClientsProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<ProcessProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<RequestProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<ReviewProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<CarProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<ConsultingProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<UserProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<CommunityProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<OptionProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<MenuProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<CustomImageProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<LikeCommunityProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
     ],
     child: MyApp(orderId: _orderID),
   ));

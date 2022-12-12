@@ -4,7 +4,6 @@ import 'package:yeka/data/model/body/register_model.dart';
 import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/data/model/response/base/error_response.dart';
 import 'package:yeka/data/model/response/response_model.dart';
-import 'package:yeka/data/model/response/social_login_model.dart';
 import 'package:yeka/data/repository/auth_repo.dart';
 import 'package:yeka/helper/api_checker.dart';
 
@@ -22,7 +21,6 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
   bool get isLoading => _isLoading;
   bool get isRemember => _isRemember;
 
@@ -30,57 +28,6 @@ class AuthProvider with ChangeNotifier {
     _isRemember = value;
     notifyListeners();
   }
-
-  Future socialLogin(SocialLoginModel socialLogin, Function callback) async {
-    _isLoading = true;
-    notifyListeners();
-    ApiResponse apiResponse = await authRepo.socialLogin(socialLogin);
-    _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      Map map = apiResponse.response.data;
-      String message = '';
-      String token = '';
-      String temporaryToken= '';
-      try{
-        message = map['error_message'];
-
-      }catch(e){
-
-      }
-      try{
-        token = map['token'];
-
-      }catch(e){
-
-      }
-      try{
-        temporaryToken = map['temporary_token'];
-
-      }catch(e){
-
-      }
-
-      if(token != null){
-        authRepo.saveUserToken(token);
-        await authRepo.updateToken();
-      }
-      callback(true, token,temporaryToken,message );
-      notifyListeners();
-    } else {
-      String errorMessage;
-      if (apiResponse.error is String) {
-        print(apiResponse.error.toString());
-        errorMessage = apiResponse.error.toString();
-      } else {
-        ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.errors[0].message);
-        errorMessage = errorResponse.errors[0].message;
-      }
-      callback(false, '', '',errorMessage);
-      notifyListeners();
-    }
-  }
-
 
   Future registration(RegisterModel register, Function callback) async {
     _isLoading = true;

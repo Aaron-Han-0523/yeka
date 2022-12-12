@@ -5,10 +5,10 @@ import 'package:yeka/data/repository/image_repo.dart';
 import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
-class ImageProvider extends ChangeNotifier {
+class CustomImageProvider extends ChangeNotifier {
   final ImageRepo imageRepo;
 
-  ImageProvider({@required this.imageRepo});
+  CustomImageProvider({@required this.imageRepo});
 
   ImageModel _image;
 

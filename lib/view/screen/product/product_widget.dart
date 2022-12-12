@@ -5,32 +5,32 @@ import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 import 'package:provider/provider.dart';
-import '../../../data/model/response/review_model.dart';
-import '../../../provider/review_provider.dart';
+import '../../../data/model/response/product_model.dart';
+import '../../../provider/product_provider.dart';
 import 'product_detail_screen.dart';
 
 class ProductWidget extends StatelessWidget {
-  final ReviewModel reviewModel;
+  final ProductModel productModel;
 
-  ProductWidget({@required this.reviewModel});
+  ProductWidget({@required this.productModel});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        reviewModel.custom1 =
-            (int.parse(reviewModel.custom1 ?? "0") + 1).toString();
+        // productModel.custom1 =
+        //     (int.parse(productModel.custom1 ?? "0") + 1).toString();
         // reviewModel.carInfo_id = 1;
 
-        Provider.of<ReviewProvider>(context, listen: false)
-            .updateReview(reviewModel);
+        Provider.of<ProductProvider>(context, listen: false)
+            .updateProduct(productModel);
 
         Navigator.push(
           context,
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 1000),
             pageBuilder: (context, anim1, anim2) => ProductDetailPage(
-                reviewModel: reviewModel, isCreateScreen: false),
+                productModel: productModel, isCreateScreen: false),
           ),
         );
       },
@@ -50,7 +50,7 @@ class ProductWidget extends StatelessWidget {
                     fit: BoxFit.fitHeight,
                     image: AppConstants.BASE_URL +
                         "/" +
-                        (reviewModel.attachedFilepath1 ?? ""),
+                        (productModel.title ?? ""),
                     // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                     //     '/${bannerProvider.mainBannerList[index].photo}',
                     imageErrorBuilder: (c, o, s) => Image.asset(
@@ -107,55 +107,7 @@ class ProductWidget extends StatelessWidget {
                           color: Color(0xff000000),
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        "#노화된 피부",
-                        style: TextStyle(
-                          fontSize: 6,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(
-                        6.0,
-                        2.0,
-                        5.0,
-                        2.0,
-                      ),
-                      margin: const EdgeInsets.fromLTRB(
-                        6.0,
-                        2.0,
-                        6.0,
-                        2.0,
-                      ),
-                      decoration: BoxDecoration(
-                          color: Color(0xff000000),
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Text(
-                        "#여드름 제거",
-                        style: TextStyle(
-                          fontSize: 6,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(
-                        6.0,
-                        2.0,
-                        5.0,
-                        2.0,
-                      ),
-                      margin: const EdgeInsets.fromLTRB(
-                        6.0,
-                        2.0,
-                        6.0,
-                        2.0,
-                      ),
-                      decoration: BoxDecoration(
-                          color: Color(0xff000000),
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Text(
-                        "여드름 제거",
+                        productModel.tag,
                         style: TextStyle(
                           fontSize: 6,
                           color: Color(0xffffffff),
@@ -187,7 +139,7 @@ class ProductWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        reviewModel.custom2 ?? '마르지 않는 피부의 비밀마르지안는',
+                        productModel.title ?? '마르지 않는 피부의 비밀마르지안는',
                         textAlign: TextAlign.center,
                         style: robotoRegular.copyWith(
                           fontSize: 7,
@@ -198,7 +150,7 @@ class ProductWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      reviewModel.custom2 ?? '25,000원',
+                      productModel.price ?? '25,000원',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,

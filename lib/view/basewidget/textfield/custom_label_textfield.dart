@@ -39,6 +39,7 @@ class CustomLabelTextField extends StatelessWidget {
   final EdgeInsets padding;
   final double hintSize;
   final double hintSize_InputDecoration;
+  final Color hintColor;
 
   CustomLabelTextField({
     this.labelText = "",
@@ -69,6 +70,7 @@ class CustomLabelTextField extends StatelessWidget {
     this.padding = const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 2.0),
     this.hintSize = 12,
     this.hintSize_InputDecoration = 12,
+    this.hintColor,
   });
 
   @override
@@ -108,7 +110,7 @@ class CustomLabelTextField extends StatelessWidget {
                 : Container(),
             Container(
               // width: double.infinity,
-              // padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 12.0),
+              padding: const EdgeInsets.only(top: 5.0),
               height: height,
               decoration: BoxDecoration(
                 border:
@@ -164,6 +166,7 @@ class CustomLabelTextField extends StatelessWidget {
                   hintText: hintText ?? '',
                   hintStyle: TextStyle(
                       fontSize: this.hintSize_InputDecoration,
+                      color: hintColor,
                   ),
                   filled: fillColor != null,
                   fillColor: fillColor,

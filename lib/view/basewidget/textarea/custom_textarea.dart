@@ -12,6 +12,9 @@ class CustomTextarea extends StatelessWidget {
   final String radioText;
   final double label_fontSize;
   final EdgeInsets padding;
+  final String hintText;
+  final EdgeInsetsGeometry contentPadding;
+  final double hintSize;
 
   CustomTextarea({
     this.isBorder = true,
@@ -21,6 +24,9 @@ class CustomTextarea extends StatelessWidget {
     this.radioText = "",
     this.label_fontSize = 15,
     this.padding = const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
+    this.hintText = '서비스 이용약관 제1조',
+    this.contentPadding = const EdgeInsets.all(10),
+    this.hintSize = 9,
   });
 
   @override
@@ -93,11 +99,15 @@ class CustomTextarea extends StatelessWidget {
                     maxLines: null,
                     minLines: 10,
                     decoration: InputDecoration(
-                      hintStyle: TextStyle(fontSize: 9),
-                      hintText: '서비스 이용약관 제1조',
+                      hintStyle: TextStyle(
+                        fontSize: hintSize,
+                        color: Color(0xffdddddd),
+                      ),
+                      hintText: hintText,
+
                       hintMaxLines: 5,
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(10),
+                      contentPadding: contentPadding,
                     ),
                     // readOnly: true,
                     style: TextStyle(

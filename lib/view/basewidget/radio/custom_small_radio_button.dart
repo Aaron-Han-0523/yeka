@@ -5,8 +5,14 @@ class CustomSmallRadioButton extends StatelessWidget {
   final bool value;
   final String text;
   final bool reverse;
+  final EdgeInsetsGeometry padding;
 
-  CustomSmallRadioButton({this.value, this.text, this.reverse = false});
+  CustomSmallRadioButton({
+    this.value,
+    this.text,
+    this.reverse = false,
+    this.padding = const EdgeInsets.fromLTRB(20, 0, 0, 0),
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +49,7 @@ class CustomSmallRadioButton extends StatelessWidget {
             ],
           )
         : Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+          padding: padding,
           child: Row(
               // mainAxisAlignment: MainAxisAlignment.start,
               children: [
