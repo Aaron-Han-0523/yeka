@@ -135,7 +135,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                       TabBar(
                         controller: _tabController,
                         unselectedLabelColor: Color(0xffdddddd),
-                        indicatorColor: Color(0xff333333),
+                        // indicatorColor: Color(0xff333333),
                         labelColor: Color(0xff333333),
                         tabs: [
                           Tab(
