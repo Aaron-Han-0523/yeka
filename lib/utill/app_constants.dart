@@ -5,7 +5,8 @@ class AppConstants {
   static const String APP_VERSION = '1.0';
 
   // static const String BASE_URL = 'https://6valley.6amtech.com';
-  static const String BASE_URL = 'http://52.79.240.88';
+  // static const String BASE_URL = 'http://52.79.240.88';
+  static const String BASE_URL = 'http://172.30.1.95:3000';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
@@ -24,7 +25,7 @@ class AppConstants {
   static const String GET_AUTO_URI ="/api/auto";
 
   // USER
-  static const String ADD_USER_URI ="/api/user";
+  static const String ADD_USER_URI = "/api/user";
   static const String UPDATE_USER_URI ="/api/user";
   static const String DELETE_USER_URI ="/api/user";
   static const String LIST_USER_URI ="/api/user";

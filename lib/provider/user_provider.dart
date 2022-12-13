@@ -74,8 +74,8 @@ class UserProvider extends ChangeNotifier {
       ApiResponse apiResponse = await userRepo.getUserList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestUserList.addAll(UserList.fromJson(apiResponse.response.data).userList);
-        _latestPageSize = UserList.fromJson(apiResponse.response.data).count;
+        _latestUserList.addAll(UserList.fromList(apiResponse.response.data).userList);
+        _latestPageSize = UserList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

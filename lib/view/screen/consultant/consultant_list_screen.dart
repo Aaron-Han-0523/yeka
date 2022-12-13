@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/user_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
 import 'consultant_view.dart';
@@ -19,6 +21,17 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
 
   var sidoDropdownItems = ["a","B"];
   var dongDropdownItems = ["c","D"];
+
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    Provider.of<UserProvider>(context, listen: false)
+        .getLatestUserList(0, context, reload: reload);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData(context, false);
+  }
 
   @override
   Widget build(BuildContext context) {
