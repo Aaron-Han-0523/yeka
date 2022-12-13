@@ -150,7 +150,7 @@ class ProductWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      productModel.price ?? '25,000원',
+                      "${productModel.price}" ?? '25,000원',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
