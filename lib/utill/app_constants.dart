@@ -1,83 +1,89 @@
 import 'package:yeka/data/model/response/language_model.dart';
 
 class AppConstants {
-  static const String APP_NAME = 'PECHAGO';
+  static const String APP_NAME = 'YEKA';
   static const String APP_VERSION = '1.0';
 
   // static const String BASE_URL = 'https://6valley.6amtech.com';
-  static const String BASE_URL = 'http://52.79.240.88';
+  // static const String BASE_URL = 'http://52.79.240.88';
+  static const String BASE_URL = 'http://172.30.1.95:3000';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
-  // AUTO (autoGen sample)
-  static const String ADD_AUTO_URI = "";
-  static const String UPDATE_AUTO_URI = "";
-  static const String DELETE_AUTO_URI = "";
-  static const String LIST_AUTO_URI = "";
-  static const String GET_AUTO_URI = "";
+  // ORDER
+  static const String ADD_ORDER_URI ="/api/order";
+  static const String UPDATE_ORDER_URI ="/api/order";
+  static const String DELETE_ORDER_URI ="/api/order";
+  static const String LIST_ORDER_URI ="/api/order";
+  static const String GET_ORDER_URI ="/api/order";
+
+  // AUTO
+  static const String ADD_AUTO_URI ="/api/auto";
+  static const String UPDATE_AUTO_URI ="/api/auto";
+  static const String DELETE_AUTO_URI ="/api/auto";
+  static const String LIST_AUTO_URI ="/api/auto";
+  static const String GET_AUTO_URI ="/api/auto";
+
+  // USER
+  static const String ADD_USER_URI = "/api/user";
+  static const String UPDATE_USER_URI ="/api/user";
+  static const String DELETE_USER_URI ="/api/user";
+  static const String LIST_USER_URI ="/api/user";
+  static const String GET_USER_URI ="/api/user";
+
+  // OPTION
+  static const String ADD_OPTION_URI ="/api/option";
+  static const String UPDATE_OPTION_URI ="/api/option";
+  static const String DELETE_OPTION_URI ="/api/option";
+  static const String LIST_OPTION_URI ="/api/option";
+  static const String GET_OPTION_URI ="/api/option";
 
   // PRODUCT
-  static const String ADD_PRODUCT_URI = "";
-  static const String UPDATE_PRODUCT_URI = "";
-  static const String DELETE_PRODUCT_URI = "";
-  static const String LIST_PRODUCT_URI = "";
-  static const String GET_PRODUCT_URI = "";
+  static const String ADD_PRODUCT_URI ="/api/product";
+  static const String UPDATE_PRODUCT_URI ="/api/product";
+  static const String DELETE_PRODUCT_URI ="/api/product";
+  static const String LIST_PRODUCT_URI ="/api/product";
+  static const String GET_PRODUCT_URI ="/api/product";
 
-// ORDER
-  static const String ADD_ORDER_URI = "";
-  static const String UPDATE_ORDER_URI = "";
-  static const String DELETE_ORDER_URI = "";
-  static const String LIST_ORDER_URI = "";
-  static const String GET_ORDER_URI = "";
+  // IMAGE
+  static const String ADD_IMAGE_URI ="/api/image";
+  static const String UPDATE_IMAGE_URI ="/api/image";
+  static const String DELETE_IMAGE_URI ="/api/image";
+  static const String LIST_IMAGE_URI ="/api/image";
+  static const String GET_IMAGE_URI ="/api/image";
 
-// USER
-  static const String ADD_USER_URI = "";
-  static const String UPDATE_USER_URI = "";
-  static const String DELETE_USER_URI = "";
-  static const String LIST_USER_URI = "";
-  static const String GET_USER_URI = "";
+  // LIKE_COMMUNITY
+  static const String ADD_LIKE_COMMUNITY_URI ="/api/like_community";
+  static const String UPDATE_LIKE_COMMUNITY_URI ="/api/like_community";
+  static const String DELETE_LIKE_COMMUNITY_URI ="/api/like_community";
+  static const String LIST_LIKE_COMMUNITY_URI ="/api/like_community";
+  static const String GET_LIKE_COMMUNITY_URI ="/api/like_community";
 
-// CONSULTING
-  static const String ADD_CONSULTING_URI = "";
-  static const String UPDATE_CONSULTING_URI = "";
-  static const String DELETE_CONSULTING_URI = "";
-  static const String LIST_CONSULTING_URI = "";
-  static const String GET_CONSULTING_URI = "";
+  // CONSULTING
+  static const String ADD_CONSULTING_URI ="/api/consulting";
+  static const String UPDATE_CONSULTING_URI ="/api/consulting";
+  static const String DELETE_CONSULTING_URI ="/api/consulting";
+  static const String LIST_CONSULTING_URI ="/api/consulting";
+  static const String GET_CONSULTING_URI ="/api/consulting";
 
-// MENU
-  static const String ADD_MENU_URI = "";
-  static const String UPDATE_MENU_URI = "";
-  static const String DELETE_MENU_URI = "";
-  static const String LIST_MENU_URI = "";
-  static const String GET_MENU_URI = "";
+  // MENU
+  static const String ADD_MENU_URI ="/api/menu";
+  static const String UPDATE_MENU_URI ="/api/menu";
+  static const String DELETE_MENU_URI ="/api/menu";
+  static const String LIST_MENU_URI ="/api/menu";
+  static const String GET_MENU_URI ="/api/menu";
 
-// COMMUNITY
-  static const String ADD_COMMUNITY_URI = "";
-  static const String UPDATE_COMMUNITY_URI = "";
-  static const String DELETE_COMMUNITY_URI = "";
-  static const String LIST_COMMUNITY_URI = "";
-  static const String GET_COMMUNITY_URI = "";
+  // COMMUNITY
+  static const String ADD_COMMUNITY_URI ="/api/community";
+  static const String UPDATE_COMMUNITY_URI ="/api/community";
+  static const String DELETE_COMMUNITY_URI ="/api/community";
+  static const String LIST_COMMUNITY_URI ="/api/community";
+  static const String GET_COMMUNITY_URI ="/api/community";
 
-// LIKE_COMMUNITY
-  static const String ADD_LIKE_COMMUNITY_URI = "";
-  static const String UPDATE_LIKE_COMMUNITY_URI = "";
-  static const String DELETE_LIKE_COMMUNITY_URI = "";
-  static const String LIST_LIKE_COMMUNITY_URI = "";
-  static const String GET_LIKE_COMMUNITY_URI = "";
 
-// IMAGE
-  static const String ADD_IMAGE_URI = "";
-  static const String UPDATE_IMAGE_URI = "";
-  static const String DELETE_IMAGE_URI = "";
-  static const String LIST_IMAGE_URI = "";
-  static const String GET_IMAGE_URI = "";
 
-// OPTION
-  static const String ADD_OPTION_URI = "";
-  static const String UPDATE_OPTION_URI = "";
-  static const String DELETE_OPTION_URI = "";
-  static const String LIST_OPTION_URI = "";
-  static const String GET_OPTION_URI = "";
+
+
 
 
   static const String MAIN_BANNER_URI = '/api/imageSetting';

@@ -31,7 +31,7 @@ class CommunityRepo {
 
     try {
       var response = await dioClient.post(
-        AppConstants.ADD_AUTO_URI,
+        AppConstants.ADD_COMMUNITY_URI,
         data: formData,
       );
 
@@ -53,7 +53,7 @@ class CommunityRepo {
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${communityModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_COMMUNITY_URI + "/${communityModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -63,7 +63,7 @@ class CommunityRepo {
   Future<ApiResponse> deleteCommunity(CommunityModel communityModel) async {
     try {
       final response = await dioClient.delete(
-        AppConstants.DELETE_AUTO_URI +
+        AppConstants.DELETE_COMMUNITY_URI +
             "/${communityModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
       );
       return ApiResponse.withSuccess(response);
@@ -76,7 +76,7 @@ class CommunityRepo {
   Future<ApiResponse> getCommunityList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_AUTO_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_COMMUNITY_URI + "?limit=$limit&skip=$skip",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -87,7 +87,7 @@ class CommunityRepo {
   Future<ApiResponse> getCommunity(CommunityModel communityModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_AUTO_URI + "/${communityModel.id}",
+        AppConstants.GET_COMMUNITY_URI + "/${communityModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -96,8 +96,8 @@ class CommunityRepo {
   }
 }
 
-// static const String ADD_AUTO_URI ="";
-// static const String UPDATE_AUTO_URI ="";
-// static const String DELETE_AUTO_URI ="";
-// static const String LIST_AUTO_URI ="";
-// static const String GET_AUTO_URI ="";
+// static const String ADD_COMMUNITY_URI ="";
+// static const String UPDATE_COMMUNITY_URI ="";
+// static const String DELETE_COMMUNITY_URI ="";
+// static const String LIST_COMMUNITY_URI ="";
+// static const String GET_COMMUNITY_URI ="";

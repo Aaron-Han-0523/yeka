@@ -74,8 +74,8 @@ class AutoProvider extends ChangeNotifier {
       ApiResponse apiResponse = await autoRepo.getAutoList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestAutoList.addAll(AutoList.fromJson(apiResponse.response.data).autoList);
-        _latestPageSize = AutoList.fromJson(apiResponse.response.data).count;
+        _latestAutoList.addAll(AutoList.fromList(apiResponse.response.data).autoList);
+        _latestPageSize = AutoList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

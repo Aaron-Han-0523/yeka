@@ -74,8 +74,8 @@ class OrderProvider extends ChangeNotifier {
       ApiResponse apiResponse = await orderRepo.getOrderList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestOrderList.addAll(OrderList.fromJson(apiResponse.response.data).orderList);
-        _latestPageSize = OrderList.fromJson(apiResponse.response.data).count;
+        _latestOrderList.addAll(OrderList.fromList(apiResponse.response.data).orderList);
+        _latestPageSize = OrderList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

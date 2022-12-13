@@ -74,8 +74,8 @@ class ProductProvider extends ChangeNotifier {
       ApiResponse apiResponse = await productRepo.getProductList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestProductList.addAll(ProductList.fromJson(apiResponse.response.data).productList);
-        _latestPageSize = ProductList.fromJson(apiResponse.response.data).count;
+        _latestProductList.addAll(ProductList.fromList(apiResponse.response.data).productList);
+        _latestPageSize = ProductList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

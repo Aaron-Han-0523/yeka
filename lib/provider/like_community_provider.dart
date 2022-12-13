@@ -74,8 +74,8 @@ class LikeCommunityProvider extends ChangeNotifier {
       ApiResponse apiResponse = await likeCommunityRepo.getLikeCommunityList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestLikeCommunityList.addAll(LikeCommunityList.fromJson(apiResponse.response.data).likeCommunityList);
-        _latestPageSize = LikeCommunityList.fromJson(apiResponse.response.data).count;
+        _latestLikeCommunityList.addAll(LikeCommunityList.fromList(apiResponse.response.data).likeCommunityList);
+        _latestPageSize = LikeCommunityList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

@@ -31,7 +31,7 @@ class OrderRepo {
 
     try {
       var response = await dioClient.post(
-        AppConstants.ADD_AUTO_URI,
+        AppConstants.ADD_ORDER_URI,
         data: formData,
       );
 
@@ -53,7 +53,7 @@ class OrderRepo {
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${orderModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_ORDER_URI + "/${orderModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -63,7 +63,7 @@ class OrderRepo {
   Future<ApiResponse> deleteOrder(OrderModel orderModel) async {
     try {
       final response = await dioClient.delete(
-        AppConstants.DELETE_AUTO_URI +
+        AppConstants.DELETE_ORDER_URI +
             "/${orderModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
       );
       return ApiResponse.withSuccess(response);
@@ -76,7 +76,7 @@ class OrderRepo {
   Future<ApiResponse> getOrderList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_AUTO_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_ORDER_URI + "?limit=$limit&skip=$skip",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -87,7 +87,7 @@ class OrderRepo {
   Future<ApiResponse> getOrder(OrderModel orderModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_AUTO_URI + "/${orderModel.id}",
+        AppConstants.GET_ORDER_URI + "/${orderModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -96,8 +96,8 @@ class OrderRepo {
   }
 }
 
-// static const String ADD_AUTO_URI ="";
-// static const String UPDATE_AUTO_URI ="";
-// static const String DELETE_AUTO_URI ="";
-// static const String LIST_AUTO_URI ="";
-// static const String GET_AUTO_URI ="";
+// static const String ADD_ORDER_URI ="";
+// static const String UPDATE_ORDER_URI ="";
+// static const String DELETE_ORDER_URI ="";
+// static const String LIST_ORDER_URI ="";
+// static const String GET_ORDER_URI ="";

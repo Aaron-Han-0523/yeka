@@ -91,6 +91,15 @@ class OptionList {
      });
     }
   }
+  OptionList.fromList(List<dynamic> iter) {
+    _count = iter.length;
+    if (iter != null) {
+      _optionList = [];
+      iter.forEach((v) {
+        _optionList.add(new OptionModel.fromJson(Map<String, dynamic>.from(v)));
+     });
+    }
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['count'] = this._count;

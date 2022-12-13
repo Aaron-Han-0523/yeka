@@ -31,7 +31,7 @@ class LikeCommunityRepo {
 
     try {
       var response = await dioClient.post(
-        AppConstants.ADD_AUTO_URI,
+        AppConstants.ADD_LIKE_COMMUNITY_URI,
         data: formData,
       );
 
@@ -53,7 +53,7 @@ class LikeCommunityRepo {
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${likeCommunityModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_LIKE_COMMUNITY_URI + "/${likeCommunityModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -63,7 +63,7 @@ class LikeCommunityRepo {
   Future<ApiResponse> deleteLikeCommunity(LikeCommunityModel likeCommunityModel) async {
     try {
       final response = await dioClient.delete(
-        AppConstants.DELETE_AUTO_URI +
+        AppConstants.DELETE_LIKE_COMMUNITY_URI +
             "/${likeCommunityModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
       );
       return ApiResponse.withSuccess(response);
@@ -76,7 +76,7 @@ class LikeCommunityRepo {
   Future<ApiResponse> getLikeCommunityList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_AUTO_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_LIKE_COMMUNITY_URI + "?limit=$limit&skip=$skip",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -87,7 +87,7 @@ class LikeCommunityRepo {
   Future<ApiResponse> getLikeCommunity(LikeCommunityModel likeCommunityModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_AUTO_URI + "/${likeCommunityModel.id}",
+        AppConstants.GET_LIKE_COMMUNITY_URI + "/${likeCommunityModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -96,8 +96,8 @@ class LikeCommunityRepo {
   }
 }
 
-// static const String ADD_AUTO_URI ="";
-// static const String UPDATE_AUTO_URI ="";
-// static const String DELETE_AUTO_URI ="";
-// static const String LIST_AUTO_URI ="";
-// static const String GET_AUTO_URI ="";
+// static const String ADD_LIKE_COMMUNITY_URI ="";
+// static const String UPDATE_LIKE_COMMUNITY_URI ="";
+// static const String DELETE_LIKE_COMMUNITY_URI ="";
+// static const String LIST_LIKE_COMMUNITY_URI ="";
+// static const String GET_LIKE_COMMUNITY_URI ="";
