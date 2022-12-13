@@ -74,8 +74,8 @@ class OptionProvider extends ChangeNotifier {
       ApiResponse apiResponse = await optionRepo.getOptionList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestOptionList.addAll(OptionList.fromJson(apiResponse.response.data).optionList);
-        _latestPageSize = OptionList.fromJson(apiResponse.response.data).count;
+        _latestOptionList.addAll(OptionList.fromList(apiResponse.response.data).optionList);
+        _latestPageSize = OptionList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

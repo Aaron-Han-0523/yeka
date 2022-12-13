@@ -74,8 +74,8 @@ class CommunityProvider extends ChangeNotifier {
       ApiResponse apiResponse = await communityRepo.getCommunityList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestCommunityList.addAll(CommunityList.fromJson(apiResponse.response.data).communityList);
-        _latestPageSize = CommunityList.fromJson(apiResponse.response.data).count;
+        _latestCommunityList.addAll(CommunityList.fromList(apiResponse.response.data).communityList);
+        _latestPageSize = CommunityList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

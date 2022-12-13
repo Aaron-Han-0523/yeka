@@ -74,8 +74,8 @@ class MenuProvider extends ChangeNotifier {
       ApiResponse apiResponse = await menuRepo.getMenuList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestMenuList.addAll(MenuList.fromJson(apiResponse.response.data).menuList);
-        _latestPageSize = MenuList.fromJson(apiResponse.response.data).count;
+        _latestMenuList.addAll(MenuList.fromList(apiResponse.response.data).menuList);
+        _latestPageSize = MenuList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

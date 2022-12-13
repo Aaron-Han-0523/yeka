@@ -74,8 +74,8 @@ class ConsultingProvider extends ChangeNotifier {
       ApiResponse apiResponse = await consultingRepo.getConsultingList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestConsultingList.addAll(ConsultingList.fromJson(apiResponse.response.data).consultingList);
-        _latestPageSize = ConsultingList.fromJson(apiResponse.response.data).count;
+        _latestConsultingList.addAll(ConsultingList.fromList(apiResponse.response.data).consultingList);
+        _latestPageSize = ConsultingList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

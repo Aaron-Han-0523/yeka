@@ -109,6 +109,15 @@ class CommunityList {
      });
     }
   }
+  CommunityList.fromList(List<dynamic> iter) {
+    _count = iter.length;
+    if (iter != null) {
+      _communityList = [];
+      iter.forEach((v) {
+        _communityList.add(new CommunityModel.fromJson(Map<String, dynamic>.from(v)));
+     });
+    }
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['count'] = this._count;

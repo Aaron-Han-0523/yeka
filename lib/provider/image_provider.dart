@@ -74,8 +74,8 @@ class CustomImageProvider extends ChangeNotifier {
       ApiResponse apiResponse = await imageRepo.getImageList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
-        _latestImageList.addAll(ImageList.fromJson(apiResponse.response.data).imageList);
-        _latestPageSize = ImageList.fromJson(apiResponse.response.data).count;
+        _latestImageList.addAll(ImageList.fromList(apiResponse.response.data).imageList);
+        _latestPageSize = ImageList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

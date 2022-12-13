@@ -172,6 +172,15 @@ class ConsultingList {
      });
     }
   }
+  ConsultingList.fromList(List<dynamic> iter) {
+    _count = iter.length;
+    if (iter != null) {
+      _consultingList = [];
+      iter.forEach((v) {
+        _consultingList.add(new ConsultingModel.fromJson(Map<String, dynamic>.from(v)));
+     });
+    }
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['count'] = this._count;

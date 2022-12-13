@@ -109,6 +109,15 @@ class MenuList {
      });
     }
   }
+  MenuList.fromList(List<dynamic> iter) {
+    _count = iter.length;
+    if (iter != null) {
+      _menuList = [];
+      iter.forEach((v) {
+        _menuList.add(new MenuModel.fromJson(Map<String, dynamic>.from(v)));
+     });
+    }
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['count'] = this._count;
