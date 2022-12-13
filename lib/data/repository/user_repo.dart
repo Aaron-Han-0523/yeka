@@ -31,7 +31,7 @@ class UserRepo {
 
     try {
       var response = await dioClient.post(
-        AppConstants.ADD_AUTO_URI,
+        AppConstants.ADD_USER_URI,
         data: formData,
       );
 
@@ -53,7 +53,7 @@ class UserRepo {
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${userModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_USER_URI + "/${userModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -63,7 +63,7 @@ class UserRepo {
   Future<ApiResponse> deleteUser(UserModel userModel) async {
     try {
       final response = await dioClient.delete(
-        AppConstants.DELETE_AUTO_URI +
+        AppConstants.DELETE_USER_URI +
             "/${userModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
       );
       return ApiResponse.withSuccess(response);
@@ -76,7 +76,7 @@ class UserRepo {
   Future<ApiResponse> getUserList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_AUTO_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_USER_URI + "?limit=$limit&skip=$skip",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -87,7 +87,7 @@ class UserRepo {
   Future<ApiResponse> getUser(UserModel userModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_AUTO_URI + "/${userModel.id}",
+        AppConstants.GET_USER_URI + "/${userModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -96,8 +96,8 @@ class UserRepo {
   }
 }
 
-// static const String ADD_AUTO_URI ="";
-// static const String UPDATE_AUTO_URI ="";
-// static const String DELETE_AUTO_URI ="";
-// static const String LIST_AUTO_URI ="";
-// static const String GET_AUTO_URI ="";
+// static const String ADD_USER_URI ="";
+// static const String UPDATE_USER_URI ="";
+// static const String DELETE_USER_URI ="";
+// static const String LIST_USER_URI ="";
+// static const String GET_USER_URI ="";

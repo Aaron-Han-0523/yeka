@@ -31,7 +31,7 @@ class MenuRepo {
 
     try {
       var response = await dioClient.post(
-        AppConstants.ADD_AUTO_URI,
+        AppConstants.ADD_MENU_URI,
         data: formData,
       );
 
@@ -53,7 +53,7 @@ class MenuRepo {
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${menuModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_MENU_URI + "/${menuModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -63,7 +63,7 @@ class MenuRepo {
   Future<ApiResponse> deleteMenu(MenuModel menuModel) async {
     try {
       final response = await dioClient.delete(
-        AppConstants.DELETE_AUTO_URI +
+        AppConstants.DELETE_MENU_URI +
             "/${menuModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
       );
       return ApiResponse.withSuccess(response);
@@ -76,7 +76,7 @@ class MenuRepo {
   Future<ApiResponse> getMenuList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_AUTO_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_MENU_URI + "?limit=$limit&skip=$skip",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -87,7 +87,7 @@ class MenuRepo {
   Future<ApiResponse> getMenu(MenuModel menuModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_AUTO_URI + "/${menuModel.id}",
+        AppConstants.GET_MENU_URI + "/${menuModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -96,8 +96,8 @@ class MenuRepo {
   }
 }
 
-// static const String ADD_AUTO_URI ="";
-// static const String UPDATE_AUTO_URI ="";
-// static const String DELETE_AUTO_URI ="";
-// static const String LIST_AUTO_URI ="";
-// static const String GET_AUTO_URI ="";
+// static const String ADD_MENU_URI ="";
+// static const String UPDATE_MENU_URI ="";
+// static const String DELETE_MENU_URI ="";
+// static const String LIST_MENU_URI ="";
+// static const String GET_MENU_URI ="";

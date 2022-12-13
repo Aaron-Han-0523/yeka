@@ -31,7 +31,7 @@ class ImageRepo {
 
     try {
       var response = await dioClient.post(
-        AppConstants.ADD_AUTO_URI,
+        AppConstants.ADD_IMAGE_URI,
         data: formData,
       );
 
@@ -53,7 +53,7 @@ class ImageRepo {
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${imageModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_IMAGE_URI + "/${imageModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -63,7 +63,7 @@ class ImageRepo {
   Future<ApiResponse> deleteImage(ImageModel imageModel) async {
     try {
       final response = await dioClient.delete(
-        AppConstants.DELETE_AUTO_URI +
+        AppConstants.DELETE_IMAGE_URI +
             "/${imageModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
       );
       return ApiResponse.withSuccess(response);
@@ -76,7 +76,7 @@ class ImageRepo {
   Future<ApiResponse> getImageList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_AUTO_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_IMAGE_URI + "?limit=$limit&skip=$skip",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -87,7 +87,7 @@ class ImageRepo {
   Future<ApiResponse> getImage(ImageModel imageModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_AUTO_URI + "/${imageModel.id}",
+        AppConstants.GET_IMAGE_URI + "/${imageModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -96,8 +96,8 @@ class ImageRepo {
   }
 }
 
-// static const String ADD_AUTO_URI ="";
-// static const String UPDATE_AUTO_URI ="";
-// static const String DELETE_AUTO_URI ="";
-// static const String LIST_AUTO_URI ="";
-// static const String GET_AUTO_URI ="";
+// static const String ADD_IMAGE_URI ="";
+// static const String UPDATE_IMAGE_URI ="";
+// static const String DELETE_IMAGE_URI ="";
+// static const String LIST_IMAGE_URI ="";
+// static const String GET_IMAGE_URI ="";

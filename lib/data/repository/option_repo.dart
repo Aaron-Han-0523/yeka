@@ -31,7 +31,7 @@ class OptionRepo {
 
     try {
       var response = await dioClient.post(
-        AppConstants.ADD_AUTO_URI,
+        AppConstants.ADD_OPTION_URI,
         data: formData,
       );
 
@@ -53,7 +53,7 @@ class OptionRepo {
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_AUTO_URI + "/${optionModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_OPTION_URI + "/${optionModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -63,7 +63,7 @@ class OptionRepo {
   Future<ApiResponse> deleteOption(OptionModel optionModel) async {
     try {
       final response = await dioClient.delete(
-        AppConstants.DELETE_AUTO_URI +
+        AppConstants.DELETE_OPTION_URI +
             "/${optionModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
       );
       return ApiResponse.withSuccess(response);
@@ -76,7 +76,7 @@ class OptionRepo {
   Future<ApiResponse> getOptionList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_AUTO_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_OPTION_URI + "?limit=$limit&skip=$skip",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -87,7 +87,7 @@ class OptionRepo {
   Future<ApiResponse> getOption(OptionModel optionModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_AUTO_URI + "/${optionModel.id}",
+        AppConstants.GET_OPTION_URI + "/${optionModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -96,8 +96,8 @@ class OptionRepo {
   }
 }
 
-// static const String ADD_AUTO_URI ="";
-// static const String UPDATE_AUTO_URI ="";
-// static const String DELETE_AUTO_URI ="";
-// static const String LIST_AUTO_URI ="";
-// static const String GET_AUTO_URI ="";
+// static const String ADD_OPTION_URI ="";
+// static const String UPDATE_OPTION_URI ="";
+// static const String DELETE_OPTION_URI ="";
+// static const String LIST_OPTION_URI ="";
+// static const String GET_OPTION_URI ="";
