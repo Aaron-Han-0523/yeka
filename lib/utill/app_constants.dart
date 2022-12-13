@@ -1,7 +1,7 @@
 import 'package:yeka/data/model/response/language_model.dart';
 
 class AppConstants {
-  static const String APP_NAME = 'PECHAGO';
+  static const String APP_NAME = 'YEKA';
   static const String APP_VERSION = '1.0';
 
   // static const String BASE_URL = 'https://6valley.6amtech.com';
