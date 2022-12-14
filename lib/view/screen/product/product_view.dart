@@ -11,12 +11,11 @@ import '../../../provider/product_provider.dart';
 class ProductView extends StatefulWidget {
   final bool isHomePage;
   final ScrollController scrollController;
-  final String sellerId;
 
-  ProductView(
-      {@required this.isHomePage,
-      this.scrollController,
-      this.sellerId});
+  ProductView({
+    @required this.isHomePage,
+    this.scrollController,
+  });
 
   @override
   State<ProductView> createState() => _ProductViewState();
@@ -29,16 +28,16 @@ class _ProductViewState extends State<ProductView> {
   Widget build(BuildContext context) {
     widget.scrollController.addListener(() {
       if (widget.scrollController.position.maxScrollExtent ==
-          widget.scrollController.position.pixels &&
+              widget.scrollController.position.pixels &&
           Provider.of<ProductProvider>(context, listen: false)
-              .latestProductList
-              .length !=
+                  .latestProductList
+                  .length !=
               0 &&
           !Provider.of<ProductProvider>(context, listen: false)
               .filterIsLoading) {
         int pageSize = (Provider.of<ProductProvider>(context, listen: false)
-            .latestPageSize /
-            6)
+                    .latestPageSize /
+                6)
             .ceil();
         offset = Provider.of<ProductProvider>(context, listen: false).lOffset;
 
@@ -64,39 +63,35 @@ class _ProductViewState extends State<ProductView> {
 
         print('========hello hello===>${productList.length}');
 
-        return Column(children: [
-          !productProvider.filterFirstLoading
-              ? productList.length != 0
-                  ? StaggeredGridView.countBuilder(
-                      itemCount: widget.isHomePage
-                          ? productList.length > 4
-                              ? 4
-                              : productList.length
-                          : productList.length,
-                      crossAxisCount: 2,
-                      padding: EdgeInsets.all(0),
-                      physics: NeverScrollableScrollPhysics(),
-                      // scrollDirection:
-                      //     isHomePage ? Axis.horizontal : Axis.vertical,
-                      shrinkWrap: true,
-                      staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
-                      itemBuilder: (BuildContext context, int index) {
-                        return ProductWidget(productModel: productList[index]);
-                      },
-                    )
-                  : SizedBox.shrink()
-              : ProductShimmer(
-                  isHomePage: widget.isHomePage, isEnabled: productProvider.firstLoading),
-          productProvider.filterIsLoading
-              ? Center(
-                  child: Padding(
-                  padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
-                  child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme.of(context).primaryColor)),
+        return productList.length > 0
+            ? ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: 220,
+                  // maxWidth: MediaQuery.of(context).size.width,
+                ),
+                child: GridView.builder(
+                  itemCount: productList.length > 4 ? 4 : productList.length,
+                  // crossAxisCount: widget.isHomePage ? 1 : 2,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: widget.isHomePage ? 1 : 2,
+                    childAspectRatio: (1 / 0.8),
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 5,
+                  ),
+                  // padding: EdgeInsets.all(0),
+                  // physics: NeverScrollableScrollPhysics(),
+                  scrollDirection:
+                      widget.isHomePage ? Axis.horizontal : Axis.vertical,
+                  // scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  // staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ProductWidget(productModel: productList[index]);
+                  },
                 ))
-              : SizedBox.shrink(),
-        ]);
+            : ProductShimmer(
+                isHomePage: widget.isHomePage,
+                isEnabled: productProvider.firstLoading);
       },
     );
   }

@@ -6,10 +6,12 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/view/screen/product/product_view.dart';
 
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../provider/community_provider.dart';
+import '../../../provider/product_provider.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../aitest/image_upload_screen.dart';
 import '../auth/auth_screen.dart';
@@ -31,6 +33,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<CommunityProvider>(context, listen: false)
         .getLatestCommunityList(0, context, reload: reload);
+
+    Provider.of<ProductProvider>(context, listen: false)
+        .getLatestProductList(0, context, reload: reload);
   }
 
   @override
@@ -189,10 +194,10 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         color: Colors.black12,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                      // ReviewWidget(
-                      //   isHomePage: true,
-                      //   scrollController: _scrollController,
-                      // ),
+                      ProductView(
+                        isHomePage: true,
+                        scrollController: _scrollController,
+                      ),
                       Padding(
                         padding:
                             const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
