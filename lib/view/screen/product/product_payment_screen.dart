@@ -119,7 +119,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "BYHER(바이허)",
+                              "${getTranslated('YEKA', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 11,
@@ -144,7 +144,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "8,000원",
+                              "8,000${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xff0123b4),
                                 fontSize: 15,
@@ -169,7 +169,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "+ 2,500원",
+                              "+ 2,500${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 9,
@@ -199,7 +199,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "10,500원",
+                              "10,500${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xffff3d3d),
                                 fontSize: 15,

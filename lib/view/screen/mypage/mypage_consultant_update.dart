@@ -45,7 +45,7 @@ class _MyPageConsultantUpdateScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "컨설턴트 정보 수정",
+                  "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Container(
@@ -67,7 +67,7 @@ class _MyPageConsultantUpdateScreenState
                             Container(
                               padding: EdgeInsets.only(left: 20),
                                 child: Text(
-                                  "프로필 사진",
+                                  "${getTranslated('PROFILE_PHOTO', context)}",
                                   style: TextStyle(
                                     fontSize: 12.0,
                                     fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class _MyPageConsultantUpdateScreenState
                             Container(
                               padding: EdgeInsets.only(left: 20),
                               child: Text(
-                                "원하는 사진을 올려보세요.",
+                                "${getTranslated('PUT_YOUR_PHOTO', context)}",
                                 style: TextStyle(
                                   fontSize: 8.0,
                                   fontWeight: FontWeight.bold,
@@ -206,7 +206,7 @@ class _MyPageConsultantUpdateScreenState
                           padding: EdgeInsets.only(left: 20),
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "해시태그(#)",
+                            "${getTranslated('HASHTAG', context)}",
                             style: TextStyle(
                               fontSize: 12.0,
                               color: Color(0xff333333),
@@ -221,7 +221,7 @@ class _MyPageConsultantUpdateScreenState
                           padding: EdgeInsets.only(left: 20),
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "해시태그로 본인을 어필해보세요 :)",
+                            "${getTranslated('APPEAL_AS_HASHTAG', context)}",
                             style: TextStyle(
                                 fontSize: 8.0,
                                 color: Color(0xff333333),
@@ -242,7 +242,7 @@ class _MyPageConsultantUpdateScreenState
                                   child: CustomTextField(
                                     controller: _firstNameController,
                                     // essentialLabelText: " *",
-                                    hintText: "ex) #전문대학졸업",
+                                    hintText: "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                   ),
                                 ),
 
@@ -253,7 +253,7 @@ class _MyPageConsultantUpdateScreenState
                                   controller: _firstNameController,
                                   // essentialLabelText: " *",
                                   hintText:
-                                  "ex) #전문대학졸업",
+                                  "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
 
@@ -264,7 +264,7 @@ class _MyPageConsultantUpdateScreenState
                                   controller: _firstNameController,
                                   // essentialLabelText: " *",
                                   hintText:
-                                  "ex) #전문대학졸업",
+                                  "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
                               // ),
@@ -284,7 +284,7 @@ class _MyPageConsultantUpdateScreenState
                                 child: CustomTextField(
                                   controller: _firstNameController,
                                   // essentialLabelText: " *",
-                                  hintText: "ex) #전문대학졸업",
+                                  hintText: "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
 
@@ -295,7 +295,7 @@ class _MyPageConsultantUpdateScreenState
                                   controller: _firstNameController,
                                   // essentialLabelText: " *",
                                   hintText:
-                                  "ex) #전문대학졸업",
+                                  "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
 
@@ -306,7 +306,7 @@ class _MyPageConsultantUpdateScreenState
                                   controller: _firstNameController,
                                   // essentialLabelText: " *",
                                   hintText:
-                                  "ex) #전문대학졸업",
+                                  "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
                               // ),
@@ -319,8 +319,8 @@ class _MyPageConsultantUpdateScreenState
                        Container(
                           child: CustomTextarea(
                             padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
-                            labelText: "자격현황 및 이력",
-                            hintText: "자격현황 및 이력 작성해주세요",
+                            labelText: "${getTranslated('CERTIFICATE_RESUME', context)}",
+                            hintText: "${getTranslated('FILL_IN_CERTIFICATE_RESUME', context)}",
                             contentPadding: const EdgeInsets.symmetric(vertical: 0),
                           ),
                         ),
@@ -330,8 +330,8 @@ class _MyPageConsultantUpdateScreenState
                         Container(
                           child: CustomTextarea(
                             padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
-                            labelText: "상담 가능 시간",
-                            hintText: "상담 가능 시간 작성해주세요",
+                            labelText: "${getTranslated('CONSULTATION_AVAILABLE_TIME', context)}",
+                            hintText: "${getTranslated('FILL_IN_CONSULTATION_AVAILABLE_TIME', context)}",
                             contentPadding: const EdgeInsets.symmetric(vertical: 0),
                           ),
                         ),
@@ -344,7 +344,7 @@ class _MyPageConsultantUpdateScreenState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "상담 메뉴",
+                                "${getTranslated('${getTranslated('CONSULTATION_MENU', context)}', context)}",
                                 style: TextStyle(
                                   fontSize: 12.0,
                                   fontWeight: FontWeight.bold,
@@ -354,7 +354,7 @@ class _MyPageConsultantUpdateScreenState
                               Row(
                                 children: [
                                   Text(
-                                    "+ 추가",
+                                    "${getTranslated('PLUS_ADD', context)}",
                                     style: TextStyle(
                                       fontSize: 9.0,
                                       fontWeight: FontWeight.bold,
@@ -370,7 +370,7 @@ class _MyPageConsultantUpdateScreenState
                           controller: _firstNameController,
                           // labelText: "상담 메뉴 ",
                           // essentialLabelText: " *",
-                          hintText: "상담등록할 제목을 작성해주세요",
+                          hintText: "${getTranslated('FILL_IN_TITLE', context)}",
                           hintColor: Color(0xffdddddd),
                           padding: EdgeInsets.all(0),
                         ),
@@ -378,7 +378,7 @@ class _MyPageConsultantUpdateScreenState
                           controller: _firstNameController,
                           // labelText: "상담 메뉴 ",
                           // essentialLabelText: " *",
-                          hintText: "상담 금액을 작성해주세요",
+                          hintText: "${getTranslated('${getTranslated('FILL_IN_CONSULTATION_AMOUNT', context)}', context)}",
                           hintColor: Color(0xffdddddd),
                           padding: EdgeInsets.all(0),
                         ),
@@ -389,7 +389,7 @@ class _MyPageConsultantUpdateScreenState
                               child: CustomTextarea(
                                 padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
                                 // labelText: "상담 내용",
-                                hintText: "상담 내용을 작성해주세요",
+                                hintText: "${getTranslated('FILL_IN_CONSULTATION_CONTENT', context)}",
                                 hintSize: 14,
                                 contentPadding: const EdgeInsets.symmetric(vertical: 8),
                               ),
@@ -418,7 +418,7 @@ class _MyPageConsultantUpdateScreenState
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    "상담을 소개할\n이미지를 등록해주세요.",
+                                    "${getTranslated('REGISTER_IMAGE', context)}",
                                     style: TextStyle(
                                       fontSize: 8.0,
                                       fontWeight: FontWeight.bold,
@@ -450,7 +450,7 @@ class _MyPageConsultantUpdateScreenState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "포트폴리오 등록",
+                                "${getTranslated('REGISTER_PORTFOLIO', context)}",
                                 style: TextStyle(
                                   fontSize: 12.0,
                                   fontWeight: FontWeight.bold,
@@ -460,7 +460,7 @@ class _MyPageConsultantUpdateScreenState
                               Row(
                                 children: [
                                   Text(
-                                    "+ 추가",
+                                    "${getTranslated('PLUS_ADD', context)}",
                                     style: TextStyle(
                                       fontSize: 12.0,
                                       fontWeight: FontWeight.bold,
@@ -534,7 +534,7 @@ class _MyPageConsultantUpdateScreenState
                                         ),
                                         SizedBox(height: 7),
                                         Text(
-                                          "이미지를 등록해주세요.",
+                                          "${getTranslated('REGISTRATION_IMAGE', context)}",
                                           style: TextStyle(
                                             fontSize: 8.0,
                                             fontWeight: FontWeight.bold,
@@ -562,7 +562,7 @@ class _MyPageConsultantUpdateScreenState
                               // Provider.of<ClientsProvider>(context, listen: false)
                               //     .login(clientsModel, route);
                             },
-                            buttonText: "수정",
+                            buttonText: "${getTranslated('MODIFICATION', context)}",
                           ),
                         ),
                         FooterPage(),

@@ -38,7 +38,9 @@ class _AIResultPageState extends State<AIResultPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("AI 테스트 결과").getAppbar(),
+              CustomSliverAppBar(
+                  "${getTranslated('RESULT_AT_TEST', context)}"
+              ).getAppbar(),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -532,7 +534,7 @@ class _AIResultPageState extends State<AIResultPage>
                             ),
                           ),
                           Text(
-                            "헤어",
+                            "${getTranslated('HAIR', context)}",
                             style: TextStyle(
                               fontSize: 16,
                             ),

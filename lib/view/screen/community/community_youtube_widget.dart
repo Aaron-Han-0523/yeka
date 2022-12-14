@@ -44,7 +44,7 @@ class CommunityYoutubeWidget extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "${communityModel.writer ?? "BYHER(바이허)"}",
+                            "${communityModel.writer ?? "${getTranslated('YEKA', context)}"}",
                             style: TextStyle(
                               fontSize: 7.0,
                               fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class CommunityYoutubeWidget extends StatelessWidget {
                             Text(
                               //FIXME 테이블에 count 필드 추가해야함
                               // "723회",
-                              "723회",
+                              "723${getTranslated('TIMES', context)}",
                               style: TextStyle(
                                 fontSize: 7.0,
                                 fontWeight: FontWeight.bold,

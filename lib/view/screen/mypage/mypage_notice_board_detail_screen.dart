@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
@@ -31,7 +32,7 @@ class _MyPageNoticeBoardDetailScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "공지사항",
+                  "${getTranslated('NOTICE', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
@@ -70,7 +71,7 @@ class _MyPageNoticeBoardDetailScreenState
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "BYHER(바이허) | ",
+                                            "${getTranslated('YEKA', context)}" + "${getTranslated('|', context)}",
                                             style: TextStyle(
                                               fontSize: 8.0,
                                               color: Color(0xff999999),
@@ -100,7 +101,7 @@ class _MyPageNoticeBoardDetailScreenState
                                           SizedBox(width: 3),
 
                                           Text(
-                                            "456회",
+                                            "456${getTranslated('TIMES', context)}",
                                             style: TextStyle(
                                               fontSize: 8.0,
                                               color: Color(0xff999999),

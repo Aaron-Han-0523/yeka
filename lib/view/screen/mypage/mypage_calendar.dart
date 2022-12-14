@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../localization/language_constrants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
@@ -39,7 +40,7 @@ class _MyPageCalendarScreenState extends State<MyPageCalendarScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "날짜 선택",
+                  "${getTranslated('SELECT_DATE', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Container(

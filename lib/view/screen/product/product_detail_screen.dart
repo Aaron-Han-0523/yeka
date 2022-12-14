@@ -176,7 +176,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                   child: Text(
-                                    "8,000 원",
+                                    "8,000 ${getTranslated('WON', context)}",
                                     style: TextStyle(
                                       color: Color(0xFF0123B4),
                                       fontSize: 24,
@@ -294,7 +294,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 6, 15, 5),
                                       child: Text(
-                                        "+ 2,500 원",
+                                        "${getTranslated('PLUS', context)}2,500 ${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xFF333333),
                                           fontSize: 13,
@@ -329,7 +329,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 10, 15, 10),
                                       child: Text(
-                                        "10,500 원",
+                                        "10,500 ${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Colors.red,
                                           fontSize: 20,

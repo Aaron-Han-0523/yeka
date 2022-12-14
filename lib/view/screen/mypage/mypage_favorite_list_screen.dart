@@ -5,6 +5,7 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_view.dart';
+import '../../../localization/language_constrants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
 class MyPageFavoriteListScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "찜 목록",
+                  "${getTranslated('LIKE_LIST', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
@@ -57,7 +58,7 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
                                 isHomePage: false,
                                 scrollController: _scrollController),
                             CustomElevatedButton(
-                                onTap: () {}, buttonText: "더보기 ∨", padding: EdgeInsets.symmetric(horizontal: 4)),
+                                onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}", padding: EdgeInsets.symmetric(horizontal: 4)),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_LARGE),
                           ],

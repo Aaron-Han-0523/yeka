@@ -193,7 +193,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('AMOUNT', context)} : 1개",
+                                        "${getTranslated('AMOUNT', context)} : 1${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -218,7 +218,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                     child: Text(
-                                      "10,500원",
+                                      "10,500${getTranslated('WON', context)}",
                                       style: TextStyle(
                                         color: Color(0xff0123B4),
                                         fontSize: 16,

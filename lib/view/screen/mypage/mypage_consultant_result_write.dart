@@ -44,7 +44,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "컨설팅 상담결과 작성",
+                  "${getTranslated('FILL_IN_CONSULTING_RESULT', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Container(
@@ -75,7 +75,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "계절",
+                                          "${getTranslated('SEASON', context)}",
                                           style: TextStyle(
                                             color: Color(0xFF333333),
                                             fontSize: 12,
@@ -88,7 +88,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                           buttonPadding: const EdgeInsets.only(left: 10, right: 5),
                                           padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
                                           hint:
-                                          '계절을 선택해주세요',
+                                          '${getTranslated('SELECT_SEASON', context)}',
                                           icon:
                                           const Icon(Icons.keyboard_arrow_down),
                                           iconSize: Dimensions.ICON_SIZE_DEFAULT,
@@ -116,7 +116,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "분류",
+                                          "${getTranslated('CLASSIFICATION', context)}",
                                           style: TextStyle(
                                             color: Color(0xFF333333),
                                             fontSize: 12,
@@ -129,7 +129,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                           buttonPadding: const EdgeInsets.only(left: 10, right: 5),
                                           padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
                                           hint:
-                                          '분류를 선택해주세요',
+                                          '${getTranslated('SELECT_CLASSIFICATION', context)}',
                                           icon:
                                           const Icon(Icons.keyboard_arrow_down),
                                           iconSize: Dimensions.ICON_SIZE_DEFAULT,
@@ -156,7 +156,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "세부분류",
+                                "${getTranslated('DETAILED_CATEGORIES', context)}",
                                 style: TextStyle(
                                     color: Color(0xFF333333),
                                     fontSize: 12,
@@ -169,7 +169,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                 buttonPadding: const EdgeInsets.only(left: 10, right: 5),
                                 padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
                                 hint:
-                                '세부분류를 선택해주세요',
+                                '${getTranslated('SELECT_DETAILED_CATEGORIES', context)}',
                                 icon:
                                 const Icon(Icons.keyboard_arrow_down),
                                 iconSize: Dimensions.ICON_SIZE_DEFAULT,
@@ -189,8 +189,8 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: CustomTextarea(
                             padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
-                            labelText: "상담내용 작성",
-                            hintText: "상세 상담내용을 작성해주세요",
+                            labelText: "${getTranslated('FILL_IN_CONTENT_CONSULTATION', context)}",
+                            hintText: "${getTranslated('FILL_IN_CONTENT_DETAIL_CONSULTATION', context)}",
                             contentPadding: const EdgeInsets.symmetric(vertical: 0),
                           ),
                         ),
@@ -201,7 +201,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text("웜",
+                                Text("${getTranslated('WARM', context)}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -222,7 +222,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                     },
                                   ),
                                 ),
-                                Text("쿨",
+                                Text("${getTranslated('COOL', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -238,7 +238,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text("청",
+                              Text("${getTranslated('CLEAR', context)}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -259,7 +259,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                   },
                                 ),
                               ),
-                              Text("탁",
+                              Text("${getTranslated('BLUE', context)}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -276,7 +276,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
 
-                                  Text("고대비",
+                                  Text("${getTranslated('HIGH_CONTRAST_IMAGE', context)}",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -297,7 +297,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                   },
                                 ),
                               ),
-                              Text("저대비",
+                              Text("${getTranslated('LOW_CONTRAST_IMAGE', context)}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -313,7 +313,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text("고명도",
+                              Text("${getTranslated('HIGH_BRIGHTNESS', context)}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -334,7 +334,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                   },
                                 ),
                               ),
-                              Text("저명도",
+                              Text("${getTranslated('LOW_BRIGHTNESS', context)}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -350,7 +350,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text("광택",
+                              Text("${getTranslated('GLOSS', context)}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -371,7 +371,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                                   },
                                 ),
                               ),
-                              Text("무광",
+                              Text("${getTranslated('MATT', context)}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -396,7 +396,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
                               // Provider.of<ClientsProvider>(context, listen: false)
                               //     .login(clientsModel, route);
                             },
-                            buttonText: "상담 완료",
+                            buttonText: "${getTranslated('COMPLETE_CONSULTATION', context)}",
                           ),
                         ),
 

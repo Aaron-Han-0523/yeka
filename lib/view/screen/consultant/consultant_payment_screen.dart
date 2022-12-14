@@ -123,7 +123,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "25,000원",
+                            "25,000${getTranslated('WON', context)}",
                             style: TextStyle(
                               color: Color(0xff0123b4),
                               fontSize: 15,
@@ -150,7 +150,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20, 7.5),
                           child: Text(
-                            "-2,500원",
+                            "${getTranslated('MINUS', context)}2,500${getTranslated('WON', context)}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 9,
@@ -180,7 +180,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "22,500원",
+                            "22,500${getTranslated('WON', context)}",
                             style: TextStyle(
                               color: Color(0xffff3d3d),
                               fontSize: 15,

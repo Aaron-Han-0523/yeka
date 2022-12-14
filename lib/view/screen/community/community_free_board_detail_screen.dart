@@ -162,7 +162,7 @@ class _CommunityFreeBoardDetailScreenState
                                     ),
                                   ),
                                   Text(
-                                    "2시간 전",
+                                    "2${getTranslated('HOURS_AGO', context)}",
                                     style: TextStyle(
                                       fontSize: 8.0,
                                       fontWeight: FontWeight.bold,
@@ -181,7 +181,7 @@ class _CommunityFreeBoardDetailScreenState
                                           width: 12,
                                         ),
                                         Text(
-                                          "456회",
+                                          "456${getTranslated('TIMES', context)}",
                                           style: TextStyle(
                                             fontSize: 8.0,
                                             fontWeight: FontWeight.bold,
@@ -306,7 +306,7 @@ class _CommunityFreeBoardDetailScreenState
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "BYHER(바이허)",
+                                                  "${getTranslated('YEKA', context)}",
                                                   style: TextStyle(
                                                     fontSize: 7.0,
                                                     fontWeight: FontWeight.bold,
@@ -326,7 +326,7 @@ class _CommunityFreeBoardDetailScreenState
                                                   ),
                                                 ),
                                                 Text(
-                                                  "7일전",
+                                                  "7${getTranslated('DAYS_AGO', context)}",
                                                   style: TextStyle(
                                                     fontSize: 7.0,
                                                     fontWeight: FontWeight.bold,
@@ -347,7 +347,7 @@ class _CommunityFreeBoardDetailScreenState
                                                         width: 12,
                                                       ),
                                                       Text(
-                                                        "723회",
+                                                        "723${getTranslated('TIMES', context)}",
                                                         style: TextStyle(
                                                           fontSize: 7.0,
                                                           fontWeight:

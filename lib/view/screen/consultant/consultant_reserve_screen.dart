@@ -268,7 +268,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                       ),
                                   );
                                 },
-                                buttonText: "확인"),
+                                buttonText: "CONFIRMATION"),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                           ],
                         )),

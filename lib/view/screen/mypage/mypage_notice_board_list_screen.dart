@@ -4,6 +4,7 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'mypage_notice_board_detail_screen.dart';
@@ -44,7 +45,7 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "공지사항",
+                  "${getTranslated('NOTICE', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Column(
@@ -89,7 +90,7 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                                                 MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "[공지사항] ",
+                                                    "${getTranslated('BRACKETS_NOTICE', context)}",
                                                     style: TextStyle(
                                                       fontSize: 14.0,
                                                       color: Color(0xFF333333),
@@ -117,7 +118,7 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                                                     MainAxisAlignment.start,
                                                     children: [
                                                       Text(
-                                                        "BYHER(바이허) |",
+                                                        "${getTranslated('YEKA', context)}"+"${getTranslated('|', context)}",
                                                         style: TextStyle(
                                                           fontSize: 8.0,
                                                           color: Color(0xFF999999),
@@ -126,7 +127,7 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                                                       ),
 
                                                       Text(
-                                                        "7일전",
+                                                        "7${getTranslated('DAYS_AGO', context)}",
                                                         style: TextStyle(
                                                           fontSize: 8.0,
                                                           color: Color(0xFF999999),
@@ -146,7 +147,7 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                                                       SizedBox(width: 4),
 
                                                       Text(
-                                                        "723회",
+                                                        "723${getTranslated('TIMES', context)}",
                                                         style: TextStyle(
                                                           fontSize: 8.0,
                                                           color: Color(0xff999999),

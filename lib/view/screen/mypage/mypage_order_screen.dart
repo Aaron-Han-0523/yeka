@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../consultant/consultant_my_reserve_screen.dart';
@@ -46,7 +47,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "주문 내역",
+                  "${getTranslated('ORDER_LIST', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Container(
@@ -100,7 +101,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Text(
-                                                      "주문서번호:2022112492135423",
+                                                      "${getTranslated('ORDER_NUMBER', context)}2022112492135423",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 7,
@@ -108,7 +109,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      "결제 완료",
+                                                      "${getTranslated('PAYMENT_COMPLETED', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff0123B4),
                                                         fontSize: 10,
@@ -133,7 +134,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "색상 : 투명",
+                                                      "${getTranslated('COLOR_', context)}투명",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -141,7 +142,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      " | ",
+                                                      "${getTranslated('|', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -149,7 +150,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      "수량 : 1개",
+                                                      "${getTranslated('AMOUNT_', context)}1${getTranslated('SOME', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -157,7 +158,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      " | ",
+                                                      "${getTranslated('|', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -180,7 +181,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "10,500원",
+                                                      "10,500${getTranslated('WON', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff0123B4),
                                                         fontSize: 13,

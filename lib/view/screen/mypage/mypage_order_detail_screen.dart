@@ -42,7 +42,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
               slivers: [
                 // App Bar
                 CustomSliverAppBar(
-                  "주문 상세내역",
+                  "${getTranslated('ORDER_DETAIL_LIST', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Container(
@@ -83,7 +83,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "주문서번호:2022112492135423",
+                                          "${getTranslated('ORDER_NUMBER', context)}2022112492135423",
                                           style: TextStyle(
                                               color: Color(0xff999999),
                                               fontSize: 10,
@@ -91,7 +91,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                           ),
                                         ),
                                         Text(
-                                          "배송완료",
+                                          "${getTranslated('DELIVERY_COMPLETED', context)}",
                                           style: TextStyle(
                                               color: Color(0xff0123B4),
                                               fontSize: 15,
@@ -116,7 +116,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                     Row(
                                       children: [
                                         Text(
-                                          "색상 : 투명",
+                                          "${getTranslated('COLOR_', context)}투명",
                                           style: TextStyle(
                                             color: Color(0xff999999),
                                             fontSize: 12,
@@ -124,7 +124,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                           ),
                                         ),
                                         Text(
-                                          " | ",
+                                          "${getTranslated('|', context)}",
                                           style: TextStyle(
                                             color: Color(0xff999999),
                                             fontSize: 12,
@@ -132,7 +132,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                           ),
                                         ),
                                         Text(
-                                          "수량 : 1개",
+                                          "${getTranslated('AMOUNT_', context)}1${getTranslated('SOME', context)}",
                                           style: TextStyle(
                                             color: Color(0xff999999),
                                             fontSize: 12,
@@ -163,7 +163,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                     Row(
                                       children: [
                                         Text(
-                                          "10,500원",
+                                          "10,500${getTranslated('WON', context)}",
                                           style: TextStyle(
                                             color: Color(0xff0123B4),
                                             fontSize: 18,
@@ -190,7 +190,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 30 , 20, 20),
                           child: Text(
-                            "주문하시는 분",
+                            "${getTranslated('ORDERED_CUSTOMER', context)}",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,
@@ -265,7 +265,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
-                            "받으시는 분",
+                            "${getTranslated('RECEIVED_CUSTOMER', context)}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 20,
@@ -278,7 +278,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
 
                        CustomSmallRadioButton(
                          value: radioButton,
-                         text: "주문자와 동일",
+                         text: "${getTranslated('SAME_AS_ORDER', context)}",
                          //  fontSize: 15,
                          // reverse: true,
                        ),
@@ -288,7 +288,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
 
                         CustomLabelTextField(
                           controller: _firstNameController,
-                          labelText: "배송지 ",
+                          labelText: "${getTranslated('DESTINATION', context)} ",
                           // essentialLabelText: " *",
                           // hintText: "${getTranslated('HINT_NAME', context)}",
                         ),

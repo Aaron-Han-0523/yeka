@@ -157,7 +157,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('AMOUNT', context)} : 1개",
+                                        "${getTranslated('AMOUNT', context)} : 1${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           height: 1,
                                           color: Color(0xff999999),
@@ -183,7 +183,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "8,000원",
+                                        "8,000${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff333333),
                                           fontSize: 12,
@@ -207,7 +207,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "+ 2,500원",
+                                        "+ 2,500${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff333333),
                                           fontSize: 12,
@@ -243,7 +243,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "10,500원",
+                                        "10,500${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff0123B4),
                                           fontSize: 14,

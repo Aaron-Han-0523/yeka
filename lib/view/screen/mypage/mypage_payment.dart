@@ -36,7 +36,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "정산 금액",
+                  "${getTranslated('SETTLEMENT_AMOUNT', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                     child: Column(
@@ -69,7 +69,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "고객명",
+                                          "${getTranslated('NAME_CUSTOMER', context)}",
                                           style: TextStyle(
                                             color: Color(0xffbbbbbb),
                                             fontSize: 10,
@@ -91,7 +91,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "결제일",
+                                          "${getTranslated('PAYMENT_DAY', context)}",
                                           style: TextStyle(
                                             color: Color(0xffbbbbbb),
                                             fontSize: 10,
@@ -113,7 +113,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "상담명",
+                                          "${getTranslated('COUNSELING_NAME', context)}",
                                           style: TextStyle(
                                             color: Color(0xffbbbbbb),
                                             fontSize: 10,
@@ -134,7 +134,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "결제금액",
+                                          "${getTranslated('PAYMENT_AMOUNT', context)}",
                                           style: TextStyle(
                                             color: Color(0xffbbbbbb),
                                             fontSize: 10,
@@ -142,7 +142,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "300,000원",
+                                          "300,000${getTranslated('WON', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -156,7 +156,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "결제상태",
+                                          "${getTranslated('STATUS_PAYMENT', context)}",
                                           style: TextStyle(
                                             color: Color(0xffbbbbbb),
                                             fontSize: 10,
@@ -164,7 +164,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "예약금입금완료",
+                                          "${getTranslated('RESERVATION_DEPOSIT_COMPLETED', context)}",
                                           style: TextStyle(
                                             color: Color(0xffFF9924),
                                             fontSize: 11,
@@ -178,7 +178,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "수수료",
+                                          "${getTranslated('COMMISSION', context)}",
                                           style: TextStyle(
                                               color: Color(0xffbbbbbb),
                                               fontSize: 10,
@@ -186,7 +186,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "20%",
+                                          "20${getTranslated('PERCENT', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -208,7 +208,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "최종금액",
+                                          "${getTranslated('FINAL_AMOUNT', context)}",
                                           style: TextStyle(
                                             color: Color(0xffbbbbbb),
                                             fontSize: 10,
@@ -217,7 +217,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                         ),
 
                                         Text(
-                                          "240,000원",
+                                          "240,000${getTranslated('WON', context)}",
                                           style: TextStyle(
                                               color: Color(0xffFF0000),
                                               fontSize: 11,
@@ -245,7 +245,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "고객명",
+                                          "${getTranslated('NAME_CUSTOMER', context)}",
                                           style: TextStyle(
                                               color: Color(0xffbbbbbb),
                                               fontSize: 10,
@@ -267,7 +267,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "결제일",
+                                          "${getTranslated('PAYMENT_DAY', context)}",
                                           style: TextStyle(
                                               color: Color(0xffbbbbbb),
                                               fontSize: 10,
@@ -289,7 +289,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "상담명",
+                                          "${getTranslated('COUNSELING_NAME', context)}",
                                           style: TextStyle(
                                               color: Color(0xffbbbbbb),
                                               fontSize: 10,
@@ -310,7 +310,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "결제금액",
+                                          "${getTranslated('PAYMENT_AMOUNT', context)}",
                                           style: TextStyle(
                                               color: Color(0xffbbbbbb),
                                               fontSize: 10,
@@ -318,7 +318,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "300,000원",
+                                          "300,000${getTranslated('WON', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -332,7 +332,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "결제상태",
+                                          "${getTranslated('STATUS_PAYMENT', context)}",
                                           style: TextStyle(
                                               color: Color(0xffbbbbbb),
                                               fontSize: 10,
@@ -340,7 +340,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "예약금입금완료",
+                                          "${getTranslated('RESERVATION_DEPOSIT_COMPLETED', context)}",
                                           style: TextStyle(
                                               color: Color(0xff0123B4),
                                               fontSize: 11,
@@ -354,7 +354,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "수수료",
+                                          "${getTranslated('COMMISSION', context)}",
                                           style: TextStyle(
                                               color: Color(0xffbbbbbb),
                                               fontSize: 10,
@@ -362,7 +362,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "20%",
+                                          "20${getTranslated('PERCENT', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -384,7 +384,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "최종금액",
+                                          "${getTranslated('FINAL_AMOUNT', context)}",
                                           style: TextStyle(
                                               color: Color(0xffbbbbbb),
                                               fontSize: 10,
@@ -393,7 +393,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                         ),
 
                                         Text(
-                                          "240,000원",
+                                          "240,000${getTranslated('WON', context)}",
                                           style: TextStyle(
                                               color: Color(0xffFF0000),
                                               fontSize: 11,
@@ -413,7 +413,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(right: 10),
                                   child: Text(
-                                    "출금가능액",
+                                    "${getTranslated('WITH_DRAWABLE_AMOUNT', context)}",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 10,
@@ -436,7 +436,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                               SizedBox(height: 13),
 
                               Row(children: [
-                                Text("내 계좌",
+                                Text("${getTranslated('MY_ACCOUNT', context)}",
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10,
@@ -448,7 +448,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                   padding: const EdgeInsets.fromLTRB(20, 10, 7.5, 10),
                    //           borderRadius: 5,
                    //           borderColor: Color(0xffeeeeee),
-                                  hint: '은행선택',
+                                  hint: '${getTranslated('SELECT_BANK', context)}',
                                   icon:
                                   const Icon(Icons.keyboard_arrow_down),
                                   iconSize: Dimensions.ICON_SIZE_DEFAULT,
@@ -466,7 +466,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                     // controller: _firstNameController,
                                     // essentialLabelText: " *",
                                     hintText:
-                                    "계좌번호를 입력해주세요",
+                                    "${getTranslated('FILL_IN_ACCOUNT_NUMBER', context)}",
                                   ),
                                 ),
                               ],),
@@ -484,7 +484,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       // Provider.of<ClientsProvider>(context, listen: false)
                                       //     .login(clientsModel, route);
                                     },
-                                    buttonText: "출금 신청",
+                                    buttonText: "${getTranslated('APPLICATION_FOR_WITHDRAWAL', context)}",
                                     padding: EdgeInsets.symmetric(horizontal: 0),
                                   ),
                                 ),

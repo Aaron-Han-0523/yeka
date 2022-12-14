@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../localization/language_constrants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../aitest/ai_result_screen.dart';
 import '../consultant/consultant_my_reserve_screen.dart';
@@ -37,7 +38,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
           controller: _scrollController,
           slivers: [
             CustomSliverAppBar(
-              "마이페이지",
+                "${getTranslated('MY_PAGE', context)}",
 
             ).getAppbar(),
             SliverToBoxAdapter(
@@ -60,7 +61,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "000님 안녕하세요 !",
+                                "000${getTranslated('HELLO_SIR', context)}",
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Color(0xff000000),
@@ -108,7 +109,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "개인정보 수정",
+                                  "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),
@@ -152,7 +153,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "퍼스널 AI 분석 결과",
+                                  "${getTranslated('PERSONAL_AI_ANALYSIS_RESULT', context)}",
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Color(0xff000000),
@@ -196,7 +197,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "내 상담예약 / 결제",
+                                  "${getTranslated('MY_CONSULTING_RESERVATION/PAYMENT', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),
@@ -240,7 +241,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "내 컨설팅 결과",
+                                  "${getTranslated('MY_CONSULTING_RESULT', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),
@@ -284,7 +285,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "주문내역",
+                                  "${getTranslated('ORDER_LIST', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),
@@ -328,7 +329,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "찜 목록",
+                                  "${getTranslated('LIKE_LIST', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),
@@ -372,7 +373,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "공지사항",
+                                  "${getTranslated('NOTICE', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),
@@ -416,7 +417,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "컨설턴트 정보 수정",
+                                  "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),
@@ -460,7 +461,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "정산 금액",
+                                  "${getTranslated('SETTLEMENT_AMOUNT', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),
@@ -504,7 +505,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "내 고객 정보",
+                                  "${getTranslated('MY_CUSTOMER_INFO', context)}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff000000),

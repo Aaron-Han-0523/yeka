@@ -9,6 +9,7 @@ import 'package:yeka/utill/images.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/mypage/mypage_consultant_result_write.dart';
 import '../../../data/model/response/product_model.dart';
+import '../../../localization/language_constrants.dart';
 import 'mypage_calendar.dart';
 
 class MyPageClientWidget extends StatelessWidget {
@@ -82,7 +83,7 @@ class MyPageClientWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '고객님',
+                          '${getTranslated('CUSTOMER', context)}',
                           textAlign: TextAlign.center,
                           style: robotoRegular.copyWith(
                             fontSize: 9,
@@ -91,7 +92,7 @@ class MyPageClientWidget extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '입금대기',
+                      '${getTranslated('WAITING_FOR_DEPOSIT', context)}',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 9,
@@ -103,7 +104,7 @@ class MyPageClientWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      productModel.tag ?? '상담명',
+                      productModel.tag ?? '${getTranslated('COUNSELING_NAME', context)}',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -127,7 +128,7 @@ class MyPageClientWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      productModel.tag ?? '연락처',
+                      productModel.tag ?? '${getTranslated('CONTACT_US', context)}',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -154,7 +155,7 @@ class MyPageClientWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      productModel.tag ?? '상담 진행 대기',
+                      productModel.tag ?? '${getTranslated('WAITING_FOR_THE_CALL_TO_PROCEED', context)}',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -178,7 +179,7 @@ class MyPageClientWidget extends StatelessWidget {
                         },
                         buttonText: '',
                         child: Text(
-                          "상담일 선택",
+                          "${getTranslated('SELECT_CONSULTATION_DAY', context)}",
                           style: TextStyle(
                             fontSize: 11,
                           ),
@@ -196,7 +197,7 @@ class MyPageClientWidget extends StatelessWidget {
                         },
                         buttonText: '',
                         child: Text(
-                          "상담결과작성",
+                          "${getTranslated('FILL_IN_CONSULTATION_RESULT', context)}",
                           style: TextStyle(
                             fontSize: 11,
                           ),

@@ -38,7 +38,7 @@ class _MyPageUpdateScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "개인정보 수정",
+                  "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Container(
@@ -122,7 +122,7 @@ class _MyPageUpdateScreenState
                               Row(
                                 children: [
                                   Text(
-                                    "성별 ",
+                                    "${getTranslated('GENDER', context)} ",
                                     style: TextStyle(
                                       fontSize: 15,
                                       color: Colors.black,
@@ -217,7 +217,7 @@ class _MyPageUpdateScreenState
 
                         CustomElevatedButton(
                           onTap: () {},
-                          buttonText: "정보 수정하기",
+                          buttonText: "${getTranslated('MODIFY_INFO', context)}",
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                         ),
 
