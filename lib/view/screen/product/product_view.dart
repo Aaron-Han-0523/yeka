@@ -66,15 +66,14 @@ class _ProductViewState extends State<ProductView> {
         return productList.length > 0
             ? ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: 220,
-                  // maxWidth: MediaQuery.of(context).size.width,
+                  maxHeight: widget.isHomePage ? 220 : double.infinity,
                 ),
                 child: GridView.builder(
                   itemCount: productList.length > 4 ? 4 : productList.length,
                   // crossAxisCount: widget.isHomePage ? 1 : 2,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: widget.isHomePage ? 1 : 2,
-                    childAspectRatio: (1 / 0.8),
+                    childAspectRatio: widget.isHomePage ? (1 / 0.8) : (1 / 1.2),
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 5,
                   ),
@@ -88,7 +87,8 @@ class _ProductViewState extends State<ProductView> {
                   itemBuilder: (BuildContext context, int index) {
                     return ProductWidget(productModel: productList[index]);
                   },
-                ))
+                ),
+              )
             : ProductShimmer(
                 isHomePage: widget.isHomePage,
                 isEnabled: productProvider.firstLoading);
