@@ -181,6 +181,21 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+                        child: CustomOutlinedButton(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                          },
+                          buttonText:
+                              "임시 로그인(테스트 용)",
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       // FooterPage(),
                     ],
                   ),

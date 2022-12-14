@@ -19,8 +19,10 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  var sidoDropdownItems = ["a", "B"];
-  var dongDropdownItems = ["c", "D"];
+  var categoryDropdownItems = ["상의", "하의", "신발", "화장품"];
+  var sortDropdownItems = ["인기순", "신제품순"];
+  int categoryDropdownValue = 0;
+  int sortDropdownValue = 0;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<ProductProvider>(context, listen: false)
@@ -88,12 +90,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                         icon:
                                             const Icon(Icons.keyboard_arrow_down),
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                        dropdownItems: sidoDropdownItems,
-                                        // value: receiveTimeStart,
+                                        dropdownItems: categoryDropdownItems,
+                                        value: categoryDropdownItems[categoryDropdownValue],
                                         onChanged: (value) {
-                                          // setState(() {
-                                          //   receiveTimeStart = value + "";
-                                          // });
+                                          setState(() {
+                                            categoryDropdownValue = categoryDropdownItems.indexOf(value);
+                                          });
                                         },
                                       ),
                                     ),
@@ -115,13 +117,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                         icon:
                                             const Icon(Icons.keyboard_arrow_down),
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                        dropdownItems: dongDropdownItems,
+                                        dropdownItems: sortDropdownItems,
                                         dropdownWidth: 100,
-                                        // value: "",
+                                        value: sortDropdownItems[sortDropdownValue],
                                         onChanged: (value) {
-                                          // setState(() {
-                                          //   receiveTimeEnd = value + "";
-                                          // });
+                                          setState(() {
+                                            sortDropdownValue = sortDropdownItems.indexOf(value);
+                                          });
                                         },
                                       ),
                                     ),
