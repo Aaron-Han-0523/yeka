@@ -63,7 +63,7 @@ class CustomLabelTextField extends StatelessWidget {
     this.textColor = const Color(0xff555555),
     // this.boxColor = const Color(0xffeeeeee),
     this.boxColor = Colors.white,
-    this.height = 25,
+    this.height = 35,
     this.enabled = true,
     this.isTextable = true,
     this.label_fontSize: 15,

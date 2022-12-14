@@ -20,17 +20,8 @@ class SplashRepo {
   }
 
   void initSharedData() async {
-    if (!sharedPreferences.containsKey(AppConstants.CART_LIST)) {
-      sharedPreferences.setStringList(AppConstants.CART_LIST, []);
-    }
-    if (!sharedPreferences.containsKey(AppConstants.SEARCH_ADDRESS)) {
-      sharedPreferences.setStringList(AppConstants.SEARCH_ADDRESS, []);
-    }
     if (!sharedPreferences.containsKey(AppConstants.INTRO)) {
       sharedPreferences.setBool(AppConstants.INTRO, true);
-    }
-    if(!sharedPreferences.containsKey(AppConstants.CURRENCY)) {
-      sharedPreferences.setString(AppConstants.CURRENCY, '');
     }
   }
 

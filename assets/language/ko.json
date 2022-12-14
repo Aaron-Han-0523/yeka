@@ -241,14 +241,18 @@
   "PLUS" : "+ ",
   "MINUS" : "-",
   "HOURS_AGO" : "시간 전",
-  "" : "",
-  "" : "",
-  "" : "",
-  "" : "",
-  "" : "",
-  "" : "",
-  "" : "",
-  "" : "",
+  "FORGET_PASSWORD" : "비밀번호 찾기",
+  "enter_phone_number_for_password_reset" : "enter_phone_number_for_password_reset",
+  "enter_email_for_password_reset" : "enter_email_for_password_reset",
+  "number_hint" : "number_hint",
+  "ENTER_YOUR_EMAIL" : "ENTER_YOUR_EMAIL",
+  "send_otp" : "send_otp",
+  "send_email" : "send_email",
+  "PHONE_MUST_BE_REQUIRED" : "PHONE_MUST_BE_REQUIRED",
+  "input_valid_phone_number" : "input_valid_phone_number",
+  "EMAIL_MUST_BE_REQUIRED" : "EMAIL_MUST_BE_REQUIRED",
+  "recovery_link_sent" : "recovery_link_sent",
+
 
 
 

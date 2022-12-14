@@ -13,7 +13,6 @@ import 'package:yeka/view/basewidget/button/custom_button.dart';
 import 'package:yeka/view/basewidget/my_dialog.dart';
 import 'package:yeka/view/basewidget/textfield/custom_textfield.dart';
 import 'package:yeka/view/screen/auth/widget/code_picker_widget.dart';
-import 'package:yeka/view/screen/auth/widget/otp_verification_screen.dart';
 import 'package:provider/provider.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -29,16 +28,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   String _countryDialCode = '+880';
 
   @override
-  void initState() {
-    _countryDialCode = CountryCode.fromCountryCode(
-        Provider.of<SplashProvider>(context, listen: false).configModel.countryCode).dialCode;
-    super.initState();
-  }
-
-
-  @override
   Widget build(BuildContext context) {
-
 
     return Scaffold(
       key: _key,
@@ -49,10 +39,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           DecorationImage(image: AssetImage(Images.consult), fit: BoxFit.fill),
         ),
 
-
         child: Column(
           children: [
-
             SafeArea(child: Align(
               alignment: Alignment.centerLeft,
               child: IconButton(icon: Icon(Icons.arrow_back_ios_outlined),
@@ -77,6 +65,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       color: Theme.of(context).primaryColor)),
                 ]),
 
+/*
                 Provider.of<SplashProvider>(context,listen: false).configModel.forgetPasswordVerification == "phone"?
                 Text(getTranslated('enter_phone_number_for_password_reset', context),
                     style: titilliumRegular.copyWith(color: Theme.of(context).hintColor,
@@ -85,8 +74,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     style: titilliumRegular.copyWith(color: Theme.of(context).hintColor,
                         fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL)),
                 SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+*/
 
 
+/*
                 Provider.of<SplashProvider>(context,listen: false).configModel.forgetPasswordVerification == "phone"?
                 Row(children: [
                   CodePickerWidget(
@@ -118,6 +109,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   textInputAction: TextInputAction.done,
                   textInputType: TextInputType.emailAddress,
                 ),
+*/
                 SizedBox(height: 100),
 
 
@@ -138,10 +130,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           Provider.of<AuthProvider>(context, listen: false).
                           forgetPassword(_countryDialCode+_numberController.text.trim()).then((value) {
                             if(value.isSuccess) {
-                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                                  builder: (_) => VerificationScreen('',
-                                      _countryDialCode +_numberController.text.trim(),'', fromForgetPassword: true)),
-                                      (route) => false);
+                              // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                              //     builder: (_) => VerificationScreen('',
+                              //         _countryDialCode +_numberController.text.trim(),'', fromForgetPassword: true)),
+                              //         (route) => false);
                             }else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text(getTranslated('input_valid_phone_number', context)),

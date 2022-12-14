@@ -1,23 +1,22 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter/material.dart';
 import 'package:yeka/data/datasource/remote/dio/dio_client.dart';
 import 'package:yeka/data/datasource/remote/exception/api_error_handler.dart';
 import 'package:yeka/data/model/body/login_model.dart';
-import 'package:yeka/data/model/body/register_model.dart';
 import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/utill/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../model/response/user_model.dart';
+
 class AuthRepo {
   final DioClient dioClient;
   final SharedPreferences sharedPreferences;
+
   AuthRepo({@required this.dioClient, @required this.sharedPreferences});
 
-
-  Future<ApiResponse> registration(RegisterModel register) async {
+  Future<ApiResponse> registration(UserModel register) async {
     try {
       Response response = await dioClient.post(
         AppConstants.REGISTRATION_URI,
@@ -41,72 +40,8 @@ class AuthRepo {
     }
   }
 
-  Future<ApiResponse> updateToken() async {
-    try {
-      String _deviceToken = await _getDeviceToken();
-      // FirebaseMessaging.instance.subscribeToTopic(AppConstants.TOPIC);
-      Response response = await dioClient.post(
-        AppConstants.TOKEN_URI,
-        data: {"_method": "put", "cm_firebase_token": _deviceToken},
-      );
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-
-  Future<String> _getDeviceToken() async {
-    String _deviceToken;
-    if(Platform.isIOS) {
-      // _deviceToken = await FirebaseMessaging.instance.getAPNSToken();
-    }else {
-      // _deviceToken = await FirebaseMessaging.instance.getToken();
-    }
-
-    if (_deviceToken != null) {
-      print('--------Device Token---------- '+_deviceToken);
-    }
-    return _deviceToken;
-  }
-
-  // for  user token
-  Future<void> saveUserToken(String token) async {
-    dioClient.updateHeader(token, null);
-
-    try {
-      await sharedPreferences.setString(AppConstants.TOKEN, token);
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  String getUserToken() {
-    return sharedPreferences.getString(AppConstants.TOKEN) ?? "";
-  }
-
-  //auth token
-  // for  user token
-  Future<void> saveAuthToken(String token) async {
-    dioClient.token = token;
-    dioClient.dio.options.headers = {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer $token'
-    };
-
-    try {
-      await sharedPreferences.setString(AppConstants.TOKEN, token);
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  String getAuthToken() {
-    return sharedPreferences.getString(AppConstants.TOKEN) ?? "";
-  }
-
-
   bool isLoggedIn() {
-    return sharedPreferences.containsKey(AppConstants.TOKEN);
+    return sharedPreferences.containsKey(AppConstants.USER_USERNAME);
   }
 
   Future<bool> clearSharedData() async {
@@ -118,100 +53,76 @@ class AuthRepo {
     return true;
   }
 
-  // for verify Email
-  Future<ApiResponse> checkEmail(String email, String temporaryToken) async {
+  // for verify Username
+  Future<ApiResponse> checkUsername(String username) async {
     try {
-      Response response = await dioClient.post(AppConstants.CHECK_EMAIL_URI, data: {"email": email, "temporary_token" : temporaryToken});
-        return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-
-  Future<ApiResponse> verifyEmail(String email, String token, String tempToken) async {
-    try {
-      Response response = await dioClient.post(AppConstants.VERIFY_EMAIL_URI, data: {"email": email, "token": token, 'temporary_token': tempToken});
+      Response response = await dioClient.post(AppConstants.CHECK_USERNAME_URI,
+          data: {"username": username});
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
 
-
-  //verify phone number
-
-  Future<ApiResponse> checkPhone(String phone, String temporaryToken) async {
+  Future<ApiResponse> verifyUsername(String username) async {
     try {
-      Response response = await dioClient.post(
-          AppConstants.CHECK_PHONE_URI, data: {"phone": phone, "temporary_token" :temporaryToken});
+      Response response = await dioClient.post(AppConstants.VERIFY_USERNAME_URI,
+          data: {
+            "username": username,
+          });
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
 
-  Future<ApiResponse> verifyPhone(String phone, String token,String otp) async {
-    try {
-      Response response = await dioClient.post(
-          AppConstants.VERIFY_PHONE_URI, data: {"phone": phone.trim(), "temporary_token": token,"otp": otp});
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-  Future<ApiResponse> verifyOtp(String identity, String otp) async {
-    try {
-      Response response = await dioClient.post(
-          AppConstants.VERIFY_OTP_URI, data: {"identity": identity.trim(), "otp": otp});
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-
-  Future<ApiResponse> resetPassword(String identity, String otp ,String password, String confirmPassword) async {
+  Future<ApiResponse> resetPassword(String identity, String otp,
+      String password, String confirmPassword) async {
     print('======Password====>$password');
     try {
-      Response response = await dioClient.post(
-          AppConstants.RESET_PASSWORD_URI, data: {"_method" : "put", "identity": identity.trim(), "otp": otp,"password": password, "confirm_password":confirmPassword});
+      Response response =
+          await dioClient.post(AppConstants.RESET_PASSWORD_URI, data: {
+        "_method": "put",
+        "identity": identity.trim(),
+        "otp": otp,
+        "password": password,
+        "confirm_password": confirmPassword
+      });
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
 
-
-
-  // for  Remember Email
-  Future<void> saveUserEmailAndPassword(String email, String password) async {
+  // for  Remember Username
+  Future<void> saveUserUsername(String username) async {
     try {
-      await sharedPreferences.setString(AppConstants.USER_PASSWORD, password);
-      await sharedPreferences.setString(AppConstants.USER_EMAIL, email);
+      await sharedPreferences.setString(AppConstants.USER_USERNAME, username);
     } catch (e) {
       throw e;
     }
   }
 
-  String getUserEmail() {
-    return sharedPreferences.getString(AppConstants.USER_EMAIL) ?? "";
+  String getUserUsername() {
+    return sharedPreferences.getString(AppConstants.USER_USERNAME) ?? "";
   }
 
   String getUserPassword() {
     return sharedPreferences.getString(AppConstants.USER_PASSWORD) ?? "";
   }
 
-  Future<bool> clearUserEmailAndPassword() async {
+  Future<bool> clearUserUsernameAndPassword() async {
     await sharedPreferences.remove(AppConstants.USER_PASSWORD);
-    return await sharedPreferences.remove(AppConstants.USER_EMAIL);
+    return await sharedPreferences.remove(AppConstants.USER_USERNAME);
   }
 
   Future<ApiResponse> forgetPassword(String identity) async {
     try {
-      Response response = await dioClient.post(AppConstants.FORGET_PASSWORD_URI, data: {"identity": identity});
+      Response response = await dioClient
+          .post(AppConstants.FORGET_PASSWORD_URI, data: {"identity": identity});
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-
 }

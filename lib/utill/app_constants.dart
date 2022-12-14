@@ -103,7 +103,7 @@ class AppConstants {
   // sharePreference
   static const String TOKEN = 'token';
   static const String USER = 'user';
-  static const String USER_EMAIL = 'user_email';
+  static const String USER_USERNAME = 'user_username';
   static const String USER_PASSWORD = 'user_password';
   static const String HOME_ADDRESS = 'home_address';
   static const String SEARCH_ADDRESS = 'search_address';
@@ -138,16 +138,17 @@ class AppConstants {
   static const String TOKEN_URI = '/api/v1/customer/cm-firebase-token';
   static const String NOTIFICATION_URI = '/api/v1/notifications';
 
-  static const String REGISTRATION_URI = '/api/v1/auth/register';
-  static const String LOGIN_URI = '/api/v1/auth/login';
-  static const String FORGET_PASSWORD_URI = '/api/v1/auth/forgot-password';
-  static const String CHECK_PHONE_URI = '/api/v1/auth/check-phone';
-  static const String VERIFY_PHONE_URI = '/api/v1/auth/verify-phone';
-  static const String SOCIAL_LOGIN_URI = '/api/v1/auth/social-login';
-  static const String CHECK_EMAIL_URI = '/api/v1/auth/check-email';
-  static const String VERIFY_EMAIL_URI = '/api/v1/auth/verify-email';
-  static const String RESET_PASSWORD_URI = '/api/v1/auth/reset-password';
-  static const String VERIFY_OTP_URI = '/api/v1/auth/verify-otp';
+  //Todo 로그인 관련 6개
+  static const String REGISTRATION_URI = '/api/auth/register';
+  static const String LOGIN_URI = '/api/auth/login';
+  static const String FORGET_PASSWORD_URI = '/api/auth/forgot-password';
+  static const String CHECK_USERNAME_URI = '/api/auth/check-username';
+  static const String VERIFY_USERNAME_URI = '/api/auth/verify-username';
+  static const String RESET_PASSWORD_URI = '/api/auth/reset-password';
+  // static const String CHECK_PHONE_URI = '/api/v1/auth/check-phone';
+  // static const String VERIFY_PHONE_URI = '/api/v1/auth/verify-phone';
+  // static const String SOCIAL_LOGIN_URI = '/api/v1/auth/social-login';
+  // static const String VERIFY_OTP_URI = '/api/v1/auth/verify-otp';
 
   static List<LanguageModel> languages = [
     LanguageModel(imageUrl: '',

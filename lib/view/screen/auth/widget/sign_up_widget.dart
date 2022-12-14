@@ -1,30 +1,23 @@
-import 'package:country_code_picker/country_code.dart';
 import 'package:flutter/material.dart';
 import 'package:yeka/data/model/body/register_model.dart';
+import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/helper/email_checker.dart';
 import 'package:yeka/localization/language_constrants.dart';
 import 'package:yeka/provider/auth_provider.dart';
 
-// import 'package:yeka/provider/profile_provider.dart';
 import 'package:yeka/provider/splash_provider.dart';
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
-import 'package:yeka/view/basewidget/button/custom_button.dart';
-import 'package:yeka/view/basewidget/textfield/custom_password_textfield.dart';
 import 'package:yeka/view/basewidget/textfield/custom_label_textfield.dart';
 
-// import 'package:yeka/view/screen/dashboard/dashboard_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../basewidget/button/custom_elevated_button.dart';
 import '../../../basewidget/button/custom_label_textfield_upload_button.dart';
-import '../../../basewidget/radio/custom_radio_button.dart';
 import '../../../basewidget/radio/custom_small_radio_button.dart';
 import '../../../basewidget/textarea/custom_textarea.dart';
-import '../../home/home_screens.dart';
-import 'code_picker_widget.dart';
-import 'otp_verification_screen.dart';
+import '../../../basewidget/textfield/custom_alert_text_textfield.dart';
+
+import 'package:kpostal/kpostal.dart';
 
 class SignUpWidget extends StatefulWidget {
   @override
@@ -32,12 +25,14 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _lastNameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+  TextEditingController _idController = TextEditingController();
+  TextEditingController _pwController = TextEditingController();
+  TextEditingController _pwHintController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _etcAddressTextController = TextEditingController();
+  TextEditingController _companyRegistrationNumberController = TextEditingController();
   GlobalKey<FormState> _formKey;
 
   FocusNode _fNameFocus = FocusNode();
@@ -48,30 +43,54 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   FocusNode _confirmPasswordFocus = FocusNode();
 
   RegisterModel register = RegisterModel();
+
+  bool radioButton1 = false; // gender
+  bool radioButton2 = false;
+  bool radioButton3 = false;
+  bool radioButton4 = false;
+
+  String postCode = '-';
+  String address = '-';
+  String latitude = '-';
+  String longitude = '-';
+  String kakaoLatitude = '-';
+  String kakaoLongitude = '-';
+
   bool isEmailVerified = false;
-  bool radioButton = false;
 
   addUser() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       isEmailVerified = true;
 
-      String _firstName = _firstNameController.text.trim();
-      String _lastName = _lastNameController.text.trim();
-      String _email = _emailController.text.trim();
+      String _id = _idController.text.trim();
+      String _pw = _pwController.text.trim();
+      String _pwHint = _pwHintController.text.trim();
+      String _name = _nameController.text.trim();
       String _phone = _phoneController.text.trim();
+      String _email = _emailController.text.trim();
       String _phoneNumber = _countryDialCode + _phoneController.text.trim();
-      String _password = _passwordController.text.trim();
-      String _confirmPassword = _confirmPasswordController.text.trim();
+      String _etc = _etcAddressTextController.text.trim();
+      String _businessRegistrationNumber = _companyRegistrationNumberController.text.trim();
 
-      if (_firstName.isEmpty) {
+      if (_id.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('first_name_field_is_required', context)),
           backgroundColor: Colors.red,
         ));
-      } else if (_lastName.isEmpty) {
+      } else if (_pw.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('last_name_field_is_required', context)),
+          backgroundColor: Colors.red,
+        ));
+      } else if (_pwHint.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(getTranslated('last_name_field_is_required', context)),
+          backgroundColor: Colors.red,
+        ));
+      } else if (_name.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
           backgroundColor: Colors.red,
         ));
       } else if (_email.isEmpty) {
@@ -89,30 +108,52 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           content: Text(getTranslated('PHONE_MUST_BE_REQUIRED', context)),
           backgroundColor: Colors.red,
         ));
-      } else if (_password.isEmpty) {
+      } else if (_pw.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
           backgroundColor: Colors.red,
         ));
-      } else if (_confirmPassword.isEmpty) {
+      } else if (_pwHint.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content:
               Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
           backgroundColor: Colors.red,
         ));
-      } else if (_password != _confirmPassword) {
+      } else if (_pw != _pwHint) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('PASSWORD_DID_NOT_MATCH', context)),
           backgroundColor: Colors.red,
         ));
       } else {
-        register.fName = '${_firstNameController.text}';
-        register.lName = _lastNameController.text ?? " ";
+        register.fName = '${_idController.text}';
+        register.lName = _pwController.text ?? " ";
         register.email = _emailController.text;
         register.phone = _phoneNumber;
-        register.password = _passwordController.text;
+        register.password = _pwHintController.text;
+        UserModel userModel = UserModel(
+          user_type: 0,
+          username: _id,
+          password: _pw,
+          name: _name,
+          phone: _phoneNumber,
+          email: _email,
+          gender: radioButton1 ? 0 : 1,
+          address1: postCode,
+          address2: address,
+          address3: _etc,
+          business_registration_number: _businessRegistrationNumber,
+          // business_registration_file,
+          // hashtag,
+          // resume,
+          // working_hour,
+          // withdrawal,
+          // bank1,
+          // bank2,
+          // bank3,
+        );
+
         await Provider.of<AuthProvider>(context, listen: false)
-            .registration(register, route);
+            .registration(userModel, route);
       }
     } else {
       isEmailVerified = false;
@@ -127,44 +168,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           .configModel
           .emailVerification) {
         Provider.of<AuthProvider>(context, listen: false)
-            .checkEmail(_emailController.text.toString(), tempToken)
+            .checkUsername(_emailController.text.toString(), tempToken)
             .then((value) async {
           if (value.isSuccess) {
             Provider.of<AuthProvider>(context, listen: false)
-                .updateEmail(_emailController.text.toString());
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => VerificationScreen(
-                        tempToken, '', _emailController.text.toString())),
-                (route) => false);
+                .updateUsername(_emailController.text.toString());
           }
         });
-      } else if (Provider.of<SplashProvider>(context, listen: false)
-          .configModel
-          .phoneVerification) {
-        Provider.of<AuthProvider>(context, listen: false)
-            .checkPhone(_phone, tempToken)
-            .then((value) async {
-          if (value.isSuccess) {
-            Provider.of<AuthProvider>(context, listen: false)
-                .updatePhone(_phone);
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => VerificationScreen(tempToken, _phone, '')),
-                (route) => false);
-          }
-        });
-      } else {
-        //   await Provider.of<ProfileProvider>(context, listen: false).getUserInfo(context);
-        //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => DashBoardScreen()), (route) => false);
-        //   _emailController.clear();
-        //   _passwordController.clear();
-        //   _firstNameController.clear();
-        //   _lastNameController.clear();
-        //   _phoneController.clear();
-        //   _confirmPasswordController.clear();
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -189,7 +199,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       children: [
         // for first and last name
         CustomLabelTextField(
-          controller: _firstNameController,
+          controller: _idController,
           labelText: "${getTranslated('ID', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_ID', context)}",
@@ -198,7 +208,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
         CustomLabelTextField(
-          controller: _firstNameController,
+          controller: _pwController,
           labelText: "${getTranslated('PW', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_PW', context)}",
@@ -207,7 +217,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
         CustomLabelTextField(
-          controller: _firstNameController,
+          controller: _pwHintController,
           labelText: "${getTranslated('CONFIRM_PW', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_CONFIRM_PW', context)}",
@@ -216,7 +226,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
         CustomLabelTextField(
-          controller: _firstNameController,
+          controller: _nameController,
           labelText: "${getTranslated('NAME', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_NAME', context)}",
@@ -225,7 +235,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
         CustomLabelTextField(
-          controller: _firstNameController,
+          controller: _phoneController,
           labelText: "${getTranslated('PHONE', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_PHONE', context)}",
@@ -234,7 +244,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
         CustomLabelTextField(
-          controller: _firstNameController,
+          controller: _emailController,
           labelText: "${getTranslated('EMAIL', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_EMAIL', context)}",
@@ -268,12 +278,28 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               ),
               Row(
                 children: [
-                  CustomSmallRadioButton(
-                      value: radioButton,
-                      text: "${getTranslated('MALE', context)}"),
-                  CustomSmallRadioButton(
-                      value: radioButton,
-                      text: "${getTranslated('FEMALE', context)}"),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        radioButton1 = !radioButton1;
+                      });
+                    },
+                    child: CustomSmallRadioButton(
+                      value: !radioButton1,
+                      text: "${getTranslated('MALE', context)}",
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        radioButton1 = !radioButton1;
+                      });
+                    },
+                    child: CustomSmallRadioButton(
+                      value: radioButton1,
+                      text: "${getTranslated('FEMALE', context)}",
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -282,33 +308,92 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
         Row(
           children: [
-            Expanded(
-              child: CustomLabelTextField(
-                controller: _firstNameController,
-                labelText: "${getTranslated('ADDRESS', context)} ",
-                essentialLabelText: " *",
-                hintText: "${getTranslated('SELECT_CITY', context)}",
+            Flexible(
+              flex: 2,
+              child: Material(
+                // elevation: 20.0,
+                // shadowColor: Color(0XFF2434D7),
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+
+                child: CustomAlertTextTextField(
+                  hintText: "$postCode",
+                  enabled: false,
+                  isBorder: true,
+                  fillColor: Colors.white,
+                ),
               ),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: CustomLabelTextField(
-                  controller: _firstNameController,
-                  labelText: "",
-                  essentialLabelText: "",
-                  hintText: "${getTranslated('SELECT_DISTINCT', context)}",
-                ),
+            Flexible(
+              flex: 1,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 16),
+                          backgroundColor: Color(0XFF2434D7),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => KpostalView(
+                                useLocalServer: true,
+                                localPort: 1024,
+                                // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
+                                callback: (Kpostal result) {
+                                  setState(() {
+                                    this.postCode = result.postCode;
+                                    this.address = result.address;
+                                    this.latitude = result.latitude.toString();
+                                    this.longitude =
+                                        result.longitude.toString();
+                                    this.kakaoLatitude =
+                                        result.kakaoLatitude.toString();
+                                    this.kakaoLongitude =
+                                        result.kakaoLongitude.toString();
+                                  });
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text("${getTranslated('SEARCH', context)}"),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
+        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+        Material(
+          // elevation: 20.0,
+          // shadowColor: Color(0XFF2434D7),
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
 
-        CustomLabelTextField(
-          controller: _firstNameController,
-          // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
-          // essentialLabelText: " *",
-          hintText: "${getTranslated('ETC_ADDRESS', context)}",
+          child: CustomAlertTextTextField(
+            hintText: "$address",
+            enabled: false,
+            isBorder: true,
+            fillColor: Colors.white,
+          ),
+        ),
+        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+        Material(
+          // elevation: 20.0,
+          // shadowColor: Color(0XFF2434D7),
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+
+          child: CustomAlertTextTextField(
+            controller: _etcAddressTextController,
+            hintText: "${getTranslated('ETC_ADDRESS', context)}",
+            isBorder: true,
+            fillColor: Colors.white,
+          ),
         ),
 
         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
@@ -345,7 +430,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
         CustomLabelTextField(
-          controller: _firstNameController,
+          controller: _companyRegistrationNumberController,
           labelText:
               "${getTranslated('COMPANY_REGISTRATION_NUMBER', context)} ",
           // essentialLabelText: " *",
@@ -365,12 +450,38 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           labelText: "${getTranslated('TERMS_OF_SERVICE', context)}",
           enabled: false,
           radioText: "${getTranslated('TERMS_OF_SERVICE_AGREE', context)}",
+          radioButton: InkWell(
+            onTap: () {
+              setState(() {
+                radioButton2 = !radioButton2;
+                radioButton4 = false;
+              });
+            },
+            child: CustomSmallRadioButton(
+              value: radioButton2,
+              reverse: true,
+              text: "${getTranslated('TERMS_OF_SERVICE_AGREE', context)}",
+            ),
+          ),
         ),
 
         CustomTextarea(
           labelText: "${getTranslated('PRIVACY_POLICY', context)}",
           enabled: false,
           radioText: "${getTranslated('PRIVACY_POLICY_AGREE', context)}",
+          radioButton: InkWell(
+            onTap: () {
+              setState(() {
+                radioButton3 = !radioButton3;
+                radioButton4 = false;
+              });
+            },
+            child: CustomSmallRadioButton(
+              value: radioButton3,
+              reverse: true,
+              text: "${getTranslated('PRIVACY_POLICY_AGREE', context)}",
+            ),
+          ),
         ),
 
         Row(
@@ -383,13 +494,29 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 left: Dimensions.MARGIN_SIZE_DEFAULT,
                 right: Dimensions.MARGIN_SIZE_DEFAULT,
               ),
-              child: CustomSmallRadioButton(
-                value: radioButton,
-                text: "${getTranslated('ALL_AGREE', context)}",
-                reverse: true,
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    radioButton4 = !radioButton4;
+                    radioButton2 = radioButton4;
+                    radioButton3 = radioButton4;
+                  });
+                },
+                child: CustomSmallRadioButton(
+                  value: radioButton4,
+                  text: "${getTranslated('ALL_AGREE', context)}",
+                  reverse: true,
+                ),
               ),
             ),
           ],
+        ),
+        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+        CustomElevatedButton(
+          onTap: () {
+            addUser();
+          },
+          buttonText: "${getTranslated('MEMBER_JOIN', context)}",
         ),
       ],
     );

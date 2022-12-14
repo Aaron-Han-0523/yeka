@@ -1,28 +1,14 @@
-import 'dart:math';
-
-import 'package:yeka/view/screen/auth/widget/sign_in_widget.dart';
 import 'package:yeka/view/screen/auth/widget/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:yeka/localization/language_constrants.dart';
-import 'package:yeka/provider/auth_provider.dart';
 
-// import 'package:flutter_sixvalley_ecommerce/provider/profile_provider.dart';
-// import 'package:flutter_sixvalley_ecommerce/provider/theme_provider.dart';
 import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 
-// import 'package:flutter_sixvalley_ecommerce/view/screen/auth/widget/sign_in_widget.dart';
-// import 'package:flutter_sixvalley_ecommerce/view/screen/auth/widget/sign_up_widget.dart';
-import 'package:provider/provider.dart';
-
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
-import '../../basewidget/button/custom_outlined_button.dart';
-import '../../basewidget/radio/custom_radio_button.dart';
-import '../../basewidget/textfield/custom_alert_text_textfield.dart';
 import '../home/widget/footer_screens.dart';
 
 class JoinScreen extends StatefulWidget {
@@ -36,10 +22,7 @@ class JoinScreen extends StatefulWidget {
 
 class _JoinScreenState extends State<JoinScreen> {
   TextEditingController idController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
-
-  bool _value1 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +64,8 @@ class _JoinScreenState extends State<JoinScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 7),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(4, 0, 4, 7),
                                   child: Image.asset(
                                     Images.logo_b,
                                     height: 28,
@@ -149,15 +133,12 @@ class _JoinScreenState extends State<JoinScreen> {
                               children: [
                                 Text(
                                   "절차에 따라 가입하시면 서비스를 이용하실 수 있습니다.",
-                                  style: TextStyle(
-                                    fontSize: 12
-                                  ),
+                                  style: TextStyle(fontSize: 12),
                                 ),
                               ],
                             ),
-                            // SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-                            // SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-                            SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                            SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                             const Divider(
                               height: 5,
                               thickness: 1,
@@ -165,37 +146,15 @@ class _JoinScreenState extends State<JoinScreen> {
                               endIndent: 10,
                               color: Colors.black12,
                             ),
-                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                            SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                            SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                            SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                            SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                             SignUpWidget(),
-                            SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                            SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                           ],
                         ),
                       ),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                      Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-                        child: CustomElevatedButton(
-                          onTap: () {
-                            // ClientsModel clientsModel = ClientsModel(
-                            //   phoneNum: phoneNumberTextEditingController.text,
-                            //   password: passwordTextEditingController.text,
-                            // );
-                            //
-                            // Provider.of<ClientsProvider>(context, listen: false)
-                            //     .login(clientsModel, route);
-                          },
-                          buttonText: "${getTranslated('MEMBER_JOIN', context)}",
-                        ),
-                      ),
-
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-
-
-                      // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
-                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),
                     ],
                   ),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../localization/language_constrants.dart';
 import '../../../utill/dimensions.dart';
 import '../radio/custom_small_radio_button.dart';
 
-class CustomTextarea extends StatelessWidget {
+class CustomTextarea extends StatefulWidget {
   final bool isBorder;
   final bool enabled;
   final TextEditingController textEditingController;
@@ -15,6 +14,7 @@ class CustomTextarea extends StatelessWidget {
   final String hintText;
   final EdgeInsetsGeometry contentPadding;
   final double hintSize;
+  final Widget radioButton;
 
   CustomTextarea({
     this.isBorder = true,
@@ -27,7 +27,15 @@ class CustomTextarea extends StatelessWidget {
     this.hintText = '서비스 이용약관 제1조',
     this.contentPadding = const EdgeInsets.all(10),
     this.hintSize = 9,
+    this.radioButton,
   });
+
+  @override
+  State<CustomTextarea> createState() => _CustomTextareaState();
+}
+
+class _CustomTextareaState extends State<CustomTextarea> {
+  bool innerRadioButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,16 +49,16 @@ class CustomTextarea extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: this.padding,
+            padding: this.widget.padding,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //TERMS_OF_SERVICE
                 Text(
-                  "$labelText",
+                  "${widget.labelText}",
                   style: TextStyle(
-                    fontSize: this.label_fontSize,
+                    fontSize: this.widget.label_fontSize,
                   ),
                 ),
                 Text(
@@ -60,13 +68,14 @@ class CustomTextarea extends StatelessWidget {
                     fontSize: 10,
                   ),
                 ),
-
-                radioText != ""
-                    ? CustomSmallRadioButton(
-                        value: true,
-                        text: radioText,
-                        reverse: true,
-                      )
+                widget.radioText != ""
+                    ? widget.radioButton == null
+                        ? CustomSmallRadioButton(
+                            value: innerRadioButton,
+                            text: widget.radioText,
+                            reverse: true,
+                          )
+                        : widget.radioButton
                     : Container(),
               ],
             ),
@@ -77,7 +86,7 @@ class CustomTextarea extends StatelessWidget {
             ),
             child: Container(
               decoration: BoxDecoration(
-                border: isBorder
+                border: widget.isBorder
                     ? Border.all(
                         width: 1,
                         color: Color(0xffeeeeee),
@@ -94,26 +103,25 @@ class CustomTextarea extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 12.0),
                   child: TextField(
-                    enabled: enabled,
+                    enabled: widget.enabled,
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     minLines: 10,
                     decoration: InputDecoration(
                       hintStyle: TextStyle(
-                        fontSize: hintSize,
+                        fontSize: widget.hintSize,
                         color: Color(0xffdddddd),
                       ),
-                      hintText: hintText,
-
+                      hintText: widget.hintText,
                       hintMaxLines: 5,
                       border: InputBorder.none,
-                      contentPadding: contentPadding,
+                      contentPadding: widget.contentPadding,
                     ),
                     // readOnly: true,
                     style: TextStyle(
                       color: Colors.grey,
                     ),
-                    controller: textEditingController,
+                    controller: widget.textEditingController,
                   ),
                 ),
                 // ends the actual text box

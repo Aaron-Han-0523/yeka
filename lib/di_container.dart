@@ -14,6 +14,7 @@ import 'package:yeka/data/repository/product_repo.dart';
 import 'package:yeka/data/repository/splash_repo.dart';
 import 'package:yeka/data/repository/user_repo.dart';
 import 'package:yeka/helper/network_info.dart';
+import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/provider/community_provider.dart';
 import 'package:yeka/provider/consulting_provider.dart';
 import 'package:yeka/provider/image_provider.dart';
@@ -33,6 +34,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/datasource/remote/dio/logging_interceptor.dart';
+import 'data/repository/auth_repo.dart';
 
 final sl = GetIt.instance;
 
@@ -54,6 +56,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ProductRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => UserRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => SplashRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(() => AuthRepo(sharedPreferences: sl(), dioClient: sl()));
 
   // Provider
   sl.registerFactory(() => OnBoardingProvider(onboardingRepo: sl()));
@@ -70,6 +73,7 @@ Future<void> init() async {
   sl.registerFactory(() => OrderProvider(orderRepo: sl()));
   sl.registerFactory(() => ProductProvider(productRepo: sl()));
   sl.registerFactory(() => UserProvider(userRepo: sl()));
+  sl.registerFactory(() => AuthProvider(authRepo: sl()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

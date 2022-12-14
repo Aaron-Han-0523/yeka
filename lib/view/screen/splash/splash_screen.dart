@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/view/screen/auth/auth_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -63,9 +64,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void _route() {
     Provider.of<SplashProvider>(context, listen: false).initSharedPrefData();
 
-    Provider.of<SplashProvider>(context, listen: false).enableIntro();
+    // Provider.of<SplashProvider>(context, listen: false).enableIntro();
 
     Timer(Duration(seconds: 1), () {
+      if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      } else {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => AuthScreen()));
+      }
+/*
       if (Provider.of<SplashProvider>(context, listen: false).showIntro()) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
@@ -74,8 +81,10 @@ class _SplashScreenState extends State<SplashScreen> {
         );
       } else {
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => AuthScreen()));
+          MaterialPageRoute(builder: (BuildContext context) => AuthScreen()),
+        );
       }
+*/
     });
   }
 
