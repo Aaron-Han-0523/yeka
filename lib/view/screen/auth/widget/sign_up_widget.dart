@@ -32,7 +32,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _etcAddressTextController = TextEditingController();
-  TextEditingController _companyRegistrationNumberController = TextEditingController();
+  TextEditingController _companyRegistrationNumberController =
+      TextEditingController();
+  TextEditingController _companyRegistrationFileController =
+      TextEditingController();
   GlobalKey<FormState> _formKey;
 
   FocusNode _fNameFocus = FocusNode();
@@ -49,8 +52,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   bool radioButton3 = false;
   bool radioButton4 = false;
 
-  String postCode = '-';
-  String address = '-';
+  String postCode = '우편번호';
+  String address = '주소';
   String latitude = '-';
   String longitude = '-';
   String kakaoLatitude = '-';
@@ -71,7 +74,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       String _email = _emailController.text.trim();
       String _phoneNumber = _countryDialCode + _phoneController.text.trim();
       String _etc = _etcAddressTextController.text.trim();
-      String _businessRegistrationNumber = _companyRegistrationNumberController.text.trim();
+      String _businessRegistrationNumber =
+          _companyRegistrationNumberController.text.trim();
 
       if (_id.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -306,21 +310,47 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           ),
         ),
 
+        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
+        Container(
+          margin: EdgeInsets.only(
+              left: Dimensions.MARGIN_SIZE_DEFAULT,
+              right: Dimensions.MARGIN_SIZE_DEFAULT),
+          padding: const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "주소 ",
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                  Text(
+                    " *",
+                    style: TextStyle(
+                      color: Color(0xffff0000),
+                      fontSize: 9,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+
         Row(
           children: [
             Flexible(
               flex: 2,
-              child: Material(
-                // elevation: 20.0,
-                // shadowColor: Color(0XFF2434D7),
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-
-                child: CustomAlertTextTextField(
-                  hintText: "$postCode",
-                  enabled: false,
-                  isBorder: true,
-                  fillColor: Colors.white,
-                ),
+              child: CustomLabelTextField(
+                hintText: "$postCode",
+                enabled: false,
+                isBorder: true,
+                fillColor: Colors.white,
+                isTextable: false,
+                padding: const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 0.0),
               ),
             ),
             Flexible(
@@ -328,72 +358,63 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 16),
-                          backgroundColor: Color(0XFF2434D7),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => KpostalView(
-                                useLocalServer: true,
-                                localPort: 1024,
-                                // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
-                                callback: (Kpostal result) {
-                                  setState(() {
-                                    this.postCode = result.postCode;
-                                    this.address = result.address;
-                                    this.latitude = result.latitude.toString();
-                                    this.longitude =
-                                        result.longitude.toString();
-                                    this.kakaoLatitude =
-                                        result.kakaoLatitude.toString();
-                                    this.kakaoLongitude =
-                                        result.kakaoLongitude.toString();
-                                  });
-                                },
-                              ),
-                            ),
-                          );
-                        },
-                        child: Text("${getTranslated('SEARCH', context)}"),
-                      ),
+                      child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      0.0,
+                      0.0,
+                      22.0,
+                      0.0,
                     ),
-                  ),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll<Color>(Color(0xff121212)),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => KpostalView(
+                              useLocalServer: true,
+                              localPort: 1024,
+                              // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
+                              callback: (Kpostal result) {
+                                setState(() {
+                                  this.postCode = result.postCode;
+                                  this.address = result.address;
+                                  this.latitude = result.latitude.toString();
+                                  this.longitude = result.longitude.toString();
+                                  this.kakaoLatitude =
+                                      result.kakaoLatitude.toString();
+                                  this.kakaoLongitude =
+                                      result.kakaoLongitude.toString();
+                                });
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                      child: Text("${getTranslated('SEARCH', context)}"),
+                    ),
+                  )),
                 ],
               ),
             ),
           ],
         ),
         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-        Material(
-          // elevation: 20.0,
-          // shadowColor: Color(0XFF2434D7),
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-
-          child: CustomAlertTextTextField(
-            hintText: "$address",
-            enabled: false,
-            isBorder: true,
-            fillColor: Colors.white,
-          ),
+        CustomLabelTextField(
+          hintText: "$address",
+          enabled: false,
+          isBorder: true,
+          fillColor: Colors.white,
         ),
         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-        Material(
-          // elevation: 20.0,
-          // shadowColor: Color(0XFF2434D7),
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-
-          child: CustomAlertTextTextField(
-            controller: _etcAddressTextController,
-            hintText: "${getTranslated('ETC_ADDRESS', context)}",
-            isBorder: true,
-            fillColor: Colors.white,
-          ),
+        CustomLabelTextField(
+          controller: _etcAddressTextController,
+          hintText: "${getTranslated('ETC_ADDRESS', context)}",
+          isBorder: true,
+          fillColor: Colors.white,
         ),
 
         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
@@ -440,9 +461,18 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
-        CustomLabelTextFieldUploadButton(
-            labelText:
-                "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}"),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            6.0,
+            0.0,
+            6.0,
+            0.0,
+          ),
+          child: CustomLabelTextFieldUploadButton(
+            controller: _companyRegistrationFileController,
+              labelText:
+                  "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}"),
+        ),
 
         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 

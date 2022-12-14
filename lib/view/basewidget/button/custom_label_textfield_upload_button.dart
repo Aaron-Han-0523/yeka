@@ -59,7 +59,7 @@ class CustomLabelTextFieldUploadButton extends StatelessWidget {
     this.textColor = const Color(0xff555555),
     // this.boxColor = const Color(0xffeeeeee),
     this.boxColor = Colors.white,
-    this.height = 25,
+    this.height = 35,
     this.enabled = true,
   });
 
@@ -112,6 +112,7 @@ class CustomLabelTextFieldUploadButton extends StatelessWidget {
 
                     if (picked != null) {
                       print(picked.files.first.name);
+                      this.controller.text = picked.files.first.name;
                     }
                   },
                 ),
@@ -139,53 +140,57 @@ class CustomLabelTextFieldUploadButton extends StatelessWidget {
                     //       offset: Offset(0, 1)) // changes position of shadow
                     // ],
                   ),
-                  child: TextFormField(
-                    enabled: enabled,
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: textColor,
-                    ),
-                    textAlign: textAlign,
-                    controller: controller,
-                    maxLines: maxLine ?? 1,
-                    textCapitalization: capitalization,
-                    maxLength: isPhoneNumber ? 15 : null,
-                    focusNode: focusNode,
-                    keyboardType: textInputType ?? TextInputType.text,
-                    //keyboardType: TextInputType.number,
-                    initialValue: null,
-                    textInputAction: textInputAction ?? TextInputAction.next,
-                    onFieldSubmitted: (v) {
-                      FocusScope.of(context).requestFocus(nextNode);
-                    },
-                    //autovalidate: true,
-                    inputFormatters: [
-                      isPhoneNumber
-                          ? FilteringTextInputFormatter.digitsOnly
-                          : FilteringTextInputFormatter.singleLineFormatter
-                    ],
-                    validator: (input) {
-                      if (input.isEmpty) {
-                        if (isValidator) {
-                          return validatorMessage ?? "";
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      enabled: enabled,
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        color: textColor,
+                      ),
+                      textAlign: textAlign,
+                      controller: controller,
+                      maxLines: maxLine ?? 1,
+                      textCapitalization: capitalization,
+                      maxLength: isPhoneNumber ? 15 : null,
+                      focusNode: focusNode,
+                      keyboardType: textInputType ?? TextInputType.text,
+                      //keyboardType: TextInputType.number,
+                      initialValue: null,
+                      textInputAction: textInputAction ?? TextInputAction.next,
+                      onFieldSubmitted: (v) {
+                        FocusScope.of(context).requestFocus(nextNode);
+                      },
+                      //autovalidate: true,
+                      inputFormatters: [
+                        isPhoneNumber
+                            ? FilteringTextInputFormatter.digitsOnly
+                            : FilteringTextInputFormatter.singleLineFormatter
+                      ],
+                      validator: (input) {
+                        if (input.isEmpty) {
+                          if (isValidator) {
+                            return validatorMessage ?? "";
+                          }
                         }
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: hintText ?? '',
-                      hintStyle: TextStyle(fontSize: 9),
-                      filled: fillColor != null,
-                      fillColor: fillColor,
-                      contentPadding: EdgeInsets.fromLTRB(8.0, 2.0, 4.0, 2.0),
-                      // contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15),
-                      isDense: true,
-                      counterText: '',
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white)),
-                      // hintStyle: titilliumRegular.copyWith(color: Theme.of(context).hintColor),
-                      errorStyle: TextStyle(height: 1.5),
-                      border: InputBorder.none,
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: hintText ?? '',
+                        hintStyle: TextStyle(fontSize: 9),
+                        filled: fillColor != null,
+                        fillColor: fillColor,
+                        contentPadding: EdgeInsets.fromLTRB(8.0, 2.0, 4.0, 2.0),
+                        // contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15),
+                        isDense: true,
+                        counterText: '',
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white)),
+                        // hintStyle: titilliumRegular.copyWith(color: Theme.of(context).hintColor),
+                        errorStyle: TextStyle(height: 1.5),
+                        border: InputBorder.none,
+                      ),
+                      textAlignVertical: TextAlignVertical.center,
                     ),
                   ),
                 ),
