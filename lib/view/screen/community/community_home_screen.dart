@@ -56,121 +56,6 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                           // height: MediaQuery.of(context).size.height * 0.55,
                         ),
                       ),
-                      Column(
-                        children: [
-                          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                          // CustomElevatedButton(
-                          //     onTap: () {}, buttonText: "더보기 ∨"),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 5, 0, 5),
-                            child: Row(
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  // widget.reviewModel.attachedFilepath1,
-                                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                  Images.video_file,
-                                  fit: BoxFit.cover,
-                                  width: 20,
-                                  // height: MediaQuery.of(context).size.width * 0.4,
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(20, 0, 118, 0),
-                                  child: Text(
-                                    "${getTranslated('BOARD_YOUTUBE_COLUMN', context)}",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            CommunityYoutubeListScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                    child: Text(
-                                      "${getTranslated('VIEW_MORE', context)}",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                Dimensions.HOME_PAGE_PADDING,
-                                0,
-                                Dimensions.PADDING_SIZE_DEFAULT,
-                                Dimensions.PADDING_SIZE_SMALL),
-                            child: Column(
-                              children: [
-                                // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                                // CustomElevatedButton(
-                                //     onTap: () {}, buttonText: "더보기 ∨"),
-                                Consumer<CommunityProvider>(
-                                  builder: (context, communityProvider, child) {
-                                    List<CommunityModel> communityList = [];
-                                    communityList = communityProvider.latestCommunityList;
-
-                                    print('========hello hello===>${communityList.length}');
-
-                                    return Column(children: [
-                                      !communityProvider.filterFirstLoading
-                                          ? communityList.length != 0
-                                          ? StaggeredGridView.countBuilder(
-                                        itemCount: communityList.length > 4
-                                            ? 4
-                                            : communityList.length,
-                                        crossAxisCount: 1,
-                                        padding: EdgeInsets.all(0),
-                                        physics: NeverScrollableScrollPhysics(),
-                                        // scrollDirection:
-                                        //     isHomePage ? Axis.horizontal : Axis.vertical,
-                                        shrinkWrap: true,
-                                        staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
-                                        itemBuilder: (BuildContext context, int index) {
-                                          return CommunityYoutubeWidget(communityModel: communityList[index]);
-                                        },
-                                      )
-                                          : SizedBox.shrink()
-                                          : ProductShimmer(
-                                        isEnabled: communityProvider.firstLoading, isHomePage: false,),
-                                      communityProvider.filterIsLoading
-                                          ? Center(
-                                          child: Padding(
-                                            padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
-                                            child: CircularProgressIndicator(
-                                                valueColor: AlwaysStoppedAnimation<Color>(
-                                                    Theme.of(context).primaryColor)),
-                                          ))
-                                          : SizedBox.shrink(),
-                                    ]);
-                                  },
-                                ),
-                                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(
                             Dimensions.HOME_PAGE_PADDING,
@@ -183,6 +68,127 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                             // CustomElevatedButton(
                             //     onTap: () {}, buttonText: "더보기 ∨"),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      // widget.reviewModel.attachedFilepath1,
+                                      // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
+                                      Images.video_file,
+                                      fit: BoxFit.cover,
+                                      width: 20,
+                                      // height: MediaQuery.of(context).size.width * 0.4,
+                                    ),
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                      child: Text(
+                                        "${getTranslated('BOARD_YOUTUBE_COLUMN', context)}",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            CommunityYoutubeListScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "${getTranslated('VIEW_MORE', context)}",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                  Dimensions.HOME_PAGE_PADDING,
+                                  0,
+                                  Dimensions.PADDING_SIZE_DEFAULT,
+                                  Dimensions.PADDING_SIZE_SMALL),
+                              child: Column(
+                                children: [
+                                  // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                                  // CustomElevatedButton(
+                                  //     onTap: () {}, buttonText: "더보기 ∨"),
+                                  Consumer<CommunityProvider>(
+                                    builder: (context, communityProvider, child) {
+                                      List<CommunityModel> communityList = [];
+                                      communityList = communityProvider.latestCommunityList;
+
+                                      print('========hello hello===>${communityList.length}');
+
+                                      return Column(children: [
+                                        !communityProvider.filterFirstLoading
+                                            ? communityList.length != 0
+                                            ? StaggeredGridView.countBuilder(
+                                          itemCount: communityList.length > 4
+                                              ? 4
+                                              : communityList.length,
+                                          crossAxisCount: 1,
+                                          padding: EdgeInsets.all(0),
+                                          physics: NeverScrollableScrollPhysics(),
+                                          // scrollDirection:
+                                          //     isHomePage ? Axis.horizontal : Axis.vertical,
+                                          shrinkWrap: true,
+                                          staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
+                                          itemBuilder: (BuildContext context, int index) {
+                                            return CommunityYoutubeWidget(communityModel: communityList[index]);
+                                          },
+                                        )
+                                            : SizedBox.shrink()
+                                            : ProductShimmer(
+                                          isEnabled: communityProvider.firstLoading, isHomePage: false,),
+                                        communityProvider.filterIsLoading
+                                            ? Center(
+                                            child: Padding(
+                                              padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
+                                              child: CircularProgressIndicator(
+                                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                                      Theme.of(context).primaryColor)),
+                                            ))
+                                            : SizedBox.shrink(),
+                                      ]);
+                                    },
+                                  ),
+                                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            Dimensions.HOME_PAGE_PADDING,
+                            Dimensions.PADDING_SIZE_SMALL,
+                            Dimensions.PADDING_SIZE_DEFAULT,
+                            Dimensions.PADDING_SIZE_SMALL),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

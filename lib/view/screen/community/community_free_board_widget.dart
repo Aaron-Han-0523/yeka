@@ -62,57 +62,59 @@ class CommunityFreeBoardWidget extends StatelessWidget {
                     ),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "${communityModel.writer ?? "BYHER(바이허)"}",
-                        style: TextStyle(
-                          fontSize: 7.0,
-                          fontWeight: FontWeight.bold,
-                          overflow: TextOverflow.ellipsis,
-                          color: Color(0xff999999),
-                        ),
-                      ),
-                      Text(
-                        "${getTranslated('|', context)}",
-                        style: TextStyle(
-                          fontSize: 7.0,
-                          fontWeight: FontWeight.bold,
-                          overflow: TextOverflow.ellipsis,
-                          color: Color(0xff999999),
-                        ),
-                      ),
-                      Text(
-                        "${communityModel.create_date != null ? DateConverter.fromNowDuration(communityModel.create_date) : ""}",
-                        // "7일전",
-                        style: TextStyle(
-                          fontSize: 7.0,
-                          fontWeight: FontWeight.bold,
-                          overflow: TextOverflow.ellipsis,
-                          color: Color(0xff999999),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(150, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              Images.eye1,
-                              fit: BoxFit.cover,
-                              width: 12,
+                      Row(
+                        children: [
+                          Text(
+                            "${communityModel.writer ?? "BYHER(바이허)"}",
+                            style: TextStyle(
+                              fontSize: 7.0,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              color: Color(0xff999999),
                             ),
-                            Text(
-                              //FIXME 테이블에 count 필드 추가해야함
-                              // "723회",
-                              "723회",
-                              style: TextStyle(
-                                fontSize: 7.0,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
-                                color: Color(0xff999999),
-                              ),
+                          ),
+                          Text(
+                            "${getTranslated('|', context)}",
+                            style: TextStyle(
+                              fontSize: 7.0,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              color: Color(0xff999999),
                             ),
-                          ],
-                        ),
+                          ),
+                          Text(
+                            "${communityModel.create_date != null ? DateConverter.fromNowDuration(communityModel.create_date) : ""}",
+                            // "7일전",
+                            style: TextStyle(
+                              fontSize: 7.0,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              color: Color(0xff999999),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            Images.eye1,
+                            fit: BoxFit.cover,
+                            width: 12,
+                          ),
+                          Text(
+                            //FIXME 테이블에 count 필드 추가해야함
+                            // "723회",
+                            "723회",
+                            style: TextStyle(
+                              fontSize: 7.0,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              color: Color(0xff999999),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
