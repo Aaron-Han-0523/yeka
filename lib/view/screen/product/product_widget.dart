@@ -18,13 +18,6 @@ class ProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // productModel.custom1 =
-        //     (int.parse(productModel.custom1 ?? "0") + 1).toString();
-        // reviewModel.carInfo_id = 1;
-
-        // Provider.of<ProductProvider>(context, listen: false)
-        //     .updateProduct(productModel);
-
         Navigator.push(
           context,
           PageRouteBuilder(
@@ -49,8 +42,6 @@ class ProductWidget extends StatelessWidget {
                     placeholder: Images.placeholder1,
                     fit: BoxFit.fitHeight,
                     image: productModel.thumbnail != null ? AppConstants.BASE_URL + "/" + productModel.thumbnail : AppConstants.BASE_URL,
-                    // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
-                    //     '/${bannerProvider.mainBannerList[index].photo}',
                     imageErrorBuilder: (c, o, s) => Image.asset(
                       Images.placeholder_3x1,
                       fit: BoxFit.fitHeight,
@@ -105,7 +96,7 @@ class ProductWidget extends StatelessWidget {
                           color: Color(0xff000000),
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        productModel.tag,
+                        productModel.tag!=null?productModel.tag:"",
                         style: TextStyle(
                           fontSize: 6,
                           color: Color(0xffffffff),

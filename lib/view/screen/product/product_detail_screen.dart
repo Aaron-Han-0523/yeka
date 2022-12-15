@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_shipping_screen.dart';
 
+import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/product_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/image_provider.dart';
+import '../../../utill/app_constants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
-import '../home/home_screens.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 
 class ProductDetailPage extends StatefulWidget {
@@ -32,17 +35,41 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   TextEditingController contentController = TextEditingController();
   TextEditingController gradeController = TextEditingController();
 
-  // int grade = 0;
   PageController _controller = PageController();
 
-  @override
-  void initState() {
-    super.initState();
+  List<Widget> thumbnailItems = [];
+  List<String> detailItems = [];
 
-    // _controller = PageController();
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    ImageModel imageModel = ImageModel(
+      product_id: widget.productModel.id,
+    );
+
+    Provider.of<CustomImageProvider>(context, listen: false)
+        .getImageList(imageModel);
+
+    for (var item in Provider.of<CustomImageProvider>(context, listen: false)
+        .imageList
+        .toList()) {
+      if (item.image_type == 0) {
+        thumbnailItems.add(
+          buildPage(item.path),
+        );
+      } else if (item.image_type == 1) {
+        detailItems.add(
+          item.path,
+        );
+      }
+    }
   }
 
-  Widget buildPage(String text, Color color) {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData(context, false);
+  }
+
+  Widget buildPage(String path) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
@@ -50,7 +77,10 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         // height: MediaQuery.of(context).size.width * 0.6,
         child: Image.network(
           // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-          'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+          // 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+          path != null
+              ? AppConstants.BASE_URL + "/" + path
+              : AppConstants.BASE_URL,
           fit: BoxFit.cover,
         ),
       ),
@@ -76,17 +106,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
       contentController.text = '';
       gradeController.text = '0';
     }
-
-    List<Widget> items = [
-      buildPage("0", Colors.red),
-      buildPage("1", Colors.blue),
-      buildPage("2", Colors.green),
-      buildPage("3", Colors.amber),
-      buildPage("4", Colors.deepPurple),
-      buildPage("5", Colors.teal),
-      buildPage("6", Colors.pink),
-      buildPage("7", Colors.brown)
-    ];
 
     return Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),
@@ -118,7 +137,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                         width: MediaQuery.of(context).size.width * 0.8,
                         height: MediaQuery.of(context).size.width * 0.8,
                         child: PageView(
-                          children: items,
+                          children: thumbnailItems,
                           controller: _controller,
                         ),
                       ),
@@ -130,7 +149,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                         dotSelectedSize: 8,
                         dotSpacing: 18,
                         controller: _controller,
-                        itemCount: items.length,
+                        itemCount: thumbnailItems.length == 0
+                            ? 1
+                            : thumbnailItems.length,
                         orientation: Axis.horizontal,
                       ),
 
@@ -338,8 +359,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
-
+                                SizedBox(
+                                    height: Dimensions
+                                        .PADDING_SIZE_EXTRA_EXTRA_SMALL),
                                 CustomElevatedButton(
                                   onTap: () async {
                                     Navigator.of(context).push(
@@ -348,53 +370,40 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       ),
                                     );
                                   },
-                                  buttonText: "${getTranslated('GO_TO_ORDER', context)}",
+                                  buttonText:
+                                      "${getTranslated('GO_TO_ORDER', context)}",
                                 ),
                                 SizedBox(
                                   height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 0, 15, 25),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    child: Container(
-                                      child: Image.network(
-                                        // widget.reviewModel.attachedFilepath1,
-                                        // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                        'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                        fit: BoxFit.cover,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.9,
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                1.5,
+                                for (var item in detailItems)
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        15, 0, 15, 25),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: Container(
+                                        child: Image.network(
+                                          // widget.reviewModel.attachedFilepath1,
+                                          // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
+                                          item != null
+                                              ? AppConstants.BASE_URL +
+                                                  "/" +
+                                                  item
+                                              : AppConstants.BASE_URL,
+                                          fit: BoxFit.cover,
+                                          // width: MediaQuery.of(context)
+                                          //         .size
+                                          //         .width *
+                                          //     0.9,
+                                          // height: MediaQuery.of(context)
+                                          //         .size
+                                          //         .width *
+                                          //     1.5,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 0, 15, 40),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    child: Container(
-                                      child: Image.network(
-                                        // widget.reviewModel.attachedFilepath1,
-                                        // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                        'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                        fit: BoxFit.cover,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.9,
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                1.2,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                  )
                               ],
                             ),
                           ),

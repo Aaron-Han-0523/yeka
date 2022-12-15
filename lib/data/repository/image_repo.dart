@@ -72,11 +72,10 @@ class ImageRepo {
     }
   }
 
-  // limit = pageSize, skip = offset
-  Future<ApiResponse> getImageList(int limit, int skip) async {
+  Future<ApiResponse> getImageList(ImageModel imageModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_IMAGE_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_IMAGE_URI + "/${imageModel.product_id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -87,7 +86,7 @@ class ImageRepo {
   Future<ApiResponse> getImage(ImageModel imageModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_IMAGE_URI + "/${imageModel.id}",
+        AppConstants.GET_IMAGE_URI + "/${imageModel.product_id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

@@ -74,7 +74,7 @@ for res_file in file_list:
     f3.write("static const String ADD_" + res_snake_upper + "_URI =\"/api/"+res_snake+"\";\n")
     f3.write("static const String UPDATE_"+res_snake_upper+"_URI =\"/api/"+res_snake+"\";\n")
     f3.write("static const String DELETE_"+res_snake_upper+"_URI =\"/api/"+res_snake+"\";\n")
-    f3.write("static const String LIST_"+res_snake_upper+"_URI =\"/api/"+res_snake+"\";\n")
+    f3.write("static const String LIST_"+res_snake_upper+"_URI =\"/api/"+res_snake+"/list\";\n")
     f3.write("static const String GET_"+res_snake_upper+"_URI =\"/api/"+res_snake+"\";\n\n")
 
     f3. close()

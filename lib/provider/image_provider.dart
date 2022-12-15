@@ -21,11 +21,12 @@ class CustomImageProvider extends ChangeNotifier {
   int _latestPageSize;
 
   List<ImageModel> _latestImageList = [];
-  List<int> _offsetList = [];
+  List<ImageModel> _imageList = [];
   int _lOffset = 0;
   int limit = 6;
 
   List<ImageModel> get latestImageList => _latestImageList;
+  List<ImageModel> get imageList => _imageList;
 
   int get lOffset => _lOffset;
 
@@ -57,36 +58,18 @@ class CustomImageProvider extends ChangeNotifier {
     return _image;
   }
 
-  Future<void> getLatestImageList(int offset, BuildContext context,
-      {bool reload = false}) async {
-    if (reload) {
-      _offsetList = [];
-      _latestImageList = [];
-    }
+  Future<void> getImageList(ImageModel imageModel) async {
+    print(">>>>>> ${imageModel.product_id}");
 
-    _lOffset = offset;
-
-    if (!_offsetList.contains(offset)) {
-      _offsetList.add(offset);
-
-      // limit = pageSize
-      // skip = offset
-      ApiResponse apiResponse = await imageRepo.getImageList(limit, offset * limit);
-      if (apiResponse.response != null &&
-          apiResponse.response.statusCode == 200) {
-        _latestImageList.addAll(ImageList.fromList(apiResponse.response.data).imageList);
-        _latestPageSize = ImageList.fromList(apiResponse.response.data).count;
-        _filterFirstLoading = false;
-        _filterIsLoading = false;
-      } else {
-        ApiChecker.checkApi(context, apiResponse);
-      }
-      notifyListeners();
+    ApiResponse apiResponse = await imageRepo.getImageList(imageModel);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      _imageList.addAll(ImageList.fromList(apiResponse.response.data).imageList);
+      _filterFirstLoading = false;
+      _filterIsLoading = false;
     } else {
-      if (_filterIsLoading) {
-        _filterIsLoading = false;
-        notifyListeners();
-      }
+      // ApiChecker.checkApi(context, apiResponse);
     }
+    notifyListeners();
   }
 }
