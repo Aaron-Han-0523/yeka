@@ -1,12 +1,15 @@
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
+import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/image_provider.dart';
 import '../../../utill/app_constants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -38,16 +41,22 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
   // int grade = 0;
   TabController _tabController;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    ImageModel imageModel = ImageModel(
+      consultant_id: widget.userModel.id,
+    );
 
-    _tabController = new TabController(length: 3, vsync: this);
+    Provider.of<CustomImageProvider>(context, listen: false)
+        .getImageListByConsultantId(imageModel);
   }
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData(context, false);
+
+    _tabController = new TabController(length: 3, vsync: this);
+
     contentController = TextEditingController(
       text: "${getTranslated('CONTENTS_HINT', context)}",
     );
@@ -61,7 +70,10 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
       contentController.text = '';
       gradeController.text = '0';
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),
         resizeToAvoidBottomInset: false,

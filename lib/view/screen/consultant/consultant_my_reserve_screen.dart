@@ -404,7 +404,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => ConsultantPaymentScreen(),
+                              builder: (_) => ConsultantPaymentScreen(userModel: widget.userModel),
                             ),
                           );
                         },

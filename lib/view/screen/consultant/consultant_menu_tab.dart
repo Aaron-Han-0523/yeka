@@ -38,11 +38,10 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: Container(
-                      child: Image.network(
-                      // FadeInImage.assetNetwork(
-                      //   placeholder: Images.placeholder1,
-                      //   fit: BoxFit.fitHeight,
-                        "https://file.mk.co.kr/meet/neds/2022/05/image_readtop_2022_428511_16526107615043320.jpg",
+                      child: FadeInImage.assetNetwork(
+                        placeholder: Images.placeholder1,
+                        image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL,
+                        fit: BoxFit.cover,
                         // image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL,
                         width: MediaQuery.of(context).size.width * 0.29, //750 * ? = 216
                         height: MediaQuery.of(context).size.width * 0.29,

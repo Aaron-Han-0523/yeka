@@ -72,10 +72,21 @@ class ImageRepo {
     }
   }
 
-  Future<ApiResponse> getImageList(ImageModel imageModel) async {
+  Future<ApiResponse> getImageListByProductId(ImageModel imageModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_IMAGE_URI + "/${imageModel.product_id}",
+        AppConstants.LIST_IMAGE_PRODUCT_URI + "/${imageModel.product_id}",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  Future<ApiResponse> getImageListByConsultantId(ImageModel imageModel) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_IMAGE_CONSULTANT_URI + "/${imageModel.consultant_id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

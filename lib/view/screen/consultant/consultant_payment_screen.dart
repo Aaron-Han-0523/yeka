@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
 import '../../../localization/language_constrants.dart';
@@ -11,10 +12,11 @@ import 'consultant_result_screen.dart';
 
 class ConsultantPaymentScreen extends StatefulWidget {
   final bool isCreateScreen;
+  final UserModel userModel;
 
   const ConsultantPaymentScreen({
     Key key,
-    this.isCreateScreen = true,
+    this.isCreateScreen = true, this.userModel,
   }) : super(key: key);
 
   @override
@@ -303,7 +305,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => ConsultantResultScreen(),
+                              builder: (_) => ConsultantResultScreen(userModel: widget.userModel),
                             ),
                           );
                         },

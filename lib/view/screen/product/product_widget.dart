@@ -25,7 +25,7 @@ class ProductWidget extends StatelessWidget {
         );
 
         Provider.of<CustomImageProvider>(context, listen: false)
-            .getImageList(imageModel)
+            .getImageListByProductId(imageModel)
             .then(
               (value) => Navigator.push(
                 context,
