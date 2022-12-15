@@ -41,7 +41,10 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _loadData(context, false);
+    // _loadData(context, false);
+    // fixme 개발 중이라 홈으로 올때는 무조건 초기화 하도록 조정하였음
+    // fixme 운영할 때는 false 로 변경해야함
+    _loadData(context, true);
   }
 
   @override
@@ -69,6 +72,21 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   ),
                   actions: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+                        child: InkWell(
+                          onTap: () => {
+                            Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (_) => HomePage()), (route) => false)
+                          },
+                          child: Image.asset(
+                            Images.help,
+                            height: 17,
+                          ),
+                        ),
+                      ),
+                    ),
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),

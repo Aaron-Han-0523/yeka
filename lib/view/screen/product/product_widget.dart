@@ -22,8 +22,8 @@ class ProductWidget extends StatelessWidget {
         //     (int.parse(productModel.custom1 ?? "0") + 1).toString();
         // reviewModel.carInfo_id = 1;
 
-        Provider.of<ProductProvider>(context, listen: false)
-            .updateProduct(productModel);
+        // Provider.of<ProductProvider>(context, listen: false)
+        //     .updateProduct(productModel);
 
         Navigator.push(
           context,

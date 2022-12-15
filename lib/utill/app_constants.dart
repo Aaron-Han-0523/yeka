@@ -42,7 +42,7 @@ class AppConstants {
   static const String ADD_PRODUCT_URI ="/api/product";
   static const String UPDATE_PRODUCT_URI ="/api/product";
   static const String DELETE_PRODUCT_URI ="/api/product";
-  static const String LIST_PRODUCT_URI ="/api/product";
+  static const String LIST_PRODUCT_URI ="/api/product/list";
   static const String GET_PRODUCT_URI ="/api/product";
 
   // IMAGE

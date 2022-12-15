@@ -7,3 +7,4 @@ String tag
 String create_date
 String update_date
 String delete_date
+String thumbnail
