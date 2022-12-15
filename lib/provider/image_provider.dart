@@ -59,11 +59,10 @@ class CustomImageProvider extends ChangeNotifier {
   }
 
   Future<void> getImageList(ImageModel imageModel) async {
-    print(">>>>>> ${imageModel.product_id}");
-
     ApiResponse apiResponse = await imageRepo.getImageList(imageModel);
     if (apiResponse.response != null &&
         apiResponse.response.statusCode == 200) {
+      _imageList.clear();
       _imageList.addAll(ImageList.fromList(apiResponse.response.data).imageList);
       _filterFirstLoading = false;
       _filterIsLoading = false;

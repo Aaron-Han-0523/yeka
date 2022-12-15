@@ -5,7 +5,9 @@ import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 import 'package:provider/provider.dart';
+import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/product_model.dart';
+import '../../../provider/image_provider.dart';
 import '../../../provider/product_provider.dart';
 import 'product_detail_screen.dart';
 
@@ -18,14 +20,22 @@ class ProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 1000),
-            pageBuilder: (context, anim1, anim2) => ProductDetailPage(
-                productModel: productModel, isCreateScreen: false),
-          ),
+        ImageModel imageModel = ImageModel(
+          product_id: productModel.id,
         );
+
+        Provider.of<CustomImageProvider>(context, listen: false)
+            .getImageList(imageModel)
+            .then(
+              (value) => Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionDuration: Duration(milliseconds: 1000),
+                  pageBuilder: (context, anim1, anim2) => ProductDetailPage(
+                      productModel: productModel, isCreateScreen: false),
+                ),
+              ),
+            );
       },
       child: Container(
         height: MediaQuery.of(context).size.width / 1.7,
@@ -41,7 +51,9 @@ class ProductWidget extends StatelessWidget {
                   child: FadeInImage.assetNetwork(
                     placeholder: Images.placeholder1,
                     fit: BoxFit.fitHeight,
-                    image: productModel.thumbnail != null ? AppConstants.BASE_URL + "/" + productModel.thumbnail : AppConstants.BASE_URL,
+                    image: productModel.thumbnail != null
+                        ? AppConstants.BASE_URL + "/" + productModel.thumbnail
+                        : AppConstants.BASE_URL,
                     imageErrorBuilder: (c, o, s) => Image.asset(
                       Images.placeholder_3x1,
                       fit: BoxFit.fitHeight,
@@ -96,7 +108,7 @@ class ProductWidget extends StatelessWidget {
                           color: Color(0xff000000),
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        productModel.tag!=null?productModel.tag:"",
+                        productModel.tag != null ? productModel.tag : "",
                         style: TextStyle(
                           fontSize: 6,
                           color: Color(0xffffffff),

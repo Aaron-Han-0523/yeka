@@ -41,13 +41,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   List<String> detailItems = [];
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    ImageModel imageModel = ImageModel(
-      product_id: widget.productModel.id,
-    );
-
-    Provider.of<CustomImageProvider>(context, listen: false)
-        .getImageList(imageModel);
-
     for (var item in Provider.of<CustomImageProvider>(context, listen: false)
         .imageList
         .toList()) {
@@ -430,8 +423,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                 child: Container(
                                   child: Image.asset(
                                     Images.heart,
-                                    // widget.reviewModel.attachedFilepath1,
-                                    // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                                     fit: BoxFit.cover,
                                     width: 20,
                                     // width: MediaQuery.of(context).size.width * 0.9,
