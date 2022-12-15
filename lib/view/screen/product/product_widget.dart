@@ -48,9 +48,7 @@ class ProductWidget extends StatelessWidget {
                   child: FadeInImage.assetNetwork(
                     placeholder: Images.placeholder1,
                     fit: BoxFit.fitHeight,
-                    image: AppConstants.BASE_URL +
-                        "/" +
-                        (productModel.title ?? ""),
+                    image: productModel.thumbnail != null ? AppConstants.BASE_URL + "/" + productModel.thumbnail : AppConstants.BASE_URL,
                     // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                     //     '/${bannerProvider.mainBannerList[index].photo}',
                     imageErrorBuilder: (c, o, s) => Image.asset(
