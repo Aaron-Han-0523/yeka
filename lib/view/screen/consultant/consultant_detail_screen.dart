@@ -5,8 +5,10 @@ import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
-import '../../../data/model/response/consulting_model.dart';
+import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../utill/app_constants.dart';
+import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../home/home_screens.dart';
@@ -17,10 +19,10 @@ import 'consultant_portfolio_tab.dart';
 
 class ConsultantDetailPage extends StatefulWidget {
   final bool isCreateScreen;
-  final ConsultingModel consultingModel;
+  final UserModel userModel;
 
   const ConsultantDetailPage(
-      {Key key, this.isCreateScreen = true, this.consultingModel})
+      {Key key, this.isCreateScreen = true, this.userModel})
       : super(key: key);
 
   @override
@@ -89,10 +91,9 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Container(
-                          child: Image.network(
-                            // widget.reviewModel.attachedFilepath1,
-                            // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                            'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+                          child: FadeInImage.assetNetwork(
+                            placeholder: Images.placeholder1,
+                            image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL,
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width * 0.9,
                             height: MediaQuery.of(context).size.width * 0.9,

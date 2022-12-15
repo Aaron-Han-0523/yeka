@@ -6,6 +6,7 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
+import 'consultant_detail_screen.dart';
 
 class ConsultantWidget extends StatelessWidget {
   final UserModel userModel;
@@ -17,13 +18,13 @@ class ConsultantWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
 
-        // Navigator.push(
-        //     context,
-        //     PageRouteBuilder(
-        //       transitionDuration: Duration(milliseconds: 1000),
-        //       pageBuilder: (context, anim1, anim2) => ConsultantDetailPage(
-        //           productModel: consultingModel, isCreateScreen: false),
-        //     ));
+        Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 1000),
+              pageBuilder: (context, anim1, anim2) => ConsultantDetailPage(
+                  userModel: userModel, isCreateScreen: false),
+            ));
       },
       child: Container(
         height: MediaQuery.of(context).size.width * 0.68,
@@ -37,7 +38,7 @@ class ConsultantWidget extends StatelessWidget {
               child: FadeInImage.assetNetwork(
                 placeholder: Images.placeholder1,
                 fit: BoxFit.fitHeight,
-                image: AppConstants.BASE_URL + "/" +userModel.title_image,
+                image: userModel.title_image != null ? AppConstants.BASE_URL + "/" + userModel.title_image : AppConstants.BASE_URL,
                 // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                 //     '/${bannerProvider.mainBannerList[index].photo}',
                 imageErrorBuilder: (c, o, s) =>
