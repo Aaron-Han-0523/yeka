@@ -46,6 +46,18 @@ provider 패턴은 하나의 객체만 유지
     1) di_container
     2) main
 
+# bin 에서 auto gen 사용 방법
+front end의 MVC 기본 파일을 모두 자동으로 생성해준다.
+1. 경로
+   1) cd bin
+2. bin/table 작성법
+   1) 기존 파일을 참조
+   2) create_date, update_date, delete_date 아래에 오는 필드는 테이블에 존재하지 않고 backend 서버에서 join 으로 만들어진 필드이다.
+3. 실행 명령어
+   1) python3 autoGenModel.py
+   2) python3 autoGenProvider.py auto_provider.py
+   3) python3 autoGenRepo.py auto_repo.py
+   
 # 각종 계정 정보(비밀번호 담당자 문의)
 1. 구글플레이 개발자 계정
    wrc9448@gmail.com

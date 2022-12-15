@@ -15,9 +15,12 @@ String hashtag
 String resume
 String working_hour
 int withdrawal
+int withdrawal_request_flag
+int withdrawal_request_amount
 String bank1
 String bank2
 String bank3
 String create_date
 String update_date
 String delete_date
+String title_image

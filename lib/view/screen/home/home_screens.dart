@@ -12,6 +12,7 @@ import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../provider/community_provider.dart';
 import '../../../provider/product_provider.dart';
+import '../../../provider/user_provider.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../aitest/image_upload_screen.dart';
 import '../auth/auth_screen.dart';
@@ -36,6 +37,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     Provider.of<ProductProvider>(context, listen: false)
         .getLatestProductList(0, context, reload: reload);
+
+    Provider.of<UserProvider>(context, listen: false)
+        .getLatestUserList(0, context, reload: reload);
   }
 
   @override

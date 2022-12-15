@@ -37,9 +37,7 @@ class ConsultantWidget extends StatelessWidget {
               child: FadeInImage.assetNetwork(
                 placeholder: Images.placeholder1,
                 fit: BoxFit.fitHeight,
-                image: AppConstants.BASE_URL +
-                    "/" +
-                    (userModel.bank1 ?? ""),
+                image: AppConstants.BASE_URL + "/" +userModel.title_image,
                 // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                 //     '/${bannerProvider.mainBannerList[index].photo}',
                 imageErrorBuilder: (c, o, s) =>
