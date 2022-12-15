@@ -344,7 +344,7 @@ class _MyPageConsultantUpdateScreenState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "${getTranslated('${getTranslated('CONSULTATION_MENU', context)}', context)}",
+                                "${getTranslated('${getTranslated('CONSULTATION___MENU', context)}', context)}",
                                 style: TextStyle(
                                   fontSize: 12.0,
                                   fontWeight: FontWeight.bold,

@@ -47,7 +47,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('ORDER_LIST', context)}",
+                  "${getTranslated('ORDER___LIST', context)}",
                 ).getAppbar(),
                 SliverToBoxAdapter(
                   child: Container(
@@ -101,7 +101,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Text(
-                                                      "${getTranslated('ORDER_NUMBER', context)}2022112492135423",
+                                                      "${getTranslated('ORDER_NUMBER', context)}:2022112492135423",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 7,
