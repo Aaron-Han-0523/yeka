@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/consultant/consultant_my_reserve_screen.dart';
 
+import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/dimensions.dart';
@@ -10,10 +11,11 @@ import '../home/widget/footer_screens.dart';
 
 class ConsultantReserveScreen extends StatefulWidget {
   final bool isCreateScreen;
+  final UserModel userModel;
 
   const ConsultantReserveScreen({
     Key key,
-    this.isCreateScreen = true,
+    this.isCreateScreen = true, this.userModel,
   }) : super(key: key);
 
   @override
@@ -264,7 +266,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                   Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (_) =>
-                                            ConsultantMyReserveScreen(),
+                                            ConsultantMyReserveScreen(userModel: widget.userModel),
                                       ),
                                   );
                                 },

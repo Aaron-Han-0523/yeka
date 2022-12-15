@@ -175,7 +175,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           physics: BouncingScrollPhysics(),
                           children: [
                             ConsultantDetailWidget(),
-                            ConsultantMenuWidget(),
+                            ConsultantMenuWidget(userModel : widget.userModel),
                             ConsultantPortfolioWidget(),
                           ],
                         ),
