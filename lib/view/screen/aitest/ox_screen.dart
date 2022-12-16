@@ -89,7 +89,10 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                     ),
                                     color: Color(0xffffffff),
                                   ),
-                                  width: MediaQuery.of(context).size.width,
+                                  width: MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width,
                                   height: 140,
                                 ),
                                 Container(
@@ -102,13 +105,15 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                         child: Image.asset(
                                           Images.ai_test2,
                                           fit: BoxFit.cover,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
+                                          height: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width *
                                               0.85,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
+                                          width: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width *
                                               0.85,
                                           // color: Colors.black,
                                         ),
@@ -130,8 +135,14 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                             child: Image.asset(
                               Images.ball2on,
                               fit: BoxFit.fill,
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              height: MediaQuery.of(context).size.width * 0.22,
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.9,
+                              height: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.22,
                             ),
                           ),
                         ),
@@ -188,7 +199,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                       child: Center(
                                         child: Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                           children: [
                                             Image.asset(
                                               Images.yes_bt,
@@ -222,11 +233,14 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                   // 0 : 봄 브라이트
                                   // 0 : 봄 브라이트
                                   // 0 : 봄 브라이트
+
+
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (_) => AILoginPage(
-                                        personalColorType: 0,
-                                      ),
+                                      builder: (_) =>
+                                          AILoginPage(
+                                            personalColorType: 0,
+                                          ),
                                     ),
                                   );
                                 } else {
@@ -251,7 +265,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                       child: Center(
                                         child: Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                           children: [
                                             Image.asset(
                                               Images.no_bt,
@@ -277,4 +291,60 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
           ),
         ));
   }
+
+  int personalColorResult(List<bool> stageValues) {
+    int season = 0;
+    int detailSeasonType = 0;
+    // 여기에 입력
+    // [true, true, true, true, true, , , , false, ]
+
+    if (stageValues[0] == true && stageValues[1] == true &&
+        stageValues[2] == true && stageValues[3] == true &&
+        stageValues[4] == true && stageValues[8] == false &&
+        stageValues[10] == true && stageValues[11] == true &&
+        stageValues[12] == false && stageValues[13] == true) { // 0 : 봄 브라이트 조건
+      season = 0;
+      detailSeasonType = 0;
+    } else if (stageValues[0] == true && stageValues[1] == true &&
+        stageValues[2] == true && stageValues[3] == true &&
+        stageValues[4] == true && stageValues[8] == false &&
+        stageValues[10] == true && stageValues[11] == true &&
+        stageValues[12] == false && stageValues[13] == true) { // 1 : 봄 라이트 조건
+      season = 0;
+      detailSeasonType = 0;
+    }
+
+
+    // 여기에 결과
+
+    // test bool 값을 세팅 완료
+    // 10가지 중에 하나로 결정
+    // 0 : 봄 브라이트
+    // 1 : 봄 브라이트
+    // 2 : 봄 브라이트
+    // 3 : 봄 브라이트
+    // 4 : 봄 브라이트
+    // 5 : 봄 브라이트
+    // 6 : 봄 브라이트
+    // 0 : 봄 브라이트
+    // 0 : 봄 브라이트
+    return 0;
+  }
+
+//  봄브	봄라	여라	여뮤	여브	가뮤	가스	가딥	겨브	겨딥
+// O		X			O			-
+// O		O			X			X
+// O		X			O			X
+// O		O			X			-
+// O		O			X			X
+// -	X	-	-	O	X	-	X	O	O
+// -	O	O	O	O	-	-	X	O	-
+// -	X	X	X	-	X	-	O	O	O
+// X	O	O	-	X	X	X	X	X	X
+// -	X	X	X	X	O	O	O	X	X
+// O	X	X	X	O	X	O	X	O	-
+// O	-	X	X	X	-	O	O	X	X
+// X	-	O	O	-	X	X	X	X	X
+// O	-	X	X	X	X	X	O	X	O
+// 					X	-	X	X	X
 }
