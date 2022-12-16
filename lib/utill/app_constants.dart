@@ -139,12 +139,12 @@ class AppConstants {
   static const String NOTIFICATION_URI = '/api/v1/notifications';
 
   //Todo 로그인 관련 6개
-  static const String REGISTRATION_URI = '/api/auth/register';
-  static const String LOGIN_URI = '/api/auth/login';
-  static const String FORGET_PASSWORD_URI = '/api/auth/forgot-password';
-  static const String CHECK_USERNAME_URI = '/api/auth/check-username';
-  static const String VERIFY_USERNAME_URI = '/api/auth/verify-username';
-  static const String RESET_PASSWORD_URI = '/api/auth/reset-password';
+  static const String LOGIN_URI = '/api/user/login';
+  static const String REGISTRATION_URI = '/api/user/register';
+  static const String FORGET_PASSWORD_URI = '/api/user/forgot-password';
+  static const String CHECK_USERNAME_URI = '/api/user/check-username';
+  static const String VERIFY_USERNAME_URI = '/api/user/verify-username';
+  static const String RESET_PASSWORD_URI = '/api/user/reset-password';
   // static const String CHECK_PHONE_URI = '/api/v1/auth/check-phone';
   // static const String VERIFY_PHONE_URI = '/api/v1/auth/verify-phone';
   // static const String SOCIAL_LOGIN_URI = '/api/v1/auth/social-login';
