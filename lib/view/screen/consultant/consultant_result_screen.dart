@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
 import '../../../localization/language_constrants.dart';
@@ -10,10 +11,11 @@ import '../home/widget/footer_screens.dart';
 
 class ConsultantResultScreen extends StatefulWidget {
   final bool isCreateScreen;
+  final UserModel userModel;
 
   const ConsultantResultScreen({
     Key key,
-    this.isCreateScreen = true,
+    this.isCreateScreen = true, this.userModel,
   }) : super(key: key);
 
   @override

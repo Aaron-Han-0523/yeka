@@ -1,125 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yeka/provider/image_provider.dart';
 
 import '../../../localization/language_constrants.dart';
+import '../../../utill/app_constants.dart';
 import '../../../utill/dimensions.dart';
+import '../../../utill/images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 
 class ConsultantPortfolioWidget extends StatefulWidget {
-  final bool isCreateScreen;
-
   const ConsultantPortfolioWidget({
     Key key,
-    this.isCreateScreen = true,
   }) : super(key: key);
 
   @override
-  State<ConsultantPortfolioWidget> createState() => _ConsultantPortfolioWidgetState();
+  State<ConsultantPortfolioWidget> createState() =>
+      _ConsultantPortfolioWidgetState();
 }
 
 class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    int cnt = 0;
+
+    var column = Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ClipRRect(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(10, 0, 1, 0),
-                child: Image.network(
-                  // widget.reviewModel.attachedFilepath1,
-                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                  'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  height: MediaQuery.of(context).size.width * 0.28,
-                ),
-              ),
-            ),
-            ClipRRect(
-              child: Container(
-                child: Image.network(
-                  // widget.reviewModel.attachedFilepath1,
-                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                  'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  height: MediaQuery.of(context).size.width * 0.28,
-                ),
-              ),
-            ),
-            ClipRRect(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(1, 0, 10, 0),
-                child: Image.network(
-                  // widget.reviewModel.attachedFilepath1,
-                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                  'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  height: MediaQuery.of(context).size.width * 0.28,
-                ),
-              ),
-            ),
-          ],
-        ),
-
-        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ClipRRect(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(10, 0, 1, 0),
-                child: Image.network(
-                  // widget.reviewModel.attachedFilepath1,
-                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                  'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  height: MediaQuery.of(context).size.width * 0.28,
-                ),
-              ),
-            ),
-            ClipRRect(
-              child: Container(
-                child: Image.network(
-                  // widget.reviewModel.attachedFilepath1,
-                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                  'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  height: MediaQuery.of(context).size.width * 0.28,
-                ),
-              ),
-            ),
-            ClipRRect(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(1, 0, 10, 0),
-                child: Image.network(
-                  // widget.reviewModel.attachedFilepath1,
-                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                  'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  height: MediaQuery.of(context).size.width * 0.28,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: CustomElevatedButton(
-            onTap: () {},
-            buttonText: '${getTranslated('LOOK_MORE', context)}',
-          ),
-        ),
       ],
     );
+
+    var row;
+
+    for (var image
+        in Provider.of<CustomImageProvider>(context, listen: false).imageList) {
+      if (cnt % 3 == 0) {
+        row = Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [],
+        );
+      }
+
+      row.children.add(
+        ClipRRect(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+            child: image != null
+                ? FadeInImage.assetNetwork(
+                    placeholder: Images.placeholder1,
+                    image: image.path != null
+                        ? AppConstants.BASE_URL + "/" + image.path
+                        : AppConstants.BASE_URL,
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width * 0.28,
+                    height: MediaQuery.of(context).size.width * 0.28,
+                  )
+                : Container(),
+          ),
+        ),
+      );
+
+      if (cnt % 3 == 2) {
+        column.children.add(row);
+        column.children.add(
+          SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+        );
+      }
+
+      cnt++;
+    }
+
+    column.children.add(
+      Padding(
+        padding: const EdgeInsets.all(20),
+        child: CustomElevatedButton(
+          onTap: () {},
+          buttonText: '${getTranslated('LOOK_MORE', context)}',
+        ),
+      ),
+    );
+
+    return column;
   }
 }

@@ -6,7 +6,7 @@ class AppConstants {
 
   // static const String BASE_URL = 'https://6valley.6amtech.com';
   // static const String BASE_URL = 'http://52.79.240.88';
-  static const String BASE_URL = 'http://172.30.1.95:3000';
+  static const String BASE_URL = 'http://172.30.1.88:3000';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
@@ -49,7 +49,8 @@ class AppConstants {
   static const String ADD_IMAGE_URI ="/api/image";
   static const String UPDATE_IMAGE_URI ="/api/image";
   static const String DELETE_IMAGE_URI ="/api/image";
-  static const String LIST_IMAGE_URI ="/api/image/list";
+  static const String LIST_IMAGE_CONSULTANT_URI ="/api/image/consultant";
+  static const String LIST_IMAGE_PRODUCT_URI ="/api/image/product";
   static const String GET_IMAGE_URI ="/api/image";
 
   // LIKE_COMMUNITY
