@@ -152,7 +152,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                           height: 340,
                           child: FadeInImage.assetNetwork(
                             placeholder: Images.placeholder1,
-                            image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL,
+                            image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL + "/upload/placeholder_1x1.png",
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width * 0.89333,
                             height: MediaQuery.of(context).size.width * 0.89333,
