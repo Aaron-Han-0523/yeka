@@ -10,7 +10,10 @@ import 'package:yeka/view/screen/product/product_view.dart';
 
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/community_freeboard_provider.dart';
+import '../../../provider/community_notice_provider.dart';
 import '../../../provider/community_provider.dart';
+import '../../../provider/community_youtube_provider.dart';
 import '../../../provider/product_provider.dart';
 import '../../../provider/user_provider.dart';
 import '../../basewidget/product_shimmer.dart';
@@ -33,6 +36,15 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<CommunityProvider>(context, listen: false)
+        .getLatestCommunityList(0, context, reload: reload);
+
+    Provider.of<CommunityYoutubeProvider>(context, listen: false)
+        .getLatestCommunityList(0, context, reload: reload);
+
+    Provider.of<CommunityFreeBoardProvider>(context, listen: false)
+        .getLatestCommunityList(0, context, reload: reload);
+
+    Provider.of<CommunityNoticeProvider>(context, listen: false)
         .getLatestCommunityList(0, context, reload: reload);
 
     Provider.of<ProductProvider>(context, listen: false)

@@ -6,7 +6,7 @@ class AppConstants {
 
   // static const String BASE_URL = 'https://6valley.6amtech.com';
   // static const String BASE_URL = 'http://52.79.240.88';
-  static const String BASE_URL = 'http://172.30.1.88:3000';
+  static const String BASE_URL = 'http://172.30.1.95:3000';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
@@ -79,10 +79,10 @@ class AppConstants {
   static const String UPDATE_COMMUNITY_URI ="/api/community";
   static const String DELETE_COMMUNITY_URI ="/api/community";
   static const String LIST_COMMUNITY_URI ="/api/community";
+  static const String LIST_COMMUNITY_NOTICE_URI ="/api/community/notice";
+  static const String LIST_COMMUNITY_YOUTUBE_URI ="/api/community/youtube";
+  static const String LIST_COMMUNITY_FREE_BOARD_URI ="/api/community/freeboard";
   static const String GET_COMMUNITY_URI ="/api/community";
-
-
-
 
 
 

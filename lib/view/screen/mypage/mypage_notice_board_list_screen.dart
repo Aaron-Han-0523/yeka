@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +8,7 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../localization/language_constrants.dart';
-import '../../../provider/community_provider.dart';
+import '../../../provider/community_notice_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/product_shimmer.dart';
@@ -23,21 +22,8 @@ class MyPageNoticeBoardListScreen extends StatefulWidget {
 class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  var titleList = [
-    "제 피부톤에 ?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-  ];
-
   Future<void> _loadData(BuildContext context, bool reload) async {
-    Provider.of<CommunityProvider>(context, listen: false)
+    Provider.of<CommunityNoticeProvider>(context, listen: false)
         .getLatestCommunityList(0, context, reload: reload);
   }
 
@@ -73,7 +59,7 @@ class _MyPageNoticeBoardListScreenState extends State<MyPageNoticeBoardListScree
                         padding: EdgeInsets.fromLTRB(20, 0, 20, 75),
                         color: Colors.white,
                         child:
-                        Consumer<CommunityProvider>(
+                        Consumer<CommunityNoticeProvider>(
                           builder: (context, communityProvider, child) {
                             List<CommunityModel> communityList = [];
                             communityList =

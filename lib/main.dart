@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:yeka/provider/auth_provider.dart';
+import 'package:yeka/provider/community_freeboard_provider.dart';
+import 'package:yeka/provider/community_notice_provider.dart';
 import 'package:yeka/provider/community_provider.dart';
+import 'package:yeka/provider/community_youtube_provider.dart';
 import 'package:yeka/provider/consulting_provider.dart';
 import 'package:yeka/provider/like_community_provider.dart';
 import 'package:yeka/provider/localization_provider.dart';
@@ -42,6 +45,9 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<ConsultingProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<UserProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<CommunityProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<CommunityNoticeProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<CommunityYoutubeProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<CommunityFreeBoardProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OptionProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<MenuProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),

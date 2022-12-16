@@ -7,7 +7,9 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/community_provider.dart';
+import '../../../provider/community_youtube_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/product_shimmer.dart';
@@ -24,9 +26,19 @@ class CommunityHomeScreen extends StatefulWidget {
 class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    Provider.of<CommunityYoutubeProvider>(context, listen: false)
+        .getLatestCommunityList(0, context, reload: reload);
+
+    Provider.of<CommunityFreeBoardProvider>(context, listen: false)
+        .getLatestCommunityList(0, context, reload: reload);
+
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _loadData(context, false);
   }
 
   @override
@@ -132,7 +144,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                   // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                                   // CustomElevatedButton(
                                   //     onTap: () {}, buttonText: "더보기 ∨"),
-                                  Consumer<CommunityProvider>(
+                                  Consumer<CommunityYoutubeProvider>(
                                     builder: (context, communityProvider, child) {
                                       List<CommunityModel> communityList = [];
                                       communityList = communityProvider.latestCommunityList;
@@ -253,7 +265,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                   // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                                   // CustomElevatedButton(
                                   //     onTap: () {}, buttonText: "더보기 ∨"),
-                                  Consumer<CommunityProvider>(
+                                  Consumer<CommunityFreeBoardProvider>(
                                     builder: (context, communityProvider, child) {
                                       List<CommunityModel> communityList = [];
                                       communityList = communityProvider.latestCommunityList;

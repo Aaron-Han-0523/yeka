@@ -15,7 +15,10 @@ import 'package:yeka/data/repository/splash_repo.dart';
 import 'package:yeka/data/repository/user_repo.dart';
 import 'package:yeka/helper/network_info.dart';
 import 'package:yeka/provider/auth_provider.dart';
+import 'package:yeka/provider/community_freeboard_provider.dart';
+import 'package:yeka/provider/community_notice_provider.dart';
 import 'package:yeka/provider/community_provider.dart';
+import 'package:yeka/provider/community_youtube_provider.dart';
 import 'package:yeka/provider/consulting_provider.dart';
 import 'package:yeka/provider/image_provider.dart';
 import 'package:yeka/provider/like_community_provider.dart';
@@ -35,6 +38,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/datasource/remote/dio/logging_interceptor.dart';
 import 'data/repository/auth_repo.dart';
+import 'data/repository/community_freeboard_repo.dart';
+import 'data/repository/community_notice_repo.dart';
+import 'data/repository/community_youtube_repo.dart';
 
 final sl = GetIt.instance;
 
@@ -47,6 +53,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => OnBoardingRepo(dioClient: sl()));
   sl.registerLazySingleton(() => NotificationRepo(dioClient: sl()));
   sl.registerLazySingleton(() => CommunityRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(() => CommunityNoticeRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(() => CommunityYoutubeRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(() => CommunityFreeBoardRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => ConsultingRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => ImageRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => LikeCommunityRepo(sharedPreferences: sl(), dioClient: sl()));
@@ -65,6 +74,9 @@ Future<void> init() async {
   sl.registerFactory(() => LocalizationProvider(sharedPreferences: sl(), dioClient: sl()));
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
   sl.registerFactory(() => CommunityProvider(communityRepo: sl()));
+  sl.registerFactory(() => CommunityNoticeProvider(communityRepo: sl()));
+  sl.registerFactory(() => CommunityYoutubeProvider(communityRepo: sl()));
+  sl.registerFactory(() => CommunityFreeBoardProvider(communityRepo: sl()));
   sl.registerFactory(() => ConsultingProvider(consultingRepo: sl()));
   sl.registerFactory(() => CustomImageProvider(imageRepo: sl()));
   sl.registerFactory(() => LikeCommunityProvider(likeCommunityRepo: sl()));

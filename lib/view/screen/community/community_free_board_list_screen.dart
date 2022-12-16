@@ -8,13 +8,11 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/community/community_crud_screen.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
-import '../../../helper/youtube_thumbnail_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/community_provider.dart';
-import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/product_shimmer.dart';
-import 'community_free_board_detail_screen.dart';
 import 'community_free_board_widget.dart';
 
 class CommunityFreeBoardListScreen extends StatefulWidget {
@@ -27,22 +25,15 @@ class _CommunityFreeBoardListScreenState
     extends State<CommunityFreeBoardListScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  var titleList = [
-    "제 피부톤에 ?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?333333",
-  ];
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    Provider.of<CommunityFreeBoardProvider>(context, listen: false)
+        .getLatestCommunityList(0, context, reload: reload);
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _loadData(context, false);
   }
 
   @override
@@ -71,7 +62,7 @@ class _CommunityFreeBoardListScreenState
                             // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                             // CustomElevatedButton(
                             //     onTap: () {}, buttonText: "더보기 ∨"),
-                            Consumer<CommunityProvider>(
+                            Consumer<CommunityFreeBoardProvider>(
                               builder: (context, communityProvider, child) {
                                 List<CommunityModel> communityList = [];
                                 communityList = communityProvider.latestCommunityList;
@@ -105,7 +96,8 @@ class _CommunityFreeBoardListScreenState
                                         padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
                                         child: CircularProgressIndicator(
                                             valueColor: AlwaysStoppedAnimation<Color>(
-                                                Theme.of(context).primaryColor)),
+                                                Theme.of(context).primaryColor),
+                                        ),
                                       ))
                                       : SizedBox.shrink(),
                                 ]);
