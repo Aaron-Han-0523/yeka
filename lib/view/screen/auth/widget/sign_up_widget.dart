@@ -19,6 +19,8 @@ import '../../../basewidget/textfield/custom_alert_text_textfield.dart';
 
 import 'package:kpostal/kpostal.dart';
 
+import '../auth_screen.dart';
+
 class SignUpWidget extends StatefulWidget {
   @override
   _SignUpWidgetState createState() => _SignUpWidgetState();
@@ -62,124 +64,108 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   bool isEmailVerified = false;
 
   addUser() async {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
-      isEmailVerified = true;
+    String _id = _idController.text.trim();
+    String _pw = _pwController.text.trim();
+    String _pwHint = _pwHintController.text.trim();
+    String _name = _nameController.text.trim();
+    String _phone = _phoneController.text.trim();
+    String _email = _emailController.text.trim();
+    String _phoneNumber = _countryDialCode + _phoneController.text.trim();
+    String _etc = _etcAddressTextController.text.trim();
+    String _businessRegistrationNumber =
+        _companyRegistrationNumberController.text.trim();
 
-      String _id = _idController.text.trim();
-      String _pw = _pwController.text.trim();
-      String _pwHint = _pwHintController.text.trim();
-      String _name = _nameController.text.trim();
-      String _phone = _phoneController.text.trim();
-      String _email = _emailController.text.trim();
-      String _phoneNumber = _countryDialCode + _phoneController.text.trim();
-      String _etc = _etcAddressTextController.text.trim();
-      String _businessRegistrationNumber =
-          _companyRegistrationNumberController.text.trim();
-
-      if (_id.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('first_name_field_is_required', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (_pw.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('last_name_field_is_required', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (_pwHint.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('last_name_field_is_required', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (_name.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (_email.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (EmailChecker.isNotValid(_email)) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('enter_valid_email_address', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (_phone.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('PHONE_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (_pw.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (_pwHint.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else if (_pw != _pwHint) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(getTranslated('PASSWORD_DID_NOT_MATCH', context)),
-          backgroundColor: Colors.red,
-        ));
-      } else {
-        register.fName = '${_idController.text}';
-        register.lName = _pwController.text ?? " ";
-        register.email = _emailController.text;
-        register.phone = _phoneNumber;
-        register.password = _pwHintController.text;
-        UserModel userModel = UserModel(
-          user_type: 0,
-          username: _id,
-          password: _pw,
-          name: _name,
-          phone: _phoneNumber,
-          email: _email,
-          gender: radioButton1 ? 0 : 1,
-          address1: postCode,
-          address2: address,
-          address3: _etc,
-          business_registration_number: _businessRegistrationNumber,
-          // business_registration_file,
-          // hashtag,
-          // resume,
-          // working_hour,
-          // withdrawal,
-          // bank1,
-          // bank2,
-          // bank3,
-        );
-
-        await Provider.of<AuthProvider>(context, listen: false)
-            .registration(userModel, route);
-      }
+    if (_id.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('first_name_field_is_required', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_pw.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('last_name_field_is_required', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_pwHint.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('last_name_field_is_required', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_name.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_email.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (EmailChecker.isNotValid(_email)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('enter_valid_email_address', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_phone.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('PHONE_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_pw.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_pwHint.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_pw != _pwHint) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('PASSWORD_DID_NOT_MATCH', context)),
+        backgroundColor: Colors.red,
+      ));
     } else {
-      isEmailVerified = false;
+      register.fName = '${_idController.text}';
+      register.lName = _pwController.text ?? " ";
+      register.email = _emailController.text;
+      register.phone = _phoneNumber;
+      register.password = _pwHintController.text;
+      UserModel userModel = UserModel(
+        user_type: 0,
+        username: _id,
+        password: _pw,
+        name: _name,
+        phone: _phoneNumber,
+        email: _email,
+        gender: radioButton1 ? 0 : 1,
+        address1: postCode,
+        address2: address,
+        address3: _etc,
+        business_registration_number: _businessRegistrationNumber,
+        // business_registration_file,
+        // hashtag,
+        // resume,
+        // working_hour,
+        // withdrawal,
+        // bank1,
+        // bank2,
+        // bank3,
+      );
+
+      await Provider.of<AuthProvider>(context, listen: false)
+          .registration(userModel, route);
     }
   }
 
   route(
       bool isRoute, String token, String tempToken, String errorMessage) async {
-    String _phone = _countryDialCode + _phoneController.text.trim();
     if (isRoute) {
-      if (Provider.of<SplashProvider>(context, listen: false)
-          .configModel
-          .emailVerification) {
-        Provider.of<AuthProvider>(context, listen: false)
-            .checkUsername(_emailController.text.toString(), tempToken)
-            .then((value) async {
-          if (value.isSuccess) {
-            Provider.of<AuthProvider>(context, listen: false)
-                .updateUsername(_emailController.text.toString());
-          }
-        });
-      }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("회원가입에 성공했습니다."), backgroundColor: Colors.green));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => AuthScreen()), (route) => false);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));
@@ -469,7 +455,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             0.0,
           ),
           child: CustomLabelTextFieldUploadButton(
-            controller: _companyRegistrationFileController,
+              controller: _companyRegistrationFileController,
               labelText:
                   "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}"),
         ),
