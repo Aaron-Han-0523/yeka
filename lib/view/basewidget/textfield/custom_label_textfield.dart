@@ -40,6 +40,10 @@ class CustomLabelTextField extends StatelessWidget {
   final double hintSize;
   final double hintSize_InputDecoration;
   final Color hintColor;
+  final bool obscureText;
+  final bool autofocus;
+  final Function validator;
+  final TextInputType keyboardType;
 
   CustomLabelTextField({
     this.labelText = "",
@@ -71,6 +75,10 @@ class CustomLabelTextField extends StatelessWidget {
     this.hintSize = 12,
     this.hintSize_InputDecoration = 12,
     this.hintColor,
+    this.obscureText = false,
+    this.autofocus = false,
+    this.validator = null,
+    this.keyboardType,
   });
 
   @override
@@ -130,6 +138,8 @@ class CustomLabelTextField extends StatelessWidget {
                 // ],
               ),
               child: TextFormField(
+                autofocus: this.autofocus,
+                obscureText: this.obscureText,
                 enabled: enabled,
                 style: TextStyle(
                   fontSize: this.hintSize,
@@ -154,19 +164,21 @@ class CustomLabelTextField extends StatelessWidget {
                       ? FilteringTextInputFormatter.digitsOnly
                       : FilteringTextInputFormatter.singleLineFormatter
                 ],
-                validator: (input) {
-                  if (input.isEmpty) {
-                    if (isValidator) {
-                      return validatorMessage ?? "";
-                    }
-                  }
-                  return null;
-                },
+                validator: validator == null
+                    ? (input) {
+                        if (input.isEmpty) {
+                          if (isValidator) {
+                            return validatorMessage ?? "";
+                          }
+                        }
+                        return null;
+                      }
+                    : validator,
                 decoration: InputDecoration(
                   hintText: hintText ?? '',
                   hintStyle: TextStyle(
-                      fontSize: this.hintSize_InputDecoration,
-                      color: hintColor,
+                    fontSize: this.hintSize_InputDecoration,
+                    color: hintColor,
                   ),
                   filled: fillColor != null,
                   fillColor: fillColor,

@@ -108,6 +108,8 @@ class _AuthScreenState extends State<AuthScreen> {
                             SizedBox(
                               height: 20,
                               child: TextFormField(
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: true,
                                 controller: passwordController,
                                 onChanged: (value) {},
                                 textAlignVertical: TextAlignVertical.center,

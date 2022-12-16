@@ -189,10 +189,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       children: [
         // for first and last name
         CustomLabelTextField(
+          autofocus: true,
           controller: _idController,
           labelText: "${getTranslated('ID', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_ID', context)}",
+          focusNode: _fNameFocus,
         ),
 
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -202,6 +204,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           labelText: "${getTranslated('PW', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_PW', context)}",
+          keyboardType: TextInputType.visiblePassword,
+          obscureText: true,
         ),
 
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -211,6 +215,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           labelText: "${getTranslated('CONFIRM_PW', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_CONFIRM_PW', context)}",
+          keyboardType: TextInputType.visiblePassword,
+          obscureText: true,
         ),
 
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -229,6 +235,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           labelText: "${getTranslated('PHONE', context)} ",
           essentialLabelText: " *",
           hintText: "${getTranslated('HINT_PHONE', context)}",
+          isPhoneNumber: true,
+          textInputType: TextInputType.number,
         ),
 
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
