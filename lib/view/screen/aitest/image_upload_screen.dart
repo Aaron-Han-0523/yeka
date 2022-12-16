@@ -47,23 +47,8 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // const Divider(
-                      //   height: 5,
-                      //   thickness: 1,
-                      //   indent: 0,
-                      //   endIndent: 0,
-                      //   color: Colors.black12,
-                      // ),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Container(
-                        // height: 500,
                         decoration: BoxDecoration(
-                          // border: Border.all(
-                          //   width: 2,
-                          //   color: Color(0XFF2434D7),
-                          // ),
-                          // borderRadius:
-                          // BorderRadius.all(Radius.circular(8.0)),
                           color: Color(0xff333333),
                         ),
                         child: Column(
@@ -138,54 +123,76 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                               ),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                            Container(
-                              height: 370,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width * 0.8,
-                                        decoration: BoxDecoration(
-                                          // border: Border.all(
-                                          //   width: 2,
-                                          //   color: Color(0XFF2434D7),
-                                          // ),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(8.0)),
-                                          color: Color(0xffF1F1F1),
-                                        ),
-                                        child: Center(
-                                            child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(15.0),
-                                              child: Image.asset(
-                                                Images.help,
-                                                width: 23,
+                            Stack(children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 220),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(50.0),
+                                    topRight: Radius.circular(50.0),
+                                  ),
+                                  color: Color(0xffffffff),
+                                ),
+                                width: MediaQuery.of(context).size.width,
+                                height: 141,
+                              ),
+                              Container(
+                                height: 360,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 0, 20, 30),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.8,
+                                          decoration: BoxDecoration(
+                                            // border: Border.all(
+                                            //   width: 2,
+                                            //   color: Color(0XFF2434D7),
+                                            // ),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(8.0)),
+                                            color: Color(0xffF1F1F1),
+                                          ),
+                                          child: Center(
+                                              child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
+                                                child: Image.asset(
+                                                  Images.help,
+                                                  width: 23,
+                                                ),
                                               ),
-                                            ),
-                                            Text(
+                                              Text(
                                                 "${getTranslated('REGISTRATION_IMAGE', context)}",
-                                              style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w900
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight:
+                                                        FontWeight.w900),
                                               ),
-                                            ),
-
-                                          ],
-                                        ))),
-                                  )),
-                            ),
-                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                                            ],
+                                          ))),
+                                    )),
+                              ),
+                            ]),
+                            // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.fromLTRB(
+                          16.0,
+                          0.0,
+                          16.0,
+                          16.0,
+                        ),
                         child: Center(
                           child: InkWell(
                             onTap: () {

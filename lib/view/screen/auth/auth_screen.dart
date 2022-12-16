@@ -202,9 +202,9 @@ class _AuthScreenState extends State<AuthScreen> {
         ));
   }
 
-  route(bool isRoute, String token, String temporaryToken,
-      String errorMessage) async {
+  route(bool isRoute, String errorMessage) async {
     if (isRoute) {
+      SnackBar(content: Text("로그인 되었습니다."), backgroundColor: Colors.green);
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
     } else {

@@ -12,6 +12,10 @@ import '../../basewidget/radio/custom_radio_button.dart';
 import '../home/home_screens.dart';
 
 class AILoginPage extends StatefulWidget {
+  final int personalColorType;
+
+  AILoginPage({this.personalColorType});
+
   @override
   State<AILoginPage> createState() => _AILoginPageState();
 }

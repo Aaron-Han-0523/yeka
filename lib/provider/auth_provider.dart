@@ -71,7 +71,6 @@ class AuthProvider with ChangeNotifier {
         message = map["message"];
       } catch (e) {}
       saveUserUsername(loginBody.username);
-      //   route(bool isRoute, String token, String temporaryToken, String errorMessage) async {
       callback(true, message);
       notifyListeners();
     } else {
