@@ -142,21 +142,17 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                       ),
                       // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                      Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
-                        child: CustomElevatedButton(
-                          onTap: () {
-                            LoginModel loginModel = LoginModel(
-                              username: idController.text,
-                              password: passwordController.text,
-                            );
+                      CustomElevatedButton(
+                        onTap: () {
+                          LoginModel loginModel = LoginModel(
+                            username: idController.text,
+                            password: passwordController.text,
+                          );
 
-                            Provider.of<AuthProvider>(context, listen: false)
-                                .login(loginModel, route);
-                          },
-                          buttonText: "${getTranslated('LOGIN', context)}",
-                        ),
+                          Provider.of<AuthProvider>(context, listen: false)
+                              .login(loginModel, route);
+                        },
+                        buttonText: "${getTranslated('LOGIN', context)}",
                       ),
 
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),

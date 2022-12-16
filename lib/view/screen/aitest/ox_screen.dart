@@ -8,7 +8,6 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
-import '../home/home_screens.dart';
 import 'ai_result_screen.dart';
 
 class OXPage extends StatefulWidget {
@@ -17,15 +16,27 @@ class OXPage extends StatefulWidget {
 }
 
 class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
-  bool _radioValue = true;
-  bool _inputFormValue = false;
-  TextEditingController _textEditingController = TextEditingController();
+  var testList = [
+    "1. dkdk",
+    "2. dkdk",
+    "3. dkdk",
+    "4. dkdk",
+    "5. dkdk",
+    "6. dkdk",
+    "7. dkdk",
+    "8. dkdk",
+    "9. dkdk",
+    "10. dkdk",
+    "11. dkdk",
+    "12. dkdk",
+    "13. dkdk",
+    "14. dkdk",
+    "15. dkdk",
+  ];
 
-  void setStateButtonValue(value) {
-    setState(() {
-      _inputFormValue = value;
-    });
-  }
+  int stage = 0;
+
+  List<bool> stageValues = [];
 
   @override
   Widget build(BuildContext context) {
@@ -46,22 +57,8 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // const Divider(
-                      //   height: 5,
-                      //   thickness: 1,
-                      //   indent: 0,
-                      //   endIndent: 0,
-                      //   color: Colors.black12,
-                      // ),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Container(
                         decoration: BoxDecoration(
-                          // border: Border.all(
-                          //   width: 2,
-                          //   color: Color(0XFF2434D7),
-                          // ),
-                          // borderRadius:
-                          // BorderRadius.all(Radius.circular(8.0)),
                           color: Color(0xff333333),
                         ),
                         child: Container(
@@ -93,7 +90,6 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                   ),
                                 ],
                               ),
-                              // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                               Container(
                                 height: 340,
                                 child: Padding(
@@ -112,27 +108,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                                 0.85,
                                         // color: Colors.black,
                                       ),
-                                    )
-                                    // Container(
-                                    //     height: MediaQuery.of(context).size.width * 0.9,
-                                    //     decoration: BoxDecoration(
-                                    //       // border: Border.all(
-                                    //       //   width: 2,
-                                    //       //   color: Color(0XFF2434D7),
-                                    //       // ),
-                                    //       borderRadius:
-                                    //       BorderRadius.all(Radius.circular(8.0)),
-                                    //       color: Colors.blue,
-                                    //     ),
-                                    //     child: Image.asset(
-                                    //       Images.loading_estimate,
-                                    //       fit: BoxFit.fitWidth,
-                                    //       height: MediaQuery.of(context).size.width * 0.9,
-                                    //       width: MediaQuery.of(context).size.width * 0.9,
-                                    //       // color: Colors.black,
-                                    //     ),
-                                    // )
-                                    ),
+                                    )),
                               ),
                               SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                             ],
@@ -157,9 +133,10 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                           Container(
                             height: 40,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(140.0, 5.0, 12.0, 0.0),
+                              padding: const EdgeInsets.fromLTRB(
+                                  140.0, 5.0, 12.0, 0.0),
                               child: Text(
-                                "피부가 노랗다",
+                                "${testList[stage]}",
                                 style: TextStyle(
                                   fontSize: 19,
                                   color: Color(0xffEEEEEE),
@@ -178,10 +155,18 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                             child: Center(
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (_) => AIResultPage()),
-                                  );
+                                  stageValues.add(true);
+                                  if (stage > 13) {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) => AIResultPage(),
+                                      ),
+                                    );
+                                  } else {
+                                    setState(() {
+                                      stage++;
+                                    });
+                                  }
                                 },
                                 child: Column(
                                   children: [
@@ -196,16 +181,6 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                       child: Container(
                                         height: 60,
                                         width: 60,
-                                        // decoration: BoxDecoration(
-                                        //   borderRadius: BorderRadius.all(
-                                        //     Radius.circular(50),
-                                        //   ),
-                                        //   border: Border.all(
-                                        //     width: 2,
-                                        //     color: Colors.green,
-                                        //     style: BorderStyle.solid,
-                                        //   ),
-                                        // ),
                                         child: Center(
                                           child: Column(
                                             mainAxisAlignment:
@@ -214,11 +189,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                               Image.asset(
                                                 Images.yes_bt,
                                                 height: 57,
-                                                // color: Colors.black,
                                               ),
-                                              // Text(
-                                              //   "${getTranslated('NO_BUTTON', context)}",
-                                              // ),
                                             ],
                                           ),
                                         ),
@@ -234,10 +205,18 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                             child: Center(
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (_) => AIResultPage()),
-                                  );
+                                  stageValues.add(false);
+                                  if (stage > 13) {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) => AIResultPage(),
+                                      ),
+                                    );
+                                  } else {
+                                    setState(() {
+                                      stage++;
+                                    });
+                                  }
                                 },
                                 child: Column(
                                   children: [
@@ -252,16 +231,6 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                       child: Container(
                                         height: 60,
                                         width: 60,
-                                        // decoration: BoxDecoration(
-                                        //   borderRadius: BorderRadius.all(
-                                        //     Radius.circular(50),
-                                        //   ),
-                                        //   border: Border.all(
-                                        //     width: 2,
-                                        //     color: Colors.green,
-                                        //     style: BorderStyle.solid,
-                                        //   ),
-                                        // ),
                                         child: Center(
                                           child: Column(
                                             mainAxisAlignment:
@@ -270,11 +239,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                               Image.asset(
                                                 Images.no_bt,
                                                 height: 57,
-                                                // color: Colors.black,
                                               ),
-                                              // Text(
-                                              //   "${getTranslated('START', context)}",
-                                              // ),
                                             ],
                                           ),
                                         ),
@@ -287,8 +252,6 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),
                     ],
                   ),
@@ -297,66 +260,5 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
             ],
           ),
         ));
-  }
-
-  void _showDialog() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              // title: new Text("Dialog Title"),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  Row(
-                    children: [
-                      Text(
-                        "폐차 진행 중입니다.",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  isDefaultAction: true,
-                  child: Text("취소"),
-                  onPressed: () {
-                    return Navigator.pop(context);
-                  },
-                ),
-                Container(
-                  child: CupertinoDialogAction(
-                    child: Container(
-                      child: Text(
-                        "확인",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (_) => HomePage()),
-                          (route) => false);
-                    },
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0XFF2434D7),
-                  ),
-                ),
-              ],
-            ));
   }
 }
