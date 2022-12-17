@@ -34,19 +34,25 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           0.0,
           0.0,
         ),
-        child: widget.isHome ? Container() : BackButton(
-          color: Colors.black,
-        ),
+        child: widget.isHome
+            ? Container()
+            : BackButton(
+                color: Colors.black,
+              ),
       ),
       title: Center(
-        child: widget.isHome ? Image.asset(
-          Images.logo_b,
-          height: 30,
-        ) : Text(
-          widget.titleText,
-          style: TextStyle(
-              color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
+        child: widget.isHome
+            ? Image.asset(
+                Images.logo_b,
+                height: 30,
+              )
+            : Text(
+                widget.titleText,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
       ),
       actions: [
         Center(
@@ -56,7 +62,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
               onTap: () => {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) => HomePage()),
-                        (route) => false)
+                    (route) => false)
               },
               child: Icon(
                 Icons.home,
@@ -71,8 +77,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
             child: InkWell(
               onTap: () => {
-                Provider.of<AuthProvider>(context, listen: false)
-                    .clearUser()
+                Provider.of<AuthProvider>(context, listen: false).clearUser()
               },
               child: Icon(
                 Icons.login,
@@ -87,12 +92,11 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
             child: InkWell(
               onTap: () {
-                Provider.of<AuthProvider>(context, listen: false)
-                    .clearUser();
+                Provider.of<AuthProvider>(context, listen: false).clearUser();
 
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) => AuthScreen()),
-                        (route) => false);
+                    (route) => false);
               },
               child: Icon(
                 Icons.logout,
@@ -106,9 +110,21 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
             child: InkWell(
-              onTap: () => {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => MyPageHomeScreen()))
+              onTap: () {
+                if (Provider.of<AuthProvider>(context, listen: false)
+                    .isLoggedIn()) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => MyPageHomeScreen(),
+                    ),
+                  );
+                } else {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => AuthScreen(),
+                    ),
+                  );
+                }
               },
               child: Image.asset(
                 Images.login_id,
@@ -122,8 +138,11 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             padding: const EdgeInsets.fromLTRB(4.0, 4.0, 12.0, 4.0),
             child: InkWell(
               onTap: () => {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => AuthScreen()))
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => AuthScreen(),
+                  ),
+                )
               },
               child: Image.asset(
                 Images.mypage,
