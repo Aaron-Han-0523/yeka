@@ -252,6 +252,7 @@ const Divider(
 ),
 ```
 
+# 코딩 패턴3 (event, constant)
 이벤트 핸들러 : InkWell
 ```dart
 InkWell(
