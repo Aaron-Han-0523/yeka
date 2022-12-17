@@ -17,6 +17,7 @@ class Images {
   static const String chat = "assets/images/chat.png";
   static const String chk = "assets/images/chk.png";
   static const String cloud = "assets/images/cloud.png";
+  static const String community_main = "assets/images/community_main.jpeg";
   static const String consult = "assets/images/consult.jpg";
   static const String consult_minus = "assets/images/consult_minus.png";
   static const String consult_plus = "assets/images/consult_plus.png";

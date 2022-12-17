@@ -56,17 +56,78 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      ClipRRect(
-                        // borderRadius: BorderRadius.circular(10.0),
-                        child: Image.network(
-                          // widget.reviewModel.attachedFilepath1,
-                          // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                          'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                          // fit: BoxFit.fitWidth,
-                          // fit: BoxFit.fitHeight,
-                          // width: MediaQuery.of(context).size.width * 1,
-                          // height: MediaQuery.of(context).size.height * 0.55,
-                        ),
+                      Stack(
+                        children: [
+                          Container(
+                            height: 200,
+                            decoration: new BoxDecoration(
+                                image: new DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  alignment: FractionalOffset.topCenter,
+                                  image: new AssetImage(Images.community_main,),
+                                )
+                            ),
+                          ),
+                          Positioned(
+                            top: 37,
+                            left: 20,
+                            child: Text(
+                              "뷰티인들과 함꼐하는 소통의 광장",
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff333333),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Positioned(
+                            top: 70,
+                            left: 18,
+                            child: Container(
+                              width: 96,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                  color: Color(0x550077ff),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 57,
+                            left: 20,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Image.asset(
+                                  Images.logo_b,
+                                  fit: BoxFit.fitHeight,
+                                  height: 23,
+                                ),
+                                Text(
+                                  "  ",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff333333),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                ),
+                                Text(
+                                  "커뮤니티",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff333333),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(

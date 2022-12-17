@@ -134,7 +134,46 @@ Container(
     color: Color(0xff121212),
     borderRadius: BorderRadius.circular(30),
     width: 1,
+    image: new DecorationImage(
+      fit: BoxFit.fitWidth,
+      alignment: FractionalOffset.topCenter,
+      image: new AssetImage(Images.community_main,),
+    )
   ),
+),
+```
+
+위젯 겹치서 쌓기 : Stack
+```dart
+Stack(
+  children: [
+    Positioned(
+      top: 37,
+      left: 20,
+      child: Text(
+        "뷰티인들과 함꼐하는 소통의 광장",
+        style: TextStyle(
+          fontSize: 12.0,
+          fontWeight: FontWeight.bold,
+          color: Color(0xff333333),
+          overflow: TextOverflow.ellipsis,
+        ),
+      textAlign: TextAlign.start,
+    ),
+    Positioned(
+      top: 137,
+      left: 120,
+      child: Text(
+        "뷰티인들과 함꼐하는 소통의 광장",
+        style: TextStyle(
+          fontSize: 12.0,
+          fontWeight: FontWeight.bold,
+          color: Color(0xff333333),
+          overflow: TextOverflow.ellipsis,
+        ),
+      textAlign: TextAlign.start,
+    ),
+  ],
 ),
 ```
 
@@ -181,6 +220,17 @@ FadeInImage.assetNetwork(
   width: MediaQuery.of(context).size.width * 0.28,
   height: MediaQuery.of(context).size.width * 0.28,
 )
+
+Container(
+  height: 200,
+  decoration: new BoxDecoration(
+    image: new DecorationImage(
+      fit: BoxFit.fitWidth,
+      alignment: FractionalOffset.topCenter,
+      image: new AssetImage(Images.community_main,),
+    )
+  ),
+),
 ```
 
 아이콘 : Icon
