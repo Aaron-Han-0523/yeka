@@ -4,6 +4,7 @@ import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../data/model/response/community_model.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
@@ -11,6 +12,10 @@ import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CommunityYoutubeDetailScreen extends StatefulWidget {
+  final CommunityModel communityModel;
+
+  const CommunityYoutubeDetailScreen({Key key, this.communityModel}) : super(key: key);
+
   @override
   State<CommunityYoutubeDetailScreen> createState() =>
       _CommunityYoutubeDetailScreenState();
@@ -57,7 +62,7 @@ class _CommunityYoutubeDetailScreenState
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('YTUBE_MOVIE_AND_COLUM', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
@@ -72,7 +77,7 @@ class _CommunityYoutubeDetailScreenState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "깔끔하게 보이는 피부 !! 나에게 맞는 피부는 상세하게 관리하기",
+                              "${widget.communityModel.community_title}",
                               style: TextStyle(
                                 fontSize: 12.0,
                                 fontWeight: FontWeight.bold,
@@ -80,27 +85,10 @@ class _CommunityYoutubeDetailScreenState
                               ),
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "${getTranslated('YEKA', context)}",
-                                  style: TextStyle(
-                                    fontSize: 8.0,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis,
-                                    color: Color(0xff999999),
-                                  ),
-                                ),
-                                Text(
-                                  "${getTranslated('${getTranslated('|', context)}', context)}",
-                                  style: TextStyle(
-                                    fontSize: 8.0,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis,
-                                    color: Color(0xff999999),
-                                  ),
-                                ),
-                                Text(
-                                  "2${getTranslated('HOURS_AGO', context)}",
+                                  "${widget.communityModel.writer}|${widget.communityModel.create_date}",
                                   style: TextStyle(
                                     fontSize: 8.0,
                                     fontWeight: FontWeight.bold,
@@ -147,7 +135,7 @@ class _CommunityYoutubeDetailScreenState
                         child: Container(
                           width: 400,
                           child: Text(
-                            "안녕하세요 고객님 :) \n고객님의 고충을 듣고 참지 못해 이렇게 글을 작성하게 되네요 ^^ \n피부를 어떻게 관리해야 깔끔하게 보일 수 있을까요 ㅎㅎ \n10년차 강남피부과 전문의 차세원 원장님의 리뷰영상을 가져와봤습니다 . \n많은 도움이 되셨길 바라면서 오늘 하루도 좋은하루 보내시길 바라겠습니다. \n많이 시청해주세요 ^^",
+                            "${widget.communityModel.community_content}",
                             style: TextStyle(
                               fontSize: 10.0,
                             ),

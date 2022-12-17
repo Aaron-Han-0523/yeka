@@ -48,7 +48,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
               // App Bar
               CustomSliverAppBar(
                 "${getTranslated('DESTINATION_INPUT', context)}",
-              ).getAppbar(),
+              ),
 
               SliverToBoxAdapter(
                 child: Container(

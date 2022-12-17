@@ -42,7 +42,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
               // App Bar
               CustomSliverAppBar(
                 "${getTranslated('PAYMENT_PRODUCT', context)}",
-              ).getAppbar(),
+              ),
 
               SliverToBoxAdapter(
                 child: Container(

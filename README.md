@@ -116,3 +116,160 @@ sudo service nginx restart
 
 # 관리자 페이지 접속 정보
 admin / admin
+
+# 코딩 패턴1 (navigator)
+```dart
+Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImageUploadPage(),),),
+Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()),(route) => false);
+Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()),(route) => false);
+
+Navigator.push(context,
+  PageRouteBuilder(transitionDuration: Duration(milliseconds: 1000),
+    pageBuilder: (context, anim1, anim2) => ProductDetailPage(productModel: productModel, isCreateScreen: false),
+  ),
+),
+
+Navigator.popAndPushNamed(context, SecondScreen.routeName);
+Navigator.pushNamedAndRemoveUntil(context, ThirdScreen.routeName, ModalRoute.withName(SecondScreen.routeName), arguments: {"update": true});
+Navigator.pushNamed(context, ThirdScreen.routeName, arguments: {"update": true});
+Navigator.pushNamed(context, SecondScreen.routeName,);
+Navigator.push(context, MaterialPageRoute(builder: (context) => ThirdScreen(update: true)));
+```
+
+# 코딩 패턴2 (ui 만들기)
+세로로 쌓을 때 : Column
+```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  ]
+)
+```
+
+가로로 쌓을 때 : Row
+```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  ]
+)
+```
+
+간격 조정 : Container
+```dart
+Container(
+  alignment: Alignment.centerLeft,
+  width: MediaQuery.of(context).size.width + 100,
+  padding: EdgeInsets.fromLTRB(
+    Dimensions.HOME_PAGE_PADDING,
+    Dimensions.HOME_PAGE_PADDING,
+    Dimensions.HOME_PAGE_PADDING,
+    Dimensions.PADDING_SIZE_LARGE,
+  ),
+  margin: EdgeInsets.fromLTRB(
+    Dimensions.HOME_PAGE_PADDING,
+    Dimensions.HOME_PAGE_PADDING,
+    Dimensions.HOME_PAGE_PADDING,
+    Dimensions.PADDING_SIZE_LARGE,
+  ),
+  decoration: BoxDecoration(
+    color: Color(0xff121212),
+    borderRadius: BorderRadius.circular(30),
+    width: 1,
+  ),
+),
+```
+
+텍스트 : Text
+```dart
+Text(
+  "${widget.communityModel.community_title}",
+  style: TextStyle(
+    fontSize: 12.0,
+    fontWeight: FontWeight.bold,
+    color: Color(0xff333333),
+    overflow: TextOverflow.ellipsis,
+  ),
+  textAlign: TextAlign.start,
+),
+```
+
+이미지 : Image
+```dart
+ClipRRect(
+  borderRadius: BorderRadius.circular(150.0),
+  child: Image.asset(
+    Images.privacy,
+    fit: BoxFit.fill,
+    height: 25,
+  ),
+),
+
+ClipRRect(
+  borderRadius: BorderRadius.circular(150.0),
+  child: Image.network(
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+    fit: BoxFit.fill,
+    height: 107,
+  ),
+),
+
+FadeInImage.assetNetwork(
+  placeholder: Images.placeholder1,
+  image: image.path != null
+    ? AppConstants.BASE_URL + "/" + image.path
+          : AppConstants.BASE_URL,
+  fit: BoxFit.cover,
+  width: MediaQuery.of(context).size.width * 0.28,
+  height: MediaQuery.of(context).size.width * 0.28,
+)
+```
+
+아이콘 : Icon
+```dart
+Icon(
+  Icons.login,
+  color: Colors.green,
+  size: 30.0,
+),
+```
+
+간격 조정 : SizedBox
+```dart
+SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+```
+
+수평선 : Divider
+```dart
+const Divider(
+  height: 1,
+  thickness: 1,
+  indent: 0,
+  endIndent: 0,
+  color: Color(0xffDDDDDD),
+),
+```
+
+이벤트 핸들러 : InkWell
+```dart
+InkWell(
+  onTap: () {},
+  child:Container()),
+```
+
+Provider 사용법 : Provider.of<ProductProvider>(context, listen: false)
+```dart
+Provider.of<ProductProvider>(context, listen: false).getLatestProductList(0, context, reload: reload);
+Provider.of<ProductProvider>(context, listen: false).getProductList();
+Provider.of<ProductProvider>(context, listen: false).productList;
+```
+
+전역 상수 및 다국어
+```dart
+getTranslated('CONTENTS_HINT', context)
+AppConstants.BASE_URL
+Images.heart
+```
+

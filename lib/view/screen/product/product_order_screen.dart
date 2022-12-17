@@ -44,7 +44,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
               // App Bar
               CustomSliverAppBar(
                 "${getTranslated('ORDER_DETAIL_LIST', context)}",
-              ).getAppbar(),
+              ),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -134,7 +134,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
                                 fit: BoxFit.fill,
                                 height: 107,
-                              ), // Text(key['title']),
+                              ),
                             ),
                           ),
                           Expanded(

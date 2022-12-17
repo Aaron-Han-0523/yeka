@@ -45,7 +45,7 @@ class _MyPageConsultantResultWriteScreenState extends State<MyPageConsultantResu
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('FILL_IN_CONSULTING_RESULT', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Container(
                     color: Colors.white,

@@ -107,8 +107,69 @@ class AuthRepo {
     return sharedPreferences.getString(AppConstants.USER_USERNAME) ?? "";
   }
 
+  // for  Remember User info
+  Future<void> saveUser(Map map) async {
+    try {
+      await sharedPreferences.setString(AppConstants.USER_ID,                           map["id"]);
+      await sharedPreferences.setString(AppConstants.USER_USER_TYPE,                    map["user_type"]);
+      await sharedPreferences.setString(AppConstants.USER_USERNAME,                     map["username"]);
+      await sharedPreferences.setString(AppConstants.USER_NAME,                         map["name"]);
+      await sharedPreferences.setString(AppConstants.USER_PHONE,                        map["phone"]);
+      await sharedPreferences.setString(AppConstants.USER_EMAIL,                        map["email"]);
+      await sharedPreferences.setString(AppConstants.USER_GENDER,                       map["GENDER"]);
+      await sharedPreferences.setString(AppConstants.USER_ADDRESS1,                     map["address1"]);
+      await sharedPreferences.setString(AppConstants.USER_ADDRESS2,                     map["address2"]);
+      await sharedPreferences.setString(AppConstants.USER_ADDRESS3,                     map["address3"]);
+/*
+      await sharedPreferences.setString(AppConstants.USER_BUSINESS_REGISTRATION_NUMBER, map["business_registration_number"]);
+      await sharedPreferences.setString(AppConstants.USER_BUSINESS_REGISTRATION_FILE,   map["business_registration_file"]);
+      await sharedPreferences.setString(AppConstants.USER_HASHTAG,                      map["hashtag"]);
+      await sharedPreferences.setString(AppConstants.USER_RESUME,                       map["resume"]);
+      await sharedPreferences.setString(AppConstants.USER_WORKING_HOUR,                 map["working_hour"]);
+      await sharedPreferences.setString(AppConstants.USER_WITHDRAWAL,                  map["withdrawal"]);
+      await sharedPreferences.setString(AppConstants.USER_BANK1,                        map["bank1"]);
+      await sharedPreferences.setString(AppConstants.USER_BANK2,                        map["bank2"]);
+      await sharedPreferences.setString(AppConstants.USER_BANK3,                        map["bank3"]);
+      await sharedPreferences.setString(AppConstants.USER_CREATE_DATE,                  map["create_date"]);
+      await sharedPreferences.setString(AppConstants.USER_UPDATE_DATE,                  map["update_date"]);
+      await sharedPreferences.setString(AppConstants.USER_DELETE_DATE,                  map["delete_date"]);
+*/
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Map getUser() {
+    Map map;
+    map["id"] = sharedPreferences.getString(AppConstants.USER_ID) ?? "";
+    map["user_type"] = sharedPreferences.getString(AppConstants.USER_USER_TYPE) ?? "";
+    map["username"] = sharedPreferences.getString(AppConstants.USER_USERNAME) ?? "";
+    map["name"] = sharedPreferences.getString(AppConstants.USER_NAME) ?? "";
+    map["phone"] = sharedPreferences.getString(AppConstants.USER_PHONE) ?? "";
+    map["email"] = sharedPreferences.getString(AppConstants.USER_EMAIL) ?? "";
+    map["GENDER"] = sharedPreferences.getString(AppConstants.USER_GENDER) ?? "";
+    map["address1"] = sharedPreferences.getString(AppConstants.USER_ADDRESS1) ?? "";
+    map["address2"] = sharedPreferences.getString(AppConstants.USER_ADDRESS2) ?? "";
+    map["address3"] = sharedPreferences.getString(AppConstants.USER_ADDRESS3) ?? "";
+    return map;
+  }
+
   String getUserPassword() {
     return sharedPreferences.getString(AppConstants.USER_PASSWORD) ?? "";
+  }
+
+  Future<bool> clearUser() async {
+    await sharedPreferences.remove(AppConstants.USER_ID);
+    await sharedPreferences.remove(AppConstants.USER_USER_TYPE);
+    await sharedPreferences.remove(AppConstants.USER_USERNAME);
+    await sharedPreferences.remove(AppConstants.USER_NAME);
+    await sharedPreferences.remove(AppConstants.USER_PHONE);
+    await sharedPreferences.remove(AppConstants.USER_EMAIL);
+    await sharedPreferences.remove(AppConstants.USER_GENDER);
+    await sharedPreferences.remove(AppConstants.USER_ADDRESS1);
+    await sharedPreferences.remove(AppConstants.USER_ADDRESS2);
+    await sharedPreferences.remove(AppConstants.USER_ADDRESS3);
+    return true;
   }
 
   Future<bool> clearUserUsernameAndPassword() async {

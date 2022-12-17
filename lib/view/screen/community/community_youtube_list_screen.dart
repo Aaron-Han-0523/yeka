@@ -47,7 +47,7 @@ class _CommunityYoutubeListScreenState
             slivers: [
               CustomSliverAppBar(
                 "${getTranslated('YTUBE_MOVIE_AND_COLUM', context)}",
-              ).getAppbar(),
+              ),
               SliverToBoxAdapter(
                 child: Column(
                   children: [

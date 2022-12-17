@@ -41,7 +41,7 @@ class _MyPageCalendarScreenState extends State<MyPageCalendarScreen> {
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('SELECT_DATE', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Container(
                     color: Colors.white,

@@ -40,7 +40,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
             CustomSliverAppBar(
                 "${getTranslated('MY_PAGE', context)}",
 
-            ).getAppbar(),
+            ),
             SliverToBoxAdapter(
                 child: Container(
                   color: Colors.white,

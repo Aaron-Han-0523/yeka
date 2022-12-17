@@ -39,7 +39,7 @@ class _MyPageUpdateScreenState
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Container(
                     padding: EdgeInsets.all(0),

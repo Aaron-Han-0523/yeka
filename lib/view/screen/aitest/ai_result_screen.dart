@@ -1,32 +1,46 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
+import '../../../data/model/response/personal_color_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/personal_color_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
 import '../home/home_screens.dart';
 
 class AIResultPage extends StatefulWidget {
+  final int season;
+  final int detailSeasonType;
+
+  const AIResultPage({Key key, this.season, this.detailSeasonType})
+      : super(key: key);
+
   @override
   State<AIResultPage> createState() => _AIResultPageState();
 }
 
 class _AIResultPageState extends State<AIResultPage>
     with TickerProviderStateMixin {
-  bool _radioValue = true;
-  bool _inputFormValue = false;
-  TextEditingController _textEditingController = TextEditingController();
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    PersonalColorModel personalColorModel = PersonalColorModel(
+      season: widget.season,
+      detail_season_type: widget.detailSeasonType,
+    );
 
-  void setStateButtonValue(value) {
-    setState(() {
-      _inputFormValue = value;
-    });
+    Provider.of<PersonalColorProvider>(context, listen: false)
+        .getPersonalColor(personalColorModel);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData(context, false);
   }
 
   @override
@@ -38,9 +52,7 @@ class _AIResultPageState extends State<AIResultPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar(
-                  "${getTranslated('RESULT_AT_TEST', context)}"
-              ).getAppbar(),
+              CustomSliverAppBar("${getTranslated('RESULT_AT_TEST', context)}"),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -612,66 +624,5 @@ class _AIResultPageState extends State<AIResultPage>
             ],
           ),
         ));
-  }
-
-  void _showDialog() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              // title: new Text("Dialog Title"),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  Row(
-                    children: [
-                      Text(
-                        "폐차 진행 중입니다.",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  isDefaultAction: true,
-                  child: Text("취소"),
-                  onPressed: () {
-                    return Navigator.pop(context);
-                  },
-                ),
-                Container(
-                  child: CupertinoDialogAction(
-                    child: Container(
-                      child: Text(
-                        "확인",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (_) => HomePage()),
-                          (route) => false);
-                    },
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0XFF2434D7),
-                  ),
-                ),
-              ],
-            ));
   }
 }

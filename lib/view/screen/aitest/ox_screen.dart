@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
@@ -7,6 +8,7 @@ import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../localization/language_constrants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../utill/images.dart';
 import 'ai_login_screen.dart';
 import 'ai_result_screen.dart';
@@ -48,7 +50,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("AI 테스트").getAppbar(),
+              CustomSliverAppBar("AI 테스트"),
 
               SliverToBoxAdapter(
                 child: Column(
@@ -210,26 +212,10 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                             child: InkWell(
                               onTap: () {
                                 stageValues.add(false);
-                                if (stage > 13) {
-                                  // test bool 값을 세팅 완료
-                                  // 10가지 중에 하나로 결정
-                                  // 0 : 봄 브라이트
-                                  // 1 : 봄 브라이트
-                                  // 2 : 봄 브라이트
-                                  // 0 : 봄 브라이트
-                                  // 0 : 봄 브라이트
-                                  // 0 : 봄 브라이트
-                                  // 0 : 봄 브라이트
-                                  // 0 : 봄 브라이트
-                                  // 0 : 봄 브라이트
 
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (_) => AILoginPage(
-                                        personalColorType: 0,
-                                      ),
-                                    ),
-                                  );
+                                personalColorResult(stageValues);
+
+                                if (stage > 13) {
                                 } else {
                                   setState(() {
                                     stage++;
@@ -279,7 +265,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
         ));
   }
 
-  int personalColorResult(List<bool> stageValues) {
+  void personalColorResult(List<bool> stageValues) {
     int season = 0;
     int detailSeasonType = 0;
 
@@ -427,6 +413,28 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
       detailSeasonType = 2; // 겨울 딥
     }
 
-    return 0;
+    // input : season and detailSeasonType
+
+    // output : personalColorType
+
+    if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => AILoginPage(
+            season: 0,
+            detailSeasonType: 0,
+          ),
+        ),
+      );
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => AIResultPage(
+            season: 0,
+            detailSeasonType: 0,
+          ),
+        ),
+      );
+    }
   }
 }

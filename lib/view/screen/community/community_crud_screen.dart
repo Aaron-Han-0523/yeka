@@ -40,7 +40,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('WRITE_BOARD', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [

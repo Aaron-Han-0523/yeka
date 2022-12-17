@@ -36,7 +36,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
             // App Bar
             CustomSliverAppBar(
               "${getTranslated('CONSULTING_RESERVE', context)}",
-            ).getAppbar(),
+            ),
 
             SliverToBoxAdapter(
               child: Container(

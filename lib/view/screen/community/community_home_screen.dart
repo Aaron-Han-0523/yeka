@@ -52,7 +52,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('COMMUNITY', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [

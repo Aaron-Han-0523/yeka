@@ -67,11 +67,15 @@ class _SplashScreenState extends State<SplashScreen> {
     // Provider.of<SplashProvider>(context, listen: false).enableIntro();
 
     Timer(Duration(seconds: 1), () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+
+/*
       if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => HomePage()));
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => AuthScreen()));
       }
+*/
 /*
       if (Provider.of<SplashProvider>(context, listen: false).showIntro()) {
         Navigator.of(context).pushReplacement(

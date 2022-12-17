@@ -109,7 +109,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               // App Bar
               CustomSliverAppBar(
                 "${getTranslated('PRODUCT_DETAIL_INFO', context)}",
-              ).getAppbar(),
+              ),
 
               SliverToBoxAdapter(
                 child: Container(

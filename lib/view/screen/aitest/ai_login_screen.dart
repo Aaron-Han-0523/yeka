@@ -12,9 +12,13 @@ import '../../basewidget/radio/custom_radio_button.dart';
 import '../home/home_screens.dart';
 
 class AILoginPage extends StatefulWidget {
-  final int personalColorType;
+  final int season;
+  final int detailSeasonType;
 
-  AILoginPage({this.personalColorType});
+  AILoginPage({
+    this.season,
+    this.detailSeasonType,
+  });
 
   @override
   State<AILoginPage> createState() => _AILoginPageState();
@@ -41,7 +45,7 @@ class _AILoginPageState extends State<AILoginPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("내 차량번호 입력").getAppbar(),
+              CustomSliverAppBar("내 차량번호 입력"),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -160,9 +164,7 @@ class _AILoginPageState extends State<AILoginPage>
                         padding: const EdgeInsets.all(16.0),
                         child: _radioValue && _inputFormValue
                             ? CustomElevatedButton(
-                                onTap: () async {
-
-                                },
+                                onTap: () async {},
                                 buttonText: '내 차 정보 보기',
                               )
                             : CustomElevatedButton(
@@ -187,59 +189,60 @@ class _AILoginPageState extends State<AILoginPage>
     showDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          // title: new Text("Dialog Title"),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  // fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-              Row(
+              // title: new Text("Dialog Title"),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "폐차 진행 중입니다.",
+                    "",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                  Row(
+                    children: [
+                      Text(
+                        "폐차 진행 중입니다.",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: Text("취소"),
-              onPressed: () {
-                return Navigator.pop(context);
-              },
-            ),
-            Container(
-              child: CupertinoDialogAction(
-                child: Container(
-                  child: Text(
-                    "확인",
-                    style: TextStyle(color: Colors.white),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: Text("취소"),
+                  onPressed: () {
+                    return Navigator.pop(context);
+                  },
+                ),
+                Container(
+                  child: CupertinoDialogAction(
+                    child: Container(
+                      child: Text(
+                        "확인",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (_) => HomePage()),
+                          (route) => false);
+                    },
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0XFF2434D7),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
-                },
-              ),
-              decoration: BoxDecoration(
-                color: Color(0XFF2434D7),
-              ),
-            ),
-          ],
-        ));
+              ],
+            ));
   }
 }

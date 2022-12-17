@@ -27,8 +27,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<ProductProvider>(context, listen: false)
         .getLatestProductList(0, context, reload: reload);
-
-    // backend 에서 이미지 리스트도 담아서 보내줘야 할듯
   }
 
   @override
@@ -48,7 +46,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('BEAUTY_PRODUCT', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [

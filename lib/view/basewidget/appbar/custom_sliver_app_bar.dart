@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../provider/auth_provider.dart';
 import '../../../utill/images.dart';
+import '../../screen/auth/auth_screen.dart';
+import '../../screen/home/home_screens.dart';
+import '../../screen/mypage/mypage_home_screen.dart';
 import '../button/home_button.dart';
 
-class CustomSliverAppBar extends StatelessWidget {
+class CustomSliverAppBar extends StatefulWidget {
   final String titleText;
+  final bool isHome;
 
-  CustomSliverAppBar(this.titleText);
+  CustomSliverAppBar(this.titleText, {this.isHome = false});
 
   @override
-  Widget build(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
-      elevation: 0,
-      centerTitle: false,
-      automaticallyImplyLeading: false,
-      backgroundColor: Colors.white,
-      title: Text(
-        titleText,
-        style: TextStyle(color: Colors.black),
-      ),
-      leading: BackButton(color: Colors.black),
-      actions: [HomeButton(Colors.black)],
-    );
-  }
+  State<CustomSliverAppBar> createState() => _CustomSliverAppBarState();
+}
 
-  Widget getAppbar() {
+class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
+  @override
+  Widget build(BuildContext context) {
     return SliverAppBar(
       floating: true,
       elevation: 0,
@@ -39,11 +34,16 @@ class CustomSliverAppBar extends StatelessWidget {
           0.0,
           0.0,
         ),
-        child: BackButton(color: Colors.black,),
+        child: widget.isHome ? Container() : BackButton(
+          color: Colors.black,
+        ),
       ),
       title: Center(
-        child: Text(
-          titleText,
+        child: widget.isHome ? Image.asset(
+          Images.logo_b,
+          height: 30,
+        ) : Text(
+          widget.titleText,
           style: TextStyle(
               color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
         ),
@@ -52,9 +52,68 @@ class CustomSliverAppBar extends StatelessWidget {
         Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
-            child: Image.asset(
-              Images.login_id,
-              height: 17,
+            child: InkWell(
+              onTap: () => {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) => HomePage()),
+                        (route) => false)
+              },
+              child: Icon(
+                Icons.home,
+                color: Colors.blue,
+                // size: 30.0,
+              ),
+            ),
+          ),
+        ),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+            child: InkWell(
+              onTap: () => {
+                Provider.of<AuthProvider>(context, listen: false)
+                    .clearUser()
+              },
+              child: Icon(
+                Icons.login,
+                color: Colors.green,
+                // size: 30.0,
+              ),
+            ),
+          ),
+        ),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+            child: InkWell(
+              onTap: () {
+                Provider.of<AuthProvider>(context, listen: false)
+                    .clearUser();
+
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) => AuthScreen()),
+                        (route) => false);
+              },
+              child: Icon(
+                Icons.logout,
+                color: Colors.red,
+                // size: 30.0,
+              ),
+            ),
+          ),
+        ),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+            child: InkWell(
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => MyPageHomeScreen()))
+              },
+              child: Image.asset(
+                Images.login_id,
+                height: 17,
+              ),
             ),
           ),
         ),
@@ -63,8 +122,8 @@ class CustomSliverAppBar extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(4.0, 4.0, 12.0, 4.0),
             child: InkWell(
               onTap: () => {
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (context) => AuthScreen()))
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AuthScreen()))
               },
               child: Image.asset(
                 Images.mypage,

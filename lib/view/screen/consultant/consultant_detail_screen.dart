@@ -83,7 +83,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
               // App Bar
               CustomSliverAppBar(
                 "${getTranslated('CONSULTANT_DETAIL_INFO', context)}",
-              ).getAppbar(),
+              ),
               SliverToBoxAdapter(
                 child: Container(
                   alignment: Alignment.centerLeft,

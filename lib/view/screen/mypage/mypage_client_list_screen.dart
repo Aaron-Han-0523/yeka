@@ -32,7 +32,7 @@ class _MyPageClientListScreenState extends State<MyPageClientListScreen> {
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('MY_CUSTOMER_INFO', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
@@ -49,7 +49,8 @@ class _MyPageClientListScreenState extends State<MyPageClientListScreen> {
                             Dimensions.HOME_PAGE_PADDING,
                             Dimensions.HOME_PAGE_PADDING,
                             Dimensions.HOME_PAGE_PADDING,
-                            Dimensions.PADDING_SIZE_LARGE),
+                            Dimensions.PADDING_SIZE_LARGE,
+                        ),
                         color: Colors.white,
                         child: Column(
                           children: [

@@ -48,7 +48,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('ORDER___LIST', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Container(
                     color: Colors.white,

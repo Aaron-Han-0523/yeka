@@ -311,7 +311,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('CONSULTANT_LIST', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [

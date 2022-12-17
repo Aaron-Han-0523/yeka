@@ -33,8 +33,7 @@ class _JoinScreenState extends State<JoinScreen> {
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("${getTranslated('MEMBER_JOIN', context)}")
-                  .getAppbar(),
+              CustomSliverAppBar("${getTranslated('MEMBER_JOIN', context)}"),
 
               SliverToBoxAdapter(
                 child: Container(

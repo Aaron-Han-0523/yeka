@@ -10,12 +10,14 @@ import 'package:yeka/view/screen/product/product_view.dart';
 
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/community_notice_provider.dart';
 import '../../../provider/community_provider.dart';
 import '../../../provider/community_youtube_provider.dart';
 import '../../../provider/product_provider.dart';
 import '../../../provider/user_provider.dart';
+import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../aitest/image_upload_screen.dart';
 import '../auth/auth_screen.dart';
@@ -74,67 +76,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             CustomScrollView(
               slivers: [
                 // App Bar
-                SliverAppBar(
-                  floating: true,
-                  elevation: 0,
-                  centerTitle: false,
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Theme.of(context).highlightColor,
-                  leading: Container(),
-                  title: Center(
-                    child: Image.asset(
-                      Images.logo_b,
-                      height: 30,
-                    ),
-                  ),
-                  actions: [
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
-                        child: InkWell(
-                          onTap: () => {
-                            Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (_) => HomePage()), (route) => false)
-                          },
-                          child: Image.asset(
-                            Images.help,
-                            height: 17,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
-                        child: InkWell(
-                          onTap: () => {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => MyPageHomeScreen()))
-                          },
-                          child: Image.asset(
-                            Images.login_id,
-                            height: 17,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(4.0, 4.0, 12.0, 4.0),
-                        child: InkWell(
-                          onTap: () => {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => AuthScreen()))
-                          },
-                          child: Image.asset(
-                            Images.mypage,
-                            height: 17,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                CustomSliverAppBar("", isHome: true),
 
                 SliverToBoxAdapter(
                   child: Column(

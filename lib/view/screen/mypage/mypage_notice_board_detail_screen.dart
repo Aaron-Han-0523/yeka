@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
 class MyPageNoticeBoardDetailScreen extends StatefulWidget {
+  final CommunityModel communityModel;
+
+  const MyPageNoticeBoardDetailScreen({Key key, this.communityModel}) : super(key: key);
   @override
   State<MyPageNoticeBoardDetailScreen> createState() =>
       _MyPageNoticeBoardDetailScreenState();
@@ -33,7 +37,7 @@ class _MyPageNoticeBoardDetailScreenState
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('NOTICE', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
@@ -54,7 +58,7 @@ class _MyPageNoticeBoardDetailScreenState
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "깔끔하게 보이는 피부 !! 나에게 맞는 피부는 상세하게 관리하기",
+                                    "${widget.communityModel.community_title}",
                                     style: TextStyle(
                                       fontSize: 12.0,
                                       fontWeight: FontWeight.bold,
@@ -67,28 +71,14 @@ class _MyPageNoticeBoardDetailScreenState
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${getTranslated('YEKA', context)}" + "${getTranslated('|', context)}",
-                                            style: TextStyle(
-                                              fontSize: 8.0,
-                                              color: Color(0xff999999),
-                                              fontWeight: FontWeight.bold,
-                                              // overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                          Text(
-                                            "22.11.17",
-                                            style: TextStyle(
-                                              fontSize: 8.0,
-                                              color: Color(0xff999999),
-                                              fontWeight: FontWeight.bold,
-                                              // overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                        ],
+                                      Text(
+                                        "${widget.communityModel.writer}|${widget.communityModel.create_date}",
+                                        style: TextStyle(
+                                          fontSize: 8.0,
+                                          color: Color(0xff999999),
+                                          fontWeight: FontWeight.bold,
+                                          // overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
                                       Row(
                                         children: [
@@ -130,7 +120,8 @@ class _MyPageNoticeBoardDetailScreenState
                                 child: Image.network(
                                   // widget.reviewModel.attachedFilepath1,
                                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                  'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+                                  // 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+                                  '${widget.communityModel.community_link}',
                                   // fit: BoxFit.fitWidth,
                                   // width: MediaQuery.of(context).size.width * 0.9,
                                   // height: MediaQuery.of(context).size.width * 0.4,
@@ -142,7 +133,7 @@ class _MyPageNoticeBoardDetailScreenState
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20),
                                   child: Text(
-                                    "안녕 쁘띠들아!\n피부 마스크팩 추천 좀 내가 코디해줌 ^^",
+                                    "${widget.communityModel.community_content}",
                                     style: TextStyle(
                                       fontSize: 10,
                                       color: Color(0xff333333)

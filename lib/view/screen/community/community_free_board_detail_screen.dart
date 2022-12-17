@@ -82,7 +82,7 @@ class _CommunityFreeBoardDetailScreenState
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('COMMUNITY', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [

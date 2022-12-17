@@ -37,7 +37,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
             // App Bar
             CustomSliverAppBar(
               "${getTranslated('PAY_CONSULTING', context)}",
-            ).getAppbar(),
+            ),
 
             SliverToBoxAdapter(
               child: Container(

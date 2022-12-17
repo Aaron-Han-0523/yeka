@@ -29,6 +29,9 @@ class _AuthScreenState extends State<AuthScreen> {
   TextEditingController idController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  FocusNode usernameFocus = FocusNode();
+  FocusNode passwordFocus = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +41,7 @@ class _AuthScreenState extends State<AuthScreen> {
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("${getTranslated('LOGIN', context)}")
-                  .getAppbar(),
+              CustomSliverAppBar("${getTranslated('LOGIN', context)}"),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -79,6 +81,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onChanged: (value) {},
                                 controller: idController,
                                 // textAlignVertical: TextAlignVertical.center,
+                                focusNode: usernameFocus,
                                 decoration: InputDecoration(
                                   hintText:
                                       "${getTranslated('INSERT_ID', context)}",
@@ -113,6 +116,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 controller: passwordController,
                                 onChanged: (value) {},
                                 textAlignVertical: TextAlignVertical.center,
+                                focusNode: passwordFocus,
                                 decoration: InputDecoration(
                                   hintText:
                                       "${getTranslated('INSERT_PW', context)}",
@@ -146,6 +150,9 @@ class _AuthScreenState extends State<AuthScreen> {
 
                       CustomElevatedButton(
                         onTap: () {
+                          usernameFocus.unfocus();
+                          passwordFocus.unfocus();
+
                           LoginModel loginModel = LoginModel(
                             username: idController.text,
                             password: passwordController.text,
@@ -206,7 +213,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
   route(bool isRoute, String errorMessage) async {
     if (isRoute) {
-      SnackBar(content: Text("로그인 되었습니다."), backgroundColor: Colors.green);
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
     } else {

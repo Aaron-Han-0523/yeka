@@ -47,7 +47,7 @@ class _CommunityFreeBoardListScreenState
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('FREE_BULLETIN_BOARD', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [

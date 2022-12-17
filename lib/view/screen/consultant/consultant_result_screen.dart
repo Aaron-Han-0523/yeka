@@ -37,7 +37,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
             // App Bar
             CustomSliverAppBar(
               "${getTranslated('RESULT_CONSULTING', context)}",
-            ).getAppbar(),
+            ),
 
             SliverToBoxAdapter(
               child: Container(

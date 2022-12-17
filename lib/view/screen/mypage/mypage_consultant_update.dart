@@ -46,7 +46,7 @@ class _MyPageConsultantUpdateScreenState
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                   child: Container(
                     color: Colors.white,

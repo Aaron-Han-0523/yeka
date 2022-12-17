@@ -37,7 +37,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("AI 테스트").getAppbar(),
+              CustomSliverAppBar("AI 테스트"),
 
               SliverToBoxAdapter(
                 child: Container(

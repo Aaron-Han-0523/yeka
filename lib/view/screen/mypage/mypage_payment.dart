@@ -37,7 +37,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
               slivers: [
                 CustomSliverAppBar(
                   "${getTranslated('SETTLEMENT_AMOUNT', context)}",
-                ).getAppbar(),
+                ),
                 SliverToBoxAdapter(
                     child: Column(
                       children: [

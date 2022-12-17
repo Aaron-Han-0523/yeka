@@ -71,6 +71,7 @@ class AuthProvider with ChangeNotifier {
         message = map["message"];
       } catch (e) {}
       saveUserUsername(loginBody.username);
+      saveUser(map);
       callback(true, message);
       notifyListeners();
     } else {
@@ -119,8 +120,7 @@ class AuthProvider with ChangeNotifier {
   Future<ResponseModel> verifyUsername(String username) async {
     _verificationMsg = '';
     notifyListeners();
-    ApiResponse apiResponse =
-        await authRepo.verifyUsername(username);
+    ApiResponse apiResponse = await authRepo.verifyUsername(username);
     notifyListeners();
     ResponseModel responseModel;
     if (apiResponse.response != null &&
@@ -224,6 +224,19 @@ class AuthProvider with ChangeNotifier {
 
   String getUserUsername() {
     return authRepo.getUserUsername() ?? "";
+  }
+
+  // for  Remember Username
+  void saveUser(Map map) {
+    authRepo.saveUser(map);
+  }
+
+  Map getUser() {
+    return authRepo.getUser();
+  }
+
+  Future<bool> clearUser() async {
+    return authRepo.clearUser();
   }
 
   Future<bool> clearUserUsernameAndPassword() async {
