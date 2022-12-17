@@ -140,7 +140,7 @@ class AuthRepo {
   }
 
   Map getUser() {
-    Map map;
+    Map map = {};
     map["id"] = sharedPreferences.getString(AppConstants.USER_ID) ?? "";
     map["user_type"] = sharedPreferences.getString(AppConstants.USER_USER_TYPE) ?? "";
     map["username"] = sharedPreferences.getString(AppConstants.USER_USERNAME) ?? "";
