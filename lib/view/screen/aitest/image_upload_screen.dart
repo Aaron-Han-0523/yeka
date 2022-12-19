@@ -37,7 +37,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("AI 테스트"),
+              CustomSliverAppBar("${getTranslated('AI_test_ko', context)}"),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -63,7 +63,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                   Stack(
                                     children: [
                                       Text(
-                                        "AI TEST",
+                                        "${getTranslated('AI_test', context)}",
                                         style: TextStyle(
                                           fontSize: 72,
                                           color: Color(0xff444444),
@@ -146,8 +146,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                       child: Container(
                                           height: MediaQuery.of(context)
                                                   .size
-                                                  .width *
-                                              0.8,
+                                                  .width * 0.8,
                                           decoration: BoxDecoration(
                                             // border: Border.all(
                                             //   width: 2,
@@ -274,7 +273,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                   Row(
                     children: [
                       Text(
-                        "폐차 진행 중입니다.",
+                        "",
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,
@@ -288,7 +287,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
               actions: <Widget>[
                 CupertinoDialogAction(
                   isDefaultAction: true,
-                  child: Text("취소"),
+                  child: Text(""),
                   onPressed: () {
                     return Navigator.pop(context);
                   },
@@ -297,7 +296,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                   child: CupertinoDialogAction(
                     child: Container(
                       child: Text(
-                        "확인",
+                        "",
                         style: TextStyle(color: Colors.white),
                       ),
                     ),

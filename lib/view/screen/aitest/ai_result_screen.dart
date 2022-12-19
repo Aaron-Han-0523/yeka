@@ -489,7 +489,7 @@ class _AIResultPageState extends State<AIResultPage>
                               ),
                               child: Center(
                                 child: Text(
-                                  "1",
+                                  "${getTranslated('ONE', context)}",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Color(0xffEEEEEE),
@@ -536,7 +536,7 @@ class _AIResultPageState extends State<AIResultPage>
                               ),
                               child: Center(
                                 child: Text(
-                                  "2",
+                                  "${getTranslated('TWO', context)}",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Color(0xffEEEEEE),

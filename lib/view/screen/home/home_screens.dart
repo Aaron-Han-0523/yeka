@@ -299,7 +299,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                           const EdgeInsets.all(
                                                               8.0),
                                                       child: Text(
-                                                        ">",
+                                                        "${getTranslated('>', context)}",
                                                         style: TextStyle(
                                                             color: Colors.grey),
                                                       ),

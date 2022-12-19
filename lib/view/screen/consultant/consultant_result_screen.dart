@@ -175,7 +175,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                             ),
                             child: Center(
                               child: Text(
-                                "1",
+                                "${getTranslated('ONE', context)}",
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Color(0xffEEEEEE),
@@ -421,7 +421,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               ),
                               child: Center(
                                 child: Text(
-                                  "2",
+                                  "${getTranslated('TWO', context)}",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Color(0xffEEEEEE),
@@ -478,7 +478,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               ),
                               child: Center(
                                 child: Text(
-                                  "3",
+                                  "${getTranslated('THREE', context)}",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Color(0xffEEEEEE),
@@ -525,7 +525,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               ),
                               child: Center(
                                 child: Text(
-                                  "4",
+                                  "${getTranslated('FOUR', context)}",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Color(0xffEEEEEE),
@@ -572,7 +572,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               ),
                               child: Center(
                                 child: Text(
-                                  "4",
+                                  "${getTranslated('FIVE', context)}",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Color(0xffEEEEEE),
@@ -778,7 +778,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("${getTranslated('BLUE', context)}"),
+                            child: Text("${getTranslated('CLOUDY', context)}"),
                           ),
                         ],
                       ),

@@ -72,7 +72,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                             top: 37,
                             left: 20,
                             child: Text(
-                              "뷰티인들과 함꼐하는 소통의 광장",
+                              "${getTranslated('SQUARE_WITH_BEAUTY', context)}",
                               style: TextStyle(
                                 fontSize: 12.0,
                                 fontWeight: FontWeight.bold,
@@ -115,7 +115,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                   textAlign: TextAlign.end,
                                 ),
                                 Text(
-                                  "커뮤니티",
+                                  "${getTranslated('COMMUNITY', context)}",
                                   style: TextStyle(
                                     fontSize: 12.0,
                                     fontWeight: FontWeight.bold,

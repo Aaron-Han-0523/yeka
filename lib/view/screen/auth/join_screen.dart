@@ -75,14 +75,14 @@ class _JoinScreenState extends State<JoinScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      "에 오신",
+                                      "${getTranslated('COME', context)}",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),
                                     ),
                                     Text(
-                                      " 여러분",
+                                      "${getTranslated('CUSTOMERS', context)}",
                                       style: TextStyle(
                                         color: Color(0xff0123b4),
                                         fontWeight: FontWeight.bold,
@@ -90,7 +90,7 @@ class _JoinScreenState extends State<JoinScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "을 환영합니다 !",
+                                      "${getTranslated('WELCOME', context)}",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -106,20 +106,20 @@ class _JoinScreenState extends State<JoinScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "회원가입은",
+                                  "${getTranslated('JOIN_MEMBERSHIP', context)}",
                                   style: TextStyle(
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  "무료",
+                                  "${getTranslated('FREE', context)}",
                                   style: TextStyle(
                                     color: Color(0xff0123b4),
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  "이며,",
+                                  "${getTranslated('AND', context)}",
                                   style: TextStyle(
                                     fontSize: 12,
                                   ),
@@ -131,7 +131,7 @@ class _JoinScreenState extends State<JoinScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "절차에 따라 가입하시면 서비스를 이용하실 수 있습니다.",
+                                  "${getTranslated('CAN_JOIN', context)}",
                                   style: TextStyle(fontSize: 12),
                                 ),
                               ],

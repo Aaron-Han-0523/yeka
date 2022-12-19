@@ -50,7 +50,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("AI 테스트"),
+              CustomSliverAppBar("${getTranslated('AI_test_ko', context)}"),
 
               SliverToBoxAdapter(
                 child: Column(
@@ -71,7 +71,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                 padding: const EdgeInsets.fromLTRB(
                                     12.0, 5.0, 12.0, 0.0),
                                 child: Text(
-                                  "AI TEST",
+                                  "${getTranslated('AI_test', context)}",
                                   style: TextStyle(
                                     fontSize: 70,
                                     color: Color(0xff444444),

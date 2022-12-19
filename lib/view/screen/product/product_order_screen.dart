@@ -179,7 +179,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "${getTranslated('COLOR', context)} : 투명",
+                                        "${getTranslated('COLOR', context)}${getTranslated(':', context)}투명",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -193,7 +193,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('AMOUNT', context)} : 1${getTranslated('SOME', context)}",
+                                        "${getTranslated('AMOUNT', context)}${getTranslated('|', context)}14664566${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,

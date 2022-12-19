@@ -163,7 +163,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       bool isRoute, String token, String tempToken, String errorMessage) async {
     if (isRoute) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("회원가입에 성공했습니다."), backgroundColor: Colors.green));
+          content: Text("${getTranslated('JOIN_SUCCESS', context)}"), backgroundColor: Colors.green));
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (_) => AuthScreen()), (route) => false);
     } else {
@@ -192,7 +192,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           autofocus: true,
           controller: _idController,
           labelText: "${getTranslated('ID', context)} ",
-          essentialLabelText: " *",
+          essentialLabelText: " ${getTranslated('*', context)}",
           hintText: "${getTranslated('HINT_ID', context)}",
           focusNode: _fNameFocus,
         ),
@@ -202,7 +202,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         CustomLabelTextField(
           controller: _pwController,
           labelText: "${getTranslated('PW', context)} ",
-          essentialLabelText: " *",
+          essentialLabelText: " ${getTranslated('*', context)}",
           hintText: "${getTranslated('HINT_PW', context)}",
           keyboardType: TextInputType.visiblePassword,
           obscureText: true,
@@ -213,7 +213,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         CustomLabelTextField(
           controller: _pwHintController,
           labelText: "${getTranslated('CONFIRM_PW', context)} ",
-          essentialLabelText: " *",
+          essentialLabelText: " ${getTranslated('*', context)}",
           hintText: "${getTranslated('HINT_CONFIRM_PW', context)}",
           keyboardType: TextInputType.visiblePassword,
           obscureText: true,
@@ -224,7 +224,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         CustomLabelTextField(
           controller: _nameController,
           labelText: "${getTranslated('NAME', context)} ",
-          essentialLabelText: " *",
+          essentialLabelText: " ${getTranslated('*', context)}",
           hintText: "${getTranslated('HINT_NAME', context)}",
         ),
 
@@ -233,7 +233,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         CustomLabelTextField(
           controller: _phoneController,
           labelText: "${getTranslated('PHONE', context)} ",
-          essentialLabelText: " *",
+          essentialLabelText: " ${getTranslated('*', context)}",
           hintText: "${getTranslated('HINT_PHONE', context)}",
           isPhoneNumber: true,
           textInputType: TextInputType.number,
@@ -244,7 +244,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         CustomLabelTextField(
           controller: _emailController,
           labelText: "${getTranslated('EMAIL', context)} ",
-          essentialLabelText: " *",
+          essentialLabelText: " ${getTranslated('*', context)}",
           hintText: "${getTranslated('HINT_EMAIL', context)}",
         ),
 
@@ -260,13 +260,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               Row(
                 children: [
                   Text(
-                    "성별 ",
+                    "${getTranslated('GENDER', context)} ",
                     style: TextStyle(
                       fontSize: 15,
                     ),
                   ),
                   Text(
-                    " *",
+                    " ${getTranslated('*', context)}",
                     style: TextStyle(
                       color: Color(0xffff0000),
                       fontSize: 9,
@@ -316,13 +316,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               Row(
                 children: [
                   Text(
-                    "주소 ",
+                    "${getTranslated('ADDRESS', context)} ",
                     style: TextStyle(
                       fontSize: 15,
                     ),
                   ),
                   Text(
-                    " *",
+                    " ${getTranslated('*', context)}",
                     style: TextStyle(
                       color: Color(0xffff0000),
                       fontSize: 9,
@@ -398,7 +398,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         ),
         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
         CustomLabelTextField(
-          hintText: "$address",
+          hintText: "${getTranslated('ETC_ADDRESS', context)}",
           enabled: false,
           isBorder: true,
           fillColor: Colors.white,

@@ -144,7 +144,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "2,500원",
+                                    "2,500${getTranslated('WON', context)}",
                                     style: TextStyle(
                                       color: Color(0xff0123B4),
                                       fontSize: 11,

@@ -154,7 +154,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                                       child: Container(
                                         alignment: Alignment.bottomCenter,
                                         child: Text(
-                                          "${thumbnailLists.length ?? 0} / 5",
+                                          "${thumbnailLists.length ?? 0}${getTranslated('PICTURE_MAX_LENGTH', context)}",
                                           style: TextStyle(
                                             fontSize: 10.0,
                                             color: Color(0xff999999),

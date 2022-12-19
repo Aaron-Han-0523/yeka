@@ -169,7 +169,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "+ 2,500${getTranslated('WON', context)}",
+                              "${getTranslated('+', context)} 2,500${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 9,

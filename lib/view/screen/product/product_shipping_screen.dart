@@ -139,7 +139,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${getTranslated('COLOR', context)} : 투명",
+                                        "${getTranslated('COLOR', context)}${getTranslated(':', context)}투명",
                                         style: TextStyle(
                                           height: 1,
                                           color: Color(0xff999999),
@@ -157,7 +157,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('AMOUNT', context)} : 1${getTranslated('SOME', context)}",
+                                        "${getTranslated('AMOUNT', context)}${getTranslated(':', context)}123153${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           height: 1,
                                           color: Color(0xff999999),
@@ -207,7 +207,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "+ 2,500${getTranslated('WON', context)}",
+                                        "${getTranslated('+', context)} 2,500${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff333333),
                                           fontSize: 12,
