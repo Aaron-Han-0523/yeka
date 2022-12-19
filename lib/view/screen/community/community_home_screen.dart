@@ -28,10 +28,10 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<CommunityYoutubeProvider>(context, listen: false)
-        .getLatestCommunityList(0, context, reload: reload);
+        .getCommunityList(0, context);
 
     Provider.of<CommunityFreeBoardProvider>(context, listen: false)
-        .getLatestCommunityList(0, context, reload: reload);
+        .getCommunityList(0, context);
 
   }
 

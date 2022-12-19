@@ -8,7 +8,6 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constrants.dart';
-import '../../../provider/community_provider.dart';
 import '../../../provider/community_youtube_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'community_crud_screen.dart';
@@ -23,17 +22,32 @@ class CommunityYoutubeListScreen extends StatefulWidget {
 
 class _CommunityYoutubeListScreenState
     extends State<CommunityYoutubeListScreen> {
+
   final ScrollController _scrollController = ScrollController();
+
+  int totalPageSize = 0;
+  int currentPageNum = 0;
+  int lastPageNum = 0;
+
+  _loadPage(int pageNum) {
+    setState(() {
+      Provider.of<CommunityYoutubeProvider>(context, listen: false).getCommunityList(pageNum, context);
+    });
+  }
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<CommunityYoutubeProvider>(context, listen: false)
-        .getLatestCommunityList(0, context, reload: reload);
+        .getCommunityList(0, context);
+
+    currentPageNum = Provider.of<CommunityYoutubeProvider>(context, listen: false).currentPageNum;
+    totalPageSize = Provider.of<CommunityYoutubeProvider>(context, listen: false).totalPageSize;
+    lastPageNum = (totalPageSize / 10).ceil();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _loadData(context, false);
+    _loadData(context, true);
   }
 
   @override
@@ -73,9 +87,7 @@ class _CommunityYoutubeListScreenState
                                 !communityProvider.filterFirstLoading
                                     ? communityList.length != 0
                                     ? StaggeredGridView.countBuilder(
-                                  itemCount: communityList.length > 4
-                                      ? 4
-                                      : communityList.length,
+                                  itemCount: communityList.length,
                                   crossAxisCount: 1,
                                   padding: EdgeInsets.all(0),
                                   physics: NeverScrollableScrollPhysics(),
@@ -102,7 +114,16 @@ class _CommunityYoutubeListScreenState
                               ]);
                             },
                           ),
-                          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                          SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if(currentPageNum > 0) InkWell(child: Text(" < "), onTap: () { _loadPage(currentPageNum - 1); },),
+                              for (var i = (currentPageNum - 2); i < currentPageNum + 3; i++) if(i > -1 && i < lastPageNum) if(i == currentPageNum) Text(" ${i + 1} ") else InkWell(child: Text(" ${i + 1} "), onTap: () {_loadPage(i);},),
+                              if(currentPageNum < lastPageNum - 1) InkWell(child: Text(" > "), onTap: () { _loadPage(currentPageNum + 1); },),
+                            ],
+                          ),
+                          SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                         ],
                       ),
                     ),

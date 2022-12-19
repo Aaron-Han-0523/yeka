@@ -19,6 +19,8 @@ class CommunityNoticeProvider extends ChangeNotifier {
   bool _firstLoading = true;
 
   int _latestPageSize;
+  int _totalPageSize;
+  int _currentPageNum = 0;
 
   List<CommunityModel> _latestCommunityList = [];
   List<int> _offsetList = [];
@@ -34,6 +36,8 @@ class CommunityNoticeProvider extends ChangeNotifier {
   bool get firstLoading => _firstLoading;
 
   int get latestPageSize => _latestPageSize;
+  int get totalPageSize => _totalPageSize;
+  int get currentPageNum => _currentPageNum;
 
   void addCommunity(CommunityModel communityModel) {
     communityRepo.addCommunity(communityModel);
@@ -71,7 +75,7 @@ class CommunityNoticeProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await communityRepo.getCommunityNoticeList(limit, offset * limit);
+      ApiResponse apiResponse = await communityRepo.getLatestCommunityNoticeList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
         _latestCommunityList.addAll(CommunityList.fromList(apiResponse.response.data).communityList);
@@ -88,5 +92,22 @@ class CommunityNoticeProvider extends ChangeNotifier {
         notifyListeners();
       }
     }
+  }
+
+  Future<void> getCommunityList(int pageNum, BuildContext context,) async {
+    _latestCommunityList = [];
+
+    ApiResponse apiResponse = await communityRepo.getCommunityNoticeList(pageNum);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      _latestCommunityList.addAll(CommunityList.fromList(apiResponse.response.data["rows"]).communityList);
+      _totalPageSize = apiResponse.response.data["count"];
+      _currentPageNum = pageNum;
+      _filterFirstLoading = false;
+      _filterIsLoading = false;
+    } else {
+      ApiChecker.checkApi(context, apiResponse);
+    }
+    notifyListeners();
   }
 }

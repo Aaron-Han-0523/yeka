@@ -73,10 +73,22 @@ class CommunityNoticeRepo {
   }
 
   // limit = pageSize, skip = offset
-  Future<ApiResponse> getCommunityNoticeList(int limit, int skip) async {
+  Future<ApiResponse> getLatestCommunityNoticeList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
         AppConstants.LIST_COMMUNITY_NOTICE_URI + "?limit=$limit&skip=$skip",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  // limit = pageSize, skip = offset
+  Future<ApiResponse> getCommunityNoticeList(int pageNum) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_COMMUNITY_NOTICE_URI + "?pageNum=$pageNum",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

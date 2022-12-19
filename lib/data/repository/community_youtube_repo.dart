@@ -73,10 +73,22 @@ class CommunityYoutubeRepo {
   }
 
   // limit = pageSize, skip = offset
-  Future<ApiResponse> getCommunityYoutubeList(int limit, int skip) async {
+  Future<ApiResponse> getLatestCommunityYoutubeList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
         AppConstants.LIST_COMMUNITY_YOUTUBE_URI + "?limit=$limit&skip=$skip",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  // limit = pageSize, skip = offset
+  Future<ApiResponse> getCommunityYoutubeList(int pageNum) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_COMMUNITY_YOUTUBE_URI + "?pageNum=$pageNum",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

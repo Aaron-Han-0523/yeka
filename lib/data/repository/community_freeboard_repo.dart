@@ -73,10 +73,21 @@ class CommunityFreeBoardRepo {
   }
 
   // limit = pageSize, skip = offset
-  Future<ApiResponse> getCommunityFreeboardList(int limit, int skip) async {
+  Future<ApiResponse> getLatestCommunityFreeBoardList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
         AppConstants.LIST_COMMUNITY_FREE_BOARD_URI + "?limit=$limit&skip=$skip",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  Future<ApiResponse> getCommunityFreeBoardList(pageNum) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_COMMUNITY_FREE_BOARD_URI + "?pageNum=$pageNum",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

@@ -24,9 +24,24 @@ class _MyPageNoticeBoardListScreenState
     extends State<MyPageNoticeBoardListScreen> {
   final ScrollController _scrollController = ScrollController();
 
+  int totalPageSize = 0;
+  int currentPageNum = 0;
+  int lastPageNum = 0;
+
+  _loadPage(int pageNum) {
+    setState(() {
+      Provider.of<CommunityNoticeProvider>(context, listen: false)
+          .getCommunityList(pageNum, context);
+    });
+  }
+
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<CommunityNoticeProvider>(context, listen: false)
-        .getLatestCommunityList(0, context, reload: reload);
+        .getCommunityList(0, context);
+
+    currentPageNum = Provider.of<CommunityNoticeProvider>(context, listen: false).currentPageNum;
+    totalPageSize = Provider.of<CommunityNoticeProvider>(context, listen: false).totalPageSize;
+    lastPageNum = (totalPageSize / 10).ceil();
   }
 
   @override
@@ -72,9 +87,7 @@ class _MyPageNoticeBoardListScreenState
                               !communityProvider.filterFirstLoading
                                   ? communityList.length != 0
                                       ? StaggeredGridView.countBuilder(
-                                          itemCount: communityList.length > 4
-                                              ? 4
-                                              : communityList.length,
+                                          itemCount: communityList.length,
                                           crossAxisCount: 1,
                                           padding: EdgeInsets.all(0),
                                           physics:
@@ -253,6 +266,17 @@ class _MyPageNoticeBoardListScreenState
                           },
                         ),
                       ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if(currentPageNum > 0) InkWell(child: Text(" < "), onTap: () { _loadPage(currentPageNum - 1); },),
+                          for (var i = (currentPageNum - 2); i < currentPageNum + 3; i++) if(i > -1 && i < lastPageNum) if(i == currentPageNum) Text(" ${i + 1} ") else InkWell(child: Text(" ${i + 1} "), onTap: () {_loadPage(i);},),
+                          if(currentPageNum < lastPageNum - 1) InkWell(child: Text(" > "), onTap: () { _loadPage(currentPageNum + 1); },),
+                        ],
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+
                       FooterPage(),
                     ],
                   ),

@@ -19,6 +19,8 @@ class CommunityYoutubeProvider extends ChangeNotifier {
   bool _firstLoading = true;
 
   int _latestPageSize;
+  int _totalPageSize;
+  int _currentPageNum = 0;
 
   List<CommunityModel> _latestCommunityList = [];
   List<int> _offsetList = [];
@@ -34,6 +36,8 @@ class CommunityYoutubeProvider extends ChangeNotifier {
   bool get firstLoading => _firstLoading;
 
   int get latestPageSize => _latestPageSize;
+  int get totalPageSize => _totalPageSize;
+  int get currentPageNum => _currentPageNum;
 
   void addCommunity(CommunityModel communityModel) {
     communityRepo.addCommunity(communityModel);
@@ -57,36 +61,20 @@ class CommunityYoutubeProvider extends ChangeNotifier {
     return _community;
   }
 
-  Future<void> getLatestCommunityList(int offset, BuildContext context,
-      {bool reload = false}) async {
-    if (reload) {
-      _offsetList = [];
-      _latestCommunityList = [];
-    }
+  Future<void> getCommunityList(int pageNum, BuildContext context,) async {
+    _latestCommunityList = [];
 
-    _lOffset = offset;
-
-    if (!_offsetList.contains(offset)) {
-      _offsetList.add(offset);
-
-      // limit = pageSize
-      // skip = offset
-      ApiResponse apiResponse = await communityRepo.getCommunityYoutubeList(limit, offset * limit);
-      if (apiResponse.response != null &&
-          apiResponse.response.statusCode == 200) {
-        _latestCommunityList.addAll(CommunityList.fromList(apiResponse.response.data).communityList);
-        _latestPageSize = CommunityList.fromList(apiResponse.response.data).count;
-        _filterFirstLoading = false;
-        _filterIsLoading = false;
-      } else {
-        ApiChecker.checkApi(context, apiResponse);
-      }
-      notifyListeners();
+    ApiResponse apiResponse = await communityRepo.getCommunityYoutubeList(pageNum);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      _latestCommunityList.addAll(CommunityList.fromList(apiResponse.response.data["rows"]).communityList);
+      _totalPageSize = apiResponse.response.data["count"];
+      _currentPageNum = pageNum;
+      _filterFirstLoading = false;
+      _filterIsLoading = false;
     } else {
-      if (_filterIsLoading) {
-        _filterIsLoading = false;
-        notifyListeners();
-      }
+      ApiChecker.checkApi(context, apiResponse);
     }
+    notifyListeners();
   }
 }

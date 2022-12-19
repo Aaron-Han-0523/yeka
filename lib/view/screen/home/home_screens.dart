@@ -41,13 +41,13 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         .getLatestCommunityList(0, context, reload: reload);
 
     Provider.of<CommunityYoutubeProvider>(context, listen: false)
-        .getLatestCommunityList(0, context, reload: reload);
+        .getCommunityList(0, context);
 
     Provider.of<CommunityFreeBoardProvider>(context, listen: false)
-        .getLatestCommunityList(0, context, reload: reload);
+        .getCommunityList(0, context);
 
     Provider.of<CommunityNoticeProvider>(context, listen: false)
-        .getLatestCommunityList(0, context, reload: reload);
+        .getCommunityList(0, context);
 
     Provider.of<ProductProvider>(context, listen: false)
         .getLatestProductList(0, context, reload: reload);
