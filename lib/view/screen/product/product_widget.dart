@@ -8,22 +8,28 @@ import 'package:provider/provider.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/like_product_model.dart';
 import '../../../data/model/response/product_model.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
 import '../../../provider/like_product_provider.dart';
 import '../../../provider/user_provider.dart';
 import 'product_detail_screen.dart';
 
-class ProductWidget extends StatelessWidget {
+class ProductWidget extends StatefulWidget {
   final ProductModel productModel;
 
   ProductWidget({@required this.productModel});
 
   @override
+  State<ProductWidget> createState() => _ProductWidgetState();
+}
+
+class _ProductWidgetState extends State<ProductWidget> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         ImageModel imageModel = ImageModel(
-          product_id: productModel.id,
+          product_id: widget.productModel.id,
         );
 
         Provider.of<CustomImageProvider>(context, listen: false)
@@ -34,7 +40,7 @@ class ProductWidget extends StatelessWidget {
                 PageRouteBuilder(
                   transitionDuration: Duration(milliseconds: 1000),
                   pageBuilder: (context, anim1, anim2) => ProductDetailPage(
-                      productModel: productModel, isCreateScreen: false),
+                      productModel: widget.productModel, isCreateScreen: false),
                 ),
               ),
             );
@@ -53,8 +59,8 @@ class ProductWidget extends StatelessWidget {
                   child: FadeInImage.assetNetwork(
                     placeholder: Images.placeholder1,
                     fit: BoxFit.fitHeight,
-                    image: productModel.thumbnail != null
-                        ? AppConstants.BASE_URL + "/" + productModel.thumbnail
+                    image: widget.productModel.thumbnail != null
+                        ? AppConstants.BASE_URL + "/" + widget.productModel.thumbnail
                         : AppConstants.BASE_URL,
                     imageErrorBuilder: (c, o, s) => Image.asset(
                       Images.placeholder_3x1,
@@ -63,19 +69,38 @@ class ProductWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  var userId = Provider.of<UserProvider>(context, listen: false).user.id;
-                  var productId = productModel.id;
-                  LikeProductModel likeProductModel = LikeProductModel(
-                    user_id: userId,
-                    product_id: productId,
-                  );
-                  Provider.of<LikeProductProvider>(context, listen: false).addLikeProduct(likeProductModel);
-                },
-                child: Positioned(
-                  top: 10,
-                  right: 10,
+              Positioned(
+                top: 10,
+                right: 10,
+                child: InkWell(
+                  onTap: () {
+                    var userId =
+                        Provider.of<AuthProvider>(context, listen: false)
+                            .getUser()["id"];
+
+                    if (userId != null) {
+                      var productId = widget.productModel.id;
+                      LikeProductModel likeProductModel = LikeProductModel(
+                        user_id: userId,
+                        product_id: productId,
+                      );
+
+                      if (widget.productModel.like_product_id != null)
+                        Provider.of<LikeProductProvider>(context, listen: false)
+                            .deleteLikeProduct(likeProductModel);
+                      else
+                        Provider.of<LikeProductProvider>(context, listen: false)
+                            .addLikeProduct(likeProductModel);
+                      
+                      setState(() {});
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text("상품 찜 등록은 로그인해야 합니다."),
+                            backgroundColor: Colors.red),
+                      );
+                    }
+                  },
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(
                       6.0,
@@ -93,7 +118,9 @@ class ProductWidget extends StatelessWidget {
                         // color: Colors.grey,
                         borderRadius: BorderRadius.circular(8.0)),
                     child: Image.asset(
-                      Images.heart,
+                      widget.productModel.like_product_id != null
+                          ? Images.heart_fill
+                          : Images.heart,
                       height: 20,
                       fit: BoxFit.fitHeight,
                     ),
@@ -121,7 +148,7 @@ class ProductWidget extends StatelessWidget {
                           color: Color(0xff000000),
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        productModel.tag != null ? productModel.tag : "",
+                        widget.productModel.tag != null ? widget.productModel.tag : "",
                         style: TextStyle(
                           fontSize: 6,
                           color: Color(0xffffffff),
@@ -140,7 +167,7 @@ class ProductWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${productModel.title}',
+                  '${widget.productModel.title}',
                   textAlign: TextAlign.center,
                   style: robotoRegular.copyWith(
                     fontSize: Dimensions.FONT_SIZE_SMALL,
@@ -153,7 +180,7 @@ class ProductWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        '${productModel.description}',
+                        '${widget.productModel.description}',
                         textAlign: TextAlign.center,
                         style: robotoRegular.copyWith(
                           fontSize: 7,
@@ -164,7 +191,8 @@ class ProductWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${PriceConverter.convertPrice(context, productModel.price.toDouble())} 원" ?? '0 원',
+                      "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble())} 원" ??
+                          '0 원',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,

@@ -14,25 +14,20 @@ class LikeProductRepo {
   LikeProductRepo({@required this.dioClient, @required this.sharedPreferences});
 
   Future<ApiResponse> addLikeProduct(LikeProductModel likeProductModel) async {
+    // var formData = FormData.fromMap({
+    //   'user_id' : likeProductModel.user_id,
+    //   'product_id': likeProductModel.product_id,
+    // });
 
-    List<MultipartFile> uploadFiles = [];
-
-    // if(likeProductModel.attachedFilepath1 != null) uploadFiles.add(await MultipartFile.fromFile(likeProductModel.attachedFilepath1));
-    // if(likeProductModel.attachedFilepath2 != null) uploadFiles.add(await MultipartFile.fromFile(likeProductModel.attachedFilepath2));
-    // if(likeProductModel.attachedFilepath3 != null) uploadFiles.add(await MultipartFile.fromFile(likeProductModel.attachedFilepath3));
-
-    var formData = FormData.fromMap({
-      // 'files' : uploadFiles,
-      // 'title': likeProductModel.title,
-      // 'content': likeProductModel.content,
-      // 'grade': likeProductModel.grade,
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
-    });
+    var _data = {
+      'user_id' : likeProductModel.user_id,
+      'product_id': likeProductModel.product_id,
+    };
 
     try {
       var response = await dioClient.post(
         AppConstants.ADD_LIKE_PRODUCT_URI,
-        data: formData,
+        data: _data,
       );
 
       return ApiResponse.withSuccess(response);

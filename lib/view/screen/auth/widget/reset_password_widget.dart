@@ -5,7 +5,7 @@ import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 import 'package:yeka/view/basewidget/button/custom_button.dart';
-import 'package:yeka/view/basewidget/show_custom_snakbar.dart';
+import 'package:yeka/view/basewidget/show_custom_snackbar.dart';
 import 'package:yeka/view/basewidget/textfield/custom_password_textfield.dart';
 import 'package:yeka/view/screen/auth/auth_screen.dart';
 import 'package:provider/provider.dart';

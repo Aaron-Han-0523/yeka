@@ -9,6 +9,7 @@ class ProductModel {
   String _update_date;
   String _delete_date;
   String _thumbnail;
+  int _like_product_id;
 
   ProductModel({
     int id,
@@ -21,6 +22,7 @@ class ProductModel {
     String update_date,
     String delete_date,
     String thumbnail,
+    int like_product_id,
   }) {
     this._id = id;
     this._title = title;
@@ -32,6 +34,7 @@ class ProductModel {
     this._update_date = update_date;
     this._delete_date = delete_date;
     this._thumbnail = thumbnail;
+    this._like_product_id = like_product_id;
   }
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -45,6 +48,7 @@ class ProductModel {
     _update_date = json['update_date'];
     _delete_date = json['delete_date'];
     _thumbnail = json['thumbnail'];
+    _like_product_id = json['like_product_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,6 +63,7 @@ class ProductModel {
     data['update_date'] = this.update_date;
     data['delete_date'] = this.delete_date;
     data['thumbnail'] = this.thumbnail;
+    data['like_product_id'] = this.like_product_id;
     return data;
   }
 
@@ -81,6 +86,8 @@ class ProductModel {
   String get delete_date => _delete_date;
 
   String get thumbnail => _thumbnail;
+
+  int get like_product_id => _like_product_id;
 
   set id(int value) {
     _id = value;
@@ -120,6 +127,10 @@ class ProductModel {
 
   set thumbnail(String value) {
     _thumbnail = value;
+  }
+
+  set like_product_id(int value) {
+    _like_product_id = value;
   }
 }
 

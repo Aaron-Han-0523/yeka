@@ -178,7 +178,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: CustomOutlinedButton(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => JoinScreen()));
+                                builder: (context) => JoinScreen()),
+                            );
                           },
                           buttonText:
                               "${getTranslated('MEMBER_JOIN', context)}",
@@ -193,7 +194,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: CustomOutlinedButton(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomePage()));
+                                builder: (context) => HomePage()),
+                            );
                           },
                           buttonText:
                               "임시 로그인(테스트 용)",
@@ -217,7 +219,8 @@ class _AuthScreenState extends State<AuthScreen> {
           MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));
+          SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
+      );
     }
   }
 }
