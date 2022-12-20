@@ -208,11 +208,11 @@ class AuthRepo {
     map["id"] = sharedPreferences.getInt(
           AppConstants.USER_ID,
         ) ??
-        "";
+        null;
     map["user_type"] = sharedPreferences.getInt(
           AppConstants.USER_USER_TYPE,
         ) ??
-        "";
+        null;
     map["username"] = sharedPreferences.getString(
           AppConstants.USER_USERNAME,
         ) ??
@@ -232,7 +232,7 @@ class AuthRepo {
     map["GENDER"] = sharedPreferences.getInt(
           AppConstants.USER_GENDER,
         ) ??
-        "";
+        null;
     map["address1"] = sharedPreferences.getString(
           AppConstants.USER_ADDRESS1,
         ) ??
@@ -260,7 +260,7 @@ class AuthRepo {
     map["withdrawal"] = sharedPreferences.getInt(
           AppConstants.USER_WITHDRAWAL,
         ) ??
-        "";
+        null;
     map["bank1"] = sharedPreferences.getString(
           AppConstants.USER_BANK1,
         ) ??

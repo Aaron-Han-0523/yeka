@@ -27,64 +27,73 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
   Map map;
-  Column myPageList = Column(children: [],);
+  Column myPageList = Column(
+    children: [],
+  );
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     map = Provider.of<AuthProvider>(context, listen: false).getUser();
 
-    int user_type = map["user_type"]; // 0사용자, 1컨설턴트, 2협력사, 99관리자
+    if (map["user_type"] != null) {
+      int user_type = map["user_type"]; // 0사용자, 1컨설턴트, 2협력사, 99관리자
 
-    if (user_type == 0) {
+      if (user_type == 0) {
+        myPageList.children.add(buildItem(
+          "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
+          MyPageUpdateScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('PERSONAL_AI_ANALYSIS_RESULT', context)}",
+          AIResultPage(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('MY_CONSULTING_RESERVATION/PAYMENT', context)}",
+          ConsultantMyReserveScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('MY_CONSULTING_RESULT', context)}",
+          ConsultantResultScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('ORDER_LIST', context)}",
+          MyPageOrderScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('LIKE_LIST', context)}",
+          MyPageFavoriteListScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('NOTICE', context)}",
+          MyPageNoticeBoardListScreen(),
+        ));
+      } else if (user_type == 1) {
+        myPageList.children.add(buildItem(
+          "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
+          MyPageUpdateScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",
+          MyPageConsultantUpdateScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('SETTLEMENT_AMOUNT', context)}",
+          MyPagePaymentScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('MY_CUSTOMER_INFO', context)}",
+          MyPageClientListScreen(),
+        ));
+        myPageList.children.add(buildItem(
+          "${getTranslated('NOTICE', context)}",
+          MyPageNoticeBoardListScreen(),
+        ));
+      }
+    } else {
       myPageList.children.add(buildItem(
         "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
-        MyPageUpdateScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('PERSONAL_AI_ANALYSIS_RESULT', context)}",
-        AIResultPage(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('MY_CONSULTING_RESERVATION/PAYMENT', context)}",
-        ConsultantMyReserveScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('MY_CONSULTING_RESULT', context)}",
-        ConsultantResultScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('ORDER_LIST', context)}",
-        MyPageOrderScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('LIKE_LIST', context)}",
-        MyPageFavoriteListScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('NOTICE', context)}",
-        MyPageNoticeBoardListScreen(),
-      ));
-    } else if (user_type == 1) {
-      myPageList.children.add(buildItem(
-        "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
-        MyPageUpdateScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",
-        MyPageConsultantUpdateScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('SETTLEMENT_AMOUNT', context)}",
-        MyPagePaymentScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('MY_CUSTOMER_INFO', context)}",
-        MyPageClientListScreen(),
-      ));
-      myPageList.children.add(buildItem(
-        "${getTranslated('NOTICE', context)}",
-        MyPageNoticeBoardListScreen(),
+        Text("로그인하세요."),
       ));
     }
   }
