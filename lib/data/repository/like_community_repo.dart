@@ -53,7 +53,7 @@ class LikeCommunityRepo {
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_LIKE_COMMUNITY_URI + "/${likeCommunityModel.id}", data: _data);
+      await dioClient.put(AppConstants.UPDATE_LIKE_COMMUNITY_URI + "/${likeCommunityModel.id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

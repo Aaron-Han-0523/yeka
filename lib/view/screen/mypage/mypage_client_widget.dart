@@ -8,14 +8,18 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/mypage/mypage_consultant_result_write.dart';
+import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/product_model.dart';
+import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
 import 'mypage_calendar.dart';
 
 class MyPageClientWidget extends StatelessWidget {
   final ProductModel productModel;
+  final UserModel userModel;
+  final ConsultingModel consultingModel;
 
-  MyPageClientWidget({@required this.productModel});
+  MyPageClientWidget({@required this.productModel, this.userModel, this.consultingModel});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class MyPageClientWidget extends StatelessWidget {
                 fit: BoxFit.fitHeight,
                 image: AppConstants.BASE_URL +
                     "/" +
-                    (productModel.tag ?? ""),
+                    (productModel.thumbnail ?? ""),
                 // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                 //     '/${bannerProvider.mainBannerList[index].photo}',
                 imageErrorBuilder: (c, o, s) => Image.asset(
@@ -76,7 +80,7 @@ class MyPageClientWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '정하윤',
+                          '${userModel.username}',
                           textAlign: TextAlign.center,
                           style: robotoRegular.copyWith(
                             fontSize: 11,
@@ -104,7 +108,7 @@ class MyPageClientWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      productModel.tag ?? '${getTranslated('COUNSELING_NAME', context)}',
+                      '${getTranslated('COUNSELING_NAME', context)}',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -114,7 +118,7 @@ class MyPageClientWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      productModel.tag ?? '피부 ? 나한테 모든지 물어봐 !',
+                      consultingModel.consulting_title ?? '피부 ? 나한테 모든지 물어봐 !',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -128,7 +132,7 @@ class MyPageClientWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      productModel.tag ?? '${getTranslated('CONTACT_US', context)}',
+                      '${getTranslated('CONTACT_US', context)}',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -137,7 +141,7 @@ class MyPageClientWidget extends StatelessWidget {
                       // maxLines: 2,
                     ),
                     Text(
-                      productModel.tag ?? '010-0000-0000',
+                      userModel.phone ?? '010-0000-0000',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,
@@ -166,7 +170,7 @@ class MyPageClientWidget extends StatelessWidget {
                     Container(
                       width: 80,
                       child:
-                      productModel.tag??Random().nextInt(2) == 1?
+                      productModel.tag != null ?? Random().nextInt(2) == 1?
                       CustomElevatedButton(
                         onTap: () {
                           Navigator.push(

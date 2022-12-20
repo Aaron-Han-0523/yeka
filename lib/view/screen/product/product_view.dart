@@ -51,7 +51,7 @@ class _ProductViewState extends State<ProductView> {
           //     .showBottomLoader();
 
           Provider.of<ProductProvider>(context, listen: false)
-              .getLatestProductList(offset, context);
+              .getLatestProductList(offset, context, reload: true);
         }
       }
     });
@@ -69,7 +69,7 @@ class _ProductViewState extends State<ProductView> {
                   maxHeight: widget.isHomePage ? 220 : double.infinity,
                 ),
                 child: GridView.builder(
-                  itemCount: productList.length > 4 ? 4 : productList.length,
+                  itemCount: productList.length,
                   // crossAxisCount: widget.isHomePage ? 1 : 2,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: widget.isHomePage ? 1 : 2,
@@ -78,7 +78,9 @@ class _ProductViewState extends State<ProductView> {
                     crossAxisSpacing: 5,
                   ),
                   // padding: EdgeInsets.all(0),
-                  // physics: NeverScrollableScrollPhysics(),
+                  physics: widget.isHomePage
+                      ? AlwaysScrollableScrollPhysics()
+                      : NeverScrollableScrollPhysics(),
                   scrollDirection:
                       widget.isHomePage ? Axis.horizontal : Axis.vertical,
                   // scrollDirection: Axis.horizontal,

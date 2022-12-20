@@ -29,9 +29,11 @@ class _MyPageNoticeBoardListScreenState
   int lastPageNum = 0;
 
   _loadPage(int pageNum) {
+    currentPageNum = pageNum;
+
     setState(() {
       Provider.of<CommunityNoticeProvider>(context, listen: false)
-          .getCommunityList(pageNum, context);
+          .getCommunityList(pageNum + 1, context);
     });
   }
 
@@ -271,7 +273,7 @@ class _MyPageNoticeBoardListScreenState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           if(currentPageNum > 0) InkWell(child: Text(" < "), onTap: () { _loadPage(currentPageNum - 1); },),
-                          for (var i = (currentPageNum - 2); i < currentPageNum + 3; i++) if(i > -1 && i < lastPageNum) if(i == currentPageNum) Text(" ${i + 1} ") else InkWell(child: Text(" ${i + 1} "), onTap: () {_loadPage(i);},),
+                          for (var i = (currentPageNum - 2); i < currentPageNum + 3; i++) if(i > -1 && i < lastPageNum) if(i == currentPageNum) Text(" ${i + 1} ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),) else InkWell(child: Text(" ${i + 1} "), onTap: () {_loadPage(i);},),
                           if(currentPageNum < lastPageNum - 1) InkWell(child: Text(" > "), onTap: () { _loadPage(currentPageNum + 1); },),
                         ],
                       ),

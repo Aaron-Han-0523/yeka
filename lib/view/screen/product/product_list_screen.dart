@@ -134,8 +134,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
                             ProductView(
                                 isHomePage: false,
                                 scrollController: _scrollController),
-                            CustomElevatedButton(
-                                onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}"),
+                            // CustomElevatedButton(
+                            //     onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}"),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                           ],

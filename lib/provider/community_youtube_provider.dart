@@ -64,6 +64,9 @@ class CommunityYoutubeProvider extends ChangeNotifier {
   Future<void> getCommunityList(int pageNum, BuildContext context,) async {
     _latestCommunityList = [];
 
+    _filterFirstLoading = true;
+    _filterIsLoading = true;
+
     ApiResponse apiResponse = await communityRepo.getCommunityYoutubeList(pageNum);
     if (apiResponse.response != null &&
         apiResponse.response.statusCode == 200) {
