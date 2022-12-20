@@ -6,9 +6,11 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 import 'package:provider/provider.dart';
 import '../../../data/model/response/image_model.dart';
+import '../../../data/model/response/like_product_model.dart';
 import '../../../data/model/response/product_model.dart';
 import '../../../provider/image_provider.dart';
-import '../../../provider/product_provider.dart';
+import '../../../provider/like_product_provider.dart';
+import '../../../provider/user_provider.dart';
 import 'product_detail_screen.dart';
 
 class ProductWidget extends StatelessWidget {
@@ -61,29 +63,40 @@ class ProductWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                top: 10,
-                right: 10,
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(
-                    6.0,
-                    2.0,
-                    6.0,
-                    2.0,
-                  ),
-                  margin: const EdgeInsets.fromLTRB(
-                    6.0,
-                    2.0,
-                    6.0,
-                    2.0,
-                  ),
-                  decoration: BoxDecoration(
-                      // color: Colors.grey,
-                      borderRadius: BorderRadius.circular(8.0)),
-                  child: Image.asset(
-                    Images.heart,
-                    height: 20,
-                    fit: BoxFit.fitHeight,
+              InkWell(
+                onTap: () {
+                  var userId = Provider.of<UserProvider>(context, listen: false).user.id;
+                  var productId = productModel.id;
+                  LikeProductModel likeProductModel = LikeProductModel(
+                    user_id: userId,
+                    product_id: productId,
+                  );
+                  Provider.of<LikeProductProvider>(context, listen: false).addLikeProduct(likeProductModel);
+                },
+                child: Positioned(
+                  top: 10,
+                  right: 10,
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(
+                      6.0,
+                      2.0,
+                      6.0,
+                      2.0,
+                    ),
+                    margin: const EdgeInsets.fromLTRB(
+                      6.0,
+                      2.0,
+                      6.0,
+                      2.0,
+                    ),
+                    decoration: BoxDecoration(
+                        // color: Colors.grey,
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Image.asset(
+                      Images.heart,
+                      height: 20,
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ),
               ),
@@ -127,7 +140,7 @@ class ProductWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '[블랑]비비크림',
+                  '${productModel.title}',
                   textAlign: TextAlign.center,
                   style: robotoRegular.copyWith(
                     fontSize: Dimensions.FONT_SIZE_SMALL,
@@ -140,7 +153,7 @@ class ProductWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        productModel.title ?? '마르지 않는 피부의 비밀마르지안는',
+                        '${productModel.description}',
                         textAlign: TextAlign.center,
                         style: robotoRegular.copyWith(
                           fontSize: 7,
@@ -151,7 +164,7 @@ class ProductWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${productModel.price}" ?? '25,000원',
+                      "${PriceConverter.convertPrice(context, productModel.price.toDouble())} 원" ?? '0 원',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
                         fontSize: 10,

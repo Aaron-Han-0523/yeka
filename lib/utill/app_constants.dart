@@ -6,8 +6,8 @@ class AppConstants {
 
   // static const String BASE_URL = 'https://6valley.6amtech.com';
   // static const String BASE_URL = 'http://52.79.240.88';
-  static const String BASE_URL = 'http://172.30.1.88:3000';
-
+  static const String BASE_URL = 'http://172.30.1.95:3000';
+  // static const String BASE_URL = 'http://192.168.0.198:3000';
   // static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
@@ -54,12 +54,12 @@ class AppConstants {
   static const String LIST_IMAGE_PRODUCT_URI = "/api/image/product";
   static const String GET_IMAGE_URI = "/api/image";
 
-  // LIKE_COMMUNITY
-  static const String ADD_LIKE_COMMUNITY_URI = "/api/like_community";
-  static const String UPDATE_LIKE_COMMUNITY_URI = "/api/like_community";
-  static const String DELETE_LIKE_COMMUNITY_URI = "/api/like_community";
-  static const String LIST_LIKE_COMMUNITY_URI = "/api/like_community";
-  static const String GET_LIKE_COMMUNITY_URI = "/api/like_community";
+  // LIKE_PRODUCT
+  static const String ADD_LIKE_PRODUCT_URI ="/api/like_product";
+  static const String UPDATE_LIKE_PRODUCT_URI ="/api/like_product";
+  static const String DELETE_LIKE_PRODUCT_URI ="/api/like_product";
+  static const String LIST_LIKE_PRODUCT_URI ="/api/like_product";
+  static const String GET_LIKE_PRODUCT_URI ="/api/like_product";
 
   // CONSULTING
   static const String ADD_CONSULTING_URI = "/api/consulting";

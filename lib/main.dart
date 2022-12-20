@@ -9,7 +9,7 @@ import 'package:yeka/provider/community_notice_provider.dart';
 import 'package:yeka/provider/community_provider.dart';
 import 'package:yeka/provider/community_youtube_provider.dart';
 import 'package:yeka/provider/consulting_provider.dart';
-import 'package:yeka/provider/like_community_provider.dart';
+import 'package:yeka/provider/like_product_provider.dart';
 import 'package:yeka/provider/localization_provider.dart';
 import 'package:yeka/provider/menu_provider.dart';
 import 'package:yeka/provider/onboarding_provider.dart';
@@ -54,7 +54,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<CustomImageProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<LikeCommunityProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<LikeProductProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<PersonalColorProvider>()),
     ],
