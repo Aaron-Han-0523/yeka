@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/utill/images.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/community_freeboard_provider.dart';
 import 'community_free_board_detail_screen.dart';
 import 'community_youtube_detail_screen.dart';
 
@@ -15,7 +17,13 @@ class CommunityFreeBoardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        //fixme 조회수 증가하는 부분인데 정확한 타이밍은 화면 보면서 확인할 것
+        CommunityModel latestCommunityModel = await Provider.of<CommunityFreeBoardProvider>(context, listen: false).getCommunity(communityModel);
+        latestCommunityModel.views =  latestCommunityModel.views + 1;
+
+        Provider.of<CommunityFreeBoardProvider>(context, listen: false).updateCommunity(latestCommunityModel);
+
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => CommunityFreeBoardDetailScreen(),
@@ -106,7 +114,7 @@ class CommunityFreeBoardWidget extends StatelessWidget {
                           Text(
                             //FIXME 테이블에 count 필드 추가해야함
                             // "723회",
-                            "723${getTranslated('TIMES', context)}",
+                            "${communityModel.views}${getTranslated('TIMES', context)}",
                             style: TextStyle(
                               fontSize: 7.0,
                               fontWeight: FontWeight.bold,
