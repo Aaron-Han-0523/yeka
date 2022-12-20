@@ -8,6 +8,7 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/community_notice_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -17,16 +18,19 @@ import 'mypage_notice_board_detail_screen.dart';
 class MyPageNoticeBoardListScreen extends StatefulWidget {
   @override
   State<MyPageNoticeBoardListScreen> createState() =>
-      _MyPageNoticeBoardListScreenState();
+      _MyPageNoticeBoardListScreenState(CommunityModel());
 }
 
 class _MyPageNoticeBoardListScreenState
     extends State<MyPageNoticeBoardListScreen> {
   final ScrollController _scrollController = ScrollController();
+  final CommunityModel communityModel;
 
   int totalPageSize = 0;
   int currentPageNum = 0;
   int lastPageNum = 0;
+
+  _MyPageNoticeBoardListScreenState(this.communityModel);
 
   _loadPage(int pageNum) {
     currentPageNum = pageNum;
@@ -104,7 +108,12 @@ class _MyPageNoticeBoardListScreenState
                                             return Column(
                                               children: <Widget>[
                                                 InkWell(
-                                                  onTap: () {
+                                                  //fixme 확인필요!!
+                                                  onTap: () async {
+                                                    // CommunityModel latestCommunityModel = await Provider.of<CommunityNoticeProvider>(context, listen: false).getCommunity(communityModel);
+                                                    // latestCommunityModel.views = latestCommunityModel.views + 1;
+                                                    // Provider.of<CommunityNoticeProvider>(context, listen: false).updateCommunity(latestCommunityModel);
+
                                                     Navigator.of(context).push(
                                                       MaterialPageRoute(
                                                         builder: (context) =>
@@ -214,7 +223,10 @@ class _MyPageNoticeBoardListScreenState
                                                                           width:
                                                                               4),
                                                                       Text(
-                                                                        "723${getTranslated('TIMES', context)}",
+                                                                        //fixme 확인필요!!
+                                                                        "${communityModel.views}"
+                                                                        // "${communityList[index].views}"
+                                                                            "${getTranslated('TIMES', context)}",
                                                                         style:
                                                                             TextStyle(
                                                                           fontSize:

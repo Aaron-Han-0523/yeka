@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
+import 'package:yeka/data/model/response/community_model.dart';
+import 'package:yeka/data/model/response/image_model.dart';
+import 'package:yeka/helper/date_converter.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
@@ -8,10 +12,18 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/community_freeboard_provider.dart';
+import '../../../provider/image_provider.dart';
+import '../../../utill/app_constants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
 class CommunityFreeBoardDetailScreen extends StatefulWidget {
+  final CommunityModel communityModel;
+
+  const CommunityFreeBoardDetailScreen({Key key, this.communityModel})
+      : super(key: key);
+
   @override
   State<CommunityFreeBoardDetailScreen> createState() =>
       _CommunityFreeBoardDetailScreenState();
@@ -23,23 +35,49 @@ class _CommunityFreeBoardDetailScreenState
 
   YoutubePlayerController _youtubeController;
   PageController _pageController = PageController();
+  List<CommunityModel> communityNewsList = [];
+  List<ImageModel> imageList = [];
 
-  var titleList = [
-    "제 피부톤에 ?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-  ];
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    await Provider.of<CommunityFreeBoardProvider>(context, listen: false)
+        .getCommunityNewsList(widget.communityModel, context);
 
-  Widget buildPage(String text, Color color) {
+    communityNewsList =
+        Provider.of<CommunityFreeBoardProvider>(context, listen: false)
+            .communityNewsList;
+
+    ImageModel imageModel = ImageModel(community_id: widget.communityModel.id);
+    await Provider.of<CustomImageProvider>(context, listen: false)
+        .getImageListByCommunityId(imageModel);
+
+    imageList =
+        Provider.of<CustomImageProvider>(context, listen: false).imageList;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData(context, true);
+  }
+
+  Widget buildPage(String url) {
     return Container(
-      // width: MediaQuery.of(context).size.width * 0.6,
-      // height: MediaQuery.of(context).size.width * 0.6,
-      child: Image.network(
-        // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-        'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+      width: MediaQuery.of(context).size.width * 0.6,
+      child: FadeInImage.assetNetwork(
+        placeholder: Images.placeholder1,
+        image: url != null
+            ? AppConstants.BASE_URL + "/" + url
+            : AppConstants.BASE_URL,
         fit: BoxFit.cover,
-      ),
+        width: MediaQuery.of(context).size.width * 0.28,
+        height: MediaQuery.of(context).size.width * 0.28,
+      )
+      //
+      // Image.network(
+      //   'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
+      //   // url != null ? AppConstants.BASE_URL + "/" + url : AppConstants.BASE_URL,
+      //   fit: BoxFit.cover,
+      // ),
     );
   }
 
@@ -56,22 +94,12 @@ class _CommunityFreeBoardDetailScreenState
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    List<Widget> items = [
-      buildPage("0", Colors.red),
-      buildPage("1", Colors.blue),
-      buildPage("2", Colors.green),
-      buildPage("3", Colors.amber),
-      buildPage("4", Colors.deepPurple),
-      buildPage("5", Colors.teal),
-      buildPage("6", Colors.pink),
-      buildPage("7", Colors.brown)
-    ];
+    List<Widget> items = [];
+
+    for (var i = 0; i < imageList.length; i++) {
+      items.add(buildPage(imageList[i].path));
+    }
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -86,14 +114,16 @@ class _CommunityFreeBoardDetailScreenState
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      // YoutubePlayer(
-                      //   controller: _youtubeController,
-                      //   liveUIColor: Colors.amber,
-                      // ),
+                      widget.communityModel.community_link != null
+                          ? YoutubePlayer(
+                              controller: _youtubeController,
+                              liveUIColor: Colors.amber,
+                            )
+                          : Container(),
                       Stack(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width * 1,
+                            width: MediaQuery.of(context).size.width * 0.95,
                             height: MediaQuery.of(context).size.width * 0.56,
                             child: PageView(
                               children: items,
@@ -101,7 +131,7 @@ class _CommunityFreeBoardDetailScreenState
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width * 1,
+                            width: MediaQuery.of(context).size.width * 0.95,
                             height: MediaQuery.of(context).size.width * 0.56,
                             child: Align(
                               alignment: Alignment.bottomCenter,
@@ -131,7 +161,7 @@ class _CommunityFreeBoardDetailScreenState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "피부 블렉헤드 제거에 어울리는 마스크팩 추천좀 내가해줌",
+                              "${widget.communityModel.community_title}",
                               style: TextStyle(
                                 fontSize: 12.0,
                                 fontWeight: FontWeight.bold,
@@ -144,7 +174,7 @@ class _CommunityFreeBoardDetailScreenState
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "rudtjr7871",
+                                    "${widget.communityModel.writer}",
                                     style: TextStyle(
                                       fontSize: 8.0,
                                       fontWeight: FontWeight.bold,
@@ -162,7 +192,7 @@ class _CommunityFreeBoardDetailScreenState
                                     ),
                                   ),
                                   Text(
-                                    "2${getTranslated('HOURS_AGO', context)}",
+                                    "${widget.communityModel.create_date}",
                                     style: TextStyle(
                                       fontSize: 8.0,
                                       fontWeight: FontWeight.bold,
@@ -172,7 +202,7 @@ class _CommunityFreeBoardDetailScreenState
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(238, 0, 0, 0),
+                                        const EdgeInsets.fromLTRB(160, 0, 0, 0),
                                     child: Row(
                                       children: [
                                         Image.asset(
@@ -181,7 +211,7 @@ class _CommunityFreeBoardDetailScreenState
                                           width: 12,
                                         ),
                                         Text(
-                                          "456${getTranslated('TIMES', context)}",
+                                          " ${widget.communityModel.views}${getTranslated('TIMES', context)}",
                                           style: TextStyle(
                                             fontSize: 8.0,
                                             fontWeight: FontWeight.bold,
@@ -210,10 +240,14 @@ class _CommunityFreeBoardDetailScreenState
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              "안녕 쁘띠들아!\n피부 마스크팩 추천 좀 내가 코디해줌 ^^",
-                              style: TextStyle(
-                                fontSize: 10.0,
+                            Container(
+                              width: 200,
+                              child: Text(
+                                "${widget.communityModel.community_content}",
+                                style: TextStyle(
+                                  fontSize: 10.0,
+
+                                ),
                               ),
                             ),
                           ],
@@ -294,7 +328,7 @@ class _CommunityFreeBoardDetailScreenState
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              titleList[position],
+                                              "${communityNewsList[position].community_title}",
                                               style: TextStyle(
                                                 fontSize: 11.0,
                                                 fontWeight: FontWeight.bold,
@@ -306,27 +340,7 @@ class _CommunityFreeBoardDetailScreenState
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "${getTranslated('YEKA', context)}",
-                                                  style: TextStyle(
-                                                    fontSize: 7.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    color: Color(0xff999999),
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "${getTranslated('|', context)}",
-                                                  style: TextStyle(
-                                                    fontSize: 7.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    color: Color(0xff999999),
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "7${getTranslated('DAYS_AGO', context)}",
+                                                  "${communityNewsList[position].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[position].create_date)}",
                                                   style: TextStyle(
                                                     fontSize: 7.0,
                                                     fontWeight: FontWeight.bold,
@@ -347,7 +361,7 @@ class _CommunityFreeBoardDetailScreenState
                                                         width: 12,
                                                       ),
                                                       Text(
-                                                        "723${getTranslated('TIMES', context)}",
+                                                        " ${communityNewsList[position].views}${getTranslated('TIMES', context)}",
                                                         style: TextStyle(
                                                           fontSize: 7.0,
                                                           fontWeight:
@@ -379,7 +393,7 @@ class _CommunityFreeBoardDetailScreenState
                               ],
                             );
                           },
-                          itemCount: titleList.length,
+                          itemCount: communityNewsList.length,
                         ),
                       ),
 

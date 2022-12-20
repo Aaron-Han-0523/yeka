@@ -23,11 +23,13 @@ class CommunityFreeBoardProvider extends ChangeNotifier {
   int _currentPageNum = 0;
 
   List<CommunityModel> _latestCommunityList = [];
+  List<CommunityModel> _communityNewsList = [];
   List<int> _offsetList = [];
   int _lOffset = 0;
   int limit = 6;
 
   List<CommunityModel> get latestCommunityList => _latestCommunityList;
+  List<CommunityModel> get communityNewsList => _communityNewsList;
 
   int get lOffset => _lOffset;
 
@@ -108,6 +110,24 @@ class CommunityFreeBoardProvider extends ChangeNotifier {
       _latestCommunityList.addAll(CommunityList.fromList(apiResponse.response.data["rows"]).communityList);
       _totalPageSize = apiResponse.response.data["count"];
       _currentPageNum = pageNum;
+      _filterFirstLoading = false;
+      _filterIsLoading = false;
+    } else {
+      ApiChecker.checkApi(context, apiResponse);
+    }
+    notifyListeners();
+  }
+
+  Future<void> getCommunityNewsList(CommunityModel communityModel, BuildContext context,) async {
+    _communityNewsList = [];
+
+    _filterFirstLoading = true;
+    _filterIsLoading = true;
+
+    ApiResponse apiResponse = await communityRepo.getCommunityFreeBoardNewsList(communityModel);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      _communityNewsList.addAll(CommunityList.fromList(apiResponse.response.data["rows"]).communityList);
       _filterFirstLoading = false;
       _filterIsLoading = false;
     } else {

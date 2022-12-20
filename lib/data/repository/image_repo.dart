@@ -94,6 +94,17 @@ class ImageRepo {
     }
   }
 
+  Future<ApiResponse> getImageListByCommunityId(ImageModel imageModel) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_IMAGE_COMMUNITY_URI + "/${imageModel.community_id}",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   Future<ApiResponse> getImage(ImageModel imageModel) async {
     try {
       final response = await dioClient.get(

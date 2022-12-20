@@ -85,4 +85,18 @@ class CustomImageProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Future<void> getImageListByCommunityId(ImageModel imageModel) async {
+    ApiResponse apiResponse = await imageRepo.getImageListByCommunityId(imageModel);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      _imageList.clear();
+      _imageList.addAll(ImageList.fromList(apiResponse.response.data).imageList);
+      _filterFirstLoading = false;
+      _filterIsLoading = false;
+    } else {
+      // ApiChecker.checkApi(context, apiResponse);
+    }
+    notifyListeners();
+  }
 }

@@ -58,7 +58,7 @@ class _MyPageNoticeBoardDetailScreenState
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "${widget.communityModel.community_title}",
+                                    "${widget.communityModel != null ? widget.communityModel.community_title : ""}",
                                     style: TextStyle(
                                       fontSize: 12.0,
                                       fontWeight: FontWeight.bold,
@@ -72,7 +72,7 @@ class _MyPageNoticeBoardDetailScreenState
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "${widget.communityModel.writer}|${widget.communityModel.create_date}",
+                                        "${widget.communityModel != null ? widget.communityModel.writer : ""}|${widget.communityModel != null ? widget.communityModel.create_date : ""}",
                                         style: TextStyle(
                                           fontSize: 8.0,
                                           color: Color(0xff999999),
@@ -121,7 +121,7 @@ class _MyPageNoticeBoardDetailScreenState
                                   // widget.reviewModel.attachedFilepath1,
                                   // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
                                   // 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                  '${widget.communityModel.community_link}',
+                                  '${widget.communityModel != null ? widget.communityModel.community_link : ""}',
                                   // fit: BoxFit.fitWidth,
                                   // width: MediaQuery.of(context).size.width * 0.9,
                                   // height: MediaQuery.of(context).size.width * 0.4,
@@ -133,7 +133,7 @@ class _MyPageNoticeBoardDetailScreenState
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20),
                                   child: Text(
-                                    "${widget.communityModel.community_content}",
+                                    "${widget.communityModel != null ? widget.communityModel.community_content : ""}",
                                     style: TextStyle(
                                       fontSize: 10,
                                       color: Color(0xff333333)

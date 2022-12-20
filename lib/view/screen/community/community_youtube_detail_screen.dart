@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
+import '../../../helper/date_converter.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/community_youtube_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -25,30 +28,31 @@ class _CommunityYoutubeDetailScreenState
     extends State<CommunityYoutubeDetailScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  YoutubePlayerController _controller;
+  YoutubePlayerController _youtubeController;
+  List<CommunityModel> communityNewsList = [];
 
-  var titleList = [
-    "제 피부톤에 ?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-    "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
-  ];
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    await Provider.of<CommunityYoutubeProvider>(context, listen: false)
+        .getCommunityNewsList(widget.communityModel, context);
 
-  @override
-  void initState() {
-    _controller = YoutubePlayerController(
-      initialVideoId: 'iLnmTe5Q2Qw',
-      // flags: YoutubePLayerFlags(
-      //   isLive: true,
-      // ),
-    );
-
-    super.initState();
+    communityNewsList = Provider.of<CommunityYoutubeProvider>(context, listen: false).communityNewsList;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _loadData(context, true);
+  }
+
+  @override
+  void initState() {
+    _youtubeController = YoutubePlayerController(
+      initialVideoId: 'iLnmTe5Q2Qw',
+      // flags: YoutubePLayerFlags(
+      //   isLive: true,
+      // ),
+    );
+    super.initState();
   }
 
   @override
@@ -67,7 +71,7 @@ class _CommunityYoutubeDetailScreenState
                   child: Column(
                     children: [
                       YoutubePlayer(
-                        controller: _controller,
+                        controller: _youtubeController,
                         liveUIColor: Colors.amber,
                       ),
                       Padding(
@@ -98,7 +102,7 @@ class _CommunityYoutubeDetailScreenState
                                 ),
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(228, 0, 0, 0),
+                                      const EdgeInsets.fromLTRB(160, 0, 0, 0),
                                   child: Row(
                                     children: [
                                       Image.asset(
@@ -107,7 +111,7 @@ class _CommunityYoutubeDetailScreenState
                                         width: 12,
                                       ),
                                       Text(
-                                        "456${getTranslated('TIMES', context)}",
+                                        " ${widget.communityModel.views}${getTranslated('TIMES', context)}",
                                         style: TextStyle(
                                           fontSize: 8.0,
                                           fontWeight: FontWeight.bold,
@@ -201,7 +205,7 @@ class _CommunityYoutubeDetailScreenState
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                titleList[position],
+                                                "${communityNewsList[position].community_title}",
                                                 style: TextStyle(
                                                   fontSize: 11.0,
                                                   fontWeight: FontWeight.bold,
@@ -214,29 +218,7 @@ class _CommunityYoutubeDetailScreenState
                                                     MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "${getTranslated('YEKA', context)}",
-                                                    style: TextStyle(
-                                                        fontSize: 7.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        color:
-                                                            Color(0xff999999)),
-                                                  ),
-                                                  Text(
-                                                    "${getTranslated('|', context)}",
-                                                    style: TextStyle(
-                                                        fontSize: 7.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        color:
-                                                            Color(0xff999999)),
-                                                  ),
-                                                  Text(
-                                                    "7${getTranslated('DAYS_AGO', context)}",
+                                                    "${communityNewsList[position].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[position].create_date)}",
                                                     style: TextStyle(
                                                         fontSize: 7.0,
                                                         fontWeight:
@@ -256,7 +238,7 @@ class _CommunityYoutubeDetailScreenState
                                                           width: 12,
                                                         ),
                                                         Text(
-                                                          "723${getTranslated('TIMES', context)}",
+                                                          " ${widget.communityModel.views}${getTranslated('TIMES', context)}",
                                                           style: TextStyle(
                                                               fontSize: 7.0,
                                                               fontWeight:
@@ -309,7 +291,7 @@ class _CommunityYoutubeDetailScreenState
                               ],
                             );
                           },
-                          itemCount: titleList.length,
+                          itemCount: communityNewsList.length,
                         ),
                       ),
                       FooterPage(),

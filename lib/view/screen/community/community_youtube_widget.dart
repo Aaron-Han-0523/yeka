@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/utill/images.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../helper/youtube_thumbnail_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/community_freeboard_provider.dart';
+import '../../../provider/community_youtube_provider.dart';
 import 'community_youtube_detail_screen.dart';
 
 class CommunityYoutubeWidget extends StatelessWidget {
@@ -14,10 +17,14 @@ class CommunityYoutubeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        CommunityModel latestCommunityModel = await Provider.of<CommunityYoutubeProvider>(context, listen: false).getCommunity(communityModel);
+        latestCommunityModel.views = latestCommunityModel.views + 1;
+
+        Provider.of<CommunityYoutubeProvider>(context, listen: false).updateCommunity(latestCommunityModel);
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => CommunityYoutubeDetailScreen(),
+            builder: (context) => CommunityYoutubeDetailScreen(communityModel : latestCommunityModel),
           ),
         );
       },
@@ -85,7 +92,7 @@ class CommunityYoutubeWidget extends StatelessWidget {
                             Text(
                               //FIXME 테이블에 count 필드 추가해야함
                               // "723회",
-                              "723${getTranslated('TIMES', context)}",
+                              "${communityModel.views}${getTranslated('TIMES', context)}",
                               style: TextStyle(
                                 fontSize: 7.0,
                                 fontWeight: FontWeight.bold,

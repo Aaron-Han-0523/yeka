@@ -26,7 +26,7 @@ class CommunityFreeBoardWidget extends StatelessWidget {
 
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => CommunityFreeBoardDetailScreen(),
+            builder: (context) => CommunityFreeBoardDetailScreen(communityModel : latestCommunityModel),
           ),
         );
       },

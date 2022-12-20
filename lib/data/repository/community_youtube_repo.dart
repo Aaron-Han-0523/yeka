@@ -43,12 +43,16 @@ class CommunityYoutubeRepo {
 
   Future<ApiResponse> updateCommunity(CommunityModel communityModel) async {
     Map<String, dynamic> _data = {
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
-      // 'title': communityModel.title,
-      // 'content': communityModel.content,
-      // 'grade': communityModel.grade,
-      // 'community_id': communityModel.community_id,
-      // 'custom1': communityModel.custom1,
+      'id': communityModel.id,
+      'community_type': communityModel.community_type,
+      'community_title': communityModel.community_title,
+      'community_content': communityModel.community_content,
+      'community_link': communityModel.community_link,
+      'views': communityModel.views,
+      'writer': communityModel.writer,
+      'create_date': communityModel.create_date,
+      'update_date': communityModel.update_date,
+      'delete_date': communityModel.delete_date,
     };
 
     try {
@@ -89,6 +93,18 @@ class CommunityYoutubeRepo {
     try {
       final response = await dioClient.get(
         AppConstants.LIST_COMMUNITY_YOUTUBE_URI + "?pageNum=$pageNum",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  // limit = pageSize, skip = offset
+  Future<ApiResponse> getCommunityYoutubeNewsList(CommunityModel communityModel) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_COMMUNITY_YOUTUBE_NEWS_URI + "/${communityModel.id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
