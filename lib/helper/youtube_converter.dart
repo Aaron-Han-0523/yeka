@@ -1,4 +1,4 @@
-class YoutubeThumbnailConverter {
+class YoutubeConverter {
   static String convertUrlToId(String url, {bool trimWhitespaces = true}) {
     if (!url.contains("http") && (url.length == 11)) return url;
     if (trimWhitespaces) url = url.trim();

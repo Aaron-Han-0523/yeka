@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 import 'package:yeka/data/model/response/community_model.dart';
@@ -10,7 +11,7 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import '../../../helper/youtube_thumbnail_converter.dart';
+import '../../../helper/youtube_converter.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/image_provider.dart';
@@ -33,7 +34,6 @@ class _CommunityFreeBoardDetailScreenState
     extends State<CommunityFreeBoardDetailScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  YoutubePlayerController _youtubeController;
   PageController _pageController = PageController();
   List<CommunityModel> communityNewsList = [];
   List<ImageModel> imageList = [];
@@ -50,8 +50,8 @@ class _CommunityFreeBoardDetailScreenState
     await Provider.of<CustomImageProvider>(context, listen: false)
         .getImageListByCommunityId(imageModel);
 
-    imageList =
-        await Provider.of<CustomImageProvider>(context, listen: false).imageList;
+    imageList = await Provider.of<CustomImageProvider>(context, listen: false)
+        .imageList;
   }
 
   @override
@@ -62,35 +62,16 @@ class _CommunityFreeBoardDetailScreenState
 
   Widget buildPage(String url) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.6,
-      child: FadeInImage.assetNetwork(
-        placeholder: Images.placeholder1,
-        image: url != null
-            ? AppConstants.BASE_URL + "/" + url
-            : AppConstants.BASE_URL,
-        fit: BoxFit.cover,
-        width: MediaQuery.of(context).size.width * 0.28,
-        height: MediaQuery.of(context).size.width * 0.28,
-      )
-      //
-      // Image.network(
-      //   'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-      //   // url != null ? AppConstants.BASE_URL + "/" + url : AppConstants.BASE_URL,
-      //   fit: BoxFit.cover,
-      // ),
-    );
-  }
-
-  @override
-  void initState() {
-    _youtubeController = YoutubePlayerController(
-      initialVideoId: 'iLnmTe5Q2Qw',
-      // flags: YoutubePLayerFlags(
-      //   isLive: true,
-      // ),
-    );
-
-    super.initState();
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: FadeInImage.assetNetwork(
+          placeholder: Images.placeholder1,
+          image: url != null
+              ? AppConstants.BASE_URL + "/" + url
+              : AppConstants.BASE_URL,
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width * 0.28,
+          height: MediaQuery.of(context).size.width * 0.28,
+        ));
   }
 
   @override
@@ -110,7 +91,14 @@ class _CommunityFreeBoardDetailScreenState
                     children: [
                       widget.communityModel.community_link != null
                           ? YoutubePlayer(
-                              controller: _youtubeController,
+                              controller: YoutubePlayerController(
+                                // initialVideoId: 'iLnmTe5Q2Qw',
+                                initialVideoId: YoutubeConverter.convertUrlToId(
+                                    widget.communityModel.community_link),
+                                // flags: YoutubePLayerFlags(
+                                //   isLive: true,
+                                // ),
+                              ),
                               liveUIColor: Colors.amber,
                             )
                           : Container(),
@@ -118,8 +106,7 @@ class _CommunityFreeBoardDetailScreenState
                       Consumer<CustomImageProvider>(
                         builder: (context, imageProvider, child) {
                           double width = MediaQuery.of(context).size.width;
-                          List<ImageModel> imageList = [];
-                          imageList = imageProvider.imageList;
+                          List<ImageModel> imageList = imageProvider.imageList;
 
                           print('========hello hello===>${imageList.length}');
 
@@ -129,38 +116,40 @@ class _CommunityFreeBoardDetailScreenState
                             items.add(buildPage(imageList[i].path));
                           }
 
-                          return imageList.length == 0 ? Container() : Stack(
-                            children: [
-                              Container(
-                                width: width * 0.95,
-                                height: width * 0.56,
-                                child: PageView(
-                                  children: items,
-                                  controller: _pageController,
-                                ),
-                              ),
-                              Container(
-                                width: width * 0.95,
-                                height: width * 0.56,
-                                child: Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(24.0),
-                                    child: ScrollingPageIndicator(
-                                      dotColor: Colors.grey,
-                                      dotSelectedColor: Colors.deepPurple,
-                                      dotSize: 7,
-                                      dotSelectedSize: 7,
-                                      dotSpacing: 18,
-                                      controller: _pageController,
-                                      itemCount: items.length,
-                                      orientation: Axis.horizontal,
+                          return imageList.length == 0
+                              ? Container()
+                              : Stack(
+                                  children: [
+                                    Container(
+                                      width: width * 0.95,
+                                      height: width * 0.56,
+                                      child: PageView(
+                                        children: items,
+                                        controller: _pageController,
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
+                                    Container(
+                                      width: width * 0.95,
+                                      height: width * 0.56,
+                                      child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(24.0),
+                                          child: ScrollingPageIndicator(
+                                            dotColor: Colors.grey,
+                                            dotSelectedColor: Colors.deepPurple,
+                                            dotSize: 7,
+                                            dotSelectedSize: 7,
+                                            dotSpacing: 18,
+                                            controller: _pageController,
+                                            itemCount: items.length,
+                                            orientation: Axis.horizontal,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
                         },
                       ),
 
@@ -258,7 +247,6 @@ class _CommunityFreeBoardDetailScreenState
                                 "${widget.communityModel.community_content}",
                                 style: TextStyle(
                                   fontSize: 10.0,
-
                                 ),
                               ),
                             ),
@@ -295,23 +283,37 @@ class _CommunityFreeBoardDetailScreenState
                           ],
                         ),
                       ),
-                      Container(
-                        child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
+                      Consumer<CommunityFreeBoardProvider>(
+                          builder: (context, communityProvider, child) {
+                        List<CommunityModel> communityNewsList =
+                            communityProvider.communityNewsList;
+
+                        print(
+                            '========hello hello===>${communityNewsList.length}');
+
+                        return StaggeredGridView.countBuilder(
+                          itemCount: communityNewsList.length,
+                          crossAxisCount: 1,
+                          padding: EdgeInsets.all(0),
+                          physics: NeverScrollableScrollPhysics(),
+                          // scrollDirection:
+                          //     isHomePage ? Axis.horizontal : Axis.vertical,
                           shrinkWrap: true,
-                          itemBuilder: (context, position) {
-                            return Column(
-                              children: <Widget>[
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            CommunityFreeBoardDetailScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Row(
+                          staggeredTileBuilder: (int index) =>
+                              StaggeredTile.fit(1),
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        CommunityFreeBoardDetailScreen(),
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
@@ -324,9 +326,11 @@ class _CommunityFreeBoardDetailScreenState
                                           child: Image.network(
                                             // widget.reviewModel.attachedFilepath1,
                                             // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                            YoutubeThumbnailConverter
+                                            YoutubeConverter
                                                 .getYoutubeThumbnail(
-                                                    "https://www.youtube.com/watch?v=-QhZnyAgKZk"),
+                                              // "https://www.youtube.com/watch?v=-QhZnyAgKZk",
+                                              "${communityNewsList[index].community_link}",
+                                            ),
                                             fit: BoxFit.fitWidth,
                                             width: 83,
                                             // height: 49,
@@ -340,7 +344,7 @@ class _CommunityFreeBoardDetailScreenState
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "${communityNewsList[position].community_title}",
+                                              "${communityNewsList[index].community_title}",
                                               style: TextStyle(
                                                 fontSize: 11.0,
                                                 fontWeight: FontWeight.bold,
@@ -352,7 +356,7 @@ class _CommunityFreeBoardDetailScreenState
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "${communityNewsList[position].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[position].create_date)}",
+                                                  "${communityNewsList[index].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[index].create_date)}",
                                                   style: TextStyle(
                                                     fontSize: 7.0,
                                                     fontWeight: FontWeight.bold,
@@ -373,7 +377,7 @@ class _CommunityFreeBoardDetailScreenState
                                                         width: 12,
                                                       ),
                                                       Text(
-                                                        " ${communityNewsList[position].views}${getTranslated('TIMES', context)}",
+                                                        " ${communityNewsList[index].views}${getTranslated('TIMES', context)}",
                                                         style: TextStyle(
                                                           fontSize: 7.0,
                                                           fontWeight:
@@ -394,20 +398,19 @@ class _CommunityFreeBoardDetailScreenState
                                       ),
                                     ],
                                   ),
-                                ),
-                                const Divider(
-                                  height: 1,
-                                  thickness: 1,
-                                  indent: 0,
-                                  endIndent: 0,
-                                  color: Color(0xffEEEEEE),
-                                ),
-                              ],
+                                  const Divider(
+                                    height: 1,
+                                    thickness: 1,
+                                    indent: 0,
+                                    endIndent: 0,
+                                    color: Color(0xffEEEEEE),
+                                  ),
+                                ],
+                              ),
                             );
                           },
-                          itemCount: communityNewsList.length,
-                        ),
-                      ),
+                        );
+                      }),
 
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
 

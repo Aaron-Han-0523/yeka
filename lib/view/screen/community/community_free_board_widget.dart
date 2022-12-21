@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yeka/utill/images.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../helper/date_converter.dart';
-import '../../../helper/youtube_thumbnail_converter.dart';
+import '../../../helper/youtube_converter.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../provider/community_freeboard_provider.dart';
 import 'community_free_board_detail_screen.dart';
@@ -45,8 +45,9 @@ class CommunityFreeBoardWidget extends StatelessWidget {
                 //         "${communityModel.community_link}",
                 //       )
                 //     :
-                YoutubeThumbnailConverter.getYoutubeThumbnail(
-                  "https://www.youtube.com/watch?v=-QhZnyAgKZk",
+                YoutubeConverter.getYoutubeThumbnail(
+                  // "https://www.youtube.com/watch?v=-QhZnyAgKZk",
+                  "${communityModel.community_link}",
                 ),
                 fit: BoxFit.fitWidth,
                 width: 30,

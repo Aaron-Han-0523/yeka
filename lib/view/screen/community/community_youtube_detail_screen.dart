@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
-import 'package:yeka/utill/dimensions.dart';
-
-import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
+import '../../../data/model/response/image_model.dart';
 import '../../../helper/date_converter.dart';
-import '../../../helper/youtube_thumbnail_converter.dart';
+import '../../../helper/youtube_converter.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../provider/community_youtube_provider.dart';
 import '../../../utill/images.dart';
@@ -17,7 +16,8 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class CommunityYoutubeDetailScreen extends StatefulWidget {
   final CommunityModel communityModel;
 
-  const CommunityYoutubeDetailScreen({Key key, this.communityModel}) : super(key: key);
+  const CommunityYoutubeDetailScreen({Key key, this.communityModel})
+      : super(key: key);
 
   @override
   State<CommunityYoutubeDetailScreen> createState() =>
@@ -28,31 +28,22 @@ class _CommunityYoutubeDetailScreenState
     extends State<CommunityYoutubeDetailScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  YoutubePlayerController _youtubeController;
   List<CommunityModel> communityNewsList = [];
+  List<ImageModel> imageList = [];
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     await Provider.of<CommunityYoutubeProvider>(context, listen: false)
         .getCommunityNewsList(widget.communityModel, context);
 
-    communityNewsList = Provider.of<CommunityYoutubeProvider>(context, listen: false).communityNewsList;
+    communityNewsList =
+        await Provider.of<CommunityYoutubeProvider>(context, listen: false)
+            .communityNewsList;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _loadData(context, true);
-  }
-
-  @override
-  void initState() {
-    _youtubeController = YoutubePlayerController(
-      initialVideoId: 'iLnmTe5Q2Qw',
-      // flags: YoutubePLayerFlags(
-      //   isLive: true,
-      // ),
-    );
-    super.initState();
   }
 
   @override
@@ -70,10 +61,19 @@ class _CommunityYoutubeDetailScreenState
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      YoutubePlayer(
-                        controller: _youtubeController,
-                        liveUIColor: Colors.amber,
-                      ),
+                      widget.communityModel.community_link != null
+                          ? YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                // initialVideoId: 'iLnmTe5Q2Qw',
+                                initialVideoId: YoutubeConverter.convertUrlToId(
+                                    widget.communityModel.community_link),
+                                // flags: YoutubePLayerFlags(
+                                //   isLive: true,
+                                // ),
+                              ),
+                              liveUIColor: Colors.amber,
+                            )
+                          : Container(),
                       Padding(
                         padding:
                             const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -176,36 +176,68 @@ class _CommunityYoutubeDetailScreenState
                           ],
                         ),
                       ),
-                      Container(
-                        child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, position) {
-                            return Column(
-                              children: <Widget>[
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            CommunityYoutubeDetailScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Padding(
+                      Consumer<CommunityYoutubeProvider>(
+                        builder: (context, communityProvider, child) {
+                          List<CommunityModel> communityNewsList =
+                              communityProvider.communityNewsList;
+
+                          print(
+                              '========hello hello===>${communityNewsList.length}');
+
+                          return StaggeredGridView.countBuilder(
+                            itemCount: communityNewsList.length,
+                            crossAxisCount: 1,
+                            padding: EdgeInsets.all(0),
+                            physics: NeverScrollableScrollPhysics(),
+                            // scrollDirection:
+                            //     isHomePage ? Axis.horizontal : Axis.vertical,
+                            shrinkWrap: true,
+                            staggeredTileBuilder: (int index) =>
+                                StaggeredTile.fit(1),
+                            itemBuilder: (BuildContext context, int index) {
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          CommunityYoutubeDetailScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Padding(
                                           padding: const EdgeInsets.fromLTRB(
-                                              20.0, 9.0, 0.0, 20.0),
+                                              20, 10, 15, 10),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            child: Image.network(
+                                              // widget.reviewModel.attachedFilepath1,
+                                              // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
+                                              YoutubeConverter
+                                                  .getYoutubeThumbnail(
+                                                // "https://www.youtube.com/watch?v=-QhZnyAgKZk",
+                                                "${communityNewsList[index].community_link}",
+                                              ),
+                                              fit: BoxFit.fitWidth,
+                                              width: 83,
+                                              // height: 49,
+                                              // height: width * 0.4,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "${communityNewsList[position].community_title}",
+                                                "${communityNewsList[index].community_title}",
                                                 style: TextStyle(
                                                   fontSize: 11.0,
                                                   fontWeight: FontWeight.bold,
@@ -218,18 +250,20 @@ class _CommunityYoutubeDetailScreenState
                                                     MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "${communityNewsList[position].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[position].create_date)}",
+                                                    "${communityNewsList[index].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[index].create_date)}",
                                                     style: TextStyle(
-                                                        fontSize: 7.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        color:
-                                                            Color(0xff999999)),
+                                                      fontSize: 7.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      color: Color(0xff999999),
+                                                    ),
                                                   ),
                                                   Padding(
-                                                    padding: const EdgeInsets.fromLTRB(189, 0, 0, 0),
+                                                    padding: const EdgeInsets
+                                                            .fromLTRB(
+                                                        145, 0, 22, 0),
                                                     child: Row(
                                                       children: [
                                                         Image.asset(
@@ -238,16 +272,17 @@ class _CommunityYoutubeDetailScreenState
                                                           width: 12,
                                                         ),
                                                         Text(
-                                                          " ${widget.communityModel.views}${getTranslated('TIMES', context)}",
+                                                          " ${communityNewsList[index].views}${getTranslated('TIMES', context)}",
                                                           style: TextStyle(
-                                                              fontSize: 7.0,
-                                                              fontWeight:
-                                                                  FontWeight.bold,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              color: Color(
-                                                                  0xff999999)),
+                                                            fontSize: 7.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            color: Color(
+                                                                0xff999999),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -257,42 +292,21 @@ class _CommunityYoutubeDetailScreenState
                                             ],
                                           ),
                                         ),
-                                      ),
-                                      Container(
-                                        width: 80,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(5),
-                                            child: Image.network(
-                                              // widget.reviewModel.attachedFilepath1,
-                                              // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                              YoutubeThumbnailConverter
-                                                  .getYoutubeThumbnail(
-                                                      "https://www.youtube.com/watch?v=-QhZnyAgKZk"),
-                                              fit: BoxFit.fitHeight,
-                                              // width: 30,
-                                              height: 49,
-                                              // height: MediaQuery.of(context).size.width * 0.4,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                      ],
+                                    ),
+                                    const Divider(
+                                      height: 1,
+                                      thickness: 1,
+                                      indent: 0,
+                                      endIndent: 0,
+                                      color: Color(0xffEEEEEE),
+                                    ),
+                                  ],
                                 ),
-                                const Divider(
-                                  height: 1,
-                                  thickness: 1,
-                                  indent: 20,
-                                  endIndent: 20,
-                                  color: Color(0xffEEEEEE),
-                                ),
-                              ],
-                            );
-                          },
-                          itemCount: communityNewsList.length,
-                        ),
+                              );
+                            },
+                          );
+                        },
                       ),
                       FooterPage(),
                     ],

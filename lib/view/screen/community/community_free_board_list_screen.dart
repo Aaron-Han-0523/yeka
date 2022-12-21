@@ -80,8 +80,7 @@ class _CommunityFreeBoardListScreenState
                             //     onTap: () {}, buttonText: "더보기 ∨"),
                             Consumer<CommunityFreeBoardProvider>(
                               builder: (context, communityProvider, child) {
-                                List<CommunityModel> communityList = [];
-                                communityList = communityProvider.latestCommunityList;
+                                List<CommunityModel> communityList = communityProvider.latestCommunityList;
 
                                 print('========hello hello===>${communityList.length}');
 
