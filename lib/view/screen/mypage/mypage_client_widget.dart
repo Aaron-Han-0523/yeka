@@ -1,31 +1,109 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:yeka/helper/price_converter.dart';
 import 'package:yeka/utill/app_constants.dart';
 import 'package:yeka/utill/custom_themes.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
-import 'package:yeka/view/screen/mypage/mypage_consultant_result_write.dart';
 import '../../../data/model/response/consulting_model.dart';
-import '../../../data/model/response/product_model.dart';
-import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
 import 'mypage_calendar.dart';
+import 'mypage_consultant_result_write.dart';
 
 class MyPageClientWidget extends StatelessWidget {
-  final ProductModel productModel;
-  final UserModel userModel;
   final ConsultingModel consultingModel;
 
-  MyPageClientWidget({@required this.productModel, this.userModel, this.consultingModel});
+  MyPageClientWidget({this.consultingModel});
+
+  Widget paymentState(int paymentState) {
+    String result = "";
+    Color color = Colors.white;
+    if (paymentState == 0) {
+      result = "입금 대기";
+      color = Color(0xffff0000);
+    } else if (paymentState == 1) {
+      result = "예약금 입금 완료";
+      color = Color(0xffff9924);
+    } else if (paymentState == 2) {
+      result = "최종입금 완료";
+      color = Color(0xff0123b4);
+    }
+    return Text(
+      // '${getTranslated('WAITING_FOR_DEPOSIT', context)}',
+      '${result}',
+      textAlign: TextAlign.center,
+      style: robotoRegular.copyWith(
+        fontSize: 8,
+        color: color,
+      ),
+    );
+  }
+
+  Widget consultingState(int consultingState, BuildContext context) {
+    String result = "";
+    Color color = Colors.white;
+    String buttonText = "";
+    Widget nextPage = Container();
+    if (consultingState == 0) {
+      result = "상담 진행 대기";
+      color = Color(0xff3a9d6e);
+      buttonText = "상담일 선택";
+      nextPage = MyPageCalendarScreen(
+        consultingModel: consultingModel,
+      );
+    } else if (consultingState == 1) {
+      result = "상담 진행 중";
+      color = Color(0xffff9924);
+    } else if (consultingState == 2) {
+      result = "상담 종료";
+      color = Color(0xff0123b4);
+      buttonText = "상담결과작성";
+      nextPage = MyPageConsultantResultWriteScreen(
+        consultingModel: consultingModel,
+      );
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '${result}',
+          textAlign: TextAlign.center,
+          style: robotoRegular.copyWith(
+            fontSize: 9,
+            fontWeight: FontWeight.bold,
+            color: color,
+          ),
+        ),
+        buttonText != ""
+            ? CustomElevatedButton(
+                width: 110,
+                height: 17,
+                padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 1000),
+                      pageBuilder: (context, anim1, anim2) => nextPage,
+                    ),
+                  );
+                },
+                buttonText: '',
+                child: Text(
+                  "${buttonText}",
+                  style: TextStyle(
+                    fontSize: 8,
+                  ),
+                ),
+              )
+            : Container(),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-
         // reviewModel.custom1 =
         //     (int.parse(reviewModel.custom1 ?? "0") + 1).toString();
         // // reviewModel.carInfo_id = 1;
@@ -56,9 +134,9 @@ class MyPageClientWidget extends StatelessWidget {
               child: FadeInImage.assetNetwork(
                 placeholder: Images.placeholder1,
                 fit: BoxFit.fitHeight,
-                image: AppConstants.BASE_URL +
-                    "/" +
-                    (productModel.thumbnail ?? ""),
+                image: consultingModel.client_image != null
+                    ? AppConstants.BASE_URL + "/" + consultingModel.client_image
+                    : AppConstants.BASE_URL,
                 // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                 //     '/${bannerProvider.mainBannerList[index].photo}',
                 imageErrorBuilder: (c, o, s) => Image.asset(
@@ -69,7 +147,8 @@ class MyPageClientWidget extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+            padding: EdgeInsets.fromLTRB(0.0, Dimensions.PADDING_SIZE_SMALL,
+                0.0, Dimensions.PADDING_SIZE_SMALL),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,137 +158,92 @@ class MyPageClientWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          '${userModel.username}',
-                          textAlign: TextAlign.center,
-                          style: robotoRegular.copyWith(
-                            fontSize: 11,
+                        Container(
+                          width: 70,
+                          child: Text(
+                            '${consultingModel.client_name}',
+                            textAlign: TextAlign.center,
+                            style: robotoRegular.copyWith(
+                              fontSize: 12,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         Text(
                           '${getTranslated('CUSTOMER', context)}',
                           textAlign: TextAlign.center,
                           style: robotoRegular.copyWith(
-                            fontSize: 9,
+                            fontSize: 8,
+                            color: Color(0xffcccccc),
                           ),
                         ),
                       ],
                     ),
-                    Text(
-                      '${getTranslated('WAITING_FOR_DEPOSIT', context)}',
-                      textAlign: TextAlign.center,
-                      style: robotoRegular.copyWith(
-                        fontSize: 9,
-                        color: Colors.red,
-                      ),
-                    ),
+                    paymentState(consultingModel.payment_status),
                   ],
                 ),
+                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '${getTranslated('COUNSELING_NAME', context)}',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
-                        fontSize: 10,
+                        fontSize: 6,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xffcccccc),
                       ),
                       // maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      consultingModel.consulting_title ?? '피부 ? 나한테 모든지 물어봐 !',
+                      consultingModel.consulting_title ?? '-',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
-                        fontSize: 10,
+                        fontSize: 6,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xffcccccc),
                       ),
                       // maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
+                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '${getTranslated('CONTACT_US', context)}',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
-                        fontSize: 10,
+                        fontSize: 6,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xffcccccc),
                       ),
                       // maxLines: 2,
                     ),
                     Text(
-                      userModel.phone ?? '010-0000-0000',
+                      consultingModel.client_phone ?? '010-0000-0000',
                       textAlign: TextAlign.center,
                       style: robotoRegular.copyWith(
-                        fontSize: 10,
+                        fontSize: 6,
+                        color: Color(0xffcccccc),
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                 const Divider(
                   height: 5,
                   thickness: 1,
-                  indent: 180,
-                  endIndent: 180,
+                  indent: 0,
+                  endIndent: 0,
                   color: Colors.black12,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      productModel.tag ?? '${getTranslated('WAITING_FOR_THE_CALL_TO_PROCEED', context)}',
-                      textAlign: TextAlign.center,
-                      style: robotoRegular.copyWith(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      // maxLines: 2,
-                    ),
-                    Container(
-                      width: 80,
-                      child:
-                      productModel.tag != null ?? Random().nextInt(2) == 1?
-                      CustomElevatedButton(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              transitionDuration: Duration(milliseconds: 1000),
-                              pageBuilder: (context, anim1, anim2) => MyPageCalendarScreen(),
-                            ),
-                          );
-                        },
-                        buttonText: '',
-                        child: Text(
-                          "${getTranslated('SELECT_CONSULTATION_DAY', context)}",
-                          style: TextStyle(
-                            fontSize: 11,
-                          ),
-                        ),
-                      ):
-                      CustomElevatedButton(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              transitionDuration: Duration(milliseconds: 1000),
-                              pageBuilder: (context, anim1, anim2) => MyPageConsultantResultWriteScreen(),
-                            ),
-                          );
-                        },
-                        buttonText: '',
-                        child: Text(
-                          "${getTranslated('FILL_IN_CONSULTATION_RESULT', context)}",
-                          style: TextStyle(
-                            fontSize: 11,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                consultingState(consultingModel.consulting_status, context),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
               ],
             ),

@@ -24,7 +24,11 @@ class ConsultantResultScreen extends StatefulWidget {
 
 class _ConsultantResultScreenState extends State<ConsultantResultScreen>
     with TickerProviderStateMixin {
-  double _currentSliderValue = 20;
+  double _currentSliderValue1 = 20;
+  double _currentSliderValue2 = 20;
+  double _currentSliderValue3 = 20;
+  double _currentSliderValue4 = 20;
+  double _currentSliderValue5 = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -738,13 +742,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
                             child: Slider(
-                              value: _currentSliderValue,
+                              value: _currentSliderValue1,
                               max: 100,
                               divisions: 100,
-                              label: _currentSliderValue.round().toString(),
+                              label: _currentSliderValue1.round().toString(),
+                              activeColor: Color(0xffdddddd),
+                              inactiveColor: Color(0xffdddddd),
+                              thumbColor: Color(0xfff8f8f8),
                               onChanged: (double value) {
                                 setState(() {
-                                  _currentSliderValue = value;
+                                  _currentSliderValue1 = value;
                                 });
                               },
                             ),
@@ -765,13 +772,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           Container(
                             width: MediaQuery.of(context).size.width * 0.65,
                             child: Slider(
-                              value: _currentSliderValue,
+                              value: _currentSliderValue2,
                               max: 100,
                               divisions: 100,
-                              label: _currentSliderValue.round().toString(),
+                              label: _currentSliderValue2.round().toString(),
+                              activeColor: Color(0xffdddddd),
+                              inactiveColor: Color(0xffdddddd),
+                              thumbColor: Color(0xfff8f8f8),
                               onChanged: (double value) {
                                 setState(() {
-                                  _currentSliderValue = value;
+                                  _currentSliderValue2 = value;
                                 });
                               },
                             ),
@@ -794,13 +804,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         Container(
                           width: MediaQuery.of(context).size.width * 0.65,
                           child: Slider(
-                            value: _currentSliderValue,
+                            value: _currentSliderValue3,
                             max: 100,
                             divisions: 100,
-                            label: _currentSliderValue.round().toString(),
+                            label: _currentSliderValue3.round().toString(),
+                            activeColor: Color(0xffdddddd),
+                            inactiveColor: Color(0xffdddddd),
+                            thumbColor: Color(0xfff8f8f8),
                             onChanged: (double value) {
                               setState(() {
-                                _currentSliderValue = value;
+                                _currentSliderValue3 = value;
                               });
                             },
                           ),
@@ -823,13 +836,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         Container(
                           width: MediaQuery.of(context).size.width * 0.65,
                           child: Slider(
-                            value: _currentSliderValue,
+                            value: _currentSliderValue4,
                             max: 100,
                             divisions: 100,
-                            label: _currentSliderValue.round().toString(),
+                            label: _currentSliderValue4.round().toString(),
+                            activeColor: Color(0xffdddddd),
+                            inactiveColor: Color(0xffdddddd),
+                            thumbColor: Color(0xfff8f8f8),
                             onChanged: (double value) {
                               setState(() {
-                                _currentSliderValue = value;
+                                _currentSliderValue4 = value;
                               });
                             },
                           ),
@@ -851,13 +867,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         Container(
                           width: MediaQuery.of(context).size.width * 0.65,
                           child: Slider(
-                            value: _currentSliderValue,
+                            value: _currentSliderValue5,
                             max: 100,
                             divisions: 100,
-                            label: _currentSliderValue.round().toString(),
+                            label: _currentSliderValue5.round().toString(),
+                            activeColor: Color(0xffdddddd),
+                            inactiveColor: Color(0xffdddddd),
+                            thumbColor: Color(0xfff8f8f8),
                             onChanged: (double value) {
                               setState(() {
-                                _currentSliderValue = value;
+                                _currentSliderValue5 = value;
                               });
                             },
                           ),
