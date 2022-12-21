@@ -25,6 +25,7 @@ class UserModel {
   String _update_date;
   String _delete_date;
   String _title_image;
+
   UserModel({
     int id,
     int user_type,
@@ -80,6 +81,7 @@ class UserModel {
     this._delete_date = delete_date;
     this._title_image = title_image;
   }
+
   UserModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _user_type = json['user_type'];
@@ -108,6 +110,7 @@ class UserModel {
     _delete_date = json['delete_date'];
     _title_image = json['title_image'];
   }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
@@ -138,107 +141,159 @@ class UserModel {
     data['title_image'] = this.title_image;
     return data;
   }
+
   int get id => _id;
+
   int get user_type => _user_type;
+
   String get username => _username;
+
   String get password => _password;
+
   String get name => _name;
+
   String get phone => _phone;
+
   String get email => _email;
+
   int get gender => _gender;
+
   String get address1 => _address1;
+
   String get address2 => _address2;
+
   String get address3 => _address3;
+
   String get business_registration_number => _business_registration_number;
+
   String get business_registration_file => _business_registration_file;
+
   String get hashtag => _hashtag;
+
   String get resume => _resume;
+
   String get working_hour => _working_hour;
+
   int get withdrawal => _withdrawal;
+
   int get withdrawal_request_flag => _withdrawal_request_flag;
+
   int get withdrawal_request_amount => _withdrawal_request_amount;
+
   String get bank1 => _bank1;
+
   String get bank2 => _bank2;
+
   String get bank3 => _bank3;
+
   String get create_date => _create_date;
+
   String get update_date => _update_date;
+
   String get delete_date => _delete_date;
+
   String get title_image => _title_image;
+
   set id(int value) {
     _id = value;
   }
+
   set user_type(int value) {
     _user_type = value;
   }
+
   set username(String value) {
     _username = value;
   }
+
   set password(String value) {
     _password = value;
   }
+
   set name(String value) {
     _name = value;
   }
+
   set phone(String value) {
     _phone = value;
   }
+
   set email(String value) {
     _email = value;
   }
+
   set gender(int value) {
     _gender = value;
   }
+
   set address1(String value) {
     _address1 = value;
   }
+
   set address2(String value) {
     _address2 = value;
   }
+
   set address3(String value) {
     _address3 = value;
   }
+
   set business_registration_number(String value) {
     _business_registration_number = value;
   }
+
   set business_registration_file(String value) {
     _business_registration_file = value;
   }
+
   set hashtag(String value) {
     _hashtag = value;
   }
+
   set resume(String value) {
     _resume = value;
   }
+
   set working_hour(String value) {
     _working_hour = value;
   }
+
   set withdrawal(int value) {
     _withdrawal = value;
   }
+
   set withdrawal_request_flag(int value) {
     _withdrawal_request_flag = value;
   }
+
   set withdrawal_request_amount(int value) {
     _withdrawal_request_amount = value;
   }
+
   set bank1(String value) {
     _bank1 = value;
   }
+
   set bank2(String value) {
     _bank2 = value;
   }
+
   set bank3(String value) {
     _bank3 = value;
   }
+
   set create_date(String value) {
     _create_date = value;
   }
+
   set update_date(String value) {
     _update_date = value;
   }
+
   set delete_date(String value) {
     _delete_date = value;
   }
+
   set title_image(String value) {
     _title_image = value;
   }
@@ -247,12 +302,16 @@ class UserModel {
 class UserList {
   int _count;
   List<UserModel> _userList;
+
   UserList({int count, List<UserModel> userList}) {
     this._count = count;
     this._userList = userList;
   }
+
   int get count => _count;
+
   List<UserModel> get userList => _userList;
+
   UserList.fromJson(Map<String, dynamic> json) {
     _count = json['count'];
     if (json['rows'] != null) {
@@ -262,6 +321,7 @@ class UserList {
       });
     }
   }
+
   UserList.fromList(List<dynamic> iter) {
     _count = iter.length;
     if (iter != null) {
@@ -271,6 +331,7 @@ class UserList {
       });
     }
   }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['count'] = this._count;

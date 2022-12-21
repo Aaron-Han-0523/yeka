@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/helper/price_converter.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
@@ -27,7 +28,6 @@ class ProductShippingPage extends StatefulWidget {
 
 class _ProductShippingPageState extends State<ProductShippingPage>
     with TickerProviderStateMixin {
-
   TextEditingController _firstNameController = TextEditingController();
   bool radioButton = false;
 
@@ -112,13 +112,15 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
+                            padding: const EdgeInsets.fromLTRB(20, 0, 10, 10),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(150.0),
                               child: Image.network(
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                                // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                                "${widget.orderModel.image1}",
                                 fit: BoxFit.fill,
                                 height: 107,
+                                width: 107,
                               ), // Text(key['title']),
                             ),
                           ),
@@ -127,7 +129,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "[ALOS] 마스크팩 3입",
+                                  "${widget.orderModel.title}",
                                   style: TextStyle(
                                     height: 1,
                                     color: Color(0xff121212),
@@ -135,29 +137,12 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 5),
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${getTranslated('COLOR', context)}${getTranslated(':', context)}투명",
-                                        style: TextStyle(
-                                          height: 1,
-                                          color: Color(0xff999999),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "${getTranslated('|', context)}",
-                                        style: TextStyle(
-                                          height: 1,
-                                          color: Color(0xff999999),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "${getTranslated('AMOUNT', context)}${getTranslated(':', context)}123153${getTranslated('SOME', context)}",
+                                        "${widget.orderModel.option != null ? widget.orderModel.option + "|": ""}${getTranslated('AMOUNT', context)}${getTranslated(':', context)} ${PriceConverter.convertPrice(context, widget.orderModel.quantity.toDouble())}${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           height: 1,
                                           color: Color(0xff999999),
@@ -169,9 +154,11 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 6),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 20, 6),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(
@@ -183,7 +170,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "8,000${getTranslated('WON', context)}",
+                                        "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble())}${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff333333),
                                           fontSize: 12,
@@ -194,9 +181,11 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 5),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 20, 5),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "${getTranslated('DELIVERY_CHARGE', context)}",
@@ -207,7 +196,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('+', context)} 2,500${getTranslated('WON', context)}",
+                                        "${getTranslated('+', context)} ${PriceConverter.convertPrice(context, widget.orderModel.delivery_fee.toDouble())}${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff333333),
                                           fontSize: 12,
@@ -217,7 +206,6 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                     ],
                                   ),
                                 ),
-
                                 Container(
                                   width: 300,
                                   child: const Divider(
@@ -229,9 +217,11 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 6, 20, 10),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 6, 20, 10),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(
@@ -243,7 +233,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "10,500${getTranslated('WON', context)}",
+                                        "${PriceConverter.convertPrice(context, widget.orderModel.total_fee.toDouble())}${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff0123B4),
                                           fontSize: 14,
@@ -266,7 +256,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                         endIndent: 20,
                         color: Color(0xffDDDDDD),
                       ),
-                      
+
                       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                       Padding(
@@ -303,9 +293,11 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           Expanded(
                             child: CustomLabelTextField(
                               controller: _firstNameController,
-                              labelText: "${getTranslated('ADDRESS', context)} ",
+                              labelText:
+                                  "${getTranslated('ADDRESS', context)} ",
                               // essentialLabelText: " *",
-                              hintText: "${getTranslated('SELECT_CITY', context)}",
+                              hintText:
+                                  "${getTranslated('SELECT_CITY', context)}",
                             ),
                           ),
                           Container(
@@ -315,8 +307,13 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                               children: [
                                 Text(""),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
-                                  child: CustomElevatedButton(onTap: () {}, buttonText: "${getTranslated('SEARCH', context)}",),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 12, 0, 0),
+                                  child: CustomElevatedButton(
+                                    onTap: () {},
+                                    buttonText:
+                                        "${getTranslated('SEARCH', context)}",
+                                  ),
                                 ),
                               ],
                             ),
@@ -331,7 +328,8 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                         controller: _firstNameController,
                         // labelText: "",
                         // essentialLabelText: "",
-                        hintText: "${getTranslated('SELECT_DISTINCT', context)}",
+                        hintText:
+                            "${getTranslated('SELECT_DISTINCT', context)}",
                       ),
 
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
@@ -402,9 +400,11 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           Expanded(
                             child: CustomLabelTextField(
                               controller: _firstNameController,
-                              labelText: "${getTranslated('ADDRESS', context)} ",
+                              labelText:
+                                  "${getTranslated('ADDRESS', context)} ",
                               // essentialLabelText: " *",
-                              hintText: "${getTranslated('SELECT_CITY', context)}",
+                              hintText:
+                                  "${getTranslated('SELECT_CITY', context)}",
                             ),
                           ),
                           Expanded(
@@ -414,7 +414,8 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                 controller: _firstNameController,
                                 labelText: "",
                                 essentialLabelText: "",
-                                hintText: "${getTranslated('SELECT_DISTINCT', context)}",
+                                hintText:
+                                    "${getTranslated('SELECT_DISTINCT', context)}",
                               ),
                             ),
                           ),
@@ -437,7 +438,9 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                         onTap: () async {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => ProductPaymentPage(),
+                              builder: (_) => ProductPaymentPage(
+                                orderModel: widget.orderModel,
+                              ),
                             ),
                           );
                         },

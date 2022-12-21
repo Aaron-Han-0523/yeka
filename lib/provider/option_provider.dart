@@ -21,11 +21,13 @@ class OptionProvider extends ChangeNotifier {
   int _latestPageSize;
 
   List<OptionModel> _latestOptionList = [];
+  List<OptionModel> _optionList = [];
   List<int> _offsetList = [];
   int _lOffset = 0;
   int limit = 6;
 
   List<OptionModel> get latestOptionList => _latestOptionList;
+  List<OptionModel> get optionList => _optionList;
 
   int get lOffset => _lOffset;
 
@@ -71,7 +73,7 @@ class OptionProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await optionRepo.getOptionList(limit, offset * limit);
+      ApiResponse apiResponse = await optionRepo.getLatestOptionList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
         _latestOptionList.addAll(OptionList.fromList(apiResponse.response.data).optionList);
@@ -88,5 +90,23 @@ class OptionProvider extends ChangeNotifier {
         notifyListeners();
       }
     }
+  }
+
+  Future<void> getOptionList(BuildContext context) async {
+    _optionList = [];
+
+    _filterFirstLoading = true;
+    _filterIsLoading = true;
+
+    ApiResponse apiResponse = await optionRepo.getOptionList();
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      _optionList.addAll(OptionList.fromList(apiResponse.response.data).optionList);
+      _filterFirstLoading = false;
+      _filterIsLoading = false;
+    } else {
+      ApiChecker.checkApi(context, apiResponse);
+    }
+    notifyListeners();
   }
 }

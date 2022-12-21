@@ -94,6 +94,17 @@ class UserRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  Future<ApiResponse> getSuperUser() async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.GET_SUPER_USER_URI,
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 }
 
 // static const String ADD_USER_URI ="";

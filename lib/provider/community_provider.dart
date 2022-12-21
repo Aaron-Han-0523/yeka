@@ -23,7 +23,7 @@ class CommunityProvider extends ChangeNotifier {
   List<CommunityModel> _latestCommunityList = [];
   List<int> _offsetList = [];
   int _lOffset = 0;
-  int limit = 6;
+  int limit = 4;
 
   List<CommunityModel> get latestCommunityList => _latestCommunityList;
 

@@ -31,6 +31,7 @@ class AppConstants {
   static const String DELETE_USER_URI = "/api/user";
   static const String LIST_USER_URI = "/api/user/list";
   static const String GET_USER_URI = "/api/user";
+  static const String GET_SUPER_USER_URI = "/api/user/super";
 
   // OPTION
   static const String ADD_OPTION_URI = "/api/option";

@@ -11,8 +11,10 @@ class UserProvider extends ChangeNotifier {
   UserProvider({@required this.userRepo});
 
   UserModel _user;
+  UserModel _superuser;
 
   UserModel get user => _user;
+  UserModel get superuser => _superuser;
 
   bool _filterIsLoading = false;
   bool _filterFirstLoading = true;
@@ -55,6 +57,13 @@ class UserProvider extends ChangeNotifier {
     _user = UserModel.fromJson(apiResponse.response.data);
     notifyListeners();
     return _user;
+  }
+
+  Future<UserModel> getSuperUser() async {
+    ApiResponse apiResponse = await userRepo.getSuperUser();
+    _superuser = UserModel.fromJson(apiResponse.response.data);
+    notifyListeners();
+    return _superuser;
   }
 
   Future<void> getLatestUserList(int offset, BuildContext context,

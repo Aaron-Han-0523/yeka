@@ -73,7 +73,7 @@ class OptionRepo {
   }
 
   // limit = pageSize, skip = offset
-  Future<ApiResponse> getOptionList(int limit, int skip) async {
+  Future<ApiResponse> getLatestOptionList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
         AppConstants.LIST_OPTION_URI + "?limit=$limit&skip=$skip",
@@ -83,6 +83,18 @@ class OptionRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  Future<ApiResponse> getOptionList() async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_OPTION_URI,
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
 
   Future<ApiResponse> getOption(OptionModel optionModel) async {
     try {

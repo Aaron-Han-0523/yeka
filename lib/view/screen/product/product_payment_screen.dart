@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yeka/data/model/response/user_model.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
@@ -6,7 +8,9 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_order_screen.dart';
 
 import '../../../data/model/response/order_model.dart';
+import '../../../helper/price_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/user_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 
@@ -25,10 +29,16 @@ class ProductPaymentPage extends StatefulWidget {
 class _ProductPaymentPageState extends State<ProductPaymentPage>
     with TickerProviderStateMixin {
 
+  UserModel superUser;
+
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    superUser = Provider.of<UserProvider>(context, listen: false).superuser;
+  }
+
   @override
-  void initState() {
-    super.initState();
-    // _controller = PageController();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadData(context, false);
   }
 
   @override
@@ -94,7 +104,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "국민은행 0000-00-000000",
+                              "${superUser.bank1} ${superUser.bank2}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 11,
@@ -119,7 +129,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "${getTranslated('YEKA', context)}",
+                              "${superUser.bank3}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 11,
@@ -144,7 +154,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "8,000${getTranslated('WON', context)}",
+                              "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble())}${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xff0123b4),
                                 fontSize: 15,
@@ -169,7 +179,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "${getTranslated('+', context)} 2,500${getTranslated('WON', context)}",
+                              "${getTranslated('+', context)} ${PriceConverter.convertPrice(context, widget.orderModel.delivery_fee.toDouble())}${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 9,
@@ -199,7 +209,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "10,500${getTranslated('WON', context)}",
+                              "${PriceConverter.convertPrice(context, widget.orderModel.total_fee.toDouble())}${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xffff3d3d),
                                 fontSize: 15,

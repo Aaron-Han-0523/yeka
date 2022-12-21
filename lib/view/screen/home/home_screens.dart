@@ -20,12 +20,8 @@ import '../../../provider/user_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../aitest/image_upload_screen.dart';
-import '../auth/auth_screen.dart';
-import '../community/community_free_board_widget.dart';
 import '../community/community_home_screen.dart';
-import '../community/community_youtube_widget.dart';
 import '../consultant/consultant_list_screen.dart';
-import '../mypage/mypage_home_screen.dart';
 import '../product/product_list_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,28 +36,35 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     Provider.of<CommunityProvider>(context, listen: false)
         .getLatestCommunityList(0, context, reload: reload);
 
-    Provider.of<CommunityYoutubeProvider>(context, listen: false)
+    await Provider.of<CommunityYoutubeProvider>(context, listen: false)
         .getCommunityList(0, context);
 
-    Provider.of<CommunityFreeBoardProvider>(context, listen: false)
+    await Provider.of<CommunityFreeBoardProvider>(context, listen: false)
         .getCommunityList(0, context);
 
-    Provider.of<CommunityNoticeProvider>(context, listen: false)
+    await Provider.of<CommunityNoticeProvider>(context, listen: false)
         .getCommunityList(0, context);
 
-    Provider.of<ProductProvider>(context, listen: false)
+    await Provider.of<ProductProvider>(context, listen: false)
         .getLatestProductList(0, context, reload: reload);
 
-    Provider.of<UserProvider>(context, listen: false)
-        .getLatestUserList(0, context, reload: reload);
+    // Provider.of<UserProvider>(context, listen: false)
+    //     .getLatestUserList(0, context, reload: reload);
+
+    await Provider.of<UserProvider>(context, listen: false)
+        .getSuperUser();
+
+    print("==============");
+    print("${Provider.of<UserProvider>(context, listen: false).superuser.toJson()}");
+    print("${Provider.of<AuthProvider>(context, listen: false).getUser()}");
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // _loadData(context, false);
     // fixme 개발 중이라 홈으로 올때는 무조건 초기화 하도록 조정하였음
     // fixme 운영할 때는 false 로 변경해야함
+    // _loadData(context, false);
     _loadData(context, true);
   }
 

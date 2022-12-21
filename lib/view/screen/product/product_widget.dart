@@ -11,7 +11,6 @@ import '../../../data/model/response/product_model.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
 import '../../../provider/like_product_provider.dart';
-import '../../../provider/user_provider.dart';
 import 'product_detail_screen.dart';
 
 class ProductWidget extends StatefulWidget {
@@ -24,6 +23,15 @@ class ProductWidget extends StatefulWidget {
 }
 
 class _ProductWidgetState extends State<ProductWidget> {
+  bool heart = false;
+
+  @override
+  void initState() {
+    heart = widget.productModel.like_product_id != null ? true : false;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -31,6 +39,8 @@ class _ProductWidgetState extends State<ProductWidget> {
         ImageModel imageModel = ImageModel(
           product_id: widget.productModel.id,
         );
+
+        widget.productModel.like_product_id = heart ? 1 : null;
 
         Provider.of<CustomImageProvider>(context, listen: false)
             .getImageListByProductId(imageModel)
@@ -40,7 +50,9 @@ class _ProductWidgetState extends State<ProductWidget> {
                 PageRouteBuilder(
                   transitionDuration: Duration(milliseconds: 1000),
                   pageBuilder: (context, anim1, anim2) => ProductDetailPage(
-                      productModel: widget.productModel, isCreateScreen: false),
+                    productModel: widget.productModel,
+                    isCreateScreen: false,
+                  ),
                 ),
               ),
             );
@@ -60,7 +72,9 @@ class _ProductWidgetState extends State<ProductWidget> {
                     placeholder: Images.placeholder1,
                     fit: BoxFit.fitHeight,
                     image: widget.productModel.thumbnail != null
-                        ? AppConstants.BASE_URL + "/" + widget.productModel.thumbnail
+                        ? AppConstants.BASE_URL +
+                            "/" +
+                            widget.productModel.thumbnail
                         : AppConstants.BASE_URL,
                     imageErrorBuilder: (c, o, s) => Image.asset(
                       Images.placeholder_3x1,
@@ -73,26 +87,30 @@ class _ProductWidgetState extends State<ProductWidget> {
                 top: 10,
                 right: 10,
                 child: InkWell(
-                  onTap: () {
+                  onTap: () async {
                     var userId =
-                        Provider.of<AuthProvider>(context, listen: false)
+                        await Provider.of<AuthProvider>(context, listen: false)
                             .getUser()["id"];
 
                     if (userId != null) {
-                      var productId = widget.productModel.id;
                       LikeProductModel likeProductModel = LikeProductModel(
+                        id: widget.productModel.like_product_id,
                         user_id: userId,
-                        product_id: productId,
+                        product_id: widget.productModel.id,
                       );
 
-                      if (widget.productModel.like_product_id != null)
-                        Provider.of<LikeProductProvider>(context, listen: false)
+                      if (heart)
+                        await Provider.of<LikeProductProvider>(context,
+                                listen: false)
                             .deleteLikeProduct(likeProductModel);
                       else
-                        Provider.of<LikeProductProvider>(context, listen: false)
+                        await Provider.of<LikeProductProvider>(context,
+                                listen: false)
                             .addLikeProduct(likeProductModel);
-                      
-                      setState(() {});
+
+                      setState(() {
+                        heart = !heart;
+                      });
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -118,7 +136,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                         // color: Colors.grey,
                         borderRadius: BorderRadius.circular(8.0)),
                     child: Image.asset(
-                      widget.productModel.like_product_id != null
+                      heart
                           ? Images.heart_fill
                           : Images.heart,
                       height: 20,
@@ -148,7 +166,9 @@ class _ProductWidgetState extends State<ProductWidget> {
                           color: Color(0xff000000),
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        widget.productModel.tag != null ? widget.productModel.tag : "",
+                        widget.productModel.tag != null
+                            ? widget.productModel.tag
+                            : "",
                         style: TextStyle(
                           fontSize: 6,
                           color: Color(0xffffffff),

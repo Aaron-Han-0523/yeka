@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:provider/provider.dart';
 
-import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_view.dart';
 import '../../../localization/language_constrants.dart';
@@ -133,11 +132,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
                             ),
                             ProductView(
                                 isHomePage: false,
-                                scrollController: _scrollController),
+                                scrollController: _scrollController,
+                            ),
                             // CustomElevatedButton(
                             //     onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}"),
                             SizedBox(
-                                height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                                height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
+                            ),
                           ],
                         ),
                       ),

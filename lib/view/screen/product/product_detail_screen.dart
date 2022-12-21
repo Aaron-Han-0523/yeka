@@ -6,10 +6,15 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_shipping_screen.dart';
 
-import '../../../data/model/response/image_model.dart';
+import '../../../data/model/response/like_product_model.dart';
+import '../../../data/model/response/order_model.dart';
 import '../../../data/model/response/product_model.dart';
+import '../../../helper/price_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
+import '../../../provider/like_product_provider.dart';
+import '../../../provider/option_provider.dart';
 import '../../../utill/app_constants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -39,27 +44,43 @@ class _ProductDetailPageState extends State<ProductDetailPage>
 
   List<Widget> thumbnailItems = [];
   List<String> detailItems = [];
+  List<String> optionDropdownItems = [];
+
+  int optionDropdownValue = 0;
+  int _itemCount = 0;
+
+  bool heart = false;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    for (var item in Provider.of<CustomImageProvider>(context, listen: false)
-        .imageList
-        .toList()) {
-      if (item.image_type == 0) {
-        thumbnailItems.add(
-          buildPage(item.path),
-        );
-      } else if (item.image_type == 1) {
-        detailItems.add(
-          item.path,
-        );
+    var imageList =
+        Provider.of<CustomImageProvider>(context, listen: false).imageList;
+    for (var image in imageList) {
+      if (image.image_type == 0) {
+        thumbnailItems.add(buildPage(image.path));
+      } else if (image.image_type == 1) {
+        detailItems.add(image.path);
       }
     }
+
+    await Provider.of<OptionProvider>(context, listen: false)
+        .getOptionList(context);
+    optionDropdownItems = [];
+    Provider.of<OptionProvider>(context, listen: false)
+        .optionList
+        .map((e) => optionDropdownItems.add(e.option_title));
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _loadData(context, false);
+  }
+
+  @override
+  void initState() {
+    heart = widget.productModel.like_product_id != null ? true : false;
+
+    super.initState();
   }
 
   Widget buildPage(String path) {
@@ -69,8 +90,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         // width: MediaQuery.of(context).size.width * 0.6,
         // height: MediaQuery.of(context).size.width * 0.6,
         child: Image.network(
-          // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-          // 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
           path != null
               ? AppConstants.BASE_URL + "/" + path
               : AppConstants.BASE_URL,
@@ -80,10 +99,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     );
   }
 
-  int _itemCount = 0;
-
-  var dongDropdownItems = ["c", "D"];
-
   @override
   Widget build(BuildContext context) {
     contentController = TextEditingController(
@@ -92,8 +107,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
 
     if (widget.isCreateScreen == false) {
       titleController.text = widget.productModel.title;
-      // contentController.text = widget.productModel.content;
-      // gradeController.text = widget.productModel.grade.toString();
     } else {
       titleController.text = '';
       contentController.text = '';
@@ -168,7 +181,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 15, 0, 0),
                                   child: Text(
-                                    "광합성 100% 함유된 알로에 마스크! 피부에 양보하세요 :)",
+                                    "${widget.productModel.tag}",
                                     style: TextStyle(
                                       color: Color(0xFF999999),
                                       fontSize: 12,
@@ -179,7 +192,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 5, 0, 0),
                                   child: Text(
-                                    "[ALOS] 마스크팩 3입",
+                                    "${widget.productModel.title}",
                                     style: TextStyle(
                                       color: Color(0xFF000000),
                                       fontSize: 24,
@@ -190,7 +203,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                   child: Text(
-                                    "8,000 ${getTranslated('WON', context)}",
+                                    "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble())} ${getTranslated('WON', context)}" ??
+                                        '0 ${getTranslated('WON', context)}',
                                     style: TextStyle(
                                       color: Color(0xFF0123B4),
                                       fontSize: 24,
@@ -215,14 +229,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 0, 4, 0),
-                                  child: Text(
-                                    "피부는 우리의 생활 그 자체로써, 우리가 먹는 것, 우리가 생활하는 방식이 바로 우리의 피부입니다. "
-                                    "하루에 한 번 마스크팩을 사용하여 숙면을 취하는게 중요하다 는 이야기를 드리고 싶다. "
-                                    "식생활과 생활습관이 바뀌어야 우리의 피부도 속에서부 터의 근본적 변화가 가능하다. "
-                                    "하지만 저희 ALOS 마스크팩은 팩 수분내에 단백 질 함유가 내장되어 있어, 식습관에 관여하지 않고 탄탄하고 매끄러운 피부를 가 지실 수 있습니다.",
-                                    style: TextStyle(
-                                      color: Color(0xFF333333),
-                                      fontSize: 12,
+                                  child: Center(
+                                    child: Text(
+                                      "${widget.productModel.description}",
+                                      style: TextStyle(
+                                        color: Color(0xFF333333),
+                                        fontSize: 12,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -279,12 +292,17 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                         icon: const Icon(
                                             Icons.keyboard_arrow_down),
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                        dropdownItems: dongDropdownItems,
-                                        // value: "",
+                                        dropdownItems: optionDropdownItems,
+                                        value: optionDropdownItems.length != 0
+                                            ? optionDropdownItems[
+                                                optionDropdownValue]
+                                            : null,
                                         onChanged: (value) {
-                                          // setState(() {
-                                          //   receiveTimeEnd = value + "";
-                                          // });
+                                          setState(() {
+                                            optionDropdownValue =
+                                                optionDropdownItems
+                                                    .indexOf(value);
+                                          });
                                         },
                                       ),
                                     ),
@@ -308,7 +326,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 6, 15, 5),
                                       child: Text(
-                                        "${getTranslated('PLUS', context)}2,500 ${getTranslated('WON', context)}",
+                                        "${getTranslated('PLUS', context)}${PriceConverter.convertPrice(context, widget.productModel.delivery_fee.toDouble())} ${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xFF333333),
                                           fontSize: 13,
@@ -343,7 +361,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 10, 15, 10),
                                       child: Text(
-                                        "10,500 ${getTranslated('WON', context)}",
+                                        "${_itemCount == 0 ? 0 : PriceConverter.convertPrice(context, widget.productModel.price * _itemCount + widget.productModel.delivery_fee.toDouble())} ${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Colors.red,
                                           fontSize: 20,
@@ -357,9 +375,31 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                         .PADDING_SIZE_EXTRA_EXTRA_SMALL),
                                 CustomElevatedButton(
                                   onTap: () async {
+                                    OrderModel orderModel = OrderModel(
+                                      image1:
+                                          widget.productModel.thumbnail != null
+                                              ? AppConstants.BASE_URL +
+                                                  "/" +
+                                                  widget.productModel.thumbnail
+                                              : AppConstants.BASE_URL,
+                                      title: widget.productModel.title,
+                                      option: optionDropdownItems.length != 0
+                                          ? optionDropdownItems[
+                                              optionDropdownValue]
+                                          : null,
+                                      quantity: _itemCount,
+                                      price: widget.productModel.price,
+                                      delivery_fee:
+                                          widget.productModel.delivery_fee,
+                                      total_fee: widget.productModel.price *
+                                              _itemCount +
+                                          widget.productModel.delivery_fee,
+                                    );
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (_) => ProductShippingPage(),
+                                        builder: (_) => ProductShippingPage(
+                                            orderModel: orderModel,
+                                        ),
                                       ),
                                     );
                                   },
@@ -385,14 +425,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                                   item
                                               : AppConstants.BASE_URL,
                                           fit: BoxFit.cover,
-                                          // width: MediaQuery.of(context)
-                                          //         .size
-                                          //         .width *
-                                          //     0.9,
-                                          // height: MediaQuery.of(context)
-                                          //         .size
-                                          //         .width *
-                                          //     1.5,
                                         ),
                                       ),
                                     ),
@@ -403,30 +435,66 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                           Positioned(
                             top: 0,
                             right: 30,
-                            child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                  color: Color(0xfff8f8f8),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(30.0),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xffbbbbbb),
-                                      offset: const Offset(0.0, 2.0),
-                                      blurRadius: 0.0,
-                                      spreadRadius: 0.0,
-                                    )
-                                  ]),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10.0),
-                                child: Container(
-                                  child: Image.asset(
-                                    Images.heart,
-                                    fit: BoxFit.cover,
-                                    width: 20,
-                                    // width: MediaQuery.of(context).size.width * 0.9,
-                                    // height: MediaQuery.of(context).size.width * 0.9,
+                            child: InkWell(
+                              onTap: () {
+                                var userId =
+                                    Provider.of<AuthProvider>(context, listen: false)
+                                    .getUser()["id"];
+
+                                if (userId != null) {
+                                  LikeProductModel likeProductModel = LikeProductModel(
+                                    id: widget.productModel.like_product_id,
+                                    user_id: userId,
+                                    product_id: widget.productModel.id,
+                                  );
+
+                                  if (heart)
+                                    Provider.of<LikeProductProvider>(context,
+                                      listen: false)
+                                      .deleteLikeProduct(likeProductModel);
+                                else
+                                  Provider.of<LikeProductProvider>(context,
+                                    listen: false)
+                                    .addLikeProduct(likeProductModel);
+
+                                setState(() {
+                                  heart = !heart;
+                                });
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                content: Text("상품 찜 등록은 로그인해야 합니다."),
+                                backgroundColor: Colors.red),
+                                );
+                                }
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                    color: Color(0xfff8f8f8),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(30.0),
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0xffbbbbbb),
+                                        offset: const Offset(0.0, 2.0),
+                                        blurRadius: 0.0,
+                                        spreadRadius: 0.0,
+                                      )
+                                    ]),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  child: Container(
+                                    child: Image.asset(
+                                      heart
+                                          ? Images.heart_fill
+                                          : Images.heart,
+                                      fit: BoxFit.cover,
+                                      width: 20,
+                                      // width: MediaQuery.of(context).size.width * 0.9,
+                                      // height: MediaQuery.of(context).size.width * 0.9,
+                                    ),
                                   ),
                                 ),
                               ),

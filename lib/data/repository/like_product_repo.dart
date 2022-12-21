@@ -59,7 +59,7 @@ class LikeProductRepo {
     try {
       final response = await dioClient.delete(
         AppConstants.DELETE_LIKE_PRODUCT_URI +
-            "/${likeProductModel.id}?clients_id=${sharedPreferences.getInt("clients_id")}",
+            "?user_id=${likeProductModel.user_id}&product_id=${likeProductModel.product_id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
