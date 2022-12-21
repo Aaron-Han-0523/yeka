@@ -43,7 +43,7 @@ class _CommunityFreeBoardDetailScreenState
         .getCommunityNewsList(widget.communityModel, context);
 
     communityNewsList =
-        Provider.of<CommunityFreeBoardProvider>(context, listen: false)
+        await Provider.of<CommunityFreeBoardProvider>(context, listen: false)
             .communityNewsList;
 
     ImageModel imageModel = ImageModel(community_id: widget.communityModel.id);
@@ -51,11 +51,11 @@ class _CommunityFreeBoardDetailScreenState
         .getImageListByCommunityId(imageModel);
 
     imageList =
-        Provider.of<CustomImageProvider>(context, listen: false).imageList;
+        await Provider.of<CustomImageProvider>(context, listen: false).imageList;
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
     _loadData(context, true);
   }
@@ -95,12 +95,6 @@ class _CommunityFreeBoardDetailScreenState
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> items = [];
-
-    for (var i = 0; i < imageList.length; i++) {
-      items.add(buildPage(imageList[i].path));
-    }
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -120,38 +114,56 @@ class _CommunityFreeBoardDetailScreenState
                               liveUIColor: Colors.amber,
                             )
                           : Container(),
-                      Stack(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.95,
-                            height: MediaQuery.of(context).size.width * 0.56,
-                            child: PageView(
-                              children: items,
-                              controller: _pageController,
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.95,
-                            height: MediaQuery.of(context).size.width * 0.56,
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Padding(
-                                padding: const EdgeInsets.all(24.0),
-                                child: ScrollingPageIndicator(
-                                  dotColor: Colors.grey,
-                                  dotSelectedColor: Colors.deepPurple,
-                                  dotSize: 7,
-                                  dotSelectedSize: 7,
-                                  dotSpacing: 18,
+
+                      Consumer<CustomImageProvider>(
+                        builder: (context, imageProvider, child) {
+                          double width = MediaQuery.of(context).size.width;
+                          List<ImageModel> imageList = [];
+                          imageList = imageProvider.imageList;
+
+                          print('========hello hello===>${imageList.length}');
+
+                          List<Widget> items = [];
+
+                          for (var i = 0; i < imageList.length; i++) {
+                            items.add(buildPage(imageList[i].path));
+                          }
+
+                          return imageList.length == 0 ? Container() : Stack(
+                            children: [
+                              Container(
+                                width: width * 0.95,
+                                height: width * 0.56,
+                                child: PageView(
+                                  children: items,
                                   controller: _pageController,
-                                  itemCount: items.length,
-                                  orientation: Axis.horizontal,
                                 ),
                               ),
-                            ),
-                          ),
-                        ],
+                              Container(
+                                width: width * 0.95,
+                                height: width * 0.56,
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(24.0),
+                                    child: ScrollingPageIndicator(
+                                      dotColor: Colors.grey,
+                                      dotSelectedColor: Colors.deepPurple,
+                                      dotSize: 7,
+                                      dotSelectedSize: 7,
+                                      dotSpacing: 18,
+                                      controller: _pageController,
+                                      itemCount: items.length,
+                                      orientation: Axis.horizontal,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
+
                       // SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                       Padding(
@@ -318,7 +330,7 @@ class _CommunityFreeBoardDetailScreenState
                                             fit: BoxFit.fitWidth,
                                             width: 83,
                                             // height: 49,
-                                            // height: MediaQuery.of(context).size.width * 0.4,
+                                            // height: width * 0.4,
                                           ),
                                         ),
                                       ),
