@@ -8,7 +8,6 @@ import 'package:yeka/helper/date_converter.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
-import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../helper/youtube_converter.dart';
@@ -121,7 +120,7 @@ class _CommunityFreeBoardDetailScreenState
                               : Stack(
                                   children: [
                                     Container(
-                                      width: width * 0.95,
+                                      width: width * 1,
                                       height: width * 0.56,
                                       child: PageView(
                                         children: items,
@@ -129,7 +128,7 @@ class _CommunityFreeBoardDetailScreenState
                                       ),
                                     ),
                                     Container(
-                                      width: width * 0.95,
+                                      width: width * 1,
                                       height: width * 0.56,
                                       child: Align(
                                         alignment: Alignment.bottomCenter,
