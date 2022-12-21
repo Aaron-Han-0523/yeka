@@ -8,6 +8,7 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/community_youtube_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'community_crud_screen.dart';
@@ -22,7 +23,6 @@ class CommunityYoutubeListScreen extends StatefulWidget {
 
 class _CommunityYoutubeListScreenState
     extends State<CommunityYoutubeListScreen> {
-
   final ScrollController _scrollController = ScrollController();
 
   int totalPageSize = 0;
@@ -33,7 +33,8 @@ class _CommunityYoutubeListScreenState
     currentPageNum = pageNum;
 
     setState(() {
-      Provider.of<CommunityYoutubeProvider>(context, listen: false).getCommunityList(pageNum + 1, context);
+      Provider.of<CommunityYoutubeProvider>(context, listen: false)
+          .getCommunityList(pageNum + 1, context);
     });
   }
 
@@ -41,8 +42,12 @@ class _CommunityYoutubeListScreenState
     Provider.of<CommunityYoutubeProvider>(context, listen: false)
         .getCommunityList(0, context);
 
-    currentPageNum = Provider.of<CommunityYoutubeProvider>(context, listen: false).currentPageNum;
-    totalPageSize = Provider.of<CommunityYoutubeProvider>(context, listen: false).totalPageSize;
+    currentPageNum =
+        Provider.of<CommunityYoutubeProvider>(context, listen: false)
+            .currentPageNum;
+    totalPageSize =
+        Provider.of<CommunityYoutubeProvider>(context, listen: false)
+            .totalPageSize;
     lastPageNum = (totalPageSize / 10).ceil();
   }
 
@@ -81,37 +86,50 @@ class _CommunityYoutubeListScreenState
                           Consumer<CommunityYoutubeProvider>(
                             builder: (context, communityProvider, child) {
                               List<CommunityModel> communityList = [];
-                              communityList = communityProvider.latestCommunityList;
+                              communityList =
+                                  communityProvider.latestCommunityList;
 
-                              print('========hello hello===>${communityList.length}');
+                              print(
+                                  '========hello hello===>${communityList.length}');
 
                               return Column(children: [
                                 !communityProvider.filterFirstLoading
                                     ? communityList.length != 0
-                                    ? StaggeredGridView.countBuilder(
-                                  itemCount: communityList.length,
-                                  crossAxisCount: 1,
-                                  padding: EdgeInsets.all(0),
-                                  physics: NeverScrollableScrollPhysics(),
-                                  // scrollDirection:
-                                  //     isHomePage ? Axis.horizontal : Axis.vertical,
-                                  shrinkWrap: true,
-                                  staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return CommunityYoutubeWidget(communityModel: communityList[index]);
-                                  },
-                                )
-                                    : SizedBox.shrink()
+                                        ? StaggeredGridView.countBuilder(
+                                            itemCount: communityList.length,
+                                            crossAxisCount: 1,
+                                            padding: EdgeInsets.all(0),
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            // scrollDirection:
+                                            //     isHomePage ? Axis.horizontal : Axis.vertical,
+                                            shrinkWrap: true,
+                                            staggeredTileBuilder: (int index) =>
+                                                StaggeredTile.fit(1),
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return CommunityYoutubeWidget(
+                                                  communityModel:
+                                                      communityList[index]);
+                                            },
+                                          )
+                                        : SizedBox.shrink()
                                     : ProductShimmer(
-                                    isEnabled: communityProvider.firstLoading, isHomePage: false,),
+                                        isEnabled:
+                                            communityProvider.firstLoading,
+                                        isHomePage: false,
+                                      ),
                                 communityProvider.filterIsLoading
                                     ? Center(
-                                    child: Padding(
-                                      padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
-                                      child: CircularProgressIndicator(
-                                          valueColor: AlwaysStoppedAnimation<Color>(
-                                              Theme.of(context).primaryColor)),
-                                    ))
+                                        child: Padding(
+                                        padding: EdgeInsets.all(
+                                            Dimensions.ICON_SIZE_EXTRA_SMALL),
+                                        child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                                    Theme.of(context)
+                                                        .primaryColor)),
+                                      ))
                                     : SizedBox.shrink(),
                               ]);
                             },
@@ -120,20 +138,54 @@ class _CommunityYoutubeListScreenState
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              if(currentPageNum > 0) InkWell(child: Text(" < "), onTap: () { _loadPage(currentPageNum - 1); },),
-                              for (var i = (currentPageNum - 2); i < currentPageNum + 3; i++) if(i > -1 && i < lastPageNum) if(i == currentPageNum) Text(" ${i + 1} ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),) else InkWell(child: Text(" ${i + 1} "), onTap: () {_loadPage(i);},),
-                              if(currentPageNum < lastPageNum - 1) InkWell(child: Text(" > "), onTap: () { _loadPage(currentPageNum + 1); },),
+                              if (currentPageNum > 0)
+                                InkWell(
+                                  child: Text(" < "),
+                                  onTap: () {
+                                    _loadPage(currentPageNum - 1);
+                                  },
+                                ),
+                              for (var i = (currentPageNum - 2);
+                                  i < currentPageNum + 3;
+                                  i++)
+                                if (i > -1 && i < lastPageNum)
+                                  if (i == currentPageNum)
+                                    Text(
+                                      " ${i + 1} ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue),
+                                    )
+                                  else
+                                    InkWell(
+                                      child: Text(" ${i + 1} "),
+                                      onTap: () {
+                                        _loadPage(i);
+                                      },
+                                    ),
+                              if (currentPageNum < lastPageNum - 1)
+                                InkWell(
+                                  child: Text(" > "),
+                                  onTap: () {
+                                    _loadPage(currentPageNum + 1);
+                                  },
+                                ),
                             ],
                           ),
                           SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                         ],
                       ),
                     ),
-                    ActionButton(),
-
+                    Provider.of<AuthProvider>(context, listen: false)
+                                    .getUser()["user_type"] !=
+                                null &&
+                            Provider.of<AuthProvider>(context, listen: false)
+                                    .getUser()["user_type"] ==
+                                1
+                        ? ActionButton()
+                        : Container(),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-
                     FooterPage(),
                   ],
                 ),

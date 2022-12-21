@@ -178,7 +178,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${map["username"]}${getTranslated('HELLO_SIR', context)}",
+                              "${map["username"]} ${map["user_type"] == 0 ? "사용자" : "컨설턴트"} ${getTranslated('HELLO_SIR', context)}",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Color(0xff000000),
