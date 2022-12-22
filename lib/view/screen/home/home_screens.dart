@@ -51,11 +51,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     // Provider.of<UserProvider>(context, listen: false)
     //     .getLatestUserList(0, context, reload: reload);
 
+    await Provider.of<UserProvider>(context, listen: false).getSuperUser();
+
     await Provider.of<UserProvider>(context, listen: false)
-        .getSuperUser();
+        .getLatestConsultantList(0, context, reload: reload);
 
     print("==============");
-    print("${Provider.of<UserProvider>(context, listen: false).superuser.toJson()}");
+    print(
+        "${Provider.of<UserProvider>(context, listen: false).superuser.toJson()}");
     print("${Provider.of<AuthProvider>(context, listen: false).getUser()}");
   }
 

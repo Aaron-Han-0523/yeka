@@ -290,7 +290,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<UserProvider>(context, listen: false)
-        .getLatestUserList(0, context, reload: reload);
+        .getLatestConsultantList(0, context, reload: reload);
   }
 
   @override

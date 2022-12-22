@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/helper/date_converter.dart';
+import 'package:yeka/helper/price_converter.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/consultant/consultant_my_reserve_screen.dart';
 
+import '../../../data/model/response/consulting_model.dart';
+import '../../../data/model/response/menu_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../utill/color_resources.dart';
@@ -12,10 +16,12 @@ import '../home/widget/footer_screens.dart';
 class ConsultantReserveScreen extends StatefulWidget {
   final bool isCreateScreen;
   final UserModel userModel;
+  final MenuModel menuModel;
+  final ConsultingModel consultingModel;
 
   const ConsultantReserveScreen({
     Key key,
-    this.isCreateScreen = true, this.userModel,
+    this.isCreateScreen = true, this.userModel, this.menuModel, this.consultingModel,
   }) : super(key: key);
 
   @override
@@ -99,7 +105,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "2022.11.22(금)",
+                                    "${DateConverter.isoStringToDateOnly(widget.consultingModel.reservation_date)}",
                                     textAlign: TextAlign.end,
                                     style: TextStyle(
                                       color: Color(0xff333333),
@@ -122,7 +128,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "톡으로 만나는 나만의 피부 진단 :)",
+                                    "${widget.menuModel.menu_title}",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 11,
@@ -144,7 +150,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "2,500${getTranslated('WON', context)}",
+                                    "${PriceConverter.convertPrice(context, widget.menuModel.menu_amount / 10)}${getTranslated('WON', context)}",
                                     style: TextStyle(
                                       color: Color(0xff0123B4),
                                       fontSize: 11,
@@ -203,7 +209,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "국민은행 0000-00-000000",
+                                    "${widget.userModel.bank1} ${widget.userModel.bank2}",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 11,
@@ -226,7 +232,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "임지은",
+                                    "${widget.userModel.bank3}",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 10,
@@ -266,7 +272,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                   Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (_) =>
-                                            ConsultantMyReserveScreen(userModel: widget.userModel),
+                                            ConsultantMyReserveScreen(userModel: widget.userModel, menuModel: widget.menuModel, consultingModel: widget.consultingModel,),
                                       ),
                                   );
                                 },

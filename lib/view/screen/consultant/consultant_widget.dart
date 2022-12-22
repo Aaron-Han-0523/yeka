@@ -17,18 +17,18 @@ class ConsultantWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-
         Navigator.push(
             context,
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 1000),
               pageBuilder: (context, anim1, anim2) => ConsultantDetailPage(
-                  userModel: userModel, isCreateScreen: false),
+                  userModel: userModel, isCreateScreen: false,
+              ),
             ));
       },
       child: Container(
         height: MediaQuery.of(context).size.width * 0.68,
-        margin: EdgeInsets.fromLTRB(5,5,5,0),
+        margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Container(
@@ -38,7 +38,9 @@ class ConsultantWidget extends StatelessWidget {
               child: FadeInImage.assetNetwork(
                 placeholder: Images.placeholder1,
                 fit: BoxFit.fitHeight,
-                image: userModel.title_image != null ? AppConstants.BASE_URL + "/" + userModel.title_image : AppConstants.BASE_URL,
+                image: userModel.title_image != null
+                    ? AppConstants.BASE_URL + "/" + userModel.title_image
+                    : AppConstants.BASE_URL,
                 // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                 //     '/${bannerProvider.mainBannerList[index].photo}',
                 imageErrorBuilder: (c, o, s) =>
@@ -62,7 +64,7 @@ class ConsultantWidget extends StatelessWidget {
                     width: 90,
                     height: 20,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0,2,0,0),
+                      padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
                       child: Text(
                         userModel.bank1 ?? '',
                         textAlign: TextAlign.center,
@@ -77,7 +79,7 @@ class ConsultantWidget extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0,10,0, 10),
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Text(
                       "${getTranslated('CERTIFICATE_CONSULTANT', context)}",
                       textAlign: TextAlign.center,
@@ -98,7 +100,9 @@ class ConsultantWidget extends StatelessWidget {
                 endIndent: 0,
                 color: Color(0XFFDDDDDD),
               ),
-              SizedBox(height: Dimensions.PADDING_SIZE_SMALL,),
+              SizedBox(
+                height: Dimensions.PADDING_SIZE_SMALL,
+              ),
               Text(
                 userModel.create_date ?? '- 인천대학교',
                 textAlign: TextAlign.center,

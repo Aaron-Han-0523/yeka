@@ -30,6 +30,7 @@ class AppConstants {
   static const String UPDATE_USER_URI = "/api/user";
   static const String DELETE_USER_URI = "/api/user";
   static const String LIST_USER_URI = "/api/user/list";
+  static const String LIST_USER_CONSULTANT_URI = "/api/user/consultant";
   static const String GET_USER_URI = "/api/user";
   static const String GET_SUPER_USER_URI = "/api/user/super";
 
@@ -76,6 +77,7 @@ class AppConstants {
   static const String UPDATE_MENU_URI = "/api/menu";
   static const String DELETE_MENU_URI = "/api/menu";
   static const String LIST_MENU_URI = "/api/menu";
+  static const String LIST_MENU_CONSULTANT_URI = "/api/menu/consultant";
   static const String GET_MENU_URI = "/api/menu";
 
   // COMMUNITY

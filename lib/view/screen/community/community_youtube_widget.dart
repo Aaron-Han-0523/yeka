@@ -5,7 +5,6 @@ import '../../../data/model/response/community_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../helper/youtube_converter.dart';
 import '../../../localization/language_constrants.dart';
-import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/community_youtube_provider.dart';
 import 'community_youtube_detail_screen.dart';
 
@@ -90,8 +89,6 @@ class CommunityYoutubeWidget extends StatelessWidget {
                               width: 12,
                             ),
                             Text(
-                              //FIXME 테이블에 count 필드 추가해야함
-                              // "723회",
                               "${communityModel.views}${getTranslated('TIMES', context)}",
                               style: TextStyle(
                                 fontSize: 7.0,
@@ -119,11 +116,6 @@ class CommunityYoutubeWidget extends StatelessWidget {
                 YoutubeConverter.getYoutubeThumbnail(
                   "${communityModel.community_link}",
                 ),
-                // communityModel.community_link != null
-                //     ? YoutubeThumbnailConverter.getYoutubeThumbnail(
-                //         "${communityModel.community_link}",
-                //       )
-                //     :
                 fit: BoxFit.fitWidth,
                 width: 165,
                 height: 49,

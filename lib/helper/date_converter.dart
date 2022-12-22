@@ -29,6 +29,10 @@ class DateConverter {
     return DateFormat('dd:MM:yy').format(isoStringToLocalDate(dateTime));
   }
 
+  static String isoStringToDateOnly(String dateTime) {
+    return DateFormat('yyyy-MM-dd E', 'ko').format(isoStringToLocalDate(dateTime));
+  }
+
   static String localDateToIsoString(DateTime dateTime) {
     return DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime.toLocal());
   }

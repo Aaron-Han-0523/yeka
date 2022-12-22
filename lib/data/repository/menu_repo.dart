@@ -73,10 +73,22 @@ class MenuRepo {
   }
 
   // limit = pageSize, skip = offset
-  Future<ApiResponse> getMenuList(int limit, int skip) async {
+  Future<ApiResponse> getLatestMenuList(int limit, int skip) async {
     try {
       final response = await dioClient.get(
         AppConstants.LIST_MENU_URI + "?limit=$limit&skip=$skip",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  // limit = pageSize, skip = offset
+  Future<ApiResponse> getMenuList(MenuModel menuModel) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_MENU_CONSULTANT_URI + "?consultant_id=${menuModel.consultant_id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

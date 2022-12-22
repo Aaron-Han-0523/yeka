@@ -21,21 +21,28 @@ class UserProvider extends ChangeNotifier {
   bool _firstLoading = true;
 
   int _latestPageSize;
+  int _latestConsultantPageSize;
 
   List<UserModel> _latestUserList = [];
+  List<UserModel> _latestConsultantList = [];
   List<int> _offsetList = [];
+  List<int> _offsetConsultantList = [];
   int _lOffset = 0;
+  int _lConsultantOffset = 0;
   int limit = 6;
 
   List<UserModel> get latestUserList => _latestUserList;
+  List<UserModel> get latestConsultantList => _latestConsultantList;
 
   int get lOffset => _lOffset;
+  int get lConsultantOffset => _lConsultantOffset;
 
   bool get filterIsLoading => _filterIsLoading;
   bool get filterFirstLoading => _filterFirstLoading;
   bool get firstLoading => _firstLoading;
 
   int get latestPageSize => _latestPageSize;
+  int get latestConsultantPageSize => _latestConsultantPageSize;
 
   void addUser(UserModel userModel) {
     userRepo.addUser(userModel);
@@ -85,6 +92,39 @@ class UserProvider extends ChangeNotifier {
           apiResponse.response.statusCode == 200) {
         _latestUserList.addAll(UserList.fromList(apiResponse.response.data).userList);
         _latestPageSize = UserList.fromList(apiResponse.response.data).count;
+        _filterFirstLoading = false;
+        _filterIsLoading = false;
+      } else {
+        ApiChecker.checkApi(context, apiResponse);
+      }
+      notifyListeners();
+    } else {
+      if (_filterIsLoading) {
+        _filterIsLoading = false;
+        notifyListeners();
+      }
+    }
+  }
+
+  Future<void> getLatestConsultantList(int offset, BuildContext context,
+      {bool reload = false}) async {
+    if (reload) {
+      _offsetConsultantList = [];
+      _latestConsultantList = [];
+    }
+
+    _lConsultantOffset = offset;
+
+    if (!_offsetConsultantList.contains(offset)) {
+      _offsetConsultantList.add(offset);
+
+      // limit = pageSize
+      // skip = offset
+      ApiResponse apiResponse = await userRepo.getConsultantList(limit, offset * limit);
+      if (apiResponse.response != null &&
+          apiResponse.response.statusCode == 200) {
+        _latestConsultantList.addAll(UserList.fromList(apiResponse.response.data).userList);
+        _latestConsultantPageSize = UserList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

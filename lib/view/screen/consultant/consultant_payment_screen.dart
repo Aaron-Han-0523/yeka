@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/data/model/response/user_model.dart';
+import 'package:yeka/helper/date_converter.dart';
+import 'package:yeka/helper/price_converter.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
+import '../../../data/model/response/consulting_model.dart';
+import '../../../data/model/response/menu_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/dimensions.dart';
-import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../home/widget/footer_screens.dart';
 import 'consultant_result_screen.dart';
@@ -13,10 +16,15 @@ import 'consultant_result_screen.dart';
 class ConsultantPaymentScreen extends StatefulWidget {
   final bool isCreateScreen;
   final UserModel userModel;
+  final MenuModel menuModel;
+  final ConsultingModel consultingModel;
 
   const ConsultantPaymentScreen({
     Key key,
-    this.isCreateScreen = true, this.userModel,
+    this.isCreateScreen = true,
+    this.userModel,
+    this.consultingModel,
+    this.menuModel,
   }) : super(key: key);
 
   @override
@@ -79,7 +87,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "2022.11.22(금)",
+                            "${DateConverter.isoStringToDateOnly(widget.consultingModel.reservation_date)}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
@@ -102,7 +110,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "톡으로 만나는 나만의 피부 진단 :)",
+                            "${widget.consultingModel.consulting_title}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
@@ -125,7 +133,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "25,000${getTranslated('WON', context)}",
+                            "${PriceConverter.convertPrice(context, widget.consultingModel.payment_amount.toDouble())} ${getTranslated('WON', context)}",
                             style: TextStyle(
                               color: Color(0xff0123b4),
                               fontSize: 15,
@@ -152,7 +160,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20, 7.5),
                           child: Text(
-                            "${getTranslated('MINUS', context)}2,500${getTranslated('WON', context)}",
+                            "${getTranslated('MINUS', context)}${PriceConverter.convertPrice(context, widget.consultingModel.reservation_amount.toDouble())}${getTranslated('WON', context)}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 9,
@@ -182,7 +190,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "22,500${getTranslated('WON', context)}",
+                            "${PriceConverter.convertPrice(context, widget.consultingModel.final_amount.toDouble())}${getTranslated('WON', context)}",
                             style: TextStyle(
                               color: Color(0xffff3d3d),
                               fontSize: 15,
@@ -241,7 +249,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "국민은행 0000-00-000000",
+                            "${widget.userModel.bank1} ${widget.userModel.bank2}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
@@ -264,7 +272,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "임지은",
+                            "${widget.userModel.bank3}",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
@@ -305,11 +313,16 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => ConsultantResultScreen(userModel: widget.userModel),
+                              builder: (_) => ConsultantResultScreen(
+                                  userModel: widget.userModel,
+                                  consultingModel: widget.consultingModel,
+                                  menuModel: widget.menuModel,
+                              ),
                             ),
                           );
                         },
-                        buttonText: "${getTranslated('CONFIRMATION', context)}"),
+                        buttonText:
+                            "${getTranslated('CONFIRMATION', context)}"),
                     SizedBox(height: 150),
                     FooterPage(),
                   ],

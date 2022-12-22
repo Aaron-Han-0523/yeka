@@ -14,9 +14,7 @@ class ConsultantView extends StatefulWidget {
   final String sellerId;
 
   ConsultantView(
-      {@required this.isHomePage,
-      this.scrollController,
-      this.sellerId});
+      {@required this.isHomePage, this.scrollController, this.sellerId});
 
   @override
   State<ConsultantView> createState() => _ConsultantViewState();
@@ -29,18 +27,18 @@ class _ConsultantViewState extends State<ConsultantView> {
   Widget build(BuildContext context) {
     widget.scrollController.addListener(() {
       if (widget.scrollController.position.maxScrollExtent ==
-          widget.scrollController.position.pixels &&
+              widget.scrollController.position.pixels &&
           Provider.of<UserProvider>(context, listen: false)
-              .latestUserList
-              .length !=
+                  .latestConsultantList
+                  .length !=
               0 &&
-          !Provider.of<UserProvider>(context, listen: false)
-              .filterIsLoading) {
+          !Provider.of<UserProvider>(context, listen: false).filterIsLoading) {
         int pageSize = (Provider.of<UserProvider>(context, listen: false)
-            .latestPageSize /
-            6)
+                    .latestConsultantPageSize /
+                6)
             .ceil();
-        offset = Provider.of<UserProvider>(context, listen: false).lOffset;
+        offset =
+            Provider.of<UserProvider>(context, listen: false).lConsultantOffset;
 
         if (offset <= pageSize) {
           print('offset =====>$offset and page size ====>$pageSize');
@@ -50,7 +48,7 @@ class _ConsultantViewState extends State<ConsultantView> {
           print('end of the current page');
 
           Provider.of<UserProvider>(context, listen: false)
-              .getLatestUserList(offset, context);
+              .getLatestConsultantList(offset, context);
         }
       }
     });
@@ -58,7 +56,7 @@ class _ConsultantViewState extends State<ConsultantView> {
     return Consumer<UserProvider>(
       builder: (context, userProvider, child) {
         List<UserModel> userList = [];
-        userList = userProvider.latestUserList;
+        userList = userProvider.latestConsultantList;
 
         print('========hello hello===>${userList.length}');
 
@@ -84,7 +82,8 @@ class _ConsultantViewState extends State<ConsultantView> {
                     )
                   : SizedBox.shrink()
               : ProductShimmer(
-                  isHomePage: widget.isHomePage, isEnabled: userProvider.firstLoading),
+                  isHomePage: widget.isHomePage,
+                  isEnabled: userProvider.firstLoading),
           userProvider.filterIsLoading
               ? Center(
                   child: Padding(

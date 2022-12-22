@@ -70,6 +70,7 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
       cnt++;
     }
 
+/*
     column.children.add(
       Padding(
         padding: const EdgeInsets.all(20),
@@ -79,6 +80,7 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
         ),
       ),
     );
+*/
 
     return column;
   }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
+import '../../../data/model/response/menu_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/menu_provider.dart';
 import '../../../utill/app_constants.dart';
 import '../../../utill/images.dart';
-import '../../basewidget/button/custom_elevated_button.dart';
+import 'consultant_calendar.dart';
 import 'consultant_reserve_screen.dart';
 
 class ConsultantMenuWidget extends StatefulWidget {
@@ -14,7 +17,8 @@ class ConsultantMenuWidget extends StatefulWidget {
 
   const ConsultantMenuWidget({
     Key key,
-    this.isCreateScreen = true, this.userModel,
+    this.isCreateScreen = true,
+    this.userModel,
   }) : super(key: key);
 
   @override
@@ -23,12 +27,12 @@ class ConsultantMenuWidget extends StatefulWidget {
 
 class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
     with TickerProviderStateMixin {
-  @override
-  Widget build(BuildContext context) {
+
+  Widget buildMenu(MenuModel menuModel) {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(0,0,0,15),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
           child: Container(
             child: Row(
               // crossAxisAlignment: CrossAxisAlignment.end,
@@ -40,10 +44,14 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                     child: Container(
                       child: FadeInImage.assetNetwork(
                         placeholder: Images.placeholder1,
-                        image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL + "/upload/placeholder_1x1.png",
+                        image: menuModel.menu_image != null
+                            ? AppConstants.BASE_URL + "/" + menuModel.menu_image
+                            : AppConstants.BASE_URL +
+                                "/upload/placeholder_1x1.png",
                         fit: BoxFit.cover,
                         // image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL,
-                        width: MediaQuery.of(context).size.width * 0.29, //750 * ? = 216
+                        width: MediaQuery.of(context).size.width * 0.29,
+                        //750 * ? = 216
                         height: MediaQuery.of(context).size.width * 0.29,
                       ),
                     ),
@@ -55,7 +63,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(15, 16, 0, 0),
                       child: Text(
-                        "톡으로 만나는 나만의 피부 진단 :)",
+                        "${menuModel.menu_title}",
                         style: TextStyle(
                           color: Color(0xff333333),
                           fontSize: 16,
@@ -66,7 +74,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                       padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
                       width: MediaQuery.of(context).size.width * 0.6,
                       child: Text(
-                        "나의 피부상태를 측정하고 진단결과를 통해 알아보는 피부 팩트체크!",
+                        "${menuModel.menu_content}",
                         style: TextStyle(
                           color: Color(0xffcccccc),
                           fontSize: 12,
@@ -76,7 +84,8 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: Text(
-                        "25,000원(3회 기준)",
+                        // "25,000원(3회 기준)",
+                        "${menuModel.menu_amount}",
                         style: TextStyle(
                           color: Color(0xff333333),
                           fontSize: 14,
@@ -93,11 +102,13 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                           backgroundColor: const Color(0XFF707070),
                           onTap: () {
                             Navigator.push(
-                                context,
-                                PageRouteBuilder(
-                                  transitionDuration: Duration(milliseconds: 500),
-                                  pageBuilder: (context, anim1, anim2) => ConsultantReserveScreen(userModel: widget.userModel),
-                                ));
+                              context,
+                              PageRouteBuilder(
+                                transitionDuration: Duration(milliseconds: 500),
+                                pageBuilder: (context, anim1, anim2) =>
+                                    ConsultantCalendarScreen(menuModel: menuModel, userModel: widget.userModel,),
+                              ),
+                            );
                           },
                           buttonText: '${getTranslated('RESERVE', context)}',
                         ),
@@ -116,6 +127,15 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
           endIndent: 20,
         )
       ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<MenuModel> menuList = Provider.of<MenuProvider>(context, listen: false).menuList;
+
+    return Column(
+      children: [for (var menu in menuList) buildMenu(menu)],
     );
   }
 }

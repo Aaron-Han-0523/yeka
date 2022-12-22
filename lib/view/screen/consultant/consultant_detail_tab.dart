@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../utill/dimensions.dart';
 
 class ConsultantDetailWidget extends StatefulWidget {
   final bool isCreateScreen;
+  final UserModel userModel;
 
   const ConsultantDetailWidget({
     Key key,
-    this.isCreateScreen = true,
+    this.isCreateScreen = true, this.userModel,
   }) : super(key: key);
 
   @override
@@ -16,6 +19,7 @@ class ConsultantDetailWidget extends StatefulWidget {
 
 class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
     with TickerProviderStateMixin {
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +30,8 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             Padding(
               padding: const EdgeInsets.fromLTRB(21, 10, 20, 0),
               child: Text(
-                "#피부관련전공  #전문과정수료  #블로그 운영",
+                // "#피부관련전공  #전문과정수료  #블로그 운영",
+                "${widget.userModel.hashtag ?? ""}",
                 style: TextStyle(
                   fontSize: 10,
                   color: Color(0xff0123B4)
@@ -40,7 +45,8 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             Padding(
               padding: const EdgeInsets.fromLTRB(21, 0, 10, 10),
               child: Text(
-                "임 지 은",
+                // "임 지 은",
+                "${widget.userModel.name ?? ""}",
                 style: TextStyle(
                   color: Color(0xff121212),
                   fontSize: 22,
@@ -80,104 +86,24 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             ),
           ],
         ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
-              child: Text(
-                "- 인천대학교 메이크업아티스트 학과 전공",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
+        for (var text in (widget.userModel.resume ?? "").split("\\n"))
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
+                child: Text(
+                  //todo 테이블에 넣을 때 \n 라인 딜리미터를 넣어서 저장하면 보여줄 때 자동으로 줄 띄우기가 가능하다.
+                  // "- 인천대학교 메이크업아티스트 학과 전공",
+                  text,
+                  style: TextStyle(
+                    color: Color(0xff333333),
+                    fontSize: 12,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
-              child: Text(
-                "- 피부미용사자격증 1급",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
-              child: Text(
-                "- 올댓뷰티아카데미 피부관리강사 경력 6년",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
-              child: Text(
-                "- 베스트 공모전 입상",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
-              child: Text(
-                "- 올댓뷰티아카데미 전문교육 수료",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
-              child: Text(
-                "- YOUTUBE 개인 채널 운영",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 15),
-              child: Text(
-                "- 피부관련 개인 블로그 운영",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
         const Divider(
           height: 3,
           thickness: 1,
@@ -199,48 +125,21 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             ),
           ],
         ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
-              child: Text(
-                "- 월요일 : 09:00 ~ 22:00",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
+        for (var text in (widget.userModel.working_hour ?? "").split("\\n"))
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
+                child: Text(
+                  "${text}",
+                  style: TextStyle(
+                    color: Color(0xff333333),
+                    fontSize: 12,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
-              child: Text(
-                "- 수요일 : 09:00 ~ 22:00",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(23, 0, 0, 15),
-              child: Text(
-                "- 금요일 : 09:00 ~ 22:00",
-                style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
+            ],
+          ),
         const Divider(
           height: 3,
           thickness: 1,
@@ -267,7 +166,7 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
             Padding(
               padding: const EdgeInsets.fromLTRB(23, 5, 0, 0),
               child: Text(
-                "서울특별시 00구 0동 0000",
+                "${widget.userModel.address1} ${widget.userModel.address2} ${widget.userModel.address3}",
                 style: TextStyle(
                   color: Color(0xff333333),
                   fontSize: 12,

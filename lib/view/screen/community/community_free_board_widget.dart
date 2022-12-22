@@ -7,7 +7,6 @@ import '../../../helper/youtube_converter.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../provider/community_freeboard_provider.dart';
 import 'community_free_board_detail_screen.dart';
-import 'community_youtube_detail_screen.dart';
 
 class CommunityFreeBoardWidget extends StatelessWidget {
   final CommunityModel communityModel;
@@ -18,7 +17,6 @@ class CommunityFreeBoardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        //fixme 조회수 증가하는 부분인데 정확한 타이밍은 화면 보면서 확인할 것
         CommunityModel latestCommunityModel = await Provider.of<CommunityFreeBoardProvider>(context, listen: false).getCommunity(communityModel);
         latestCommunityModel.views =  latestCommunityModel.views + 1;
 
@@ -38,13 +36,6 @@ class CommunityFreeBoardWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: Image.network(
-                // widget.reviewModel.attachedFilepath1,
-                // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                // communityModel.community_link != null
-                //     ? YoutubeThumbnailConverter.getYoutubeThumbnail(
-                //         "${communityModel.community_link}",
-                //       )
-                //     :
                 YoutubeConverter.getYoutubeThumbnail(
                   // "https://www.youtube.com/watch?v=-QhZnyAgKZk",
                   "${communityModel.community_link}",
@@ -113,8 +104,6 @@ class CommunityFreeBoardWidget extends StatelessWidget {
                             width: 12,
                           ),
                           Text(
-                            //FIXME 테이블에 count 필드 추가해야함
-                            // "723회",
                             "${communityModel.views}${getTranslated('TIMES', context)}",
                             style: TextStyle(
                               fontSize: 7.0,

@@ -64,7 +64,7 @@
   "RESERVATION_AMOUNT" : "예약금액",
   "DISCOUNT_10%" : "* 예약금액은 전체 금액의 10%입니다.",
   "PAYMENT_INFO" : "결제정보",
-  "GRADATION_INFO" : "계좌번호",
+  "GRADATION_INFO" : "현재",
   "DISCOUNT_HOLDER" : "예금주",
   "DEPOSIT_WARNING" : "입금자명과 회원님의 이름이 일치해야 하니 주의해주세요 :)",
   "DEPOSIT_WARNING_NEXT" : "입금이 확인되면 다음단계로 넘어갑니다.",

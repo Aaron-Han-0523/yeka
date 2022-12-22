@@ -21,11 +21,13 @@ class MenuProvider extends ChangeNotifier {
   int _latestPageSize;
 
   List<MenuModel> _latestMenuList = [];
+  List<MenuModel> _menuList = [];
   List<int> _offsetList = [];
   int _lOffset = 0;
   int limit = 6;
 
   List<MenuModel> get latestMenuList => _latestMenuList;
+  List<MenuModel> get menuList => _menuList;
 
   int get lOffset => _lOffset;
 
@@ -71,7 +73,7 @@ class MenuProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await menuRepo.getMenuList(limit, offset * limit);
+      ApiResponse apiResponse = await menuRepo.getLatestMenuList(limit, offset * limit);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
         _latestMenuList.addAll(MenuList.fromList(apiResponse.response.data).menuList);
@@ -88,5 +90,22 @@ class MenuProvider extends ChangeNotifier {
         notifyListeners();
       }
     }
+  }
+
+  Future<void> getMenuList(MenuModel menuModel, BuildContext context,) async {
+    _menuList = [];
+    _filterFirstLoading = true;
+    _filterIsLoading = true;
+
+    ApiResponse apiResponse = await menuRepo.getMenuList(menuModel);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      _menuList.addAll(MenuList.fromList(apiResponse.response.data).menuList);
+      _filterFirstLoading = false;
+      _filterIsLoading = false;
+    } else {
+      ApiChecker.checkApi(context, apiResponse);
+    }
+    notifyListeners();
   }
 }

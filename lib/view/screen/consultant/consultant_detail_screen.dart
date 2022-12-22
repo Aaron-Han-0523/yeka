@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/data/model/response/menu_model.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
@@ -9,7 +9,9 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
+import '../../../provider/menu_provider.dart';
 import '../../../utill/app_constants.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -46,8 +48,13 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
       consultant_id: widget.userModel.id,
     );
 
-    Provider.of<CustomImageProvider>(context, listen: false)
+    await Provider.of<CustomImageProvider>(context, listen: false)
         .getImageListByConsultantId(imageModel);
+
+    MenuModel menuModel = MenuModel(consultant_id: widget.userModel.id);
+
+    await Provider.of<MenuProvider>(context, listen: false)
+        .getMenuList(menuModel, context);
   }
 
   @override
@@ -105,7 +112,12 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                         child: Container(
                           child: FadeInImage.assetNetwork(
                             placeholder: Images.placeholder1,
-                            image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL + "/upload/placeholder_1x1.png",
+                            image: widget.userModel.title_image != null
+                                ? AppConstants.BASE_URL +
+                                    "/" +
+                                    widget.userModel.title_image
+                                : AppConstants.BASE_URL +
+                                    "/upload/placeholder_1x1.png",
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width * 0.9,
                             height: MediaQuery.of(context).size.width * 0.9,
@@ -140,7 +152,9 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                                     buttonText:
                                         "${getTranslated('ENROLL', context)}",
                                   ),
-                                  SizedBox( height: Dimensions.PADDING_SIZE_EXTRA_LARGE, ),
+                                  SizedBox(
+                                    height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
+                                  ),
                                 ],
                               ),
                             ),
@@ -155,7 +169,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                             child: Text(
                               "${getTranslated('DETAIL_INFO', context)}",
                               style: TextStyle(
-                              //   color: Color(0xff333333),
+                                //   color: Color(0xff333333),
                                 fontSize: 12,
                               ),
                             ),
@@ -186,8 +200,8 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           controller: _tabController,
                           physics: BouncingScrollPhysics(),
                           children: [
-                            ConsultantDetailWidget(),
-                            ConsultantMenuWidget(userModel : widget.userModel),
+                            ConsultantDetailWidget(userModel: widget.userModel),
+                            ConsultantMenuWidget(userModel: widget.userModel),
                             ConsultantPortfolioWidget(),
                           ],
                         ),

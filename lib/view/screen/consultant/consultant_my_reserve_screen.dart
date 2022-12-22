@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
+import '../../../data/model/response/consulting_model.dart';
+import '../../../data/model/response/menu_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../utill/app_constants.dart';
 import '../../../utill/color_resources.dart';
@@ -16,11 +16,15 @@ import 'consultant_payment_screen.dart';
 class ConsultantMyReserveScreen extends StatefulWidget {
   final bool isCreateScreen;
   final UserModel userModel;
+  final MenuModel menuModel;
+  final ConsultingModel consultingModel;
 
   const ConsultantMyReserveScreen({
     Key key,
     this.isCreateScreen = true,
     this.userModel,
+    this.consultingModel,
+    this.menuModel,
   }) : super(key: key);
 
   @override
@@ -152,7 +156,12 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                           height: 340,
                           child: FadeInImage.assetNetwork(
                             placeholder: Images.placeholder1,
-                            image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL + "/upload/placeholder_1x1.png",
+                            image: widget.userModel.title_image != null
+                                ? AppConstants.BASE_URL +
+                                    "/" +
+                                    widget.userModel.title_image
+                                : AppConstants.BASE_URL +
+                                    "/upload/placeholder_1x1.png",
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width * 0.89333,
                             height: MediaQuery.of(context).size.width * 0.89333,
@@ -163,7 +172,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 5, 0, 9),
                       child: Text(
-                        "#피부관련전공   #전문과정수료   #블로그 운영",
+                        "${widget.userModel.hashtag}",
                         style: TextStyle(
                           color: Color(0xff0123B4),
                           fontSize: 10,
@@ -175,7 +184,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 0, 5, 16),
                           child: Text(
-                            "임지은",
+                            "${widget.userModel.name}",
                             style: TextStyle(
                               color: Color(0xff121212),
                               fontSize: 22,
@@ -222,7 +231,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                               // height: 32,
                               // color: Colors.red,
                               child: Text(
-                                "010-0000-0000",
+                                "${widget.userModel.phone}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -252,7 +261,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                               // height: 32,
                               // color: Colors.red,
                               child: Text(
-                                "서울특별시 강남구",
+                                "${widget.userModel.address2}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -278,7 +287,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             ),
                             Container(
                               child: Text(
-                                "서울특별시 강남구 테헤란로 51길 14(브라운 스 5층 501)",
+                                "${widget.userModel.address2} ${widget.userModel.address3}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -304,7 +313,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             ),
                             Container(
                               child: Text(
-                                "2022. 11. 22(금)",
+                                "${widget.consultingModel.reservation_date}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -328,15 +337,19 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                                 ),
                               ),
                             ),
-                            Container(
-                              child: Text(
-                                "인천대학교 메이크업아티스트 학과 전공\n피부미용사자격증 1급\n올댓뷰티아카데미 피부관리강사 경력 6년\n베스트 공모전 입상"
-                                "\n올댓뷰티아카데미 전문교육수료\nYOUTUBE 개인 채널 운영\n피부관련 개인 블로그 운영",
-                                style: TextStyle(
-                                  color: Color(0xff333333),
-                                  fontSize: 14,
-                                ),
-                              ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                for (var text in (widget.userModel.resume ?? "")
+                                    .split("\\n"))
+                                  Text(
+                                    text,
+                                    style: TextStyle(
+                                      color: Color(0xff333333),
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                              ],
                             ),
                           ],
                         ),
@@ -357,7 +370,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             ),
                             Container(
                               child: Text(
-                                "00000-00-00000",
+                                "${widget.userModel.business_registration_number}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -404,11 +417,15 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => ConsultantPaymentScreen(userModel: widget.userModel),
+                              builder: (_) => ConsultantPaymentScreen(
+                                userModel: widget.userModel,
+                                consultingModel: widget.consultingModel,
+                              ),
                             ),
                           );
                         },
-                        buttonText: "${getTranslated('CONSULTANT_COMPLETE', context)}"),
+                        buttonText:
+                            "${getTranslated('CONSULTANT_COMPLETE', context)}"),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
