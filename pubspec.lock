@@ -767,7 +767,7 @@ packages:
       name: syncfusion_flutter_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "20.3.61"
+    version: "20.4.38"
   syncfusion_flutter_datepicker:
     dependency: "direct main"
     description:
@@ -775,6 +775,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "20.3.61"
+  syncfusion_flutter_sliders:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_sliders
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "20.4.38"
   term_glyph:
     dependency: transitive
     description:

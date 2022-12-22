@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yeka/provider/auth_provider.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
-import 'package:yeka/view/screen/product/product_view.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/product_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
+import 'mypage_favorite_view.dart';
 
 class MyPageFavoriteListScreen extends StatefulWidget {
   @override
@@ -16,9 +19,16 @@ class MyPageFavoriteListScreen extends StatefulWidget {
 class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
   final ScrollController _scrollController = ScrollController();
 
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+    Provider.of<ProductProvider>(context, listen: false)
+        .getLatestProductMyFavoriteList(0, user_id, context, reload: reload);
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _loadData(context, false);
   }
 
   @override
@@ -54,7 +64,7 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
                         child: Column(
                           children: [
 
-                            ProductView(
+                            MyPageFavoriteView(
                                 isHomePage: false,
                                 scrollController: _scrollController),
                             CustomElevatedButton(

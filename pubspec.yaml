@@ -69,6 +69,7 @@ dependencies:
   scrolling_page_indicator: ^0.1.2
   youtube_player_flutter: ^8.1.1
   syncfusion_flutter_datepicker: ^20.3.59
+  syncfusion_flutter_sliders: ^20.4.38
 
 dev_dependencies:
   flutter_test:

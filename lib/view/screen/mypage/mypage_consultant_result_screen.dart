@@ -10,26 +10,60 @@ import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../home/widget/footer_screens.dart';
 
-class ConsultantResultScreen extends StatefulWidget {
+class MyPageConsultantResultScreen extends StatefulWidget {
   final bool isCreateScreen;
   final UserModel userModel;
 
-  const ConsultantResultScreen({
+  const MyPageConsultantResultScreen({
     Key key,
     this.isCreateScreen = true, this.userModel,
   }) : super(key: key);
 
   @override
-  State<ConsultantResultScreen> createState() => _ConsultantResultScreenState();
+  State<MyPageConsultantResultScreen> createState() => _MyPageConsultantResultScreenState();
 }
 
-class _ConsultantResultScreenState extends State<ConsultantResultScreen>
+class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScreen>
     with TickerProviderStateMixin {
-  double _currentSliderValue1 = 20;
-  double _currentSliderValue2 = 20;
-  double _currentSliderValue3 = 20;
-  double _currentSliderValue4 = 20;
-  double _currentSliderValue5 = 20;
+  SfRangeValues _currentSliderValue1 = SfRangeValues(30, 30);
+  SfRangeValues _currentSliderValue2 = SfRangeValues(30, 30);
+  SfRangeValues _currentSliderValue3 = SfRangeValues(30, 30);
+  SfRangeValues _currentSliderValue4 = SfRangeValues(30, 30);
+  SfRangeValues _currentSliderValue5 = SfRangeValues(30, 30);
+
+  Widget buildSlider(String leftString, String rightString, SfRangeValues currentSliderValue) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        17.0,
+        0.0,
+        17.0,
+        .0,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text("${leftString}"),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.65,
+            child: SfRangeSlider(
+              values: currentSliderValue,
+              max: 100,
+              activeColor: Color(0xfff8f8f8),
+              inactiveColor: Color(0xffdddddd),
+              enableTooltip: true,
+              // shouldAlwaysShowTooltip: true,
+              onChanged: (SfRangeValues value) {
+                setState(() {
+                  currentSliderValue = value;
+                });
+              },
+            ),
+          ),
+          Text("${rightString}"),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -734,194 +768,11 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("${getTranslated('WARM', context)}"),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.65,
-                            child: Slider(
-                              value: _currentSliderValue1,
-                              max: 100,
-                              divisions: 100,
-                              label: _currentSliderValue1.round().toString(),
-                              activeColor: Color(0xffdddddd),
-                              inactiveColor: Color(0xffdddddd),
-                              thumbColor: Color(0xfff8f8f8),
-                              onChanged: (double value) {
-                                setState(() {
-                                  _currentSliderValue1 = value;
-                                });
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("${getTranslated('COOL', context)}"),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("${getTranslated('CLEAR', context)}"),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.65,
-                            child: Slider(
-                              value: _currentSliderValue2,
-                              max: 100,
-                              divisions: 100,
-                              label: _currentSliderValue2.round().toString(),
-                              activeColor: Color(0xffdddddd),
-                              inactiveColor: Color(0xffdddddd),
-                              thumbColor: Color(0xfff8f8f8),
-                              onChanged: (double value) {
-                                setState(() {
-                                  _currentSliderValue2 = value;
-                                });
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                            child: Text("${getTranslated('CLOUDY', context)}"),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
-                          child: Text(
-                              "${getTranslated('HIGH_CONTRAST_IMAGE', context)}"),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
-                          child: Slider(
-                            value: _currentSliderValue3,
-                            max: 100,
-                            divisions: 100,
-                            label: _currentSliderValue3.round().toString(),
-                            activeColor: Color(0xffdddddd),
-                            inactiveColor: Color(0xffdddddd),
-                            thumbColor: Color(0xfff8f8f8),
-                            onChanged: (double value) {
-                              setState(() {
-                                _currentSliderValue3 = value;
-                              });
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                          child: Text(
-                              "${getTranslated('LOW_CONTRAST_IMAGE', context)}"),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(21, 0, 0, 0),
-                          child: Text(
-                              "${getTranslated('HIGH_BRIGHTNESS', context)}"),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
-                          child: Slider(
-                            value: _currentSliderValue4,
-                            max: 100,
-                            divisions: 100,
-                            label: _currentSliderValue4.round().toString(),
-                            activeColor: Color(0xffdddddd),
-                            inactiveColor: Color(0xffdddddd),
-                            thumbColor: Color(0xfff8f8f8),
-                            onChanged: (double value) {
-                              setState(() {
-                                _currentSliderValue4 = value;
-                              });
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 21, 0),
-                          child: Text(
-                              "${getTranslated('LOW_BRIGHTNESS', context)}"),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
-                          child: Text("${getTranslated('GLOSS', context)}"),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
-                          child: Slider(
-                            value: _currentSliderValue5,
-                            max: 100,
-                            divisions: 100,
-                            label: _currentSliderValue5.round().toString(),
-                            activeColor: Color(0xffdddddd),
-                            inactiveColor: Color(0xffdddddd),
-                            thumbColor: Color(0xfff8f8f8),
-                            onChanged: (double value) {
-                              setState(() {
-                                _currentSliderValue5 = value;
-                              });
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 17, 0),
-                          child: Text("${getTranslated('MATT', context)}"),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            "${getTranslated('GLOSS', context)}",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff333333),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: SfRangeSlider(
-                              values: SfRangeValues(1,3),
-                              max: 100,
-                              activeColor: Color(0xffdddddd),
-                              inactiveColor: Color(0xffdddddd),
-                              onChanged: (SfRangeValues value) {  },
-                            ),
-                          ),
-                          Text(
-                            "${getTranslated('MATT', context)}",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff333333),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    buildSlider(getTranslated('WARM', context), getTranslated('COOL', context), _currentSliderValue1),
+                    buildSlider(getTranslated('CLEAR', context), getTranslated('CLOUDY', context), _currentSliderValue2),
+                    buildSlider(getTranslated('HIGH_CONTRAST_IMAGE', context), getTranslated('LOW_CONTRAST_IMAGE', context), _currentSliderValue3),
+                    buildSlider(getTranslated('HIGH_BRIGHTNESS', context), getTranslated('LOW_BRIGHTNESS', context), _currentSliderValue4),
+                    buildSlider(getTranslated('GLOSS', context), getTranslated('MATT', context), _currentSliderValue5),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
                       child: Container(

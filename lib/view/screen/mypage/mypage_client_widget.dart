@@ -7,7 +7,7 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import '../../../data/model/response/consulting_model.dart';
 import '../../../localization/language_constrants.dart';
 import 'mypage_calendar.dart';
-import 'mypage_consultant_result_write.dart';
+import 'mypage_consultant_result_write_screen.dart';
 
 class MyPageClientWidget extends StatelessWidget {
   final ConsultingModel consultingModel;

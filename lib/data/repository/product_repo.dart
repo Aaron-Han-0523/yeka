@@ -84,6 +84,18 @@ class ProductRepo {
     }
   }
 
+  // limit = pageSize, skip = offset
+  Future<ApiResponse> getProductMyFavoriteList(int limit, int skip, int user_id) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_PRODUCT_MY_FAVORITE_URI + "?limit=$limit&skip=$skip&user_id=$user_id",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   Future<ApiResponse> getProduct(ProductModel productModel) async {
     try {
       final response = await dioClient.get(

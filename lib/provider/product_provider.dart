@@ -19,21 +19,28 @@ class ProductProvider extends ChangeNotifier {
   bool _firstLoading = true;
 
   int _latestPageSize;
+  int _latestMyFavoritePageSize;
 
   List<ProductModel> _latestProductList = [];
+  List<ProductModel> _latestProductMyFavoriteList = [];
   List<int> _offsetList = [];
+  List<int> _offsetMyFavoriteList = [];
   int _lOffset = 0;
+  int _lMyFavoriteOffset = 0;
   int limit = 6;
 
   List<ProductModel> get latestProductList => _latestProductList;
+  List<ProductModel> get latestProductMyFavoriteList => _latestProductMyFavoriteList;
 
   int get lOffset => _lOffset;
+  int get lMyFavoriteOffset => _lMyFavoriteOffset;
 
   bool get filterIsLoading => _filterIsLoading;
   bool get filterFirstLoading => _filterFirstLoading;
   bool get firstLoading => _firstLoading;
 
   int get latestPageSize => _latestPageSize;
+  int get latestMyFavoritePageSize => _latestMyFavoritePageSize;
 
   void addProduct(ProductModel productModel) {
     productRepo.addProduct(productModel);
@@ -76,6 +83,39 @@ class ProductProvider extends ChangeNotifier {
           apiResponse.response.statusCode == 200) {
         _latestProductList.addAll(ProductList.fromList(apiResponse.response.data).productList);
         _latestPageSize = ProductList.fromList(apiResponse.response.data).count;
+        _filterFirstLoading = false;
+        _filterIsLoading = false;
+      } else {
+        ApiChecker.checkApi(context, apiResponse);
+      }
+      notifyListeners();
+    } else {
+      if (_filterIsLoading) {
+        _filterIsLoading = false;
+        notifyListeners();
+      }
+    }
+  }
+
+  Future<void> getLatestProductMyFavoriteList(int offset, int user_id, BuildContext context,
+      {bool reload = false}) async {
+    if (reload) {
+      _offsetMyFavoriteList = [];
+      _latestProductMyFavoriteList = [];
+    }
+
+    _lMyFavoriteOffset = offset;
+
+    if (!_offsetMyFavoriteList.contains(offset)) {
+      _offsetMyFavoriteList.add(offset);
+
+      // limit = pageSize
+      // skip = offset
+      ApiResponse apiResponse = await productRepo.getProductMyFavoriteList(limit, offset * limit, user_id);
+      if (apiResponse.response != null &&
+          apiResponse.response.statusCode == 200) {
+        _latestProductMyFavoriteList.addAll(ProductList.fromList(apiResponse.response.data).productList);
+        _latestMyFavoritePageSize = ProductList.fromList(apiResponse.response.data).count;
         _filterFirstLoading = false;
         _filterIsLoading = false;
       } else {

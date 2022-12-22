@@ -9,8 +9,8 @@ import '../../../provider/auth_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../aitest/ai_result_screen.dart';
 import '../consultant/consultant_my_reserve_screen.dart';
-import '../consultant/consultant_result_screen.dart';
 import 'mypage_client_list_screen.dart';
+import 'mypage_consultant_result_screen.dart';
 import 'mypage_consultant_update.dart';
 import 'mypage_favorite_list_screen.dart';
 import 'mypage_notice_board_list_screen.dart';
@@ -54,7 +54,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESULT', context)}",
-          ConsultantResultScreen(),
+          MyPageConsultantResultScreen(),
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('ORDER_LIST', context)}",
