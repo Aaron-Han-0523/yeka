@@ -42,6 +42,13 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
   List<bool> stageValues = [];
 
   @override
+  void initState() {
+    testList.add("${getTranslated('AI_test_ko', context)}");
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),
