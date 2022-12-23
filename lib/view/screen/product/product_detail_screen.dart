@@ -204,7 +204,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                       const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                   child: Text(
                                     "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble())} ${getTranslated('WON', context)}" ??
-                                        '0 ${getTranslated('WON', context)}',
+                                        '${widget.productModel.price} ${getTranslated('WON', context)}',
                                     style: TextStyle(
                                       color: Color(0xFF0123B4),
                                       fontSize: 24,
@@ -463,7 +463,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                content: Text("상품 찜 등록은 로그인해야 합니다."),
+                                content: Text("${getTranslated('LOGIN_FAVORITE_REGISTERING', context)}"),
                                 backgroundColor: Colors.red),
                                 );
                                 }

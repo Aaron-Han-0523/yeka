@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/data/model/response/consulting_model.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
@@ -12,6 +13,11 @@ import '../../basewidget/dropdown/CustomDropdownButton2.dart';
 import '../../basewidget/textfield/custom_textfield.dart';
 
 class MyPagePaymentScreen extends StatefulWidget {
+  final ConsultingModel consultingModel;
+
+  const MyPagePaymentScreen({Key key, this.consultingModel}) : super(key: key);
+
+
   @override
   State<MyPagePaymentScreen> createState() => _MyPagePaymentScreenState();
 }
@@ -77,7 +83,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "정하운",
+                                          "${widget.consultingModel.client_name}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -99,7 +105,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "22.11.09",
+                                          "${widget.consultingModel.payment_amount}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -121,7 +127,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "톡으로 만나는 나만의 피부 진단 :)",
+                                          "${widget.consultingModel.consulting_title}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -142,7 +148,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "300,000${getTranslated('WON', context)}",
+                                          "${widget.consultingModel.payment_amount}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -186,7 +192,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "20${getTranslated('PERCENT', context)}",
+                                          "${widget.consultingModel.commission}${getTranslated('PERCENT', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -217,7 +223,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                         ),
 
                                         Text(
-                                          "240,000${getTranslated('WON', context)}",
+                                          "${widget.consultingModel.final_amount}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                               color: Color(0xffFF0000),
                                               fontSize: 11,
@@ -253,7 +259,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "정하운",
+                                          "${widget.consultingModel.client_name}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -275,7 +281,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "22.11.09",
+                                          "${widget.consultingModel.payment_date}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -297,7 +303,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "톡으로 만나는 나만의 피부 진단 :)",
+                                          "${widget.consultingModel.consulting_title}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -318,7 +324,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "300,000${getTranslated('WON', context)}",
+                                          "${widget.consultingModel.payment_amount}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -362,7 +368,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "20${getTranslated('PERCENT', context)}",
+                                          "${widget.consultingModel.commission}${getTranslated('PERCENT', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -393,7 +399,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                         ),
 
                                         Text(
-                                          "240,000${getTranslated('WON', context)}",
+                                          "${widget.consultingModel.final_amount}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                               color: Color(0xffFF0000),
                                               fontSize: 11,

@@ -67,7 +67,7 @@ class _CommunityYoutubeListScreenState
             controller: _scrollController,
             slivers: [
               CustomSliverAppBar(
-                "${getTranslated('YTUBE_MOVIE_AND_COLUM', context)}",
+                "${getTranslated('YOUTUBE_MOVIE_AND_COLUM', context)}",
               ),
               SliverToBoxAdapter(
                 child: Column(

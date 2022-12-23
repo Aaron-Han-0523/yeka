@@ -172,12 +172,12 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                    content: Text("날짜를 선택하세요."),
+                                    content: Text("${getTranslated('PLEASE_SELECT_DATE', context)}"),
                                     backgroundColor: Colors.red),
                               );
                             }
                           },
-                          buttonText: "적용하기",
+                          buttonText: "${getTranslated('APPLY', context)}",
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                         ),
 

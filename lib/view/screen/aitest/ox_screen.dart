@@ -19,23 +19,7 @@ class OXPage extends StatefulWidget {
 }
 
 class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
-  var testList = [
-    "피부가 노랗다",
-    "피부가 얇다",
-    "피부가 잘 탄다",
-    "모발이 까만편이다",
-    "머리 숱이 적다",
-    "파란색 옷이 잘 어울린다",
-    "밝은색 옷이 잘 어울린다",
-    "검은색 옷이 잘 어울린다",
-    "파스텔 계열 옷이 잘 어울린다",
-    "머스타드, 브라운 옷이 잘 어울린다",
-    "쨍한 옷이 잘 어울린다",
-    "골드가 잘 어울린다",
-    "진주가 잘 어울린다",
-    "립 컬러가 플럼끼가 있거나 딥한 와인 컬러가 어울린다",
-    "립 컬러가 오렌지가 어울린다",
-  ];
+  var testList = [];
 
   int stage = 0;
 
@@ -43,7 +27,21 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    testList.add("${getTranslated('AI_test_ko', context)}");
+    testList.add("${getTranslated('TEST_QNA1', context)}");
+    testList.add("${getTranslated('TEST_QNA2', context)}");
+    testList.add("${getTranslated('TEST_QNA3', context)}");
+    testList.add("${getTranslated('TEST_QNA4', context)}");
+    testList.add("${getTranslated('TEST_QNA5', context)}");
+    testList.add("${getTranslated('TEST_QNA6', context)}");
+    testList.add("${getTranslated('TEST_QNA7', context)}");
+    testList.add("${getTranslated('TEST_QNA8', context)}");
+    testList.add("${getTranslated('TEST_QNA9', context)}");
+    testList.add("${getTranslated('TEST_QNA10', context)}");
+    testList.add("${getTranslated('TEST_QNA11', context)}");
+    testList.add("${getTranslated('TEST_QNA12', context)}");
+    testList.add("${getTranslated('TEST_QNA13', context)}");
+    testList.add("${getTranslated('TEST_QNA14', context)}");
+    testList.add("${getTranslated('TEST_QNA15', context)}");
 
     super.initState();
   }
@@ -78,7 +76,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                                 padding: const EdgeInsets.fromLTRB(
                                     12.0, 5.0, 12.0, 0.0),
                                 child: Text(
-                                  "${getTranslated('AI_test', context)}",
+                                  "AI TEST",
                                   style: TextStyle(
                                     fontSize: 70,
                                     color: Color(0xff444444),

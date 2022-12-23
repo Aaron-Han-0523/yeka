@@ -91,7 +91,7 @@ class _MyPageNoticeBoardDetailScreenState
                                           SizedBox(width: 3),
 
                                           Text(
-                                            "456${getTranslated('TIMES', context)}",
+                                            "${widget.communityModel.views}${getTranslated('TIMES', context)}",
                                             style: TextStyle(
                                               fontSize: 8.0,
                                               color: Color(0xff999999),

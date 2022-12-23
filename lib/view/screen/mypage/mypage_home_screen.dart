@@ -93,7 +93,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
     } else {
       myPageList.children.add(buildItem(
         "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
-        Text("로그인하세요."),
+        Text("${getTranslated('PLEASE_LOGIN', context)}"),
       ));
     }
   }
@@ -125,7 +125,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                     ),
                   ),
                   Text(
-                    " >",
+                    " ${getTranslated('>', context)}",
                     style: TextStyle(
                       fontSize: 18,
                       color: Color(0xff333333),
@@ -178,7 +178,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${map["username"]} ${map["user_type"] == 0 ? "사용자" : "컨설턴트"} ${getTranslated('HELLO_SIR', context)}",
+                              "${map["username"]} ${map["user_type"] == 0 ? "${getTranslated('USER', context)}" : "${getTranslated('CONSULTANT', context)}"} ${getTranslated('HELLO_SIR', context)}",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Color(0xff000000),

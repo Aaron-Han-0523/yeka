@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/data/model/response/order_model.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
@@ -11,6 +12,10 @@ import '../consultant/consultant_result_screen.dart';
 import 'mypage_order_detail_screen.dart';
 
 class MyPageOrderScreen extends StatefulWidget {
+  final OrderModel orderModel;
+
+  const MyPageOrderScreen({Key key, this.orderModel}) : super(key: key);
+
   @override
   State<MyPageOrderScreen> createState() => _MyPageOrderScreenState();
 }
@@ -18,6 +23,7 @@ class MyPageOrderScreen extends StatefulWidget {
 class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
   final ScrollController _scrollController = ScrollController();
 
+  //fixme 수정필요
   var titleList = [
     "제 피부톤에 ?",
     "제 피부톤에 어떤 화장품이 잘 어울릴까요?",
@@ -101,6 +107,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Text(
+                                                      //fixme 주문서 번호가 테이블에 확인이 안되어 일단 표시만 해둠
                                                       "${getTranslated('ORDER_NUMBER', context)}:2022112492135423",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
@@ -121,7 +128,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "[ALOS]마스크팩 3입",
+                                                      "${widget.orderModel.title}",
                                                       style: TextStyle(
                                                           color: Color(0xff000000),
                                                           fontSize: 13,
@@ -134,7 +141,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "${getTranslated('COLOR_', context)}투명",
+                                                      "${getTranslated('COLOR_', context)}${widget.orderModel.option}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -150,7 +157,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      "${getTranslated('AMOUNT_', context)}1${getTranslated('SOME', context)}",
+                                                      "${getTranslated('AMOUNT_', context)}${widget.orderModel.quantity}${getTranslated('SOME', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -166,7 +173,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      "2022.11.21",
+                                                      "${widget.orderModel.create_date}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -181,7 +188,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "10,500${getTranslated('WON', context)}",
+                                                      "${widget.orderModel.price}${getTranslated('WON', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff0123B4),
                                                         fontSize: 13,

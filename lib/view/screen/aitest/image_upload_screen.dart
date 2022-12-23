@@ -63,7 +63,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                   Stack(
                                     children: [
                                       Text(
-                                        "${getTranslated('AI_test', context)}",
+                                        "AI TEST",
                                         style: TextStyle(
                                           fontSize: 72,
                                           color: Color(0xff444444),

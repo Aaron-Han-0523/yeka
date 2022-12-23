@@ -14,6 +14,7 @@ class MyPageClientWidget extends StatelessWidget {
 
   MyPageClientWidget({this.consultingModel});
 
+  // FIXME 대표님 이부분은 에러가 생겨 작업하지 못했습니다.
   Widget paymentState(int paymentState) {
     String result = "";
     Color color = Colors.white;

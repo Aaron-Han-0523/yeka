@@ -18,11 +18,22 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  var categoryDropdownItems = ["상의", "하의", "신발", "화장품"];
-  var sortDropdownItems = ["인기순", "신제품순"];
+  var categoryDropdownItems = [];
+  var sortDropdownItems = [];
   int categoryDropdownValue = 0;
   int sortDropdownValue = 0;
 
+  @override
+  void initState() {
+    categoryDropdownItems.add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_TOP', context)}");
+    categoryDropdownItems.add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_BOTTOMS', context)}");
+    categoryDropdownItems.add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_SHOES', context)}");
+    categoryDropdownItems.add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_COSMETICS', context)}");
+    sortDropdownItems.add("${getTranslated('SORT_DROPDOWN_ITEMS_POPULARITY_ORDER', context)}");
+    sortDropdownItems.add("${getTranslated('SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER', context)}");
+
+    super.initState();
+  }
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<ProductProvider>(context, listen: false)
         .getLatestProductList(0, context, reload: reload);

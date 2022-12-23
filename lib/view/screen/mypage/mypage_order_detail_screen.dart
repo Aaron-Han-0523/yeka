@@ -83,6 +83,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
+                                          //fixme 주문번호 확인필요
                                           "${getTranslated('ORDER_NUMBER', context)}2022112492135423",
                                           style: TextStyle(
                                               color: Color(0xff999999),
@@ -103,7 +104,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                     Row(
                                       children: [
                                         Text(
-                                          "[ALOS]마스크팩 3입",
+                                          "${widget.orderModel.title}",
                                           style: TextStyle(
                                               color: Color(0xff000000),
                                               fontSize: 18,
@@ -116,7 +117,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                     Row(
                                       children: [
                                         Text(
-                                          "${getTranslated('COLOR_', context)}투명",
+                                          "${getTranslated('COLOR_', context)}${widget.orderModel.option}",
                                           style: TextStyle(
                                             color: Color(0xff999999),
                                             fontSize: 12,
@@ -132,7 +133,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                           ),
                                         ),
                                         Text(
-                                          "${getTranslated('AMOUNT_', context)}1${getTranslated('SOME', context)}",
+                                          "${getTranslated('AMOUNT_', context)}${widget.orderModel.quantity}${getTranslated('SOME', context)}",
                                           style: TextStyle(
                                             color: Color(0xff999999),
                                             fontSize: 12,
@@ -140,7 +141,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                           ),
                                         ),
                                         Text(
-                                          " | ",
+                                          "${getTranslated('|', context)}",
                                           style: TextStyle(
                                             color: Color(0xff999999),
                                             fontSize: 12,
@@ -148,7 +149,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                           ),
                                         ),
                                         Text(
-                                          "2022.11.21",
+                                          "${widget.orderModel.create_date}",
                                           style: TextStyle(
                                             color: Color(0xff999999),
                                             fontSize: 12,
@@ -163,7 +164,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                                     Row(
                                       children: [
                                         Text(
-                                          "10,500${getTranslated('WON', context)}",
+                                          "${widget.orderModel.price}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                             color: Color(0xff0123B4),
                                             fontSize: 18,

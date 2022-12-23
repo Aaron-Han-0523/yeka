@@ -129,7 +129,7 @@ class _MyPageCalendarScreenState extends State<MyPageCalendarScreen> {
                             Provider.of<ConsultingProvider>(context, listen: false).updateConsulting(widget.consultingModel);
 
                           },
-                          buttonText: "적용하기",
+                          buttonText: "${getTranslated('APPLY', context)}",
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                         ),
 

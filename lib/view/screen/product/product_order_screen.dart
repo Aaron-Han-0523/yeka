@@ -146,6 +146,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                   Row(
                                     children: [
                                       Text(
+                                        //fixme 주문번호
                                         "${getTranslated('ORDER_NUMBER', context)}:2022112492135423",
                                         style: TextStyle(
                                           color: Color(0xff999999),
@@ -167,7 +168,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
                                     child: Text(
-                                      "[ALOS] 마스크팩 3입",
+                                      "${widget.orderModel.title}",
                                       style: TextStyle(
                                         color: Color(0xff000000),
                                         fontSize: 16,
@@ -179,7 +180,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "${getTranslated('COLOR', context)}${getTranslated(':', context)}투명",
+                                        "${getTranslated('COLOR', context)}${getTranslated(':', context)}${widget.orderModel.option}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -193,7 +194,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('AMOUNT', context)}${getTranslated('|', context)}14664566${getTranslated('SOME', context)}",
+                                        "${getTranslated('AMOUNT', context)}${getTranslated('|', context)}${widget.orderModel.quantity}${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -207,7 +208,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                         ),
                                       ),
                                       Text(
-                                        "2022.11.21",
+                                        "${widget.orderModel.create_date}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -218,7 +219,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                     child: Text(
-                                      "10,500${getTranslated('WON', context)}",
+                                      "${widget.orderModel.price}${getTranslated('WON', context)}",
                                       style: TextStyle(
                                         color: Color(0xff0123B4),
                                         fontSize: 16,

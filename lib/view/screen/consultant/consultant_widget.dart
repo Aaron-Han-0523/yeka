@@ -104,7 +104,7 @@ class ConsultantWidget extends StatelessWidget {
                 height: Dimensions.PADDING_SIZE_SMALL,
               ),
               Text(
-                userModel.create_date ?? '- 인천대학교',
+                userModel.create_date ?? '${getTranslated('INCHEON_NATIONAL_UNIVERSITY', context)}',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
@@ -114,7 +114,7 @@ class ConsultantWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                userModel.bank1 ?? '- 피부미용사자격증',
+                userModel.bank1 ?? '${getTranslated('SKINCARE_HAIRDRESSER_LICENSE', context)}',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
@@ -124,7 +124,7 @@ class ConsultantWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                userModel.bank1 ?? '- 올댓뷰티아카데미',
+                userModel.bank1 ?? '${getTranslated('ALL_THAT_ACADEMY', context)}',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:yeka/data/model/response/personal_color_model.dart';
 import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
@@ -20,10 +21,11 @@ class ConsultantResultScreen extends StatefulWidget {
   final ConsultingModel consultingModel;
   final MenuModel menuModel;
   final UserModel userModel;
+  final PersonalColorModel personalColorModel;
 
   const ConsultantResultScreen({
     Key key,
-    this.isCreateScreen = true, this.userModel, this.consultingModel, this.menuModel,
+    this.isCreateScreen = true, this.userModel, this.consultingModel, this.menuModel, this.personalColorModel,
   }) : super(key: key);
 
   @override
@@ -291,7 +293,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                   child: Text(
-                                    "봄 라이트",
+                                    // fixme Model에 변수 없음
+                                    "${widget.consultingModel.season} ${widget.consultingModel.detail_season_type}",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 18,
@@ -305,7 +308,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                               child: Row(
                                 children: [
                                   Text(
-                                    "맑고 따뜻한 색이 잘 어울리는 봄 라이트",
+                                    "${widget.personalColorModel.description}",
                                     style: TextStyle(
                                       color: Color(0xff999999),
                                       fontSize: 11,
@@ -320,7 +323,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   padding:
                                       const EdgeInsets.fromLTRB(9, 0, 0, 3),
                                   child: Text(
-                                    "#가벼운 #여성스러운 #싱그러운 #따뜻한 #아기자기한 #밝은 #로멘틱한",
+                                    "${widget.personalColorModel.tag}",
                                     style: TextStyle(
                                       color: Color(0xff999999),
                                       fontSize: 11,
@@ -506,17 +509,18 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                       child: Text(
-                        "따뜻한 파스텔 계열이 잘 어울리는 봄 라이트는 밝은 색이\n중요하기에 어둡거나 선명한 색상은 피하는게 좋습니다.\n대비감이 어울리지 않기에 비슷한 느낌의 색상으로 자연스럽게\n매치하는 것이 좋습니다.",
+                        "${widget.personalColorModel.fashion}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
                         ),
                       ),
                     ),
+                    // fixme 대표님 이부분 fashion으로 합쳐야 하지 않을까요??
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
                       child: Text(
-                        "옷의 패턴과 악세사리는 꽃, 하트, 땡땡이 리본과 곡선적인 라인이 좋고\n큰 사이즈보다는 중간 ~ 작은 사이즈가 좋고 아세사리는 로즈골드,\n샴페인골드 색상이 좋습니다.",
+                        "${widget.personalColorModel.fashion}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -563,7 +567,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
                       child: Text(
-                        "허니 브라운, 밀크 브라운, 내추럴브라운, 애쉬 브라운, 라이트 브라운과 같이 밝은 브라운이 잘 어울리고 너무 노란 골드 브라운, 채도가 높은 체리레드, 명도가 낮은 블랙은 피해주시는게 좋습니다.",
+                        "${widget.personalColorModel.hair}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -610,7 +614,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
                       child: Text(
-                        "달콤하고 상큼한 향 ~ #시트리스 #프루티 #블로썸 #살구 #복숭아",
+                        "${widget.personalColorModel.perfume}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -691,7 +695,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "뉴트럴 컬러의 얇고 촉촉하며 은은한 광",
+                                      "${widget.personalColorModel.makeup_base}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -719,7 +723,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                       padding:
                                           const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                       child: Text(
-                                        "피치코랄, 따뜻한 색감이 많이 느껴지지 않는 베이지",
+                                        "${widget.personalColorModel.makeup_eye}",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Color(0xff333333),
@@ -751,7 +755,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "피치코랄",
+                                      "${widget.personalColorModel.makeup_blusher}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -778,7 +782,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "웜톤이라고 고체도의 오렌지나 다홍색은 피해주시고 코랄 같은 핑크 계열",
+                                      "${widget.personalColorModel.lip}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -843,7 +847,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "고객님께서는 기존 피부톤 자체가 타고 나셔서 봄라이트 색으로 코디를 해주시면 더욱 멋진 사람이 될 것 같아요~ 물론 지금도 예쁘시지만 ^^ 앞으로도 조금 더 건강하고 예쁜 미인으로 거듭나시길 바랄게요 :) 상담하시느라 고생많으셨어요 ㅠ",
+                                // fixme Model에 변수 없음
+                                "${widget.consultingModel.consulting_content}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 12,
