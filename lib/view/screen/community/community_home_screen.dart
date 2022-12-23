@@ -31,13 +31,128 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
 
     Provider.of<CommunityFreeBoardProvider>(context, listen: false)
         .getCommunityList(0, context);
-
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _loadData(context, false);
+  }
+
+  Widget buildCommunityYoutube() {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        Dimensions.HOME_PAGE_PADDING,
+        0,
+        Dimensions.PADDING_SIZE_DEFAULT,
+        Dimensions.PADDING_SIZE_SMALL,
+      ),
+      child: Column(
+        children: [
+          Consumer<CommunityYoutubeProvider>(
+            builder: (context, provider, child) {
+              List<CommunityModel> list = provider.latestCommunityList;
+
+              print('========hello hello===>${list.length}');
+
+              return Column(children: [
+                !provider.filterFirstLoading
+                    ? list.length != 0
+                        ? StaggeredGridView.countBuilder(
+                            itemCount: list.length > 4 ? 4 : list.length,
+                            crossAxisCount: 1,
+                            padding: EdgeInsets.all(0),
+                            physics: NeverScrollableScrollPhysics(),
+                            // scrollDirection:
+                            //     isHomePage ? Axis.horizontal : Axis.vertical,
+                            shrinkWrap: true,
+                            staggeredTileBuilder: (int index) =>
+                                StaggeredTile.fit(1),
+                            itemBuilder: (BuildContext context, int index) {
+                              return CommunityYoutubeWidget(
+                                  communityModel: list[index]);
+                            },
+                          )
+                        : SizedBox.shrink()
+                    : ProductShimmer(
+                        isEnabled: provider.firstLoading,
+                        isHomePage: false,
+                      ),
+                provider.filterIsLoading
+                    ? Center(
+                        child: Padding(
+                        padding:
+                            EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
+                        child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).primaryColor)),
+                      ))
+                    : SizedBox.shrink(),
+              ]);
+            },
+          ),
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+        ],
+      ),
+    );
+  }
+
+  Widget buildCommunityFreeBoard() {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        Dimensions.HOME_PAGE_PADDING,
+        0,
+        Dimensions.PADDING_SIZE_DEFAULT,
+        Dimensions.PADDING_SIZE_SMALL,
+      ),
+      child: Column(
+        children: [
+          Consumer<CommunityFreeBoardProvider>(
+            builder: (context, provider, child) {
+              List<CommunityModel> list = provider.latestCommunityList;
+
+              print('========hello hello===>${list.length}');
+
+              return Column(children: [
+                !provider.filterFirstLoading
+                    ? list.length != 0
+                        ? StaggeredGridView.countBuilder(
+                            itemCount: list.length > 4 ? 4 : list.length,
+                            crossAxisCount: 1,
+                            padding: EdgeInsets.all(0),
+                            physics: NeverScrollableScrollPhysics(),
+                            // scrollDirection:
+                            //     isHomePage ? Axis.horizontal : Axis.vertical,
+                            shrinkWrap: true,
+                            staggeredTileBuilder: (int index) =>
+                                StaggeredTile.fit(1),
+                            itemBuilder: (BuildContext context, int index) {
+                              return CommunityFreeBoardWidget(
+                                  communityModel: list[index]);
+                            },
+                          )
+                        : SizedBox.shrink()
+                    : ProductShimmer(
+                        isEnabled: provider.firstLoading,
+                        isHomePage: false,
+                      ),
+                provider.filterIsLoading
+                    ? Center(
+                        child: Padding(
+                        padding:
+                            EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
+                        child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).primaryColor)),
+                      ))
+                    : SizedBox.shrink(),
+              ]);
+            },
+          ),
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+        ],
+      ),
+    );
   }
 
   @override
@@ -61,11 +176,12 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                             height: 200,
                             decoration: new BoxDecoration(
                                 image: new DecorationImage(
-                                  fit: BoxFit.fitWidth,
-                                  alignment: FractionalOffset.topCenter,
-                                  image: new AssetImage(Images.community_main,),
-                                )
-                            ),
+                              fit: BoxFit.fitWidth,
+                              alignment: FractionalOffset.topCenter,
+                              image: new AssetImage(
+                                Images.community_main,
+                              ),
+                            )),
                           ),
                           Positioned(
                             top: 37,
@@ -88,7 +204,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                               width: 96,
                               height: 10,
                               decoration: BoxDecoration(
-                                  color: Color(0x550077ff),
+                                color: Color(0x550077ff),
                               ),
                             ),
                           ),
@@ -133,7 +249,8 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                             Dimensions.HOME_PAGE_PADDING,
                             Dimensions.PADDING_SIZE_SMALL,
                             Dimensions.PADDING_SIZE_DEFAULT,
-                            Dimensions.PADDING_SIZE_SMALL),
+                            Dimensions.PADDING_SIZE_SMALL,
+                        ),
                         child: Column(
                           children: [
                             SizedBox(
@@ -155,7 +272,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                     ),
                                     Padding(
                                       padding:
-                                      const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                          const EdgeInsets.fromLTRB(8, 0, 0, 0),
                                       child: Text(
                                         "${getTranslated('BOARD_YOUTUBE_COLUMN', context)}",
                                         style: TextStyle(
@@ -193,61 +310,7 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
 
                             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  Dimensions.HOME_PAGE_PADDING,
-                                  0,
-                                  Dimensions.PADDING_SIZE_DEFAULT,
-                                  Dimensions.PADDING_SIZE_SMALL),
-                              child: Column(
-                                children: [
-                                  // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                                  // CustomElevatedButton(
-                                  //     onTap: () {}, buttonText: "더보기 ∨"),
-                                  Consumer<CommunityYoutubeProvider>(
-                                    builder: (context, communityProvider, child) {
-                                      List<CommunityModel> communityList = [];
-                                      communityList = communityProvider.latestCommunityList;
-
-                                      print('========hello hello===>${communityList.length}');
-
-                                      return Column(children: [
-                                        !communityProvider.filterFirstLoading
-                                            ? communityList.length != 0
-                                            ? StaggeredGridView.countBuilder(
-                                          itemCount: communityList.length > 4
-                                              ? 4
-                                              : communityList.length,
-                                          crossAxisCount: 1,
-                                          padding: EdgeInsets.all(0),
-                                          physics: NeverScrollableScrollPhysics(),
-                                          // scrollDirection:
-                                          //     isHomePage ? Axis.horizontal : Axis.vertical,
-                                          shrinkWrap: true,
-                                          staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
-                                          itemBuilder: (BuildContext context, int index) {
-                                            return CommunityYoutubeWidget(communityModel: communityList[index]);
-                                          },
-                                        )
-                                            : SizedBox.shrink()
-                                            : ProductShimmer(
-                                          isEnabled: communityProvider.firstLoading, isHomePage: false,),
-                                        communityProvider.filterIsLoading
-                                            ? Center(
-                                            child: Padding(
-                                              padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
-                                              child: CircularProgressIndicator(
-                                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                                      Theme.of(context).primaryColor)),
-                                            ))
-                                            : SizedBox.shrink(),
-                                      ]);
-                                    },
-                                  ),
-                                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                                ],
-                              ),
-                            ),
+                            buildCommunityYoutube(),
                           ],
                         ),
                       ),
@@ -256,7 +319,8 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                             Dimensions.HOME_PAGE_PADDING,
                             Dimensions.PADDING_SIZE_SMALL,
                             Dimensions.PADDING_SIZE_DEFAULT,
-                            Dimensions.PADDING_SIZE_SMALL),
+                            Dimensions.PADDING_SIZE_SMALL,
+                        ),
                         child: Column(
                           children: [
                             SizedBox(
@@ -311,64 +375,9 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                                 ),
                               ],
                             ),
-
                             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  Dimensions.HOME_PAGE_PADDING,
-                                  0,
-                                  Dimensions.PADDING_SIZE_DEFAULT,
-                                  Dimensions.PADDING_SIZE_SMALL),
-                              child: Column(
-                                children: [
-                                  // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                                  // CustomElevatedButton(
-                                  //     onTap: () {}, buttonText: "더보기 ∨"),
-                                  Consumer<CommunityFreeBoardProvider>(
-                                    builder: (context, communityProvider, child) {
-                                      List<CommunityModel> communityList = [];
-                                      communityList = communityProvider.latestCommunityList;
-
-                                      print('========hello hello===>${communityList.length}');
-
-                                      return Column(children: [
-                                        !communityProvider.filterFirstLoading
-                                            ? communityList.length != 0
-                                            ? StaggeredGridView.countBuilder(
-                                          itemCount: communityList.length > 4
-                                              ? 4
-                                              : communityList.length,
-                                          crossAxisCount: 1,
-                                          padding: EdgeInsets.all(0),
-                                          physics: NeverScrollableScrollPhysics(),
-                                          // scrollDirection:
-                                          //     isHomePage ? Axis.horizontal : Axis.vertical,
-                                          shrinkWrap: true,
-                                          staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
-                                          itemBuilder: (BuildContext context, int index) {
-                                            return CommunityFreeBoardWidget(communityModel: communityList[index]);
-                                          },
-                                        )
-                                            : SizedBox.shrink()
-                                            : ProductShimmer(
-                                          isEnabled: communityProvider.firstLoading, isHomePage: false,),
-                                        communityProvider.filterIsLoading
-                                            ? Center(
-                                            child: Padding(
-                                              padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
-                                              child: CircularProgressIndicator(
-                                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                                      Theme.of(context).primaryColor)),
-                                            ))
-                                            : SizedBox.shrink(),
-                                      ]);
-                                    },
-                                  ),
-                                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                                ],
-                              ),
-                            ),
+                            buildCommunityFreeBoard(),
                           ],
                         ),
                       ),

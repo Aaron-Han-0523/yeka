@@ -20,8 +20,11 @@ import '../../../provider/user_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../aitest/image_upload_screen.dart';
+import '../community/community_free_board_detail_screen.dart';
 import '../community/community_home_screen.dart';
+import '../community/community_youtube_detail_screen.dart';
 import '../consultant/consultant_list_screen.dart';
+import '../mypage/mypage_notice_board_detail_screen.dart';
 import '../product/product_list_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -71,6 +74,125 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _loadData(context, true);
   }
 
+  Widget buildCommunity() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(
+        8.0,
+        0.0,
+        8.0,
+        0.0,
+      ),
+      child: Consumer<CommunityProvider>(
+        builder: (context, provider, child) {
+          List<CommunityModel> list = provider.latestCommunityList;
+
+          print('========hello hello===>${list.length}');
+
+          return Column(children: [
+            !provider.filterFirstLoading
+                ? list.length != 0
+                    ? StaggeredGridView.countBuilder(
+                        itemCount: list.length > 4 ? 4 : list.length,
+                        crossAxisCount: 1,
+                        padding: EdgeInsets.all(0),
+                        physics: NeverScrollableScrollPhysics(),
+                        // scrollDirection:
+                        //     isHomePage ? Axis.horizontal : Axis.vertical,
+                        shrinkWrap: true,
+                        staggeredTileBuilder: (int index) =>
+                            StaggeredTile.fit(1),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: <Widget>[
+                              index == 0
+                                  ? Container()
+                                  : Divider(
+                                      height: 2.0,
+                                      color: Colors.grey,
+                                    ),
+                              InkWell(
+                                onTap: () {
+                                  if (list[index].community_type == 0) {
+                                    // 공지사항
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            MyPageNoticeBoardDetailScreen(communityModel: list[index],),
+                                      ),
+                                    );
+                                  } else if (list[index].community_type == 1) {
+                                    // 유튜브 및 칼럼
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            CommunityYoutubeDetailScreen(communityModel: list[index],),
+                                      ),
+                                    );
+                                  } else if (list[index].community_type == 2) {
+                                    // 자유게시판
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            CommunityFreeBoardDetailScreen(communityModel: list[index],),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                        12.0,
+                                        12.0,
+                                        12.0,
+                                        6.0,
+                                      ),
+                                      child: Text(
+                                        list[index].community_title,
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "${getTranslated('>', context)}",
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      )
+                    : SizedBox.shrink()
+                : ProductShimmer(
+                    isEnabled: provider.firstLoading,
+                    isHomePage: false,
+                  ),
+            provider.filterIsLoading
+                ? Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Theme.of(context).primaryColor),
+                      ),
+                    ),
+                  )
+                : SizedBox.shrink(),
+          ]);
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,8 +214,11 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
                         child: InkWell(
                           onTap: () => {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ImageUploadPage()))
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ImageUploadPage(),
+                              ),
+                            )
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
@@ -110,8 +235,11 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
                         child: InkWell(
                           onTap: () => {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ConsultantListScreen()))
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ConsultantListScreen(),
+                              ),
+                            )
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
@@ -239,103 +367,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         endIndent: 10,
                         color: Colors.black,
                       ),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(
-                          8.0,
-                          0.0,
-                          8.0,
-                          0.0,
-                        ),
-                        child: Consumer<CommunityProvider>(
-                          builder: (context, communityProvider, child) {
-                            List<CommunityModel> communityList = [];
-                            communityList =
-                                communityProvider.latestCommunityList;
-
-                            print(
-                                '========hello hello===>${communityList.length}');
-
-                            return Column(children: [
-                              !communityProvider.filterFirstLoading
-                                  ? communityList.length != 0
-                                      ? StaggeredGridView.countBuilder(
-                                          itemCount: communityList.length > 4
-                                              ? 4
-                                              : communityList.length,
-                                          crossAxisCount: 1,
-                                          padding: EdgeInsets.all(0),
-                                          physics:
-                                              NeverScrollableScrollPhysics(),
-                                          // scrollDirection:
-                                          //     isHomePage ? Axis.horizontal : Axis.vertical,
-                                          shrinkWrap: true,
-                                          staggeredTileBuilder: (int index) =>
-                                              StaggeredTile.fit(1),
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return Column(
-                                              children: <Widget>[
-                                                index == 0
-                                                    ? Container()
-                                                    : Divider(
-                                                        height: 2.0,
-                                                        color: Colors.grey,
-                                                      ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(12.0,
-                                                          12.0, 12.0, 6.0),
-                                                      child: Text(
-                                                        communityList[index]
-                                                            .community_title,
-                                                        style: TextStyle(
-                                                            fontSize: 12.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                        "${getTranslated('>', context)}",
-                                                        style: TextStyle(
-                                                            color: Colors.grey),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        )
-                                      : SizedBox.shrink()
-                                  : ProductShimmer(
-                                      isEnabled: communityProvider.firstLoading,
-                                      isHomePage: false,
-                                    ),
-                              communityProvider.filterIsLoading
-                                  ? Center(
-                                      child: Padding(
-                                      padding: EdgeInsets.all(
-                                          Dimensions.ICON_SIZE_EXTRA_SMALL),
-                                      child: CircularProgressIndicator(
-                                          valueColor: AlwaysStoppedAnimation<
-                                                  Color>(
-                                              Theme.of(context).primaryColor)),
-                                    ))
-                                  : SizedBox.shrink(),
-                            ]);
-                          },
-                        ),
-                      ),
+                      buildCommunity(),
                       const Divider(
                         height: 4,
                         thickness: 1,
