@@ -14,19 +14,53 @@ class ImageRepo {
   ImageRepo({@required this.dioClient, @required this.sharedPreferences});
 
   Future<ApiResponse> addImage(ImageModel imageModel) async {
+    String url = AppConstants.ADD_IMAGE_URI;
+    String uploadBasePath = "uploads";
 
+    if (imageModel.image_type == 0 || imageModel.image_type == 1) {
+      url = AppConstants.ADD_IMAGE_PRODUCT_URI;
+      uploadBasePath += "/product/";
+    } else if (imageModel.image_type == 2 || imageModel.image_type == 3) {
+      url = AppConstants.ADD_IMAGE_USER_URI;
+      uploadBasePath += "/user/";
+    } else {
+      url = AppConstants.ADD_IMAGE_COMMUNITY_URI;
+      uploadBasePath += "/community/";
+    }
+
+    MultipartFile multipartFile = await MultipartFile.fromFile(imageModel.path);
+
+    var formData = await FormData.fromMap({
+      'file': await MultipartFile.fromFile(imageModel.path),
+      'path': uploadBasePath + multipartFile.filename,
+      'community_id': imageModel.community_id,
+      'create_date': imageModel.create_date,
+      'image_type': imageModel.image_type ?? 99,
+    });
+
+    try {
+      var response = await dioClient.post(
+        url,
+        data: formData,
+      );
+
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  Future<ApiResponse> addImages(List<ImageModel> images) async {
     List<MultipartFile> uploadFiles = [];
 
-    // if(imageModel.attachedFilepath1 != null) uploadFiles.add(await MultipartFile.fromFile(imageModel.attachedFilepath1));
-    // if(imageModel.attachedFilepath2 != null) uploadFiles.add(await MultipartFile.fromFile(imageModel.attachedFilepath2));
-    // if(imageModel.attachedFilepath3 != null) uploadFiles.add(await MultipartFile.fromFile(imageModel.attachedFilepath3));
+    for (var image in images) {
+      uploadFiles.add(await MultipartFile.fromFile(image.path));
+    }
 
     var formData = FormData.fromMap({
-      // 'files' : uploadFiles,
-      // 'title': imageModel.title,
-      // 'content': imageModel.content,
-      // 'grade': imageModel.grade,
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
+      'files': uploadFiles,
+      'community_id': images[0].community_id,
+      'create_date': images[0].create_date,
     });
 
     try {
@@ -52,8 +86,9 @@ class ImageRepo {
     };
 
     try {
-      final response =
-          await dioClient.put(AppConstants.UPDATE_IMAGE_URI + "/${imageModel.id}", data: _data);
+      final response = await dioClient.put(
+          AppConstants.UPDATE_IMAGE_URI + "/${imageModel.id}",
+          data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

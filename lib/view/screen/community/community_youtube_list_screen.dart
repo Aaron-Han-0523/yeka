@@ -182,7 +182,21 @@ class _CommunityYoutubeListScreenState
                             Provider.of<AuthProvider>(context, listen: false)
                                     .getUser()["user_type"] ==
                                 1
-                        ? ActionButton()
+                        ? CustomElevatedButton(
+                            width: 150,
+                            onTap: () {
+                              CommunityModel communityModel = CommunityModel(community_type: 1);
+
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => CommunityCRUDScreen(communityModel: communityModel),
+                                ),
+                              ).then((value) => setState(() {
+                                _loadData(context, true);
+                              }));
+                            },
+                            buttonText: '${getTranslated('GO_WRITING', context)}',
+                          )
                         : Container(),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
@@ -194,33 +208,6 @@ class _CommunityYoutubeListScreenState
           ),
         ]),
       ),
-    );
-  }
-}
-
-@immutable
-class ActionButton extends StatelessWidget {
-  const ActionButton({
-    key,
-    this.onPressed,
-    this.icon,
-  });
-
-  final VoidCallback onPressed;
-  final Widget icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomElevatedButton(
-      width: 150,
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => CommunityCRUDScreen(),
-          ),
-        );
-      },
-      buttonText: '${getTranslated('GO_WRITING', context)}',
     );
   }
 }

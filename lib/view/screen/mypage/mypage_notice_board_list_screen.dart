@@ -8,7 +8,6 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../localization/language_constrants.dart';
-import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/community_notice_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';

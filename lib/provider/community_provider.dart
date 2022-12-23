@@ -35,9 +35,11 @@ class CommunityProvider extends ChangeNotifier {
 
   int get latestPageSize => _latestPageSize;
 
-  void addCommunity(CommunityModel communityModel) {
-    communityRepo.addCommunity(communityModel);
+  Future<CommunityModel> addCommunity(CommunityModel communityModel) async {
+    ApiResponse apiResponse = await communityRepo.addCommunity(communityModel);
+    _community = CommunityModel.fromJson(apiResponse.response.data);
     notifyListeners();
+    return _community;
   }
 
   void updateCommunity(CommunityModel communityModel) {

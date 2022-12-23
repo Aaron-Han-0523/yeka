@@ -51,6 +51,9 @@ class AppConstants {
 
   // IMAGE
   static const String ADD_IMAGE_URI = "/api/image";
+  static const String ADD_IMAGE_PRODUCT_URI = "/api/image/product";
+  static const String ADD_IMAGE_USER_URI = "/api/image/user";
+  static const String ADD_IMAGE_COMMUNITY_URI = "/api/image/community";
   static const String UPDATE_IMAGE_URI = "/api/image";
   static const String DELETE_IMAGE_URI = "/api/image";
   static const String LIST_IMAGE_COMMUNITY_URI = "/api/image/community";

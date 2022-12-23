@@ -14,20 +14,15 @@ class CommunityRepo {
   CommunityRepo({@required this.dioClient, @required this.sharedPreferences});
 
   Future<ApiResponse> addCommunity(CommunityModel communityModel) async {
-
-    List<MultipartFile> uploadFiles = [];
-
-    // if(communityModel.attachedFilepath1 != null) uploadFiles.add(await MultipartFile.fromFile(communityModel.attachedFilepath1));
-    // if(communityModel.attachedFilepath2 != null) uploadFiles.add(await MultipartFile.fromFile(communityModel.attachedFilepath2));
-    // if(communityModel.attachedFilepath3 != null) uploadFiles.add(await MultipartFile.fromFile(communityModel.attachedFilepath3));
-
-    var formData = FormData.fromMap({
-      // 'files' : uploadFiles,
-      // 'title': communityModel.title,
-      // 'content': communityModel.content,
-      // 'grade': communityModel.grade,
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
-    });
+    var formData = {
+      "community_type": communityModel.community_type,
+      "community_title": communityModel.community_title,
+      "community_content": communityModel.community_content,
+      "community_link": communityModel.community_link,
+      "views": communityModel.views,
+      "writer": communityModel.writer,
+      "create_date": communityModel.create_date,
+    };
 
     try {
       var response = await dioClient.post(
@@ -43,12 +38,13 @@ class CommunityRepo {
 
   Future<ApiResponse> updateCommunity(CommunityModel communityModel) async {
     Map<String, dynamic> _data = {
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
-      // 'title': communityModel.title,
-      // 'content': communityModel.content,
-      // 'grade': communityModel.grade,
-      // 'community_id': communityModel.community_id,
-      // 'custom1': communityModel.custom1,
+      "community_type": communityModel.community_type,
+      "community_title": communityModel.community_title,
+      "community_content": communityModel.community_content,
+      "community_link": communityModel.community_link,
+      "views": communityModel.views,
+      "writer": communityModel.writer,
+      "update_date": communityModel.update_date,
     };
 
     try {
@@ -95,9 +91,3 @@ class CommunityRepo {
     }
   }
 }
-
-// static const String ADD_COMMUNITY_URI ="";
-// static const String UPDATE_COMMUNITY_URI ="";
-// static const String DELETE_COMMUNITY_URI ="";
-// static const String LIST_COMMUNITY_URI ="";
-// static const String GET_COMMUNITY_URI ="";

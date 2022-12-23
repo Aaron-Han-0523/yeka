@@ -15,6 +15,10 @@ import '../../basewidget/product_shimmer.dart';
 import 'community_free_board_widget.dart';
 
 class CommunityFreeBoardListScreen extends StatefulWidget {
+  final String refresh;
+
+  const CommunityFreeBoardListScreen({Key key, this.refresh}) : super(key: key);
+
   @override
   State<CommunityFreeBoardListScreen> createState() =>
       _CommunityFreeBoardListScreenState();
@@ -129,7 +133,22 @@ class _CommunityFreeBoardListScreenState
                           ],
                         ),
                       ),
-                      ActionButton(),
+                      CustomElevatedButton(
+                        width: 150,
+                        onTap: () {
+                          CommunityModel communityModel = CommunityModel(community_type: 1);
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => CommunityCRUDScreen(communityModel: communityModel),
+                            ),
+                          ).then((value) async {
+                            await _loadData(context, true);
+                            setState(() {});
+                          } );
+                        },
+                        buttonText: '${getTranslated('GO_WRITING', context)}',
+                      ),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       FooterPage(),
@@ -140,33 +159,5 @@ class _CommunityFreeBoardListScreenState
             ),
           ]),
         ));
-  }
-}
-
-@immutable
-class ActionButton extends StatelessWidget {
-  const ActionButton({
-    key,
-    this.onPressed,
-    this.icon,
-  });
-
-  final VoidCallback onPressed;
-  final Widget icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomElevatedButton(
-      fontSize: 10,
-      width: 150,
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => CommunityCRUDScreen(),
-          ),
-        );
-      },
-      buttonText: '${getTranslated('GO_WRITING', context)}',
-    );
   }
 }

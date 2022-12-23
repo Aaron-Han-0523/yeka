@@ -1,32 +1,50 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:yeka/helper/date_converter.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../data/model/response/community_model.dart';
+import '../../../data/model/response/image_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/auth_provider.dart';
+import '../../../provider/community_provider.dart';
+import '../../../provider/image_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/textarea/custom_textarea.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
 import 'package:images_picker/images_picker.dart';
 
 class CommunityCRUDScreen extends StatefulWidget {
+  final CommunityModel communityModel;
+
+  const CommunityCRUDScreen({Key key, this.communityModel}) : super(key: key);
+
   @override
   State<CommunityCRUDScreen> createState() => _CommunityCRUDScreenState();
 }
 
 class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
-  final ScrollController _scrollController = ScrollController();
-  TextEditingController _firstNameController = TextEditingController();
-  String path;
+  ScrollController _scrollController = ScrollController();
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _contentController = TextEditingController();
+  TextEditingController _linkController = TextEditingController();
+
   List<String> thumbnailLists = [];
+  String path;
+  String name;
+
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    name = Provider.of<AuthProvider>(context, listen: false).getUser()["name"];
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _loadData(context, true);
   }
 
   @override
@@ -68,17 +86,16 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                               child: Text(
                                 "${getTranslated('ROUND_BRACKETS_SELECT', context)}",
                                 style: TextStyle(
-                                  fontSize: 9.0,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis,
-                                  color: Color(0xff999999)
+                                    fontSize: 9.0,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                    color: Color(0xff999999),
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
                         child: Container(
@@ -93,7 +110,6 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                           ),
                         ),
                       ),
-
                       Container(
                         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                         child: Row(
@@ -135,12 +151,18 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                                       child: Container(
                                         alignment: Alignment.center,
                                         child: Container(
-                                          padding: const EdgeInsets.fromLTRB(11.5,11.5,11.5,20.0,),
+                                          padding: const EdgeInsets.fromLTRB(
+                                            11.5,
+                                            11.5,
+                                            11.5,
+                                            20.0,
+                                          ),
                                           width: 55,
                                           height: 50,
                                           decoration: BoxDecoration(
                                             color: Color(0xfff1f1f1),
-                                            borderRadius: BorderRadius.circular(5),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
                                           ),
                                           child: Image.asset(
                                             Images.upload,
@@ -175,7 +197,12 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                               ),
                             for (var i = thumbnailLists.length; i < 5; i++)
                               Container(
-                                padding: const EdgeInsets.fromLTRB(11.5,11.5,11.5,20.0,),
+                                padding: const EdgeInsets.fromLTRB(
+                                  11.5,
+                                  11.5,
+                                  11.5,
+                                  20.0,
+                                ),
                                 width: 55,
                                 height: 50,
                                 decoration: BoxDecoration(
@@ -193,50 +220,73 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _titleController,
                         labelText: "${getTranslated('TITLE', context)}",
                         label_fontSize: 12,
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('INPUT_TITLE', context)}",
-                        hintSize_InputDecoration: 9,
+                        hintSize: 9,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomTextarea(
+                        textEditingController: _contentController,
                         labelText: "${getTranslated('CONTENT', context)}",
-                        enabled: false,
+                        hintText: "",
+                        hintSize: 9,
+                        enabled: true,
                         label_fontSize: 12,
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _linkController,
                         labelText: "${getTranslated('MOVIE_LINK', context)}",
                         label_fontSize: 12,
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('LINK', context)}",
-                        hintSize_InputDecoration: 9,
+                        hintSize: 9,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Padding(
                         padding:
                             const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
                         child: CustomElevatedButton(
-                          onTap: () {
-                            // ClientsModel clientsModel = ClientsModel(
-                            //   phoneNum: phoneNumberTextEditingController.text,
-                            //   password: passwordTextEditingController.text,
-                            // );
-                            //
-                            // Provider.of<ClientsProvider>(context, listen: false)
-                            //     .login(clientsModel, route);
+                          onTap: () async {
+                            CommunityModel communityModel = CommunityModel(
+                              community_type: widget.communityModel.community_type,
+                              community_title: _titleController.text,
+                              community_content: _contentController.text,
+                              community_link: _linkController.text,
+                              views: 0,
+                              writer: name,
+                              create_date: DateConverter.formatDate(DateTime.now()),
+                            );
+
+                            communityModel = await Provider.of<CommunityProvider>(context, listen: false).addCommunity(communityModel);
+
+                            for (var i = 0; i < thumbnailLists.length; i++) {
+                              ImageModel imageModel = ImageModel(
+                                community_id: communityModel.id,
+                                path: thumbnailLists[i],
+                                create_date: DateConverter.formatDate(DateTime.now()),
+                              );
+
+                              Provider.of<CustomImageProvider>(context, listen: false).addImage(imageModel);
+                            }
                           },
-                          buttonText: "${getTranslated('CONFIRMATION', context)}",
+                          buttonText:
+                              "${getTranslated('CONFIRMATION', context)}",
                           fontSize: 10,
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         ),
                       ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+
                       FooterPage(),
                     ],
                   ),

@@ -14,6 +14,7 @@ class CustomTextarea extends StatefulWidget {
   final String hintText;
   final EdgeInsetsGeometry contentPadding;
   final double hintSize;
+  final Color hintColor;
   final Widget radioButton;
 
   CustomTextarea({
@@ -27,6 +28,7 @@ class CustomTextarea extends StatefulWidget {
     this.hintText = '서비스 이용약관 제1조',
     this.contentPadding = const EdgeInsets.all(10),
     this.hintSize = 9,
+    this.hintColor,
     this.radioButton,
   });
 
@@ -119,7 +121,8 @@ class _CustomTextareaState extends State<CustomTextarea> {
                     ),
                     // readOnly: true,
                     style: TextStyle(
-                      color: Colors.grey,
+                      fontSize: widget.hintSize,
+                      color: widget.hintColor,
                     ),
                     controller: widget.textEditingController,
                   ),
