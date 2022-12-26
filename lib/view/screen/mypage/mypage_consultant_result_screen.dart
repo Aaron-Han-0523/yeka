@@ -30,7 +30,7 @@ class MyPageConsultantResultScreen extends StatefulWidget {
 class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScreen>
     with TickerProviderStateMixin {
   SfRangeValues _currentSliderValue1 = SfRangeValues(30, 30);
-  SfRangeValues _currentSliderValue2 = SfRangeValues(30, 30);
+  SfRangeValues _currentSliderValue2 = SfRangeValues(30, 50);
   SfRangeValues _currentSliderValue3 = SfRangeValues(30, 30);
   SfRangeValues _currentSliderValue4 = SfRangeValues(30, 30);
   SfRangeValues _currentSliderValue5 = SfRangeValues(30, 30);
@@ -120,7 +120,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 0, 5, 9.75),
                                     child: Text(
-                                      "${widget.userModel.name}",
+                                      "${widget.userModel != null ? widget.userModel.name : ""}",
                                       style: TextStyle(
                                         color: Color(0xff121212),
                                         fontSize: 22,
@@ -168,7 +168,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 1, 0, 0),
                                     child: Text(
-                                      "${widget.consultingModel.consulting_title}",
+                                      "${widget.consultingModel != null ? widget.consultingModel.consulting_title : ""}",
                                       style: TextStyle(
                                         color: Color(0xff333333),
                                         fontSize: 12,
@@ -187,7 +187,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                       child: Row(
                         children: [
                           Text(
-                            "${widget.userModel.name}",
+                            "${widget.userModel != null ? widget.userModel.name : ""}",
                             style: TextStyle(
                               color: Color(0xff0123b4),
                               fontSize: 13,
@@ -270,7 +270,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                   child: Text(
-                                    "${widget.consultingModel.season} ${widget.consultingModel.detail_season_type}",
+                                    "${widget.consultingModel != null ? widget.consultingModel.season : ""} ${widget.consultingModel != null ? widget.consultingModel.detail_season_type : ""}",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 18,
@@ -284,7 +284,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                               child: Row(
                                 children: [
                                   Text(
-                                    "${widget.personalColorModel.description}",
+                                    "${widget.personalColorModel != null ? widget.personalColorModel.description : ""}",
                                     style: TextStyle(
                                       color: Color(0xff999999),
                                       fontSize: 11,
@@ -299,7 +299,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                                   padding:
                                       const EdgeInsets.fromLTRB(9, 0, 0, 3),
                                   child: Text(
-                                    "${widget.personalColorModel.tag}",
+                                    "${widget.personalColorModel != null ? widget.personalColorModel.tag : ""}",
                                     style: TextStyle(
                                       color: Color(0xff999999),
                                       fontSize: 11,
@@ -486,7 +486,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                       child: Text(
-                        "${widget.personalColorModel.fashion}",
+                        "${widget.personalColorModel != null ? widget.personalColorModel.fashion : ""}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -496,7 +496,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
                       child: Text(
-                        "${widget.personalColorModel.fashion}",
+                        "${widget.personalColorModel != null ? widget.personalColorModel.fashion : ""}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -543,7 +543,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
                       child: Text(
-                        "${widget.personalColorModel.hair}",
+                        "${widget.personalColorModel != null ? widget.personalColorModel.hair : ""}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -590,7 +590,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
                       child: Text(
-                        "${widget.personalColorModel.perfume}",
+                        "${widget.personalColorModel != null ? widget.personalColorModel.perfume : ""}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -671,7 +671,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "${widget.personalColorModel.makeup_base}",
+                                      "${widget.personalColorModel != null ? widget.personalColorModel.makeup_base : ""}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -699,7 +699,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                                       padding:
                                           const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                       child: Text(
-                                        "${widget.personalColorModel.makeup_eye}",
+                                        "${widget.personalColorModel != null ? widget.personalColorModel.makeup_eye : ""}",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Color(0xff333333),
@@ -731,7 +731,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "${widget.personalColorModel.makeup_blusher}",
+                                      "${widget.personalColorModel != null ?  widget.personalColorModel.makeup_blusher : ""}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -758,7 +758,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "${widget.personalColorModel.lip}",
+                                      "${widget.personalColorModel != null ? widget.personalColorModel.lip : ""}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -823,7 +823,7 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "${widget.consultingModel.consulting_content}",
+                                "${widget.personalColorModel != null ? widget.consultingModel.consulting_content : ""}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 12,
@@ -836,7 +836,9 @@ class _MyPageConsultantResultScreenState extends State<MyPageConsultantResultScr
                     ),
                     // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                     CustomElevatedButton(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
                         buttonText:
                             "${getTranslated('CHECK_PRODUCT_FOR_ME', context)}"),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),

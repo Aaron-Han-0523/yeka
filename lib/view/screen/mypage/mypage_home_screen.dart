@@ -8,11 +8,11 @@ import '../../../localization/language_constrants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../aitest/ai_result_screen.dart';
-import '../consultant/consultant_my_reserve_screen.dart';
 import 'mypage_client_list_screen.dart';
 import 'mypage_consultant_result_screen.dart';
 import 'mypage_consultant_update.dart';
 import 'mypage_favorite_list_screen.dart';
+import 'mypage_my_reserve_screen.dart';
 import 'mypage_notice_board_list_screen.dart';
 import 'mypage_order_screen.dart';
 import 'mypage_payment.dart';
@@ -42,7 +42,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
       if (user_type == 0) {
         myPageList.children.add(buildItem(
           "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
-          MyPageUpdateScreen(),
+          MyPageUpdateScreen(map: map),
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('PERSONAL_AI_ANALYSIS_RESULT', context)}",
@@ -50,7 +50,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESERVATION/PAYMENT', context)}",
-          ConsultantMyReserveScreen(),
+          MyPageMyReserveScreen(),
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESULT', context)}",

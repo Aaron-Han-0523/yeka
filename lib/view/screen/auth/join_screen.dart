@@ -8,7 +8,6 @@ import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/utill/images.dart';
 
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
-import '../../basewidget/button/custom_elevated_button.dart';
 import '../home/widget/footer_screens.dart';
 
 class JoinScreen extends StatefulWidget {

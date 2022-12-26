@@ -128,7 +128,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "${widget.orderModel.title}",
+                                                      "${widget.orderModel != null ? widget.orderModel.title : ""}",
                                                       style: TextStyle(
                                                           color: Color(0xff000000),
                                                           fontSize: 13,
@@ -141,7 +141,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "${getTranslated('COLOR_', context)}${widget.orderModel.option}",
+                                                      "${getTranslated('COLOR_', context)}${widget.orderModel != null ? widget.orderModel.option : ""}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -157,7 +157,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      "${getTranslated('AMOUNT_', context)}${widget.orderModel.quantity}${getTranslated('SOME', context)}",
+                                                      "${getTranslated('AMOUNT_', context)}${widget.orderModel != null ? widget.orderModel.quantity : ""}${getTranslated('SOME', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -173,7 +173,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      "${widget.orderModel.create_date}",
+                                                      "${widget.orderModel != null ? widget.orderModel.create_date : ""}",
                                                       style: TextStyle(
                                                         color: Color(0xff999999),
                                                         fontSize: 9,
@@ -188,7 +188,7 @@ class _MyPageOrderScreenState extends State<MyPageOrderScreen> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "${widget.orderModel.price}${getTranslated('WON', context)}",
+                                                      "${widget.orderModel != null ? widget.orderModel.price : ""}${getTranslated('WON', context)}",
                                                       style: TextStyle(
                                                         color: Color(0xff0123B4),
                                                         fontSize: 13,

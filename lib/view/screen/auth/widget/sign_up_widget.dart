@@ -396,14 +396,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             ),
           ],
         ),
-        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+        // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
         CustomLabelTextField(
-          hintText: "${getTranslated('ETC_ADDRESS', context)}",
+          hintText: "${getTranslated('ADD_ADDRESS', context)}",
           enabled: false,
           isBorder: true,
           fillColor: Colors.white,
         ),
-        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+        // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
         CustomLabelTextField(
           controller: _etcAddressTextController,
           hintText: "${getTranslated('ETC_ADDRESS', context)}",
