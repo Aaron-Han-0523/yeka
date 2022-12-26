@@ -83,7 +83,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.client_name}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.client_name : ""}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -105,7 +105,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.payment_amount}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.payment_amount : ""}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -127,7 +127,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.consulting_title}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.consulting_title : ""}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -148,7 +148,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.payment_amount}${getTranslated('WON', context)}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.payment_amount : ""}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -192,7 +192,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.commission}${getTranslated('PERCENT', context)}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.commission : ""}${getTranslated('PERCENT', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -223,7 +223,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                         ),
 
                                         Text(
-                                          "${widget.consultingModel.final_amount}${getTranslated('WON', context)}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.final_amount : ""}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                               color: Color(0xffFF0000),
                                               fontSize: 11,
@@ -259,7 +259,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.client_name}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.client_name : ""}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -281,7 +281,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.payment_date}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.payment_date : ""}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -303,7 +303,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.consulting_title}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.consulting_title : ""}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -324,7 +324,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.payment_amount}${getTranslated('WON', context)}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.payment_amount : ""}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -368,7 +368,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                           ),
                                         ),
                                         Text(
-                                          "${widget.consultingModel.commission}${getTranslated('PERCENT', context)}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.commission : ""}${getTranslated('PERCENT', context)}",
                                           style: TextStyle(
                                             color: Color(0xff333333),
                                             fontSize: 11,
@@ -399,7 +399,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                         ),
 
                                         Text(
-                                          "${widget.consultingModel.final_amount}${getTranslated('WON', context)}",
+                                          "${widget.consultingModel != null ? widget.consultingModel.final_amount : ""}${getTranslated('WON', context)}",
                                           style: TextStyle(
                                               color: Color(0xffFF0000),
                                               fontSize: 11,
