@@ -10,6 +10,15 @@ class ConsultingModel {
   String _consulting_title;
   int _payment_status;
   int _consulting_status;
+  int _culture_type;
+  int _season;
+  int _detail_season_type;
+  String _consulting_content;
+  int _tone;
+  int _chroma;
+  int _contrast;
+  int _brightness;
+  int _gloss;
   int _payment_amount;
   int _reservation_amount;
   int _commission;
@@ -30,6 +39,15 @@ class ConsultingModel {
     String consulting_title,
     int payment_status,
     int consulting_status,
+    int culture_type,
+    int season,
+    int detail_season_type,
+    String consulting_content,
+    int tone,
+    int chroma,
+    int contrast,
+    int brightness,
+    int gloss,
     int payment_amount,
     int reservation_amount,
     int commission,
@@ -49,6 +67,15 @@ class ConsultingModel {
     this._consulting_title = consulting_title;
     this._payment_status = payment_status;
     this._consulting_status = consulting_status;
+    this._culture_type = culture_type;
+    this._season = season;
+    this._detail_season_type = detail_season_type;
+    this._consulting_content = consulting_content;
+    this._tone = tone;
+    this._chroma = chroma;
+    this._contrast = contrast;
+    this._brightness = brightness;
+    this._gloss = gloss;
     this._payment_amount = payment_amount;
     this._reservation_amount = reservation_amount;
     this._commission = commission;
@@ -70,6 +97,15 @@ class ConsultingModel {
     _consulting_title = json['consulting_title'];
     _payment_status = json['payment_status'];
     _consulting_status = json['consulting_status'];
+    _culture_type = json['culture_type'];
+    _season = json['season'];
+    _detail_season_type = json['detail_season_type'];
+    _consulting_content = json['consulting_content'];
+    _tone = json['tone'];
+    _chroma = json['chroma'];
+    _contrast = json['contrast'];
+    _brightness = json['brightness'];
+    _gloss = json['gloss'];
     _payment_amount = json['payment_amount'];
     _reservation_amount = json['reservation_amount'];
     _commission = json['commission'];
@@ -92,6 +128,15 @@ class ConsultingModel {
     data['consulting_title'] = this.consulting_title;
     data['payment_status'] = this.payment_status;
     data['consulting_status'] = this.consulting_status;
+    data['culture_type'] = this.culture_type;
+    data['season'] = this.season;
+    data['detail_season_type'] = this.detail_season_type;
+    data['consulting_content'] = this.consulting_content;
+    data['tone'] = this.tone;
+    data['chroma'] = this.chroma;
+    data['contrast'] = this.contrast;
+    data['brightness'] = this.brightness;
+    data['gloss'] = this.gloss;
     data['payment_amount'] = this.payment_amount;
     data['reservation_amount'] = this.reservation_amount;
     data['commission'] = this.commission;
@@ -123,6 +168,24 @@ class ConsultingModel {
   int get payment_status => _payment_status;
 
   int get consulting_status => _consulting_status;
+
+  int get culture_type => _culture_type;
+
+  int get season => _season;
+
+  int get detail_season_type => _detail_season_type;
+
+  String get consulting_content => _consulting_content;
+
+  int get tone => _tone;
+
+  int get chroma => _chroma;
+
+  int get contrast => _contrast;
+
+  int get brightness => _brightness;
+
+  int get gloss => _gloss;
 
   int get payment_amount => _payment_amount;
 
@@ -182,6 +245,42 @@ class ConsultingModel {
     _consulting_status = value;
   }
 
+  set culture_type(int value) {
+    _culture_type = value;
+  }
+
+  set season(int value) {
+    _season = value;
+  }
+
+  set detail_season_type(int value) {
+    _detail_season_type = value;
+  }
+
+  set consulting_content(String value) {
+    _consulting_content = value;
+  }
+
+  set tone(int value) {
+    _tone = value;
+  }
+
+  set chroma(int value) {
+    _chroma = value;
+  }
+
+  set contrast(int value) {
+    _contrast = value;
+  }
+
+  set brightness(int value) {
+    _brightness = value;
+  }
+
+  set gloss(int value) {
+    _gloss = value;
+  }
+
   set payment_amount(int value) {
     _payment_amount = value;
   }
@@ -239,8 +338,8 @@ class ConsultingList {
     if (iter != null) {
       _consultingList = [];
       iter.forEach((v) {
-        _consultingList
-            .add(new ConsultingModel.fromJson(Map<String, dynamic>.from(v)));
+        _consultingList.add(
+            new ConsultingModel.fromJson(Map<String, dynamic>.from(v)));
       });
     }
   }

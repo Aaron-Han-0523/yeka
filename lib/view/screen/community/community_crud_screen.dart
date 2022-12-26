@@ -13,6 +13,7 @@ import '../../../localization/language_constrants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/community_provider.dart';
 import '../../../provider/image_provider.dart';
+import '../../../utill/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/textarea/custom_textarea.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
@@ -34,11 +35,40 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
   TextEditingController _linkController = TextEditingController();
 
   List<String> thumbnailLists = [];
+  List<ImageModel> imageList = [];
   String path;
   String name;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     name = Provider.of<AuthProvider>(context, listen: false).getUser()["name"];
+
+    _titleController.text = widget.communityModel.community_title ?? "";
+    _contentController.text = widget.communityModel.community_content ?? "";
+    _linkController.text = widget.communityModel.community_link ?? "";
+
+    if (widget.communityModel.id != null) {
+      ImageModel imageModel =
+          ImageModel(community_id: widget.communityModel.id);
+      await Provider.of<CustomImageProvider>(context, listen: false)
+          .getImageListByCommunityId(imageModel);
+
+      imageList = await Provider.of<CustomImageProvider>(context, listen: false)
+          .imageList;
+    }
+  }
+
+  Widget buildPage(String url) {
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: FadeInImage.assetNetwork(
+          placeholder: Images.placeholder1,
+          image: url != null
+              ? AppConstants.BASE_URL + "/" + url
+              : AppConstants.BASE_URL,
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width * 0.28,
+          height: MediaQuery.of(context).size.width * 0.28,
+        ));
   }
 
   @override
@@ -86,10 +116,10 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                               child: Text(
                                 "${getTranslated('ROUND_BRACKETS_SELECT', context)}",
                                 style: TextStyle(
-                                    fontSize: 9.0,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis,
-                                    color: Color(0xff999999),
+                                  fontSize: 9.0,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                  color: Color(0xff999999),
                                 ),
                               ),
                             ),
@@ -209,11 +239,23 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                                   borderRadius: BorderRadius.circular(5.0),
                                   color: Color(0xfff1f1f1),
                                 ),
-                                child: Image.asset(
-                                  Images.upload,
-                                  width: 30,
-                                  height: 30,
-                                ),
+                                child: imageList[i] != null
+                                    ? FadeInImage.assetNetwork(
+                                        placeholder: Images.placeholder1,
+                                        image: imageList[i].path != null
+                                            ? AppConstants.BASE_URL +
+                                                "/" +
+                                                imageList[i].path
+                                            : AppConstants.BASE_URL,
+                                        fit: BoxFit.cover,
+                                        width: 30,
+                                        height: 30,
+                                      )
+                                    : Image.asset(
+                                        Images.upload,
+                                        width: 30,
+                                        height: 30,
+                                      ),
                               ),
                           ],
                         ),
@@ -255,25 +297,33 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                         child: CustomElevatedButton(
                           onTap: () async {
                             CommunityModel communityModel = CommunityModel(
-                              community_type: widget.communityModel.community_type,
+                              community_type:
+                                  widget.communityModel.community_type,
                               community_title: _titleController.text,
                               community_content: _contentController.text,
                               community_link: _linkController.text,
                               views: 0,
                               writer: name,
-                              create_date: DateConverter.formatDate(DateTime.now()),
+                              create_date:
+                                  DateConverter.formatDate(DateTime.now()),
                             );
 
-                            communityModel = await Provider.of<CommunityProvider>(context, listen: false).addCommunity(communityModel);
+                            communityModel =
+                                await Provider.of<CommunityProvider>(context,
+                                        listen: false)
+                                    .addCommunity(communityModel);
 
                             for (var i = 0; i < thumbnailLists.length; i++) {
                               ImageModel imageModel = ImageModel(
                                 community_id: communityModel.id,
                                 path: thumbnailLists[i],
-                                create_date: DateConverter.formatDate(DateTime.now()),
+                                create_date:
+                                    DateConverter.formatDate(DateTime.now()),
                               );
 
-                              Provider.of<CustomImageProvider>(context, listen: false).addImage(imageModel);
+                              Provider.of<CustomImageProvider>(context,
+                                      listen: false)
+                                  .addImage(imageModel);
                             }
                           },
                           buttonText:
@@ -286,7 +336,6 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
-
                       FooterPage(),
                     ],
                   ),
