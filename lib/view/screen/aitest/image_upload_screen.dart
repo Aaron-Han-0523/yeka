@@ -1,12 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:images_picker/images_picker.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/color_resources.dart';
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
+import '../../../data/model/response/consulting_model.dart';
+import '../../../data/model/response/image_model.dart';
+import '../../../helper/date_converter.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/consulting_provider.dart';
+import '../../../provider/image_provider.dart';
 import '../../../utill/images.dart';
 import '../home/home_screens.dart';
 import 'ox_screen.dart';
@@ -18,15 +25,7 @@ class ImageUploadPage extends StatefulWidget {
 
 class _ImageUploadPageState extends State<ImageUploadPage>
     with TickerProviderStateMixin {
-  bool _radioValue = true;
-  bool _inputFormValue = false;
-  TextEditingController _textEditingController = TextEditingController();
-
-  void setStateButtonValue(value) {
-    setState(() {
-      _inputFormValue = value;
-    });
-  }
+  List<String> thumbnailLists = [];
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("${getTranslated('AI_test_ko', context)}"),
+              CustomSliverAppBar("${getTranslated('AI_TEST', context)}"),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -146,7 +145,8 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                                       child: Container(
                                           height: MediaQuery.of(context)
                                                   .size
-                                                  .width * 0.8,
+                                                  .width *
+                                              0.8,
                                           decoration: BoxDecoration(
                                             // border: Border.all(
                                             //   width: 2,
@@ -194,10 +194,44 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                         ),
                         child: Center(
                           child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => OXPage()),
+                            onTap: () async {
+                              thumbnailLists = [];
+
+                              List<Media> res = await ImagesPicker.pick(
+                                count: 1,
+                                pickType: PickType.all,
+                                language: Language.System,
+                                maxTime: 30,
+                                // maxSize: 500,
+                                cropOpt: CropOption(
+                                  // aspectRatio: CropAspectRatio.wh16x9,
+                                  cropType: CropType.circle,
+                                ),
                               );
+
+                              if (res != null) {
+                                setState(() {
+                                  thumbnailLists =
+                                      res.map((e) => e.thumbPath).toList();
+                                });
+                              }
+
+                              if (thumbnailLists.length > 0) {
+                                ConsultingModel consultingModel =
+                                    ConsultingModel(
+                                  client_image: thumbnailLists[0],
+                                  create_date:
+                                      DateConverter.formatDate(DateTime.now()),
+                                );
+
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (_) => OXPage(
+                                          consultingModel: consultingModel,
+                                      ),
+                                  ),
+                                );
+                              }
                             },
                             child: Container(
                               height: 100,
@@ -251,66 +285,5 @@ class _ImageUploadPageState extends State<ImageUploadPage>
             ],
           ),
         ));
-  }
-
-  void _showDialog() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              // title: new Text("Dialog Title"),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  Row(
-                    children: [
-                      Text(
-                        "",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  isDefaultAction: true,
-                  child: Text(""),
-                  onPressed: () {
-                    return Navigator.pop(context);
-                  },
-                ),
-                Container(
-                  child: CupertinoDialogAction(
-                    child: Container(
-                      child: Text(
-                        "",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (_) => HomePage()),
-                          (route) => false);
-                    },
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0XFF2434D7),
-                  ),
-                ),
-              ],
-            ));
   }
 }

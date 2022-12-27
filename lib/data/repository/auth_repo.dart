@@ -120,19 +120,19 @@ class AuthRepo {
       );
       await sharedPreferences.setString(
         AppConstants.USER_USERNAME,
-        map["username"],
+        map["username"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_NAME,
-        map["name"],
+        map["name"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_PHONE,
-        map["phone"],
+        map["phone"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_EMAIL,
-        map["email"],
+        map["email"] ?? "",
       );
       await sharedPreferences.setInt(
         AppConstants.USER_GENDER,
@@ -140,35 +140,35 @@ class AuthRepo {
       );
       await sharedPreferences.setString(
         AppConstants.USER_ADDRESS1,
-        map["address1"],
+        map["address1"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_ADDRESS2,
-        map["address2"],
+        map["address2"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_ADDRESS3,
-        map["address3"],
+        map["address3"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_BUSINESS_REGISTRATION_NUMBER,
-        map["business_registration_number"],
+        map["business_registration_number"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_BUSINESS_REGISTRATION_FILE,
-        map["business_registration_file"],
+        map["business_registration_file"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_HASHTAG,
-        map["hashtag"],
+        map["hashtag"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_RESUME,
-        map["resume"],
+        map["resume"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_WORKING_HOUR,
-        map["working_hour"],
+        map["working_hour"] ?? "",
       );
       await sharedPreferences.setInt(
         AppConstants.USER_WITHDRAWAL,
@@ -176,27 +176,27 @@ class AuthRepo {
       );
       await sharedPreferences.setString(
         AppConstants.USER_BANK1,
-        map["bank1"],
+        map["bank1"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_BANK2,
-        map["bank2"],
+        map["bank2"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_BANK3,
-        map["bank3"],
+        map["bank3"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_CREATE_DATE,
-        map["create_date"],
+        map["create_date"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_UPDATE_DATE,
-        map["update_date"],
+        map["update_date"] ?? "",
       );
       await sharedPreferences.setString(
         AppConstants.USER_DELETE_DATE,
-        map["delete_date"],
+        map["delete_date"] ?? "",
       );
     } catch (e) {
       throw e;

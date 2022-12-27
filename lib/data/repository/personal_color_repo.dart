@@ -94,10 +94,15 @@ class PersonalColorRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-}
 
-// static const String ADD_PERSONAL_COLOR_URI ="";
-// static const String UPDATE_PERSONAL_COLOR_URI ="";
-// static const String DELETE_PERSONAL_COLOR_URI ="";
-// static const String LIST_PERSONAL_COLOR_URI ="";
-// static const String GET_PERSONAL_COLOR_URI ="";
+  Future<ApiResponse> getPersonalColorCondition(PersonalColorModel personalColorModel) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.GET_PERSONAL_COLOR_URI + "?season=${personalColorModel.season}&detail_season_type=${personalColorModel.detail_season_type}",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+}

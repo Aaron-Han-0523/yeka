@@ -57,6 +57,13 @@ class PersonalColorProvider extends ChangeNotifier {
     return _personalColor;
   }
 
+  Future<PersonalColorModel> getPersonalColorCondition(PersonalColorModel personalColorModel) async {
+    ApiResponse apiResponse = await personalColorRepo.getPersonalColorCondition(personalColorModel);
+    _personalColor = PersonalColorModel.fromJson(apiResponse.response.data);
+    notifyListeners();
+    return _personalColor;
+  }
+
   Future<void> getLatestPersonalColorList(int offset, BuildContext context,
       {bool reload = false}) async {
     if (reload) {

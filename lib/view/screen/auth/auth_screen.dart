@@ -14,6 +14,7 @@ import '../../../data/model/body/login_model.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
+import '../aitest/ai_result_screen.dart';
 import '../home/home_screens.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -215,8 +216,12 @@ class _AuthScreenState extends State<AuthScreen> {
 
   route(bool isRoute, String errorMessage) async {
     if (isRoute) {
-      Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
+      if(widget.initialPage == 0) {
+        Navigator.pop(context);
+      } else if(widget.initialPage == 1) {
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (_) => AIResultPage()), (route) => true);
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),

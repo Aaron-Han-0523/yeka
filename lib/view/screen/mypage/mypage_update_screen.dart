@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:kpostal/kpostal.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_label_textfield_upload_button.dart';
 import '../../basewidget/radio/custom_small_radio_button.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
 
 class MyPageUpdateScreen extends StatefulWidget {
-  final Map map;
-
-  const MyPageUpdateScreen({Key key, this.map}) : super(key: key);
+  const MyPageUpdateScreen({Key key,}) : super(key: key);
 
   @override
   State<MyPageUpdateScreen> createState() =>
@@ -31,6 +31,7 @@ class _MyPageUpdateScreenState
   TextEditingController _nameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _addressTextController = TextEditingController();
   TextEditingController _etcAddressTextController = TextEditingController();
   TextEditingController _companyRegistrationNumberController =
   TextEditingController();
@@ -50,6 +51,28 @@ class _MyPageUpdateScreenState
   String longitude = '-';
   String kakaoLatitude = '-';
   String kakaoLongitude = '-';
+
+  Map map;
+
+  int user_type = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    map = Provider.of<AuthProvider>(context, listen: false).getUser();
+    _idController.text = map["username"];
+    _nameController.text = map["name"];
+    _phoneController.text = map["phone"];
+    _emailController.text = map["email"];
+    if(map["gender"] == 0) radioButton1 = true;
+    else radioButton2 = true;
+    postCode = map["address1"];
+    _addressTextController.text = map["address2"];
+    _etcAddressTextController.text = map["address3"];
+    _companyRegistrationNumberController.text = map["business_registration_number"];
+    _companyRegistrationFileController.text = map["business_registration_file"];
+    user_type = map["user_type"];
+  }
 
   @override
   void didChangeDependencies() {
@@ -284,6 +307,7 @@ class _MyPageUpdateScreenState
 
                         // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                         CustomLabelTextField(
+                          controller: _addressTextController,
                           hintText: "${getTranslated('ADD_ADDRESS', context)}",
                           enabled: false,
                           isBorder: true,
@@ -299,21 +323,21 @@ class _MyPageUpdateScreenState
 
                         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
-                        CustomLabelTextField(
+                        user_type == 1 ? CustomLabelTextField(
                           controller: _companyRegistrationNumberController,
                           labelText:
                           "${getTranslated('COMPANY_REGISTRATION_NUMBER', context)} ",
                           // essentialLabelText: " *",
                           hintText:
                           "${getTranslated('HINT_COMPANY_REGISTRATION_NUMBER', context)}",
-                        ),
+                        ) : Container(),
 
-                        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                        user_type == 1 ? SizedBox(height: Dimensions.PADDING_SIZE_SMALL) : Container(),
 
-                        CustomLabelTextFieldUploadButton(
+                        user_type == 1 ? CustomLabelTextFieldUploadButton(
                             labelText:
                             "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}"
-                        ),
+                        ) : Container(),
 
                         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 

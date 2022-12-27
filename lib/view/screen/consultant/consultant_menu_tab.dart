@@ -132,10 +132,8 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
 
   @override
   Widget build(BuildContext context) {
-    List<MenuModel> menuList = Provider.of<MenuProvider>(context, listen: false).menuList;
-
     return Column(
-      children: [for (var menu in menuList) buildMenu(menu)],
+      children: [for (var menu in Provider.of<MenuProvider>(context, listen: false).menuList) buildMenu(menu)],
     );
   }
 }

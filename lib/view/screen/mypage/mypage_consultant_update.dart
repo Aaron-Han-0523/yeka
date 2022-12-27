@@ -2,11 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:images_picker/images_picker.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../data/model/response/menu_model.dart';
 import '../../../localization/language_constrants.dart';
+import '../../../provider/auth_provider.dart';
+import '../../../provider/menu_provider.dart';
 import '../../../utill/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
@@ -24,14 +28,112 @@ class _MyPageConsultantUpdateScreenState
     extends State<MyPageConsultantUpdateScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _hash1Controller = TextEditingController();
+  TextEditingController _hash2Controller = TextEditingController();
+  TextEditingController _hash3Controller = TextEditingController();
+  TextEditingController _hash4Controller = TextEditingController();
+  TextEditingController _hash5Controller = TextEditingController();
+  TextEditingController _hash6Controller = TextEditingController();
+  TextEditingController _resumeController = TextEditingController();
+  TextEditingController _availController = TextEditingController();
+  List<TextEditingController> _menuTitleListController = [];
+  List<TextEditingController> _menuAmountListController = [];
+  List<TextEditingController> _menuContentListController = [];
+  List<TextEditingController> _menuImageListController = [];
+
   bool radioButton = false;
   List<String> thumbnailLists = [];
   List<String> thumbnailLists2 = [];
+  List<MenuModel> menuList;
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
+    Map map = Provider.of<AuthProvider>(context, listen: false).getUser();
+    MenuModel menuModel = MenuModel(consultant_id: map["id"]);
+    await Provider.of<MenuProvider>(context, listen: false).getMenuList(menuModel, context);
+    menuList = Provider.of<MenuProvider>(context, listen: false).menuList;
+  }
+
+  Widget buildMenu(MenuModel menuModel) {
+    TextEditingController _menuTitleController = TextEditingController();
+    TextEditingController _menuAmountController = TextEditingController();
+    TextEditingController _menuContentController = TextEditingController();
+    TextEditingController _menuImageController = TextEditingController();
+
+    _menuTitleController.text = menuModel.menu_title;
+    // _menuAmountController.text = menuModel.menu_amount;
+    // _menuAmountController.text = menuModel.menu_amount;
+
+    return  Column(children: [
+      CustomLabelTextField(
+        controller: _menuTitleController,
+        // labelText: "상담 메뉴 ",
+        // essentialLabelText: " *",
+        hintText: "${getTranslated('FILL_IN_TITLE', context)}",
+        hintColor: Color(0xffdddddd),
+        padding: EdgeInsets.all(0),
+      ),
+      CustomLabelTextField(
+        controller: _menuAmountController,
+        // labelText: "상담 메뉴 ",
+        // essentialLabelText: " *",
+        hintText: "${getTranslated('FILL_IN_CONSULTATION_AMOUNT', context)}",
+        hintColor: Color(0xffdddddd),
+        padding: EdgeInsets.all(0),
+      ),
+      Row(
+        children: [
+          Expanded(
+            child: CustomTextarea(
+              textEditingController: _menuContentController,
+              padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
+              // labelText: "상담 내용",
+              hintText: "${getTranslated('FILL_IN_CONSULTATION_CONTENT', context)}",
+              hintSize: 12,
+              contentPadding: const EdgeInsets.symmetric(vertical: 8),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            width: 100,
+            height: 155,
+            margin: EdgeInsets.only(
+              top: Dimensions.MARGIN_SIZE_LARGE,
+              right: Dimensions.MARGIN_SIZE_SMALL,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Color(0xfff1f1f1),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  child: Image.file(
+                    File(_menuImageController.text),
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "${getTranslated('REGISTER_IMAGE', context)}",
+                  style: TextStyle(
+                    fontSize: 8.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff999999),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+
+      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+    ],);
   }
 
   @override
@@ -240,7 +342,7 @@ class _MyPageConsultantUpdateScreenState
                                 Flexible(
 
                                   child: CustomTextField(
-                                    controller: _firstNameController,
+                                    controller: _hash1Controller,
                                     // essentialLabelText: " *",
                                     hintText: "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                   ),
@@ -250,7 +352,7 @@ class _MyPageConsultantUpdateScreenState
 
                               Flexible(
                                 child: CustomTextField(
-                                  controller: _firstNameController,
+                                  controller: _hash2Controller,
                                   // essentialLabelText: " *",
                                   hintText:
                                   "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
@@ -261,7 +363,7 @@ class _MyPageConsultantUpdateScreenState
 
                               Flexible(
                                 child: CustomTextField(
-                                  controller: _firstNameController,
+                                  controller: _hash3Controller,
                                   // essentialLabelText: " *",
                                   hintText:
                                   "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
@@ -282,7 +384,7 @@ class _MyPageConsultantUpdateScreenState
                               Flexible(
 
                                 child: CustomTextField(
-                                  controller: _firstNameController,
+                                  controller: _hash4Controller,
                                   // essentialLabelText: " *",
                                   hintText: "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
@@ -292,7 +394,7 @@ class _MyPageConsultantUpdateScreenState
 
                               Flexible(
                                 child: CustomTextField(
-                                  controller: _firstNameController,
+                                  controller: _hash5Controller,
                                   // essentialLabelText: " *",
                                   hintText:
                                   "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
@@ -303,7 +405,7 @@ class _MyPageConsultantUpdateScreenState
 
                               Flexible(
                                 child: CustomTextField(
-                                  controller: _firstNameController,
+                                  controller: _hash6Controller,
                                   // essentialLabelText: " *",
                                   hintText:
                                   "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
@@ -318,6 +420,7 @@ class _MyPageConsultantUpdateScreenState
 
                        Container(
                           child: CustomTextarea(
+                            textEditingController: _resumeController,
                             padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
                             labelText: "${getTranslated('CERTIFICATE_RESUME', context)}",
                             hintText: "${getTranslated('FILL_IN_CERTIFICATE_RESUME', context)}",
@@ -329,6 +432,7 @@ class _MyPageConsultantUpdateScreenState
 
                         Container(
                           child: CustomTextarea(
+                            textEditingController: _availController,
                             padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
                             labelText: "${getTranslated('CONSULTATION_AVAILABLE_TIME', context)}",
                             hintText: "${getTranslated('FILL_IN_CONSULTATION_AVAILABLE_TIME', context)}",
@@ -344,7 +448,7 @@ class _MyPageConsultantUpdateScreenState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "${getTranslated('${getTranslated('CONSULTATION___MENU', context)}', context)}",
+                                "${getTranslated('CONSULTANT_MENU', context)}",
                                 style: TextStyle(
                                   fontSize: 12.0,
                                   fontWeight: FontWeight.bold,
@@ -366,73 +470,9 @@ class _MyPageConsultantUpdateScreenState
                             ],
                           ),
                         ),
-                        CustomLabelTextField(
-                          controller: _firstNameController,
-                          // labelText: "상담 메뉴 ",
-                          // essentialLabelText: " *",
-                          hintText: "${getTranslated('FILL_IN_TITLE', context)}",
-                          hintColor: Color(0xffdddddd),
-                          padding: EdgeInsets.all(0),
-                        ),
-                        CustomLabelTextField(
-                          controller: _firstNameController,
-                          // labelText: "상담 메뉴 ",
-                          // essentialLabelText: " *",
-                          hintText: "${getTranslated('${getTranslated('FILL_IN_CONSULTATION_AMOUNT', context)}', context)}",
-                          hintColor: Color(0xffdddddd),
-                          padding: EdgeInsets.all(0),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
 
-                              child: CustomTextarea(
-                                padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
-                                // labelText: "상담 내용",
-                                hintText: "${getTranslated('FILL_IN_CONSULTATION_CONTENT', context)}",
-                                hintSize: 14,
-                                contentPadding: const EdgeInsets.symmetric(vertical: 8),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: 100,
-                              height: 155,
-                              margin: EdgeInsets.only(
-                                top: Dimensions.MARGIN_SIZE_LARGE,
-                                right: Dimensions.MARGIN_SIZE_SMALL,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Color(0xfff1f1f1),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    child: Image.asset(
-                                      Images.upload,
-                                      width: 30,
-                                      height: 30,
-                                    ),
-                                  ),
-                                  SizedBox(height: 8),
-                                  Text(
-                                    "${getTranslated('REGISTER_IMAGE', context)}",
-                                    style: TextStyle(
-                                      fontSize: 8.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xff999999),
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
 
-                        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                        //fixme
 
                         const Divider(
                           height: 0,
