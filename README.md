@@ -280,8 +280,12 @@ AppConstants.BASE_URL
 Images.heart
 ```
 
-알럿창, alert
+알럿창, alert, snackBar
 ```dart
+ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
+);
+
 void _showDialog() {
     showDialog(
         context: context,

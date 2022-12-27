@@ -279,7 +279,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                        radioButton1 = !radioButton1;
+                        radioButton1 = false;
                       });
                     },
                     child: CustomSmallRadioButton(
@@ -290,7 +290,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                        radioButton1 = !radioButton1;
+                        radioButton1 = true;
                       });
                     },
                     child: CustomSmallRadioButton(

@@ -42,7 +42,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
       if (user_type == 0) {
         myPageList.children.add(buildItem(
           "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
-          MyPageUpdateScreen(map: map),
+          MyPageUpdateScreen(),
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('PERSONAL_AI_ANALYSIS_RESULT', context)}",
