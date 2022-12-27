@@ -8,6 +8,7 @@ class AppConstants {
   // static const String BASE_URL = 'http://52.79.240.88';
   static const String BASE_URL = 'http://172.30.1.95:3000';
   // static const String BASE_URL = 'http://192.168.0.198:3000';
+  // static const String BASE_URL = 'http://3.34.187.112:3000';
   // static const String USER_ID = 'userId';
   static const String NAME = 'name';
 
@@ -103,6 +104,7 @@ class AppConstants {
   static const String DELETE_PERSONAL_COLOR_URI ="/api/personal_color";
   static const String LIST_PERSONAL_COLOR_URI ="/api/personal_color";
   static const String GET_PERSONAL_COLOR_URI ="/api/personal_color";
+  static const String GET_PERSONAL_COLOR_CONDITION_URI ="/api/personal_color/condition";
 
 
   static const String MAIN_BANNER_URI = '/api/imageSetting';

@@ -98,7 +98,7 @@ class PersonalColorRepo {
   Future<ApiResponse> getPersonalColorCondition(PersonalColorModel personalColorModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_PERSONAL_COLOR_URI + "?season=${personalColorModel.season}&detail_season_type=${personalColorModel.detail_season_type}",
+        AppConstants.GET_PERSONAL_COLOR_CONDITION_URI + "?season=${personalColorModel.season}&detail_season_type=${personalColorModel.detail_season_type}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

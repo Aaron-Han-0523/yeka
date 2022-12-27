@@ -94,7 +94,20 @@ class _AIResultPageState extends State<AIResultPage>
       detailSeasonType = "페일";
     }
 
-    var matchingColorList = personalColorModel.matching_color_array.split(",");
+    var matchingColorList = [
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+    ];
+
+    if(personalColorModel.matching_color_array != null && personalColorModel.matching_color_array.split(",").length > 7) {
+      matchingColorList = personalColorModel.matching_color_array.split(",");
+    }
 
     return Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),
@@ -192,8 +205,8 @@ class _AIResultPageState extends State<AIResultPage>
                           ),
                           SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                           Container(
-                            height: MediaQuery.of(context).size.width * 0.598,
-                            width: MediaQuery.of(context).size.width * 1,
+                            // height: MediaQuery.of(context).size.width * 0.598,
+                            width: MediaQuery.of(context).size.width,
                             child: Row(
                               children: [
                                 Expanded(
