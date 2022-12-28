@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/dimensions.dart';
 
 const titilliumRegular = TextStyle(
   fontFamily: 'Ubuntu',

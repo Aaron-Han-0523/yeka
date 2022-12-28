@@ -1,21 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:images_picker/images_picker.dart';
-import 'package:provider/provider.dart';
 
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/color_resources.dart';
+import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../data/model/response/consulting_model.dart';
-import '../../../data/model/response/image_model.dart';
 import '../../../helper/date_converter.dart';
-import '../../../localization/language_constrants.dart';
-import '../../../provider/consulting_provider.dart';
-import '../../../provider/image_provider.dart';
-import '../../../utill/images.dart';
-import '../home/home_screens.dart';
+import '../../../localization/language_constants.dart';
+import '../../../util//images.dart';
 import 'ox_screen.dart';
 
 class ImageUploadPage extends StatefulWidget {

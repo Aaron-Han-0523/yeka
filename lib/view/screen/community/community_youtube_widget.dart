@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeka/utill/images.dart';
+import 'package:yeka/util/images.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../helper/youtube_converter.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/community_youtube_provider.dart';
 import 'community_youtube_detail_screen.dart';
 

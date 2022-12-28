@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../data/model/response/user_model.dart';
-import '../../../localization/language_constrants.dart';
-import '../../../utill/dimensions.dart';
+import '../../../localization/language_constants.dart';
+import '../../../util//dimensions.dart';
 
 class ConsultantDetailWidget extends StatefulWidget {
   final bool isCreateScreen;

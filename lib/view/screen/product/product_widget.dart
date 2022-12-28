@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/helper/price_converter.dart';
-import 'package:yeka/utill/app_constants.dart';
-import 'package:yeka/utill/custom_themes.dart';
-import 'package:yeka/utill/dimensions.dart';
-import 'package:yeka/utill/images.dart';
+import 'package:yeka/util/app_constants.dart';
+import 'package:yeka/util/custom_themes.dart';
+import 'package:yeka/util/dimensions.dart';
+import 'package:yeka/util/images.dart';
 import 'package:provider/provider.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/like_product_model.dart';

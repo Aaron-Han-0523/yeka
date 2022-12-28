@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:yeka/data/model/body/register_model.dart';
 import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/helper/email_checker.dart';
-import 'package:yeka/localization/language_constrants.dart';
+import 'package:yeka/localization/language_constants.dart';
 import 'package:yeka/provider/auth_provider.dart';
 
 import 'package:yeka/provider/splash_provider.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/textfield/custom_label_textfield.dart';
 
 import 'package:provider/provider.dart';

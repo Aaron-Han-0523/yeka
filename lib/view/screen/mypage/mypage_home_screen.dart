@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:yeka/data/model/response/order_model.dart';
 import 'package:yeka/provider/consulting_provider.dart';
 
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/personal_color_model.dart';
 import '../../../data/model/response/user_model.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/order_provider.dart';
 import '../../../provider/personal_color_provider.dart';

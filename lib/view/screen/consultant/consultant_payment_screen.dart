@@ -6,9 +6,9 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
 import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/menu_model.dart';
-import '../../../localization/language_constrants.dart';
-import '../../../utill/color_resources.dart';
-import '../../../utill/dimensions.dart';
+import '../../../localization/language_constants.dart';
+import '../../../util//color_resources.dart';
+import '../../../util//dimensions.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../home/widget/footer_screens.dart';
 import 'consultant_result_screen.dart';

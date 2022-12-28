@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../utill/dimensions.dart';
+import '../../../util//dimensions.dart';
 
 extension EmailValidator on String {
   bool isValidEmail() {

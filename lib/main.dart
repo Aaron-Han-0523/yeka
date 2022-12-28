@@ -23,7 +23,7 @@ import 'package:yeka/provider/user_provider.dart';
 import 'package:yeka/provider/image_provider.dart';
 import 'package:yeka/theme/dark_theme.dart';
 import 'package:yeka/theme/light_theme.dart';
-import 'package:yeka/utill/app_constants.dart';
+import 'package:yeka/util/app_constants.dart';
 import 'package:yeka/view/screen/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 

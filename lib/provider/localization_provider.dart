@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/data/datasource/remote/dio/dio_client.dart';
-import 'package:yeka/utill/app_constants.dart';
+import 'package:yeka/util/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalizationProvider extends ChangeNotifier {

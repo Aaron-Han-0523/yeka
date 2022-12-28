@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/dimensions.dart';
 
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/community/community_crud_screen.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/community_freeboard_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/product_shimmer.dart';

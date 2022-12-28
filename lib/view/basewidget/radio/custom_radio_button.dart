@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../utill/images.dart';
+import '../../../util//images.dart';
 
 class CustomRadioButton extends StatelessWidget {
   final bool _value;

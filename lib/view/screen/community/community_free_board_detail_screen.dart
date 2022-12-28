@@ -6,16 +6,16 @@ import 'package:yeka/data/model/response/community_model.dart';
 import 'package:yeka/data/model/response/image_model.dart';
 import 'package:yeka/helper/date_converter.dart';
 
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../helper/youtube_converter.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/image_provider.dart';
-import '../../../utill/app_constants.dart';
-import '../../../utill/images.dart';
+import '../../../util//app_constants.dart';
+import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
 class CommunityFreeBoardDetailScreen extends StatefulWidget {

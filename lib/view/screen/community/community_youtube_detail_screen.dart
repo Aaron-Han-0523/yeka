@@ -7,9 +7,9 @@ import '../../../data/model/response/community_model.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../helper/youtube_converter.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/community_youtube_provider.dart';
-import '../../../utill/images.dart';
+import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 

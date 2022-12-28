@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/localization/language_constrants.dart';
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/custom_themes.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/localization/language_constants.dart';
+import 'package:yeka/util/color_resources.dart';
+import 'package:yeka/util/custom_themes.dart';
+import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_button.dart';
 
 class MyDialog extends StatelessWidget {

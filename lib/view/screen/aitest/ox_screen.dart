@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:yeka/utill/color_resources.dart';
+import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../data/model/response/consulting_model.dart';
-import '../../../localization/language_constrants.dart';
-import '../../../utill/images.dart';
+import '../../../localization/language_constants.dart';
+import '../../../util//images.dart';
 import 'ai_result_screen.dart';
 
 class OXPage extends StatefulWidget {

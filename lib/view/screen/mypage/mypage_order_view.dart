@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/product_shimmer.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/order_model.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/consulting_provider.dart';
 import '../../../provider/order_provider.dart';
-import '../../../utill/app_constants.dart';
-import '../../../utill/images.dart';
+import '../../../util//app_constants.dart';
+import '../../../util//images.dart';
 import 'mypage_client_widget.dart';
 import 'mypage_order_detail_screen.dart';
 

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/dimensions.dart';
-import 'package:yeka/utill/images.dart';
+import 'package:yeka/util/color_resources.dart';
+import 'package:yeka/util/dimensions.dart';
+import 'package:yeka/util/images.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/view/screen/product/product_view.dart';
 
 import '../../../data/model/response/community_model.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/community_notice_provider.dart';

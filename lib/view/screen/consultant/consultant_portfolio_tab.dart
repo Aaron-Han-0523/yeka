@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/provider/image_provider.dart';
 
-import '../../../localization/language_constrants.dart';
-import '../../../utill/app_constants.dart';
-import '../../../utill/dimensions.dart';
-import '../../../utill/images.dart';
+import '../../../localization/language_constants.dart';
+import '../../../util//app_constants.dart';
+import '../../../util//dimensions.dart';
+import '../../../util//images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 
 class ConsultantPortfolioWidget extends StatefulWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/helper/price_converter.dart';
-import 'package:yeka/utill/app_constants.dart';
-import 'package:yeka/utill/custom_themes.dart';
-import 'package:yeka/utill/dimensions.dart';
-import 'package:yeka/utill/images.dart';
+import 'package:yeka/util/app_constants.dart';
+import 'package:yeka/util/custom_themes.dart';
+import 'package:yeka/util/dimensions.dart';
+import 'package:yeka/util/images.dart';
 import '../../../data/model/response/user_model.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import 'consultant_detail_screen.dart';
 
 class ConsultantWidget extends StatelessWidget {

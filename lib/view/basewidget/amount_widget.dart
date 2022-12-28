@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/utill/custom_themes.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/custom_themes.dart';
+import 'package:yeka/util/dimensions.dart';
 
 class AmountWidget extends StatelessWidget {
   final String title;

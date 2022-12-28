@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/color_resources.dart';
+import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_shipping_screen.dart';
 
@@ -10,13 +10,13 @@ import '../../../data/model/response/like_product_model.dart';
 import '../../../data/model/response/order_model.dart';
 import '../../../data/model/response/product_model.dart';
 import '../../../helper/price_converter.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
 import '../../../provider/like_product_provider.dart';
 import '../../../provider/option_provider.dart';
-import '../../../utill/app_constants.dart';
-import '../../../utill/images.dart';
+import '../../../util//app_constants.dart';
+import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';

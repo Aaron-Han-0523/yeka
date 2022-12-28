@@ -3,18 +3,18 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/color_resources.dart';
+import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/screen/auth/auth_screen.dart';
 import 'package:yeka/view/screen/consultant/consultant_list_screen.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../data/model/response/personal_color_model.dart';
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/personal_color_provider.dart';
-import '../../../utill/images.dart';
+import '../../../util//images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
 import '../home/home_screens.dart';

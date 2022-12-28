@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/dimensions.dart';
+import 'package:yeka/util/color_resources.dart';
+import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
 import 'package:yeka/view/basewidget/textfield/custom_car_number_textfield.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';

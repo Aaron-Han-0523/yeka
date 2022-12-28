@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utill/dimensions.dart';
+import '../../../util//dimensions.dart';
 import '../radio/custom_small_radio_button.dart';
 
 class CustomTextarea extends StatefulWidget {

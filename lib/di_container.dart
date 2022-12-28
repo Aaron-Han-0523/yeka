@@ -34,7 +34,7 @@ import 'package:yeka/provider/product_provider.dart';
 import 'package:yeka/provider/splash_provider.dart';
 import 'package:yeka/provider/theme_provider.dart';
 import 'package:yeka/provider/user_provider.dart';
-import 'package:yeka/utill/app_constants.dart';
+import 'package:yeka/util/app_constants.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

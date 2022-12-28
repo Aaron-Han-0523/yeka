@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:yeka/utill/dimensions.dart';
-import 'package:yeka/utill/images.dart';
+import 'package:yeka/util/dimensions.dart';
+import 'package:yeka/util/images.dart';
 
-import '../../../../localization/language_constrants.dart';
+import '../../../../localization/language_constants.dart';
 
 class FooterPage extends StatefulWidget {
   @override

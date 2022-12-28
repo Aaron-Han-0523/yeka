@@ -1,11 +1,11 @@
 import 'package:yeka/view/screen/auth/widget/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'package:yeka/localization/language_constrants.dart';
+import 'package:yeka/localization/language_constants.dart';
 
-import 'package:yeka/utill/color_resources.dart';
-import 'package:yeka/utill/dimensions.dart';
-import 'package:yeka/utill/images.dart';
+import 'package:yeka/util/color_resources.dart';
+import 'package:yeka/util/dimensions.dart';
+import 'package:yeka/util/images.dart';
 
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../home/widget/footer_screens.dart';

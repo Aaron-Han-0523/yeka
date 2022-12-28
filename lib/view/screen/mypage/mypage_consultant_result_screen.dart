@@ -6,15 +6,15 @@ import 'package:yeka/data/model/response/personal_color_model.dart';
 import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
-import '../../../localization/language_constrants.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
 import '../../../provider/personal_color_provider.dart';
 import '../../../provider/user_provider.dart';
-import '../../../utill/app_constants.dart';
-import '../../../utill/color_resources.dart';
-import '../../../utill/dimensions.dart';
-import '../../../utill/images.dart';
+import '../../../util//app_constants.dart';
+import '../../../util//color_resources.dart';
+import '../../../util//dimensions.dart';
+import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../home/widget/footer_screens.dart';
 
