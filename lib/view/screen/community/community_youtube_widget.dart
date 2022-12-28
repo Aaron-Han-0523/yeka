@@ -17,13 +17,17 @@ class CommunityYoutubeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        CommunityModel latestCommunityModel = await Provider.of<CommunityYoutubeProvider>(context, listen: false).getCommunity(communityModel);
+        CommunityModel latestCommunityModel =
+            await Provider.of<CommunityYoutubeProvider>(context, listen: false)
+                .getCommunity(communityModel);
         latestCommunityModel.views = latestCommunityModel.views + 1;
 
-        Provider.of<CommunityYoutubeProvider>(context, listen: false).updateCommunity(latestCommunityModel);
+        Provider.of<CommunityYoutubeProvider>(context, listen: false)
+            .updateCommunity(latestCommunityModel);
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => CommunityYoutubeDetailScreen(communityModel : latestCommunityModel),
+            builder: (context) => CommunityYoutubeDetailScreen(
+                communityModel: latestCommunityModel),
           ),
         );
       },
@@ -110,16 +114,21 @@ class CommunityYoutubeWidget extends StatelessWidget {
             width: 82,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                // widget.reviewModel.attachedFilepath1,
-                // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                YoutubeConverter.getYoutubeThumbnail(
+              child: FadeInImage.assetNetwork(
+                placeholder: Images.placeholder1,
+                image: YoutubeConverter.getYoutubeThumbnail(
                   "${communityModel.community_link}",
                 ),
                 fit: BoxFit.fitWidth,
-                width: 165,
                 height: 49,
-                // height: MediaQuery.of(context).size.width * 0.4,
+                imageErrorBuilder: (BuildContext context, Object exception,
+                    StackTrace stackTrace) {
+                  return Image.asset(
+                    Images.placeholder1,
+                    fit: BoxFit.fitHeight,
+                    height: 49,
+                  );
+                },
               ),
             ),
           ),

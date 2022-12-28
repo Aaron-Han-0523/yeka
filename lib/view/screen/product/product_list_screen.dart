@@ -37,7 +37,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
     sortDropdownItems.add(
         "${await getTranslated('SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER', context)}");
 
-    Provider.of<ProductProvider>(context, listen: false)
+    await Provider.of<ProductProvider>(context, listen: false)
         .getLatestProductList(0, context, reload: reload);
   }
 
@@ -104,7 +104,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                             const Icon(Icons.keyboard_arrow_down),
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
                                         dropdownItems: categoryDropdownItems,
-                                        value: categoryDropdownItems[categoryDropdownValue],
+                                        value: categoryDropdownItems.length > 0 ? categoryDropdownItems[categoryDropdownValue] : "",
                                         onChanged: (value) {
                                           setState(() {
                                             categoryDropdownValue = categoryDropdownItems.indexOf(value);
@@ -132,7 +132,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
                                         dropdownItems: sortDropdownItems,
                                         dropdownWidth: 100,
-                                        value: sortDropdownItems[sortDropdownValue],
+                                        value: sortDropdownItems.length > 0 ? sortDropdownItems[sortDropdownValue] : "",
                                         onChanged: (value) {
                                           setState(() {
                                             sortDropdownValue = sortDropdownItems.indexOf(value);

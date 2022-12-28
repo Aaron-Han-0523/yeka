@@ -6,6 +6,7 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../util//images.dart';
+import '../../../util/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
 class MyPageNoticeBoardDetailScreen extends StatefulWidget {
@@ -117,14 +118,12 @@ class _MyPageNoticeBoardDetailScreenState
                               // borderRadius: BorderRadius.circular(10.0),
                               child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                                child: Image.network(
-                                  // widget.reviewModel.attachedFilepath1,
-                                  // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                  // 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F250AB44353D20E5036',
-                                  '${widget.communityModel != null ? widget.communityModel.community_link : ""}',
-                                  // fit: BoxFit.fitWidth,
-                                  // width: MediaQuery.of(context).size.width * 0.9,
-                                  // height: MediaQuery.of(context).size.width * 0.4,
+                                child: FadeInImage.assetNetwork(
+                                  placeholder: Images.placeholder1,
+                                  image: widget.communityModel.community_link,
+                                  fit: BoxFit.cover,
+                                  width: MediaQuery.of(context).size.width * 0.28,
+                                  height: MediaQuery.of(context).size.width * 0.28,
                                 ),
                               ),
                             ),

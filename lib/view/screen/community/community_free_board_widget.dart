@@ -32,21 +32,43 @@ class CommunityFreeBoardWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Container(
-            width: 83,
+            width: 82,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                YoutubeConverter.getYoutubeThumbnail(
-                  // "https://www.youtube.com/watch?v=-QhZnyAgKZk",
+              child: FadeInImage.assetNetwork(
+                placeholder: Images.placeholder1,
+                image: YoutubeConverter.getYoutubeThumbnail(
                   "${communityModel.community_link}",
                 ),
                 fit: BoxFit.fitWidth,
-                width: 30,
                 height: 49,
-                // height: MediaQuery.of(context).size.width * 0.4,
+                imageErrorBuilder: (BuildContext context, Object exception,
+                    StackTrace stackTrace) {
+                  return Image.asset(
+                    Images.placeholder1,
+                    fit: BoxFit.fitHeight,
+                    height: 49,
+                  );
+                },
               ),
             ),
           ),
+          // Container(
+          //   width: 83,
+          //   child: ClipRRect(
+          //     borderRadius: BorderRadius.circular(5),
+          //     child: Image.network(
+          //       YoutubeConverter.getYoutubeThumbnail(
+          //         // "https://www.youtube.com/watch?v=-QhZnyAgKZk",
+          //         "${communityModel.community_link}",
+          //       ),
+          //       fit: BoxFit.fitWidth,
+          //       width: 30,
+          //       height: 49,
+          //       // height: MediaQuery.of(context).size.width * 0.4,
+          //     ),
+          //   ),
+          // ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 20.0),
