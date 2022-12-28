@@ -286,6 +286,22 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
         stageValues[17] == true) {
       // 봄 브라이트
       season = 0;
+      detailSeasonType = 0;
+    } else if (stageValues[0] == true &&
+        stageValues[1] == true &&
+        stageValues[2] == true &&
+        stageValues[3] == true &&
+        stageValues[4] == true &&
+        stageValues[5] == true &&
+        stageValues[6] == true &&
+        stageValues[7] == false &&
+        stageValues[8] == true &&
+        stageValues[9] == false &&
+        stageValues[10] == false &&
+        stageValues[15] == true &&
+        stageValues[17] == false) {
+      // 봄 라이트
+      season = 0;
       detailSeasonType = 1;
     } else if (stageValues[0] == true &&
         stageValues[1] == true &&
@@ -303,22 +319,25 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
       // 봄 소프트
       season = 0;
       detailSeasonType = 5;
-    } else if (stageValues[0] == true &&
+    } else if (stageValues[0] == false &&
         stageValues[1] == true &&
-        stageValues[2] == true &&
+        stageValues[2] == false &&
         stageValues[3] == true &&
         stageValues[4] == true &&
-        stageValues[5] == false &&
+        stageValues[5] == true &&
         stageValues[6] == true &&
-        stageValues[7] == false &&
-        stageValues[8] == true &&
+        stageValues[8] == false &&
         stageValues[9] == false &&
-        stageValues[10] == false &&
-        stageValues[15] == true &&
-        stageValues[17] == false) {
-      // 봄 라이트
-      season = 0;
-      detailSeasonType = 1;
+        stageValues[10] == true &&
+        stageValues[11] == false &&
+        stageValues[13] == false &&
+        stageValues[14] == false &&
+        stageValues[15] == false &&
+        stageValues[16] == true &&
+        stageValues[17] == true) {
+      // 여름 브라이트
+      season = 1;
+      detailSeasonType = 0;
     } else if (stageValues[0] == false &&
         stageValues[1] == true &&
         stageValues[2] == false &&
@@ -345,159 +364,122 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
         stageValues[4] == true &&
         stageValues[6] == true &&
         stageValues[7] == false &&
-        stageValues[8] == true &&
         stageValues[9] == false &&
         stageValues[10] == false &&
         stageValues[11] == false &&
         stageValues[12] == true &&
-        stageValues[13] == true &&
-        stageValues[14] == true &&
-        stageValues[15] == true &&
+        stageValues[13] == false &&
+        stageValues[14] == false &&
+        stageValues[15] == false &&
         stageValues[16] == true &&
         stageValues[17] == false) {
       // 여름 뮤트
       season = 1;
       detailSeasonType = 4;
-    } else if (stageValues[0] == false &&
-        stageValues[1] == true &&
-        stageValues[2] == false &&
-        stageValues[3] == true &&
-        stageValues[4] == true &&
-        stageValues[6] == true &&
-        stageValues[7] == false &&
-        stageValues[8] == true &&
-        stageValues[9] == false &&
+    } else if (stageValues[0] == true &&
+        stageValues[1] == false &&
+        stageValues[2] == true &&
+        stageValues[3] == false &&
+        stageValues[4] == false &&
+        stageValues[5] == false &&
+        stageValues[6] == false &&
+        stageValues[7] == true &&
+        stageValues[8] == false &&
+        stageValues[9] == true &&
         stageValues[10] == false &&
-        stageValues[11] == false &&
-        stageValues[12] == true &&
+        stageValues[11] == true &&
+        stageValues[12] == false &&
         stageValues[13] == true &&
-        stageValues[14] == true &&
-        stageValues[15] == true &&
-        stageValues[16] == true &&
-        stageValues[17] == false) {
-      // 여름 브라이트
-      season = 1;
-      detailSeasonType = 0;
-    } else if (stageValues[0] == false &&
-        stageValues[1] == true &&
-        stageValues[2] == false &&
-        stageValues[3] == true &&
-        stageValues[4] == true &&
-        stageValues[6] == true &&
-        stageValues[7] == false &&
-        stageValues[8] == true &&
-        stageValues[9] == false &&
-        stageValues[10] == false &&
-        stageValues[11] == false &&
-        stageValues[12] == true &&
-        stageValues[13] == true &&
-        stageValues[14] == true &&
-        stageValues[15] == true &&
-        stageValues[16] == true &&
-        stageValues[17] == false) {
-      // 가을 뮤트
-      season = 2;
-      detailSeasonType = 4;
-    } else if (stageValues[0] == false &&
-        stageValues[1] == true &&
-        stageValues[2] == false &&
-        stageValues[3] == true &&
-        stageValues[4] == true &&
-        stageValues[6] == true &&
-        stageValues[7] == false &&
-        stageValues[8] == true &&
-        stageValues[9] == false &&
-        stageValues[10] == false &&
-        stageValues[11] == false &&
-        stageValues[12] == true &&
-        stageValues[13] == true &&
-        stageValues[14] == true &&
-        stageValues[15] == true &&
-        stageValues[16] == true &&
-        stageValues[17] == false) {
-      // 가을 스트롱
-      season = 2;
-      detailSeasonType = 3;
-    } else if (stageValues[0] == false &&
-        stageValues[1] == true &&
-        stageValues[2] == false &&
-        stageValues[3] == true &&
-        stageValues[4] == true &&
-        stageValues[6] == true &&
-        stageValues[7] == false &&
-        stageValues[8] == true &&
-        stageValues[9] == false &&
-        stageValues[10] == false &&
-        stageValues[11] == false &&
-        stageValues[12] == true &&
-        stageValues[13] == true &&
-        stageValues[14] == true &&
-        stageValues[15] == true &&
-        stageValues[16] == true &&
+        stageValues[14] == false &&
+        stageValues[16] == false &&
         stageValues[17] == false) {
       // 가을 딥
       season = 2;
       detailSeasonType = 2;
-    } else if (stageValues[0] == false &&
-        stageValues[1] == true &&
-        stageValues[2] == false &&
-        stageValues[3] == true &&
-        stageValues[4] == true &&
-        stageValues[6] == true &&
+    } else if (stageValues[0] == true &&
+        stageValues[1] == false &&
+        stageValues[2] == true &&
+        stageValues[3] == false &&
+        stageValues[4] == false &&
+        stageValues[8] == false &&
+        stageValues[9] == true &&
+        stageValues[10] == true &&
+        stageValues[11] == true &&
+        stageValues[12] == false &&
+        stageValues[13] == false &&
+        stageValues[16] == false) {
+      // 가을 스트롱
+      season = 2;
+      detailSeasonType = 3;
+    } else if (stageValues[0] == true &&
+        stageValues[1] == false &&
+        stageValues[2] == true &&
+        stageValues[3] == false &&
+        stageValues[4] == false &&
+        stageValues[5] == false &&
         stageValues[7] == false &&
-        stageValues[8] == true &&
-        stageValues[9] == false &&
+        stageValues[8] == false &&
+        stageValues[9] == true &&
         stageValues[10] == false &&
-        stageValues[11] == false &&
-        stageValues[12] == true &&
-        stageValues[13] == true &&
-        stageValues[14] == true &&
+        stageValues[12] == false &&
+        stageValues[13] == false &&
+        stageValues[14] == false &&
         stageValues[15] == true &&
-        stageValues[16] == true &&
+        stageValues[16] == false &&
         stageValues[17] == false) {
+      // 가을 뮤트
+      season = 2;
+      detailSeasonType = 4;
+    } else if (stageValues[1] == false &&
+        stageValues[2] == false &&
+        stageValues[4] == false &&
+        stageValues[5] == true &&
+        stageValues[6] == true &&
+        stageValues[7] == true &&
+        stageValues[8] == false &&
+        stageValues[9] == false &&
+        stageValues[10] == true &&
+        stageValues[11] == false &&
+        stageValues[12] == false &&
+        stageValues[13] == false &&
+        stageValues[14] == false &&
+        stageValues[15] == false &&
+        stageValues[16] == true &&
+        stageValues[17] == true) {
       //겨울 브라이트
       season = 3;
       detailSeasonType = 0;
-    } else if (stageValues[0] == false &&
-        stageValues[1] == true &&
+    }  else if (stageValues[1] == false &&
         stageValues[2] == false &&
-        stageValues[3] == true &&
-        stageValues[4] == true &&
+        stageValues[4] == false &&
+        stageValues[5] == true &&
+        stageValues[7] == true &&
+        stageValues[8] == false &&
+        stageValues[9] == false &&
+        stageValues[11] == false &&
+        stageValues[12] == false &&
+        stageValues[13] == true &&
+        stageValues[14] == false &&
+        stageValues[15] == false &&
+        stageValues[17] == true) {
+      // 겨울 딥
+      season = 3;
+      detailSeasonType = 2;
+    } else if (stageValues[1] == false &&
+        stageValues[2] == false &&
+        stageValues[4] == false &&
         stageValues[6] == true &&
-        stageValues[7] == false &&
-        stageValues[8] == true &&
         stageValues[9] == false &&
         stageValues[10] == false &&
         stageValues[11] == false &&
         stageValues[12] == true &&
-        stageValues[13] == true &&
-        stageValues[14] == true &&
-        stageValues[15] == true &&
+        stageValues[14] == false &&
+        stageValues[15] == false &&
         stageValues[16] == true &&
         stageValues[17] == false) {
       // 겨울 페일
       season = 3;
       detailSeasonType = 6;
-    } else if (stageValues[0] == false &&
-        stageValues[1] == true &&
-        stageValues[2] == false &&
-        stageValues[3] == true &&
-        stageValues[4] == true &&
-        stageValues[6] == true &&
-        stageValues[7] == false &&
-        stageValues[8] == true &&
-        stageValues[9] == false &&
-        stageValues[10] == false &&
-        stageValues[11] == false &&
-        stageValues[12] == true &&
-        stageValues[13] == true &&
-        stageValues[14] == true &&
-        stageValues[15] == true &&
-        stageValues[16] == true &&
-        stageValues[17] == false) {
-      // 겨울 딥
-      season = 3;
-      detailSeasonType = 2;
     }
 
     MaterialPageRoute(
