@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/data/model/response/order_model.dart';
+import 'package:yeka/provider/consulting_provider.dart';
 
 import 'package:yeka/utill/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../data/model/response/consulting_model.dart';
+import '../../../data/model/response/personal_color_model.dart';
+import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../provider/auth_provider.dart';
+import '../../../provider/order_provider.dart';
+import '../../../provider/personal_color_provider.dart';
+import '../../../provider/user_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
-import '../aitest/ai_result_screen.dart';
+import 'mypage_ai_result_screen.dart';
 import 'mypage_client_list_screen.dart';
 import 'mypage_consultant_result_screen.dart';
 import 'mypage_consultant_update.dart';
 import 'mypage_favorite_list_screen.dart';
 import 'mypage_my_reserve_screen.dart';
 import 'mypage_notice_board_list_screen.dart';
-import 'mypage_order_screen.dart';
+import 'mypage_order_list_screen.dart';
 import 'mypage_payment.dart';
 import 'mypage_update_screen.dart';
 
@@ -27,13 +35,39 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
   Map map;
+  PersonalColorModel personalColorModel;
+  ConsultingModel consultingModel;
+  UserModel userModel;
+
   Column myPageList = Column(
     children: [],
   );
 
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    consultingModel = ConsultingModel(
+      client_id: map["id"],
+    );
+
+    consultingModel = await Provider.of<ConsultingProvider>(context, listen: false).getConsultingByClientId(consultingModel);
+
+    personalColorModel = PersonalColorModel(
+      season: consultingModel.season,
+      detail_season_type: consultingModel.detail_season_type,
+    );
+
+    personalColorModel = await Provider.of<PersonalColorProvider>(context, listen: false).getPersonalColorCondition(personalColorModel);
+
+    userModel = UserModel(
+      id: consultingModel.consultant_id,
+    );
+
+    userModel = await Provider.of<UserProvider>(context, listen: false).getUser(userModel);
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     map = Provider.of<AuthProvider>(context, listen: false).getUser();
 
     if (map["user_type"] != null) {
@@ -46,7 +80,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('PERSONAL_AI_ANALYSIS_RESULT', context)}",
-          AIResultPage(),
+          MyPageAIResultPage(),
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESERVATION/PAYMENT', context)}",
@@ -58,7 +92,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('ORDER_LIST', context)}",
-          MyPageOrderScreen(),
+          MyPageOrderListScreen(),
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('LIKE_LIST', context)}",
@@ -96,6 +130,8 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
         Text("${getTranslated('PLEASE_LOGIN', context)}"),
       ));
     }
+
+    _loadData(context, false);
   }
 
   buildItem(String title, Widget targetWidget) {

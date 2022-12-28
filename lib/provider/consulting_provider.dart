@@ -57,6 +57,13 @@ class ConsultingProvider extends ChangeNotifier {
     return _consulting;
   }
 
+  Future<ConsultingModel> getConsultingByClientId(ConsultingModel consultingModel) async {
+    ApiResponse apiResponse = await consultingRepo.getConsultingByClientId(consultingModel);
+    _consulting = ConsultingModel.fromJson(apiResponse.response.data);
+    notifyListeners();
+    return _consulting;
+  }
+
   Future<void> getLatestConsultingList(int offset, BuildContext context,
       {bool reload = false}) async {
     if (reload) {

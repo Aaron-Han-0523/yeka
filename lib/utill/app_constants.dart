@@ -75,6 +75,7 @@ class AppConstants {
   static const String DELETE_CONSULTING_URI = "/api/consulting";
   static const String LIST_CONSULTING_URI = "/api/consulting";
   static const String GET_CONSULTING_URI = "/api/consulting";
+  static const String GET_CONSULTING_BY_CLIENT_ID_URI = "/api/consulting/client";
 
   // MENU
   static const String ADD_MENU_URI = "/api/menu";

@@ -4,7 +4,6 @@ import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
 import '../../../data/model/response/consulting_model.dart';
-import '../../../data/model/response/menu_model.dart';
 import '../../../localization/language_constrants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
@@ -29,22 +28,21 @@ class MyPageMyReserveScreen extends StatefulWidget {
 
 class _MyPageMyReserveScreenState extends State<MyPageMyReserveScreen>
     with TickerProviderStateMixin {
+  Map map = Map();
   ConsultingModel consultingModel;
   UserModel userModel;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    int user_id = await Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
-
-    consultingModel = await Provider.of<ConsultingProvider>(context, listen: false)
-        .getConsulting(ConsultingModel(client_id: user_id));
-
-    userModel = await Provider.of<UserProvider>(context, listen: false).getUser(UserModel(id: consultingModel.consultant_id));
+    map = Provider.of<AuthProvider>(context, listen: false).getUser();
+    consultingModel = Provider.of<ConsultingProvider>(context, listen: false).consulting;
+    userModel = Provider.of<UserProvider>(context, listen: false).user;
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
-    _loadData(context, false);
+
+    await _loadData(context, false);
   }
 
   @override
@@ -169,7 +167,7 @@ class _MyPageMyReserveScreenState extends State<MyPageMyReserveScreen>
                           height: 340,
                           child: FadeInImage.assetNetwork(
                             placeholder: Images.placeholder1,
-                            image: userModel != null
+                            image: userModel != null && userModel.title_image != null
                                 ? AppConstants.BASE_URL +
                                     "/" +
                                     userModel.title_image
@@ -353,7 +351,7 @@ class _MyPageMyReserveScreenState extends State<MyPageMyReserveScreen>
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                for (var text in (userModel != null ? userModel.resume : "")
+                                for (var text in (userModel != null && userModel.resume != null ? userModel.resume : "")
                                     .split("\\n"))
                                   Text(
                                     text,
