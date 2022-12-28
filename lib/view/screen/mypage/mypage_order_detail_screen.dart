@@ -42,7 +42,7 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
               slivers: [
                 // App Bar
                 CustomSliverAppBar(
-                  "${getTranslated('ORDER_DETAIL_LIST', context)}",
+                  "${getTranslated('ORDER_DETAIL_LIST', context)}",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Container(

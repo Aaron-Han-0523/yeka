@@ -216,18 +216,22 @@ class _CommunityYoutubeDetailScreenState
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(5),
-                                            child: Image.network(
-                                              // widget.reviewModel.attachedFilepath1,
-                                              // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                              YoutubeConverter
-                                                  .getYoutubeThumbnail(
-                                                // "https://www.youtube.com/watch?v=-QhZnyAgKZk",
+                                            child: FadeInImage.assetNetwork(
+                                              placeholder: Images.placeholder1,
+                                              image: YoutubeConverter.getYoutubeThumbnail(
                                                 "${communityNewsList[index].community_link}",
                                               ),
                                               fit: BoxFit.fitWidth,
                                               width: 83,
-                                              // height: 49,
-                                              // height: width * 0.4,
+                                              imageErrorBuilder: (BuildContext context, Object exception,
+                                                  StackTrace stackTrace) {
+                                                return Image.asset(
+                                                  Images.placeholder1,
+                                                  fit: BoxFit.fitHeight,
+                                                  height: 60,
+                                                  width: 83,
+                                                );
+                                              },
                                             ),
                                           ),
                                         ),

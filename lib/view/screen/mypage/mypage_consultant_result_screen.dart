@@ -310,7 +310,7 @@ class _MyPageConsultantResultScreenState
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('RESULT_CONSULTING', context)}",
+              "${getTranslated('RESULT_CONSULTING', context)}",isMyPageHidden: true,
             ),
 
             SliverToBoxAdapter(
@@ -568,6 +568,15 @@ class _MyPageConsultantResultScreenState
                               fit: BoxFit.fill,
                               height: 177,
                               width: 167.5,
+                              imageErrorBuilder: (BuildContext context, Object exception,
+                                  StackTrace stackTrace) {
+                                return Image.asset(
+                                  Images.placeholder1,
+                                  fit: BoxFit.fitHeight,
+                                  height: 177,
+                                  width: 167.5,
+                                );
+                              },
                             ),
                           ),
                         ),

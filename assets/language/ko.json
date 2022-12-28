@@ -300,6 +300,8 @@
   "SORT_DROPDOWN_ITEMS_POPULARITY_ORDER" : "인기순",
   "SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER" : "신제품순",
 
+  "HAVE_TO_LOGIN" : "로그인이 필요합니다.",
+
 
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",

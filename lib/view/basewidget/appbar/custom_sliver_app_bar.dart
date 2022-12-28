@@ -11,8 +11,10 @@ import '../button/home_button.dart';
 class CustomSliverAppBar extends StatefulWidget {
   final String titleText;
   final bool isHome;
+  final bool isMyPageHidden;
+  final bool isLogoutHidden;
 
-  CustomSliverAppBar(this.titleText, {this.isHome = false});
+  CustomSliverAppBar(this.titleText, {this.isHome = false, this.isMyPageHidden = false, this.isLogoutHidden = false,});
 
   @override
   State<CustomSliverAppBar> createState() => _CustomSliverAppBarState();
@@ -106,7 +108,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             ),
           ),
         ),
-        Center(
+        widget.isMyPageHidden ? Container() : Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
             child: InkWell(
@@ -133,7 +135,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             ),
           ),
         ),
-        Center(
+        widget.isLogoutHidden ? Container() : Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(4.0, 4.0, 12.0, 4.0),
             child: InkWell(

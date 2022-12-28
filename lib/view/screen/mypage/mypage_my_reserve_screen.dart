@@ -55,7 +55,7 @@ class _MyPageMyReserveScreenState extends State<MyPageMyReserveScreen>
           slivers: [
             // App Bar
             CustomSliverAppBar(
-              "${getTranslated('MY_RESERVATION', context)}",
+              "${getTranslated('MY_RESERVATION', context)}",isMyPageHidden: true,
             ),
 
             SliverToBoxAdapter(

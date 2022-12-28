@@ -102,7 +102,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("${getTranslated('RESULT_AT_TEST', context)}"),
+              CustomSliverAppBar("${getTranslated('RESULT_AT_TEST', context)}", isMyPageHidden: true,),
 
               SliverToBoxAdapter(
                 child: Container(

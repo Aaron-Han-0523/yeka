@@ -42,7 +42,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('SETTLEMENT_AMOUNT', context)}",
+                  "${getTranslated('SETTLEMENT_AMOUNT', context)}",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                     child: Column(

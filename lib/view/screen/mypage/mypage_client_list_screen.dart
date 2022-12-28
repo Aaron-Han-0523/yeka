@@ -39,7 +39,7 @@ class _MyPageClientListScreenState extends State<MyPageClientListScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('MY_CUSTOMER_INFO', context)}",
+                  "${getTranslated('MY_CUSTOMER_INFO', context)}",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Column(

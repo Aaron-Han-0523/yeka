@@ -193,7 +193,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
           controller: _scrollController,
           slivers: [
             CustomSliverAppBar(
-              "${getTranslated('MY_PAGE', context)}",
+              "${getTranslated('MY_PAGE', context)}",isMyPageHidden: true,
             ),
             SliverToBoxAdapter(
               child: Container(

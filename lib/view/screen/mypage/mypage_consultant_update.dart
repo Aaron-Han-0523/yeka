@@ -147,7 +147,7 @@ class _MyPageConsultantUpdateScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",
+                  "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Container(

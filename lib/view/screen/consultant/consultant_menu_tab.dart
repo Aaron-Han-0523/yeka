@@ -5,9 +5,11 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import '../../../data/model/response/menu_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/menu_provider.dart';
 import '../../../util//app_constants.dart';
 import '../../../util//images.dart';
+import '../../basewidget/dialog/single_text_alertdialog.dart';
 import 'consultant_calendar.dart';
 import 'consultant_reserve_screen.dart';
 
@@ -27,7 +29,6 @@ class ConsultantMenuWidget extends StatefulWidget {
 
 class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
     with TickerProviderStateMixin {
-
   Widget buildMenu(MenuModel menuModel) {
     return Column(
       children: [
@@ -101,14 +102,31 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                           backgroundColor: const Color(0XFF707070),
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                transitionDuration: Duration(milliseconds: 500),
-                                pageBuilder: (context, anim1, anim2) =>
-                                    ConsultantCalendarScreen(menuModel: menuModel, userModel: widget.userModel,),
-                              ),
-                            );
+                            if (Provider.of<AuthProvider>(context,
+                                    listen: false)
+                                .isLoggedIn()) {
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  transitionDuration:
+                                      Duration(milliseconds: 500),
+                                  pageBuilder: (context, anim1, anim2) =>
+                                      ConsultantCalendarScreen(
+                                    menuModel: menuModel,
+                                    userModel: widget.userModel,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    SingleTextAlertDialog(
+                                  message:
+                                      "${getTranslated("HAVE_TO_LOGIN", context)}",
+                                ),
+                              );
+                            }
                           },
                           buttonText: '${getTranslated('RESERVE', context)}',
                         ),
@@ -133,7 +151,11 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [for (var menu in Provider.of<MenuProvider>(context, listen: false).menuList) buildMenu(menu)],
+      children: [
+        for (var menu
+            in Provider.of<MenuProvider>(context, listen: false).menuList)
+          buildMenu(menu)
+      ],
     );
   }
 }

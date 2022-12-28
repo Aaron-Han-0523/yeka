@@ -43,7 +43,7 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('LIKE_LIST', context)}",
+                  "${getTranslated('LIKE_LIST', context)}",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Column(

@@ -97,7 +97,7 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
           controller: _scrollController,
           slivers: [
             CustomSliverAppBar(
-              "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
+              "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",isMyPageHidden: true,
             ),
             SliverToBoxAdapter(
               child: Container(

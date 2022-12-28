@@ -49,7 +49,7 @@ class _MyPageConsultantResultWriteScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('FILL_IN_CONSULTING_RESULT', context)}",
+                  "${getTranslated('FILL_IN_CONSULTING_RESULT', context)}",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Container(

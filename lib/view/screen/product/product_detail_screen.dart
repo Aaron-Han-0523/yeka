@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
+import 'package:yeka/view/basewidget/dialog/single_text_alertdialog.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_shipping_screen.dart';
 
@@ -21,6 +22,10 @@ import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
+
+import '../../basewidget/image_diaglog.dart';
+import '../../basewidget/my_dialog.dart';
+import '../auth/auth_screen.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final bool isCreateScreen;
@@ -375,33 +380,47 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                         .PADDING_SIZE_EXTRA_EXTRA_SMALL),
                                 CustomElevatedButton(
                                   onTap: () async {
-                                    OrderModel orderModel = OrderModel(
-                                      image1:
-                                          widget.productModel.thumbnail != null
-                                              ? AppConstants.BASE_URL +
-                                                  "/" +
-                                                  widget.productModel.thumbnail
-                                              : AppConstants.BASE_URL,
-                                      title: widget.productModel.title,
-                                      option: optionDropdownItems.length != 0
-                                          ? optionDropdownItems[
-                                              optionDropdownValue]
-                                          : null,
-                                      quantity: _itemCount,
-                                      price: widget.productModel.price,
-                                      delivery_fee:
-                                          widget.productModel.delivery_fee,
-                                      total_fee: widget.productModel.price *
-                                              _itemCount +
-                                          widget.productModel.delivery_fee,
-                                    );
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (_) => ProductShippingPage(
+                                    if (Provider.of<AuthProvider>(context,
+                                            listen: false)
+                                        .isLoggedIn()) {
+                                      OrderModel orderModel = OrderModel(
+                                        image1: widget.productModel.thumbnail !=
+                                                null
+                                            ? AppConstants.BASE_URL +
+                                                "/" +
+                                                widget.productModel.thumbnail
+                                            : AppConstants.BASE_URL,
+                                        title: widget.productModel.title,
+                                        option: optionDropdownItems.length != 0
+                                            ? optionDropdownItems[
+                                                optionDropdownValue]
+                                            : null,
+                                        quantity: _itemCount,
+                                        price: widget.productModel.price,
+                                        delivery_fee:
+                                            widget.productModel.delivery_fee,
+                                        total_fee: widget.productModel.price *
+                                                _itemCount +
+                                            widget.productModel.delivery_fee,
+                                      );
+
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (_) => ProductShippingPage(
                                             orderModel: orderModel,
+                                          ),
                                         ),
-                                      ),
-                                    );
+                                      );
+                                    } else {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            SingleTextAlertDialog(
+                                              message:
+                                              "${getTranslated("HAVE_TO_LOGIN", context)}",
+                                            ),
+                                      );
+                                    }
                                   },
                                   buttonText:
                                       "${getTranslated('GO_TO_ORDER', context)}",
@@ -437,12 +456,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                             right: 30,
                             child: InkWell(
                               onTap: () {
-                                var userId =
-                                    Provider.of<AuthProvider>(context, listen: false)
+                                var userId = Provider.of<AuthProvider>(context,
+                                        listen: false)
                                     .getUser()["id"];
 
                                 if (userId != null) {
-                                  LikeProductModel likeProductModel = LikeProductModel(
+                                  LikeProductModel likeProductModel =
+                                      LikeProductModel(
                                     id: widget.productModel.like_product_id,
                                     user_id: userId,
                                     product_id: widget.productModel.id,
@@ -450,22 +470,23 @@ class _ProductDetailPageState extends State<ProductDetailPage>
 
                                   if (heart)
                                     Provider.of<LikeProductProvider>(context,
-                                      listen: false)
-                                      .deleteLikeProduct(likeProductModel);
-                                else
-                                  Provider.of<LikeProductProvider>(context,
-                                    listen: false)
-                                    .addLikeProduct(likeProductModel);
+                                            listen: false)
+                                        .deleteLikeProduct(likeProductModel);
+                                  else
+                                    Provider.of<LikeProductProvider>(context,
+                                            listen: false)
+                                        .addLikeProduct(likeProductModel);
 
-                                setState(() {
-                                  heart = !heart;
-                                });
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                content: Text("${getTranslated('LOGIN_FAVORITE_REGISTERING', context)}"),
-                                backgroundColor: Colors.red),
-                                );
+                                  setState(() {
+                                    heart = !heart;
+                                  });
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            "${getTranslated('LOGIN_FAVORITE_REGISTERING', context)}"),
+                                        backgroundColor: Colors.red),
+                                  );
                                 }
                               },
                               child: Container(
@@ -487,9 +508,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   borderRadius: BorderRadius.circular(10.0),
                                   child: Container(
                                     child: Image.asset(
-                                      heart
-                                          ? Images.heart_fill
-                                          : Images.heart,
+                                      heart ? Images.heart_fill : Images.heart,
                                       fit: BoxFit.cover,
                                       width: 20,
                                       // width: MediaQuery.of(context).size.width * 0.9,

@@ -65,7 +65,7 @@ class _MyPageNoticeBoardListScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('NOTICE', context)}",
+                  "${getTranslated('NOTICE', context)}",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Column(

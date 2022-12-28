@@ -37,7 +37,7 @@ class _MyPageNoticeBoardDetailScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('NOTICE', context)}",
+                  "${getTranslated('NOTICE', context)}",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Column(
@@ -92,7 +92,7 @@ class _MyPageNoticeBoardDetailScreenState
                                           SizedBox(width: 3),
 
                                           Text(
-                                            "${widget.communityModel.views}${getTranslated('TIMES', context)}",
+                                            "${widget.communityModel != null ? widget.communityModel.views : "0"}${getTranslated('TIMES', context)}",
                                             style: TextStyle(
                                               fontSize: 8.0,
                                               color: Color(0xff999999),
@@ -120,10 +120,19 @@ class _MyPageNoticeBoardDetailScreenState
                                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                                 child: FadeInImage.assetNetwork(
                                   placeholder: Images.placeholder1,
-                                  image: widget.communityModel.community_link,
+                                  image: widget.communityModel != null ? widget.communityModel.community_link : "",
                                   fit: BoxFit.cover,
                                   width: MediaQuery.of(context).size.width * 0.28,
                                   height: MediaQuery.of(context).size.width * 0.28,
+                                  imageErrorBuilder: (BuildContext context, Object exception,
+                                      StackTrace stackTrace) {
+                                    return Image.asset(
+                                      Images.placeholder1,
+                                      fit: BoxFit.fitHeight,
+                                      width: MediaQuery.of(context).size.width * 0.28,
+                                      height: MediaQuery.of(context).size.width * 0.28,
+                                    );
+                                  },
                                 ),
                               ),
                             ),
