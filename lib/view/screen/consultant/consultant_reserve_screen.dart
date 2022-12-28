@@ -276,7 +276,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                       ),
                                   );
                                 },
-                                buttonText: "${getTranslated('CONSULTANT_COMPLETE', context)}",),
+                                buttonText: "${getTranslated('CONFIRMATION', context)}",),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                           ],
                         )),
