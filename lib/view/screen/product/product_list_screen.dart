@@ -18,31 +18,34 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  var categoryDropdownItems = [];
-  var sortDropdownItems = [];
+  List<String> categoryDropdownItems = [];
+  List<String> sortDropdownItems = [];
   int categoryDropdownValue = 0;
   int sortDropdownValue = 0;
 
-  @override
-  void initState() {
-    categoryDropdownItems.add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_TOP', context)}");
-    categoryDropdownItems.add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_BOTTOMS', context)}");
-    categoryDropdownItems.add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_SHOES', context)}");
-    categoryDropdownItems.add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_COSMETICS', context)}");
-    sortDropdownItems.add("${getTranslated('SORT_DROPDOWN_ITEMS_POPULARITY_ORDER', context)}");
-    sortDropdownItems.add("${getTranslated('SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER', context)}");
-
-    super.initState();
-  }
   Future<void> _loadData(BuildContext context, bool reload) async {
+    categoryDropdownItems
+        .add("${await getTranslated('CATEGORY_DROPDOWN_ITEMS_TOP', context)}");
+    categoryDropdownItems.add(
+        "${await getTranslated('CATEGORY_DROPDOWN_ITEMS_BOTTOMS', context)}");
+    categoryDropdownItems.add(
+        "${await getTranslated('CATEGORY_DROPDOWN_ITEMS_SHOES', context)}");
+    categoryDropdownItems.add(
+        "${await getTranslated('CATEGORY_DROPDOWN_ITEMS_COSMETICS', context)}");
+    sortDropdownItems.add(
+        "${await getTranslated('SORT_DROPDOWN_ITEMS_POPULARITY_ORDER', context)}");
+    sortDropdownItems.add(
+        "${await getTranslated('SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER', context)}");
+
     Provider.of<ProductProvider>(context, listen: false)
         .getLatestProductList(0, context, reload: reload);
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
-    _loadData(context, false);
+
+    await _loadData(context, false);
   }
 
   @override
