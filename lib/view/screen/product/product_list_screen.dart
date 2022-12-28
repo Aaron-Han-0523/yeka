@@ -18,8 +18,8 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  List<String> categoryDropdownItems = [];
-  List<String> sortDropdownItems = [];
+  List<String> categoryDropdownItems = [""];
+  List<String> sortDropdownItems = [""];
   int categoryDropdownValue = 0;
   int sortDropdownValue = 0;
 
@@ -104,7 +104,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                             const Icon(Icons.keyboard_arrow_down),
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
                                         dropdownItems: categoryDropdownItems,
-                                        value: categoryDropdownItems.length > 0 ? categoryDropdownItems[categoryDropdownValue] : "",
+                                        value: categoryDropdownItems[categoryDropdownValue],
                                         onChanged: (value) {
                                           setState(() {
                                             categoryDropdownValue = categoryDropdownItems.indexOf(value);
@@ -132,7 +132,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                         iconSize: Dimensions.ICON_SIZE_DEFAULT,
                                         dropdownItems: sortDropdownItems,
                                         dropdownWidth: 100,
-                                        value: sortDropdownItems.length > 0 ? sortDropdownItems[sortDropdownValue] : "",
+                                        value: sortDropdownItems[sortDropdownValue],
                                         onChanged: (value) {
                                           setState(() {
                                             sortDropdownValue = sortDropdownItems.indexOf(value);
