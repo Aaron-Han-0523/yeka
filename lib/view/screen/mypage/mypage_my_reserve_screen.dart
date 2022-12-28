@@ -176,6 +176,15 @@ class _MyPageMyReserveScreenState extends State<MyPageMyReserveScreen>
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width * 0.89333,
                             height: MediaQuery.of(context).size.width * 0.89333,
+                            imageErrorBuilder: (BuildContext context, Object exception,
+                                StackTrace stackTrace) {
+                              return Image.asset(
+                                Images.placeholder1,
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width * 0.89333,
+                                height: MediaQuery.of(context).size.width * 0.89333,
+                              );
+                            },
                           ),
                         ),
                       ),

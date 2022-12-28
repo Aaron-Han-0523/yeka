@@ -256,7 +256,10 @@ class _MyPageConsultantResultScreenState
     var seasonKor = "";
     var detailSeasonType = "";
 
-    if (personalColorModel.season == 0) {
+    if (personalColorModel == null) {
+      season = "Spring";
+      seasonKor = "봄";
+    } else if (personalColorModel.season == 0) {
       season = "Spring";
       seasonKor = "봄";
     } else if (personalColorModel.season == 1) {
@@ -270,7 +273,9 @@ class _MyPageConsultantResultScreenState
       seasonKor = "겨울";
     }
 
-    if (personalColorModel.detail_season_type == 0) {
+    if (personalColorModel == null) {
+      detailSeasonType = "브라이트";
+    } else if (personalColorModel.detail_season_type == 0) {
       detailSeasonType = "브라이트";
     } else if (personalColorModel.detail_season_type == 1) {
       detailSeasonType = "라이트";
@@ -297,7 +302,7 @@ class _MyPageConsultantResultScreenState
       "#FF22FF",
     ];
 
-    if (personalColorModel.matching_color_array != null &&
+    if (personalColorModel != null &&
         personalColorModel.matching_color_array.split(",").length > 7) {
       matchingColorList = personalColorModel.matching_color_array.split(",");
     }
@@ -345,8 +350,17 @@ class _MyPageConsultantResultScreenState
                                       userModel.title_image
                                   : AppConstants.BASE_URL +
                                       "/upload/placeholder_1x1.png",
-                              fit: BoxFit.fill,
                               height: 75,
+                              width: 75,
+                              imageErrorBuilder: (BuildContext context, Object exception,
+                                  StackTrace stackTrace) {
+                                return Image.asset(
+                                  Images.placeholder1,
+                                  fit: BoxFit.fitHeight,
+                                  height: 75,
+                                  width: 75,
+                                );
+                              },
                             ),
                           ),
                           Column(
