@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:yeka/view/screen/product/product_widget.dart';
 
 import '../../../data/model/response/product_model.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/product_provider.dart';
 
 class ProductView extends StatefulWidget {
@@ -24,6 +25,8 @@ class _ProductViewState extends State<ProductView> {
 
   @override
   Widget build(BuildContext context) {
+    int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+
     widget.scrollController.addListener(() {
       if (widget.scrollController.position.maxScrollExtent ==
               widget.scrollController.position.pixels &&
@@ -49,7 +52,7 @@ class _ProductViewState extends State<ProductView> {
           //     .showBottomLoader();
 
           Provider.of<ProductProvider>(context, listen: false)
-              .getLatestProductList(offset, context, reload: true);
+              .getLatestProductList(offset, user_id, context, reload: true);
         }
       }
     });

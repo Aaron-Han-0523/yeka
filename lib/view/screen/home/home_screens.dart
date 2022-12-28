@@ -36,6 +36,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
   Future<void> _loadData(BuildContext context, bool reload) async {
+    int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+
     Provider.of<CommunityProvider>(context, listen: false)
         .getLatestCommunityList(0, context, reload: reload);
 
@@ -49,7 +51,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         .getCommunityList(0, context);
 
     await Provider.of<ProductProvider>(context, listen: false)
-        .getLatestProductList(0, context, reload: reload);
+        .getLatestProductList(0, user_id, context, reload: reload);
 
     // Provider.of<UserProvider>(context, listen: false)
     //     .getLatestUserList(0, context, reload: reload);
@@ -66,12 +68,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
     // fixme 개발 중이라 홈으로 올때는 무조건 초기화 하도록 조정하였음
     // fixme 운영할 때는 false 로 변경해야함
     // _loadData(context, false);
-    _loadData(context, true);
+    await _loadData(context, true);
   }
 
   Widget buildCommunity() {

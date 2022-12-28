@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:yeka/view/screen/product/product_view.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/product_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
@@ -37,8 +38,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
     sortDropdownItems.add(
         "${await getTranslated('SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER', context)}");
 
+    int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+
     await Provider.of<ProductProvider>(context, listen: false)
-        .getLatestProductList(0, context, reload: reload);
+        .getLatestProductList(0, user_id, context, reload: reload);
   }
 
   @override

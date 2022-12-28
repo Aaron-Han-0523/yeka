@@ -59,8 +59,7 @@ class _ProductViewState extends State<MyPageFavoriteView> {
 
     return Consumer<ProductProvider>(
       builder: (context, productProvider, child) {
-        List<ProductModel> productList = [];
-        productList = productProvider.latestProductMyFavoriteList;
+        List<ProductModel> productList = productProvider.latestProductMyFavoriteList;
 
         print('========hello hello===>${productList.length}');
 

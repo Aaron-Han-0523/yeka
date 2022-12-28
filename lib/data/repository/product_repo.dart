@@ -73,10 +73,10 @@ class ProductRepo {
   }
 
   // limit = pageSize, skip = offset
-  Future<ApiResponse> getProductList(int limit, int skip) async {
+  Future<ApiResponse> getProductList(int limit, int skip, int user_id) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_PRODUCT_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_PRODUCT_URI + "?limit=$limit&skip=$skip&user_id=$user_id",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

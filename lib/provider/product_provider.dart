@@ -64,7 +64,7 @@ class ProductProvider extends ChangeNotifier {
     return _product;
   }
 
-  Future<void> getLatestProductList(int offset, BuildContext context,
+  Future<void> getLatestProductList(int offset, int user_id, BuildContext context,
       {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
@@ -78,7 +78,7 @@ class ProductProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await productRepo.getProductList(limit, offset * limit);
+      ApiResponse apiResponse = await productRepo.getProductList(limit, offset * limit, user_id);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
         _latestProductList.addAll(ProductList.fromList(apiResponse.response.data).productList);

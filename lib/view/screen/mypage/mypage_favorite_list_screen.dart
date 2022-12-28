@@ -21,13 +21,15 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
-    Provider.of<ProductProvider>(context, listen: false)
+
+    await Provider.of<ProductProvider>(context, listen: false)
         .getLatestProductMyFavoriteList(0, user_id, context, reload: reload);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     _loadData(context, false);
   }
 

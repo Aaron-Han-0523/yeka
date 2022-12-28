@@ -217,7 +217,8 @@ class _AuthScreenState extends State<AuthScreen> {
   route(bool isRoute, String errorMessage) async {
     if (isRoute) {
       if(widget.initialPage == 0) {
-        Navigator.pop(context);
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (_) => HomePage()), (route) => true);
       } else if(widget.initialPage == 1) {
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => AIResultPage()), (route) => true);
