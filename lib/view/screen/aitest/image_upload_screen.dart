@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:images_picker/images_picker.dart';
 
 import 'package:yeka/util/color_resources.dart';
@@ -190,40 +191,24 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                         child: Center(
                           child: InkWell(
                             onTap: () async {
-                              thumbnailLists = [];
+                              final ImagePicker _picker = ImagePicker();
+                              // Pick an image
+                              final XFile image = await _picker.pickImage(
+                                  source: ImageSource.gallery);
 
-                              List<Media> res = await ImagesPicker.pick(
-                                count: 1,
-                                pickType: PickType.all,
-                                language: Language.System,
-                                maxTime: 30,
-                                // maxSize: 500,
-                                cropOpt: CropOption(
-                                  // aspectRatio: CropAspectRatio.wh16x9,
-                                  cropType: CropType.circle,
-                                ),
-                              );
-
-                              if (res != null) {
-                                setState(() {
-                                  thumbnailLists =
-                                      res.map((e) => e.thumbPath).toList();
-                                });
-                              }
-
-                              if (thumbnailLists.length > 0) {
+                              if (image != null) {
                                 ConsultingModel consultingModel =
                                     ConsultingModel(
-                                  client_image: thumbnailLists[0],
+                                  client_image: image.path,
                                   create_date:
                                       DateConverter.formatDate(DateTime.now()),
                                 );
 
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (_) => OXPage(
-                                          consultingModel: consultingModel,
-                                      ),
+                                    builder: (_) => OXPage(
+                                      consultingModel: consultingModel,
+                                    ),
                                   ),
                                 );
                               }
