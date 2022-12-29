@@ -34,6 +34,7 @@ class ImageRepo {
       'file': await MultipartFile.fromFile(imageModel.path),
       'path': uploadBasePath + multipartFile.filename,
       'community_id': imageModel.community_id,
+      'consultant_id': imageModel.consultant_id,
       'create_date': imageModel.create_date,
       'image_type': imageModel.image_type ?? 99,
     });

@@ -42,19 +42,7 @@ class UserRepo {
   }
 
   Future<ApiResponse> updateUser(UserModel userModel) async {
-    Map<String, dynamic> _data = {
-      'id': userModel.id,
-      'password': userModel.password,
-      'name': userModel.name,
-      'phone': userModel.phone,
-      'email': userModel.email,
-      'gender': userModel.gender,
-      'address1': userModel.address1,
-      'address2': userModel.address2,
-      'address3': userModel.address3,
-      'business_registration_number': userModel.business_registration_number,
-      'business_registration_file': userModel.business_registration_file,
-    };
+    Map<String, dynamic> _data = userModel.toJsonNotNull();
 
     try {
       final response =

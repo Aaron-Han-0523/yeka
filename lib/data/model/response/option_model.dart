@@ -43,6 +43,17 @@ data['update_date'] = this.update_date;
 data['delete_date'] = this.delete_date;
 return data;
 }
+Map<String, dynamic> toJsonNotNull() {
+final Map<String, dynamic> data = new Map<String, dynamic>();
+if(this.id!=null) data['id'] = this.id;
+if(this.product_id!=null) data['product_id'] = this.product_id;
+if(this.option_title!=null) data['option_title'] = this.option_title;
+if(this.option_content!=null) data['option_content'] = this.option_content;
+if(this.create_date!=null) data['create_date'] = this.create_date;
+if(this.update_date!=null) data['update_date'] = this.update_date;
+if(this.delete_date!=null) data['delete_date'] = this.delete_date;
+return data;
+}
 int get id => _id;
 int get product_id => _product_id;
 String get option_title => _option_title;

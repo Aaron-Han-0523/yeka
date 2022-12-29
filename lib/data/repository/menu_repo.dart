@@ -14,20 +14,7 @@ class MenuRepo {
   MenuRepo({@required this.dioClient, @required this.sharedPreferences});
 
   Future<ApiResponse> addMenu(MenuModel menuModel) async {
-
-    List<MultipartFile> uploadFiles = [];
-
-    // if(menuModel.attachedFilepath1 != null) uploadFiles.add(await MultipartFile.fromFile(menuModel.attachedFilepath1));
-    // if(menuModel.attachedFilepath2 != null) uploadFiles.add(await MultipartFile.fromFile(menuModel.attachedFilepath2));
-    // if(menuModel.attachedFilepath3 != null) uploadFiles.add(await MultipartFile.fromFile(menuModel.attachedFilepath3));
-
-    var formData = FormData.fromMap({
-      // 'files' : uploadFiles,
-      // 'title': menuModel.title,
-      // 'content': menuModel.content,
-      // 'grade': menuModel.grade,
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
-    });
+    var formData = FormData.fromMap(menuModel.toJsonNotNull());
 
     try {
       var response = await dioClient.post(

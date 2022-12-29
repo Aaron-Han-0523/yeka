@@ -50,6 +50,8 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
 
     consultingModel = await Provider.of<ConsultingProvider>(context, listen: false).getConsultingByClientId(consultingModel);
 
+    await Provider.of<ConsultingProvider>(context, listen: false).getLatestConsultingList(0, context, reload: true);
+
     personalColorModel = PersonalColorModel(
       season: consultingModel.season,
       detail_season_type: consultingModel.detail_season_type,

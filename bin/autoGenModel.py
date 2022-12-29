@@ -99,6 +99,19 @@ for ref_file in file_list:
 
     f2.write("}\n")
 
+    f2.write("Map<String, dynamic> toJsonNotNull() {\n")
+
+    f2.write("final Map<String, dynamic> data = new Map<String, dynamic>();\n")
+
+    for line in lines:
+        data_type = line.split(" ")[0]
+        data_name = line.split(" ")[1].replace("\n", "")
+        f2.write("if(this." + data_name + "!=null) data['" + data_name + "'] = this." + data_name + ";\n")
+
+    f2.write("return data;\n")
+
+    f2.write("}\n")
+
     for line in lines:
         data_type = line.split(" ")[0]
         data_name = line.split(" ")[1].replace("\n", "")

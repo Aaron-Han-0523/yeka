@@ -16,6 +16,7 @@ class CustomTextarea extends StatefulWidget {
   final double hintSize;
   final Color hintColor;
   final Widget radioButton;
+  final double maxHeight;
 
   CustomTextarea({
     this.isBorder = true,
@@ -30,6 +31,7 @@ class CustomTextarea extends StatefulWidget {
     this.hintSize = 9,
     this.hintColor,
     this.radioButton,
+    this.maxHeight = 155.0,
   });
 
   @override
@@ -84,7 +86,7 @@ class _CustomTextareaState extends State<CustomTextarea> {
           ),
           ConstrainedBox(
             constraints: BoxConstraints(
-              maxHeight: 155.0,
+              maxHeight: widget.maxHeight,
             ),
             child: Container(
               decoration: BoxDecoration(

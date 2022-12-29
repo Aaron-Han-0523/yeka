@@ -88,6 +88,26 @@ data['update_date'] = this.update_date;
 data['delete_date'] = this.delete_date;
 return data;
 }
+Map<String, dynamic> toJsonNotNull() {
+final Map<String, dynamic> data = new Map<String, dynamic>();
+if(this.id!=null) data['id'] = this.id;
+if(this.season!=null) data['season'] = this.season;
+if(this.detail_season_type!=null) data['detail_season_type'] = this.detail_season_type;
+if(this.fashion!=null) data['fashion'] = this.fashion;
+if(this.hair!=null) data['hair'] = this.hair;
+if(this.perfume!=null) data['perfume'] = this.perfume;
+if(this.makeup_base!=null) data['makeup_base'] = this.makeup_base;
+if(this.makeup_eye!=null) data['makeup_eye'] = this.makeup_eye;
+if(this.makeup_blusher!=null) data['makeup_blusher'] = this.makeup_blusher;
+if(this.lip!=null) data['lip'] = this.lip;
+if(this.matching_color_array!=null) data['matching_color_array'] = this.matching_color_array;
+if(this.description!=null) data['description'] = this.description;
+if(this.tag!=null) data['tag'] = this.tag;
+if(this.create_date!=null) data['create_date'] = this.create_date;
+if(this.update_date!=null) data['update_date'] = this.update_date;
+if(this.delete_date!=null) data['delete_date'] = this.delete_date;
+return data;
+}
 int get id => _id;
 int get season => _season;
 int get detail_season_type => _detail_season_type;

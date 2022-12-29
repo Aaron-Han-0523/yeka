@@ -1,19 +1,27 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/data/model/response/user_model.dart';
 
 import 'package:yeka/util/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/menu_model.dart';
+import '../../../helper/date_converter.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
+import '../../../provider/image_provider.dart';
 import '../../../provider/menu_provider.dart';
+import '../../../provider/user_provider.dart';
 import '../../../util//images.dart';
+import '../../../util/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
+import '../../basewidget/dialog/single_text_alertdialog.dart';
 import '../../basewidget/textarea/custom_textarea.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
 import '../../basewidget/textfield/custom_textfield.dart';
@@ -36,104 +44,244 @@ class _MyPageConsultantUpdateScreenState
   TextEditingController _hash6Controller = TextEditingController();
   TextEditingController _resumeController = TextEditingController();
   TextEditingController _availController = TextEditingController();
-  List<TextEditingController> _menuTitleListController = [];
-  List<TextEditingController> _menuAmountListController = [];
-  List<TextEditingController> _menuContentListController = [];
-  List<TextEditingController> _menuImageListController = [];
+
+  List<TextEditingController> _menuTitleList = [];
+  List<TextEditingController> _menuAmountList = [];
+  List<TextEditingController> _menuContentList = [];
+  List<TextEditingController> _menuImageList = [];
+
+  TextEditingController _menuTitleController = TextEditingController();
+  TextEditingController _menuAmountController = TextEditingController();
+  TextEditingController _menuContentController = TextEditingController();
+  TextEditingController _menuImageController = TextEditingController();
 
   bool radioButton = false;
-  List<String> thumbnailLists = [];
-  List<String> thumbnailLists2 = [];
-  List<MenuModel> menuList;
+  List<String> thumbnailList = [];
+  List<String> thumbnailList2 = [];
+
+  List<MenuModel> menuList = [];
+  List<ImageModel> imageList = [];
+  Map map;
 
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-    Map map = Provider.of<AuthProvider>(context, listen: false).getUser();
+    map = Provider.of<AuthProvider>(context, listen: false).getUser();
+
     MenuModel menuModel = MenuModel(consultant_id: map["id"]);
-    await Provider.of<MenuProvider>(context, listen: false).getMenuList(menuModel, context);
+
+    await Provider.of<MenuProvider>(context, listen: false)
+        .getMenuList(menuModel, context);
+
     menuList = Provider.of<MenuProvider>(context, listen: false).menuList;
+
+    for (var i = 0; i < menuList.length; i++) {
+      addMenu(
+        menuList[i].menu_title,
+        menuList[i].menu_amount,
+        menuList[i].menu_content,
+        menuList[i].menu_image,
+      );
+    }
+
+    ImageModel imageModel = ImageModel(consultant_id: map["id"]);
+
+    await Provider.of<CustomImageProvider>(context, listen: false)
+        .getImageListByConsultantId(imageModel);
+
+    imageList =
+        Provider.of<CustomImageProvider>(context, listen: false).imageList;
+
+    for (var i = 0; i < imageList.length; i++) {
+      if(imageList[i].image_type == 2) {
+        thumbnailList.add(imageList[i].path);
+      } else {
+        thumbnailList2.add(imageList[i].path);
+      }
+    }
+
+    setState(() {});
   }
 
-  Widget buildMenu(MenuModel menuModel) {
-    TextEditingController _menuTitleController = TextEditingController();
-    TextEditingController _menuAmountController = TextEditingController();
-    TextEditingController _menuContentController = TextEditingController();
-    TextEditingController _menuImageController = TextEditingController();
+  void addMenu(menu_title, menu_amount, menu_content, menu_image) {
+    if (menu_title == "")
+      _menuTitleList.add(TextEditingController());
+    else
+      _menuTitleList.add(TextEditingController(text: menu_title));
 
-    _menuTitleController.text = menuModel.menu_title;
-    // _menuAmountController.text = menuModel.menu_amount;
-    // _menuAmountController.text = menuModel.menu_amount;
+    if (menu_amount == null)
+      _menuAmountList.add(TextEditingController());
+    else
+      _menuAmountList.add(TextEditingController(text: menu_amount.toString()));
 
-    return  Column(children: [
-      CustomLabelTextField(
-        controller: _menuTitleController,
-        // labelText: "상담 메뉴 ",
-        // essentialLabelText: " *",
-        hintText: "${getTranslated('FILL_IN_TITLE', context)}",
-        hintColor: Color(0xffdddddd),
-        padding: EdgeInsets.all(0),
-      ),
-      CustomLabelTextField(
-        controller: _menuAmountController,
-        // labelText: "상담 메뉴 ",
-        // essentialLabelText: " *",
-        hintText: "${getTranslated('FILL_IN_CONSULTATION_AMOUNT', context)}",
-        hintColor: Color(0xffdddddd),
-        padding: EdgeInsets.all(0),
-      ),
-      Row(
-        children: [
-          Expanded(
-            child: CustomTextarea(
-              textEditingController: _menuContentController,
-              padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
-              // labelText: "상담 내용",
-              hintText: "${getTranslated('FILL_IN_CONSULTATION_CONTENT', context)}",
-              hintSize: 12,
-              contentPadding: const EdgeInsets.symmetric(vertical: 8),
+    if (menu_content == "")
+      _menuContentList.add(TextEditingController());
+    else
+      _menuContentList.add(TextEditingController(text: menu_content));
+
+    if (menu_title == "")
+      _menuImageList.add(TextEditingController());
+    else
+      _menuImageList.add(TextEditingController(text: menu_image));
+  }
+
+  Widget buildMenu(
+    bool isInitWidget,
+    int index,
+    TextEditingController _menuTitleController,
+    TextEditingController _menuAmountController,
+    TextEditingController _menuContentController,
+    TextEditingController _menuImageController,
+  ) {
+    return Column(
+      children: [
+        !isInitWidget
+            ? Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "",
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff333333),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        _menuTitleList.removeAt(index);
+                        _menuAmountList.removeAt(index);
+                        _menuContentList.removeAt(index);
+                        _menuImageList.removeAt(index);
+
+                        setState(() {});
+                      },
+                      child: Text(
+                        "- 삭제",
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff333333),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            : Container(),
+        CustomLabelTextField(
+          controller: _menuTitleController,
+          // labelText: "상담 메뉴 ",
+          // essentialLabelText: " *",
+          hintText: "${getTranslated('FILL_IN_TITLE', context)}",
+          hintColor: Color(0xffdddddd),
+          padding: EdgeInsets.all(0),
+        ),
+        CustomLabelTextField(
+          controller: _menuAmountController,
+          // labelText: "상담 메뉴 ",
+          // essentialLabelText: " *",
+          hintText: "${getTranslated('FILL_IN_CONSULTATION_AMOUNT', context)}",
+          hintColor: Color(0xffdddddd),
+          padding: EdgeInsets.all(0),
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: CustomTextarea(
+                textEditingController: _menuContentController,
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 3),
+                // labelText: "상담 내용",
+                hintText:
+                    "${getTranslated('FILL_IN_CONSULTATION_CONTENT', context)}",
+                hintSize: 12,
+                contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                maxHeight: 102,
+              ),
             ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            width: 100,
-            height: 155,
-            margin: EdgeInsets.only(
-              top: Dimensions.MARGIN_SIZE_LARGE,
-              right: Dimensions.MARGIN_SIZE_SMALL,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Color(0xfff1f1f1),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
+            InkWell(
+              onTap: () async {
+                final ImagePicker _picker = ImagePicker();
+                // Pick an image
+                final XFile image =
+                    await _picker.pickImage(source: ImageSource.gallery);
+
+                _menuImageController.text = image.path;
+
+                setState(() {});
+              },
+              child: Container(
+                alignment: Alignment.center,
+                width: 102,
+                height: 102,
+                margin: EdgeInsets.only(
+                  top: Dimensions.MARGIN_SIZE_LARGE,
+                  right: Dimensions.MARGIN_SIZE_SMALL,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Color(0xfff1f1f1),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5.0),
                   child: Image.file(
-                    File(_menuImageController.text),
-                    width: 30,
-                    height: 30,
+                    File(
+                      _menuImageController.text,
+                    ),
+                    fit: BoxFit.cover,
+                    height: 100,
+                    width: 100,
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace stackTrace) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FadeInImage.assetNetwork(
+                            placeholder: Images.placeholder1,
+                            image: _menuImageController.text,
+                            fit: BoxFit.fitWidth,
+                            width: 83,
+                            imageErrorBuilder: (BuildContext context,
+                                Object exception, StackTrace stackTrace) {
+                              return Image.asset(
+                                Images.upload,
+                                fit: BoxFit.fitWidth,
+                                width: 30,
+                              );
+                            },
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "${getTranslated('REGISTER_IMAGE', context)}",
+                            style: TextStyle(
+                              fontSize: 8.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff999999),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
-                SizedBox(height: 8),
-                Text(
-                  "${getTranslated('REGISTER_IMAGE', context)}",
-                  style: TextStyle(
-                    fontSize: 8.0,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff999999),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
-      ),
-
-      SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-    ],);
+          ],
+        ),
+        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+        const Divider(
+          height: 0,
+          thickness: 1,
+          indent: 10,
+          endIndent: 10,
+          color: Color(0xff333333),
+        ),
+        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+      ],
+    );
   }
 
   @override
@@ -147,7 +295,8 @@ class _MyPageConsultantUpdateScreenState
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",isMyPageHidden: true,
+                  "${getTranslated('MODIFY_CONSULTANT_INFO', context)}",
+                  isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Container(
@@ -161,27 +310,25 @@ class _MyPageConsultantUpdateScreenState
                           endIndent: 0,
                           color: Color(0xffDDDDDD),
                         ),
-
                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-
                         Row(
                           children: [
                             Container(
                               padding: EdgeInsets.only(left: 20),
-                                child: Text(
-                                  "${getTranslated('PROFILE_PHOTO', context)}",
-                                  style: TextStyle(
+                              child: Text(
+                                "${getTranslated('PROFILE_PHOTO', context)}",
+                                style: TextStyle(
                                     fontSize: 12.0,
                                     fontWeight: FontWeight.bold,
                                     color: Color(0xff333333)
                                     // overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
+                                    ),
+                              ),
                             ),
                           ],
                         ),
-                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
-
+                        SizedBox(
+                            height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
                         Row(
                           children: [
                             Container(
@@ -191,7 +338,7 @@ class _MyPageConsultantUpdateScreenState
                                 style: TextStyle(
                                   fontSize: 8.0,
                                   fontWeight: FontWeight.bold,
-                                    color: Color(0xff333333),
+                                  color: Color(0xff333333),
                                   // overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -199,8 +346,8 @@ class _MyPageConsultantUpdateScreenState
                           ],
                         ),
                         Container(
-                          padding: const EdgeInsets.fromLTRB(16, 0 ,20, 0),
-                            child: Row(
+                          padding: const EdgeInsets.fromLTRB(16, 0, 20, 0),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
@@ -211,7 +358,7 @@ class _MyPageConsultantUpdateScreenState
                                 ),
                                 child: InkWell(
                                   onTap: () async {
-                                    thumbnailLists = [];
+                                    thumbnailList = [];
 
                                     List<Media> res = await ImagesPicker.pick(
                                       count: 5,
@@ -229,11 +376,10 @@ class _MyPageConsultantUpdateScreenState
                                       print(res.map((e) => e.path).toList());
 
                                       setState(() {
-                                        thumbnailLists =
-                                            res.map((e) => e.thumbPath).toList();
+                                        thumbnailList = res
+                                            .map((e) => e.thumbPath)
+                                            .toList();
                                       });
-                                      // bool status = await ImagesPicker.saveImageToAlbum(File(res[0]?.path));
-                                      // print(status);
                                     }
                                   },
                                   child: Stack(
@@ -242,7 +388,12 @@ class _MyPageConsultantUpdateScreenState
                                         child: Container(
                                           alignment: Alignment.center,
                                           child: Container(
-                                            padding: const EdgeInsets.fromLTRB(14, 7, 14, 18),
+                                            padding: const EdgeInsets.fromLTRB(
+                                              14,
+                                              7,
+                                              14,
+                                              18,
+                                            ),
                                             width: 50,
                                             height: 50,
                                             decoration: BoxDecoration(
@@ -261,7 +412,7 @@ class _MyPageConsultantUpdateScreenState
                                           padding: EdgeInsets.only(bottom: 7),
                                           alignment: Alignment.bottomCenter,
                                           child: Text(
-                                            "${thumbnailLists.length ?? 0} / 5",
+                                            "${thumbnailList.length ?? 0} / 5",
                                             style: TextStyle(
                                               fontSize: 10.0,
                                               fontWeight: FontWeight.bold,
@@ -274,17 +425,48 @@ class _MyPageConsultantUpdateScreenState
                                   ),
                                 ),
                               ),
-                              for (var i = 0; i < thumbnailLists.length; i++)
+
+                              for (var i = 0; i < thumbnailList.length; i++)
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: Image.file(
-                                    File(thumbnailLists[i]),
+                                    File(thumbnailList[i]),
                                     fit: BoxFit.cover,
-                                    height: 60,
-                                    width: 60,
+                                    width: 50,
+                                    height: 50,
+                                    errorBuilder: (BuildContext context, Object exception,
+                                        StackTrace stackTrace) {
+                                      return FadeInImage.assetNetwork(
+                                        placeholder: Images.placeholder1,
+                                        image: thumbnailList[i] != null
+                                            ? AppConstants.BASE_URL + "/" + thumbnailList[i]
+                                            : AppConstants.BASE_URL,
+                                        fit: BoxFit.cover,
+                                        width: 50,
+                                        height: 50,
+                                        imageErrorBuilder: (BuildContext context,
+                                            Object exception, StackTrace stackTrace) {
+                                          return Container(
+                                            // padding: const EdgeInsets.all(10.0),
+                                            width: 50,
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5),
+                                              color: Color(0xfff1f1f1),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(12.0),
+                                              child: Image.asset(
+                                                Images.upload,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
                                   ),
                                 ),
-                              for (var i = thumbnailLists.length; i < 5; i++)
+                              for (var i = thumbnailList.length; i < 5; i++)
                                 Container(
                                   // padding: const EdgeInsets.all(10.0),
                                   width: 50,
@@ -293,17 +475,17 @@ class _MyPageConsultantUpdateScreenState
                                     borderRadius: BorderRadius.circular(5),
                                     color: Color(0xfff1f1f1),
                                   ),
-                                  child: Image.asset(
-                                    Images.upload,
-                                    width: 30,
-                                    height: 30,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Image.asset(
+                                      Images.upload,
+                                    ),
                                   ),
                                 ),
                             ],
                           ),
                         ),
                         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
                         Container(
                           padding: EdgeInsets.only(left: 20),
                           alignment: Alignment.centerLeft,
@@ -312,41 +494,38 @@ class _MyPageConsultantUpdateScreenState
                             style: TextStyle(
                               fontSize: 12.0,
                               color: Color(0xff333333),
-                              fontWeight: FontWeight.bold
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-
                         SizedBox(height: 9),
-
                         Container(
                           padding: EdgeInsets.only(left: 20),
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "${getTranslated('APPEAL_AS_HASHTAG', context)}",
                             style: TextStyle(
-                                fontSize: 8.0,
-                                color: Color(0xff333333),
-                                fontWeight: FontWeight.bold
+                              fontSize: 8.0,
+                              color: Color(0xff333333),
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
                             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               // Container(
-                                // padding: EdgeInsets.only(right: 25),
-                                Flexible(
-
-                                  child: CustomTextField(
-                                    controller: _hash1Controller,
-                                    // essentialLabelText: " *",
-                                    hintText: "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
-                                  ),
+                              // padding: EdgeInsets.only(right: 25),
+                              Flexible(
+                                child: CustomTextField(
+                                  controller: _hash1Controller,
+                                  // essentialLabelText: " *",
+                                  hintText:
+                                      "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
+                              ),
 
                               SizedBox(width: 29),
 
@@ -355,7 +534,7 @@ class _MyPageConsultantUpdateScreenState
                                   controller: _hash2Controller,
                                   // essentialLabelText: " *",
                                   hintText:
-                                  "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
+                                      "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
 
@@ -366,7 +545,7 @@ class _MyPageConsultantUpdateScreenState
                                   controller: _hash3Controller,
                                   // essentialLabelText: " *",
                                   hintText:
-                                  "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
+                                      "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
                               // ),
@@ -382,11 +561,11 @@ class _MyPageConsultantUpdateScreenState
                               // Container(
                               // padding: EdgeInsets.only(right: 25),
                               Flexible(
-
                                 child: CustomTextField(
                                   controller: _hash4Controller,
                                   // essentialLabelText: " *",
-                                  hintText: "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
+                                  hintText:
+                                      "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
 
@@ -397,7 +576,7 @@ class _MyPageConsultantUpdateScreenState
                                   controller: _hash5Controller,
                                   // essentialLabelText: " *",
                                   hintText:
-                                  "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
+                                      "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
 
@@ -408,40 +587,42 @@ class _MyPageConsultantUpdateScreenState
                                   controller: _hash6Controller,
                                   // essentialLabelText: " *",
                                   hintText:
-                                  "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
+                                      "${getTranslated('EX_JUNIOR_COLLEGE_GRADUATION', context)}",
                                 ),
                               ),
                               // ),
                             ],
                           ),
                         ),
-
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-
-                       Container(
+                        Container(
                           child: CustomTextarea(
                             textEditingController: _resumeController,
-                            padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
-                            labelText: "${getTranslated('CERTIFICATE_RESUME', context)}",
-                            hintText: "${getTranslated('FILL_IN_CERTIFICATE_RESUME', context)}",
-                            contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 3),
+                            labelText:
+                                "${getTranslated('CERTIFICATE_RESUME', context)}",
+                            hintText:
+                                "${getTranslated('FILL_IN_CERTIFICATE_RESUME', context)}",
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 0),
+                            label_fontSize: 12.0,
                           ),
                         ),
-
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-
                         Container(
                           child: CustomTextarea(
                             textEditingController: _availController,
-                            padding: const EdgeInsets.fromLTRB(0, 0 ,0 , 3),
-                            labelText: "${getTranslated('CONSULTATION_AVAILABLE_TIME', context)}",
-                            hintText: "${getTranslated('FILL_IN_CONSULTATION_AVAILABLE_TIME', context)}",
-                            contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 3),
+                            labelText:
+                                "${getTranslated('CONSULTATION_AVAILABLE_TIME', context)}",
+                            hintText:
+                                "${getTranslated('FILL_IN_CONSULTATION_AVAILABLE_TIME', context)}",
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 0),
+                            label_fontSize: 12.0,
                           ),
                         ),
-
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
@@ -455,35 +636,62 @@ class _MyPageConsultantUpdateScreenState
                                   color: Color(0xff333333),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "${getTranslated('PLUS_ADD', context)}",
-                                    style: TextStyle(
-                                      fontSize: 9.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xff333333),
-                                    ),
+                              InkWell(
+                                onTap: () {
+                                  if (_menuTitleList.length > 2) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          SingleTextAlertDialog(
+                                        message: "메뉴는 최대 3개 까지 등록 가능합니다.",
+                                      ),
+                                    );
+                                  } else {
+                                    addMenu(
+                                      _menuTitleController.text,
+                                      _menuAmountController.text,
+                                      _menuContentController.text,
+                                      _menuImageController.text,
+                                    );
+                                  }
+
+                                  _menuTitleController.text = "";
+                                  _menuAmountController.text = "";
+                                  _menuContentController.text = "";
+                                  _menuImageController.text = "";
+
+                                  setState(() {});
+                                },
+                                child: Text(
+                                  "${getTranslated('PLUS_ADD', context)}",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff333333),
                                   ),
-                                ],
+                                ),
                               )
                             ],
                           ),
                         ),
-
-
-                        //fixme
-
-                        const Divider(
-                          height: 0,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                          color: Color(0xff333333),
+                        buildMenu(
+                          true,
+                          -1,
+                          _menuTitleController,
+                          _menuAmountController,
+                          _menuContentController,
+                          _menuImageController,
                         ),
-
+                        for (var i = 0; i < _menuTitleList.length; i++)
+                          buildMenu(
+                            false,
+                            i,
+                            _menuTitleList[i],
+                            _menuAmountList[i],
+                            _menuContentList[i],
+                            _menuImageList[i],
+                          ),
                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
@@ -497,112 +705,153 @@ class _MyPageConsultantUpdateScreenState
                                   color: Color(0xff333333),
                                 ),
                               ),
+/*
                               Row(
                                 children: [
-                                  Text(
-                                    "${getTranslated('PLUS_ADD', context)}",
-                                    style: TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xff333333),
+                                  InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            SingleTextAlertDialog(
+                                              message: "포트폴리오는 최대 6개 까지 등록 가능합니다.",
+                                            ),
+                                      );
+                                    },
+                                    child: Text(
+                                      "${getTranslated('PLUS_ADD', context)}",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xff333333),
+                                      ),
                                     ),
                                   ),
                                 ],
                               )
+*/
                             ],
                           ),
                         ),
-
                         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           height: 215,
                           child: GridView.builder(
-                              itemCount: 6, //item 개수
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                // childAspectRatio: 1 / 2,
-                                mainAxisSpacing: 15,
-                                crossAxisSpacing: 15,
-                              ),
-                              itemBuilder:
-                                  (BuildContext context, int index) {
-                                return InkWell(
-                                  onTap: () async {
-                                    thumbnailLists2 = [];
+                            itemCount: 6, //item 개수
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              // childAspectRatio: 1 / 2,
+                              mainAxisSpacing: 15,
+                              crossAxisSpacing: 15,
+                            ),
+                            itemBuilder: (BuildContext context, int index) {
+                              return InkWell(
+                                onTap: () async {
+                                  thumbnailList2 = [];
 
-                                    List<Media> res = await ImagesPicker.pick(
-                                      count: 5,
-                                      pickType: PickType.all,
-                                      language: Language.System,
-                                      maxTime: 30,
-                                      // maxSize: 500,
-                                      cropOpt: CropOption(
-                                        // aspectRatio: CropAspectRatio.wh16x9,
-                                        cropType: CropType.circle,
-                                      ),
-                                    );
-                                    print(res);
-                                    if (res != null) {
-                                      print(res.map((e) => e.path).toList());
+                                  List<Media> res = await ImagesPicker.pick(
+                                    count: 6,
+                                    pickType: PickType.all,
+                                    language: Language.System,
+                                    maxTime: 30,
+                                    // maxSize: 500,
+                                    cropOpt: CropOption(
+                                      // aspectRatio: CropAspectRatio.wh16x9,
+                                      cropType: CropType.circle,
+                                    ),
+                                  );
+                                  print(res);
+                                  if (res != null) {
+                                    print(res.map((e) => e.path).toList());
 
-                                      setState(() {
-                                        thumbnailLists2 =
-                                            res.map((e) => e.thumbPath).toList();
-                                      });
-                                      // bool status = await ImagesPicker.saveImageToAlbum(File(res[0]?.path));
-                                      // print(status);
-                                    }
-                                  },
-                                  child: Container(
-                                    // padding: const EdgeInsets.all(0.0),
-                                    width: 150,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Color(0xfff1f1f1),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          Images.upload,
-                                          width: 30,
-                                          height: 30,
-                                        ),
-                                        SizedBox(height: 7),
-                                        Text(
-                                          "${getTranslated('REGISTRATION_IMAGE', context)}",
-                                          style: TextStyle(
-                                            fontSize: 8.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xff999999),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                    setState(() {
+                                      thumbnailList2 =
+                                          res.map((e) => e.thumbPath).toList();
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  // padding: const EdgeInsets.all(0.0),
+                                  width: 150,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Color(0xfff1f1f1),
                                   ),
-                                );
-                              }),
+                                  child: index < thumbnailList2.length
+                                      ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    child: Image.file(
+                                      File(thumbnailList2[index]),
+                                      fit: BoxFit.cover,
+                                      width: 150,
+                                      height: 150,
+                                      errorBuilder: (BuildContext context, Object exception,
+                                          StackTrace stackTrace) {
+                                        return FadeInImage.assetNetwork(
+                                          placeholder: Images.placeholder1,
+                                          image: thumbnailList2[index] != null
+                                              ? AppConstants.BASE_URL + "/" + thumbnailList2[index]
+                                              : AppConstants.BASE_URL,
+                                          fit: BoxFit.cover,
+                                          width: 150,
+                                          height: 150,
+                                          imageErrorBuilder: (BuildContext context,
+                                              Object exception, StackTrace stackTrace) {
+                                            return Container(
+                                              // padding: const EdgeInsets.all(10.0),
+                                              width: 150,
+                                              height: 150,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                color: Color(0xfff1f1f1),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(12.0),
+                                                child: Image.asset(
+                                                  Images.upload,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  )
+                                      : Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              Images.upload,
+                                              width: 30,
+                                              height: 30,
+                                            ),
+                                            SizedBox(height: 7),
+                                            Text(
+                                              "${getTranslated('REGISTRATION_IMAGE', context)}",
+                                              style: TextStyle(
+                                                fontSize: 8.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xff999999),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
-
                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                         Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(0, 0.0, 0, 40.0),
+                          padding: const EdgeInsets.fromLTRB(0, 0.0, 0, 40.0),
                           child: CustomElevatedButton(
-                            onTap: () {
-                              // ClientsModel clientsModel = ClientsModel(
-                              //   phoneNum: phoneNumberTextEditingController.text,
-                              //   password: passwordTextEditingController.text,
-                              // );
-                              //
-                              // Provider.of<ClientsProvider>(context, listen: false)
-                              //     .login(clientsModel, route);
-                            },
-                            buttonText: "${getTranslated('MODIFICATION', context)}",
+                            onTap: () => modify(),
+                            buttonText:
+                                "${getTranslated('MODIFICATION', context)}",
                           ),
                         ),
                         FooterPage(),
@@ -616,5 +865,84 @@ class _MyPageConsultantUpdateScreenState
         ),
       ),
     );
+  }
+
+  modify() async {
+    for (var i = 0; i < imageList.length; i++) {
+      ImageModel imageModel = ImageModel(
+        id: imageList[i].id,
+      );
+
+      await Provider.of<CustomImageProvider>(context, listen: false)
+          .deleteImage(imageModel);
+    }
+
+    for (var i = 0; i < menuList.length; i++) {
+      MenuModel menuModel = MenuModel(
+        id: menuList[i].id,
+      );
+
+      await Provider.of<MenuProvider>(context, listen: false).deleteMenu(menuModel);
+    }
+
+    UserModel userModel = UserModel(
+      id: map["id"],
+      hashtag:
+          "${_hash1Controller.text},${_hash2Controller.text},${_hash3Controller.text},${_hash4Controller.text},${_hash5Controller.text},${_hash6Controller.text}",
+      resume: _resumeController.text,
+      working_hour: _availController.text,
+    );
+
+    await Provider.of<UserProvider>(context, listen: false)
+        .updateUser(userModel);
+
+    // 프로필
+    for (var i = 0; i < thumbnailList.length; i++) {
+      ImageModel imageModel = ImageModel(
+        image_type: 2,
+        consultant_id: map["id"],
+        path: thumbnailList[i],
+        create_date: DateConverter.formatDate(DateTime.now()),
+      );
+
+      await Provider.of<CustomImageProvider>(context, listen: false)
+          .addImage(imageModel);
+    }
+
+    // 메뉴
+    for (var i = 0; i < _menuTitleList.length; i++) {
+      MenuModel menuModel = MenuModel(
+        consultant_id: map["id"],
+        menu_title: _menuTitleList[i].text,
+        menu_amount: int.parse(_menuAmountList[i].text),
+        menu_content: _menuContentList[i].text,
+        // menu_image: _menuImageList[i].text,
+      );
+
+      await Provider.of<MenuProvider>(context, listen: false).addMenu(menuModel);
+
+      ImageModel imageModel = ImageModel(
+        image_type: 4,
+        consultant_id: map["id"],
+        path: _menuImageList[i].text,
+        create_date: DateConverter.formatDate(DateTime.now()),
+      );
+
+      await Provider.of<CustomImageProvider>(context, listen: false)
+          .addImage(imageModel);
+    }
+
+    // 포트폴리오
+    for (var i = 0; i < thumbnailList2.length; i++) {
+      ImageModel imageModel = ImageModel(
+        image_type: 3,
+        consultant_id: map["id"],
+        path: thumbnailList2[i],
+        create_date: DateConverter.formatDate(DateTime.now()),
+      );
+
+      await Provider.of<CustomImageProvider>(context, listen: false)
+          .addImage(imageModel);
+    }
   }
 }
