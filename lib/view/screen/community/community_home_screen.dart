@@ -161,6 +161,8 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
       if (_scrollController.position.minScrollExtent ==
           _scrollController.position.pixels) {
         _loadData(context, true);
+
+        setState(() {});
       }
     });
     return Scaffold(
