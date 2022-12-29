@@ -28,6 +28,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    testList = [];
     testList.add("${getTranslated('TEST_QNA1', context)}");
     testList.add("${getTranslated('TEST_QNA2', context)}");
     testList.add("${getTranslated('TEST_QNA3', context)}");

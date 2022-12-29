@@ -36,7 +36,11 @@ class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
             builder: (context) => CommunityYoutubeDetailScreen(
                 communityModel: latestCommunityModel),
           ),
-        );
+        ).then((value) {
+
+        });
+
+        print(value);
 
         setState(() {
           color = color == Colors.white ? Colors.grey : Colors.white;

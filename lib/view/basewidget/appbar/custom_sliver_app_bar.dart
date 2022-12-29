@@ -40,6 +40,9 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             ? Container()
             : BackButton(
                 color: Colors.black,
+          onPressed: () {
+            Navigator.maybePop(context,"value");
+          },
               ),
       ),
       title: Center(
