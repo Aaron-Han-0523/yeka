@@ -138,4 +138,37 @@ class UserProvider extends ChangeNotifier {
       }
     }
   }
+
+  Future<void> getLatestConsultantListWithAddress(int offset, String sido, String dong, BuildContext context,
+      {bool reload = false}) async {
+    if (reload) {
+      _offsetConsultantList = [];
+      _latestConsultantList = [];
+    }
+
+    _lConsultantOffset = offset;
+
+    if (!_offsetConsultantList.contains(offset)) {
+      _offsetConsultantList.add(offset);
+
+      // limit = pageSize
+      // skip = offset
+      ApiResponse apiResponse = await userRepo.getConsultantListWithAddress(limit, offset * limit, sido, dong);
+      if (apiResponse.response != null &&
+          apiResponse.response.statusCode == 200) {
+        _latestConsultantList.addAll(UserList.fromList(apiResponse.response.data).userList);
+        _latestConsultantPageSize = UserList.fromList(apiResponse.response.data).count;
+        _filterFirstLoading = false;
+        _filterIsLoading = false;
+      } else {
+        ApiChecker.checkApi(context, apiResponse);
+      }
+      notifyListeners();
+    } else {
+      if (_filterIsLoading) {
+        _filterIsLoading = false;
+        notifyListeners();
+      }
+    }
+  }
 }

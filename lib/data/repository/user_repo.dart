@@ -99,6 +99,18 @@ class UserRepo {
     }
   }
 
+  // limit = pageSize, skip = offset
+  Future<ApiResponse> getConsultantListWithAddress(int limit, int skip, String sido, String dong) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.LIST_USER_CONSULTANT_ADDRESS_URI + "?limit=$limit&skip=$skip&sido=$sido&dong=$dong",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   Future<ApiResponse> getUser(UserModel userModel) async {
     try {
       final response = await dioClient.get(

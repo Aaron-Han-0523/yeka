@@ -20,6 +20,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
 
   var areaCodeJson = [
     {
+      "전체" : [],
       "서울특별시": [
         "종로구",
         "중구",
@@ -284,6 +285,27 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
     }
   ];
 
+  var sidoCodeArr = [
+    "",
+    "서울",
+    "부산",
+    "인천",
+    "대구",
+    "광주",
+    "대전",
+    "울산",
+    "세종",
+    "경기",
+    "강원",
+    "충북",
+    "충남",
+    "경북",
+    "경남",
+    "전북",
+    "전남",
+    "제주"
+  ];
+
   List<String> sidoDropdownItems = [];
   List<String> dongDropdownItems = [];
   String sidoDropdownValue = null;
@@ -292,6 +314,21 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<UserProvider>(context, listen: false)
         .getLatestConsultantList(0, context, reload: reload);
+  }
+
+  Future<void> _loadDataWithAddress(
+      BuildContext context, bool reload, String sido, String dong) async {
+    for (var i = 0; i < areaCodeJson.length; i++) {
+      areaCodeJson[i].keys.forEach((key) {
+        if (key == sido) {
+          sido = sidoCodeArr[i];
+        }
+      });
+    }
+
+    Provider.of<UserProvider>(context, listen: false)
+        .getLatestConsultantListWithAddress(0, sido ?? "", dong ?? "", context,
+            reload: reload);
   }
 
   @override
@@ -305,7 +342,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
 
     for (var i = 0; i < areaCodeJson.length; i++) {
       areaCodeJson[i].keys.forEach((key) {
-        if(key == sido) {
+        if (key == sido) {
           print(areaCodeJson[i][key]);
           areaCodeJson[i][key].forEach((key) {
             dongDropdownItems.add(key);
@@ -386,6 +423,12 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                                             setState(() {
                                               sidoDropdownValue = value;
                                             });
+
+                                            _loadDataWithAddress(
+                                                context,
+                                                true,
+                                                sidoDropdownValue,
+                                                dongDropdownValue);
                                           },
                                         ),
                                       ),
@@ -414,6 +457,12 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                                             setState(() {
                                               dongDropdownValue = value;
                                             });
+
+                                            _loadDataWithAddress(
+                                                context,
+                                                true,
+                                                sidoDropdownValue,
+                                                dongDropdownValue);
                                           },
                                         ),
                                       ),
@@ -422,8 +471,11 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                                 ],
                               ),
                               ConsultantView(
-                                  isHomePage: false,
-                                  scrollController: _scrollController),
+                                isHomePage: false,
+                                scrollController: _scrollController,
+                                sido: sidoDropdownValue,
+                                dong: dongDropdownValue,
+                              ),
 /*
                               CustomElevatedButton(
                                   onTap: () {},

@@ -11,10 +11,11 @@ import '../../../provider/user_provider.dart';
 class ConsultantView extends StatefulWidget {
   final bool isHomePage;
   final ScrollController scrollController;
-  final String sellerId;
+  final String sido;
+  final String dong;
 
   ConsultantView(
-      {@required this.isHomePage, this.scrollController, this.sellerId});
+      {@required this.isHomePage, this.scrollController, this.sido, this.dong,});
 
   @override
   State<ConsultantView> createState() => _ConsultantViewState();
@@ -48,7 +49,7 @@ class _ConsultantViewState extends State<ConsultantView> {
           print('end of the current page');
 
           Provider.of<UserProvider>(context, listen: false)
-              .getLatestConsultantList(offset, context);
+              .getLatestConsultantListWithAddress(offset, widget.sido, widget.dong, context);
         }
       }
     });

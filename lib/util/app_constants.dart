@@ -33,6 +33,7 @@ class AppConstants {
   static const String DELETE_USER_URI = "/api/user";
   static const String LIST_USER_URI = "/api/user/list";
   static const String LIST_USER_CONSULTANT_URI = "/api/user/consultant";
+  static const String LIST_USER_CONSULTANT_ADDRESS_URI = "/api/user/consultant/address";
   static const String GET_USER_URI = "/api/user";
   static const String GET_SUPER_USER_URI = "/api/user/super";
 
