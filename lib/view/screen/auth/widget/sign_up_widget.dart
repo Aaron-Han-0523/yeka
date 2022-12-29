@@ -13,9 +13,9 @@ import 'package:provider/provider.dart';
 
 import '../../../basewidget/button/custom_elevated_button.dart';
 import '../../../basewidget/button/custom_label_textfield_upload_button.dart';
+import '../../../basewidget/dialog/single_text_alertdialog.dart';
 import '../../../basewidget/radio/custom_small_radio_button.dart';
 import '../../../basewidget/textarea/custom_textarea.dart';
-import '../../../basewidget/textfield/custom_alert_text_textfield.dart';
 
 import 'package:kpostal/kpostal.dart';
 
@@ -33,20 +33,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _etcAddressTextController = TextEditingController();
+  TextEditingController _address1Controller = TextEditingController();
+  TextEditingController _address2Controller = TextEditingController();
+  TextEditingController _address3Controller = TextEditingController();
   TextEditingController _companyRegistrationNumberController =
       TextEditingController();
   TextEditingController _companyRegistrationFileController =
       TextEditingController();
-  GlobalKey<FormState> _formKey;
 
   FocusNode _fNameFocus = FocusNode();
-  FocusNode _lNameFocus = FocusNode();
-  FocusNode _emailFocus = FocusNode();
-  FocusNode _phoneFocus = FocusNode();
-  FocusNode _passwordFocus = FocusNode();
-  FocusNode _confirmPasswordFocus = FocusNode();
-
   RegisterModel register = RegisterModel();
 
   bool radioButton1 = false; // gender
@@ -70,8 +65,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     String _name = _nameController.text.trim();
     String _phone = _phoneController.text.trim();
     String _email = _emailController.text.trim();
-    String _phoneNumber = _countryDialCode + _phoneController.text.trim();
-    String _etc = _etcAddressTextController.text.trim();
+    int _gender = radioButton1 ? 0 : 1;
+    String _address1 = _address1Controller.text.trim();
+    String _address2 = _address2Controller.text.trim();
+    String _address3 = _address3Controller.text.trim();
     String _businessRegistrationNumber =
         _companyRegistrationNumberController.text.trim();
 
@@ -90,9 +87,19 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         content: Text(getTranslated('last_name_field_is_required', context)),
         backgroundColor: Colors.red,
       ));
+    } else if (_pw != _pwHint) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('PASSWORD_DID_NOT_MATCH', context)),
+        backgroundColor: Colors.red,
+      ));
     } else if (_name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_phone.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('PHONE_MUST_BE_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else if (_email.isEmpty) {
@@ -105,53 +112,42 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         content: Text(getTranslated('enter_valid_email_address', context)),
         backgroundColor: Colors.red,
       ));
-    } else if (_phone.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('PHONE_MUST_BE_REQUIRED', context)),
-        backgroundColor: Colors.red,
-      ));
-    } else if (_pw.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
-        backgroundColor: Colors.red,
-      ));
-    } else if (_pwHint.isEmpty) {
+      // } else if (_gender.isEmpty) {
+      //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //     content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
+      //     backgroundColor: Colors.red,
+      //   ));
+    } else if (_address1.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
             Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
-    } else if (_pw != _pwHint) {
+    } else if (_address2.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('PASSWORD_DID_NOT_MATCH', context)),
+        content:
+            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_address3.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else {
-      register.fName = '${_idController.text}';
-      register.lName = _pwController.text ?? " ";
-      register.email = _emailController.text;
-      register.phone = _phoneNumber;
-      register.password = _pwHintController.text;
       UserModel userModel = UserModel(
-        user_type: 0,
+        user_type: _businessRegistrationNumber == "" ? 0 : 1,
         username: _id,
         password: _pw,
         name: _name,
-        phone: _phoneNumber,
+        phone: _phone,
         email: _email,
-        gender: radioButton1 ? 0 : 1,
-        address1: postCode,
-        address2: address,
-        address3: _etc,
+        gender: _gender,
+        address1: _address1,
+        address2: _address2,
+        address3: _address3,
         business_registration_number: _businessRegistrationNumber,
-        // business_registration_file,
-        // hashtag,
-        // resume,
-        // working_hour,
-        // withdrawal,
-        // bank1,
-        // bank2,
-        // bank3,
       );
 
       await Provider.of<AuthProvider>(context, listen: false)
@@ -163,7 +159,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       bool isRoute, String token, String tempToken, String errorMessage) async {
     if (isRoute) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("${getTranslated('JOIN_SUCCESS', context)}"), backgroundColor: Colors.green));
+          content: Text("${getTranslated('JOIN_SUCCESS', context)}"),
+          backgroundColor: Colors.green));
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (_) => AuthScreen()), (route) => false);
     } else {
@@ -172,15 +169,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     }
   }
 
-  String _countryDialCode = "+880";
-
   @override
   void initState() {
     super.initState();
     Provider.of<SplashProvider>(context, listen: false).configModel;
     // _countryDialCode = CountryCode.fromCountryCode(Provider.of<SplashProvider>(context, listen: false).configModel.countryCode).dialCode;
-
-    _formKey = GlobalKey<FormState>();
   }
 
   @override
@@ -269,7 +262,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     " ${getTranslated('*', context)}",
                     style: TextStyle(
                       color: Color(0xffff0000),
-                      fontSize: 9,
+                      fontSize: 15,
                     ),
                   ),
                 ],
@@ -306,65 +299,28 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-        Container(
-          margin: EdgeInsets.only(
-              left: Dimensions.MARGIN_SIZE_DEFAULT,
-              right: Dimensions.MARGIN_SIZE_DEFAULT),
-          padding: const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text(
-                    "${getTranslated('ADDRESS', context)} ",
-                    style: TextStyle(
-                      fontSize: 15,
-                    ),
-                  ),
-                  Text(
-                    " ${getTranslated('*', context)}",
-                    style: TextStyle(
-                      color: Color(0xffff0000),
-                      fontSize: 9,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-
         Row(
           children: [
-            Flexible(
-              flex: 2,
+            Expanded(
               child: CustomLabelTextField(
-                hintText: "$postCode",
+                controller: _address1Controller,
+                labelText: "${getTranslated('ADDRESS', context)} ",
+                label_fontSize: 15,
+                essentialLabelText: " *",
+                hintText: "${getTranslated('SELECT_CITY', context)}",
                 enabled: false,
-                isBorder: true,
-                fillColor: Colors.white,
-                isTextable: false,
-                padding: const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 0.0),
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: Row(
+            Container(
+              width: 120,
+              // alignment: Alignment.bottomCenter,
+              child: Column(
                 children: [
-                  Expanded(
-                      child: Padding(
-                    padding: EdgeInsets.fromLTRB(
-                      0.0,
-                      0.0,
-                      22.0,
-                      0.0,
-                    ),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll<Color>(Color(0xff121212)),
-                      ),
-                      onPressed: () {
+                  Text(""),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
+                    child: CustomElevatedButton(
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -374,41 +330,38 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
                               callback: (Kpostal result) {
                                 setState(() {
-                                  this.postCode = result.postCode;
-                                  this.address = result.address;
-                                  this.latitude = result.latitude.toString();
-                                  this.longitude = result.longitude.toString();
-                                  this.kakaoLatitude =
-                                      result.kakaoLatitude.toString();
-                                  this.kakaoLongitude =
-                                      result.kakaoLongitude.toString();
+                                  _address1Controller.text = result.postCode;
+                                  _address2Controller.text = result.address;
                                 });
                               },
                             ),
                           ),
                         );
                       },
-                      child: Text("${getTranslated('SEARCH', context)}"),
+                      buttonText: "${getTranslated('SEARCH', context)}",
                     ),
-                  )),
+                  ),
                 ],
               ),
             ),
           ],
         ),
-        // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
         CustomLabelTextField(
-          hintText: "${getTranslated('ADD_ADDRESS', context)}",
+          controller: _address2Controller,
+          isTextable: false,
+          labelText: "",
           enabled: false,
-          isBorder: true,
-          fillColor: Colors.white,
+          // essentialLabelText: "",
+          hintText: "${getTranslated('SELECT_DISTINCT', context)}",
         ),
-        // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
         CustomLabelTextField(
-          controller: _etcAddressTextController,
+          isTextable: false,
+          controller: _address3Controller,
+          // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
+          // essentialLabelText: " *",
           hintText: "${getTranslated('ETC_ADDRESS', context)}",
-          isBorder: true,
-          fillColor: Colors.white,
         ),
 
         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
@@ -538,7 +491,18 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
         CustomElevatedButton(
           onTap: () {
-            addUser();
+            if(radioButton2 && radioButton3) {
+              addUser();
+            } else {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) =>
+                    SingleTextAlertDialog(
+                      message:
+                      "필수 약관에 모두 동의하셔야 합니다.",
+                    ),
+              );
+            }
           },
           buttonText: "${getTranslated('MEMBER_JOIN', context)}",
         ),

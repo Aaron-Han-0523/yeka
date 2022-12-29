@@ -19,25 +19,12 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  List<String> categoryDropdownItems = [""];
-  List<String> sortDropdownItems = [""];
+  List<String> categoryDropdownItems = [];
+  List<String> sortDropdownItems = [];
   int categoryDropdownValue = 0;
   int sortDropdownValue = 0;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    categoryDropdownItems
-        .add("${await getTranslated('CATEGORY_DROPDOWN_ITEMS_TOP', context)}");
-    categoryDropdownItems.add(
-        "${await getTranslated('CATEGORY_DROPDOWN_ITEMS_BOTTOMS', context)}");
-    categoryDropdownItems.add(
-        "${await getTranslated('CATEGORY_DROPDOWN_ITEMS_SHOES', context)}");
-    categoryDropdownItems.add(
-        "${await getTranslated('CATEGORY_DROPDOWN_ITEMS_COSMETICS', context)}");
-    sortDropdownItems.add(
-        "${await getTranslated('SORT_DROPDOWN_ITEMS_POPULARITY_ORDER', context)}");
-    sortDropdownItems.add(
-        "${await getTranslated('SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER', context)}");
-
     int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
 
     await Provider.of<ProductProvider>(context, listen: false)
@@ -53,6 +40,22 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> categoryDropdownItems = [];
+    List<String> sortDropdownItems = [];
+
+    categoryDropdownItems
+        .add("${getTranslated('CATEGORY_DROPDOWN_ITEMS_TOP', context)}");
+    categoryDropdownItems.add(
+    "${getTranslated('CATEGORY_DROPDOWN_ITEMS_BOTTOMS', context)}");
+    categoryDropdownItems.add(
+    "${getTranslated('CATEGORY_DROPDOWN_ITEMS_SHOES', context)}");
+    categoryDropdownItems.add(
+    "${getTranslated('CATEGORY_DROPDOWN_ITEMS_COSMETICS', context)}");
+    sortDropdownItems.add(
+    "${getTranslated('SORT_DROPDOWN_ITEMS_POPULARITY_ORDER', context)}");
+    sortDropdownItems.add(
+    "${getTranslated('SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER', context)}");
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
