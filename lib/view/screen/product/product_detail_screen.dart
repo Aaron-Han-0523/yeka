@@ -16,16 +16,13 @@ import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
 import '../../../provider/like_product_provider.dart';
 import '../../../provider/option_provider.dart';
+import '../../../provider/product_provider.dart';
 import '../../../util//app_constants.dart';
 import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
-
-import '../../basewidget/image_diaglog.dart';
-import '../../basewidget/my_dialog.dart';
-import '../auth/auth_screen.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final bool isCreateScreen;
@@ -70,6 +67,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     await Provider.of<OptionProvider>(context, listen: false)
         .getOptionList(context);
     optionDropdownItems = [];
+
     Provider.of<OptionProvider>(context, listen: false)
         .optionList
         .map((e) => optionDropdownItems.add(e.option_title));
@@ -380,7 +378,16 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                         .PADDING_SIZE_EXTRA_EXTRA_SMALL),
                                 CustomElevatedButton(
                                   onTap: () async {
-                                    if (Provider.of<AuthProvider>(context,
+                                    if(_itemCount == 0) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            SingleTextAlertDialog(
+                                              message:
+                                              "상품의 수량은 1개 이상이어야 합니다.",
+                                            ),
+                                      );
+                                    } else if (Provider.of<AuthProvider>(context,
                                             listen: false)
                                         .isLoggedIn()) {
                                       OrderModel orderModel = OrderModel(
@@ -455,7 +462,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                             top: 0,
                             right: 30,
                             child: InkWell(
-                              onTap: () {
+                              onTap: () async {
                                 var userId = Provider.of<AuthProvider>(context,
                                         listen: false)
                                     .getUser()["id"];
@@ -469,13 +476,18 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   );
 
                                   if (heart)
-                                    Provider.of<LikeProductProvider>(context,
+                                    await Provider.of<LikeProductProvider>(context,
                                             listen: false)
                                         .deleteLikeProduct(likeProductModel);
                                   else
-                                    Provider.of<LikeProductProvider>(context,
+                                    await Provider.of<LikeProductProvider>(context,
                                             listen: false)
                                         .addLikeProduct(likeProductModel);
+
+                                  int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+
+                                  await Provider.of<ProductProvider>(context, listen: false)
+                                      .getLatestProductList(0, user_id, context, reload: true);
 
                                   setState(() {
                                     heart = !heart;

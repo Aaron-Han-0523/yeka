@@ -6,6 +6,7 @@ class OrderModel {
   String _orderer_address1;
   String _orderer_address2;
   String _orderer_address3;
+  String _orderer_email;
   String _recipient_place;
   String _recipient_name;
   String _recipient_phone;
@@ -31,6 +32,7 @@ class OrderModel {
     String orderer_address1,
     String orderer_address2,
     String orderer_address3,
+    String orderer_email,
     String recipient_place,
     String recipient_name,
     String recipient_phone,
@@ -55,6 +57,7 @@ class OrderModel {
     this._orderer_address1 = orderer_address1;
     this._orderer_address2 = orderer_address2;
     this._orderer_address3 = orderer_address3;
+    this._orderer_email = orderer_email;
     this._recipient_place = recipient_place;
     this._recipient_name = recipient_name;
     this._recipient_phone = recipient_phone;
@@ -81,6 +84,7 @@ class OrderModel {
     _orderer_address1 = json['orderer_address1'];
     _orderer_address2 = json['orderer_address2'];
     _orderer_address3 = json['orderer_address3'];
+    _orderer_email = json['orderer_email'];
     _recipient_place = json['recipient_place'];
     _recipient_name = json['recipient_name'];
     _recipient_phone = json['recipient_phone'];
@@ -108,6 +112,7 @@ class OrderModel {
     data['orderer_address1'] = this.orderer_address1;
     data['orderer_address2'] = this.orderer_address2;
     data['orderer_address3'] = this.orderer_address3;
+    data['orderer_email'] = this.orderer_email;
     data['recipient_place'] = this.recipient_place;
     data['recipient_name'] = this.recipient_name;
     data['recipient_phone'] = this.recipient_phone;
@@ -140,6 +145,8 @@ class OrderModel {
   String get orderer_address2 => _orderer_address2;
 
   String get orderer_address3 => _orderer_address3;
+
+  String get orderer_email => _orderer_email;
 
   String get recipient_place => _recipient_place;
 
@@ -199,6 +206,10 @@ class OrderModel {
 
   set orderer_address3(String value) {
     _orderer_address3 = value;
+  }
+
+  set orderer_email(String value) {
+    _orderer_email = value;
   }
 
   set recipient_place(String value) {

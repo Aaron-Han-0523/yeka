@@ -197,6 +197,15 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    _scrollController.addListener(() {
+      if (_scrollController.position.minScrollExtent ==
+          _scrollController.position.pixels) {
+        _loadData(context, true);
+
+        setState(() {});
+      }
+    });
+
     return Scaffold(
       backgroundColor: ColorResources.getHomeBg(context),
       resizeToAvoidBottomInset: false,
@@ -204,6 +213,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         child: Stack(
           children: [
             CustomScrollView(
+              controller: _scrollController,
               slivers: [
                 // App Bar
                 CustomSliverAppBar("", isHome: true),

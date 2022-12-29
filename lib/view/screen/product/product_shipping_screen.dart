@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kpostal/kpostal.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/helper/price_converter.dart';
 
 import 'package:yeka/util/color_resources.dart';
@@ -8,6 +10,8 @@ import 'package:yeka/view/screen/product/product_payment_screen.dart';
 
 import '../../../data/model/response/order_model.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
+import '../../../provider/order_provider.dart';
 import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
@@ -28,13 +32,143 @@ class ProductShippingPage extends StatefulWidget {
 
 class _ProductShippingPageState extends State<ProductShippingPage>
     with TickerProviderStateMixin {
-  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _orderNameController = TextEditingController();
+  TextEditingController _orderPhoneController = TextEditingController();
+  TextEditingController _orderAddress1Controller = TextEditingController();
+  TextEditingController _orderAddress2Controller = TextEditingController();
+  TextEditingController _orderAddress3Controller = TextEditingController();
+  TextEditingController _orderEmailController = TextEditingController();
+  TextEditingController _receiveDestinationController = TextEditingController();
+  TextEditingController _receiveNameController = TextEditingController();
+  TextEditingController _receivePhoneController = TextEditingController();
+  TextEditingController _receiveAddress1Controller = TextEditingController();
+  TextEditingController _receiveAddress2Controller = TextEditingController();
+  TextEditingController _receiveAddress3Controller = TextEditingController();
+
   bool radioButton = false;
+  Map map;
+
+  addOrder() async {
+    String _orderName = _orderNameController.text.trim();
+    String _orderPhone = _orderPhoneController.text.trim();
+    String _orderAddress1 = _orderAddress1Controller.text.trim();
+    String _orderAddress2 = _orderAddress2Controller.text.trim();
+    String _orderAddress3 = _orderAddress3Controller.text.trim();
+    String _orderEmail = _orderEmailController.text.trim();
+    String _receiveDestination = _receiveDestinationController.text.trim();
+    String _receiveName = _receiveNameController.text.trim();
+    String _receivePhone = _receivePhoneController.text.trim();
+    String _receiveAddress1 = _receiveAddress1Controller.text.trim();
+    String _receiveAddress2 = _receiveAddress2Controller.text.trim();
+    String _receiveAddress3 = _receiveAddress3Controller.text.trim();
+
+    if (_orderName.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('first_name_field_is_required', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_orderPhone.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('last_name_field_is_required', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_orderAddress1.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('last_name_field_is_required', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_orderAddress2.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_orderAddress3.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_orderEmail.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('enter_valid_email_address', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_receiveDestination.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("${getTranslated('PHONE_MUST_BE_REQUIRED', context)}"),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_receiveName.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_receivePhone.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_receiveAddress1.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_receiveAddress2.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_receiveAddress3.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+        backgroundColor: Colors.red,
+      ));
+    } else {
+      widget.orderModel.orderer_name = _orderName;
+      widget.orderModel.orderer_phone = _orderPhone;
+      widget.orderModel.orderer_address1 = _orderAddress1;
+      widget.orderModel.orderer_address2 = _orderAddress2;
+      widget.orderModel.orderer_address3 = _orderAddress3;
+      widget.orderModel.orderer_email = _orderEmail;
+      widget.orderModel.recipient_place = _receiveDestination;
+      widget.orderModel.recipient_name = _receiveName;
+      widget.orderModel.recipient_phone = _receivePhone;
+      widget.orderModel.recipient_address1 = _receiveAddress1;
+      widget.orderModel.recipient_address2 = _receiveAddress2;
+      widget.orderModel.recipient_address3 = _receiveAddress3;
+
+      await Provider.of<OrderProvider>(context, listen: false)
+          .addOrder(widget.orderModel);
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => ProductPaymentPage(
+            orderModel: widget.orderModel,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    map = Provider.of<AuthProvider>(context, listen: false).getUser();
+
+    _orderNameController.text = map["name"];
+    _orderPhoneController.text = map["phone"];
+    _orderAddress1Controller.text = map["address1"];
+    _orderAddress2Controller.text = map["address2"];
+    _orderAddress3Controller.text = map["address3"];
+    _orderEmailController.text = map["email"];
+  }
 
   @override
-  void initState() {
-    super.initState();
-    // _controller = PageController();
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+
+    await _loadData(context, true);
   }
 
   @override
@@ -52,12 +186,8 @@ class _ProductShippingPageState extends State<ProductShippingPage>
 
               SliverToBoxAdapter(
                 child: Container(
-                  // alignment: Alignment.centerLeft,
                   width: MediaQuery.of(context).size.width + 100,
                   decoration: BoxDecoration(color: Colors.white),
-                  // decoration: BoxDecoration(
-                  //   color: Color(0xffcfcbc3),
-                  // ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,9 +198,6 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                         indent: 0,
                         endIndent: 0,
                       ),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -82,7 +209,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                 Images.privacy,
                                 fit: BoxFit.fill,
                                 height: 25,
-                              ), // Text(key['title']),
+                              ),
                             ),
                           ),
                           Padding(
@@ -97,7 +224,6 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           ),
                         ],
                       ),
-
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
                         child: Text(
@@ -108,7 +234,6 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           ),
                         ),
                       ),
-
                       Row(
                         children: [
                           Padding(
@@ -142,7 +267,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${widget.orderModel.option != null ? widget.orderModel.option + "|": ""}${getTranslated('AMOUNT', context)}${getTranslated(':', context)} ${PriceConverter.convertPrice(context, widget.orderModel.quantity.toDouble())}${getTranslated('SOME', context)}",
+                                        "${widget.orderModel.option != null ? widget.orderModel.option + "|" : ""}${getTranslated('AMOUNT', context)}${getTranslated(':', context)} ${PriceConverter.convertPrice(context, widget.orderModel.quantity.toDouble())}${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           height: 1,
                                           color: Color(0xff999999),
@@ -248,7 +373,6 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           ),
                         ],
                       ),
-
                       const Divider(
                         height: 5,
                         thickness: 1,
@@ -256,9 +380,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                         endIndent: 20,
                         color: Color(0xffDDDDDD),
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                         child: Text(
@@ -269,30 +391,25 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           ),
                         ),
                       ),
-
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _orderNameController,
                         labelText: "${getTranslated('NAME', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _orderPhoneController,
                         labelText: "${getTranslated('PHONE', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_PHONE', context)}",
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                       Row(
                         children: [
                           Expanded(
                             child: CustomLabelTextField(
-                              controller: _firstNameController,
+                              controller: _orderAddress1Controller,
                               labelText:
                                   "${getTranslated('ADDRESS', context)} ",
                               // essentialLabelText: " *",
@@ -310,7 +427,32 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 12, 0, 0),
                                   child: CustomElevatedButton(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => KpostalView(
+                                            useLocalServer: true,
+                                            localPort: 1024,
+                                            // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
+                                            callback: (Kpostal result) {
+                                              setState(() {
+                                                _orderAddress1Controller.text =
+                                                    result.postCode;
+                                                _orderAddress2Controller.text =
+                                                    result.address;
+                                                // this.latitude = result.latitude.toString();
+                                                // this.longitude = result.longitude.toString();
+                                                // this.kakaoLatitude =
+                                                //     result.kakaoLatitude.toString();
+                                                // this.kakaoLongitude =
+                                                //     result.kakaoLongitude.toString();
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
                                     buttonText:
                                         "${getTranslated('SEARCH', context)}",
                                   ),
@@ -320,37 +462,30 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           ),
                         ],
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-
                       CustomLabelTextField(
                         isTextable: false,
-                        controller: _firstNameController,
+                        controller: _orderAddress2Controller,
                         // labelText: "",
                         // essentialLabelText: "",
                         hintText:
                             "${getTranslated('SELECT_DISTINCT', context)}",
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-
                       CustomLabelTextField(
                         isTextable: false,
-                        controller: _firstNameController,
+                        controller: _orderAddress3Controller,
                         // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('ETC_ADDRESS', context)}",
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _orderEmailController,
                         labelText: "${getTranslated('EMAIL', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_EMAIL', context)}",
                       ),
-
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
                         child: Text(
@@ -361,45 +496,55 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                           ),
                         ),
                       ),
+                      InkWell(
+                        onTap: () {
+                          _receiveNameController.text =
+                              _orderNameController.text;
+                          _receivePhoneController.text =
+                              _orderPhoneController.text;
+                          _receiveAddress1Controller.text =
+                              _orderAddress1Controller.text;
+                          _receiveAddress2Controller.text =
+                              _orderAddress2Controller.text;
+                          _receiveAddress3Controller.text =
+                              _orderAddress3Controller.text;
 
-                      CustomSmallRadioButton(
-                        value: radioButton,
-                        text: "${getTranslated('ALL_AGREE', context)}",
-                        // reverse: true,
+                          setState(() {
+                            radioButton = !radioButton;
+                          });
+                        },
+                        child: CustomSmallRadioButton(
+                          value: radioButton,
+                          text: "주문자와 동일",
+                          // reverse: true,
+                        ),
                       ),
-
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _receiveDestinationController,
                         labelText: "${getTranslated('DESTINATION', context)}",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _receiveNameController,
                         labelText: "${getTranslated('NAME', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _receivePhoneController,
                         labelText: "${getTranslated('PHONE', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_PHONE', context)}",
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                       Row(
                         children: [
                           Expanded(
                             child: CustomLabelTextField(
-                              controller: _firstNameController,
+                              controller: _receiveAddress1Controller,
                               labelText:
                                   "${getTranslated('ADDRESS', context)} ",
                               // essentialLabelText: " *",
@@ -407,47 +552,76 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   "${getTranslated('SELECT_CITY', context)}",
                             ),
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                              child: CustomLabelTextField(
-                                controller: _firstNameController,
-                                labelText: "",
-                                essentialLabelText: "",
-                                hintText:
-                                    "${getTranslated('SELECT_DISTINCT', context)}",
-                              ),
+                          Container(
+                            width: 120,
+                            // alignment: Alignment.bottomCenter,
+                            child: Column(
+                              children: [
+                                Text(""),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 12, 0, 0),
+                                  child: CustomElevatedButton(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => KpostalView(
+                                            useLocalServer: true,
+                                            localPort: 1024,
+                                            // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
+                                            callback: (Kpostal result) {
+                                              setState(() {
+                                                _receiveAddress1Controller
+                                                    .text = result.postCode;
+                                                _receiveAddress2Controller
+                                                    .text = result.address;
+                                                // this.latitude = result.latitude.toString();
+                                                // this.longitude = result.longitude.toString();
+                                                // this.kakaoLatitude =
+                                                //     result.kakaoLatitude.toString();
+                                                // this.kakaoLongitude =
+                                                //     result.kakaoLongitude.toString();
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    buttonText:
+                                        "${getTranslated('SEARCH', context)}",
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-
                       CustomLabelTextField(
-                        controller: _firstNameController,
                         isTextable: false,
+                        controller: _receiveAddress2Controller,
+                        // labelText: "",
+                        // essentialLabelText: "",
+                        hintText:
+                            "${getTranslated('SELECT_DISTINCT', context)}",
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                      CustomLabelTextField(
+                        isTextable: false,
+                        controller: _receiveAddress3Controller,
                         // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('ETC_ADDRESS', context)}",
                       ),
-
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-
                       CustomElevatedButton(
                         onTap: () async {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => ProductPaymentPage(
-                                orderModel: widget.orderModel,
-                              ),
-                            ),
-                          );
+                          addOrder();
                         },
                         buttonText: "${getTranslated('GO_TO_PAY', context)}",
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-
                       FooterPage(),
                     ],
                   ),

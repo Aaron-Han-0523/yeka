@@ -11,6 +11,7 @@ import '../../../data/model/response/product_model.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
 import '../../../provider/like_product_provider.dart';
+import '../../../provider/product_provider.dart';
 import 'product_detail_screen.dart';
 
 class ProductWidget extends StatefulWidget {
@@ -23,17 +24,10 @@ class ProductWidget extends StatefulWidget {
 }
 
 class _ProductWidgetState extends State<ProductWidget> {
-  bool heart = false;
-
-  @override
-  void initState() {
-    heart = widget.productModel.like_product_id != null ? true : false;
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    bool heart = widget.productModel.like_product_id != null ? true : false;
+
     return InkWell(
       onTap: () {
         ImageModel imageModel = ImageModel(
@@ -99,14 +93,22 @@ class _ProductWidgetState extends State<ProductWidget> {
                         product_id: widget.productModel.id,
                       );
 
-                      if (heart)
-                        await Provider.of<LikeProductProvider>(context,
+                      if (heart) {
+                        await Provider.of<LikeProductProvider>(
+                                context,
                                 listen: false)
                             .deleteLikeProduct(likeProductModel);
-                      else
-                        await Provider.of<LikeProductProvider>(context,
+                      } else {
+                        await Provider.of<LikeProductProvider>(
+                                context,
                                 listen: false)
                             .addLikeProduct(likeProductModel);
+                      }
+
+                      int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+
+                      await Provider.of<ProductProvider>(context, listen: false)
+                          .getLatestProductList(0, user_id, context, reload: true);
 
                       setState(() {
                         heart = !heart;

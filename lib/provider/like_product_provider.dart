@@ -35,8 +35,8 @@ class LikeProductProvider extends ChangeNotifier {
 
   int get latestPageSize => _latestPageSize;
 
-  void addLikeProduct(LikeProductModel likeProductModel) {
-    likeProductRepo.addLikeProduct(likeProductModel);
+  void addLikeProduct(LikeProductModel likeProductModel) async {
+    await likeProductRepo.addLikeProduct(likeProductModel);
     notifyListeners();
   }
 
@@ -45,8 +45,8 @@ class LikeProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteLikeProduct(LikeProductModel likeProductModel) {
-    likeProductRepo.deleteLikeProduct(likeProductModel);
+  void deleteLikeProduct(LikeProductModel likeProductModel) async {
+    await likeProductRepo.deleteLikeProduct(likeProductModel);
     notifyListeners();
   }
 
