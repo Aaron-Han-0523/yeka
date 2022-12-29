@@ -52,6 +52,8 @@ class UserRepo {
       'address1': userModel.address1,
       'address2': userModel.address2,
       'address3': userModel.address3,
+      'business_registration_number': userModel.business_registration_number,
+      'business_registration_file': userModel.business_registration_file,
     };
 
     try {

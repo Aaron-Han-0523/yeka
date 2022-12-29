@@ -82,14 +82,15 @@ class _AuthScreenState extends State<AuthScreen> {
                               child: TextFormField(
                                 onChanged: (value) {},
                                 controller: idController,
-                                // textAlignVertical: TextAlignVertical.center,
+                                textAlignVertical: TextAlignVertical.bottom,
                                 focusNode: usernameFocus,
+                                style: TextStyle(fontSize: 13),
                                 decoration: InputDecoration(
                                   hintText:
                                       "${getTranslated('INSERT_ID', context)}",
                                   hintStyle: TextStyle(fontSize: 12.0),
                                   contentPadding:
-                                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 6.0),
+                                      EdgeInsets.fromLTRB(0.0, 6.0, 0.0, 6.0),
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   prefixIcon: Image(
@@ -117,14 +118,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                 obscureText: true,
                                 controller: passwordController,
                                 onChanged: (value) {},
-                                textAlignVertical: TextAlignVertical.center,
+                                textAlignVertical: TextAlignVertical.bottom,
                                 focusNode: passwordFocus,
+                                style: TextStyle(fontSize: 13,),
                                 decoration: InputDecoration(
                                   hintText:
                                       "${getTranslated('INSERT_PW', context)}",
                                   hintStyle: TextStyle(fontSize: 12.0),
                                   contentPadding:
-                                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 6.0),
+                                      EdgeInsets.fromLTRB(0.0, 6.0, 0.0, 6.0),
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   prefixIcon: Image(

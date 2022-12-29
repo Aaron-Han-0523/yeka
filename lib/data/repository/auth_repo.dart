@@ -123,6 +123,10 @@ class AuthRepo {
         map["username"] ?? "",
       );
       await sharedPreferences.setString(
+        AppConstants.USER_PASSWORD,
+        map["password"] ?? "",
+      );
+      await sharedPreferences.setString(
         AppConstants.USER_NAME,
         map["name"] ?? "",
       );
@@ -217,6 +221,10 @@ class AuthRepo {
           AppConstants.USER_USERNAME,
         ) ??
         "";
+    map["password"] = sharedPreferences.getString(
+          AppConstants.USER_PASSWORD,
+        ) ??
+        "";
     map["name"] = sharedPreferences.getString(
           AppConstants.USER_NAME,
         ) ??
@@ -229,7 +237,7 @@ class AuthRepo {
           AppConstants.USER_EMAIL,
         ) ??
         "";
-    map["GENDER"] = sharedPreferences.getInt(
+    map["gender"] = sharedPreferences.getInt(
           AppConstants.USER_GENDER,
         ) ??
         null;
@@ -288,6 +296,17 @@ class AuthRepo {
     return map;
   }
 
+  Future<ApiResponse> getMyInfo(UserModel userModel) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.GET_USER_URI + "/${userModel.id}",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   String getUserPassword() {
     return sharedPreferences.getString(AppConstants.USER_PASSWORD) ?? "";
   }
@@ -301,6 +320,9 @@ class AuthRepo {
     );
     await sharedPreferences.remove(
       AppConstants.USER_USERNAME,
+    );
+    await sharedPreferences.remove(
+      AppConstants.USER_PASSWORD,
     );
     await sharedPreferences.remove(
       AppConstants.USER_NAME,

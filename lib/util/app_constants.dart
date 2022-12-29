@@ -6,7 +6,7 @@ class AppConstants {
 
   // static const String BASE_URL = 'https://6valley.6amtech.com';
   // static const String BASE_URL = 'http://52.79.240.88';
-  static const String BASE_URL = 'http://172.30.1.88:3000';
+  static const String BASE_URL = 'http://172.30.1.95:3000';
   // static const String BASE_URL = 'http://172.30.1.15:3000';
   // static const String BASE_URL = 'http://192.168.0.198:3000';
   // static const String BASE_URL = 'http://3.34.187.112:3000';
@@ -134,7 +134,7 @@ class AppConstants {
   static const String USER_NAME = 'user_name';
   static const String USER_PHONE = 'user_phone';
   static const String USER_EMAIL = 'user_email';
-  static const String USER_GENDER = 'user_GENDER';
+  static const String USER_GENDER = 'user_gender';
   static const String USER_ADDRESS1 = 'user_address1';
   static const String USER_ADDRESS2 = 'user_address2';
   static const String USER_ADDRESS3 = 'user_address3';
