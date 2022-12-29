@@ -4,7 +4,6 @@ import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/data/model/response/base/error_response.dart';
 import 'package:yeka/data/model/response/response_model.dart';
 import 'package:yeka/data/repository/auth_repo.dart';
-import 'package:yeka/helper/api_checker.dart';
 
 import '../data/model/response/user_model.dart';
 
@@ -233,6 +232,13 @@ class AuthProvider with ChangeNotifier {
 
   Map getUser() {
     return authRepo.getUser();
+  }
+
+  Future<int> getMyInfo(UserModel userModel) async {
+    ApiResponse apiResponse = await authRepo.getMyInfo(userModel);
+    saveUser(apiResponse.response.data);
+    notifyListeners();
+    return 1;
   }
 
   Future<bool> clearUser() async {

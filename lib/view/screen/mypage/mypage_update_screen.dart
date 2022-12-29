@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kpostal/kpostal.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/data/model/body/login_model.dart';
 
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
@@ -14,6 +15,7 @@ import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_label_textfield_upload_button.dart';
 import '../../basewidget/radio/custom_small_radio_button.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
+import '../home/home_screens.dart';
 import 'mypage_home_screen.dart';
 
 class MyPageUpdateScreen extends StatefulWidget {
@@ -34,34 +36,26 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _addressTextController = TextEditingController();
-  TextEditingController _etcAddressTextController = TextEditingController();
+  TextEditingController _address1Controller = TextEditingController();
+  TextEditingController _address2Controller = TextEditingController();
+  TextEditingController _address3Controller = TextEditingController();
   TextEditingController _companyRegistrationNumberController =
       TextEditingController();
   TextEditingController _companyRegistrationFileController =
       TextEditingController();
 
-  bool radioButton = false;
-
   bool radioButton1 = false; // gender
   bool radioButton2 = false;
-  bool radioButton3 = false;
-  bool radioButton4 = false;
-
-  String postCode = '우편번호';
-  String address = '주소';
-  String latitude = '-';
-  String longitude = '-';
-  String kakaoLatitude = '-';
-  String kakaoLongitude = '-';
 
   Map map;
 
-  int user_type = 0;
+  int _gender = 0;
+  int _user_type = 0;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
     map = Provider.of<AuthProvider>(context, listen: false).getUser();
 
     _idController.text = map["username"];
@@ -69,22 +63,20 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
     _nameController.text = map["name"];
     _phoneController.text = map["phone"];
     _emailController.text = map["email"];
+    _gender = map["gender"];
+    _address1Controller.text = map["address1"];
+    _address2Controller.text = map["address2"];
+    _address3Controller.text = map["address3"];
+    _companyRegistrationNumberController.text =
+    map["business_registration_number"];
+    _companyRegistrationFileController.text = map["business_registration_file"];
+
+    _user_type = map["user_type"];
+
     if (map["gender"] == 0)
       radioButton1 = true;
     else
       radioButton2 = true;
-    postCode = map["address1"];
-    _addressTextController.text = map["address2"];
-    _etcAddressTextController.text = map["address3"];
-    _companyRegistrationNumberController.text =
-        map["business_registration_number"];
-    _companyRegistrationFileController.text = map["business_registration_file"];
-    user_type = map["user_type"];
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
   }
 
   @override
@@ -97,7 +89,8 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
           controller: _scrollController,
           slivers: [
             CustomSliverAppBar(
-              "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",isMyPageHidden: true,
+              "${getTranslated('MODIFYING_PERSONAL_INFORMATION', context)}",
+              isMyPageHidden: true,
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -112,9 +105,7 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                       endIndent: 0,
                       color: Color(0xffDDDDDD),
                     ),
-
                     SizedBox(height: 18),
-
                     CustomLabelTextField(
                       controller: _idController,
                       labelText: "${getTranslated('ID', context)} ",
@@ -124,9 +115,7 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                       hintText: "${getTranslated('HINT_ID', context)}",
                       enabled: false,
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                     CustomLabelTextField(
                       controller: _pwController,
                       labelText: "${getTranslated('PW', context)} ",
@@ -134,9 +123,7 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                       hintText: "${getTranslated('HINT_PW', context)}",
                       obscureText: true,
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                     CustomLabelTextField(
                       controller: _confirmPwController,
                       labelText: "${getTranslated('CONFIRM_PW', context)} ",
@@ -144,36 +131,28 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                       hintText: "${getTranslated('HINT_CONFIRM_PW', context)}",
                       obscureText: true,
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                     CustomLabelTextField(
                       controller: _nameController,
                       labelText: "${getTranslated('NAME', context)} ",
                       essentialLabelText: " *",
                       hintText: "${getTranslated('HINT_NAME', context)}",
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                     CustomLabelTextField(
                       controller: _phoneController,
                       labelText: "${getTranslated('PHONE', context)} ",
                       essentialLabelText: " *",
                       hintText: "${getTranslated('HINT_PHONE', context)}",
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
                     CustomLabelTextField(
                       controller: _emailController,
                       labelText: "${getTranslated('EMAIL', context)} ",
                       essentialLabelText: " *",
                       hintText: "${getTranslated('HINT_EMAIL', context)}",
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-
                     Container(
                       margin: EdgeInsets.only(
                           left: Dimensions.MARGIN_SIZE_LARGE,
@@ -230,70 +209,30 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                         ],
                       ),
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-
-                    Container(
-                      margin: EdgeInsets.only(
-                          left: Dimensions.MARGIN_SIZE_DEFAULT,
-                          right: Dimensions.MARGIN_SIZE_DEFAULT),
-                      padding: const EdgeInsets.fromLTRB(2.0, 4.0, 16.0, 2.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "${getTranslated('ADDRESS', context)} ",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                " ${getTranslated('*', context)}",
-                                style: TextStyle(
-                                  color: Color(0xffff0000),
-                                  fontSize: 9,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-
                     Row(
                       children: [
-                        Flexible(
-                          flex: 2,
+                        Expanded(
                           child: CustomLabelTextField(
-                            hintText: "$postCode",
+                            controller: _address1Controller,
+                            labelText: "${getTranslated('ADDRESS', context)} ",
+                            label_fontSize: 15,
+                            essentialLabelText: " *",
+                            hintText:
+                                "${getTranslated('SELECT_CITY', context)}",
                             enabled: false,
-                            isBorder: true,
-                            fillColor: Colors.white,
-                            isTextable: false,
-                            padding:
-                                const EdgeInsets.fromLTRB(0.0, 5.0, 16.0, 0.0),
                           ),
                         ),
-                        Flexible(
-                          flex: 1,
-                          child: Row(
+                        Container(
+                          width: 120,
+                          // alignment: Alignment.bottomCenter,
+                          child: Column(
                             children: [
-                              Expanded(
-                                  child: Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                  0.0,
-                                  0.0,
-                                  22.0,
-                                  0.0,
-                                ),
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStatePropertyAll<Color>(
-                                            Color(0xff121212)),
-                                  ),
-                                  onPressed: () {
+                              Text(""),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
+                                child: CustomElevatedButton(
+                                  onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -303,53 +242,44 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                                           // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
                                           callback: (Kpostal result) {
                                             setState(() {
-                                              this.postCode = result.postCode;
-                                              this.address = result.address;
-                                              this.latitude =
-                                                  result.latitude.toString();
-                                              this.longitude =
-                                                  result.longitude.toString();
-                                              this.kakaoLatitude = result
-                                                  .kakaoLatitude
-                                                  .toString();
-                                              this.kakaoLongitude = result
-                                                  .kakaoLongitude
-                                                  .toString();
+                                              _address1Controller.text =
+                                                  result.postCode;
+                                              _address2Controller.text =
+                                                  result.address;
                                             });
                                           },
                                         ),
                                       ),
                                     );
                                   },
-                                  child: Text(
-                                      "${getTranslated('SEARCH', context)}"),
+                                  buttonText:
+                                      "${getTranslated('SEARCH', context)}",
                                 ),
-                              )),
+                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
-
-                    // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                    SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     CustomLabelTextField(
-                      controller: _addressTextController,
-                      hintText: "${getTranslated('ADD_ADDRESS', context)}",
+                      controller: _address2Controller,
+                      isTextable: false,
+                      labelText: "",
                       enabled: false,
-                      isBorder: true,
-                      fillColor: Colors.white,
+                      // essentialLabelText: "",
+                      hintText: "${getTranslated('SELECT_DISTINCT', context)}",
                     ),
-                    // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                    SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     CustomLabelTextField(
-                      controller: _etcAddressTextController,
+                      isTextable: false,
+                      controller: _address3Controller,
+                      // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
+                      // essentialLabelText: " *",
                       hintText: "${getTranslated('ETC_ADDRESS', context)}",
-                      isBorder: true,
-                      fillColor: Colors.white,
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
-                    user_type == 1
+                    _user_type == 1
                         ? CustomLabelTextField(
                             controller: _companyRegistrationNumberController,
                             labelText:
@@ -359,24 +289,23 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                                 "${getTranslated('HINT_COMPANY_REGISTRATION_NUMBER', context)}",
                           )
                         : Container(),
-
-                    user_type == 1
+                    _user_type == 1
                         ? SizedBox(height: Dimensions.PADDING_SIZE_SMALL)
                         : Container(),
-
-                    user_type == 1
+                    _user_type == 1
                         ? CustomLabelTextFieldUploadButton(
                             labelText:
                                 "${getTranslated('COMPANY_REGISTRATION_NUMBER_FILE_ENROLL', context)}")
                         : Container(),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
                     CustomElevatedButton(
-                      onTap: () {
-                        if(_pwController.text != _confirmPwController.text) {
+                      onTap: () async {
+                        if (_pwController.text != _confirmPwController.text) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("${getTranslated('IS_NOT_CORRECT_PW', context)}"), backgroundColor: Colors.red),
+                            SnackBar(
+                                content: Text(
+                                    "${getTranslated('IS_NOT_CORRECT_PW', context)}"),
+                                backgroundColor: Colors.red),
                           );
                         } else {
                           UserModel userModel = UserModel(
@@ -385,29 +314,46 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                             name: _nameController.text,
                             phone: _phoneController.text,
                             email: _emailController.text,
-                            gender: radioButton1 ? 1 : 0,
-                            address1: postCode,
-                            address2: _addressTextController.text,
-                            address3: _etcAddressTextController.text,
+                            gender: _gender,
+                            address1: _address1Controller.text,
+                            address2: _address2Controller.text,
+                            address3: _address3Controller.text,
+                            business_registration_number:
+                                _companyRegistrationNumberController.text ?? "",
+                            business_registration_file:
+                                _companyRegistrationFileController.text ?? "",
                           );
 
-                          Provider.of<UserProvider>(context, listen: false)
+                          await Provider.of<UserProvider>(context,
+                                  listen: false)
                               .updateUser(userModel);
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("${getTranslated('SUCCESS_TO_UPDATE_INFO', context)}"), backgroundColor: Colors.green),
+                            SnackBar(
+                                content: Text(
+                                    "${getTranslated('SUCCESS_TO_UPDATE_INFO', context)}"),
+                                backgroundColor: Colors.green),
                           );
 
-                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => MyPageHomeScreen()),(route) => false);
+                          //fixme 2번 불러야 1타이밍이 어긋나는 것을 피할 수 있다.
+                          await Provider.of<AuthProvider>(context, listen: false).getMyInfo(userModel);
+                          await Provider.of<AuthProvider>(context, listen: false).getMyInfo(userModel);
+
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (_) => MyPageHomeScreen()),
+                                  (route) => false);
+
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //       builder: (_) => MyPageHomeScreen()),);
                         }
                       },
                       buttonText: "${getTranslated('MODIFY_INFO', context)}",
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                     ),
-
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     SizedBox(height: Dimensions.PADDING_SIZE_Thirty_Five),
-
                     FooterPage(),
                   ],
                 ),
@@ -415,10 +361,6 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
             ),
           ],
         ),
-        // Positioned(
-        //   bottom: 0,
-        //   child: FooterPage(),
-        // ),
       ]),
     ));
   }
