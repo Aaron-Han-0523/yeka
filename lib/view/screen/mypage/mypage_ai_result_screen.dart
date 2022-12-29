@@ -143,7 +143,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "당신은 ${season} ${seasonKor} ",
+                            "${getTranslated('YOU', context)} ${season} ${seasonKor} ",
                             style: TextStyle(
                               fontSize: 20,
                             ),
@@ -155,7 +155,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                             ),
                           ),
                           Text(
-                            " 입니다.",
+                            " ${getTranslated('IS', context)}",
                             style: TextStyle(
                               fontSize: 20,
                             ),
@@ -265,7 +265,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                             ),
                           ),
                           Text(
-                            "${seasonKor} ${detailSeasonType} 사람들이 베이직하게 쓸 수 있는 컬러",
+                            "${seasonKor} ${detailSeasonType} ${getTranslated('PEOPLE_CAN_USE_BASICALLY', context)}",
                             style: TextStyle(
                               fontSize: 16,
                             ),

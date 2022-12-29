@@ -172,7 +172,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                               onTap: () {
                                 stageValues.add(true);
 
-                                if (stage > 13) {
+                                if (stage > testList.length -2) {
                                   personalColorResult(stageValues);
                                 } else {
                                   setState(() {
@@ -219,7 +219,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                               onTap: () {
                                 stageValues.add(false);
 
-                                if (stage > 13) {
+                                if (stage > testList.length -2) {
                                   personalColorResult(stageValues);
                                 } else {
                                   setState(() {

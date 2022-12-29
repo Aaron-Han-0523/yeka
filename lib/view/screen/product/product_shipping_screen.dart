@@ -64,66 +64,66 @@ class _ProductShippingPageState extends State<ProductShippingPage>
 
     if (_orderName.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('first_name_field_is_required', context)),
+        content: Text("${getTranslated('ORDER_NAME_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderPhone.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('last_name_field_is_required', context)),
+        content: Text("${getTranslated('ORDER_PHONE_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderAddress1.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('last_name_field_is_required', context)),
+        content: Text("${getTranslated('ORDER_ADDRESS1_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderAddress2.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        content: Text("${getTranslated('ORDER_ADDRESS2_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderAddress3.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        content: Text("${getTranslated('ORDER_ADDRESS3_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderEmail.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('enter_valid_email_address', context)),
+        content: Text("${getTranslated('ORDER_EMAIL_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receiveDestination.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${getTranslated('PHONE_MUST_BE_REQUIRED', context)}"),
+        content: Text("${getTranslated('RECEIVE_DESTINATION_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receiveName.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
+        content: Text("${getTranslated('RECEIVE_NAME_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receivePhone.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
-            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+            Text("${getTranslated('RECEIVE_PHONE_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receiveAddress1.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
-            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+            Text("${getTranslated('RECEIVE_ADDRESS1_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receiveAddress2.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
-            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+            Text("${getTranslated('RECEIVE_ADDRESS2_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receiveAddress3.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
-            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+            Text("${getTranslated('RECEIVE_ADDRESS3_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else {
@@ -384,7 +384,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                         child: Text(
-                          "${getTranslated('DESTINATION', context)}",
+                          "${getTranslated('ORDERED_CUSTOMER', context)}",
                           style: TextStyle(
                             color: Color(0xff333333),
                             fontSize: 21,
@@ -515,7 +515,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                         },
                         child: CustomSmallRadioButton(
                           value: radioButton,
-                          text: "주문자와 동일",
+                          text: "${getTranslated('SAME_AS_ORDER', context)}",
                           // reverse: true,
                         ),
                       ),

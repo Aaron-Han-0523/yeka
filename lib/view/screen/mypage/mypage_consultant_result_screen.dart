@@ -258,37 +258,37 @@ class _MyPageConsultantResultScreenState
 
     if (personalColorModel == null) {
       season = "Spring";
-      seasonKor = "봄";
+      seasonKor = "${getTranslated('SPRING', context)}";
     } else if (personalColorModel.season == 0) {
       season = "Spring";
-      seasonKor = "봄";
+      seasonKor = "${getTranslated('SPRING', context)}";
     } else if (personalColorModel.season == 1) {
       season = "Summer";
-      seasonKor = "여름";
+      seasonKor = "${getTranslated('SUMMER', context)}";
     } else if (personalColorModel.season == 2) {
       season = "Fall";
-      seasonKor = "가을";
+      seasonKor = "${getTranslated('FALL', context)}";
     } else if (personalColorModel.season == 3) {
       season = "Winter";
-      seasonKor = "겨울";
+      seasonKor = "${getTranslated('WINTER', context)}";
     }
 
     if (personalColorModel == null) {
-      detailSeasonType = "브라이트";
+      detailSeasonType = "${getTranslated('BRIGHT', context)}";
     } else if (personalColorModel.detail_season_type == 0) {
-      detailSeasonType = "브라이트";
+      detailSeasonType = "${getTranslated('BRIGHT', context)}";
     } else if (personalColorModel.detail_season_type == 1) {
-      detailSeasonType = "라이트";
+      detailSeasonType = "${getTranslated('LIGHT', context)}";
     } else if (personalColorModel.detail_season_type == 2) {
-      detailSeasonType = "딥";
+      detailSeasonType = "${getTranslated('DEEP', context)}";
     } else if (personalColorModel.detail_season_type == 3) {
-      detailSeasonType = "스트롱";
+      detailSeasonType = "${getTranslated('STRONG', context)}";
     } else if (personalColorModel.detail_season_type == 4) {
-      detailSeasonType = "뮤트";
+      detailSeasonType = "${getTranslated('MUTE', context)}";
     } else if (personalColorModel.detail_season_type == 5) {
-      detailSeasonType = "소프트";
+      detailSeasonType = "${getTranslated('SOFT', context)}";
     } else if (personalColorModel.detail_season_type == 6) {
-      detailSeasonType = "페일";
+      detailSeasonType = "${getTranslated('PALE', context)}";
     }
 
     var matchingColorList = [

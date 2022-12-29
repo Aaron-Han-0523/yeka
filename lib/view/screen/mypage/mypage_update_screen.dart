@@ -376,7 +376,7 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                       onTap: () {
                         if(_pwController.text != _confirmPwController.text) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("비밀번호가 일치하지 않습니다."), backgroundColor: Colors.red),
+                            SnackBar(content: Text("${getTranslated('IS_NOT_CORRECT_PW', context)}"), backgroundColor: Colors.red),
                           );
                         } else {
                           UserModel userModel = UserModel(
@@ -395,7 +395,7 @@ class _MyPageUpdateScreenState extends State<MyPageUpdateScreen> {
                               .updateUser(userModel);
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("정보를 업데이트 했습니다."), backgroundColor: Colors.green),
+                            SnackBar(content: Text("${getTranslated('SUCCESS_TO_UPDATE_INFO', context)}"), backgroundColor: Colors.green),
                           );
 
                           Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => MyPageHomeScreen()),(route) => false);

@@ -169,6 +169,7 @@
   "REGISTRATION_IMAGE" : "이미지를 등록해주세요.",
   "YES_BUTTON" : "그렇다",
   "NO_BUTTON" : "아니다",
+  "PEOPLE_CAN_USE_BASICALLY" : "사람들이 베이직하게 쓸 수 있는 컬러",
 
 
   "MY_PAGE" : "마이페이지",
@@ -275,6 +276,19 @@
   "WAITING_FOR_DEPOSIT_SPACE" : "입금 대기",
   "APPLY" : "적용하기",
   "PLEASE_SELECT_DATE" : "날짜를 선택하세요",
+  "YOU" : "당신은",
+  "SPRING" : "봄",
+  "SUMMER" : "여름",
+  "FALL" : "가을",
+  "WINTER" : "겨울",
+  "BRIGHT" : "브라이트",
+  "LIGHT" : "라이트",
+  "DEEP" : "딥",
+  "STRONG" : "스트롱",
+  "MUTE" : "뮤트",
+  "SOFT" : "소프트",
+  "PALE" : "페일",
+
 
 
   "TEST_QNA1" : "피부가 노랗다",
@@ -304,7 +318,21 @@
   "SORT_DROPDOWN_ITEMS_NEW_PRODUCT_ORDER" : "신제품순",
 
   "HAVE_TO_LOGIN" : "로그인이 필요합니다.",
+  "IS_NOT_CORRECT_PW" : "비밀번호가 일치하지 않습니다.",
+  "SUCCESS_TO_UPDATE_INFO" : "정보를 업데이트 했습니다.",
 
+  "ORDER_NAME_FIELD_IS_REQUIRED" : "주문자의 이름을 입력해주세요.",
+  "ORDER_PHONE_FIELD_IS_REQUIRED" : "주문자의 휴대폰을 입력해주세요.",
+  "ORDER_ADDRESS1_FIELD_IS_REQUIRED" : "주문자의 주소를 입력해주세요.",
+  "ORDER_ADDRESS2_FIELD_IS_REQUIRED" : "주문자의 주소를 입력해주세요.",
+  "ORDER_ADDRESS3_FIELD_IS_REQUIRED" : "주문자의 세부주소를 입력해주세요.",
+  "ORDER_EMAIL_FIELD_IS_REQUIRED" : "주문자의 이메일을 입력해주세요.",
+  "RECEIVE_DESTINATION_IS_REQUIRED" : "받으시는 분의 배송지를 입력해주세요.",
+  "RECEIVE_NAME_IS_REQUIRED" : "받으시는 분의 이름을 입력해주세요.",
+  "RECEIVE_PHONE_IS_REQUIRED" : "받으시는 분의 휴대폰을 입력해주세요.",
+  "RECEIVE_ADDRESS1_IS_REQUIRED" : "받으시는 분의 주소을 입력해주세요.",
+  "RECEIVE_ADDRESS2_IS_REQUIRED" : "받으시는 분의 주소을 입력해주세요.",
+  "RECEIVE_ADDRESS3_IS_REQUIRED" : "받으시는 분의 세부주소을 입력해주세요.",
 
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",
