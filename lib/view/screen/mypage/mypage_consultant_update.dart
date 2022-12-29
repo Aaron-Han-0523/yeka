@@ -93,11 +93,13 @@ class _MyPageConsultantUpdateScreenState
         Provider.of<CustomImageProvider>(context, listen: false).imageList;
 
     for (var i = 0; i < imageList.length; i++) {
-      if(imageList[i].image_type == 2) {
+      if (imageList[i].image_type == 2) {
         thumbnailList.add(imageList[i].path);
-      } else {
+      } else if (imageList[i].image_type == 3) {
         thumbnailList2.add(imageList[i].path);
-      }
+      } else if (imageList[i].image_type == 4) {
+        // menuList[i].menu_image = imageList[i].path;
+      } else {}
     }
 
     setState(() {});
@@ -425,7 +427,6 @@ class _MyPageConsultantUpdateScreenState
                                   ),
                                 ),
                               ),
-
                               for (var i = 0; i < thumbnailList.length; i++)
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -434,28 +435,35 @@ class _MyPageConsultantUpdateScreenState
                                     fit: BoxFit.cover,
                                     width: 50,
                                     height: 50,
-                                    errorBuilder: (BuildContext context, Object exception,
+                                    errorBuilder: (BuildContext context,
+                                        Object exception,
                                         StackTrace stackTrace) {
                                       return FadeInImage.assetNetwork(
                                         placeholder: Images.placeholder1,
                                         image: thumbnailList[i] != null
-                                            ? AppConstants.BASE_URL + "/" + thumbnailList[i]
+                                            ? AppConstants.BASE_URL +
+                                                "/" +
+                                                thumbnailList[i]
                                             : AppConstants.BASE_URL,
                                         fit: BoxFit.cover,
                                         width: 50,
                                         height: 50,
-                                        imageErrorBuilder: (BuildContext context,
-                                            Object exception, StackTrace stackTrace) {
+                                        imageErrorBuilder:
+                                            (BuildContext context,
+                                                Object exception,
+                                                StackTrace stackTrace) {
                                           return Container(
                                             // padding: const EdgeInsets.all(10.0),
                                             width: 50,
                                             height: 50,
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(5),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
                                               color: Color(0xfff1f1f1),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(12.0),
+                                              padding:
+                                                  const EdgeInsets.all(12.0),
                                               child: Image.asset(
                                                 Images.upload,
                                               ),
@@ -782,44 +790,56 @@ class _MyPageConsultantUpdateScreenState
                                   ),
                                   child: index < thumbnailList2.length
                                       ? ClipRRect(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    child: Image.file(
-                                      File(thumbnailList2[index]),
-                                      fit: BoxFit.cover,
-                                      width: 150,
-                                      height: 150,
-                                      errorBuilder: (BuildContext context, Object exception,
-                                          StackTrace stackTrace) {
-                                        return FadeInImage.assetNetwork(
-                                          placeholder: Images.placeholder1,
-                                          image: thumbnailList2[index] != null
-                                              ? AppConstants.BASE_URL + "/" + thumbnailList2[index]
-                                              : AppConstants.BASE_URL,
-                                          fit: BoxFit.cover,
-                                          width: 150,
-                                          height: 150,
-                                          imageErrorBuilder: (BuildContext context,
-                                              Object exception, StackTrace stackTrace) {
-                                            return Container(
-                                              // padding: const EdgeInsets.all(10.0),
-                                              width: 150,
-                                              height: 150,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(5),
-                                                color: Color(0xfff1f1f1),
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(12.0),
-                                                child: Image.asset(
-                                                  Images.upload,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  )
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          child: Image.file(
+                                            File(thumbnailList2[index]),
+                                            fit: BoxFit.cover,
+                                            width: 150,
+                                            height: 150,
+                                            errorBuilder: (BuildContext context,
+                                                Object exception,
+                                                StackTrace stackTrace) {
+                                              return FadeInImage.assetNetwork(
+                                                placeholder:
+                                                    Images.placeholder1,
+                                                image: thumbnailList2[index] !=
+                                                        null
+                                                    ? AppConstants.BASE_URL +
+                                                        "/" +
+                                                        thumbnailList2[index]
+                                                    : AppConstants.BASE_URL,
+                                                fit: BoxFit.cover,
+                                                width: 150,
+                                                height: 150,
+                                                imageErrorBuilder:
+                                                    (BuildContext context,
+                                                        Object exception,
+                                                        StackTrace stackTrace) {
+                                                  return Container(
+                                                    // padding: const EdgeInsets.all(10.0),
+                                                    width: 150,
+                                                    height: 150,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      color: Color(0xfff1f1f1),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              12.0),
+                                                      child: Image.asset(
+                                                        Images.upload,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                          ),
+                                        )
                                       : Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -882,7 +902,8 @@ class _MyPageConsultantUpdateScreenState
         id: menuList[i].id,
       );
 
-      await Provider.of<MenuProvider>(context, listen: false).deleteMenu(menuModel);
+      await Provider.of<MenuProvider>(context, listen: false)
+          .deleteMenu(menuModel);
     }
 
     UserModel userModel = UserModel(
@@ -916,10 +937,11 @@ class _MyPageConsultantUpdateScreenState
         menu_title: _menuTitleList[i].text,
         menu_amount: int.parse(_menuAmountList[i].text),
         menu_content: _menuContentList[i].text,
-        // menu_image: _menuImageList[i].text,
+        menu_image: _menuImageList[i].text,
       );
 
-      await Provider.of<MenuProvider>(context, listen: false).addMenu(menuModel);
+      await Provider.of<MenuProvider>(context, listen: false)
+          .addMenu(menuModel);
 
       ImageModel imageModel = ImageModel(
         image_type: 4,

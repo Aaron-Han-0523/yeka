@@ -14,7 +14,16 @@ class MenuRepo {
   MenuRepo({@required this.dioClient, @required this.sharedPreferences});
 
   Future<ApiResponse> addMenu(MenuModel menuModel) async {
-    var formData = FormData.fromMap(menuModel.toJsonNotNull());
+    // var formData = FormData.fromMap(menuModel.toJsonNotNull());
+    var formData = {
+      // 'file': await MultipartFile.fromFile(imageModel.path),
+      'menu_title': menuModel.menu_title,
+      'menu_amount': menuModel.menu_amount,
+      'menu_content': menuModel.menu_content,
+      'menu_image': menuModel.menu_image,
+      'consultant_id': menuModel.consultant_id,
+      'create_date': menuModel.create_date,
+    };
 
     try {
       var response = await dioClient.post(
