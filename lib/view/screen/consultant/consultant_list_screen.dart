@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import 'package:yeka/util/dimensions.dart';
 
-import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/user_provider.dart';
@@ -285,8 +284,10 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
     }
   ];
 
-  var sidoDropdownItems = ["a", "B"];
-  var dongDropdownItems = ["c", "D"];
+  List<String> sidoDropdownItems = [];
+  List<String> dongDropdownItems = [];
+  String sidoDropdownValue = null;
+  String dongDropdownValue = null;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     Provider.of<UserProvider>(context, listen: false)
@@ -299,8 +300,30 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
     _loadData(context, false);
   }
 
+  void changeDong(sido) {
+    dongDropdownItems = [];
+
+    for (var i = 0; i < areaCodeJson.length; i++) {
+      areaCodeJson[i].keys.forEach((key) {
+        if(key == sido) {
+          print(areaCodeJson[i][key]);
+          areaCodeJson[i][key].forEach((key) {
+            dongDropdownItems.add(key);
+          });
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    sidoDropdownItems = [];
+
+    for (var i = 0; i < areaCodeJson.length; i++) {
+      areaCodeJson[i].keys.forEach((key) {
+        sidoDropdownItems.add(key);
+      });
+    }
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -356,11 +379,13 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                                           iconSize:
                                               Dimensions.ICON_SIZE_DEFAULT,
                                           dropdownItems: sidoDropdownItems,
-                                          // value: receiveTimeStart,
+                                          value: sidoDropdownValue,
                                           onChanged: (value) {
-                                            // setState(() {
-                                            //   receiveTimeStart = value + "";
-                                            // });
+                                            changeDong(value);
+
+                                            setState(() {
+                                              sidoDropdownValue = value;
+                                            });
                                           },
                                         ),
                                       ),
@@ -384,11 +409,11 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                                           iconSize:
                                               Dimensions.ICON_SIZE_DEFAULT,
                                           dropdownItems: dongDropdownItems,
-                                          // value: "",
+                                          value: dongDropdownValue,
                                           onChanged: (value) {
-                                            // setState(() {
-                                            //   receiveTimeEnd = value + "";
-                                            // });
+                                            setState(() {
+                                              dongDropdownValue = value;
+                                            });
                                           },
                                         ),
                                       ),
@@ -399,10 +424,12 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                               ConsultantView(
                                   isHomePage: false,
                                   scrollController: _scrollController),
+/*
                               CustomElevatedButton(
                                   onTap: () {},
                                   buttonText:
                                       "${getTranslated('LOOK_MORE', context)}"),
+*/
                               SizedBox(
                                   height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                             ],
