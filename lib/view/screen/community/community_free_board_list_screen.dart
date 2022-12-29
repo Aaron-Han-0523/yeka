@@ -63,6 +63,13 @@ class _CommunityFreeBoardListScreenState
 
   @override
   Widget build(BuildContext context) {
+    _scrollController.addListener(() {
+      if (_scrollController.position.minScrollExtent ==
+          _scrollController.position.pixels) {
+        _loadData(context, true);
+      }
+    });
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(

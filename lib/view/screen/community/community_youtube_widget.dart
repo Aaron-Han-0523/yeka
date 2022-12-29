@@ -8,10 +8,17 @@ import '../../../localization/language_constants.dart';
 import '../../../provider/community_youtube_provider.dart';
 import 'community_youtube_detail_screen.dart';
 
-class CommunityYoutubeWidget extends StatelessWidget {
+class CommunityYoutubeWidget extends StatefulWidget {
   final CommunityModel communityModel;
 
   CommunityYoutubeWidget({@required this.communityModel});
+
+  @override
+  State<CommunityYoutubeWidget> createState() => _CommunityYoutubeWidgetState();
+}
+
+class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
+  Color color = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -19,29 +26,34 @@ class CommunityYoutubeWidget extends StatelessWidget {
       onTap: () async {
         CommunityModel latestCommunityModel =
             await Provider.of<CommunityYoutubeProvider>(context, listen: false)
-                .getCommunity(communityModel);
+                .getCommunity(widget.communityModel);
         latestCommunityModel.views = latestCommunityModel.views + 1;
 
         Provider.of<CommunityYoutubeProvider>(context, listen: false)
             .updateCommunity(latestCommunityModel);
-        Navigator.of(context).push(
+        final value = await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => CommunityYoutubeDetailScreen(
                 communityModel: latestCommunityModel),
           ),
         );
+
+        setState(() {
+          color = color == Colors.white ? Colors.grey : Colors.white;
+        });
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: Padding(
+            child: Container(
+              color: color,
               padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    communityModel.community_title,
+                    widget.communityModel.community_title,
                     style: TextStyle(
                       fontSize: 11.0,
                       fontWeight: FontWeight.bold,
@@ -54,7 +66,7 @@ class CommunityYoutubeWidget extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "${communityModel.writer ?? "${getTranslated('YEKA', context)}"}",
+                            "${widget.communityModel.writer ?? "${getTranslated('YEKA', context)}"}",
                             style: TextStyle(
                               fontSize: 7.0,
                               fontWeight: FontWeight.bold,
@@ -72,7 +84,7 @@ class CommunityYoutubeWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "${communityModel.create_date != null ? DateConverter.fromNowDuration(communityModel.create_date) : ""}",
+                            "${widget.communityModel.create_date != null ? DateConverter.fromNowDuration(widget.communityModel.create_date) : ""}",
                             // "7일전",
                             style: TextStyle(
                               fontSize: 7.0,
@@ -93,7 +105,7 @@ class CommunityYoutubeWidget extends StatelessWidget {
                               width: 12,
                             ),
                             Text(
-                              "${communityModel.views}${getTranslated('TIMES', context)}",
+                              "${widget.communityModel.views}${getTranslated('TIMES', context)}",
                               style: TextStyle(
                                 fontSize: 7.0,
                                 fontWeight: FontWeight.bold,
@@ -117,7 +129,7 @@ class CommunityYoutubeWidget extends StatelessWidget {
               child: FadeInImage.assetNetwork(
                 placeholder: Images.placeholder1,
                 image: YoutubeConverter.getYoutubeThumbnail(
-                  "${communityModel.community_link}",
+                  "${widget.communityModel.community_link}",
                 ),
                 fit: BoxFit.fitWidth,
                 height: 49,
