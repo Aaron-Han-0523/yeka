@@ -216,7 +216,7 @@ class _AuthScreenState extends State<AuthScreen> {
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("사용자 정보가 일치하지 않습니다."), backgroundColor: Colors.red),
+          SnackBar(content: Text("${getTranslated("CHECK_USER_INFO", context)}"), backgroundColor: Colors.red),
       );
     }
   }

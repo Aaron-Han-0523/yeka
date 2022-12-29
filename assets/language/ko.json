@@ -277,6 +277,8 @@
   "APPLY" : "적용하기",
   "PLEASE_SELECT_DATE" : "날짜를 선택하세요",
   "YOU" : "당신은",
+  "CHECK_USER_INFO" : "사용자 정보가 일치하지 않습니다.",
+
   "SPRING" : "봄",
   "SUMMER" : "여름",
   "FALL" : "가을",
@@ -320,6 +322,7 @@
   "HAVE_TO_LOGIN" : "로그인이 필요합니다.",
   "IS_NOT_CORRECT_PW" : "비밀번호가 일치하지 않습니다.",
   "SUCCESS_TO_UPDATE_INFO" : "정보를 업데이트 했습니다.",
+  "CHECK_REQUIRED_TERMS" : "필수 약관에 모두 동의하셔야 합니다.",
 
   "ORDER_NAME_FIELD_IS_REQUIRED" : "주문자의 이름을 입력해주세요.",
   "ORDER_PHONE_FIELD_IS_REQUIRED" : "주문자의 휴대폰을 입력해주세요.",
@@ -330,10 +333,20 @@
   "RECEIVE_DESTINATION_IS_REQUIRED" : "받으시는 분의 배송지를 입력해주세요.",
   "RECEIVE_NAME_IS_REQUIRED" : "받으시는 분의 이름을 입력해주세요.",
   "RECEIVE_PHONE_IS_REQUIRED" : "받으시는 분의 휴대폰을 입력해주세요.",
-  "RECEIVE_ADDRESS1_IS_REQUIRED" : "받으시는 분의 주소을 입력해주세요.",
-  "RECEIVE_ADDRESS2_IS_REQUIRED" : "받으시는 분의 주소을 입력해주세요.",
-  "RECEIVE_ADDRESS3_IS_REQUIRED" : "받으시는 분의 세부주소을 입력해주세요.",
+  "RECEIVE_ADDRESS1_IS_REQUIRED" : "받으시는 분의 주소를 입력해주세요.",
+  "RECEIVE_ADDRESS2_IS_REQUIRED" : "받으시는 분의 주소를 입력해주세요.",
+  "RECEIVE_ADDRESS3_IS_REQUIRED" : "받으시는 분의 세부주소를 입력해주세요.",
 
+  "ID_FIELD_IS_REQUIRED" : "ID를 입력해주세요.",
+  "PW_FIELD_IS_REQUIRED" : "비밀번호를 입력해주세요.",
+  "PASSWORD_DID_NOT_MATCH" : "비밀번호를 한번더 입력해주세요.",
+  "NAME_FIELD_IS_REQUIRED" : "이름을 입력해주세요.",
+  "PHONE_FIELD_IS_REQUIRED" : "핸드폰 번호를 입력해주세요.",
+  "EMAIL_FIELD_IS_REQUIRED" : "받으시는 분의 세부주소을 입력해주세요.",
+  "ENTER_VALID_EMAIL_ADDRESS" : "올바른 이메일주소가 아닙니다.",
+  "ADDRESS1_FIELD_IS_REQUIRED" : "주소를 입력해주세요.",
+  "ADDRESS2_FIELD_IS_REQUIRED" : "주소를 입력해주세요.",
+  "ADDRESS3_FIELD_IS_REQUIRED" : "세부주소을 입력해주세요.",
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",
   "END_CODE": "===================================="

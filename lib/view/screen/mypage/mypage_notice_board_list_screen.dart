@@ -17,19 +17,16 @@ import 'mypage_notice_board_detail_screen.dart';
 class MyPageNoticeBoardListScreen extends StatefulWidget {
   @override
   State<MyPageNoticeBoardListScreen> createState() =>
-      _MyPageNoticeBoardListScreenState(CommunityModel());
+      _MyPageNoticeBoardListScreenState();
 }
 
 class _MyPageNoticeBoardListScreenState
     extends State<MyPageNoticeBoardListScreen> {
   final ScrollController _scrollController = ScrollController();
-  final CommunityModel communityModel;
 
   int totalPageSize = 0;
   int currentPageNum = 0;
   int lastPageNum = 0;
-
-  _MyPageNoticeBoardListScreenState(this.communityModel);
 
   _loadPage(int pageNum) {
     currentPageNum = pageNum;
@@ -116,18 +113,21 @@ class _MyPageNoticeBoardListScreenState
                                             return Column(
                                               children: <Widget>[
                                                 InkWell(
-                                                  //fixme 확인필요!!
                                                   onTap: () async {
-                                                    // CommunityModel latestCommunityModel = await Provider.of<CommunityNoticeProvider>(context, listen: false).getCommunity(communityModel);
-                                                    // latestCommunityModel.views = latestCommunityModel.views + 1;
-                                                    // Provider.of<CommunityNoticeProvider>(context, listen: false).updateCommunity(latestCommunityModel);
+                                                    CommunityModel communityModel = await Provider.of<CommunityNoticeProvider>(context, listen: false).getCommunity(communityList[index]);
+                                                    communityModel.views = communityModel.views + 1;
+                                                    Provider.of<CommunityNoticeProvider>(context, listen: false).updateCommunity(communityModel);
 
-                                                    Navigator.of(context).push(
+                                                    final value = await Navigator.of(context).push(
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            MyPageNoticeBoardDetailScreen(),
+                                                            MyPageNoticeBoardDetailScreen(
+                                                                communityModel: communityModel),
                                                       ),
-                                                    );
+                                                    ).then((value) {
+
+                                                    });
+                                                    print(value);
                                                   },
                                                   child: Row(
                                                     mainAxisAlignment:
@@ -232,9 +232,8 @@ class _MyPageNoticeBoardListScreenState
                                                                               4),
                                                                       Text(
                                                                         //fixme 확인필요!!
-                                                                        "${communityModel.views}"
+                                                                        "${communityList[index].views}${getTranslated('TIMES', context)}",
                                                                         // "${communityList[index].views}"
-                                                                            "${getTranslated('TIMES', context)}",
                                                                         style:
                                                                             TextStyle(
                                                                           fontSize:

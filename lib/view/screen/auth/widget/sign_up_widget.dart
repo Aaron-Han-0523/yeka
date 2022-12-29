@@ -74,42 +74,37 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
     if (_id.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('first_name_field_is_required', context)),
+        content: Text(getTranslated('ID_FIELD_IS_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else if (_pw.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('last_name_field_is_required', context)),
+        content: Text(getTranslated('PW_FIELD_IS_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else if (_pwHint.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('last_name_field_is_required', context)),
-        backgroundColor: Colors.red,
-      ));
-    } else if (_pw != _pwHint) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(getTranslated('PASSWORD_DID_NOT_MATCH', context)),
         backgroundColor: Colors.red,
       ));
     } else if (_name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        content: Text(getTranslated('NAME_FIELD_IS_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else if (_phone.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('PHONE_MUST_BE_REQUIRED', context)),
+        content: Text(getTranslated('PHONE_FIELD_IS_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else if (_email.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
+        content: Text(getTranslated('EMAIL_FIELD_IS_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else if (EmailChecker.isNotValid(_email)) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(getTranslated('enter_valid_email_address', context)),
+        content: Text(getTranslated('ENTER_VALID_EMAIL_ADDRESS', context)),
         backgroundColor: Colors.red,
       ));
       // } else if (_gender.isEmpty) {
@@ -120,19 +115,19 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     } else if (_address1.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
-            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+            Text(getTranslated('ADDRESS1_FIELD_IS_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else if (_address2.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
-            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+            Text(getTranslated('ADDRESS2_FIELD_IS_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else if (_address3.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
-            Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
+            Text(getTranslated('ADDRESS3_FIELD_IS_REQUIRED', context)),
         backgroundColor: Colors.red,
       ));
     } else {
@@ -499,7 +494,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 builder: (BuildContext context) =>
                     SingleTextAlertDialog(
                       message:
-                      "필수 약관에 모두 동의하셔야 합니다.",
+                      "${getTranslated('CHECK_REQUIRED_TERMS', context)}",
                     ),
               );
             }
