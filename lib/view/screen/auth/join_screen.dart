@@ -71,7 +71,7 @@ class _JoinScreenState extends State<JoinScreen> {
                                   ),
                                 ),
                                 Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
                                       "${getTranslated('COME', context)}",
@@ -102,7 +102,7 @@ class _JoinScreenState extends State<JoinScreen> {
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              // crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
                                   "${getTranslated('JOIN_MEMBERSHIP', context)}",

@@ -43,6 +43,9 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
     testList.add("${getTranslated('TEST_QNA13', context)}");
     testList.add("${getTranslated('TEST_QNA14', context)}");
     testList.add("${getTranslated('TEST_QNA15', context)}");
+    testList.add("${getTranslated('TEST_QNA16', context)}");
+    testList.add("${getTranslated('TEST_QNA17', context)}");
+    testList.add("${getTranslated('TEST_QNA18', context)}");
 
     return Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),

@@ -292,6 +292,9 @@
   "TEST_QNA13" : "진주가 잘 어울린다",
   "TEST_QNA14" : "립 컬러가 플럼끼가 있거나 딥한 와인 컬러가 어울린다",
   "TEST_QNA15" : "립 컬러가 오렌지가 어울린다",
+  "TEST_QNA16" : "아이보리, 크림, 오트밀 컬러가 잘 어울린다",
+  "TEST_QNA17" : "화이트 가장 잘 어울린다",
+  "TEST_QNA18" : "쨍한 립이 어울린다",
 
   "CATEGORY_DROPDOWN_ITEMS_TOP" : "상의",
   "CATEGORY_DROPDOWN_ITEMS_BOTTOMS" : "하의",
