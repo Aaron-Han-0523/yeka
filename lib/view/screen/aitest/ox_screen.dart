@@ -11,6 +11,8 @@ import '../../../data/model/response/consulting_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../util//images.dart';
+import '../../basewidget/dialog/single_text_alertdialog.dart';
+import '../home/home_screens.dart';
 import 'ai_result_screen.dart';
 
 class OXPage extends StatefulWidget {
@@ -274,8 +276,8 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
   }
 
   personalColorResult(List<bool> stageValues) async {
-    int season = 0;
-    int detailSeasonType = 0;
+    int season = -1;
+    int detailSeasonType = -1;
 
     if (stageValues[0] == true &&
         stageValues[1] == true &&
@@ -489,18 +491,29 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
       detailSeasonType = 6;
     }
 
-    bool loggedIn =
-        await Provider.of<AuthProvider>(context, listen: false).isLoggedIn();
-
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => AIResultPage(
-          season: season,
-          detailSeasonType: detailSeasonType,
-          consultingModel: widget.consultingModel,
-          loggedIn: loggedIn,
+    if (season == -1) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => SingleTextAlertDialog(
+          message: "정확한 진단을 위해 오프라인의 퍼스널컬러 컨설턴트 도움을 받아보세요.",
         ),
-      ),
-    );
+      );
+
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()),(route) => false);
+    } else {
+      bool loggedIn =
+          await Provider.of<AuthProvider>(context, listen: false).isLoggedIn();
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => AIResultPage(
+            season: season,
+            detailSeasonType: detailSeasonType,
+            consultingModel: widget.consultingModel,
+            loggedIn: loggedIn,
+          ),
+        ),
+      );
+    }
   }
 }

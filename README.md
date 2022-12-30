@@ -77,7 +77,7 @@ admin / admin
 ```dart
 Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImageUploadPage(),),),
 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()),(route) => false);
-Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()),(route) => false);
+Navigator.of(context).pop();
 
 Navigator.push(context,
   PageRouteBuilder(transitionDuration: Duration(milliseconds: 1000),
@@ -284,6 +284,14 @@ Images.heart
 ```dart
 ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
+);
+
+showDialog(
+   context: context,
+   builder: (BuildContext context) =>
+      SingleTextAlertDialog(
+         message: "${getTranslated("HAVE_TO_LOGIN", context)}",
+      ),
 );
 
 void _showDialog() {
