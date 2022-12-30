@@ -13,6 +13,7 @@ import 'package:yeka/view/screen/consultant/consultant_list_screen.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../data/model/response/personal_color_model.dart';
+import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/personal_color_provider.dart';
@@ -552,13 +553,11 @@ class _AIResultPageState extends State<AIResultPage>
                                   height: 40,
                                   child: CustomOutlinedButton(
                                     onTap: () {
-                                      ConsultingModel consultingModel = ConsultingModel(
-                                          season: widget.season,
-                                        culture_type: widget.detailSeasonType,
-                                        
+                                      UserModel userModel = UserModel(
+                                        id: map["id"],
+                                        season: widget.season,
+                                        detail_season_type: widget.detailSeasonType,
                                       );
-
-
 
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
