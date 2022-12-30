@@ -256,7 +256,9 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                           onTap: () async {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (_) => ProductOrderPage(),
+                                builder: (_) => ProductOrderPage(
+                                  orderModel: widget.orderModel,
+                                ),
                               ),
                             );
                           },

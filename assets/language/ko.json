@@ -342,7 +342,7 @@
   "PASSWORD_DID_NOT_MATCH" : "비밀번호를 한번더 입력해주세요.",
   "NAME_FIELD_IS_REQUIRED" : "이름을 입력해주세요.",
   "PHONE_FIELD_IS_REQUIRED" : "핸드폰 번호를 입력해주세요.",
-  "EMAIL_FIELD_IS_REQUIRED" : "받으시는 분의 세부주소을 입력해주세요.",
+  "EMAIL_FIELD_IS_REQUIRED" : "이메일 주소를 입력해주세요.",
   "ENTER_VALID_EMAIL_ADDRESS" : "올바른 이메일주소가 아닙니다.",
   "ADDRESS1_FIELD_IS_REQUIRED" : "주소를 입력해주세요.",
   "ADDRESS2_FIELD_IS_REQUIRED" : "주소를 입력해주세요.",

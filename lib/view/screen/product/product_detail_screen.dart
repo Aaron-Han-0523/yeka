@@ -232,13 +232,11 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 0, 4, 0),
-                                  child: Center(
-                                    child: Text(
-                                      "${widget.productModel.description}",
-                                      style: TextStyle(
-                                        color: Color(0xFF333333),
-                                        fontSize: 12,
-                                      ),
+                                  child: Text(
+                                    "${widget.productModel.description}",
+                                    style: TextStyle(
+                                      color: Color(0xFF333333),
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),

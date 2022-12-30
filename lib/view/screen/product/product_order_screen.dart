@@ -194,7 +194,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('AMOUNT', context)}${getTranslated('|', context)}${widget.orderModel.quantity}${getTranslated('SOME', context)}",
+                                        "${getTranslated('AMOUNT', context)}:${widget.orderModel.quantity}${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
