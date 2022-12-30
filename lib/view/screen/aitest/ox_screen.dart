@@ -12,6 +12,7 @@ import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../util//images.dart';
 import '../../basewidget/dialog/single_text_alertdialog.dart';
+import '../consultant/consultant_list_screen.dart';
 import '../home/home_screens.dart';
 import 'ai_result_screen.dart';
 
@@ -500,6 +501,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
       );
 
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()),(route) => false);
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultantListScreen()),);
     } else {
       bool loggedIn =
           await Provider.of<AuthProvider>(context, listen: false).isLoggedIn();

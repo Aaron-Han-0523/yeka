@@ -554,7 +554,8 @@ class _AIResultPageState extends State<AIResultPage>
                                     onTap: () {
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
-                                              builder: (_) => HomePage()),
+                                              builder: (_) => HomePage(),
+                                          ),
                                           (route) => false);
 
                                       Navigator.of(context).push(
