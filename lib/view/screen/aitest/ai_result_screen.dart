@@ -12,11 +12,15 @@ import 'package:yeka/view/screen/auth/auth_screen.dart';
 import 'package:yeka/view/screen/consultant/consultant_list_screen.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
+import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/personal_color_model.dart';
 import '../../../data/model/response/user_model.dart';
+import '../../../helper/date_converter.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
+import '../../../provider/image_provider.dart';
 import '../../../provider/personal_color_provider.dart';
+import '../../../provider/user_provider.dart';
 import '../../../util//images.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
@@ -552,12 +556,25 @@ class _AIResultPageState extends State<AIResultPage>
                                 child: Container(
                                   height: 40,
                                   child: CustomOutlinedButton(
-                                    onTap: () {
+                                    onTap: () async {
                                       UserModel userModel = UserModel(
                                         id: map["id"],
                                         season: widget.season,
                                         detail_season_type: widget.detailSeasonType,
                                       );
+
+                                      await Provider.of<UserProvider>(context, listen: false).updateUser(userModel);
+
+                                      ImageModel imageModel = ImageModel(
+                                        user_id: map["id"],
+                                        title: "user personal color data",
+                                        content: "id : ${map["id"]}, name : ${map["name"]}, username : ${map["username"]}",
+                                        path: widget.consultingModel.client_image,
+                                        create_date: DateConverter.formatDate(DateTime.now()),
+                                      );
+
+                                      await Provider.of<CustomImageProvider>(context, listen: false)
+                                          .addImage(imageModel);
 
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(

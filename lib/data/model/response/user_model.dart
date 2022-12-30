@@ -12,7 +12,6 @@ class UserModel {
   String _address3;
   int _season;
   int _detail_season_type;
-  String _personal_image;
   String _business_registration_number;
   String _business_registration_file;
   String _hashtag;
@@ -43,7 +42,6 @@ class UserModel {
     String address3,
     int season,
     int detail_season_type,
-    String personal_image,
     String business_registration_number,
     String business_registration_file,
     String hashtag,
@@ -73,7 +71,6 @@ class UserModel {
     this._address3 = address3;
     this._season = season;
     this._detail_season_type = detail_season_type;
-    this._personal_image = personal_image;
     this._business_registration_number = business_registration_number;
     this._business_registration_file = business_registration_file;
     this._hashtag = hashtag;
@@ -105,7 +102,6 @@ class UserModel {
     _address3 = json['address3'];
     _season = json['season'];
     _detail_season_type = json['detail_season_type'];
-    _personal_image = json['personal_image'];
     _business_registration_number = json['business_registration_number'];
     _business_registration_file = json['business_registration_file'];
     _hashtag = json['hashtag'];
@@ -138,7 +134,6 @@ class UserModel {
     data['address3'] = this.address3;
     data['season'] = this.season;
     data['detail_season_type'] = this.detail_season_type;
-    data['personal_image'] = this.personal_image;
     data['business_registration_number'] = this.business_registration_number;
     data['business_registration_file'] = this.business_registration_file;
     data['hashtag'] = this.hashtag;
@@ -173,8 +168,6 @@ class UserModel {
     if (this.season != null) data['season'] = this.season;
     if (this.detail_season_type != null)
       data['detail_season_type'] = this.detail_season_type;
-    if (this.personal_image != null)
-      data['personal_image'] = this.personal_image;
     if (this.business_registration_number != null)
       data['business_registration_number'] = this.business_registration_number;
     if (this.business_registration_file != null)
@@ -222,8 +215,6 @@ class UserModel {
   int get season => _season;
 
   int get detail_season_type => _detail_season_type;
-
-  String get personal_image => _personal_image;
 
   String get business_registration_number => _business_registration_number;
 
@@ -305,10 +296,6 @@ class UserModel {
 
   set detail_season_type(int value) {
     _detail_season_type = value;
-  }
-
-  set personal_image(String value) {
-    _personal_image = value;
   }
 
   set business_registration_number(String value) {
