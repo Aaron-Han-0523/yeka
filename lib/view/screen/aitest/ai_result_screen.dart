@@ -552,6 +552,14 @@ class _AIResultPageState extends State<AIResultPage>
                                   height: 40,
                                   child: CustomOutlinedButton(
                                     onTap: () {
+                                      ConsultingModel consultingModel = ConsultingModel(
+                                          season: widget.season,
+                                        culture_type: widget.detailSeasonType,
+                                        
+                                      );
+
+
+
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (_) => HomePage(),
