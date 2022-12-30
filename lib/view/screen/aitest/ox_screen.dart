@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
@@ -8,6 +9,7 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../data/model/response/consulting_model.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../util//images.dart';
 import 'ai_result_screen.dart';
 
@@ -169,11 +171,11 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                         padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                         child: Center(
                           child: InkWell(
-                            onTap: () {
+                            onTap: () async {
                               stageValues.add(true);
 
                               if (stage > testList.length - 2) {
-                                personalColorResult(stageValues);
+                                await personalColorResult(stageValues);
                               } else {
                                 setState(() {
                                   stage++;
@@ -216,11 +218,11 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                         padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                         child: Center(
                           child: InkWell(
-                            onTap: () {
+                            onTap: () async {
                               stageValues.add(false);
 
                               if (stage > testList.length - 2) {
-                                personalColorResult(stageValues);
+                                await personalColorResult(stageValues);
                               } else {
                                 setState(() {
                                   stage++;
@@ -271,7 +273,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
     );
   }
 
-  void personalColorResult(List<bool> stageValues) {
+  personalColorResult(List<bool> stageValues) async {
     int season = 0;
     int detailSeasonType = 0;
 
@@ -487,11 +489,16 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
       detailSeasonType = 6;
     }
 
+    bool loggedIn =
+        await Provider.of<AuthProvider>(context, listen: false).isLoggedIn();
+
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => AIResultPage(
           season: season,
           detailSeasonType: detailSeasonType,
+          consultingModel: widget.consultingModel,
+          loggedIn: loggedIn,
         ),
       ),
     );
