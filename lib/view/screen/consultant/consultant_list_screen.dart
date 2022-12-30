@@ -20,7 +20,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
 
   var areaCodeJson = [
     {
-      "전체" : [],
+      "전체": [],
       "서울특별시": [
         "종로구",
         "중구",
@@ -421,14 +421,16 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
                                             changeDong(value);
 
                                             setState(() {
+                                              dongDropdownValue = null;
                                               sidoDropdownValue = value;
                                             });
 
                                             _loadDataWithAddress(
-                                                context,
-                                                true,
-                                                sidoDropdownValue,
-                                                dongDropdownValue);
+                                              context,
+                                              true,
+                                              sidoDropdownValue,
+                                              dongDropdownValue,
+                                            );
                                           },
                                         ),
                                       ),
