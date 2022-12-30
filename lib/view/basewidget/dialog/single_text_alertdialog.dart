@@ -11,10 +11,10 @@ class SingleTextAlertDialog extends StatelessWidget {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), //this right here
       child: Container(
-        height: 50,
+        height: 70,
         alignment: Alignment.center,
         child: Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.all(16.0),
           child: Text(message ?? '', style: titilliumBold),
         ),
       ),

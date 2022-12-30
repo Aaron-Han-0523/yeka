@@ -493,15 +493,15 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
     }
 
     if (season == -1) {
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()),(route) => false);
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultantListScreen()),);
+
       showDialog(
         context: context,
         builder: (BuildContext context) => SingleTextAlertDialog(
           message: "정확한 진단을 위해 오프라인의 퍼스널컬러 컨설턴트 도움을 받아보세요.",
         ),
       );
-
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()),(route) => false);
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => ConsultantListScreen()),);
     } else {
       bool loggedIn =
           await Provider.of<AuthProvider>(context, listen: false).isLoggedIn();
