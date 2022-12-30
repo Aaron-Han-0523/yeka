@@ -102,6 +102,8 @@ class _MyPageConsultantUpdateScreenState
       } else {}
     }
 
+    var hashtag = map["hashtag"].split(",");
+
     setState(() {});
   }
 

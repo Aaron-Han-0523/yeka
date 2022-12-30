@@ -49,226 +49,226 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
     testList.add("${getTranslated('TEST_QNA18', context)}");
 
     return Scaffold(
-        backgroundColor: ColorResources.getHomeBg(context),
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              // App Bar
-              CustomSliverAppBar("${getTranslated('AI_TEST', context)}"),
+      backgroundColor: ColorResources.getHomeBg(context),
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            // App Bar
+            CustomSliverAppBar("${getTranslated('AI_TEST', context)}"),
 
-              SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xff333333),
-                      ),
-                      child: Container(
-                        height: 477,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 117,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                  12.0,
-                                  5.0,
-                                  12.0,
-                                  0.0,
-                                ),
-                                child: Text(
-                                  "${getTranslated('AI_TEST_EN', context)}",
-                                  style: TextStyle(
-                                    fontSize: 70,
-                                    color: Color(0xff444444),
-                                    fontWeight: FontWeight.w900,
-                                  ),
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xff333333),
+                    ),
+                    child: Container(
+                      height: 477,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 117,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                12.0,
+                                5.0,
+                                12.0,
+                                0.0,
+                              ),
+                              child: Text(
+                                "${getTranslated('AI_TEST_EN', context)}",
+                                style: TextStyle(
+                                  fontSize: 70,
+                                  color: Color(0xff444444),
+                                  fontWeight: FontWeight.w900,
                                 ),
                               ),
                             ),
-                            Stack(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(top: 220),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(50.0),
-                                      topRight: Radius.circular(50.0),
-                                    ),
-                                    color: Color(0xffffffff),
+                          ),
+                          Stack(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 220),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(50.0),
+                                    topRight: Radius.circular(50.0),
                                   ),
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 140,
+                                  color: Color(0xffffffff),
                                 ),
-                                Container(
-                                  height: 340,
-                                  child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          24.0, 0.0, 24.0, 0),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(12),
-                                        child: Image.file(
-                                          File(widget.consultingModel.client_image,),
-                                          fit: BoxFit.cover,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.85,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.85,
-                                          // color: Colors.black,
-                                        ),
+                                width: MediaQuery.of(context).size.width,
+                                height: 140,
+                              ),
+                              Container(
+                                height: 340,
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      24.0, 0.0, 24.0, 0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.file(
+                                      File(
+                                        widget.consultingModel.client_image,
                                       ),
+                                      fit: BoxFit.cover,
+                                      height:
+                                          MediaQuery.of(context).size.width *
+                                              0.85,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.85,
+                                      // color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        height: 60,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Image.asset(
+                            Images.ball2on,
+                            fit: BoxFit.fill,
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            height: MediaQuery.of(context).size.width * 0.22,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 40,
+                        child: Center(
+                          child: Text(
+                            "${testList[stage]}",
+                            style: TextStyle(
+                              fontSize: stage == 13 ? 15 : 19,
+                              color: Color(0xffEEEEEE),
+                              fontWeight: FontWeight.w800,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                        child: Center(
+                          child: InkWell(
+                            onTap: () {
+                              stageValues.add(true);
+
+                              if (stage > testList.length - 2) {
+                                personalColorResult(stageValues);
+                              } else {
+                                setState(() {
+                                  stage++;
+                                });
+                              }
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  "${getTranslated('YES_BUTTON', context)}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Container(
+                                    height: 60,
+                                    width: 60,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            Images.yes_bt,
+                                            height: 57,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
-                            // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          height: 60,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: Image.asset(
-                              Images.ball2on,
-                              fit: BoxFit.fill,
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              height: MediaQuery.of(context).size.width * 0.22,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 40,
-                          child: Center(
-                            child: Text(
-                              "${testList[stage]}",
-                              style: TextStyle(
-                                fontSize: stage == 13 ? 15 : 19,
-                                color: Color(0xffEEEEEE),
-                                fontWeight: FontWeight.w800,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                          child: Center(
-                            child: InkWell(
-                              onTap: () {
-                                stageValues.add(true);
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                        child: Center(
+                          child: InkWell(
+                            onTap: () {
+                              stageValues.add(false);
 
-                                if (stage > testList.length -2) {
-                                  personalColorResult(stageValues);
-                                } else {
-                                  setState(() {
-                                    stage++;
-                                  });
-                                }
-                              },
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "${getTranslated('YES_BUTTON', context)}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w900,
-                                    ),
+                              if (stage > testList.length - 2) {
+                                personalColorResult(stageValues);
+                              } else {
+                                setState(() {
+                                  stage++;
+                                });
+                              }
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  "${getTranslated('NO_BUTTON', context)}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: Container(
-                                      height: 60,
-                                      width: 60,
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              Images.yes_bt,
-                                              height: 57,
-                                            ),
-                                          ],
-                                        ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Container(
+                                    height: 60,
+                                    width: 60,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            Images.no_bt,
+                                            height: 57,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                          child: Center(
-                            child: InkWell(
-                              onTap: () {
-                                stageValues.add(false);
-
-                                if (stage > testList.length -2) {
-                                  personalColorResult(stageValues);
-                                } else {
-                                  setState(() {
-                                    stage++;
-                                  });
-                                }
-                              },
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "${getTranslated('NO_BUTTON', context)}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w900,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Container(
-                                      height: 60,
-                                      width: 60,
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              Images.no_bt,
-                                              height: 57,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    FooterPage(),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  FooterPage(),
+                ],
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void personalColorResult(List<bool> stageValues) {
@@ -454,7 +454,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
       //겨울 브라이트
       season = 3;
       detailSeasonType = 0;
-    }  else if (stageValues[1] == false &&
+    } else if (stageValues[1] == false &&
         stageValues[2] == false &&
         stageValues[4] == false &&
         stageValues[5] == true &&
@@ -487,10 +487,12 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
       detailSeasonType = 6;
     }
 
-    MaterialPageRoute(
-      builder: (BuildContext context) => AIResultPage(
-        season: season,
-        detailSeasonType: detailSeasonType,
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => AIResultPage(
+          season: season,
+          detailSeasonType: detailSeasonType,
+        ),
       ),
     );
   }
