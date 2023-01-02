@@ -6,6 +6,7 @@ import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
 import '../../../provider/order_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -21,8 +22,10 @@ class _MyPageOrderListScreenState extends State<MyPageOrderListScreen> {
   final ScrollController _scrollController = ScrollController();
 
   Future<void> _loadData(BuildContext context, bool reload) async {
+    int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+
     Provider.of<OrderProvider>(context, listen: false)
-        .getLatestOrderList(0, context);
+        .getLatestOrderList(0, user_id, context);
   }
 
   @override
@@ -42,7 +45,7 @@ class _MyPageOrderListScreenState extends State<MyPageOrderListScreen> {
               controller: _scrollController,
               slivers: [
                 CustomSliverAppBar(
-                  "${getTranslated('MY_CUSTOMER_INFO', context)}",isMyPageHidden: true,
+                  "주문 내역",isMyPageHidden: true,
                 ),
                 SliverToBoxAdapter(
                   child: Column(

@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/order_model.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
 import '../../../provider/order_provider.dart';
 import '../../../util//app_constants.dart';
@@ -57,9 +58,10 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
           print('end of the current page');
           // Provider.of<ProductProvider>(context, listen: false)
           //     .showBottomLoader();
+          int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
 
           Provider.of<OrderProvider>(context, listen: false)
-              .getLatestOrderList(offset, context);
+              .getLatestOrderList(offset, user_id, context);
         }
       }
     });

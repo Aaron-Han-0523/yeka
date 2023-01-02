@@ -15,6 +15,7 @@ import '../../../provider/community_freeboard_provider.dart';
 import '../../../provider/community_notice_provider.dart';
 import '../../../provider/community_provider.dart';
 import '../../../provider/community_youtube_provider.dart';
+import '../../../provider/order_provider.dart';
 import '../../../provider/product_provider.dart';
 import '../../../provider/user_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -60,6 +61,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     await Provider.of<UserProvider>(context, listen: false)
         .getLatestConsultantList(0, context, reload: reload);
+
+    await Provider.of<OrderProvider>(context, listen: false)
+        .getLatestOrderList(0, user_id, context, reload: reload);
 
     print("==============");
     print(

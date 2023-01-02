@@ -17,7 +17,7 @@ class AppConstants {
   static const String ADD_ORDER_URI = "/api/order";
   static const String UPDATE_ORDER_URI = "/api/order";
   static const String DELETE_ORDER_URI = "/api/order";
-  static const String LIST_ORDER_URI = "/api/order";
+  static const String LIST_ORDER_URI = "/api/order/list";
   static const String GET_ORDER_URI = "/api/order";
 
   // AUTO

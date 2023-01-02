@@ -57,7 +57,7 @@ class OrderProvider extends ChangeNotifier {
     return _order;
   }
 
-  Future<void> getLatestOrderList(int offset, BuildContext context,
+  Future<void> getLatestOrderList(int offset,int user_id , BuildContext context,
       {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
@@ -71,7 +71,7 @@ class OrderProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await orderRepo.getOrderList(limit, offset * limit);
+      ApiResponse apiResponse = await orderRepo.getOrderList(limit, offset * limit, user_id);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
         _latestOrderList.addAll(OrderList.fromList(apiResponse.response.data).orderList);
