@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/helper/date_converter.dart';
+import 'package:yeka/helper/price_converter.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/product_shimmer.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -77,7 +79,7 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                               ? 4
                               : orderList.length
                           : orderList.length,
-                      crossAxisCount: 2,
+                      crossAxisCount: 1,
                       padding: EdgeInsets.all(0),
                       physics: NeverScrollableScrollPhysics(),
                       // scrollDirection: Axis.horizontal,
@@ -155,13 +157,17 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                                       ),
 
                                       Row(
+                                        mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Text(
-                                            "${getTranslated('COLOR_', context)}${orderList != null ? orderList[index].option : ""}",
-                                            style: TextStyle(
-                                              color: Color(0xff999999),
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.bold,
+                                          Container(
+                                            width: 120,
+                                            child: Text(
+                                              "${getTranslated('COLOR_', context)}${orderList != null ? orderList[index].option : ""}",
+                                              style: TextStyle(
+                                                color: Color(0xff999999),
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                           Text(
@@ -189,7 +195,7 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                                             ),
                                           ),
                                           Text(
-                                            "${orderList != null ? orderList[index].create_date : ""}",
+                                            "${orderList != null ? DateConverter.stringToDateOnly(orderList[index].create_date) : ""}",
                                             style: TextStyle(
                                               color: Color(0xff999999),
                                               fontSize: 9,
@@ -204,7 +210,7 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                                       Row(
                                         children: [
                                           Text(
-                                            "${orderList != null ? orderList[index].price : ""}${getTranslated('WON', context)}",
+                                            "${orderList != null ? PriceConverter.convertPrice(context, orderList[index].price.toDouble()) : ""}${getTranslated('WON', context)}",
                                             style: TextStyle(
                                               color: Color(0xff0123B4),
                                               fontSize: 13,

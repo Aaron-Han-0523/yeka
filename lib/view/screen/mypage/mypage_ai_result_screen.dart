@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/data/model/response/image_model.dart';
+import 'package:yeka/provider/image_provider.dart';
 
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
@@ -13,6 +17,7 @@ import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
 import '../../../provider/personal_color_provider.dart';
 import '../../../util//images.dart';
+import '../../../util/app_constants.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
 import '../home/home_screens.dart';
 import '../product/product_list_screen.dart';
@@ -30,11 +35,13 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
   Map map = Map();
   PersonalColorModel personalColorModel;
   ConsultingModel consultingModel;
+  ImageModel imageModel;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     map = Provider.of<AuthProvider>(context, listen: false).getUser();
     personalColorModel = Provider.of<PersonalColorProvider>(context, listen: false).personalColor;
     consultingModel = Provider.of<ConsultingProvider>(context, listen: false).consulting;
+    imageModel = Provider.of<CustomImageProvider>(context, listen: false).image;
   }
 
   @override
@@ -89,9 +96,13 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
       "#FF22FF",
       "#FF22FF",
       "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
     ];
 
-    if(personalColorModel.matching_color_array != null && personalColorModel.matching_color_array.split(",").length > 7) {
+    if(personalColorModel.matching_color_array != null && personalColorModel.matching_color_array.split(",").length > 11) {
       matchingColorList = personalColorModel.matching_color_array.split(",");
     }
 
@@ -173,7 +184,6 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                           ),
                         ),
                       ),
-
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Center(
                         child: Text(
@@ -215,14 +225,55 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                             ),
                             Container(
                               height:
-                                  MediaQuery.of(context).size.width * 0.53,
-                              width:
-                                  MediaQuery.of(context).size.width * 0.53,
+                              MediaQuery.of(context).size.width * 0.53,
+                              width: MediaQuery.of(context).size.width * 0.53,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(230),
                                 ),
                                 color: Colors.lightGreenAccent,
+                              ),
+
+
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(150.0),
+                                child: FadeInImage.assetNetwork(
+                                  placeholder:
+                                  Images.placeholder1,
+                                  image: imageModel !=
+                                      null
+                                      ? AppConstants.BASE_URL +
+                                      "/" +
+                                      imageModel.path
+                                      : AppConstants.BASE_URL,
+                                  fit: BoxFit.cover,
+                                  width: 150,
+                                  height: 150,
+                                  imageErrorBuilder:
+                                      (BuildContext context,
+                                      Object exception,
+                                      StackTrace stackTrace) {
+                                    return Container(
+                                      // padding: const EdgeInsets.all(10.0),
+                                      width: 150,
+                                      height: 150,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(
+                                            5),
+                                        color: Color(0xfff1f1f1),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                        const EdgeInsets.all(
+                                            12.0),
+                                        child: Image.asset(
+                                          Images.upload,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                             Expanded(
@@ -278,62 +329,22 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                         padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
                         child: Row(
                           children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  // borderRadius: BorderRadius.all(
-                                  //   Radius.circular(50),
-                                  // ),
-                                  color: Colors.lightGreenAccent,
+                            for (var i = 8; i < 12; i++)
+                              Padding(
+                                padding:
+                                const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    color: Color(
+                                      int.parse(
+                                          'FF${matchingColorList[i].replaceAll('#', '')}',
+                                          radix: 16),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  // borderRadius: BorderRadius.all(
-                                  //   Radius.circular(50),
-                                  // ),
-                                  color: Colors.lightGreenAccent,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  // borderRadius: BorderRadius.all(
-                                  //   Radius.circular(50),
-                                  // ),
-                                  color: Colors.lightGreenAccent,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  // borderRadius: BorderRadius.all(
-                                  //   Radius.circular(50),
-                                  // ),
-                                  color: Colors.lightGreenAccent,
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       ),

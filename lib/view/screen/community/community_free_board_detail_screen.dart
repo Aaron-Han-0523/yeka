@@ -306,7 +306,7 @@ class _CommunityFreeBoardDetailScreenState
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        CommunityFreeBoardDetailScreen(),
+                                        CommunityFreeBoardDetailScreen(communityModel: communityNewsList[index],),
                                   ),
                                 );
                               },
@@ -356,7 +356,7 @@ class _CommunityFreeBoardDetailScreenState
                                             ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                  MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Text(
                                                   "${communityNewsList[index].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[index].create_date)}",
@@ -371,7 +371,7 @@ class _CommunityFreeBoardDetailScreenState
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.fromLTRB(
-                                                          145, 0, 22, 0),
+                                                          10, 0, 22, 0),
                                                   child: Row(
                                                     children: [
                                                       Image.asset(

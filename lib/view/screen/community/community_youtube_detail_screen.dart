@@ -200,7 +200,7 @@ class _CommunityYoutubeDetailScreenState
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          CommunityYoutubeDetailScreen(),
+                                          CommunityYoutubeDetailScreen(communityModel: communityNewsList[index],),
                                     ),
                                   );
                                 },
@@ -251,7 +251,7 @@ class _CommunityYoutubeDetailScreenState
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                    MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
                                                     "${communityNewsList[index].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[index].create_date)}",
@@ -267,7 +267,7 @@ class _CommunityYoutubeDetailScreenState
                                                   Padding(
                                                     padding: const EdgeInsets
                                                             .fromLTRB(
-                                                        145, 0, 22, 0),
+                                                        10, 0, 22, 0),
                                                     child: Row(
                                                       children: [
                                                         Image.asset(

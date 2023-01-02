@@ -64,7 +64,7 @@ class ConsultingProvider extends ChangeNotifier {
     return _consulting;
   }
 
-  Future<void> getLatestConsultingList(int offset, BuildContext context,
+  Future<void> getLatestConsultingList(int offset, int user_id, BuildContext context,
       {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
@@ -78,7 +78,7 @@ class ConsultingProvider extends ChangeNotifier {
 
       // limit = pageSize
       // skip = offset
-      ApiResponse apiResponse = await consultingRepo.getConsultingList(limit, offset * limit);
+      ApiResponse apiResponse = await consultingRepo.getConsultingList(limit, offset * limit, user_id);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {
         _latestConsultingList.addAll(ConsultingList.fromList(apiResponse.response.data).consultingList);

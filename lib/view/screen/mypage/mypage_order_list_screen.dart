@@ -10,6 +10,7 @@ import '../../../provider/consulting_provider.dart';
 import '../../../provider/order_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'mypage_client_view.dart';
+import 'mypage_order_view.dart';
 
 class MyPageOrderListScreen extends StatefulWidget {
   @override
@@ -63,7 +64,7 @@ class _MyPageOrderListScreenState extends State<MyPageOrderListScreen> {
                         color: Colors.white,
                         child: Column(
                           children: [
-                            MyPageClientView(
+                            MyPageOrderView(
                                 isHomePage: false,
                                 scrollController: _scrollController),
                             CustomElevatedButton(

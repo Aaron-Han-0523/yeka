@@ -5,6 +5,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/model/response/consulting_model.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
 import 'mypage_client_widget.dart';
 
@@ -25,6 +26,7 @@ class _MyPageClientViewState extends State<MyPageClientView> {
 
   @override
   Widget build(BuildContext context) {
+    var map = Provider.of<AuthProvider>(context, listen: false).getUser();
     widget.scrollController.addListener(() {
       if (widget.scrollController.position.maxScrollExtent ==
               widget.scrollController.position.pixels &&
@@ -51,7 +53,7 @@ class _MyPageClientViewState extends State<MyPageClientView> {
           //     .showBottomLoader();
 
           Provider.of<ConsultingProvider>(context, listen: false)
-              .getLatestConsultingList(offset, context);
+              .getLatestConsultingList(offset, map["id"], context);
         }
       }
     });

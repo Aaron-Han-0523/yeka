@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/helper/price_converter.dart';
 
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
@@ -219,7 +220,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                     child: Text(
-                                      "${widget.orderModel.price}${getTranslated('WON', context)}",
+                                      "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble())}${getTranslated('WON', context)}",
                                       style: TextStyle(
                                         color: Color(0xff0123B4),
                                         fontSize: 16,

@@ -9,7 +9,6 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constants.dart';
-import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
 import '../../../provider/menu_provider.dart';
 import '../../../util//app_constants.dart';
@@ -162,7 +161,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                       TabBar(
                         controller: _tabController,
                         unselectedLabelColor: Color(0xffdddddd),
-                        // indicatorColor: Color(0xff333333),
+                        indicatorColor: Color(0xff333333),
                         labelColor: Color(0xff333333),
                         tabs: [
                           Tab(
@@ -195,10 +194,11 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                         ],
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.width * 1.2,
+                        height: MediaQuery.of(context).size.width * 1.3,
+                        // height: (Provider.of<MenuProvider>(context, listen: false).menuList.length * 150).toDouble(),
                         child: TabBarView(
                           controller: _tabController,
-                          physics: BouncingScrollPhysics(),
+                          physics: ClampingScrollPhysics(),
                           children: [
                             ConsultantDetailWidget(userModel: widget.userModel),
                             ConsultantMenuWidget(userModel: widget.userModel),

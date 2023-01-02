@@ -154,6 +154,14 @@ class AuthRepo {
         AppConstants.USER_ADDRESS3,
         map["address3"] ?? "",
       );
+      await sharedPreferences.setInt(
+        AppConstants.USER_SEASON,
+        map["season"] ?? -1,
+      );
+      await sharedPreferences.setInt(
+        AppConstants.USER_DETAIL_SEASON_TYPE,
+        map["detail_season_type"] ?? -1,
+      );
       await sharedPreferences.setString(
         AppConstants.USER_BUSINESS_REGISTRATION_NUMBER,
         map["business_registration_number"] ?? "",
@@ -253,6 +261,14 @@ class AuthRepo {
           AppConstants.USER_ADDRESS3,
         ) ??
         "";
+    map["season"] = sharedPreferences.getInt(
+          AppConstants.USER_SEASON,
+        ) ??
+        "";
+    map["detail_season_type"] = sharedPreferences.getInt(
+          AppConstants.USER_DETAIL_SEASON_TYPE,
+        ) ??
+        "";
     map["hashtag"] = sharedPreferences.getString(
           AppConstants.USER_HASHTAG,
         ) ??
@@ -344,6 +360,12 @@ class AuthRepo {
     );
     await sharedPreferences.remove(
       AppConstants.USER_ADDRESS3,
+    );
+    await sharedPreferences.remove(
+      AppConstants.USER_SEASON,
+    );
+    await sharedPreferences.remove(
+      AppConstants.USER_DETAIL_SEASON_TYPE,
     );
     await sharedPreferences.remove(
       AppConstants.USER_BUSINESS_REGISTRATION_NUMBER,

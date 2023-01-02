@@ -318,7 +318,7 @@ class _AIResultPageState extends State<AIResultPage>
                               ),
                             ),
                             Text(
-                              "${seasonKor} ${detailSeasonType} 사람들이 베이직하게 쓸 수 있는 컬러",
+                              "${seasonKor} ${detailSeasonType} ${getTranslated('PEOPLE_CAN_USE_BASICALLY', context)}",
                               style: TextStyle(
                                 fontSize: 16,
                               ),

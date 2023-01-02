@@ -4,6 +4,7 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
 import '../../../data/model/response/menu_model.dart';
 import '../../../data/model/response/user_model.dart';
+import '../../../helper/price_converter.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/menu_provider.dart';
@@ -11,7 +12,6 @@ import '../../../util//app_constants.dart';
 import '../../../util//images.dart';
 import '../../basewidget/dialog/single_text_alertdialog.dart';
 import 'consultant_calendar.dart';
-import 'consultant_reserve_screen.dart';
 
 class ConsultantMenuWidget extends StatefulWidget {
   final bool isCreateScreen;
@@ -86,7 +86,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                       padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: Text(
                         // "25,000원(3회 기준)",
-                        "${menuModel.menu_amount}",
+                        "${PriceConverter.convertPrice(context, menuModel.menu_amount.toDouble())} 원",
                         style: TextStyle(
                           color: Color(0xff333333),
                           fontSize: 14,
@@ -150,11 +150,11 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
 
   @override
   Widget build(BuildContext context) {
+    var menuList = Provider.of<MenuProvider>(context, listen: false).menuList;
     return Column(
       children: [
-        for (var menu
-            in Provider.of<MenuProvider>(context, listen: false).menuList)
-          buildMenu(menu)
+        for (var i=0;i<menuList.length;i++)
+          buildMenu(menuList[i])
       ],
     );
   }

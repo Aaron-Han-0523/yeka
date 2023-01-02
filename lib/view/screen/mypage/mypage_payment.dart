@@ -7,6 +7,7 @@ import 'package:yeka/util/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
 import '../../../util/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -37,10 +38,13 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
   List<ConsultingModel> latestConsultingList;
 
   var bankValue;
+  Map map;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
+    map = Provider.of<AuthProvider>(context, listen: false).getUser();
+
     Provider.of<ConsultingProvider>(context, listen: false)
-        .getLatestConsultingList(0, context);
+        .getLatestConsultingList(0, map["id"], context);
 
     latestConsultingList =
         Provider.of<ConsultingProvider>(context, listen: false)

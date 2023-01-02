@@ -7,7 +7,7 @@ class AppConstants {
   // static const String BASE_URL = 'https://6valley.6amtech.com';
   // static const String BASE_URL = 'http://52.79.240.88';
   static const String BASE_URL = 'http://172.30.1.95:3000';
-  // static const String BASE_URL = 'http://172.30.1.15:3000';
+  // static const String BASE_URL = 'http://172.30.1.19:3000';
   // static const String BASE_URL = 'http://192.168.0.198:3000';
   // static const String BASE_URL = 'http://3.34.187.112:3000';
   // static const String USER_ID = 'userId';
@@ -76,6 +76,7 @@ class AppConstants {
   static const String UPDATE_CONSULTING_URI = "/api/consulting";
   static const String DELETE_CONSULTING_URI = "/api/consulting";
   static const String LIST_CONSULTING_URI = "/api/consulting";
+  static const String LIST_CONSULTING_CONSULTANT_URI = "/api/consulting/consultant";
   static const String GET_CONSULTING_URI = "/api/consulting";
   static const String GET_CONSULTING_BY_CLIENT_ID_URI = "/api/consulting/client";
 
@@ -138,6 +139,8 @@ class AppConstants {
   static const String USER_ADDRESS1 = 'user_address1';
   static const String USER_ADDRESS2 = 'user_address2';
   static const String USER_ADDRESS3 = 'user_address3';
+  static const String USER_SEASON = 'user_season';
+  static const String USER_DETAIL_SEASON_TYPE = 'user_detail_season_type';
   static const String USER_BUSINESS_REGISTRATION_NUMBER =
       'user_business_registration_number';
   static const String USER_BUSINESS_REGISTRATION_FILE =

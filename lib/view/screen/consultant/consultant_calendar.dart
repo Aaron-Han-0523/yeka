@@ -120,6 +120,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                             selectionColor: Colors.black,
                             onSelectionChanged: _onSelectionChanged,
                             selectionMode: DateRangePickerSelectionMode.single,
+                            enablePastDates: false,
                           ),
                         ),
 

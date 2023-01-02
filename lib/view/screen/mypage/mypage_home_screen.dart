@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yeka/data/model/response/order_model.dart';
 import 'package:yeka/provider/consulting_provider.dart';
 
 import 'package:yeka/util/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../data/model/response/consulting_model.dart';
+import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/personal_color_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
-import '../../../provider/order_provider.dart';
+import '../../../provider/image_provider.dart';
 import '../../../provider/personal_color_provider.dart';
 import '../../../provider/user_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
+import '../../basewidget/dialog/single_text_alertdialog.dart';
 import 'mypage_ai_result_screen.dart';
 import 'mypage_client_list_screen.dart';
 import 'mypage_consultant_result_screen.dart';
@@ -50,7 +51,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
 
     consultingModel = await Provider.of<ConsultingProvider>(context, listen: false).getConsultingByClientId(consultingModel);
 
-    await Provider.of<ConsultingProvider>(context, listen: false).getLatestConsultingList(0, context, reload: true);
+    await Provider.of<ConsultingProvider>(context, listen: false).getLatestConsultingList(0, map["id"], context, reload: true);
 
     personalColorModel = PersonalColorModel(
       season: consultingModel.season,
@@ -64,6 +65,10 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
     );
 
     userModel = await Provider.of<UserProvider>(context, listen: false).getUser(userModel);
+
+    ImageModel imageModel = ImageModel(user_id: map["id"]);
+
+    await Provider.of<CustomImageProvider>(context, listen: false).getImage(imageModel);
   }
 
   @override
@@ -83,14 +88,17 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
         myPageList.children.add(buildItem(
           "${getTranslated('PERSONAL_AI_ANALYSIS_RESULT', context)}",
           MyPageAIResultPage(),
+            isCheck: map["season"] == -1 ? true : false,
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESERVATION/PAYMENT', context)}",
           MyPageMyReserveScreen(),
+          isCheck: consultingModel == null ? true : false,
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESULT', context)}",
           MyPageConsultantResultScreen(),
+          isCheck: consultingModel == null ? true : false,
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('ORDER_LIST', context)}",
@@ -136,14 +144,24 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
     _loadData(context, false);
   }
 
-  buildItem(String title, Widget targetWidget) {
+  buildItem(String title, Widget targetWidget, {bool isCheck = false}) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => targetWidget,
-          ),
-        );
+        if(isCheck) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) =>
+                SingleTextAlertDialog(
+                  message: "AI 테스트를 먼저 해주세요.",
+                ),
+          );
+        } else {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => targetWidget,
+            ),
+          );
+        }
       },
       child: Column(
         children: [

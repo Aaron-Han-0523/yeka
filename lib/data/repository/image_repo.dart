@@ -148,7 +148,7 @@ class ImageRepo {
   Future<ApiResponse> getImage(ImageModel imageModel) async {
     try {
       final response = await dioClient.get(
-        AppConstants.GET_IMAGE_URI + "/${imageModel.product_id}",
+        AppConstants.GET_IMAGE_URI + "/${imageModel.user_id}",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

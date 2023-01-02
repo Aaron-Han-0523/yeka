@@ -6,6 +6,7 @@ import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import 'mypage_client_view.dart';
@@ -19,8 +20,9 @@ class _MyPageClientListScreenState extends State<MyPageClientListScreen> {
   final ScrollController _scrollController = ScrollController();
 
   Future<void> _loadData(BuildContext context, bool reload) async {
+    var map = Provider.of<AuthProvider>(context, listen: false).getUser();
     Provider.of<ConsultingProvider>(context, listen: false)
-        .getLatestConsultingList(0, context);
+        .getLatestConsultingList(0, map["id"], context);
   }
 
   @override

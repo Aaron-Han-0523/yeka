@@ -206,8 +206,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                   child: Text(
-                                    "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble())} ${getTranslated('WON', context)}" ??
-                                        '${widget.productModel.price} ${getTranslated('WON', context)}',
+                                    "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble())} ${getTranslated('WON', context)}",
                                     style: TextStyle(
                                       color: Color(0xFF0123B4),
                                       fontSize: 24,

@@ -54,15 +54,6 @@ class _MyPageNoticeBoardListScreenState
 
   @override
   Widget build(BuildContext context) {
-    _scrollController.addListener(() {
-      if (_scrollController.position.minScrollExtent ==
-          _scrollController.position.pixels) {
-        _loadData(context, true);
-
-        setState(() {});
-      }
-    });
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -114,7 +105,7 @@ class _MyPageNoticeBoardListScreenState
                                               children: <Widget>[
                                                 InkWell(
                                                   onTap: () async {
-                                                    CommunityModel communityModel = await Provider.of<CommunityNoticeProvider>(context, listen: false).getCommunity(communityList[index]);
+                                                    CommunityModel communityModel = communityList[index];
                                                     communityModel.views = communityModel.views + 1;
                                                     Provider.of<CommunityNoticeProvider>(context, listen: false).updateCommunity(communityModel);
 

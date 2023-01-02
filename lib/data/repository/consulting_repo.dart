@@ -73,10 +73,10 @@ class ConsultingRepo {
   }
 
   // limit = pageSize, skip = offset
-  Future<ApiResponse> getConsultingList(int limit, int skip) async {
+  Future<ApiResponse> getConsultingList(int limit, int skip, int user_id) async {
     try {
       final response = await dioClient.get(
-        AppConstants.LIST_CONSULTING_URI + "?limit=$limit&skip=$skip",
+        AppConstants.LIST_CONSULTING_CONSULTANT_URI + "/$user_id?limit=$limit&skip=$skip",
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
