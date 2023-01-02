@@ -88,6 +88,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                           children: [
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+/*
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -150,6 +151,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                 ),
                               ],
                             ),
+*/
                             ProductView(
                                 isHomePage: false,
                                 scrollController: _scrollController,

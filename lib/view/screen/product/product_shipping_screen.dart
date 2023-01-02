@@ -246,7 +246,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                 fit: BoxFit.fill,
                                 height: 107,
                                 width: 107,
-                              ), // Text(key['title']),
+                              ),
                             ),
                           ),
                           Expanded(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/helper/price_converter.dart';
 
 import 'package:yeka/util/color_resources.dart';
@@ -7,6 +8,7 @@ import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../data/model/response/order_model.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
 import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
@@ -25,13 +27,35 @@ class ProductOrderPage extends StatefulWidget {
 
 class _ProductOrderPageState extends State<ProductOrderPage>
     with TickerProviderStateMixin {
-  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _orderNameController = TextEditingController();
+  TextEditingController _orderPhoneController = TextEditingController();
+  TextEditingController _orderAddress1Controller = TextEditingController();
+  TextEditingController _orderAddress2Controller = TextEditingController();
+  TextEditingController _orderAddress3Controller = TextEditingController();
+  TextEditingController _orderEmailController = TextEditingController();
+  TextEditingController _receiveDestinationController = TextEditingController();
+  TextEditingController _receiveNameController = TextEditingController();
+  TextEditingController _receivePhoneController = TextEditingController();
+
   bool radioButton = false;
+  Map map;
+
+  Future<void> _loadData(BuildContext context, bool reload) async {
+    map = Provider.of<AuthProvider>(context, listen: false).getUser();
+
+    _orderNameController.text = map["name"];
+    _orderPhoneController.text = map["phone"];
+    _orderAddress1Controller.text = map["address1"];
+    _orderAddress2Controller.text = map["address2"];
+    _orderAddress3Controller.text = map["address3"];
+    _orderEmailController.text = map["email"];
+  }
 
   @override
-  void initState() {
-    super.initState();
-    // _controller = PageController();
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+
+    await _loadData(context, true);
   }
 
   @override
@@ -131,10 +155,20 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                             padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(150.0),
-                              child: Image.network(
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
+                              child: FadeInImage.assetNetwork(
+                                placeholder: Images.placeholder1,
+                                image: "${widget.orderModel.image1}",
                                 fit: BoxFit.fill,
                                 height: 107,
+                                width: 107,
+                                // image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
+                                //     '/${bannerProvider.mainBannerList[index].photo}',
+                                imageErrorBuilder: (c, o, s) => Image.asset(
+                                  Images.placeholder_1x1,
+                                  fit: BoxFit.fill,
+                                  height: 107,
+                                  width: 107,
+                                ),
                               ),
                             ),
                           ),
@@ -256,7 +290,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       ),
 
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _orderNameController,
                         labelText: "${getTranslated('NAME', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
@@ -265,7 +299,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _orderPhoneController,
                         labelText: "${getTranslated('PHONE', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_PHONE', context)}",
@@ -277,7 +311,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                         children: [
                           Expanded(
                             child: CustomLabelTextField(
-                              controller: _firstNameController,
+                              controller: _orderAddress1Controller,
                               labelText:
                                   "${getTranslated('ADDRESS', context)} ",
                               // essentialLabelText: " *",
@@ -292,7 +326,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                               child: CustomLabelTextField(
-                                controller: _firstNameController,
+                                controller: _orderAddress2Controller,
                                 labelText: "",
                                 essentialLabelText: "",
                                 hintText:
@@ -307,7 +341,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
 
                       CustomLabelTextField(
                         isTextable: false,
-                        controller: _firstNameController,
+                        controller: _orderAddress3Controller,
                         // labelText: "${getTranslated('ETC_ADDRESS', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('ETC_ADDRESS', context)}",
@@ -316,7 +350,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _orderEmailController,
                         labelText: "${getTranslated('EMAIL', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_EMAIL', context)}",
@@ -340,7 +374,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       // ),
 
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _receiveDestinationController,
                         labelText: "${getTranslated('DESTINATION', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
@@ -349,7 +383,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _receiveNameController,
                         labelText: "${getTranslated('NAME', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_NAME', context)}",
@@ -358,7 +392,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
                       CustomLabelTextField(
-                        controller: _firstNameController,
+                        controller: _receivePhoneController,
                         labelText: "${getTranslated('PHONE', context)} ",
                         // essentialLabelText: " *",
                         hintText: "${getTranslated('HINT_PHONE', context)}",

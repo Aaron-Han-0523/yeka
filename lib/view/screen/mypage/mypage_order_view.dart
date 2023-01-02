@@ -94,7 +94,7 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    MyPageOrderDetailPage(),
+                                    MyPageOrderDetailPage(orderModel: orderList[index],),
                               ),
                             );
                           },
