@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/data/model/response/consulting_model.dart';
+import 'package:yeka/data/model/response/user_model.dart';
+import 'package:yeka/helper/date_converter.dart';
+import 'package:yeka/helper/price_converter.dart';
+import 'package:yeka/provider/user_provider.dart';
 
 import 'package:yeka/util/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import 'package:yeka/view/screen/mypage/mypage_home_screen.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/consulting_provider.dart';
@@ -13,6 +18,7 @@ import '../../../util/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
 import '../../basewidget/button/custom_elevated_button.dart';
+import '../../basewidget/dialog/single_text_alertdialog.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../../basewidget/textfield/custom_textfield.dart';
@@ -38,17 +44,30 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
   List<ConsultingModel> latestConsultingList;
 
   var bankValue;
+  int total_payment_amount;
   Map map;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     map = Provider.of<AuthProvider>(context, listen: false).getUser();
 
-    Provider.of<ConsultingProvider>(context, listen: false)
+    await Provider.of<ConsultingProvider>(context, listen: false)
         .getLatestConsultingList(0, map["id"], context);
 
     latestConsultingList =
         Provider.of<ConsultingProvider>(context, listen: false)
             .latestConsultingList;
+
+    total_payment_amount = 0;
+
+    // payment state 가 2 이상이면서 final amount 인 것
+    for (ConsultingModel consultingModel in latestConsultingList) {
+      if (consultingModel.payment_status >= 2) {
+        total_payment_amount += consultingModel.payment_amount;
+      }
+    }
+
+    exportableMoneyController.text =
+        (total_payment_amount - map["withdrawal"]).toString();
   }
 
   @override
@@ -174,7 +193,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                                                         .bold),
                                                           ),
                                                           Text(
-                                                            "${consultingList[index] != null ? consultingList[index].payment_amount : ""}",
+                                                            "${consultingList[index] != null ? DateConverter.stringToDateOnly(consultingList[index].payment_date) : ""}",
                                                             style: TextStyle(
                                                               color: Color(
                                                                   0xff333333),
@@ -229,7 +248,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                                                         .bold),
                                                           ),
                                                           Text(
-                                                            "${consultingList[index] != null ? consultingList[index].payment_amount : ""}${getTranslated('WON', context)}",
+                                                            "${consultingList[index] != null ? PriceConverter.convertPrice(context, consultingList[index].payment_amount.toDouble()) : ""}${getTranslated('WON', context)}",
                                                             style: TextStyle(
                                                               color: Color(
                                                                   0xff333333),
@@ -322,7 +341,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                                                         .bold),
                                                           ),
                                                           Text(
-                                                            "${consultingList[index] != null ? consultingList[index].final_amount : ""}${getTranslated('WON', context)}",
+                                                            "${consultingList[index] != null ? PriceConverter.convertPrice(context, consultingList[index].final_amount.toDouble()) : ""}${getTranslated('WON', context)}",
                                                             style: TextStyle(
                                                                 color: Color(
                                                                     0xffFF0000),
@@ -441,13 +460,34 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                               padding: EdgeInsets.only(top: 30),
                               child: CustomElevatedButton(
                                 onTap: () {
-                                  // ClientsModel clientsModel = ClientsModel(
-                                  //   phoneNum: phoneNumberTextEditingController.text,
-                                  //   password: passwordTextEditingController.text,
-                                  // );
-                                  //
-                                  // Provider.of<ClientsProvider>(context, listen: false)
-                                  //     .login(clientsModel, route);
+                                  if (map["withdrawal_request_flag"] == 0) {
+                                    UserModel userModel = UserModel(
+                                      id: map["id"],
+                                      bank1: bankValue,
+                                      bank2: accountNumberController.text,
+                                      bank3: map["name"],
+                                      withdrawal: total_payment_amount,
+                                      withdrawal_request_amount: int.parse(
+                                          exportableMoneyController.text),
+                                      withdrawal_request_flag: 1,
+                                    );
+
+                                    Provider.of<UserProvider>(context,
+                                            listen: false)
+                                        .updateUser(userModel);
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (_) => MyPageHomeScreen()),
+                                        (route) => false);
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          SingleTextAlertDialog(
+                                        message: "이미 출금 신청을 했습니다.",
+                                      ),
+                                    );
+                                  }
                                 },
                                 buttonText:
                                     "${getTranslated('APPLICATION_FOR_WITHDRAWAL', context)}",

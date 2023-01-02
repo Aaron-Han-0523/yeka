@@ -5,6 +5,7 @@ import 'package:yeka/helper/date_converter.dart';
 import 'package:yeka/util/dimensions.dart';
 
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import 'package:yeka/view/screen/mypage/mypage_home_screen.dart';
 import '../../../data/model/response/consulting_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/consulting_provider.dart';
@@ -127,7 +128,7 @@ class _MyPageCalendarScreenState extends State<MyPageCalendarScreen> {
                             widget.consultingModel.reservation_date = DateConverter.localDateToIsoString(controller.selectedDate);
                             widget.consultingModel.consulting_status = 1;
                             Provider.of<ConsultingProvider>(context, listen: false).updateConsulting(widget.consultingModel);
-
+                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => MyPageHomeScreen()),(route) => false);
                           },
                           buttonText: "${getTranslated('APPLY', context)}",
                           padding: const EdgeInsets.symmetric(horizontal: 15),
