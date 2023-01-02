@@ -19,6 +19,8 @@ class MyPageFavoriteListScreen extends StatefulWidget {
 class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
   final ScrollController _scrollController = ScrollController();
 
+  int offset = 0;
+
   Future<void> _loadData(BuildContext context, bool reload) async {
     int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
 
@@ -30,7 +32,7 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _loadData(context, false);
+    _loadData(context, true);
   }
 
   @override
@@ -70,7 +72,34 @@ class _MyPageFavoriteListScreenState extends State<MyPageFavoriteListScreen> {
                                 isHomePage: false,
                                 scrollController: _scrollController),
                             CustomElevatedButton(
-                                onTap: () {}, buttonText: "${getTranslated('LOOK_MORE', context)}", padding: EdgeInsets.symmetric(horizontal: 4)),
+                                onTap: () {
+                                  if (Provider.of<ProductProvider>(context, listen: false)
+                                          .latestProductMyFavoriteList
+                                          .length !=
+                                          0 &&
+                                      !Provider.of<ProductProvider>(context, listen: false)
+                                          .filterIsLoading) {
+                                    int pageSize = (Provider.of<ProductProvider>(context, listen: false)
+                                        .latestMyFavoritePageSize /
+                                        6)
+                                        .ceil();
+                                    offset = Provider.of<ProductProvider>(context, listen: false).lMyFavoriteOffset;
+
+                                    if (offset <= pageSize) {
+                                      print('offset =====>$offset and page size ====>$pageSize');
+                                      offset++;
+                                      print('offset =====>$offset and page size ====>$pageSize');
+
+                                      print('end of the current page');
+                                      // Provider.of<ProductProvider>(context, listen: false)
+                                      //     .showBottomLoader();
+                                      int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+
+                                      Provider.of<ProductProvider>(context, listen: false)
+                                          .getLatestProductMyFavoriteList(offset, user_id, context, reload: true);
+                                    }
+                                  }
+                                }, buttonText: "${getTranslated('LOOK_MORE', context)}", padding: EdgeInsets.symmetric(horizontal: 4)),
                             SizedBox(
                                 height: Dimensions.PADDING_SIZE_LARGE),
                           ],
