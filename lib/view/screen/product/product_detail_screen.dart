@@ -438,17 +438,14 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                         15, 0, 15, 25),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10.0),
-                                      child: Container(
-                                        child: Image.network(
-                                          // widget.reviewModel.attachedFilepath1,
-                                          // 'http://52.78.243.91/uploads/review/839911410110111011510411111695504850504857495445495552544850-1663726448622.jpg',
-                                          item != null
-                                              ? AppConstants.BASE_URL +
-                                                  "/" +
-                                                  item
-                                              : AppConstants.BASE_URL,
-                                          fit: BoxFit.cover,
-                                        ),
+                                      child: Image.network(
+                                        item != null
+                                            ? AppConstants.BASE_URL +
+                                                "/" +
+                                                item
+                                            : AppConstants.BASE_URL +
+                                            "/uploads/placeholder_1x1.png",
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   )

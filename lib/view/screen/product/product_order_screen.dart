@@ -49,6 +49,9 @@ class _ProductOrderPageState extends State<ProductOrderPage>
     _orderAddress2Controller.text = map["address2"];
     _orderAddress3Controller.text = map["address3"];
     _orderEmailController.text = map["email"];
+    _receiveDestinationController.text = widget.orderModel.recipient_place;
+    _receiveNameController.text = widget.orderModel.recipient_name;
+    _receivePhoneController.text = widget.orderModel.recipient_phone;
   }
 
   @override
@@ -174,7 +177,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding: const EdgeInsets.all(12),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -188,14 +191,14 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                           fontSize: 9,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
-                                        child: Text(
-                                          "${getTranslated('PAYMENT_COMPLETED', context)}",
-                                          style: TextStyle(
-                                            color: Color(0xff7700FF),
-                                            fontSize: 10,
-                                          ),
+                                      SizedBox(
+                                        width: 40,
+                                      ),
+                                      Text(
+                                        "${getTranslated('PAYMENT_COMPLETED', context)}",
+                                        style: TextStyle(
+                                          color: Color(0xff7700FF),
+                                          fontSize: 10,
                                         ),
                                       ),
                                     ],

@@ -6,9 +6,12 @@ import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
 import '../../../data/model/response/consulting_model.dart';
+import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/menu_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
+import '../../../provider/image_provider.dart';
+import '../../../provider/personal_color_provider.dart';
 import '../../../util//app_constants.dart';
 import '../../../util//color_resources.dart';
 import '../../../util//dimensions.dart';
@@ -19,13 +22,13 @@ import '../home/widget/footer_screens.dart';
 class ConsultantResultScreen extends StatefulWidget {
   final bool isCreateScreen;
   final ConsultingModel consultingModel;
-  final MenuModel menuModel;
   final UserModel userModel;
-  final PersonalColorModel personalColorModel;
 
   const ConsultantResultScreen({
     Key key,
-    this.isCreateScreen = true, this.userModel, this.consultingModel, this.menuModel, this.personalColorModel,
+    this.isCreateScreen = true,
+    this.userModel,
+    this.consultingModel,
   }) : super(key: key);
 
   @override
@@ -41,8 +44,11 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
   SfRangeValues _currentSliderValue5 = SfRangeValues(30, 30);
 
   String name;
+  PersonalColorModel personalColorModel;
+  ImageModel imageModel;
 
-  Widget buildSlider(String leftString, String rightString, SfRangeValues currentSliderValue) {
+  Widget buildSlider(
+      String leftString, String rightString, SfRangeValues currentSliderValue) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         17.0,
@@ -77,17 +83,95 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
   }
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    name = Provider.of<AuthProvider>(context, listen: false).getUser()["name"];
+    Map map = await Provider.of<AuthProvider>(context, listen: false).getUser();
+    name = map["name"];
+
+    var season = map["season"];
+    var detail_season_type = map["detail_season_type"];
+
+    personalColorModel = PersonalColorModel(
+      season: season,
+      detail_season_type: detail_season_type,
+    );
+
+    personalColorModel =
+        await Provider.of<PersonalColorProvider>(context, listen: false)
+            .getPersonalColorCondition(personalColorModel);
+
+    personalColorModel =
+        await Provider.of<PersonalColorProvider>(context, listen: false)
+            .personalColor;
+
+    imageModel = Provider.of<CustomImageProvider>(context, listen: false).image;
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _loadData(context, false);
+  void didChangeDependencies() async {
+    await super.didChangeDependencies();
+    await _loadData(context, false);
   }
 
   @override
   Widget build(BuildContext context) {
+    var seasonKor = "";
+    var detailSeasonType = "";
+
+    if(personalColorModel != null) {
+      personalColorModel.season != null ? personalColorModel.season : -1;
+      personalColorModel.detail_season_type != null
+          ? personalColorModel.detail_season_type
+          : -1;
+
+      if (personalColorModel.season == 0) {
+        seasonKor = "봄";
+      } else if (personalColorModel.season == 1) {
+        seasonKor = "여름";
+      } else if (personalColorModel.season == 2) {
+        seasonKor = "가을";
+      } else if (personalColorModel.season == 3) {
+        seasonKor = "겨울";
+      } else {
+        seasonKor = "로딩중";
+      }
+
+      if (personalColorModel.detail_season_type == 0) {
+        detailSeasonType = "브라이트";
+      } else if (personalColorModel.detail_season_type == 1) {
+        detailSeasonType = "라이트";
+      } else if (personalColorModel.detail_season_type == 2) {
+        detailSeasonType = "딥";
+      } else if (personalColorModel.detail_season_type == 3) {
+        detailSeasonType = "스트롱";
+      } else if (personalColorModel.detail_season_type == 4) {
+        detailSeasonType = "뮤트";
+      } else if (personalColorModel.detail_season_type == 5) {
+        detailSeasonType = "소프트";
+      } else if (personalColorModel.detail_season_type == 6) {
+        detailSeasonType = "페일";
+      } else {
+        detailSeasonType = "로딩중";
+      }
+
+      var matchingColorList = [
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+        "#FF22FF",
+      ];
+
+      if(personalColorModel.matching_color_array != null && personalColorModel.matching_color_array.split(",").length > 11) {
+        matchingColorList = personalColorModel.matching_color_array.split(",");
+      }
+    }
+
     return Scaffold(
       backgroundColor: ColorResources.getHomeBg(context),
       resizeToAvoidBottomInset: false,
@@ -121,12 +205,22 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       child: Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0.0,0.0,8.0,0.0,),
+                            padding: const EdgeInsets.fromLTRB(
+                              0.0,
+                              0.0,
+                              8.0,
+                              0.0,
+                            ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(150.0),
-                              child: Image.network(
-                                // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                "${AppConstants.BASE_URL}/${widget.userModel.title_image}",
+                              child: FadeInImage.assetNetwork(
+                                placeholder: Images.placeholder1,
+                                image: widget.userModel.title_image != null
+                                    ? AppConstants.BASE_URL +
+                                        "/" +
+                                        widget.userModel.title_image
+                                    : AppConstants.BASE_URL +
+                                        "/uploads/placeholder_1x1.png",
                                 fit: BoxFit.fill,
                                 height: 107,
                                 width: 107,
@@ -173,7 +267,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   color: Color(0xffDDDDDD),
                                 ),
                               ),
-                              SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                              SizedBox(
+                                  height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                               Row(
                                 children: [
                                   Padding(
@@ -211,6 +306,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         children: [
                           Text(
                             "${name}",
+                            textAlign: TextAlign.end,
                             style: TextStyle(
                               color: Color(0xff0123b4),
                               fontSize: 13,
@@ -218,6 +314,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           ),
                           Text(
                             "${getTranslated('SHOW_YOUR_RESULT', context)}",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 13,
@@ -273,42 +370,61 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         ),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      7.5, 16.5, 12.5, 13),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(150.0),
-                                    child: Image.asset(
-                                      Images.chk,
-                                      fit: BoxFit.fill,
-                                      height: 15,
-                                    ), // Text(key['title']),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Text(
-                                    // fixme Model에 변수 없음
-                                    "${widget.consultingModel.season} ${widget.consultingModel.detail_season_type}",
-                                    style: TextStyle(
-                                      color: Color(0xff333333),
-                                      fontSize: 18,
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        7.5, 16.5, 12.5, 13),
+                                    child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.circular(150.0),
+                                      child: Image.asset(
+                                        Images.chk,
+                                        fit: BoxFit.fill,
+                                        height: 15,
+                                      ), // Text(key['title']),
                                     ),
                                   ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                    child: Text(
+                                      "${seasonKor} ${detailSeasonType}",
+                                      style: TextStyle(
+                                        color: Color(0xff333333),
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                height: 20,
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 9,
+                                    ),
+                                    Text(
+                                      "${personalColorModel != null ? personalColorModel.description : ""}",
+                                      style: TextStyle(
+                                        color: Color(0xff999999),
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(9, 0, 0, 3),
-                              child: Row(
+                              ),
+                              Row(
                                 children: [
+                                  SizedBox(
+                                    width: 9,
+                                  ),
                                   Text(
-                                    "${widget.personalColorModel.description}",
+                                    "${Provider.of<PersonalColorProvider>(context, listen: false).personalColor.tag}",
                                     style: TextStyle(
                                       color: Color(0xff999999),
                                       fontSize: 11,
@@ -316,23 +432,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                   ),
                                 ],
                               ),
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(9, 0, 0, 3),
-                                  child: Text(
-                                    "${widget.personalColorModel.tag}",
-                                    style: TextStyle(
-                                      color: Color(0xff999999),
-                                      fontSize: 11,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -364,66 +465,41 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                 TableRow(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 0, 10, 0),
                                       child: Container(
                                         height: 42.5,
                                         width: 42.5,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
+                                          color: Color(int.parse(
+                                              'FF${matchingColorList[0].replaceAll('#', '')}',
+                                              radix: 16)),
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 0, 10, 0),
                                       child: Container(
                                         height: 42.5,
                                         width: 42.5,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
+                                          color: Color(int.parse(
+                                              'FF${matchingColorList[1].replaceAll('#', '')}',
+                                              radix: 16)),
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 0, 10, 0),
                                       child: Container(
                                         height: 42.5,
                                         width: 42.5,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                TableRow(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: Container(
-                                        height: 42.5,
-                                        width: 42.5,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: Container(
-                                        height: 42.5,
-                                        width: 42.5,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
-                                      child: Container(
-                                        height: 42.5,
-                                        width: 42.5,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
+                                          color: Color(int.parse(
+                                              'FF${matchingColorList[2].replaceAll('#', '')}',
+                                              radix: 16)),
                                         ),
                                       ),
                                     ),
@@ -432,32 +508,81 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                 TableRow(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 15, 10, 0),
                                       child: Container(
                                         height: 42.5,
                                         width: 42.5,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
+                                          color: Color(int.parse(
+                                              'FF${matchingColorList[3].replaceAll('#', '')}',
+                                              radix: 16)),
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 15, 10, 0),
+                                      child: Image(
+                                        image: AssetImage(Images.logo_b),
+                                        fit: BoxFit.fitWidth,
+                                        height: 42.5,
+                                        width: 42.5,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 15, 10, 0),
                                       child: Container(
                                         height: 42.5,
                                         width: 42.5,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
+                                          color: Color(int.parse(
+                                              'FF${matchingColorList[4].replaceAll('#', '')}',
+                                              radix: 16)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 15, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(int.parse(
+                                              'FF${matchingColorList[5].replaceAll('#', '')}',
+                                              radix: 16)),
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 15, 10, 0),
                                       child: Container(
                                         height: 42.5,
                                         width: 42.5,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffFECB03),
+                                          color: Color(int.parse(
+                                              'FF${matchingColorList[6].replaceAll('#', '')}',
+                                              radix: 16)),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 15, 10, 0),
+                                      child: Container(
+                                        height: 42.5,
+                                        width: 42.5,
+                                        decoration: BoxDecoration(
+                                          color: Color(int.parse(
+                                              'FF${matchingColorList[7].replaceAll('#', '')}',
+                                              radix: 16)),
                                         ),
                                       ),
                                     ),
@@ -509,7 +634,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                       child: Text(
-                        "${widget.personalColorModel.fashion}",
+                        "${personalColorModel != null ? personalColorModel.fashion : ""}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -517,16 +642,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       ),
                     ),
                     // fixme 대표님 이부분 fashion으로 합쳐야 하지 않을까요??
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
-                      child: Text(
-                        "${widget.personalColorModel.fashion}",
-                        style: TextStyle(
-                          color: Color(0xff000000),
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
+                    //   child: Text(
+                    //     "${personalColorModel.fashion}",
+                    //     style: TextStyle(
+                    //       color: Color(0xff000000),
+                    //       fontSize: 12,
+                    //     ),
+                    //   ),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
                       child: Row(
@@ -567,7 +692,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
                       child: Text(
-                        "${widget.personalColorModel.hair}",
+                        "${personalColorModel != null ? personalColorModel.hair : ""}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -614,7 +739,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 25, 20),
                       child: Text(
-                        "${widget.personalColorModel.perfume}",
+                        "${personalColorModel != null ? personalColorModel.perfume : ""}",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontSize: 12,
@@ -695,7 +820,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "${widget.personalColorModel.makeup_base}",
+                                      "${personalColorModel != null ? personalColorModel.makeup_base : ""}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -723,7 +848,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                       padding:
                                           const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                       child: Text(
-                                        "${widget.personalColorModel.makeup_eye}",
+                                        "${personalColorModel != null ? personalColorModel.makeup_eye : ""}",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Color(0xff333333),
@@ -755,7 +880,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "${widget.personalColorModel.makeup_blusher}",
+                                      "${personalColorModel != null ? personalColorModel.makeup_blusher : ""}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -782,7 +907,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     padding:
                                         const EdgeInsets.fromLTRB(5, 0, 5, 0),
                                     child: Text(
-                                      "${widget.personalColorModel.lip}",
+                                      "${personalColorModel != null ? personalColorModel.lip : ""}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff333333),
@@ -797,11 +922,20 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ],
                       ),
                     ),
-                    buildSlider(getTranslated('WARM', context), getTranslated('COOL', context), _currentSliderValue1),
-                    buildSlider(getTranslated('CLEAR', context), getTranslated('CLOUDY', context), _currentSliderValue2),
-                    buildSlider(getTranslated('HIGH_CONTRAST_IMAGE', context), getTranslated('LOW_CONTRAST_IMAGE', context), _currentSliderValue3),
-                    buildSlider(getTranslated('HIGH_BRIGHTNESS', context), getTranslated('LOW_BRIGHTNESS', context), _currentSliderValue4),
-                    buildSlider(getTranslated('GLOSS', context), getTranslated('MATT', context), _currentSliderValue5),
+                    buildSlider(getTranslated('WARM', context),
+                        getTranslated('COOL', context), _currentSliderValue1),
+                    buildSlider(getTranslated('CLEAR', context),
+                        getTranslated('CLOUDY', context), _currentSliderValue2),
+                    buildSlider(
+                        getTranslated('HIGH_CONTRAST_IMAGE', context),
+                        getTranslated('LOW_CONTRAST_IMAGE', context),
+                        _currentSliderValue3),
+                    buildSlider(
+                        getTranslated('HIGH_BRIGHTNESS', context),
+                        getTranslated('LOW_BRIGHTNESS', context),
+                        _currentSliderValue4),
+                    buildSlider(getTranslated('GLOSS', context),
+                        getTranslated('MATT', context), _currentSliderValue5),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
                       child: Container(

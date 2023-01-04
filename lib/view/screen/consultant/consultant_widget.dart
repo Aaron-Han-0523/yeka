@@ -66,7 +66,7 @@ class ConsultantWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
                       child: Text(
-                        userModel.bank1 ?? '',
+                        userModel.name ?? '',
                         textAlign: TextAlign.center,
                         style: robotoRegular.copyWith(
                           fontSize: Dimensions.FONT_SIZE_LARGE,

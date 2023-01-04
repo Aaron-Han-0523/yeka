@@ -277,7 +277,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               child: Text(
                                 "${getTranslated('BEAUTY_PRODUCT', context)}",
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.black87,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -294,15 +294,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     ),
                                   );
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "${getTranslated('VIEW_MORE', context)}",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                child: Text(
+                                  "${getTranslated('VIEW_MORE', context)}",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -316,7 +313,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         thickness: 1,
                         indent: 180,
                         endIndent: 180,
-                        color: Colors.black12,
+                        color: Colors.black54,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       ProductView(
@@ -333,7 +330,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               child: Text(
                                 "${getTranslated('COMMUNITY', context)}",
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.black87,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -351,15 +348,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     ),
                                   );
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "${getTranslated('VIEW_MORE', context)}",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                child: Text(
+                                  "${getTranslated('VIEW_MORE', context)}",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -373,7 +367,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         thickness: 1,
                         indent: 180,
                         endIndent: 180,
-                        color: Colors.black12,
+                        color: Colors.black54,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       const Divider(

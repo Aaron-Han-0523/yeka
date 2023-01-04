@@ -46,70 +46,62 @@ class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
           color = color == Colors.white ? Colors.grey : Colors.white;
         });
       },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Container(
-              color: color,
-              padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.communityModel.community_title,
-                    style: TextStyle(
-                      fontSize: 11.0,
-                      fontWeight: FontWeight.bold,
-                      overflow: TextOverflow.ellipsis,
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border(
+                bottom: BorderSide(
+                    color: Color(0xffEEEEEE)
+                )
+            )
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 5,
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "${widget.communityModel.writer ?? "${getTranslated('YEKA', context)}"}",
-                            style: TextStyle(
-                              fontSize: 7.0,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis,
-                              color: Color(0xff999999),
-                            ),
-                          ),
-                          Text(
-                            "${getTranslated('|', context)}",
-                            style: TextStyle(
-                              fontSize: 7.0,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis,
-                              color: Color(0xff999999),
-                            ),
-                          ),
-                          Text(
-                            "${widget.communityModel.create_date != null ? DateConverter.fromNowDuration(widget.communityModel.create_date) : ""}",
-                            // "7일전",
-                            style: TextStyle(
-                              fontSize: 7.0,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis,
-                              color: Color(0xff999999),
-                            ),
-                          ),
-                        ],
+                    Text(
+                      widget.communityModel.community_title,
+                      style: TextStyle(
+                        fontSize: 11.0,
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-                        child: Row(
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
                           children: [
-                            Image.asset(
-                              Images.eye1,
-                              fit: BoxFit.cover,
-                              width: 12,
+                            Text(
+                              "${widget.communityModel.writer ?? "${getTranslated('YEKA', context)}"}",
+                              style: TextStyle(
+                                fontSize: 7.0,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
+                                color: Color(0xff999999),
+                              ),
                             ),
                             Text(
-                              "${widget.communityModel.views}${getTranslated('TIMES', context)}",
+                              "${getTranslated('|', context)}",
+                              style: TextStyle(
+                                fontSize: 7.0,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
+                                color: Color(0xff999999),
+                              ),
+                            ),
+                            Text(
+                              "${widget.communityModel.create_date != null ? DateConverter.fromNowDuration(widget.communityModel.create_date) : ""}",
                               style: TextStyle(
                                 fontSize: 7.0,
                                 fontWeight: FontWeight.bold,
@@ -119,36 +111,61 @@ class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            width: 82,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: FadeInImage.assetNetwork(
-                placeholder: Images.placeholder1,
-                image: YoutubeConverter.getYoutubeThumbnail(
-                  "${widget.communityModel.community_link}",
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              Images.eye1,
+                              fit: BoxFit.cover,
+                              width: 12,
+                            ),
+                            Text(
+                              " ${widget.communityModel.views}${getTranslated('TIMES', context)}",
+                              style: TextStyle(
+                                fontSize: 7.0,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
+                                color: Color(0xff999999),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                  ],
                 ),
-                fit: BoxFit.fitWidth,
-                height: 49,
-                imageErrorBuilder: (BuildContext context, Object exception,
-                    StackTrace stackTrace) {
-                  return Image.asset(
-                    Images.placeholder1,
-                    fit: BoxFit.fitHeight,
-                    height: 49,
-                  );
-                },
               ),
             ),
-          ),
-        ],
+            Container(
+              width: 82,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: FadeInImage.assetNetwork(
+                  placeholder: Images.placeholder1,
+                  image: YoutubeConverter.getYoutubeThumbnail(
+                    "${widget.communityModel.community_link}",
+                  ),
+                  fit: BoxFit.fitWidth,
+                  height: 49,
+                  imageErrorBuilder: (BuildContext context, Object exception,
+                      StackTrace stackTrace) {
+                    return Image.asset(
+                      Images.placeholder1,
+                      fit: BoxFit.fitHeight,
+                      height: 49,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

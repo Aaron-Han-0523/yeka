@@ -50,7 +50,8 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
                     placeholder: Images.placeholder1,
                     image: image.path != null
                         ? AppConstants.BASE_URL + "/" + image.path
-                        : AppConstants.BASE_URL,
+                        : AppConstants.BASE_URL +
+                        "/uploads/placeholder_1x1.png",
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width * 0.28,
                     height: MediaQuery.of(context).size.width * 0.28,

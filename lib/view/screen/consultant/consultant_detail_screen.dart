@@ -116,7 +116,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                                     "/" +
                                     widget.userModel.title_image
                                 : AppConstants.BASE_URL +
-                                    "/upload/placeholder_1x1.png",
+                                    "/uploads/placeholder_1x1.png",
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width * 0.9,
                             height: MediaQuery.of(context).size.width * 0.9,

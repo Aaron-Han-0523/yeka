@@ -6,6 +6,7 @@ import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 
 import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/menu_model.dart';
+import '../../../data/model/response/personal_color_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../util//color_resources.dart';
 import '../../../util//dimensions.dart';
@@ -18,13 +19,14 @@ class ConsultantPaymentScreen extends StatefulWidget {
   final UserModel userModel;
   final MenuModel menuModel;
   final ConsultingModel consultingModel;
+  final PersonalColorModel personalColorModel;
 
   const ConsultantPaymentScreen({
     Key key,
     this.isCreateScreen = true,
     this.userModel,
     this.consultingModel,
-    this.menuModel,
+    this.menuModel, this.personalColorModel,
   }) : super(key: key);
 
   @override
@@ -316,7 +318,6 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                               builder: (_) => ConsultantResultScreen(
                                   userModel: widget.userModel,
                                   consultingModel: widget.consultingModel,
-                                  menuModel: widget.menuModel,
                               ),
                             ),
                           );

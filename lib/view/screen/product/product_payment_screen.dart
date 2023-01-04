@@ -66,7 +66,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Divider(
-                        height: 2,
+                        height: 1,
                         color: Color(0xffDDDDDD),
                         indent: 0,
                         endIndent: 0,
@@ -191,7 +191,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
 
                       const Divider(
                         height: 3,
-                        thickness: 2,
+                        thickness: 1,
                         indent: 20,
                         endIndent: 20,
                         color: Color(0xffDDDDDD),

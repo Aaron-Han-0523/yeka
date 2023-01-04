@@ -80,8 +80,6 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                         ),
 
                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                        // CustomElevatedButton(
-                        //     onTap: () {}, buttonText: "더보기 ∨"),
                         selectDate != null
                             ? Padding(
                                 padding:
