@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -32,30 +33,65 @@ class MyPageAIResultPage extends StatefulWidget {
 
 class _MyPageAIResultPageState extends State<MyPageAIResultPage>
     with TickerProviderStateMixin {
-  Map map = Map();
+  String name;
   PersonalColorModel personalColorModel;
   ConsultingModel consultingModel;
   ImageModel imageModel;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    map = Provider.of<AuthProvider>(context, listen: false).getUser();
-    personalColorModel = Provider.of<PersonalColorProvider>(context, listen: false).personalColor;
-    consultingModel = Provider.of<ConsultingProvider>(context, listen: false).consulting;
+    Map map = await Provider.of<AuthProvider>(context, listen: false).getUser();
+
+    name = map['name'];
+    var season = map["season"];
+    var detail_season_type = map["detail_season_type"];
+
+    personalColorModel = PersonalColorModel(
+      season: season,
+      detail_season_type: detail_season_type,
+    );
+
+    personalColorModel = await Provider.of<PersonalColorProvider>(context, listen: false).personalColor;
+    consultingModel = await Provider.of<ConsultingProvider>(context, listen: false).consulting;
     imageModel = Provider.of<CustomImageProvider>(context, listen: false).image;
   }
 
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-
     await _loadData(context, false);
+    setState(() {
+      personalColorModel;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+
     var season = "";
     var seasonKor = "";
     var detailSeasonType = "";
+
+    var matchingColorList = [
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+    ];
+
+    if(personalColorModel != null) {
+
+      personalColorModel.season != null ? personalColorModel.season : -1;
+      personalColorModel.detail_season_type != null
+          ? personalColorModel.detail_season_type
+          : -1;
 
     if (personalColorModel.season == 0) {
       season = "Spring";
@@ -87,23 +123,9 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
       detailSeasonType = "페일";
     }
 
-    var matchingColorList = [
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-      "#FF22FF",
-    ];
-
-    if(personalColorModel.matching_color_array != null && personalColorModel.matching_color_array.split(",").length > 11) {
-      matchingColorList = personalColorModel.matching_color_array.split(",");
+      if(personalColorModel.matching_color_array != null && personalColorModel.matching_color_array.split(",").length > 11) {
+        matchingColorList = personalColorModel.matching_color_array.split(",");
+      }
     }
 
     return Scaffold(
@@ -135,7 +157,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "${map["name"]}",
+                            "${name}",
                             style: TextStyle(
                               fontSize: 14,
                               color: Color(0xff0123B4),
@@ -177,7 +199,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                       // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                       Center(
                         child: Text(
-                          "${personalColorModel.description}",
+                          "${personalColorModel != null ? personalColorModel.description : ""}",
                           style: TextStyle(
                             fontSize: 11,
                             color: Color(0xffCCCCCC),
@@ -187,7 +209,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                       // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       Center(
                         child: Text(
-                          "${personalColorModel.tag}",
+                          "${personalColorModel != null ? personalColorModel.tag : ""}",
                           style: TextStyle(
                             fontSize: 10,
                             color: Color(0xff0123B4),
@@ -399,7 +421,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(9, 0, 0, 0),
                                   child: Text(
-                                    "${personalColorModel.description}",
+                                    "${personalColorModel != null ? personalColorModel.description : ""}",
                                     style: TextStyle(
                                       fontSize: 11,
                                       color: Colors.grey,
@@ -410,7 +432,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                                   padding:
                                       const EdgeInsets.fromLTRB(9, 0, 0, 0),
                                   child: Text(
-                                    "${personalColorModel.tag}",
+                                    "${personalColorModel != null ? personalColorModel.tag : ""}",
                                     style: TextStyle(
                                       fontSize: 11,
                                       color: Colors.grey,
@@ -462,7 +484,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 20, 26),
                         child: Text(
-                          "${personalColorModel.fashion}",
+                          "${personalColorModel != null ? personalColorModel.fashion : ""}",
                           style: TextStyle(
                             fontSize: 12,
                           ),
@@ -508,7 +530,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 20, 26),
                         child: Text(
-                          "${personalColorModel.hair}",
+                          "${personalColorModel != null ? personalColorModel.hair : ""}",
                           style: TextStyle(
                             fontSize: 12,
                           ),

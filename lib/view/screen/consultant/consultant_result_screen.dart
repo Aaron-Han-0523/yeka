@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -109,14 +111,40 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
   void didChangeDependencies() async {
     await super.didChangeDependencies();
     await _loadData(context, false);
+    setState(() {
+      personalColorModel;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+
+    // Timer(Duration(milliseconds: 0), () {
+    //   setState(() {
+    //     personalColorModel;
+    //   });
+    // });
+
     var seasonKor = "";
     var detailSeasonType = "";
 
+    var matchingColorList = [
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+      "#FF22FF",
+    ];
+
     if(personalColorModel != null) {
+
       personalColorModel.season != null ? personalColorModel.season : -1;
       personalColorModel.detail_season_type != null
           ? personalColorModel.detail_season_type
@@ -130,8 +158,6 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
         seasonKor = "가을";
       } else if (personalColorModel.season == 3) {
         seasonKor = "겨울";
-      } else {
-        seasonKor = "로딩중";
       }
 
       if (personalColorModel.detail_season_type == 0) {
@@ -148,24 +174,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
         detailSeasonType = "소프트";
       } else if (personalColorModel.detail_season_type == 6) {
         detailSeasonType = "페일";
-      } else {
-        detailSeasonType = "로딩중";
       }
-
-      var matchingColorList = [
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-        "#FF22FF",
-      ];
 
       if(personalColorModel.matching_color_array != null && personalColorModel.matching_color_array.split(",").length > 11) {
         matchingColorList = personalColorModel.matching_color_array.split(",");
@@ -424,7 +433,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     width: 9,
                                   ),
                                   Text(
-                                    "${Provider.of<PersonalColorProvider>(context, listen: false).personalColor.tag}",
+                                    "${personalColorModel != null ? personalColorModel.tag : ""}",
                                     style: TextStyle(
                                       color: Color(0xff999999),
                                       fontSize: 11,
