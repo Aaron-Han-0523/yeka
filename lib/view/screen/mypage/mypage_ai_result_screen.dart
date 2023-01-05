@@ -35,7 +35,6 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
     with TickerProviderStateMixin {
   String name;
   PersonalColorModel personalColorModel;
-  ConsultingModel consultingModel;
   ImageModel imageModel;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
@@ -49,9 +48,10 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
       season: season,
       detail_season_type: detail_season_type,
     );
-
+    personalColorModel =
+    await Provider.of<PersonalColorProvider>(context, listen: false)
+        .getPersonalColorCondition(personalColorModel);
     personalColorModel = await Provider.of<PersonalColorProvider>(context, listen: false).personalColor;
-    consultingModel = await Provider.of<ConsultingProvider>(context, listen: false).consulting;
     imageModel = Provider.of<CustomImageProvider>(context, listen: false).image;
   }
 

@@ -113,7 +113,7 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                                           "/" +
                                           orderList[index].image1
                                           : AppConstants.BASE_URL +
-                                          "/upload/placeholder_1x1.png",
+                                          "/placeholder_1x1.png",
                                       fit: BoxFit.fill,
                                       width: 100,
                                       height: 100,

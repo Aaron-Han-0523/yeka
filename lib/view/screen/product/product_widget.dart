@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/like_product_model.dart';
 import '../../../data/model/response/product_model.dart';
+import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/image_provider.dart';
 import '../../../provider/like_product_provider.dart';
@@ -94,21 +95,22 @@ class _ProductWidgetState extends State<ProductWidget> {
                       );
 
                       if (heart) {
-                        await Provider.of<LikeProductProvider>(
-                                context,
+                        await Provider.of<LikeProductProvider>(context,
                                 listen: false)
                             .deleteLikeProduct(likeProductModel);
                       } else {
-                        await Provider.of<LikeProductProvider>(
-                                context,
+                        await Provider.of<LikeProductProvider>(context,
                                 listen: false)
                             .addLikeProduct(likeProductModel);
                       }
 
-                      int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+                      int user_id =
+                          Provider.of<AuthProvider>(context, listen: false)
+                              .getUser()["id"];
 
                       await Provider.of<ProductProvider>(context, listen: false)
-                          .getLatestProductList(0, user_id, context, reload: true);
+                          .getLatestProductList(0, user_id, context,
+                              reload: true);
 
                       setState(() {
                         heart = !heart;
@@ -116,7 +118,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                            content: Text("상품 찜 등록은 로그인해야 합니다."),
+                            content: Text("${getTranslated('NEED_TO_LOGIN_FOR_FAVORITE', context)}"),
                             backgroundColor: Colors.red),
                       );
                     }
@@ -138,9 +140,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                         // color: Colors.grey,
                         borderRadius: BorderRadius.circular(8.0)),
                     child: Image.asset(
-                      heart
-                          ? Images.heart_fill
-                          : Images.heart,
+                      heart ? Images.heart_fill : Images.heart,
                       height: 20,
                       fit: BoxFit.fitHeight,
                     ),
@@ -202,26 +202,16 @@ class _ProductWidgetState extends State<ProductWidget> {
                   children: [
                     Expanded(
                       child: Text(
-                        '${widget.productModel.description}',
-                        textAlign: TextAlign.center,
+                        "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble())} ${getTranslated('WON', context)}" ??
+                            '0 ${getTranslated('WON', context)}',
                         style: robotoRegular.copyWith(
-                          fontSize: 7,
+                          fontSize: 10,
+                          color: Color(0xff9d9d9d),
                           fontWeight: FontWeight.bold,
                         ),
                         // maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    Text(
-                      "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble())} 원" ??
-                          '0 원',
-                      textAlign: TextAlign.center,
-                      style: robotoRegular.copyWith(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      // maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),

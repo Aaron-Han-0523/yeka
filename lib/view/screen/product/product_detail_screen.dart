@@ -444,7 +444,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                                 "/" +
                                                 item
                                             : AppConstants.BASE_URL +
-                                            "/uploads/placeholder_1x1.png",
+                                            "/placeholder_1x1.png",
                                         fit: BoxFit.cover,
                                       ),
                                     ),

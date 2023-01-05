@@ -229,7 +229,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                         "/" +
                                         widget.userModel.title_image
                                     : AppConstants.BASE_URL +
-                                        "/uploads/placeholder_1x1.png",
+                                        "/placeholder_1x1.png",
                                 fit: BoxFit.fill,
                                 height: 107,
                                 width: 107,

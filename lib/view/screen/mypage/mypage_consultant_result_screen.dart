@@ -349,7 +349,7 @@ class _MyPageConsultantResultScreenState
                                       "/" +
                                       userModel.title_image
                                   : AppConstants.BASE_URL +
-                                      "/upload/placeholder_1x1.png",
+                                      "/placeholder_1x1.png",
                               height: 75,
                               width: 75,
                               imageErrorBuilder: (BuildContext context, Object exception,
@@ -578,7 +578,7 @@ class _MyPageConsultantResultScreenState
                                       "/" +
                                       consultingModel.client_image
                                   : AppConstants.BASE_URL +
-                                      "/upload/placeholder_1x1.png",
+                                      "/placeholder_1x1.png",
                               fit: BoxFit.fill,
                               height: 177,
                               width: 167.5,

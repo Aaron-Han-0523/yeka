@@ -348,6 +348,13 @@
   "ADDRESS2_FIELD_IS_REQUIRED" : "주소를 입력해주세요.",
   "ADDRESS3_FIELD_IS_REQUIRED" : "세부주소을 입력해주세요.",
 
+  "DELETE" : "삭제",
+  "NEED_TO_LOGIN_FOR_FAVORITE" : "상품 찜 등록은 로그인해야 합니다.",
+  "CAN_REGISTER_MENU_MAX_THREE" : "메뉴는 최대 3개 까지 등록 가능합니다.",
+  "DELETE" : "삭제",
+  "DELETE" : "삭제",
+
+
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",
   "END_CODE": "===================================="
 }

@@ -172,7 +172,7 @@ class _MyPageMyReserveScreenState extends State<MyPageMyReserveScreen>
                                     "/" +
                                     userModel.title_image
                                 : AppConstants.BASE_URL +
-                                    "/upload/placeholder_1x1.png",
+                                    "/placeholder_1x1.png",
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width * 0.89333,
                             height: MediaQuery.of(context).size.width * 0.89333,

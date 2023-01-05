@@ -48,7 +48,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                         image: menuModel.menu_image != null
                             ? AppConstants.BASE_URL + "/" + menuModel.menu_image
                             : AppConstants.BASE_URL +
-                                "/uploads/placeholder_1x1.png",
+                                "/placeholder_1x1.png",
                         fit: BoxFit.cover,
                         // image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL,
                         width: MediaQuery.of(context).size.width * 0.29,

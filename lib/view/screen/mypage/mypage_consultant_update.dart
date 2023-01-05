@@ -163,7 +163,7 @@ class _MyPageConsultantUpdateScreenState
                         setState(() {});
                       },
                       child: Text(
-                        "- 삭제",
+                        "- ${getTranslated('DELETE', context)}",
                         style: TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.bold,
@@ -366,7 +366,7 @@ class _MyPageConsultantUpdateScreenState
 
                                     List<Media> res = await ImagesPicker.pick(
                                       count: 5,
-                                      pickType: PickType.all,
+                                      pickType: PickType.image,
                                       language: Language.System,
                                       maxTime: 30,
                                       // maxSize: 500,
@@ -375,7 +375,7 @@ class _MyPageConsultantUpdateScreenState
                                         cropType: CropType.circle,
                                       ),
                                     );
-                                    print(res);
+
                                     if (res != null) {
                                       print(res.map((e) => e.path).toList());
 
@@ -653,7 +653,7 @@ class _MyPageConsultantUpdateScreenState
                                       context: context,
                                       builder: (BuildContext context) =>
                                           SingleTextAlertDialog(
-                                        message: "메뉴는 최대 3개 까지 등록 가능합니다.",
+                                        message: "${getTranslated('CAN_REGISTER_MENU_MAX_THREE', context)}",
                                       ),
                                     );
                                   } else {
