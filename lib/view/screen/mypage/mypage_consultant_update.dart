@@ -93,11 +93,11 @@ class _MyPageConsultantUpdateScreenState
         Provider.of<CustomImageProvider>(context, listen: false).imageList;
 
     for (var i = 0; i < imageList.length; i++) {
-      if (imageList[i].image_type == 2) {
+      if (imageList[i].image_type == 2) { // 컨설턴트 프로필
         thumbnailList.add(imageList[i].path);
-      } else if (imageList[i].image_type == 3) {
+      } else if (imageList[i].image_type == 3) { // 컨설턴트 포트폴리오
         thumbnailList2.add(imageList[i].path);
-      } else if (imageList[i].image_type == 4) {
+      } else if (imageList[i].image_type == 4) { // 컨설턴트 메뉴
         // menuList[i].menu_image = imageList[i].path;
       } else {}
     }

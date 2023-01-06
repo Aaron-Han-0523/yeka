@@ -39,7 +39,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Future<void> _loadData(BuildContext context, bool reload) async {
     int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
 
-    Provider.of<CommunityProvider>(context, listen: false)
+    await Provider.of<CommunityProvider>(context, listen: false)
         .getLatestCommunityList(0, context, reload: reload);
 
     await Provider.of<CommunityYoutubeProvider>(context, listen: false)

@@ -152,7 +152,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
             context: context,
             builder: (BuildContext context) =>
                 SingleTextAlertDialog(
-                  message: "AI 테스트를 먼저 해주세요.",
+                  message: "${getTranslated('PLEASE_DO_THE_AI_TEST_FIRST', context)}",
                 ),
           );
         } else {

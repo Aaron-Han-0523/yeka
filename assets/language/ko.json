@@ -37,7 +37,7 @@
   "PRIVACY_POLICY": "개인정보처리방침(필수)",
   "PRIVACY_POLICY_AGREE": "개인정보처리방침에 동의합니다.",
   "ALL_AGREE": "필수 약관에 모두 동의합니다.",
-  "FOOTER_TEXT1": "회사명 : 예카 | 대표이사 : OOO",
+  "FOOTER_TEXT1": "회사명 : 예카 | 대표이사 : 팽정은",
   "FOOTER_TEXT2": "사업자 번호 : 123-45-67890",
   "FOOTER_TEXT3": "대표전화 : 031-123-4567",
   "FOOTER_TEXT4": "주소 : 서울시 강남구 OO로 OO",
@@ -351,8 +351,12 @@
   "DELETE" : "삭제",
   "NEED_TO_LOGIN_FOR_FAVORITE" : "상품 찜 등록은 로그인해야 합니다.",
   "CAN_REGISTER_MENU_MAX_THREE" : "메뉴는 최대 3개 까지 등록 가능합니다.",
-  "DELETE" : "삭제",
-  "DELETE" : "삭제",
+  "MUST_BE_AT_LEAST_ONE" : "상품의 수량은 1개 이상이어야 합니다.",
+  "HELP_FOR_AN_ACCURATE_DIAGNOSIS" : "정확한 진단을 위해 오프라인의 퍼스널컬러 컨설턴트 도움을 받아보세요.",
+  "PLEASE_DO_THE_AI_TEST_FIRST" : "AI 테스트를 먼저 해주세요.",
+  "HAVE_ALREADY_APPLIED_FOR_WITHDRAWAL" : "이미 출금 신청을 했습니다.",
+  "FOR_RESULT" : "결과확인을 위해",
+  "NEED_TO_LOGIN" : "로그인이 필요해요 :)",
 
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",

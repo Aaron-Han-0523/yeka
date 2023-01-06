@@ -42,19 +42,15 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                   padding: const EdgeInsets.fromLTRB(23, 15, 0, 0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
-                    child: Container(
-                      child: FadeInImage.assetNetwork(
-                        placeholder: Images.placeholder1,
-                        image: menuModel.menu_image != null
-                            ? AppConstants.BASE_URL + "/" + menuModel.menu_image
-                            : AppConstants.BASE_URL +
-                                "/placeholder_1x1.png",
-                        fit: BoxFit.cover,
-                        // image: widget.userModel.title_image != null ? AppConstants.BASE_URL + "/" + widget.userModel.title_image : AppConstants.BASE_URL,
-                        width: MediaQuery.of(context).size.width * 0.29,
-                        //750 * ? = 216
-                        height: MediaQuery.of(context).size.width * 0.29,
-                      ),
+                    child: FadeInImage.assetNetwork(
+                      placeholder: Images.placeholder1,
+                      image: menuModel.menu_image != null
+                          ? AppConstants.BASE_URL + "/" + menuModel.menu_image
+                          : AppConstants.BASE_URL +
+                              "/placeholder_1x1.png",
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width * 0.29,
+                      height: MediaQuery.of(context).size.width * 0.29,
                     ),
                   ),
                 ),

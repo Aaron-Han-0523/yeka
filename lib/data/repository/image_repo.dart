@@ -20,7 +20,10 @@ class ImageRepo {
     if (imageModel.image_type == 0 || imageModel.image_type == 1) {
       url = AppConstants.ADD_IMAGE_PRODUCT_URI;
       uploadBasePath += "/product/";
-    } else if (imageModel.image_type == 2 || imageModel.image_type == 3 || imageModel.image_type == 4) {
+    } else if (imageModel.image_type == 2 ||
+        imageModel.image_type == 3 ||
+        imageModel.image_type == 4 ||
+        imageModel.image_type == 5) {
       url = AppConstants.ADD_IMAGE_USER_URI;
       uploadBasePath += "/user/";
     } else {
@@ -38,7 +41,7 @@ class ImageRepo {
       'user_id': imageModel.user_id,
       'consultant_id': imageModel.consultant_id,
       'create_date': imageModel.create_date,
-      'image_type': imageModel.image_type ?? 99,
+      'image_type': imageModel.image_type ?? 5,
       'title': imageModel.title ?? "",
       'content': imageModel.content ?? "",
     });

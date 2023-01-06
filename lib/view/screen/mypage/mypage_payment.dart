@@ -484,7 +484,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                       context: context,
                                       builder: (BuildContext context) =>
                                           SingleTextAlertDialog(
-                                        message: "이미 출금 신청을 했습니다.",
+                                        message: "${getTranslated('HAVE_ALREADY_APPLIED_FOR_WITHDRAWAL', context)}",
                                       ),
                                     );
                                   }

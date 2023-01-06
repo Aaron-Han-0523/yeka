@@ -31,6 +31,14 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
 
   int stage = 0;
 
+  double stage_exception(int stage) {
+    if(stage == 13) {
+      return 12;
+    } else if (stage == 15) {
+      return 15;
+    }
+    return 19;
+  }
   @override
   Widget build(BuildContext context) {
     testList = [];
@@ -157,7 +165,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                           child: Text(
                             "${testList[stage]}",
                             style: TextStyle(
-                              fontSize: stage == 13 ? 15 : 19,
+                              fontSize: stage_exception(stage),
                               color: Color(0xffEEEEEE),
                               fontWeight: FontWeight.w800,
                             ),
@@ -499,7 +507,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
       showDialog(
         context: context,
         builder: (BuildContext context) => SingleTextAlertDialog(
-          message: "정확한 진단을 위해 오프라인의 퍼스널컬러 컨설턴트 도움을 받아보세요.",
+          message: "${getTranslated('HELP_FOR_AN_ACCURATE_DIAGNOSIS', context)}",
         ),
       );
     } else {

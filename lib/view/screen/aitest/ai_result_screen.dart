@@ -22,6 +22,7 @@ import '../../../provider/image_provider.dart';
 import '../../../provider/personal_color_provider.dart';
 import '../../../provider/user_provider.dart';
 import '../../../util//images.dart';
+import '../../../util/app_constants.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
 import '../home/home_screens.dart';
@@ -60,6 +61,8 @@ class _AIResultPageState extends State<AIResultPage>
     personalColorModel =
         await Provider.of<PersonalColorProvider>(context, listen: false)
             .getPersonalColorCondition(personalColorModel);
+
+    await Provider.of<PersonalColorProvider>(context, listen: false).addPersonalColor(personalColorModel);
 
     loggedIn =
         await Provider.of<AuthProvider>(context, listen: false).isLoggedIn();
@@ -130,6 +133,7 @@ class _AIResultPageState extends State<AIResultPage>
       matchingColorList = personalColorModel.matching_color_array.split(",");
     }
 
+
     return Scaffold(
       backgroundColor: ColorResources.getHomeBg(context),
       resizeToAvoidBottomInset: false,
@@ -183,7 +187,7 @@ class _AIResultPageState extends State<AIResultPage>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "당신은 ${season} ${seasonKor} ",
+                              "${getTranslated('YOU', context)} ${season} ${seasonKor} ",
                               style: TextStyle(
                                 fontSize: 20,
                               ),
@@ -195,7 +199,7 @@ class _AIResultPageState extends State<AIResultPage>
                               ),
                             ),
                             Text(
-                              " 입니다.",
+                              " ${getTranslated('IS', context)}",
                               style: TextStyle(
                                 fontSize: 20,
                               ),
@@ -265,10 +269,12 @@ class _AIResultPageState extends State<AIResultPage>
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(150.0),
-                                  child: Image.file(
-                                    File(
-                                      widget.consultingModel.client_image,
-                                    ),
+                                  child: FadeInImage.assetNetwork(
+                                    placeholder: Images.placeholder1,
+                                    image: widget.consultingModel.client_image != null
+                                        ? AppConstants.BASE_URL+ "/" + widget.consultingModel.client_image
+                                        : AppConstants.BASE_URL+
+                                        "/placeholder_1x1.png",
                                     fit: BoxFit.cover,
                                     height: MediaQuery.of(context).size.width *
                                         0.85,
@@ -629,11 +635,11 @@ class _AIResultPageState extends State<AIResultPage>
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  "결과확인을 위해",
+                                  "${getTranslated('FOR_RESULT', context)}",
                                   style: TextStyle(fontSize: 22),
                                 ),
                                 Text(
-                                  "로그인이 필요해요 :)",
+                                  "${getTranslated('NEED_TO_LOGIN', context)}",
                                   style: TextStyle(fontSize: 22),
                                 ),
                                 Container(
@@ -650,7 +656,7 @@ class _AIResultPageState extends State<AIResultPage>
 
                                       setState(() {});
                                     },
-                                    buttonText: "로그인",
+                                    buttonText: "${getTranslated('LOGIN', context)}",
                                   ),
                                 ),
                                 SizedBox(

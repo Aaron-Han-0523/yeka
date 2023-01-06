@@ -154,7 +154,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                       ScrollingPageIndicator(
                         dotColor: Colors.grey,
                         dotSelectedColor: Colors.deepPurple,
-                        dotSize: 6,
+                        dotSize: 8,
                         dotSelectedSize: 8,
                         dotSpacing: 18,
                         controller: _controller,
@@ -381,7 +381,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                         builder: (BuildContext context) =>
                                             SingleTextAlertDialog(
                                               message:
-                                              "상품의 수량은 1개 이상이어야 합니다.",
+                                              "${getTranslated('MUST_BE_AT_LEAST_ONE', context)}",
                                             ),
                                       );
                                     } else if (Provider.of<AuthProvider>(context,

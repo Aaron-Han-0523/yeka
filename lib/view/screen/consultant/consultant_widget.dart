@@ -61,13 +61,13 @@ class ConsultantWidget extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 90,
-                    height: 20,
+                    width: 108,
+                    height: 30,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                       child: Text(
                         userModel.name ?? '',
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: robotoRegular.copyWith(
                           fontSize: Dimensions.FONT_SIZE_LARGE,
                           fontWeight: FontWeight.bold,
@@ -77,6 +77,9 @@ class ConsultantWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    width: 5,
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
