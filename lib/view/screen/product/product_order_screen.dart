@@ -11,7 +11,9 @@ import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
+import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
+import '../home/home_screens.dart';
 
 class ProductOrderPage extends StatefulWidget {
   final bool isCreateScreen;
@@ -218,7 +220,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "${getTranslated('COLOR', context)}${getTranslated(':', context)}${widget.orderModel.option}",
+                                        "${getTranslated('COLOR', context)}${getTranslated(':', context)}${widget.orderModel.option ?? ""}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -232,7 +234,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('AMOUNT', context)}:${widget.orderModel.quantity}${getTranslated('SOME', context)}",
+                                        "${getTranslated('AMOUNT', context)}:${widget.orderModel.quantity ?? ""}${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -246,7 +248,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                         ),
                                       ),
                                       Text(
-                                        "${widget.orderModel.create_date}",
+                                        "${widget.orderModel.create_date ?? ""}",
                                         style: TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
@@ -405,17 +407,17 @@ class _ProductOrderPageState extends State<ProductOrderPage>
 
                       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                      // CustomElevatedButton(
-                      //   onTap: () async {
-                      //     Navigator.of(context).pushAndRemoveUntil(
-                      //         MaterialPageRoute(
-                      //           builder: (_) => HomePage(),
-                      //         ),
-                      //         (route) => false);
-                      //   },
-                      //   buttonText: "홈으로",
-                      // ),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                      CustomElevatedButton(
+                        onTap: () async {
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                builder: (_) => HomePage(),
+                              ),
+                              (route) => false);
+                        },
+                        buttonText: "홈으로",
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),
                     ],
                   ),

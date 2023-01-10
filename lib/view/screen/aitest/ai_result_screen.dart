@@ -269,12 +269,10 @@ class _AIResultPageState extends State<AIResultPage>
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(150.0),
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder: Images.placeholder1,
-                                    image: widget.consultingModel.client_image != null
-                                        ? AppConstants.BASE_URL+ "/" + widget.consultingModel.client_image
-                                        : AppConstants.BASE_URL+
-                                        "/placeholder_1x1.png",
+                                  child: Image.file(
+                                    File(
+                                      widget.consultingModel.client_image,
+                                    ),
                                     fit: BoxFit.cover,
                                     height: MediaQuery.of(context).size.width *
                                         0.85,

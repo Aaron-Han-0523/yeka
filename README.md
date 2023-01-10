@@ -231,6 +231,33 @@ Container(
     )
   ),
 ),
+
+FadeInImage.assetNetwork(
+  placeholder: Images.placeholder1,
+  image: thumbnailList2[index] != null
+     ? AppConstants.BASE_URL + "/" + thumbnailList2[index]
+     : AppConstants.BASE_URL,
+  fit: BoxFit.cover,
+  width: 150,
+  height: 150,
+  imageErrorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+    return Container(
+      // padding: const EdgeInsets.all(10.0),
+      width: 150,
+      height: 150,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: Color(0xfff1f1f1),
+      ),
+      child: Padding(
+      padding: const EdgeInsets.all(12.0),
+        child: Image.asset(
+          Images.upload,
+        ),
+      ),
+    );
+  },
+)
 ```
 
 아이콘 : Icon
