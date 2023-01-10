@@ -234,6 +234,8 @@
   "WAITING_FOR_DEPOSIT" : "입금대기",
   "WAITING_FOR_THE_CALL_TO_PROCEED" : "상담 진행 대기",
   "SELECT_CONSULTATION_DAY" : "상담일 선택",
+  "CONSULTATION_IN_PROGRESS" : "상담 진행 중",
+  "END_OF_CONSULTATION" : "상담 종료",
   "FILL_IN_CONSULTATION_RESULT" : "상담결과작성",
   "SELECT_DATE" : "날짜 선택",
   "BRACKETS_NOTICE" : "[공지사항] ",
@@ -274,9 +276,13 @@
   "PLEASE_LOGIN" : "로그인하세요.",
   "ALL_THAT_ACADEMY" : "- 올댓뷰티아카데미",
   "WAITING_FOR_DEPOSIT_SPACE" : "입금 대기",
+  "RESERVATION_DEPOSIT" : "예약금 입금 완료",
+  "FINAL_DEPOSIT_COMPLETED" : "최종입금 완료",
+
   "APPLY" : "적용하기",
   "PLEASE_SELECT_DATE" : "날짜를 선택하세요",
   "YOU" : "당신은",
+  "HOME" : "홈으로",
   "CHECK_USER_INFO" : "사용자 정보가 일치하지 않습니다.",
 
   "SPRING" : "봄",

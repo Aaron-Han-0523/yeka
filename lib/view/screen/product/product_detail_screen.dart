@@ -117,424 +117,427 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     }
 
     return Scaffold(
-        backgroundColor: ColorResources.getHomeBg(context),
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              // App Bar
-              CustomSliverAppBar(
-                "${getTranslated('PRODUCT_DETAIL_INFO', context)}",
-              ),
+      backgroundColor: ColorResources.getHomeBg(context),
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            // App Bar
+            CustomSliverAppBar(
+              "${getTranslated('PRODUCT_DETAIL_INFO', context)}",
+            ),
 
-              SliverToBoxAdapter(
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  width: MediaQuery.of(context).size.width + 100,
-                  // decoration: BoxDecoration(color: Colors.white),
-                  decoration: BoxDecoration(
-                    color: Color(0xffcfcbc3),
-                  ),
-                  child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+            SliverToBoxAdapter(
+              child: Container(
+                alignment: Alignment.centerLeft,
+                width: MediaQuery.of(context).size.width + 100,
+                // decoration: BoxDecoration(color: Colors.white),
+                decoration: BoxDecoration(
+                  color: Color(0xffcfcbc3),
+                ),
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                    SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                    SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
 
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.width * 0.8,
-                        child: PageView(
-                          children: thumbnailItems,
-                          controller: _controller,
-                        ),
-                      ),
-                      SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-                      ScrollingPageIndicator(
-                        dotColor: Colors.grey,
-                        dotSelectedColor: Colors.deepPurple,
-                        dotSize: 8,
-                        dotSelectedSize: 8,
-                        dotSpacing: 18,
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: MediaQuery.of(context).size.width * 0.8,
+                      child: PageView(
+                        children: thumbnailItems,
                         controller: _controller,
-                        itemCount: thumbnailItems.length == 0
-                            ? 1
-                            : thumbnailItems.length,
-                        orientation: Axis.horizontal,
                       ),
+                    ),
+                    SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                    ScrollingPageIndicator(
+                      dotColor: Colors.grey,
+                      dotSelectedColor: Colors.deepPurple,
+                      dotSize: 8,
+                      dotSelectedSize: 8,
+                      dotSpacing: 18,
+                      controller: _controller,
+                      itemCount: thumbnailItems.length == 0
+                          ? 1
+                          : thumbnailItems.length,
+                      orientation: Axis.horizontal,
+                    ),
 
-                      SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-                      Stack(
-                        children: [
-                          Container(
-                            alignment: Alignment.centerRight,
-                            // margin: const EdgeInsets.all(8.0),
-                            padding:
-                                const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100.0)),
-                              color: Colors.white,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 15, 0, 0),
-                                  child: Text(
-                                    "${widget.productModel.tag}",
-                                    style: TextStyle(
-                                      color: Color(0xFF999999),
-                                      fontSize: 12,
-                                    ),
+                    SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                    Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.centerRight,
+                          // margin: const EdgeInsets.all(8.0),
+                          padding:
+                              const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(100.0)),
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                child: Text(
+                                  "${widget.productModel.tag ?? ""}",
+                                  style: TextStyle(
+                                    color: Color(0xFF999999),
+                                    fontSize: 12,
                                   ),
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 5, 0, 0),
-                                  child: Text(
-                                    "${widget.productModel.title}",
-                                    style: TextStyle(
-                                      color: Color(0xFF000000),
-                                      fontSize: 24,
-                                    ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(15, 5, 0, 0),
+                                child: Text(
+                                  "${widget.productModel.title ?? ""}",
+                                  style: TextStyle(
+                                    color: Color(0xFF000000),
+                                    fontSize: 24,
                                   ),
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                                  child: Text(
-                                    "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble())} ${getTranslated('WON', context)}",
-                                    style: TextStyle(
-                                      color: Color(0xFF0123B4),
-                                      fontSize: 24,
-                                    ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                                child: Text(
+                                  "${PriceConverter.convertPrice(context, widget.productModel.price.toDouble() ?? "")} ${getTranslated('WON', context)}",
+                                  style: TextStyle(
+                                    color: Color(0xFF0123B4),
+                                    fontSize: 24,
                                   ),
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 20, 0, 5),
-                                  child: Text(
-                                    "${getTranslated('PRODUCT_DETAIL_PRODUCT_DESC', context)}",
-                                    style: TextStyle(
-                                      color: Color(0xFF333333),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 20, 0, 5),
+                                child: Text(
+                                  "${getTranslated('PRODUCT_DETAIL_PRODUCT_DESC', context)}",
+                                  style: TextStyle(
+                                    color: Color(0xFF333333),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(
-                                    height: Dimensions
-                                        .PADDING_SIZE_EXTRA_EXTRA_SMALL),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 0, 4, 0),
-                                  child: Text(
-                                    "${widget.productModel.description}",
-                                    style: TextStyle(
-                                      color: Color(0xFF333333),
-                                      fontSize: 12,
-                                    ),
+                              ),
+                              SizedBox(
+                                  height: Dimensions
+                                      .PADDING_SIZE_EXTRA_EXTRA_SMALL),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(15, 0, 4, 0),
+                                child: Text(
+                                  "${widget.productModel.description ?? ""}",
+                                  style: TextStyle(
+                                    color: Color(0xFF333333),
+                                    fontSize: 12,
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          10, 10, 12, 0),
-                                      child: Card(
-                                        child: Container(
-                                          height: 35,
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  "${getTranslated('AMOUNT', context)}",
-                                                  style: TextStyle(
-                                                    color: Color(0xFF999999),
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                              ),
-                                              _itemCount != 0
-                                                  ? IconButton(
-                                                      icon: Icon(Icons.remove),
-                                                      onPressed: () => setState(
-                                                          () => _itemCount--),
-                                                    )
-                                                  : IconButton(
-                                                      icon: Icon(Icons.remove),
-                                                      onPressed: null,
-                                                    ),
-                                              Text(_itemCount.toString()),
-                                              IconButton(
-                                                icon: Icon(
-                                                  Icons.add,
-                                                ),
-                                                onPressed: () => setState(
-                                                    () => _itemCount++),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          20, 25, 0, 0),
-                                      child: CustomDropdownButton2(
-                                        hint:
-                                            '${getTranslated('PRODUCT_DETAIL_PRODUCT_OPTION_DESC', context)}',
-                                        icon: const Icon(
-                                            Icons.keyboard_arrow_down),
-                                        iconSize: Dimensions.ICON_SIZE_DEFAULT,
-                                        dropdownItems: optionDropdownItems,
-                                        value: optionDropdownItems.length != 0
-                                            ? optionDropdownItems[
-                                                optionDropdownValue]
-                                            : null,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            optionDropdownValue =
-                                                optionDropdownItems
-                                                    .indexOf(value);
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 0, 25, 0),
-                                      child: Text(
-                                        "${getTranslated('DELIVERY_CHARGE', context)}",
-                                        style: TextStyle(
-                                          color: Color(0xFF999999),
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 6, 15, 5),
-                                      child: Text(
-                                        "${getTranslated('PLUS', context)}${PriceConverter.convertPrice(context, widget.productModel.delivery_fee.toDouble())} ${getTranslated('WON', context)}",
-                                        style: TextStyle(
-                                          color: Color(0xFF333333),
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const Divider(
-                                  height: 5,
-                                  thickness: 1,
-                                  indent: 12,
-                                  endIndent: 12,
-                                  color: Color(0xffdddddd),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 0, 0, 0),
-                                      child: Text(
-                                        "${getTranslated('FINAL_PAYMENT_AMOUNT', context)}",
-                                        style: TextStyle(
-                                          color: Color(0xFF999999),
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 10, 15, 10),
-                                      child: Text(
-                                        "${_itemCount == 0 ? 0 : PriceConverter.convertPrice(context, widget.productModel.price * _itemCount + widget.productModel.delivery_fee.toDouble())} ${getTranslated('WON', context)}",
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                    height: Dimensions
-                                        .PADDING_SIZE_EXTRA_EXTRA_SMALL),
-                                CustomElevatedButton(
-                                  onTap: () async {
-                                    if(_itemCount == 0) {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            SingleTextAlertDialog(
-                                              message:
-                                              "${getTranslated('MUST_BE_AT_LEAST_ONE', context)}",
-                                            ),
-                                      );
-                                    } else if (Provider.of<AuthProvider>(context,
-                                            listen: false)
-                                        .isLoggedIn()) {
-                                      OrderModel orderModel = OrderModel(
-                                        image1: widget.productModel.thumbnail !=
-                                                null
-                                            ? AppConstants.BASE_URL +
-                                                "/" +
-                                                widget.productModel.thumbnail
-                                            : AppConstants.BASE_URL,
-                                        title: widget.productModel.title,
-                                        option: optionDropdownItems.length != 0
-                                            ? optionDropdownItems[
-                                                optionDropdownValue]
-                                            : null,
-                                        quantity: _itemCount,
-                                        price: widget.productModel.price,
-                                        delivery_fee:
-                                            widget.productModel.delivery_fee,
-                                        total_fee: widget.productModel.price *
-                                                _itemCount +
-                                            widget.productModel.delivery_fee,
-                                      );
-
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (_) => ProductShippingPage(
-                                            orderModel: orderModel,
-                                          ),
-                                        ),
-                                      );
-                                    } else {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            SingleTextAlertDialog(
-                                              message:
-                                              "${getTranslated("HAVE_TO_LOGIN", context)}",
-                                            ),
-                                      );
-                                    }
-                                  },
-                                  buttonText:
-                                      "${getTranslated('GO_TO_ORDER', context)}",
-                                ),
-                                SizedBox(
-                                  height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                                ),
-                                for (var item in detailItems)
+                              ),
+                              Row(
+                                children: [
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(
-                                        15, 0, 15, 25),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      child: Image.network(
-                                        item != null
-                                            ? AppConstants.BASE_URL +
-                                                "/" +
-                                                item
-                                            : AppConstants.BASE_URL +
-                                            "/placeholder_1x1.png",
-                                        fit: BoxFit.cover,
+                                        10, 10, 12, 0),
+                                    child: Card(
+                                      child: Container(
+                                        height: 35,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                "${getTranslated('AMOUNT', context)}",
+                                                style: TextStyle(
+                                                  color: Color(0xFF999999),
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                            _itemCount != 0
+                                                ? IconButton(
+                                                    icon: Icon(Icons.remove),
+                                                    onPressed: () => setState(
+                                                        () => _itemCount--),
+                                                  )
+                                                : IconButton(
+                                                    icon: Icon(Icons.remove),
+                                                    onPressed: null,
+                                                  ),
+                                            Text(_itemCount.toString()),
+                                            IconButton(
+                                              icon: Icon(
+                                                Icons.add,
+                                              ),
+                                              onPressed: () =>
+                                                  setState(() => _itemCount++),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  )
-                              ],
-                            ),
+                                  ),
+                                  Container(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(20, 25, 0, 0),
+                                    child: CustomDropdownButton2(
+                                      hint:
+                                          '${getTranslated('PRODUCT_DETAIL_PRODUCT_OPTION_DESC', context)}',
+                                      icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                      iconSize: Dimensions.ICON_SIZE_DEFAULT,
+                                      dropdownItems: optionDropdownItems,
+                                      value: optionDropdownItems.length != 0
+                                          ? optionDropdownItems[
+                                              optionDropdownValue]
+                                          : null,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          optionDropdownValue =
+                                              optionDropdownItems
+                                                  .indexOf(value);
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 0, 25, 0),
+                                    child: Text(
+                                      "${getTranslated('DELIVERY_CHARGE', context)}",
+                                      style: TextStyle(
+                                        color: Color(0xFF999999),
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 6, 15, 5),
+                                    child: Text(
+                                      "${getTranslated('PLUS', context)}${PriceConverter.convertPrice(context, widget.productModel.delivery_fee.toDouble() ?? "")} ${getTranslated('WON', context)}",
+                                      style: TextStyle(
+                                        color: Color(0xFF333333),
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const Divider(
+                                height: 5,
+                                thickness: 1,
+                                indent: 12,
+                                endIndent: 12,
+                                color: Color(0xffdddddd),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                    child: Text(
+                                      "${getTranslated('FINAL_PAYMENT_AMOUNT', context)}",
+                                      style: TextStyle(
+                                        color: Color(0xFF999999),
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        0, 10, 15, 10),
+                                    child: Text(
+                                      "${_itemCount == 0 ? 0 : PriceConverter.convertPrice(context, widget.productModel.price * _itemCount + widget.productModel.delivery_fee.toDouble())} ${getTranslated('WON', context)}",
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                  height: Dimensions
+                                      .PADDING_SIZE_EXTRA_EXTRA_SMALL),
+                              CustomElevatedButton(
+                                onTap: () async {
+                                  if (_itemCount == 0) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          SingleTextAlertDialog(
+                                        message:
+                                            "${getTranslated('MUST_BE_AT_LEAST_ONE', context)}",
+                                      ),
+                                    );
+                                  } else if (Provider.of<AuthProvider>(context,
+                                          listen: false)
+                                      .isLoggedIn()) {
+                                    OrderModel orderModel = OrderModel(
+                                      image1:
+                                          widget.productModel.thumbnail != null
+                                              ? AppConstants.BASE_URL +
+                                                  "/" +
+                                                  widget.productModel.thumbnail
+                                              : AppConstants.BASE_URL,
+                                      title: widget.productModel.title,
+                                      option: optionDropdownItems.length != 0
+                                          ? optionDropdownItems[
+                                              optionDropdownValue]
+                                          : null,
+                                      quantity: _itemCount,
+                                      price: widget.productModel.price,
+                                      delivery_fee:
+                                          widget.productModel.delivery_fee,
+                                      total_fee: widget.productModel.price *
+                                              _itemCount +
+                                          widget.productModel.delivery_fee,
+                                    );
+
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) => ProductShippingPage(
+                                          orderModel: orderModel,
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          SingleTextAlertDialog(
+                                        message:
+                                            "${getTranslated("HAVE_TO_LOGIN", context)}",
+                                      ),
+                                    );
+                                  }
+                                },
+                                buttonText:
+                                    "${getTranslated('GO_TO_ORDER', context)}",
+                              ),
+                              SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
+                              ),
+                              for (var item in detailItems)
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 0, 15, 25),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: Image.network(
+                                      item != null
+                                          ? AppConstants.BASE_URL + "/" + item
+                                          : AppConstants.BASE_URL +
+                                              "/placeholder_1x1.png",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                )
+                            ],
                           ),
-                          Positioned(
-                            top: 0,
-                            right: 30,
-                            child: InkWell(
-                              onTap: () async {
-                                var userId = Provider.of<AuthProvider>(context,
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 30,
+                          child: InkWell(
+                            onTap: () async {
+                              var userId = Provider.of<AuthProvider>(context,
+                                      listen: false)
+                                  .getUser()["id"];
+
+                              if (userId != null) {
+                                LikeProductModel likeProductModel =
+                                    LikeProductModel(
+                                  id: widget.productModel.like_product_id,
+                                  user_id: userId,
+                                  product_id: widget.productModel.id,
+                                );
+
+                                if (heart)
+                                  await Provider.of<LikeProductProvider>(
+                                          context,
+                                          listen: false)
+                                      .deleteLikeProduct(likeProductModel);
+                                else
+                                  await Provider.of<LikeProductProvider>(
+                                          context,
+                                          listen: false)
+                                      .addLikeProduct(likeProductModel);
+
+                                int user_id = Provider.of<AuthProvider>(context,
                                         listen: false)
                                     .getUser()["id"];
 
-                                if (userId != null) {
-                                  LikeProductModel likeProductModel =
-                                      LikeProductModel(
-                                    id: widget.productModel.like_product_id,
-                                    user_id: userId,
-                                    product_id: widget.productModel.id,
-                                  );
+                                await Provider.of<ProductProvider>(context,
+                                        listen: false)
+                                    .getLatestProductList(0, user_id, context,
+                                        reload: true);
 
-                                  if (heart)
-                                    await Provider.of<LikeProductProvider>(context,
-                                            listen: false)
-                                        .deleteLikeProduct(likeProductModel);
-                                  else
-                                    await Provider.of<LikeProductProvider>(context,
-                                            listen: false)
-                                        .addLikeProduct(likeProductModel);
-
-                                  int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
-
-                                  await Provider.of<ProductProvider>(context, listen: false)
-                                      .getLatestProductList(0, user_id, context, reload: true);
-
-                                  setState(() {
-                                    heart = !heart;
-                                  });
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text(
-                                            "${getTranslated('LOGIN_FAVORITE_REGISTERING', context)}"),
-                                        backgroundColor: Colors.red),
-                                  );
-                                }
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(10.0),
-                                decoration: BoxDecoration(
-                                    color: Color(0xfff8f8f8),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(30.0),
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color(0xffbbbbbb),
-                                        offset: const Offset(0.0, 2.0),
-                                        blurRadius: 0.0,
-                                        spreadRadius: 0.0,
-                                      )
-                                    ]),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: Container(
-                                    child: Image.asset(
-                                      heart ? Images.heart_fill : Images.heart,
-                                      fit: BoxFit.cover,
-                                      width: 20,
-                                      // width: MediaQuery.of(context).size.width * 0.9,
-                                      // height: MediaQuery.of(context).size.width * 0.9,
-                                    ),
+                                setState(() {
+                                  heart = !heart;
+                                });
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          "${getTranslated('LOGIN_FAVORITE_REGISTERING', context)}"),
+                                      backgroundColor: Colors.red),
+                                );
+                              }
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                  color: Color(0xfff8f8f8),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(30.0),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0xffbbbbbb),
+                                      offset: const Offset(0.0, 2.0),
+                                      blurRadius: 0.0,
+                                      spreadRadius: 0.0,
+                                    )
+                                  ]),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Container(
+                                  child: Image.asset(
+                                    heart ? Images.heart_fill : Images.heart,
+                                    fit: BoxFit.cover,
+                                    width: 20,
+                                    // width: MediaQuery.of(context).size.width * 0.9,
+                                    // height: MediaQuery.of(context).size.width * 0.9,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                      // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
-                      FooterPage(),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    // SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                    FooterPage(),
+                  ],
                 ),
-              )
-            ],
-          ),
-        ));
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -105,7 +105,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "${DateConverter.isoStringToDateOnly(widget.consultingModel.reservation_date)}",
+                                    "${DateConverter.isoStringToDateOnly(widget.consultingModel.reservation_date)}" ?? "",
                                     textAlign: TextAlign.end,
                                     style: TextStyle(
                                       color: Color(0xff333333),
@@ -128,7 +128,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "${widget.menuModel.menu_title}",
+                                    "${widget.menuModel.menu_title}" ?? "",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 11,
@@ -150,7 +150,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "${PriceConverter.convertPrice(context, widget.menuModel.menu_amount / 10)}${getTranslated('WON', context)}",
+                                    "${PriceConverter.convertPrice(context, widget.menuModel.menu_amount / 10)}${getTranslated('WON', context)}" ?? "",
                                     style: TextStyle(
                                       color: Color(0xff0123B4),
                                       fontSize: 11,
@@ -209,7 +209,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "${widget.userModel.bank1} ${widget.userModel.bank2}",
+                                    "${widget.userModel.bank1} ${widget.userModel.bank2}" ?? "",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 11,
@@ -232,7 +232,7 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "${widget.userModel.bank3}",
+                                    "${widget.userModel.bank3}" ?? "",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 10,

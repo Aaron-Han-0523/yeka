@@ -26,7 +26,8 @@ class ConsultantPaymentScreen extends StatefulWidget {
     this.isCreateScreen = true,
     this.userModel,
     this.consultingModel,
-    this.menuModel, this.personalColorModel,
+    this.menuModel,
+    this.personalColorModel,
   }) : super(key: key);
 
   @override
@@ -89,7 +90,8 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "${DateConverter.isoStringToDateOnly(widget.consultingModel.reservation_date)}",
+                            "${DateConverter.isoStringToDateOnly(widget.consultingModel.reservation_date)}" ??
+                                "",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
@@ -112,7 +114,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "${widget.consultingModel.consulting_title}",
+                            "${widget.consultingModel.consulting_title}" ?? "",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
@@ -135,7 +137,8 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "${PriceConverter.convertPrice(context, widget.consultingModel.payment_amount.toDouble())} ${getTranslated('WON', context)}",
+                            "${PriceConverter.convertPrice(context, widget.consultingModel.payment_amount.toDouble())} ${getTranslated('WON', context)}" ??
+                                "",
                             style: TextStyle(
                               color: Color(0xff0123b4),
                               fontSize: 15,
@@ -162,7 +165,8 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20, 7.5),
                           child: Text(
-                            "${getTranslated('MINUS', context)}${PriceConverter.convertPrice(context, widget.consultingModel.reservation_amount.toDouble())}${getTranslated('WON', context)}",
+                            "${getTranslated('MINUS', context)}${PriceConverter.convertPrice(context, widget.consultingModel.reservation_amount.toDouble())}${getTranslated('WON', context)}" ??
+                                "",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 9,
@@ -192,7 +196,8 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "${PriceConverter.convertPrice(context, widget.consultingModel.final_amount.toDouble())}${getTranslated('WON', context)}",
+                            "${PriceConverter.convertPrice(context, widget.consultingModel.final_amount.toDouble())}${getTranslated('WON', context)}" ??
+                                "",
                             style: TextStyle(
                               color: Color(0xffff3d3d),
                               fontSize: 15,
@@ -251,7 +256,8 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "${widget.userModel.bank1} ${widget.userModel.bank2}",
+                            "${widget.userModel.bank1} ${widget.userModel.bank2}" ??
+                                "",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
@@ -274,7 +280,7 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                             ),
                           ),
                           Text(
-                            "${widget.userModel.bank3}",
+                            "${widget.userModel.bank3}" ?? "",
                             style: TextStyle(
                               color: Color(0xff333333),
                               fontSize: 11,
@@ -316,8 +322,8 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (_) => ConsultantResultScreen(
-                                  userModel: widget.userModel,
-                                  consultingModel: widget.consultingModel,
+                                userModel: widget.userModel,
+                                consultingModel: widget.consultingModel,
                               ),
                             ),
                           );

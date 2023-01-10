@@ -81,7 +81,7 @@ class _CommunityYoutubeDetailScreenState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${widget.communityModel.community_title}",
+                              "${widget.communityModel.community_title ?? ""}",
                               style: TextStyle(
                                 fontSize: 12.0,
                                 fontWeight: FontWeight.bold,
@@ -92,7 +92,7 @@ class _CommunityYoutubeDetailScreenState
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "${widget.communityModel.writer}|${widget.communityModel.create_date}",
+                                  "${widget.communityModel.writer ?? ""}|${widget.communityModel.create_date ?? ""}",
                                   style: TextStyle(
                                     fontSize: 8.0,
                                     fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class _CommunityYoutubeDetailScreenState
                                         width: 12,
                                       ),
                                       Text(
-                                        " ${widget.communityModel.views}${getTranslated('TIMES', context)}",
+                                        " ${widget.communityModel.views ?? ""}${getTranslated('TIMES', context)}",
                                         style: TextStyle(
                                           fontSize: 8.0,
                                           fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _CommunityYoutubeDetailScreenState
                         child: Container(
                           width: 400,
                           child: Text(
-                            "${widget.communityModel.community_content}",
+                            "${widget.communityModel.community_content ?? ""}",
                             style: TextStyle(
                               fontSize: 10.0,
                             ),
@@ -219,7 +219,7 @@ class _CommunityYoutubeDetailScreenState
                                             child: FadeInImage.assetNetwork(
                                               placeholder: Images.placeholder1,
                                               image: YoutubeConverter.getYoutubeThumbnail(
-                                                "${communityNewsList[index].community_link}",
+                                                "${communityNewsList[index].community_link ?? ""}",
                                               ),
                                               fit: BoxFit.fitWidth,
                                               width: 83,
@@ -241,7 +241,7 @@ class _CommunityYoutubeDetailScreenState
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "${communityNewsList[index].community_title}",
+                                                "${communityNewsList[index].community_title ?? ""}",
                                                 style: TextStyle(
                                                   fontSize: 11.0,
                                                   fontWeight: FontWeight.bold,
@@ -254,7 +254,7 @@ class _CommunityYoutubeDetailScreenState
                                                     MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "${communityNewsList[index].writer}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[index].create_date)}",
+                                                    "${communityNewsList[index].writer ?? ""}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[index].create_date) ?? ""}",
                                                     style: TextStyle(
                                                       fontSize: 7.0,
                                                       fontWeight:
@@ -276,7 +276,7 @@ class _CommunityYoutubeDetailScreenState
                                                           width: 12,
                                                         ),
                                                         Text(
-                                                          " ${communityNewsList[index].views}${getTranslated('TIMES', context)}",
+                                                          " ${communityNewsList[index].views ?? ""}${getTranslated('TIMES', context)}",
                                                           style: TextStyle(
                                                             fontSize: 7.0,
                                                             fontWeight:

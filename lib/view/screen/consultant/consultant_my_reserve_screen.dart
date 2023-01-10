@@ -172,7 +172,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 5, 0, 9),
                       child: Text(
-                        "${widget.userModel.hashtag}",
+                        "${widget.userModel.hashtag}" ?? "",
                         style: TextStyle(
                           color: Color(0xff0123B4),
                           fontSize: 10,
@@ -184,7 +184,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 0, 5, 16),
                           child: Text(
-                            "${widget.userModel.name}",
+                            "${widget.userModel.name}" ?? "",
                             style: TextStyle(
                               color: Color(0xff121212),
                               fontSize: 22,
@@ -231,7 +231,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                               // height: 32,
                               // color: Colors.red,
                               child: Text(
-                                "${widget.userModel.phone}",
+                                "${widget.userModel.phone}" ?? "",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -261,7 +261,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                               // height: 32,
                               // color: Colors.red,
                               child: Text(
-                                "${widget.userModel.address2}",
+                                "${widget.userModel.address2}" ?? "",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -287,7 +287,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             ),
                             Container(
                               child: Text(
-                                "${widget.userModel.address2} ${widget.userModel.address3}",
+                                "${widget.userModel.address2} ${widget.userModel.address3}" ?? "",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -313,7 +313,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             ),
                             Container(
                               child: Text(
-                                "${widget.consultingModel.reservation_date}",
+                                "${widget.consultingModel.reservation_date}" ?? "",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,
@@ -370,7 +370,7 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                             ),
                             Container(
                               child: Text(
-                                "${widget.userModel.business_registration_number}",
+                                "${widget.userModel.business_registration_number}" ?? "",
                                 style: TextStyle(
                                   color: Color(0xff333333),
                                   fontSize: 14,

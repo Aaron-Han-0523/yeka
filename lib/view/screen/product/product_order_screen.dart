@@ -208,7 +208,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
                                     child: Text(
-                                      "${widget.orderModel.title}",
+                                      "${widget.orderModel.title ?? ""}",
                                       style: TextStyle(
                                         color: Color(0xff000000),
                                         fontSize: 16,
@@ -259,7 +259,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                     child: Text(
-                                      "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble())}${getTranslated('WON', context)}",
+                                      "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble() ?? "")}${getTranslated('WON', context)}",
                                       style: TextStyle(
                                         color: Color(0xff0123B4),
                                         fontSize: 16,
@@ -415,7 +415,7 @@ class _ProductOrderPageState extends State<ProductOrderPage>
                               ),
                               (route) => false);
                         },
-                        buttonText: "홈으로",
+                        buttonText: "${getTranslated('HOME', context)}",
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       FooterPage(),

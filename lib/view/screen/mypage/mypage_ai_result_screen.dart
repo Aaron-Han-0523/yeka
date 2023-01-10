@@ -157,7 +157,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "${name}",
+                            "${name ?? ""}",
                             style: TextStyle(
                               fontSize: 14,
                               color: Color(0xff0123B4),
@@ -182,7 +182,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
                             ),
                           ),
                           Text(
-                            " ${detailSeasonType}", //형광
+                            " ${detailSeasonType ?? ""}", //형광
                             style: TextStyle(
                               fontSize: 20,
                             ),

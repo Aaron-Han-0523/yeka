@@ -104,7 +104,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "${superUser.bank1} ${superUser.bank2}",
+                              "${superUser.bank1 ?? ""} ${superUser.bank2 ?? ""}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 11,
@@ -129,7 +129,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "${superUser.bank3}",
+                              "${superUser.bank3 ?? ""}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 11,
@@ -154,7 +154,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble())}${getTranslated('WON', context)}",
+                              "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble() ?? "")}${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xff0123b4),
                                 fontSize: 15,
@@ -179,7 +179,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "${getTranslated('+', context)} ${PriceConverter.convertPrice(context, widget.orderModel.delivery_fee.toDouble())}${getTranslated('WON', context)}",
+                              "${getTranslated('+', context)} ${PriceConverter.convertPrice(context, widget.orderModel.delivery_fee.toDouble() ?? "")}${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xff333333),
                                 fontSize: 9,
@@ -209,7 +209,7 @@ class _ProductPaymentPageState extends State<ProductPaymentPage>
                               ),
                             ),
                             Text(
-                              "${PriceConverter.convertPrice(context, widget.orderModel.total_fee.toDouble())}${getTranslated('WON', context)}",
+                              "${PriceConverter.convertPrice(context, widget.orderModel.total_fee.toDouble() ?? "")}${getTranslated('WON', context)}",
                               style: TextStyle(
                                 color: Color(0xffff3d3d),
                                 fontSize: 15,

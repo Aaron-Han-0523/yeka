@@ -36,6 +36,9 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
     with TickerProviderStateMixin {
   TabController _tabController;
 
+  List<ImageModel> imageList;
+  List<String> thumbnailList = [];
+
   //<======이미지=======>
   PageController _controller = PageController();
 
@@ -51,7 +54,19 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
 
     await Provider.of<MenuProvider>(context, listen: false)
         .getMenuList(menuModel, context);
+
+
+    await Provider.of<CustomImageProvider>(context, listen: false).getImageListByConsultantId(imageModel);
+
+    imageList = await Provider.of<CustomImageProvider>(context, listen: false)
+        .imageList;
+    for (var i = 0; i < imageList.length; i++) {
+      if (imageList[i].image_type == 4) {
+        thumbnailList.add(imageList[i].path);
+      }
+    }
   }
+
 
   @override
   void didChangeDependencies() async {
@@ -61,6 +76,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
   }
 
   Widget buildPage(String path) {
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: ClipRRect(
@@ -91,18 +107,18 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
     _tabController = new TabController(length: 3, vsync: this);
 
     return Consumer<CustomImageProvider>(
-        builder: (context, imageProvider, child) {
-      List<ImageModel> imageList = imageProvider.imageList;
-      List<Widget> consultantProfileItems = [];
+      builder: (context, imageProvider, child) {
+        List<ImageModel> imageList = imageProvider.imageList;
+        List<Widget> consultantProfileItems = [];
 
-      for (var image in imageList) {
-        // fixme image_type == 2, when debug then 4
-        if (image.image_type == 2) {
-          consultantProfileItems.add(buildPage(image.path));
+        for (var image in imageList) {
+          // fixme image_type == 2, when debug then 4
+          if (image.image_type == 2) {
+            consultantProfileItems.add(buildPage(image.path));
+          }
         }
-      }
 
-      return Scaffold(
+        return Scaffold(
           backgroundColor: ColorResources.getHomeBg(context),
           resizeToAvoidBottomInset: false,
           body: SafeArea(
@@ -208,7 +224,9 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                 )
               ],
             ),
-          ));
-    });
+          ),
+        );
+      },
+    );
   }
 }

@@ -64,37 +64,44 @@ class _ProductShippingPageState extends State<ProductShippingPage>
 
     if (_orderName.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${getTranslated('ORDER_NAME_FIELD_IS_REQUIRED', context)}"),
+        content:
+            Text("${getTranslated('ORDER_NAME_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderPhone.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${getTranslated('ORDER_PHONE_FIELD_IS_REQUIRED', context)}"),
+        content:
+            Text("${getTranslated('ORDER_PHONE_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderAddress1.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${getTranslated('ORDER_ADDRESS1_FIELD_IS_REQUIRED', context)}"),
+        content: Text(
+            "${getTranslated('ORDER_ADDRESS1_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderAddress2.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${getTranslated('ORDER_ADDRESS2_FIELD_IS_REQUIRED', context)}"),
+        content: Text(
+            "${getTranslated('ORDER_ADDRESS2_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderAddress3.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${getTranslated('ORDER_ADDRESS3_FIELD_IS_REQUIRED', context)}"),
+        content: Text(
+            "${getTranslated('ORDER_ADDRESS3_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_orderEmail.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${getTranslated('ORDER_EMAIL_FIELD_IS_REQUIRED', context)}"),
+        content:
+            Text("${getTranslated('ORDER_EMAIL_FIELD_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receiveDestination.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${getTranslated('RECEIVE_DESTINATION_IS_REQUIRED', context)}"),
+        content: Text(
+            "${getTranslated('RECEIVE_DESTINATION_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receiveName.isEmpty) {
@@ -104,8 +111,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
       ));
     } else if (_receivePhone.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text("${getTranslated('RECEIVE_PHONE_IS_REQUIRED', context)}"),
+        content: Text("${getTranslated('RECEIVE_PHONE_IS_REQUIRED', context)}"),
         backgroundColor: Colors.red,
       ));
     } else if (_receiveAddress1.isEmpty) {
@@ -242,7 +248,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                               borderRadius: BorderRadius.circular(150.0),
                               child: Image.network(
                                 // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1K7pE-hHoHeCSxqZh0S_X5sRm0IQ-yG25w&usqp=CAU",
-                                "${widget.orderModel.image1}",
+                                "${widget.orderModel.image1 ?? ""}",
                                 fit: BoxFit.fill,
                                 height: 107,
                                 width: 107,
@@ -254,7 +260,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${widget.orderModel.title}",
+                                  "${widget.orderModel.title ?? ""}",
                                   style: TextStyle(
                                     height: 1,
                                     color: Color(0xff121212),
@@ -267,7 +273,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${widget.orderModel.option != null ? widget.orderModel.option + "|" : ""}${getTranslated('AMOUNT', context)}${getTranslated(':', context)} ${PriceConverter.convertPrice(context, widget.orderModel.quantity.toDouble())}${getTranslated('SOME', context)}",
+                                        "${widget.orderModel.option ?? "" != null ? widget.orderModel.option ?? "" + "|" : ""}${getTranslated('AMOUNT', context)}${getTranslated(':', context)} ${PriceConverter.convertPrice(context, widget.orderModel.quantity.toDouble() ?? "")}${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           height: 1,
                                           color: Color(0xff999999),
@@ -295,7 +301,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble())}${getTranslated('WON', context)}",
+                                        "${PriceConverter.convertPrice(context, widget.orderModel.price.toDouble() ?? "")}${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff333333),
                                           fontSize: 12,
@@ -321,7 +327,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "${getTranslated('+', context)} ${PriceConverter.convertPrice(context, widget.orderModel.delivery_fee.toDouble())}${getTranslated('WON', context)}",
+                                        "${getTranslated('+', context)} ${PriceConverter.convertPrice(context, widget.orderModel.delivery_fee.toDouble() ?? "")}${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff333333),
                                           fontSize: 12,
@@ -358,7 +364,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                         ),
                                       ),
                                       Text(
-                                        "${PriceConverter.convertPrice(context, widget.orderModel.total_fee.toDouble())}${getTranslated('WON', context)}",
+                                        "${PriceConverter.convertPrice(context, widget.orderModel.total_fee.toDouble() ?? "")}${getTranslated('WON', context)}",
                                         style: TextStyle(
                                           color: Color(0xff0123B4),
                                           fontSize: 14,

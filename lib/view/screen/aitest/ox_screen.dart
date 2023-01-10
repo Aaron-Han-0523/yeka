@@ -163,7 +163,7 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                         height: 40,
                         child: Center(
                           child: Text(
-                            "${testList[stage]}",
+                            "${testList[stage]} ?? """,
                             style: TextStyle(
                               fontSize: stage_exception(stage),
                               color: Color(0xffEEEEEE),

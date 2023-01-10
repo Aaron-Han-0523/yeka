@@ -87,7 +87,7 @@ class CommunityFreeBoardWidget extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      communityModel.community_title,
+                      communityModel.community_title ?? "",
                       style: TextStyle(
                         fontSize: 11.0,
                         fontWeight: FontWeight.bold,
@@ -140,7 +140,7 @@ class CommunityFreeBoardWidget extends StatelessWidget {
                               width: 12,
                             ),
                             Text(
-                              " ${communityModel.views}${getTranslated('TIMES', context)}",
+                              " ${communityModel.views ?? ""}${getTranslated('TIMES', context)}",
                               style: TextStyle(
                                 fontSize: 7.0,
                                 fontWeight: FontWeight.bold,

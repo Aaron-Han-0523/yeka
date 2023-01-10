@@ -67,7 +67,7 @@ class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
                       height: 5,
                     ),
                     Text(
-                      widget.communityModel.community_title,
+                      widget.communityModel.community_title ?? "",
                       style: TextStyle(
                         fontSize: 11.0,
                         fontWeight: FontWeight.bold,
@@ -120,7 +120,7 @@ class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
                               width: 12,
                             ),
                             Text(
-                              " ${widget.communityModel.views}${getTranslated('TIMES', context)}",
+                              " ${widget.communityModel.views ?? ""}${getTranslated('TIMES', context)}",
                               style: TextStyle(
                                 fontSize: 7.0,
                                 fontWeight: FontWeight.bold,
@@ -149,7 +149,7 @@ class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
                 child: FadeInImage.assetNetwork(
                   placeholder: Images.placeholder1,
                   image: YoutubeConverter.getYoutubeThumbnail(
-                    "${widget.communityModel.community_link}",
+                    "${widget.communityModel.community_link ?? ""}",
                   ),
                   fit: BoxFit.fitWidth,
                   height: 49,

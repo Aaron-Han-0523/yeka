@@ -245,7 +245,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 0, 5, 9.75),
                                     child: Text(
-                                      "${widget.userModel.name}",
+                                      "${widget.userModel.name ?? ""}",
                                       style: TextStyle(
                                         color: Color(0xff121212),
                                         fontSize: 22,
@@ -295,7 +295,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 1, 0, 0),
                                     child: Text(
-                                      "${widget.consultingModel.consulting_title}",
+                                      "${widget.consultingModel.consulting_title ?? ""}",
                                       style: TextStyle(
                                         color: Color(0xff333333),
                                         fontSize: 12,
@@ -314,7 +314,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       child: Row(
                         children: [
                           Text(
-                            "${name}",
+                            "${name ?? ""}",
                             textAlign: TextAlign.end,
                             style: TextStyle(
                               color: Color(0xff0123b4),
@@ -451,38 +451,37 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 11, 10, 25),
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10.0),
-                              child: FadeInImage.assetNetwork(
-                                placeholder: Images.placeholder1,
-                                image:
-                                    widget.consultingModel.client_image != null
-                                        ? AppConstants.BASE_URL +
-                                            "/" +
-                                            widget.consultingModel.client_image
-                                        : AppConstants.BASE_URL +
-                                            "/placeholder_1x1.png",
-                                fit: BoxFit.fill,
-                                height: 177,
-                                width: 167.5,
-                                imageErrorBuilder: (BuildContext context,
-                                    Object exception, StackTrace stackTrace) {
-                                  return Container(
-                                    // padding: const EdgeInsets.all(10.0),
-                                    width: 150,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Color(0xfff1f1f1),
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: FadeInImage.assetNetwork(
+                              placeholder: Images.placeholder1,
+                              image: widget.consultingModel.client_image != null
+                                  ? AppConstants.BASE_URL +
+                                      "/" +
+                                      widget.consultingModel.client_image
+                                  : AppConstants.BASE_URL +
+                                      "/placeholder_1x1.png",
+                              fit: BoxFit.fill,
+                              height: 177,
+                              width: 167.5,
+                              imageErrorBuilder: (BuildContext context,
+                                  Object exception, StackTrace stackTrace) {
+                                return Container(
+                                  // padding: const EdgeInsets.all(10.0),
+                                  width: 150,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Color(0xfff1f1f1),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Image.asset(
+                                      Images.placeholder_1x1,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Image.asset(
-                                        Images.placeholder_1x1,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                         Expanded(

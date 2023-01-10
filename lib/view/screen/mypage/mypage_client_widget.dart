@@ -14,18 +14,17 @@ class MyPageClientWidget extends StatelessWidget {
 
   MyPageClientWidget({this.consultingModel});
 
-  // FIXME 대표님 이부분은 에러가 생겨 작업하지 못했습니다.
   Widget paymentState(int paymentState) {
     String result = "";
     Color color = Colors.white;
     if (paymentState == 0) {
-      result = "입금 대기";
+      result = "$getTranslated('WAITING_FOR_DEPOSIT_SPAC', context)";
       color = Color(0xffff0000);
     } else if (paymentState == 1) {
-      result = "예약금 입금 완료";
+      result = "$getTranslated('RESERVATION_DEPOSIT', context)";
       color = Color(0xffff9924);
     } else if (paymentState == 2) {
-      result = "최종입금 완료";
+      result = "$getTranslated('FINAL_DEPOSIT_COMPLETED', context)";
       color = Color(0xff0123b4);
     }
     return Text(
@@ -45,19 +44,19 @@ class MyPageClientWidget extends StatelessWidget {
     String buttonText = "";
     Widget nextPage = Container();
     if (consultingState == 0) {
-      result = "상담 진행 대기";
+      result = "$getTranslated('WAITING_FOR_THE_CALL_TO_PROCEED', context)";
       color = Color(0xff3a9d6e);
-      buttonText = "상담일 선택";
+      buttonText = "$getTranslated('SELECT_CONSULTATION_DAY', context)";
       nextPage = MyPageCalendarScreen(
         consultingModel: consultingModel,
       );
     } else if (consultingState == 1) {
-      result = "상담 진행 중";
+      result = "$getTranslated('CONSULTATION_IN_PROGRESS', context)";
       color = Color(0xffff9924);
     } else if (consultingState == 2) {
-      result = "상담 종료";
+      result = "$getTranslated('END_OF_CONSULTATION', context)";
       color = Color(0xff0123b4);
-      buttonText = "상담결과작성";
+      buttonText = "$getTranslated('FILL_IN_CONSULTATION_RESULT', context)";
       nextPage = MyPageConsultantResultWriteScreen(
         consultingModel: consultingModel,
       );
