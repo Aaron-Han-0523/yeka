@@ -5,10 +5,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/data/model/response/user_model.dart';
-
 import 'package:yeka/util/dimensions.dart';
-
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+
 import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/menu_model.dart';
 import '../../../helper/date_converter.dart';
@@ -93,11 +92,14 @@ class _MyPageConsultantUpdateScreenState
         Provider.of<CustomImageProvider>(context, listen: false).imageList;
 
     for (var i = 0; i < imageList.length; i++) {
-      if (imageList[i].image_type == 2) { // 컨설턴트 프로필
+      if (imageList[i].image_type == 2) {
+        // 컨설턴트 프로필
         thumbnailList.add(imageList[i].path);
-      } else if (imageList[i].image_type == 3) { // 컨설턴트 포트폴리오
+      } else if (imageList[i].image_type == 3) {
+        // 컨설턴트 포트폴리오
         thumbnailList2.add(imageList[i].path);
-      } else if (imageList[i].image_type == 4) { // 컨설턴트 메뉴
+      } else if (imageList[i].image_type == 4) {
+        // 컨설턴트 메뉴
         // menuList[i].menu_image = imageList[i].path;
       } else {}
     }
@@ -653,7 +655,8 @@ class _MyPageConsultantUpdateScreenState
                                       context: context,
                                       builder: (BuildContext context) =>
                                           SingleTextAlertDialog(
-                                        message: "${getTranslated('CAN_REGISTER_MENU_MAX_THREE', context)}",
+                                        message:
+                                            "${getTranslated('CAN_REGISTER_MENU_MAX_THREE', context)}",
                                       ),
                                     );
                                   } else {

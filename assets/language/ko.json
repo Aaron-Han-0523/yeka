@@ -360,9 +360,12 @@
   "MUST_BE_AT_LEAST_ONE" : "상품의 수량은 1개 이상이어야 합니다.",
   "HELP_FOR_AN_ACCURATE_DIAGNOSIS" : "정확한 진단을 위해 오프라인의 퍼스널컬러 컨설턴트 도움을 받아보세요.",
   "PLEASE_DO_THE_AI_TEST_FIRST" : "AI 테스트를 먼저 해주세요.",
+  "PLEASE_DO_THE_CONSULTING_RESERVE_OR_PAY_FIRST" : "컨설팅 상담예약/결제를 완료해주세요.",
+  "PLEASE_DO_THE_CONSULTING_CONSULT_FIRST" : "컨설팅 상담을 완료해주세요.",
   "HAVE_ALREADY_APPLIED_FOR_WITHDRAWAL" : "이미 출금 신청을 했습니다.",
   "FOR_RESULT" : "결과확인을 위해",
   "NEED_TO_LOGIN" : "로그인이 필요해요 :)",
+  "NO_FAVORITE_PRODUCT" : "선택한 찜 상품이 없습니다.",
 
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",

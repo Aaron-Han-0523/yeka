@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/data/model/response/personal_color_model.dart';
 import 'package:yeka/data/repository/personal_color_repo.dart';
-
-import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
 class PersonalColorProvider extends ChangeNotifier {

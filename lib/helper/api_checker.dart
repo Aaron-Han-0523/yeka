@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yeka/data/model/response/base/api_response.dart';
-// import 'package:yeka/provider/auth_provider.dart';
-// import 'package:yeka/provider/profile_provider.dart';
-// import 'package:yeka/view/screen/auth/auth_screen.dart';
-import 'package:provider/provider.dart';
 
 class ApiChecker {
   static void checkApi(BuildContext context, ApiResponse apiResponse) {

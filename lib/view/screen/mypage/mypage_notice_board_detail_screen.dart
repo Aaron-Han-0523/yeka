@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:yeka/util/dimensions.dart';
-
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../util//images.dart';
-import '../../../util/app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 
 class MyPageNoticeBoardDetailScreen extends StatefulWidget {

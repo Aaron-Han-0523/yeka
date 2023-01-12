@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ProductShimmer extends StatelessWidget {
   final bool isEnabled;

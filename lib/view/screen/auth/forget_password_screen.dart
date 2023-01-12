@@ -1,6 +1,5 @@
-import 'package:country_code_picker/country_code.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:yeka/localization/language_constants.dart';
 import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/provider/splash_provider.dart';
@@ -11,9 +10,6 @@ import 'package:yeka/util/images.dart';
 import 'package:yeka/view/basewidget/animated_custom_dialog.dart';
 import 'package:yeka/view/basewidget/button/custom_button.dart';
 import 'package:yeka/view/basewidget/my_dialog.dart';
-import 'package:yeka/view/basewidget/textfield/custom_textfield.dart';
-import 'package:yeka/view/screen/auth/widget/code_picker_widget.dart';
-import 'package:provider/provider.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   @override

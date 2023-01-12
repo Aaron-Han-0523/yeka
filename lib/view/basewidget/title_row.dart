@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yeka/localization/language_constants.dart';
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/custom_themes.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/util/images.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class TitleRow extends StatelessWidget {
   final String title;

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:kpostal/kpostal.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/data/model/body/register_model.dart';
 import 'package:yeka/data/model/response/user_model.dart';
 import 'package:yeka/helper/email_checker.dart';
 import 'package:yeka/localization/language_constants.dart';
 import 'package:yeka/provider/auth_provider.dart';
-
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/textfield/custom_label_textfield.dart';
-
-import 'package:provider/provider.dart';
 
 import '../../../../helper/date_converter.dart';
 import '../../../basewidget/button/custom_elevated_button.dart';
@@ -16,9 +15,6 @@ import '../../../basewidget/button/custom_label_textfield_upload_button.dart';
 import '../../../basewidget/dialog/single_text_alertdialog.dart';
 import '../../../basewidget/radio/custom_small_radio_button.dart';
 import '../../../basewidget/textarea/custom_textarea.dart';
-
-import 'package:kpostal/kpostal.dart';
-
 import '../auth_screen.dart';
 
 class SignUpWidget extends StatefulWidget {

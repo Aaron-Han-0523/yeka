@@ -1,13 +1,12 @@
 import 'dart:async';
-import 'package:yeka/provider/auth_provider.dart';
-import 'package:yeka/view/screen/auth/auth_screen.dart';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/localization/language_constants.dart';
 import 'package:yeka/provider/splash_provider.dart';
 import 'package:yeka/provider/theme_provider.dart';
 import 'package:yeka/util/images.dart';
-import 'package:provider/provider.dart';
 
 import '../home/home_screens.dart';
 

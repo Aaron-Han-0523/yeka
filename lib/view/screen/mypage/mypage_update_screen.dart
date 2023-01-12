@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kpostal/kpostal.dart';
 import 'package:provider/provider.dart';
-import 'package:yeka/data/model/body/login_model.dart';
-
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
-
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
@@ -15,7 +13,6 @@ import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_label_textfield_upload_button.dart';
 import '../../basewidget/radio/custom_small_radio_button.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
-import '../home/home_screens.dart';
 import 'mypage_home_screen.dart';
 
 class MyPageUpdateScreen extends StatefulWidget {

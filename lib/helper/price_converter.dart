@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/provider/splash_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/provider/splash_provider.dart';
 
 class PriceConverter {
   static String convertPrice(BuildContext context, double price, {double discount, String discountType}) {

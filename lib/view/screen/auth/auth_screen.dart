@@ -1,14 +1,11 @@
-import 'package:yeka/view/screen/auth/join_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:yeka/localization/language_constants.dart';
 import 'package:yeka/provider/auth_provider.dart';
-
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/util/images.dart';
-
-import 'package:provider/provider.dart';
+import 'package:yeka/view/screen/auth/join_screen.dart';
 
 import '../../../data/model/body/login_model.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';

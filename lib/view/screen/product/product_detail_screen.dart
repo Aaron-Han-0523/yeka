@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/dialog/single_text_alertdialog.dart';
@@ -22,7 +22,6 @@ import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/dropdown/CustomDropdownButton2.dart';
-import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final bool isCreateScreen;

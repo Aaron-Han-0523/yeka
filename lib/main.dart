@@ -3,12 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/provider/community_freeboard_provider.dart';
 import 'package:yeka/provider/community_notice_provider.dart';
 import 'package:yeka/provider/community_provider.dart';
 import 'package:yeka/provider/community_youtube_provider.dart';
 import 'package:yeka/provider/consulting_provider.dart';
+import 'package:yeka/provider/image_provider.dart';
 import 'package:yeka/provider/like_product_provider.dart';
 import 'package:yeka/provider/localization_provider.dart';
 import 'package:yeka/provider/menu_provider.dart';
@@ -20,12 +22,10 @@ import 'package:yeka/provider/product_provider.dart';
 import 'package:yeka/provider/splash_provider.dart';
 import 'package:yeka/provider/theme_provider.dart';
 import 'package:yeka/provider/user_provider.dart';
-import 'package:yeka/provider/image_provider.dart';
 import 'package:yeka/theme/dark_theme.dart';
 import 'package:yeka/theme/light_theme.dart';
 import 'package:yeka/util/app_constants.dart';
 import 'package:yeka/view/screen/splash/splash_screen.dart';
-import 'package:provider/provider.dart';
 
 import 'di_container.dart' as di;
 import 'helper/custom_delegate.dart';

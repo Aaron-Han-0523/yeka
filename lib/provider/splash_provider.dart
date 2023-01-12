@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:package_info/package_info.dart';
 import 'package:yeka/data/model/response/config_model.dart';
 import 'package:yeka/data/repository/splash_repo.dart';
-import 'package:package_info/package_info.dart';
 
 class SplashProvider extends ChangeNotifier {
   final SplashRepo splashRepo;

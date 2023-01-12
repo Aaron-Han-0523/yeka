@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/util/app_constants.dart';
-
 import 'package:yeka/util/dimensions.dart';
-
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+
 import '../../../localization/language_constants.dart';
 import '../../../provider/user_provider.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';

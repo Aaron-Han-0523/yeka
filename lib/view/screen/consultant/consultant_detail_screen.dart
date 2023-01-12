@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 import 'package:yeka/data/model/response/menu_model.dart';
-
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
@@ -15,7 +14,6 @@ import '../../../provider/menu_provider.dart';
 import '../../../util//app_constants.dart';
 import '../../../util/images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
-
 import 'consultant_detail_tab.dart';
 import 'consultant_menu_tab.dart';
 import 'consultant_portfolio_tab.dart';
@@ -36,9 +34,6 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
     with TickerProviderStateMixin {
   TabController _tabController;
 
-  List<ImageModel> imageList;
-  List<String> thumbnailList = [];
-
   //<======이미지=======>
   PageController _controller = PageController();
 
@@ -58,13 +53,6 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
 
     await Provider.of<CustomImageProvider>(context, listen: false).getImageListByConsultantId(imageModel);
 
-    imageList = await Provider.of<CustomImageProvider>(context, listen: false)
-        .imageList;
-    for (var i = 0; i < imageList.length; i++) {
-      if (imageList[i].image_type == 4) {
-        thumbnailList.add(imageList[i].path);
-      }
-    }
   }
 
 

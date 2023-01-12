@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/data/model/response/consulting_model.dart';
-
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/basewidget/appbar/custom_sliver_app_bar.dart';
@@ -22,7 +21,6 @@ import '../../../provider/image_provider.dart';
 import '../../../provider/personal_color_provider.dart';
 import '../../../provider/user_provider.dart';
 import '../../../util//images.dart';
-import '../../../util/app_constants.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
 import '../home/home_screens.dart';

@@ -4,8 +4,6 @@ import 'package:yeka/data/datasource/remote/dio/dio_client.dart';
 import 'package:yeka/data/datasource/remote/exception/api_error_handler.dart';
 import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/data/model/response/onboarding_model.dart';
-import 'package:yeka/localization/language_constants.dart';
-import 'package:yeka/util/app_constants.dart';
 
 import '../../util/images.dart';
 

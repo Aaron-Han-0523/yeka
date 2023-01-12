@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
-
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
 import '../../../data/model/response/community_model.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../helper/date_converter.dart';
@@ -11,7 +12,6 @@ import '../../../localization/language_constants.dart';
 import '../../../provider/community_youtube_provider.dart';
 import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CommunityYoutubeDetailScreen extends StatefulWidget {
   final CommunityModel communityModel;

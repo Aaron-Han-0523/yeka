@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
+import 'package:provider/provider.dart';
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/util/images.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
-import 'package:provider/provider.dart';
 import 'package:yeka/view/screen/product/product_view.dart';
 
 import '../../../data/model/response/community_model.dart';
@@ -37,7 +36,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    int user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+    int user_id =
+        Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
 
     await Provider.of<CommunityProvider>(context, listen: false)
         .getLatestCommunityList(0, context, reload: reload);
@@ -123,7 +123,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            MyPageNoticeBoardDetailScreen(communityModel: list[index],),
+                                            MyPageNoticeBoardDetailScreen(
+                                          communityModel: list[index],
+                                        ),
                                       ),
                                     );
                                   } else if (list[index].community_type == 1) {
@@ -131,7 +133,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            CommunityYoutubeDetailScreen(communityModel: list[index],),
+                                            CommunityYoutubeDetailScreen(
+                                          communityModel: list[index],
+                                        ),
                                       ),
                                     );
                                   } else if (list[index].community_type == 2) {
@@ -139,7 +143,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            CommunityFreeBoardDetailScreen(communityModel: list[index],),
+                                            CommunityFreeBoardDetailScreen(
+                                          communityModel: list[index],
+                                        ),
                                       ),
                                     );
                                   }

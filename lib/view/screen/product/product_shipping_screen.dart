@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kpostal/kpostal.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/helper/price_converter.dart';
-
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
@@ -273,7 +272,7 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${widget.orderModel.option ?? "" != null ? widget.orderModel.option ?? "" + "|" : ""}${getTranslated('AMOUNT', context)}${getTranslated(':', context)} ${PriceConverter.convertPrice(context, widget.orderModel.quantity.toDouble() ?? "")}${getTranslated('SOME', context)}",
+                                        "${widget.orderModel.option ?? "" != null ? widget.orderModel.option ?? "" + " | " : ""}${getTranslated('AMOUNT', context)}${getTranslated(':', context)} ${PriceConverter.convertPrice(context, widget.orderModel.quantity.toDouble() ?? "")}${getTranslated('SOME', context)}",
                                         style: TextStyle(
                                           height: 1,
                                           color: Color(0xff999999),

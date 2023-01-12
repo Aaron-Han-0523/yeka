@@ -1,12 +1,14 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:images_picker/images_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/helper/date_converter.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/util/images.dart';
-
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+
 import '../../../data/model/response/community_model.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../localization/language_constants.dart';
@@ -17,7 +19,6 @@ import '../../../util//app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/textarea/custom_textarea.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
-import 'package:images_picker/images_picker.dart';
 
 class CommunityCRUDScreen extends StatefulWidget {
   final CommunityModel communityModel;

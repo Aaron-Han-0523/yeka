@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/provider/theme_provider.dart';
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/custom_themes.dart';
 import 'package:yeka/util/dimensions.dart';
-import 'package:provider/provider.dart';
 
 class CustomButton extends StatelessWidget {
   final Function onTap;

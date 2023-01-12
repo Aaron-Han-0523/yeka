@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/view/basewidget/product_shimmer.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/view/basewidget/product_shimmer.dart';
 import 'package:yeka/view/screen/product/product_widget.dart';
 
 import '../../../data/model/response/product_model.dart';

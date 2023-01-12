@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/provider/consulting_provider.dart';
-
 import 'package:yeka/util/dimensions.dart';
-
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+
 import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/personal_color_model.dart';
@@ -49,26 +48,33 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
       client_id: map["id"],
     );
 
-    consultingModel = await Provider.of<ConsultingProvider>(context, listen: false).getConsultingByClientId(consultingModel);
+    consultingModel =
+        await Provider.of<ConsultingProvider>(context, listen: false)
+            .getConsultingByClientId(consultingModel);
 
-    await Provider.of<ConsultingProvider>(context, listen: false).getLatestConsultingList(0, map["id"], context, reload: true);
+    await Provider.of<ConsultingProvider>(context, listen: false)
+        .getLatestConsultingList(0, map["id"], context, reload: true);
 
     personalColorModel = PersonalColorModel(
       season: consultingModel.season,
       detail_season_type: consultingModel.detail_season_type,
     );
 
-    personalColorModel = await Provider.of<PersonalColorProvider>(context, listen: false).getPersonalColorCondition(personalColorModel);
+    personalColorModel =
+        await Provider.of<PersonalColorProvider>(context, listen: false)
+            .getPersonalColorCondition(personalColorModel);
 
     userModel = UserModel(
       id: consultingModel.consultant_id,
     );
 
-    userModel = await Provider.of<UserProvider>(context, listen: false).getUser(userModel);
+    userModel = await Provider.of<UserProvider>(context, listen: false)
+        .getUser(userModel);
 
     ImageModel imageModel = ImageModel(user_id: map["id"]);
 
-    await Provider.of<CustomImageProvider>(context, listen: false).getImage(imageModel);
+    await Provider.of<CustomImageProvider>(context, listen: false)
+        .getImage(imageModel);
   }
 
   @override
@@ -88,17 +94,17 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
         myPageList.children.add(buildItem(
           "${getTranslated('PERSONAL_AI_ANALYSIS_RESULT', context)}",
           MyPageAIResultPage(),
-            isCheck: map["season"] == -1 ? true : false,
+          isCheck: map["season"] == -1 ? 0 : -1,
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESERVATION/PAYMENT', context)}",
           MyPageMyReserveScreen(),
-          isCheck: consultingModel == null ? true : false,
+          isCheck: consultingModel == null ? 1 : -1,
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESULT', context)}",
           MyPageConsultantResultScreen(),
-          isCheck: consultingModel == null ? true : false,
+          isCheck: consultingModel == null ? 2 : -1,
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('ORDER_LIST', context)}",
@@ -144,16 +150,32 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
     _loadData(context, false);
   }
 
-  buildItem(String title, Widget targetWidget, {bool isCheck = false}) {
+  buildItem(String title, Widget targetWidget, {int isCheck = -1}) {
     return InkWell(
       onTap: () {
-        if(isCheck) {
+        if (isCheck == 0) {
           showDialog(
             context: context,
-            builder: (BuildContext context) =>
-                SingleTextAlertDialog(
-                  message: "${getTranslated('PLEASE_DO_THE_AI_TEST_FIRST', context)}",
-                ),
+            builder: (BuildContext context) => SingleTextAlertDialog(
+              message:
+                  "${getTranslated('PLEASE_DO_THE_AI_TEST_FIRST', context)}",
+            ),
+          );
+        } else if (isCheck == 1) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => SingleTextAlertDialog(
+              message:
+                  "${getTranslated('PLEASE_DO_THE_CONSULTING_RESERVE_OR_PAY_FIRST', context)}",
+            ),
+          );
+        } else if (isCheck == 2) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => SingleTextAlertDialog(
+              message:
+                  "${getTranslated('PLEASE_DO_THE_CONSULTING_CONSULT_FIRST', context)}",
+            ),
           );
         } else {
           Navigator.of(context).push(
@@ -213,7 +235,8 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
           controller: _scrollController,
           slivers: [
             CustomSliverAppBar(
-              "${getTranslated('MY_PAGE', context)}",isMyPageHidden: true,
+              "${getTranslated('MY_PAGE', context)}",
+              isMyPageHidden: true,
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -234,7 +257,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${map["username"]} ${map["user_type"] == 0 ? "${getTranslated('USER', context)}" : "${getTranslated('CONSULTANT', context)}"} ${getTranslated('HELLO_SIR', context)}",
+                              "${map["username"] ?? ""} ${map["user_type"] == 0 ? "${getTranslated('USER', context)}" : "${getTranslated('CONSULTANT', context)}"} ${getTranslated('HELLO_SIR', context)}",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Color(0xff000000),
@@ -243,7 +266,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                             Text(
-                              "${map["email"]}",
+                              "${map["email"] ?? ""}",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Color(0xff999999),

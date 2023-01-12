@@ -48,17 +48,16 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
         .imageList;
 
     for (var i = 0; i < imageList.length; i++) {
-      // fixme image_type == 4
-      if (imageList[i].image_type == 2) {
+      if (imageList[i].image_type == 4) {
         imagePath.add(imageList[i].path);
       }
     }
     setState(() {});
   }
 
-  int count = 0;
+  // int count = 0;
 
-  Widget buildMenu(MenuModel menuModel) {
+  Widget buildMenu(MenuModel menuModel, int count) {
     return Column(
       children: [
           Padding(
@@ -74,7 +73,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                       child: FadeInImage.assetNetwork(
                         placeholder: Images.placeholder1,
                         image: imagePath[count] != null
-                            ? AppConstants.BASE_URL + "/" + imagePath[count++]
+                            ? AppConstants.BASE_URL + "/" + imagePath[count]
                             : AppConstants.BASE_URL + "/placeholder_1x1.png",
                         fit: BoxFit.cover,
                         width: MediaQuery.of(context).size.width * 0.29,
@@ -185,7 +184,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
     var menuList = Provider.of<MenuProvider>(context, listen: false).menuList;
     return Column(
       children: [
-        for (var i = 0; i < menuList.length; i++) buildMenu(menuList[i])
+        for (var i = 0; i < menuList.length; i++) buildMenu(menuList[i], i)
       ],
     );
   }

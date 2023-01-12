@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/data/model/response/menu_model.dart';
 import 'package:yeka/data/repository/menu_repo.dart';
-
-import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
 class MenuProvider extends ChangeNotifier {

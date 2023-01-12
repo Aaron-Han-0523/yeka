@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
-
 import 'package:yeka/util/dimensions.dart';
-
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
 import 'package:yeka/view/screen/community/community_crud_screen.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
+
 import '../../../data/model/response/community_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';

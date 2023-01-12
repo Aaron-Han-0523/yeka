@@ -5,11 +5,10 @@ import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 import 'package:yeka/data/model/response/community_model.dart';
 import 'package:yeka/data/model/response/image_model.dart';
 import 'package:yeka/helper/date_converter.dart';
-
 import 'package:yeka/util/dimensions.dart';
-
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
 import '../../../helper/youtube_converter.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/community_freeboard_provider.dart';

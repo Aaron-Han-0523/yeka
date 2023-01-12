@@ -6,7 +6,6 @@ import '../../../util//images.dart';
 import '../../screen/auth/auth_screen.dart';
 import '../../screen/home/home_screens.dart';
 import '../../screen/mypage/mypage_home_screen.dart';
-import '../button/home_button.dart';
 
 class CustomSliverAppBar extends StatefulWidget {
   final String titleText;
