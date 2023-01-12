@@ -1,7 +1,5 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yeka/data/datasource/remote/dio/dio_client.dart';
 import 'package:yeka/data/repository/community_repo.dart';
 import 'package:yeka/data/repository/consulting_repo.dart';
@@ -37,6 +35,8 @@ import 'package:yeka/provider/splash_provider.dart';
 import 'package:yeka/provider/theme_provider.dart';
 import 'package:yeka/provider/user_provider.dart';
 import 'package:yeka/util/app_constants.dart';
+import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/datasource/remote/dio/logging_interceptor.dart';
 import 'data/repository/auth_repo.dart';

@@ -72,7 +72,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                       borderRadius: BorderRadius.circular(10.0),
                       child: FadeInImage.assetNetwork(
                         placeholder: Images.placeholder1,
-                        image: imagePath[count] != null
+                        image: imagePath.length > 0
                             ? AppConstants.BASE_URL + "/" + imagePath[count]
                             : AppConstants.BASE_URL + "/placeholder_1x1.png",
                         fit: BoxFit.cover,

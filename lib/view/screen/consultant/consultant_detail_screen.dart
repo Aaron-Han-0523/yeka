@@ -50,11 +50,9 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
     await Provider.of<MenuProvider>(context, listen: false)
         .getMenuList(menuModel, context);
 
-
-    await Provider.of<CustomImageProvider>(context, listen: false).getImageListByConsultantId(imageModel);
-
+    await Provider.of<CustomImageProvider>(context, listen: false)
+        .getImageListByConsultantId(imageModel);
   }
-
 
   @override
   void didChangeDependencies() async {
@@ -64,7 +62,6 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
   }
 
   Widget buildPage(String path) {
-
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: ClipRRect(
@@ -80,7 +77,7 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
           imageErrorBuilder:
               (BuildContext context, Object exception, StackTrace stackTrace) {
             return Image.asset(
-              Images.upload,
+              Images.placeholder_1x1,
               fit: BoxFit.fitWidth,
               width: 30,
             );
@@ -100,7 +97,6 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
         List<Widget> consultantProfileItems = [];
 
         for (var image in imageList) {
-          // fixme image_type == 2, when debug then 4
           if (image.image_type == 2) {
             consultantProfileItems.add(buildPage(image.path));
           }

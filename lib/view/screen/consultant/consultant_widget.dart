@@ -1,17 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/util/app_constants.dart';
 import 'package:yeka/util/custom_themes.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/util/images.dart';
 
+import '../../../data/model/response/image_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/image_provider.dart';
+import '../../../provider/user_provider.dart';
 import 'consultant_detail_screen.dart';
 
 class ConsultantWidget extends StatelessWidget {
   final UserModel userModel;
 
+  // List<ImageModel> imageList = [];
+  // List<String> imagePath = [];
+
   ConsultantWidget({@required this.userModel});
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   ImageModel imageModel = ImageModel(consultant_id: userModel.id);
+  //   Provider.of<CustomImageProvider>(context, listen: false).getImageListByConsultantId(imageModel);
+  //   Provider.of<CustomImageProvider>(context, listen: false).getImagePath();
+  //   imagePath = Provider.of<CustomImageProvider>(context, listen: false).imagePath;
+  //
+  //     if (imageList[0].image_type == 4) {
+  //       imagePath.add(imageList[0].path);
+  //     }
+  //
+  //
+  //   return Column(
+  //     children: [
+  //       for (var i = 0; i < imageList.length; i++) buildList(imageList[i], context)
+  //     ],
+  //   );
+  // }
+
+  // Widget build(ImageModel imageList, context) {
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +50,8 @@ class ConsultantWidget extends StatelessWidget {
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 1000),
               pageBuilder: (context, anim1, anim2) => ConsultantDetailPage(
-                  userModel: userModel, isCreateScreen: false,
+                userModel: userModel,
+                isCreateScreen: false,
               ),
             ));
       },
@@ -46,14 +75,8 @@ class ConsultantWidget extends StatelessWidget {
                 imageErrorBuilder: (c, o, s) =>
                     Image.asset(Images.placeholder_3x1, fit: BoxFit.fitHeight),
               ),
-
-              // Image.asset(
-              //   Images.review_img1,
-              //   fit: BoxFit.fitHeight,
-              //   // height: 35,
-              // ),
             ),
-          ), // process quotation 실견적 최종견적
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +130,8 @@ class ConsultantWidget extends StatelessWidget {
                 height: Dimensions.PADDING_SIZE_SMALL,
               ),
               Text(
-                userModel.create_date ?? '${getTranslated('INCHEON_NATIONAL_UNIVERSITY', context)}',
+                userModel.create_date ??
+                    '${getTranslated('INCHEON_NATIONAL_UNIVERSITY', context)}',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
@@ -117,7 +141,8 @@ class ConsultantWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                userModel.bank1 ?? '${getTranslated('SKINCARE_HAIRDRESSER_LICENSE', context)}',
+                userModel.bank1 ??
+                    '${getTranslated('SKINCARE_HAIRDRESSER_LICENSE', context)}',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
@@ -127,7 +152,8 @@ class ConsultantWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                userModel.bank1 ?? '${getTranslated('ALL_THAT_ACADEMY', context)}',
+                userModel.bank1 ??
+                    '${getTranslated('ALL_THAT_ACADEMY', context)}',
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,

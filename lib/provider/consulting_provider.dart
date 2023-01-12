@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/data/model/response/consulting_model.dart';
 import 'package:yeka/data/repository/consulting_repo.dart';
+
+import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
 class ConsultingProvider extends ChangeNotifier {
@@ -58,7 +59,7 @@ class ConsultingProvider extends ChangeNotifier {
 
   Future<ConsultingModel> getConsultingByClientId(ConsultingModel consultingModel) async {
     ApiResponse apiResponse = await consultingRepo.getConsultingByClientId(consultingModel);
-    _consulting = ConsultingModel.fromJson(apiResponse.response.data);
+    if(apiResponse.response != null) _consulting = ConsultingModel.fromJson(apiResponse.response.data);
     notifyListeners();
     return _consulting;
   }

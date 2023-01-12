@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/data/model/response/community_model.dart';
 import 'package:yeka/data/repository/community_freeboard_repo.dart';
+
+import 'package:yeka/data/model/response/base/api_response.dart';
 import 'package:yeka/helper/api_checker.dart';
 
 class CommunityFreeBoardProvider extends ChangeNotifier {

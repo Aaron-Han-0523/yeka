@@ -56,8 +56,7 @@ class _ConsultantViewState extends State<ConsultantView> {
 
     return Consumer<UserProvider>(
       builder: (context, userProvider, child) {
-        List<UserModel> userList = [];
-        userList = userProvider.latestConsultantList;
+        List<UserModel> userList = userProvider.latestConsultantList;
 
         print('========hello hello===>${userList.length}');
 
