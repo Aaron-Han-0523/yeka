@@ -20,13 +20,11 @@ class CustomImageProvider extends ChangeNotifier {
 
   List<ImageModel> _latestImageList = [];
   List<ImageModel> _imageList = [];
-  // List<String> _imagePath = [];
   int _lOffset = 0;
   int limit = 6;
 
   List<ImageModel> get latestImageList => _latestImageList;
   List<ImageModel> get imageList => _imageList;
-  // List<String> get imagePath => _imagePath;
 
   int get lOffset => _lOffset;
 
@@ -100,11 +98,4 @@ class CustomImageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // List<String> getImagePath() {
-  //   for (var i = 0; i < imageList.length; i++) {
-  //     if (imageList[i].image_type == 2) {
-  //       imagePath.add(imageList[i].path);
-  //     }
-  //   }
-  // }
 }

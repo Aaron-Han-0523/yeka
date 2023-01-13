@@ -100,7 +100,7 @@ class ConsultingRepo {
       final response = await dioClient.get(
         AppConstants.GET_CONSULTING_BY_CLIENT_ID_URI + "/${consultingModel.client_id}",
       );
-      return ApiResponse.withSuccess(response);
+      if(response != null) return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }

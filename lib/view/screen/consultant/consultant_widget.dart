@@ -15,31 +15,7 @@ import 'consultant_detail_screen.dart';
 class ConsultantWidget extends StatelessWidget {
   final UserModel userModel;
 
-  // List<ImageModel> imageList = [];
-  // List<String> imagePath = [];
-
   ConsultantWidget({@required this.userModel});
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   ImageModel imageModel = ImageModel(consultant_id: userModel.id);
-  //   Provider.of<CustomImageProvider>(context, listen: false).getImageListByConsultantId(imageModel);
-  //   Provider.of<CustomImageProvider>(context, listen: false).getImagePath();
-  //   imagePath = Provider.of<CustomImageProvider>(context, listen: false).imagePath;
-  //
-  //     if (imageList[0].image_type == 4) {
-  //       imagePath.add(imageList[0].path);
-  //     }
-  //
-  //
-  //   return Column(
-  //     children: [
-  //       for (var i = 0; i < imageList.length; i++) buildList(imageList[i], context)
-  //     ],
-  //   );
-  // }
-
-  // Widget build(ImageModel imageList, context) {
 
   @override
   Widget build(BuildContext context) {

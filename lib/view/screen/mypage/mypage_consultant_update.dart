@@ -104,7 +104,23 @@ class _MyPageConsultantUpdateScreenState
       } else {}
     }
 
-    var hashtag = map["hashtag"].split(",");
+    List<String> hashtag = map["hashtag"].split(",");
+
+    for (int i = 0; i < hashtag.length; i++) {
+      if (i == 0) {
+        _hash1Controller.text = hashtag[i];
+      } else if (i == 1) {
+        _hash2Controller.text = hashtag[i];
+      } else if (i == 2) {
+        _hash3Controller.text = hashtag[i];
+      } else if (i == 3) {
+        _hash4Controller.text = hashtag[i];
+      } else if (i == 4) {
+        _hash5Controller.text = hashtag[i];
+      } else if (i == 5) {
+        _hash6Controller.text = hashtag[i];
+      }
+    }
 
     setState(() {});
   }
@@ -874,7 +890,10 @@ class _MyPageConsultantUpdateScreenState
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0.0, 0, 40.0),
                           child: CustomElevatedButton(
-                            onTap: () => modify(),
+                            onTap: () {
+                              modify();
+                              Navigator.pop(context);
+                              },
                             buttonText:
                                 "${getTranslated('MODIFICATION', context)}",
                           ),
@@ -921,6 +940,10 @@ class _MyPageConsultantUpdateScreenState
 
     await Provider.of<UserProvider>(context, listen: false)
         .updateUser(userModel);
+
+    map["hashtag"] = "${_hash1Controller.text},${_hash2Controller.text},${_hash3Controller.text},${_hash4Controller.text},${_hash5Controller.text},${_hash6Controller.text}";
+
+    await Provider.of<AuthProvider>(context, listen: false).saveUser(map);
 
     // 프로필
     for (var i = 0; i < thumbnailList.length; i++) {

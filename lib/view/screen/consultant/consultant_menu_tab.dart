@@ -31,9 +31,6 @@ class ConsultantMenuWidget extends StatefulWidget {
 
 class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
     with TickerProviderStateMixin {
-  List<ImageModel> imageList = [];
-  List<String> imagePath = [];
-
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
@@ -44,22 +41,25 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
     await Provider.of<CustomImageProvider>(context, listen: false)
         .getImageListByConsultantId(imageModel);
 
-    imageList = await Provider.of<CustomImageProvider>(context, listen: false)
-        .imageList;
-
-    for (var i = 0; i < imageList.length; i++) {
-      if (imageList[i].image_type == 4) {
-        imagePath.add(imageList[i].path);
-      }
-    }
-    setState(() {});
+    // await Provider.of<CustomImageProvider>(context, listen: false).imageList;
+    //
+    // setState(() {});
   }
 
-  // int count = 0;
-
   Widget buildMenu(MenuModel menuModel, int count) {
-    return Column(
-      children: [
+    return Consumer<CustomImageProvider>(
+        builder: (context, imageProvider, child) {
+      List<ImageModel> imageList = imageProvider.imageList;
+      List<String> imagePath = [];
+
+      for (int i = 0; i < imageList.length; i++) {
+        if (imageList[i].image_type == 4) {
+          imagePath.add(imageList[i].path);
+        }
+      }
+
+      return Column(
+        children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
             child: Container(
@@ -169,14 +169,15 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
               ),
             ),
           ),
-        Divider(
-          height: 1,
-          color: Color(0xffDDDDDD),
-          indent: 20,
-          endIndent: 20,
-        )
-      ],
-    );
+          Divider(
+            height: 1,
+            color: Color(0xffDDDDDD),
+            indent: 20,
+            endIndent: 20,
+          )
+        ],
+      );
+    });
   }
 
   @override
