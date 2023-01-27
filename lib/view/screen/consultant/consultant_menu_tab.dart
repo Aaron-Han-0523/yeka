@@ -93,7 +93,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 16, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(15, 16, 15, 0),
                         child: Text(
                           "${menuModel.menu_title ?? ""}",
                           style: TextStyle(
@@ -103,7 +103,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                         width: MediaQuery.of(context).size.width * 0.6,
                         child: Text(
                           "${menuModel.menu_content ?? ""}",
@@ -114,7 +114,7 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                         child: Text(
                           // "25,000원(3회 기준)",
                           "${PriceConverter.convertPrice(context, menuModel.menu_amount.toDouble() ?? "")} ${getTranslated('WON', context)}",

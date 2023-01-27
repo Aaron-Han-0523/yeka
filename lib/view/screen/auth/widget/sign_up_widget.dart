@@ -157,7 +157,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           MaterialPageRoute(builder: (_) => AuthScreen()), (route) => false);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));
+          SnackBar(
+              content: Text("${getTranslated('EXIST_ID', context)}"), backgroundColor: Colors.red
+          ));
     }
   }
 

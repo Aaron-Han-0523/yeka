@@ -66,50 +66,50 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
               onTap: () => {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) => HomePage()),
-                    (route) => false)
+                        (route) => false)
               },
               child: Icon(
                 Icons.home,
-                color: Colors.blue,
+                color: Colors.black,
                 // size: 30.0,
               ),
             ),
           ),
         ),
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
-            child: InkWell(
-              onTap: () => {
-                Provider.of<AuthProvider>(context, listen: false).clearUser()
-              },
-              child: Icon(
-                Icons.login,
-                color: Colors.green,
-                // size: 30.0,
-              ),
-            ),
-          ),
-        ),
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
-            child: InkWell(
-              onTap: () {
-                Provider.of<AuthProvider>(context, listen: false).clearUser();
-
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (_) => AuthScreen()),
-                    (route) => false);
-              },
-              child: Icon(
-                Icons.logout,
-                color: Colors.red,
-                // size: 30.0,
-              ),
-            ),
-          ),
-        ),
+        // Center(
+        //   child: Padding(
+        //     padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+        //     child: InkWell(
+        //       onTap: () => {
+        //         Provider.of<AuthProvider>(context, listen: false).clearUser()
+        //       },
+        //       child: Icon(
+        //         Icons.login,
+        //         color: Colors.green,
+        //         // size: 30.0,
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        // Center(
+        //   child: Padding(
+        //     padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+        //     child: InkWell(
+        //       onTap: () {
+        //         Provider.of<AuthProvider>(context, listen: false).clearUser();
+        //
+        //         Navigator.of(context).pushAndRemoveUntil(
+        //             MaterialPageRoute(builder: (_) => AuthScreen()),
+        //             (route) => false);
+        //       },
+        //       child: Icon(
+        //         Icons.logout,
+        //         color: Colors.red,
+        //         // size: 30.0,
+        //       ),
+        //     ),
+        //   ),
+        // ),
         widget.isMyPageHidden ? Container() : Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
