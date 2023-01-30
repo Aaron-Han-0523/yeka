@@ -118,17 +118,18 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     ),
                               InkWell(
                                 onTap: () {
-                                  if (list[index].community_type == 0) {
-                                    // 공지사항
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            MyPageNoticeBoardDetailScreen(
-                                          communityModel: list[index],
-                                        ),
-                                      ),
-                                    );
-                                  } else if (list[index].community_type == 1) {
+                                  // if (list[index].community_type == 0) {
+                                  //   // 공지사항
+                                  //   Navigator.of(context).push(
+                                  //     MaterialPageRoute(
+                                  //       builder: (context) =>
+                                  //           MyPageNoticeBoardDetailScreen(
+                                  //         communityModel: list[index],
+                                  //       ),
+                                  //     ),
+                                  //   );
+                                  // } else
+                                  if (list[index].community_type == 1) {
                                     // 유튜브 및 칼럼
                                     Navigator.of(context).push(
                                       MaterialPageRoute(

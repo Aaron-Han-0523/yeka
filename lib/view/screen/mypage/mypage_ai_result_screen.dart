@@ -93,32 +93,76 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
       if (personalColorModel.season == 0) {
         season = "Spring";
         seasonKor = "봄";
+        switch (personalColorModel.detail_season_type) {
+          case 0:
+            detailSeasonType = "라이트";
+            break;
+          case 1:
+            detailSeasonType = "소프트";
+            break;
+          case 2:
+            detailSeasonType = "브라이트";
+            break;
+        }
       } else if (personalColorModel.season == 1) {
         season = "Summer";
         seasonKor = "여름";
+        switch (personalColorModel.detail_season_type) {
+          case 0:
+            detailSeasonType = "라이트";
+            break;
+          case 1:
+            detailSeasonType = "뮤트";
+            break;
+          case 2:
+            detailSeasonType = "브라이트";
+            break;
+        }
       } else if (personalColorModel.season == 2) {
         season = "Fall";
         seasonKor = "가을";
+        switch (personalColorModel.detail_season_type) {
+          case 0:
+            detailSeasonType = "뮤트";
+            break;
+          case 1:
+            detailSeasonType = "딥";
+            break;
+          case 2:
+            detailSeasonType = "스트롱";
+            break;
+        }
       } else if (personalColorModel.season == 3) {
         season = "Winter";
         seasonKor = "겨울";
+        switch (personalColorModel.detail_season_type) {
+          case 0:
+            detailSeasonType = "브라이트";
+            break;
+          case 1:
+            detailSeasonType = "딥";
+            break;
+          case 2:
+            detailSeasonType = "페일";
+            break;
+        }
       }
-
-      if (personalColorModel.detail_season_type == 0) {
-        detailSeasonType = "브라이트";
-      } else if (personalColorModel.detail_season_type == 1) {
-        detailSeasonType = "라이트";
-      } else if (personalColorModel.detail_season_type == 2) {
-        detailSeasonType = "딥";
-      } else if (personalColorModel.detail_season_type == 3) {
-        detailSeasonType = "스트롱";
-      } else if (personalColorModel.detail_season_type == 4) {
-        detailSeasonType = "뮤트";
-      } else if (personalColorModel.detail_season_type == 5) {
-        detailSeasonType = "소프트";
-      } else if (personalColorModel.detail_season_type == 6) {
-        detailSeasonType = "페일";
-      }
+      //
+      // if (personalColorModel.detail_season_type == 0) {
+      //   detailSeasonType = "브라이트";
+      // } else if (personalColorModel.detail_season_type == 1) {
+      //   detailSeasonType = "라이트";
+      // } else if (personalColorModel.detail_season_type == 2) {
+      //   detailSeasonType = "딥";
+      // } else if (personalColorModel.detail_season_type == 3) {
+      //   detailSeasonType = "스트롱";
+      // } else if (personalColorModel.detail_season_type == 4) {
+      //   detailSeasonType = "뮤트";
+      // } else if (personalColorModel.detail_season_type == 5) {
+      //   detailSeasonType = "소프트";
+      // } else if (personalColorModel.detail_season_type == 6) {
+      //   detailSeasonType = "페일";
+      // }
 
       if (personalColorModel.matching_color_array != null &&
           personalColorModel.matching_color_array.split(",").length > 11) {

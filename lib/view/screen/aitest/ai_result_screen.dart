@@ -84,32 +84,61 @@ class _AIResultPageState extends State<AIResultPage>
     if (personalColorModel.season == 0) {
       season = "Spring";
       seasonKor = "봄";
+      switch(personalColorModel.detail_season_type) {
+        case 0:
+          detailSeasonType = "라이트";
+          break;
+        case 1:
+          detailSeasonType = "소프트";
+          break;
+        case 2:
+          detailSeasonType = "브라이트";
+          break;
+      }
     } else if (personalColorModel.season == 1) {
       season = "Summer";
       seasonKor = "여름";
+      switch(personalColorModel.detail_season_type) {
+        case 0:
+          detailSeasonType = "라이트";
+          break;
+        case 1:
+          detailSeasonType = "뮤트";
+          break;
+        case 2:
+          detailSeasonType = "브라이트";
+          break;
+      }
     } else if (personalColorModel.season == 2) {
       season = "Fall";
       seasonKor = "가을";
+      switch(personalColorModel.detail_season_type) {
+        case 0:
+          detailSeasonType = "뮤트";
+          break;
+        case 1:
+          detailSeasonType = "딥";
+          break;
+        case 2:
+          detailSeasonType = "스트롱";
+          break;
+      }
     } else if (personalColorModel.season == 3) {
       season = "Winter";
       seasonKor = "겨울";
+      switch(personalColorModel.detail_season_type) {
+        case 0:
+          detailSeasonType = "브라이트";
+          break;
+        case 1:
+          detailSeasonType = "딥";
+          break;
+        case 2:
+          detailSeasonType = "페일";
+          break;
+      }
     }
 
-    if (personalColorModel.detail_season_type == 0) {
-      detailSeasonType = "브라이트";
-    } else if (personalColorModel.detail_season_type == 1) {
-      detailSeasonType = "라이트";
-    } else if (personalColorModel.detail_season_type == 2) {
-      detailSeasonType = "딥";
-    } else if (personalColorModel.detail_season_type == 3) {
-      detailSeasonType = "스트롱";
-    } else if (personalColorModel.detail_season_type == 4) {
-      detailSeasonType = "뮤트";
-    } else if (personalColorModel.detail_season_type == 5) {
-      detailSeasonType = "소프트";
-    } else if (personalColorModel.detail_season_type == 6) {
-      detailSeasonType = "페일";
-    }
 
     var matchingColorList = [
       "#FF22FF",
@@ -559,24 +588,24 @@ class _AIResultPageState extends State<AIResultPage>
                                   height: 40,
                                   child: CustomOutlinedButton(
                                     onTap: () async {
-                                      UserModel userModel = UserModel(
-                                        id: map["id"],
-                                        season: widget.season,
-                                        detail_season_type: widget.detailSeasonType,
-                                      );
-
-                                      await Provider.of<UserProvider>(context, listen: false).updateUser(userModel);
-
-                                      ImageModel imageModel = ImageModel(
-                                        user_id: map["id"],
-                                        title: "user personal color data",
-                                        content: "id : ${map["id"]}, name : ${map["name"]}, username : ${map["username"]}",
-                                        path: widget.consultingModel.client_image,
-                                        create_date: DateConverter.formatDate(DateTime.now()),
-                                      );
-
-                                      await Provider.of<CustomImageProvider>(context, listen: false)
-                                          .addImage(imageModel);
+                                      // UserModel userModel = UserModel(
+                                      //   id: map["id"],
+                                      //   season: widget.season,
+                                      //   detail_season_type: widget.detailSeasonType,
+                                      // );
+                                      //
+                                      // await Provider.of<UserProvider>(context, listen: false).updateUser(userModel);
+                                      //
+                                      // ImageModel imageModel = ImageModel(
+                                      //   user_id: map["id"],
+                                      //   title: "user personal color data",
+                                      //   content: "id : ${map["id"]}, name : ${map["name"]}, username : ${map["username"]}",
+                                      //   path: widget.consultingModel.client_image,
+                                      //   create_date: DateConverter.formatDate(DateTime.now()),
+                                      // );
+                                      //
+                                      // await Provider.of<CustomImageProvider>(context, listen: false)
+                                      //     .addImage(imageModel);
 
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(

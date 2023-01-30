@@ -15,16 +15,16 @@ import '../consultant/consultant_list_screen.dart';
 import '../home/home_screens.dart';
 import 'detailTypeTest.dart';
 
-class OXPage extends StatefulWidget {
+class SeasonTestPage extends StatefulWidget {
   final ConsultingModel consultingModel;
 
-  const OXPage({Key key, this.consultingModel}) : super(key: key);
+  const SeasonTestPage({Key key, this.consultingModel}) : super(key: key);
 
   @override
-  State<OXPage> createState() => _OXPageState();
+  State<SeasonTestPage> createState() => _SeasonTestPageState();
 }
 
-class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
+class _SeasonTestPageState extends State<SeasonTestPage> with TickerProviderStateMixin {
   var seasonTestList = [];
 
 
@@ -234,7 +234,9 @@ class _OXPageState extends State<OXPage> with TickerProviderStateMixin {
                             ),
                         ],
                       ),
-
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      )
                     ],
                   ),
 

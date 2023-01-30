@@ -21,7 +21,10 @@ class ConsultantReserveScreen extends StatefulWidget {
 
   const ConsultantReserveScreen({
     Key key,
-    this.isCreateScreen = true, this.userModel, this.menuModel, this.consultingModel,
+    this.isCreateScreen = true,
+    this.userModel,
+    this.menuModel,
+    this.consultingModel,
   }) : super(key: key);
 
   @override
@@ -74,7 +77,8 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(20, 24, 0, 10),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 24, 0, 10),
                                   child: Text(
                                     "${getTranslated('CONSULTATION_INFO', context)}",
                                     style: TextStyle(
@@ -93,9 +97,11 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               color: Color(0xffDDDDDD),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 16, 20, 10),
+                              padding:
+                                  const EdgeInsets.fromLTRB(20, 16, 20, 10),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "${getTranslated('COUNSELING', context)}",
@@ -105,7 +111,8 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "${DateConverter.isoStringToDateOnly(widget.consultingModel.reservation_date)}" ?? "",
+                                    "${DateConverter.isoStringToDateOnly(widget.consultingModel.reservation_date)}" ??
+                                        "",
                                     textAlign: TextAlign.end,
                                     style: TextStyle(
                                       color: Color(0xff333333),
@@ -118,7 +125,8 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                             Padding(
                               padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "${getTranslated('COUNSELING_NAME', context)}",
@@ -140,7 +148,8 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                             Padding(
                               padding: const EdgeInsets.fromLTRB(20, 5, 20, 12),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "${getTranslated('RESERVATION_AMOUNT', context)}",
@@ -150,7 +159,8 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "${PriceConverter.convertPrice(context, widget.menuModel.menu_amount / 10)}${getTranslated('WON', context)}" ?? "",
+                                    "${PriceConverter.convertPrice(context, widget.menuModel.menu_amount / 10)}${getTranslated('WON', context)}" ??
+                                        "",
                                     style: TextStyle(
                                       color: Color(0xff0123B4),
                                       fontSize: 11,
@@ -199,7 +209,8 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                             Padding(
                               padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "${getTranslated('GRADATION_INFO', context)}",
@@ -209,7 +220,8 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                                     ),
                                   ),
                                   Text(
-                                    "${widget.userModel.bank1} ${widget.userModel.bank2}" ?? "",
+                                    "${widget.userModel.bank1} ${widget.userModel.bank2}" ??
+                                        "",
                                     style: TextStyle(
                                       color: Color(0xff333333),
                                       fontSize: 11,
@@ -220,9 +232,11 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 11, 20, 10),
+                              padding:
+                                  const EdgeInsets.fromLTRB(20, 11, 20, 10),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "${getTranslated('DISCOUNT_HOLDER', context)}",
@@ -243,7 +257,8 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               ),
                             ),
                             Container(
-                              decoration: BoxDecoration(color: Color(0xfff8f8f8)),
+                              decoration:
+                                  BoxDecoration(color: Color(0xfff8f8f8)),
                               padding: EdgeInsets.fromLTRB(65, 8, 65, 8),
                               child: Column(
                                 children: [
@@ -268,15 +283,20 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                             ),
                             SizedBox(height: 25),
                             CustomElevatedButton(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (_) =>
-                                            ConsultantMyReserveScreen(userModel: widget.userModel, menuModel: widget.menuModel, consultingModel: widget.consultingModel,),
-                                      ),
-                                  );
-                                },
-                                buttonText: "${getTranslated('CONFIRMATION', context)}",),
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => ConsultantMyReserveScreen(
+                                      userModel: widget.userModel,
+                                      menuModel: widget.menuModel,
+                                      consultingModel: widget.consultingModel,
+                                    ),
+                                  ),
+                                );
+                              },
+                              buttonText:
+                                  "${getTranslated('CONFIRMATION', context)}",
+                            ),
                             SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                           ],
                         )),

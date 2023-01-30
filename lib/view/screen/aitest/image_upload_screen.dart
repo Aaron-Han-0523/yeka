@@ -9,7 +9,7 @@ import '../../../data/model/response/consulting_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../localization/language_constants.dart';
 import '../../../util//images.dart';
-import 'ox_screen.dart';
+import 'seasonTest.dart';
 
 class ImageUploadPage extends StatefulWidget {
   @override
@@ -200,7 +200,7 @@ class _ImageUploadPageState extends State<ImageUploadPage>
 
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (_) => OXPage(
+                                  builder: (_) => SeasonTestPage(
                                     consultingModel: consultingModel,
                                   ),
                                 ),

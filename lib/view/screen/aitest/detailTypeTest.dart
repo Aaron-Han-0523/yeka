@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/data/model/response/consulting_model.dart';
 
+import '../../../data/model/response/image_model.dart';
+import '../../../data/model/response/user_model.dart';
+import '../../../helper/date_converter.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
+import '../../../provider/image_provider.dart';
+import '../../../provider/user_provider.dart';
 import '../../../util/color_resources.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/dialog/single_text_alertdialog.dart';
@@ -49,6 +54,7 @@ int detailSeasonType = -1;
 class _DetailTypeTestState extends State<DetailTypeTestPage>
     with TickerProviderStateMixin {
   bool loggedIn = false;
+  Map map = Map();
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +63,8 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
     summerTestList = [];
     fallTestList = [];
     winterTestList = [];
+
+    map = Provider.of<AuthProvider>(context, listen: false).getUser();
 
     springTestList
         .add("${getTranslated('DETAIL_SEASON_SPRING_QNA1', context)}");
@@ -70,6 +78,8 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
         .add("${getTranslated('DETAIL_SEASON_SPRING_QNA5', context)}");
     springTestList
         .add("${getTranslated('DETAIL_SEASON_SPRING_QNA6', context)}");
+    springTestList
+        .add("${getTranslated('DETAIL_SEASON_TYPE_TEST_LAST_INFORMATION', context)}");
 
     summerTestList
         .add("${getTranslated('DETAIL_SEASON_SUMMER_QNA1', context)}");
@@ -81,11 +91,15 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
         .add("${getTranslated('DETAIL_SEASON_SUMMER_QNA4', context)}");
     summerTestList
         .add("${getTranslated('DETAIL_SEASON_SUMMER_QNA5', context)}");
+    summerTestList
+        .add("${getTranslated('DETAIL_SEASON_TYPE_TEST_LAST_INFORMATION', context)}");
 
     fallTestList.add("${getTranslated('DETAIL_SEASON_FALL_QNA1', context)}");
     fallTestList.add("${getTranslated('DETAIL_SEASON_FALL_QNA2', context)}");
     fallTestList.add("${getTranslated('DETAIL_SEASON_FALL_QNA3', context)}");
     fallTestList.add("${getTranslated('DETAIL_SEASON_FALL_QNA4', context)}");
+    fallTestList
+        .add("${getTranslated('DETAIL_SEASON_TYPE_TEST_LAST_INFORMATION', context)}");
 
     winterTestList
         .add("${getTranslated('DETAIL_SEASON_WINTER_QNA1', context)}");
@@ -95,8 +109,8 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
         .add("${getTranslated('DETAIL_SEASON_WINTER_QNA3', context)}");
     winterTestList
         .add("${getTranslated('DETAIL_SEASON_WINTER_QNA4', context)}");
-
-
+    winterTestList
+        .add("${getTranslated('DETAIL_SEASON_TYPE_TEST_LAST_INFORMATION', context)}");
 
     return Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),
@@ -185,7 +199,9 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                       Column(
                         children: [
                           Container(
-                            height: 50,
+                            width: MediaQuery.of(context).size.width *
+                                0.85,
+                            height: 130,
                             child: Center(
                               child: Text(
                                 "${springTestList[stage].split('|')[0]}",
@@ -247,7 +263,9 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                       Column(
                         children: [
                           Container(
-                            height: 50,
+                            width: MediaQuery.of(context).size.width *
+                                0.85,
+                            height: 130,
                             child: Center(
                               child: Text(
                                 "${summerTestList[stage].split('|')[0]}",
@@ -301,7 +319,9 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                       Column(
                         children: [
                           Container(
-                            height: 50,
+                            width: MediaQuery.of(context).size.width *
+                                0.85,
+                            height: 130,
                             child: Center(
                               child: Text(
                                 "${fallTestList[stage].split('|')[0]}",
@@ -354,7 +374,9 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                       Column(
                         children: [
                           Container(
-                            height: 50,
+                            width: MediaQuery.of(context).size.width *
+                                0.85,
+                            height: 130,
                             child: Center(
                               child: Text(
                                 "${winterTestList[stage].split('|')[0]}",
@@ -403,6 +425,9 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                             ),
                         ],
                       ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                    )
                   ]),
             ),
           ]),
@@ -435,6 +460,33 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
     } else {
       bool loggedIn =
           await Provider.of<AuthProvider>(context, listen: false).isLoggedIn();
+
+      UserModel userModel = UserModel(
+        id: map["id"],
+        season: widget.season,
+        detail_season_type:
+        detailSeasonType,
+      );
+
+      await Provider.of<UserProvider>(context,
+          listen: false)
+          .updateUser(userModel);
+
+      ImageModel imageModel = ImageModel(
+        user_id: map["id"],
+        title: "user personal color data",
+        content:
+        "id : ${map["id"]}, name : ${map["name"]}, username : ${map["username"]}",
+        path:
+        widget.consultingModel.client_image,
+        create_date: DateConverter.formatDate(
+            DateTime.now()),
+      );
+
+      await Provider.of<CustomImageProvider>(
+          context,
+          listen: false)
+          .addImage(imageModel);
 
       Navigator.of(context).push(
         MaterialPageRoute(
