@@ -119,11 +119,6 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
 
   @override
   Widget build(BuildContext context) {
-    // Timer(Duration(milliseconds: 0), () {
-    //   setState(() {
-    //     personalColorModel;
-    //   });
-    // });
 
     var seasonKor = "";
     var detailSeasonType = "";
@@ -151,28 +146,56 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
 
       if (personalColorModel.season == 0) {
         seasonKor = "봄";
+        switch (personalColorModel.detail_season_type) {
+          case 0:
+            detailSeasonType = "라이트";
+            break;
+          case 1:
+            detailSeasonType = "소프트";
+            break;
+          case 2:
+            detailSeasonType = "브라이트";
+            break;
+        }
       } else if (personalColorModel.season == 1) {
         seasonKor = "여름";
+        switch (personalColorModel.detail_season_type) {
+          case 0:
+            detailSeasonType = "라이트";
+            break;
+          case 1:
+            detailSeasonType = "뮤트";
+            break;
+          case 2:
+            detailSeasonType = "브라이트";
+            break;
+        }
       } else if (personalColorModel.season == 2) {
         seasonKor = "가을";
+        switch (personalColorModel.detail_season_type) {
+          case 0:
+            detailSeasonType = "뮤트";
+            break;
+          case 1:
+            detailSeasonType = "딥";
+            break;
+          case 2:
+            detailSeasonType = "스트롱";
+            break;
+        }
       } else if (personalColorModel.season == 3) {
         seasonKor = "겨울";
-      }
-
-      if (personalColorModel.detail_season_type == 0) {
-        detailSeasonType = "브라이트";
-      } else if (personalColorModel.detail_season_type == 1) {
-        detailSeasonType = "라이트";
-      } else if (personalColorModel.detail_season_type == 2) {
-        detailSeasonType = "딥";
-      } else if (personalColorModel.detail_season_type == 3) {
-        detailSeasonType = "스트롱";
-      } else if (personalColorModel.detail_season_type == 4) {
-        detailSeasonType = "뮤트";
-      } else if (personalColorModel.detail_season_type == 5) {
-        detailSeasonType = "소프트";
-      } else if (personalColorModel.detail_season_type == 6) {
-        detailSeasonType = "페일";
+        switch (personalColorModel.detail_season_type) {
+          case 0:
+            detailSeasonType = "브라이트";
+            break;
+          case 1:
+            detailSeasonType = "딥";
+            break;
+          case 2:
+            detailSeasonType = "페일";
+            break;
+        }
       }
 
       if (personalColorModel.matching_color_array != null &&
@@ -805,13 +828,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         ],
                       ),
                     ),
-                    // Text(
-                    //   "따뜻한 파스텔 계열이 잘 어울리는 봄 라이트는 밝은 색이 중요하기에 어둡거나 선명한 색상은 피하는게 좋습니다. 대비감이 어울맂 ㅣ않기에 비슷한 느낌의 색상으로 자연스럽게 매치하는 것이 좋습니다.",
-                    //   style: TextStyle(
-                    //     color: Color(0xff000000),
-                    //     fontSize: 12,
-                    //   ),
-                    // ),
+
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 31.25),
                       child: Table(
@@ -1003,7 +1020,6 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                // fixme Model에 변수 없음
                                 "${widget.consultingModel.consulting_content ?? ""}",
                                 style: TextStyle(
                                   color: Color(0xff333333),
