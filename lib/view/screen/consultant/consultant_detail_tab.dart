@@ -10,7 +10,8 @@ class ConsultantDetailWidget extends StatefulWidget {
 
   const ConsultantDetailWidget({
     Key key,
-    this.isCreateScreen = true, this.userModel,
+    this.isCreateScreen = true,
+    this.userModel,
   }) : super(key: key);
 
   @override
@@ -19,7 +20,6 @@ class ConsultantDetailWidget extends StatefulWidget {
 
 class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
     with TickerProviderStateMixin {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,10 +32,7 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
               child: Text(
                 // "#피부관련전공  #전문과정수료  #블로그 운영",
                 "${widget.userModel.hashtag ?? ""}",
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Color(0xff0123B4)
-                ),
+                style: TextStyle(fontSize: 10, color: Color(0xff0123B4)),
               ),
             ),
           ],
@@ -140,6 +137,7 @@ class _ConsultantDetailWidgetState extends State<ConsultantDetailWidget>
               ),
             ],
           ),
+        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
         const Divider(
           height: 3,
           thickness: 1,

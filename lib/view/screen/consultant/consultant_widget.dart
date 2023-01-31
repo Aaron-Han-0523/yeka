@@ -105,44 +105,28 @@ class ConsultantWidget extends StatelessWidget {
               SizedBox(
                 height: Dimensions.PADDING_SIZE_SMALL,
               ),
-              Text(
-                userModel.create_date ??
-                    '${getTranslated('INCHEON_NATIONAL_UNIVERSITY', context)}',
-                textAlign: TextAlign.center,
-                style: robotoRegular.copyWith(
-                  fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
-                  fontWeight: FontWeight.bold,
+              for(int i=0; i<3; i++)
+                Text(
+                  "${text(i)}" != null ? "${text(i)}" : "",
+                  style: robotoRegular.copyWith(
+                    fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  // maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                // maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                userModel.bank1 ??
-                    '${getTranslated('SKINCARE_HAIRDRESSER_LICENSE', context)}',
-                textAlign: TextAlign.center,
-                style: robotoRegular.copyWith(
-                  fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
-                  fontWeight: FontWeight.bold,
-                ),
-                // maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                userModel.bank1 ??
-                    '${getTranslated('ALL_THAT_ACADEMY', context)}',
-                textAlign: TextAlign.center,
-                style: robotoRegular.copyWith(
-                  fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
-                  fontWeight: FontWeight.bold,
-                ),
-                // maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
             ],
           ),
         ]),
       ),
     );
+  }
+  text (int i) {
+      List<String> list = [];
+      for (var text in userModel.resume.split("\n")) {
+        list.add(text);
+      }
+      return list[i] ?? "";
   }
 }

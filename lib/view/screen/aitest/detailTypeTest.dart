@@ -249,10 +249,6 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                                     stage++;
                                   });
                                 }
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ${detailSeasonValues}');
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ');
                               },
                               child: Text(
                                   springTestList[stage].split('|')[i] ?? ""),
@@ -305,10 +301,6 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                                     stage++;
                                   });
                                 }
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ${detailSeasonValues}');
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ');
                               },
                               child: Text(
                                   summerTestList[stage].split('|')[i] ?? ""),
@@ -360,10 +352,6 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                                     stage++;
                                   });
                                 }
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ${detailSeasonValues}');
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ');
                               },
                               child: Text(
                                   fallTestList[stage].split('|')[i] ?? ""),
@@ -415,10 +403,6 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                                     stage++;
                                   });
                                 }
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ${detailSeasonValues}');
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ');
                               },
                               child: Text(
                                   winterTestList[stage].split('|')[i] ?? ""),
