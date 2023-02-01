@@ -398,9 +398,11 @@ class _MyPageConsultantUpdateScreenState
                                       print(res.map((e) => e.path).toList());
 
                                       setState(() {
-                                        thumbnailList = res
-                                            .map((e) => e.thumbPath)
-                                            .toList();
+                                        if(thumbnailList.length < 5) {
+                                          thumbnailList = res
+                                              .map((e) => e.thumbPath)
+                                              .toList();
+                                        }
                                       });
                                     }
                                   },
