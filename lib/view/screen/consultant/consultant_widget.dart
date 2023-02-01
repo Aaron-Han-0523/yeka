@@ -19,6 +19,9 @@ class ConsultantWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    List<String> resumeList = userModel.resume.split("\n");
+
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -105,9 +108,9 @@ class ConsultantWidget extends StatelessWidget {
               SizedBox(
                 height: Dimensions.PADDING_SIZE_SMALL,
               ),
-              for(int i=0; i<3; i++)
+              for (int i = 0; i < buildText(resumeList); i++)
                 Text(
-                  "${text(i)}" != null ? "${text(i)}" : "",
+                  "${resumeList[i] ?? ""}",
                   style: robotoRegular.copyWith(
                     fontSize: Dimensions.FONT_SIZE_EXTRA_MORE_SMALL,
                     fontWeight: FontWeight.bold,
@@ -122,11 +125,9 @@ class ConsultantWidget extends StatelessWidget {
       ),
     );
   }
-  text (int i) {
-      List<String> list = [];
-      for (var text in userModel.resume.split("\n")) {
-        list.add(text);
-      }
-      return list[i] ?? "";
+  int buildText(resumeList) {
+    int resumeListLength = resumeList.length > 3 ? 3 : resumeList.length;
+
+    return resumeListLength;
   }
 }
