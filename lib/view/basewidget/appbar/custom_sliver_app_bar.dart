@@ -139,7 +139,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
         ),
         widget.isLogoutHidden ? Container() : Center(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(4.0, 4.0, 12.0, 4.0),
+            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
             child: InkWell(
               onTap: () => {
                 Navigator.of(context).push(

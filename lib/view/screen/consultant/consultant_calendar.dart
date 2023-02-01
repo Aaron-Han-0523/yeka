@@ -47,6 +47,8 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
 
   @override
   void didChangeDependencies() {
+
+
     super.didChangeDependencies();
     _loadData(context, false);
   }
