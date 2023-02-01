@@ -59,8 +59,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     await Provider.of<UserProvider>(context, listen: false).getSuperUser();
 
-    await Provider.of<UserProvider>(context, listen: false)
-        .getLatestConsultantList(0, context, reload: reload);
+    // await Provider.of<UserProvider>(context, listen: false)
+    //     .getLatestConsultantList(0, context, reload: reload);
 
     await Provider.of<OrderProvider>(context, listen: false)
         .getLatestOrderList(0, user_id, context, reload: reload);
