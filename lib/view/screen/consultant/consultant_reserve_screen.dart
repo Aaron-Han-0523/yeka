@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yeka/helper/date_converter.dart';
 import 'package:yeka/helper/price_converter.dart';
 import 'package:yeka/view/basewidget/button/custom_elevated_button.dart';
@@ -8,6 +9,8 @@ import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/menu_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constants.dart';
+import '../../../provider/auth_provider.dart';
+import '../../../provider/consulting_provider.dart';
 import '../../../util//color_resources.dart';
 import '../../../util//dimensions.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
@@ -30,12 +33,15 @@ class ConsultantReserveScreen extends StatefulWidget {
   @override
   State<ConsultantReserveScreen> createState() =>
       _ConsultantReserveScreenState();
+
 }
 
 class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
     with TickerProviderStateMixin {
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: ColorResources.getHomeBg(context),
       resizeToAvoidBottomInset: false,
@@ -284,6 +290,9 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                             SizedBox(height: 25),
                             CustomElevatedButton(
                               onTap: () {
+                                // Todo DB 재설계 후 확인
+
+
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (_) => ConsultantMyReserveScreen(

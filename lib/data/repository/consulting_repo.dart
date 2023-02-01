@@ -52,17 +52,26 @@ class ConsultingRepo {
 
   Future<ApiResponse> updateConsulting(ConsultingModel consultingModel) async {
     Map<String, dynamic> _data = {
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
-      // 'title': consultingModel.title,
-      // 'content': consultingModel.content,
-      // 'grade': consultingModel.grade,
-      // 'consulting_id': consultingModel.consulting_id,
-      // 'custom1': consultingModel.custom1,
+      'id' : consultingModel.id,
+      'consultant_id': consultingModel.consultant_id,
+      'clients_id': consultingModel.client_id,
+      'client_name': consultingModel.client_name,
+      'client_image': consultingModel.client_image ?? "",
+      'client_phone': consultingModel.client_phone,
+      'reservation_date': consultingModel.reservation_date,
+      'consulting_title': consultingModel.consulting_title,
+      'payment_status': consultingModel.payment_status,
+      'consulting_status': consultingModel.consulting_status,
+      'season': consultingModel.season,
+      'detail_season_type': consultingModel.detail_season_type,
+      'payment_amount': consultingModel.payment_amount,
+      'reservation_amount': consultingModel.reservation_amount,
+      'final_amount': consultingModel.final_amount,
     };
 
     try {
       final response =
-          await dioClient.put(AppConstants.UPDATE_CONSULTING_URI + "/${consultingModel.id}", data: _data);
+          await dioClient.put(AppConstants.UPDATE_CONSULTING_URI + "/${consultingModel.consultant_id}", data: _data);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

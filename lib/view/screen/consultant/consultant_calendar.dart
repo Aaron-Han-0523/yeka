@@ -41,8 +41,8 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
     user = Provider.of<AuthProvider>(context, listen: false).getUser();
     ImageModel imageModel = new ImageModel(user_id: user["id"], image_type: 5);
 
-    Provider.of<CustomImageProvider>(context, listen: false).getUserImage(imageModel);
-    userImagePath = await Provider.of<CustomImageProvider>(context, listen: false).image.path;
+    await Provider.of<CustomImageProvider>(context, listen: false).getUserImage(imageModel);
+    userImagePath = Provider.of<CustomImageProvider>(context, listen: false).image.path;
   }
 
   @override
@@ -145,7 +145,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                               ConsultingModel consultingModel = ConsultingModel(
                                 consultant_id: widget.userModel.id,
                                 client_id: user["id"],
-                                client_name: user["username"],
+                                client_name: user["name"],
                                 client_image: userImagePath,
                                 client_phone: user['phone'],
                                 reservation_date:
