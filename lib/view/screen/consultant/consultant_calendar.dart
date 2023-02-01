@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:yeka/data/model/response/image_model.dart';
 import 'package:yeka/helper/date_converter.dart';
 import 'package:yeka/provider/image_provider.dart';
 import 'package:yeka/util/dimensions.dart';
@@ -34,11 +35,14 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
   String selectDate;
   DateRangePickerController controller = DateRangePickerController();
   Map user = Map();
+  String userImagePath;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     user = Provider.of<AuthProvider>(context, listen: false).getUser();
+    ImageModel imageModel = new ImageModel(user_id: user["id"], image_type: 5);
 
-    Provider.of<CustomImageProvider>(context, listen: false)
+    Provider.of<CustomImageProvider>(context, listen: false).getUserImage(imageModel);
+    userImagePath = await Provider.of<CustomImageProvider>(context, listen: false).image.path;
   }
 
   @override
@@ -142,7 +146,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                 consultant_id: widget.userModel.id,
                                 client_id: user["id"],
                                 client_name: user["username"],
-                                // client_image: widget.consultingModel.client_image,
+                                client_image: userImagePath,
                                 client_phone: user['phone'],
                                 reservation_date:
                                     DateConverter.localDateToIsoString(
@@ -158,7 +162,6 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     widget.menuModel.menu_amount ~/ 10,
                                 final_amount: widget.menuModel.menu_amount -
                                     widget.menuModel.menu_amount ~/ 10,
-                                // create_date: DateConverter.formatDate(DateTime.now()),
                               );
 
                               Provider.of<ConsultingProvider>(context,

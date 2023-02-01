@@ -98,4 +98,11 @@ class CustomImageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<ImageModel> getUserImage(ImageModel imageModel) async {
+    ApiResponse apiResponse = await imageRepo.getUserImage(imageModel);
+    _image = ImageModel.fromJson(apiResponse.response.data);
+    notifyListeners();
+    return _image;
+  }
+
 }
