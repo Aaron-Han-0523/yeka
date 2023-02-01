@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:yeka/helper/date_converter.dart';
+import 'package:yeka/provider/image_provider.dart';
 import 'package:yeka/util/dimensions.dart';
 
 import '../../../data/model/response/consulting_model.dart';
@@ -32,10 +33,12 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
 
   String selectDate;
   DateRangePickerController controller = DateRangePickerController();
-  int user_id;
+  Map user = Map();
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    user_id = Provider.of<AuthProvider>(context, listen: false).getUser()["id"];
+    user = Provider.of<AuthProvider>(context, listen: false).getUser();
+
+    Provider.of<CustomImageProvider>(context, listen: false)
   }
 
   @override
@@ -137,16 +140,25 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                             if (controller.selectedDate != null) {
                               ConsultingModel consultingModel = ConsultingModel(
                                 consultant_id: widget.userModel.id,
-                                client_id: user_id,
+                                client_id: user["id"],
+                                client_name: user["username"],
+                                // client_image: widget.consultingModel.client_image,
+                                client_phone: user['phone'],
                                 reservation_date:
                                     DateConverter.localDateToIsoString(
                                   controller.selectedDate,
                                 ),
-                                consulting_status: 1,
-                                final_amount: widget.menuModel.menu_amount - widget.menuModel.menu_amount ~/ 10,
-                                reservation_amount: widget.menuModel.menu_amount ~/ 10,
-                                payment_amount: widget.menuModel.menu_amount,
                                 consulting_title: widget.menuModel.menu_title,
+                                payment_status: 0,
+                                consulting_status: 0,
+                                season: user["season"],
+                                detail_season_type: user["detail_season_type"],
+                                payment_amount: widget.menuModel.menu_amount,
+                                reservation_amount:
+                                    widget.menuModel.menu_amount ~/ 10,
+                                final_amount: widget.menuModel.menu_amount -
+                                    widget.menuModel.menu_amount ~/ 10,
+                                // create_date: DateConverter.formatDate(DateTime.now()),
                               );
 
                               Provider.of<ConsultingProvider>(context,
@@ -169,7 +181,8 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                    content: Text("${getTranslated('PLEASE_SELECT_DATE', context)}"),
+                                    content: Text(
+                                        "${getTranslated('PLEASE_SELECT_DATE', context)}"),
                                     backgroundColor: Colors.red),
                               );
                             }

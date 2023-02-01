@@ -40,10 +40,6 @@ class _ConsultantMenuWidgetState extends State<ConsultantMenuWidget>
 
     await Provider.of<CustomImageProvider>(context, listen: false)
         .getImageListByConsultantId(imageModel);
-
-    // await Provider.of<CustomImageProvider>(context, listen: false).imageList;
-    //
-    // setState(() {});
   }
 
   Widget buildMenu(MenuModel menuModel, int count) {

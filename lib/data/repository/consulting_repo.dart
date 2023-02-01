@@ -22,11 +22,20 @@ class ConsultingRepo {
     // if(consultingModel.attachedFilepath3 != null) uploadFiles.add(await MultipartFile.fromFile(consultingModel.attachedFilepath3));
 
     var formData = FormData.fromMap({
-      // 'files' : uploadFiles,
-      // 'title': consultingModel.title,
-      // 'content': consultingModel.content,
-      // 'grade': consultingModel.grade,
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
+      'consultant_id': consultingModel.consultant_id,
+      'clients_id': consultingModel.client_id,
+      'client_name': consultingModel.client_name,
+      'client_image': consultingModel.client_image,
+      'client_phone': consultingModel.client_phone,
+      'reservation_date': consultingModel.reservation_date,
+      'consulting_title': consultingModel.consulting_title,
+      'payment_status': consultingModel.payment_status,
+      'consulting_status': consultingModel.consulting_status,
+      'season': consultingModel.season,
+      'detail_season_type': consultingModel.detail_season_type,
+      'payment_amount': consultingModel.payment_amount,
+      'reservation_amount': consultingModel.reservation_amount,
+      'final_amount': consultingModel.final_amount,
     });
 
     try {
