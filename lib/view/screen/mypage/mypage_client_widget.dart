@@ -15,94 +15,94 @@ class MyPageClientWidget extends StatelessWidget {
 
   MyPageClientWidget({this.consultingModel});
 
-  Widget paymentState(int paymentState) {
-    String result = "";
-    Color color = Colors.white;
-    if (paymentState == 0) {
-      result = "$getTranslated('WAITING_FOR_DEPOSIT_SPAC', context)";
-      color = Color(0xffff0000);
-    } else if (paymentState == 1) {
-      result = "$getTranslated('RESERVATION_DEPOSIT', context)";
-      color = Color(0xffff9924);
-    } else if (paymentState == 2) {
-      result = "$getTranslated('FINAL_DEPOSIT_COMPLETED', context)";
-      color = Color(0xff0123b4);
-    }
-    return Text(
-      // '${getTranslated('WAITING_FOR_DEPOSIT', context)}',
-      '${result}',
-      textAlign: TextAlign.center,
-      style: robotoRegular.copyWith(
-        fontSize: 8,
-        color: color,
-      ),
-    );
-  }
-
-  Widget consultingState(int consultingState, BuildContext context) {
-    String result = "";
-    Color color = Colors.white;
-    String buttonText = "";
-    Widget nextPage = Container();
-    if (consultingState == 0) {
-      result = "$getTranslated('WAITING_FOR_THE_CALL_TO_PROCEED', context)";
-      color = Color(0xff3a9d6e);
-      buttonText = "$getTranslated('SELECT_CONSULTATION_DAY', context)";
-      nextPage = MyPageCalendarScreen(
-        consultingModel: consultingModel,
-      );
-    } else if (consultingState == 1) {
-      result = "$getTranslated('CONSULTATION_IN_PROGRESS', context)";
-      color = Color(0xffff9924);
-    } else if (consultingState == 2) {
-      result = "$getTranslated('END_OF_CONSULTATION', context)";
-      color = Color(0xff0123b4);
-      buttonText = "$getTranslated('FILL_IN_CONSULTATION_RESULT', context)";
-      nextPage = MyPageConsultantResultWriteScreen(
-        consultingModel: consultingModel,
-      );
-    }
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          '${result}',
-          textAlign: TextAlign.center,
-          style: robotoRegular.copyWith(
-            fontSize: 9,
-            fontWeight: FontWeight.bold,
-            color: color,
-          ),
-        ),
-        buttonText != ""
-            ? CustomElevatedButton(
-                width: 110,
-                height: 17,
-                padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      transitionDuration: Duration(milliseconds: 1000),
-                      pageBuilder: (context, anim1, anim2) => nextPage,
-                    ),
-                  );
-                },
-                buttonText: '',
-                child: Text(
-                  "${buttonText}",
-                  style: TextStyle(
-                    fontSize: 8,
-                  ),
-                ),
-              )
-            : Container(),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+
+    Widget paymentState(int paymentState) {
+      String result = "";
+      Color color = Colors.white;
+      if (paymentState == 0) {
+        result = "${getTranslated('WAITING_FOR_DEPOSIT_SPACE', context)}";
+        color = Color(0xffff0000);
+      } else if (paymentState == 1) {
+        result = "${getTranslated('RESERVATION_DEPOSIT', context)}";
+        color = Color(0xffff9924);
+      } else if (paymentState == 2) {
+        result = "${getTranslated('FINAL_DEPOSIT_COMPLETED', context)}";
+        color = Color(0xff0123b4);
+      }
+      return Text(
+        result,
+        // textAlign: TextAlign.center,
+        style: robotoRegular.copyWith(
+          fontSize: 8,
+          color: color,
+        ),
+      );
+    }
+
+    Widget consultingState(int consultingState, BuildContext context) {
+      String result = "";
+      Color color = Colors.white;
+      String buttonText = "";
+      Widget nextPage = Container();
+      if (consultingState == 0) {
+        result = "${getTranslated('WAITING_FOR_THE_CALL_TO_PROCEED', context)}";
+        color = Color(0xff3a9d6e);
+        buttonText = "${getTranslated('SELECT_CONSULTATION_DAY', context)}";
+        nextPage = MyPageCalendarScreen(
+          consultingModel: consultingModel,
+        );
+      } else if (consultingState == 1) {
+        result = "${getTranslated('CONSULTATION_IN_PROGRESS', context)}";
+        color = Color(0xffff9924);
+      } else if (consultingState == 2) {
+        result = "${getTranslated('END_OF_CONSULTATION', context)}";
+        color = Color(0xff0123b4);
+        buttonText = "${getTranslated('FILL_IN_CONSULTATION_RESULT', context)}";
+        nextPage = MyPageConsultantResultWriteScreen(
+          consultingModel: consultingModel,
+        );
+      }
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '${result}',
+            textAlign: TextAlign.center,
+            style: robotoRegular.copyWith(
+              fontSize: 9,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+          buttonText != ""
+              ? CustomElevatedButton(
+            width: 110,
+            height: 20,
+            padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+            onTap: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionDuration: Duration(milliseconds: 1000),
+                  pageBuilder: (context, anim1, anim2) => nextPage,
+                ),
+              );
+            },
+            buttonText: '',
+            child: Text(
+              "${buttonText}",
+              style: TextStyle(
+                fontSize: 8,
+              ),
+            ),
+          )
+              : Container(),
+        ],
+      );
+    }
+
     return InkWell(
       onTap: () {
         // reviewModel.custom1 =
@@ -151,36 +151,39 @@ class MyPageClientWidget extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(0.0, Dimensions.PADDING_SIZE_SMALL,
                 0.0, Dimensions.PADDING_SIZE_SMALL),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 70,
-                          child: Text(
-                            '${consultingModel.client_name}',
-                            textAlign: TextAlign.center,
-                            style: robotoRegular.copyWith(
-                              fontSize: 12,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        Text(
-                          '${getTranslated('CUSTOMER', context)}',
-                          textAlign: TextAlign.center,
-                          style: robotoRegular.copyWith(
-                            fontSize: 8,
-                            color: Color(0xffcccccc),
-                          ),
-                        ),
-                      ],
+                    Text(
+                      '${consultingModel.client_name}',
+                      textAlign: TextAlign.center,
+                      style: robotoRegular.copyWith(
+                          fontSize: 12,
+                          letterSpacing: 8.0
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    paymentState(consultingModel.payment_status),
+
+                    Text(
+                      '${getTranslated('CUSTOMER', context)}',
+
+                      textAlign: TextAlign.left,
+                      style: robotoRegular.copyWith(
+                        fontSize: 8,
+                        color: Color(0xffcccccc),
+                      ),
+                    ),
+                    Container(
+                      width: 80,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            paymentState(consultingModel.payment_status),
+                          ],
+                        )
+                    ),
                   ],
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
