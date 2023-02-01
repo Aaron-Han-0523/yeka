@@ -48,7 +48,6 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
 
   String name;
   PersonalColorModel personalColorModel;
-  ImageModel imageModel;
 
   Widget buildSlider(
       String leftString, String rightString, SfRangeValues currentSliderValue) {
@@ -105,7 +104,13 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
         await Provider.of<PersonalColorProvider>(context, listen: false)
             .personalColor;
 
-    imageModel = Provider.of<CustomImageProvider>(context, listen: false).image;
+    ImageModel imageModel = ImageModel(
+      consultant_id: widget.userModel.id,
+    );
+
+    await Provider.of<CustomImageProvider>(context, listen: false)
+        .getImageListByConsultantId(imageModel);
+
   }
 
   @override
@@ -115,6 +120,30 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
     setState(() {
       personalColorModel;
     });
+  }
+
+  Widget buildPage(String path) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        0.0,
+        0.0,
+        8.0,
+        0.0,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(150.0),
+        child: FadeInImage.assetNetwork(
+          placeholder: Images.placeholder1,
+          image: widget.userModel != null
+              ? AppConstants.BASE_URL + "/" + path
+              : AppConstants.BASE_URL +
+              "/placeholder_1x1.png",
+          fit: BoxFit.fill,
+          height: 107,
+          width: 107,
+        ),
+      ),
+    );
   }
 
   @override
@@ -204,7 +233,18 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
       }
     }
 
-    return Scaffold(
+    return Consumer<CustomImageProvider>(
+        builder: (context, imageProvider, child) {
+      List<ImageModel> imageList = imageProvider.imageList;
+      List<Widget> consultantProfileItems = [];
+
+      for (var image in imageList) {
+        if (image.image_type == 2) {
+          consultantProfileItems.add(buildPage(image.path));
+        }
+      }
+
+      return Scaffold(
       backgroundColor: ColorResources.getHomeBg(context),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -236,29 +276,7 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                       padding: const EdgeInsets.fromLTRB(20, 14.5, 12.5, 27),
                       child: Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                              0.0,
-                              0.0,
-                              8.0,
-                              0.0,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(150.0),
-                              child: FadeInImage.assetNetwork(
-                                placeholder: Images.placeholder1,
-                                image: widget.userModel.title_image != null
-                                    ? AppConstants.BASE_URL +
-                                        "/" +
-                                        widget.userModel.title_image
-                                    : AppConstants.BASE_URL +
-                                        "/placeholder_1x1.png",
-                                fit: BoxFit.fill,
-                                height: 107,
-                                width: 107,
-                              ),
-                            ),
-                          ),
+                          consultantProfileItems[0],
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -1060,6 +1078,8 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
           ],
         ),
       ),
+    );
+        },
     );
   }
 }

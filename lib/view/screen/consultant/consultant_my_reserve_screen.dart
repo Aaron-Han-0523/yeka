@@ -45,8 +45,6 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
     await Provider.of<CustomImageProvider>(context, listen: false)
         .getImageListByConsultantId(imageModel);
 
-    await Provider.of<CustomImageProvider>(context, listen: false)
-        .getImageListByConsultantId(imageModel);
   }
 
   @override

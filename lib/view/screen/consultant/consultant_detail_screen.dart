@@ -34,7 +34,6 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
     with TickerProviderStateMixin {
   TabController _tabController;
 
-  //<======이미지=======>
   PageController _controller = PageController();
 
   Future<void> _loadData(BuildContext context, bool reload) async {
@@ -50,8 +49,6 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
     await Provider.of<MenuProvider>(context, listen: false)
         .getMenuList(menuModel, context);
 
-    await Provider.of<CustomImageProvider>(context, listen: false)
-        .getImageListByConsultantId(imageModel);
   }
 
   @override
