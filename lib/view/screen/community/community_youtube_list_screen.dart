@@ -58,12 +58,12 @@ class _CommunityYoutubeListScreenState
 
   @override
   Widget build(BuildContext context) {
-    _scrollController.addListener(() {
-      if (_scrollController.position.minScrollExtent ==
-          _scrollController.position.pixels) {
-        _loadData(context, true);
-      }
-    });
+    // _scrollController.addListener(() {
+    //   if (_scrollController.position.minScrollExtent ==
+    //       _scrollController.position.pixels) {
+    //     _loadData(context, true);
+    //   }
+    // });
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -185,23 +185,32 @@ class _CommunityYoutubeListScreenState
                     Provider.of<AuthProvider>(context, listen: false)
                                     .getUser()["user_type"] !=
                                 null &&
-                            Provider.of<AuthProvider>(context, listen: false)
-                                    .getUser()["user_type"] ==
-                                1
+                            (Provider.of<AuthProvider>(context, listen: false)
+                                        .getUser()["user_type"] ==
+                                    1 ||
+                                Provider.of<AuthProvider>(context,
+                                            listen: false)
+                                        .getUser()["user_type"] ==
+                                    99)
                         ? CustomElevatedButton(
                             width: 150,
                             onTap: () {
-                              CommunityModel communityModel = CommunityModel(community_type: 1);
+                              CommunityModel communityModel =
+                                  CommunityModel(community_type: 1);
 
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => CommunityCRUDScreen(communityModel: communityModel),
-                                ),
-                              ).then((value) => setState(() {
-                                _loadData(context, true);
-                              }));
+                              Navigator.of(context)
+                                  .push(
+                                    MaterialPageRoute(
+                                      builder: (context) => CommunityCRUDScreen(
+                                          communityModel: communityModel),
+                                    ),
+                                  )
+                                  .then((value) => setState(() {
+                                        _loadData(context, true);
+                                      }));
                             },
-                            buttonText: '${getTranslated('GO_WRITING', context)}',
+                            buttonText:
+                                '${getTranslated('GO_WRITING', context)}',
                           )
                         : Container(),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
