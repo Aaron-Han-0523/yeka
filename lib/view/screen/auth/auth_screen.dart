@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/data/model/response/consulting_model.dart';
 import 'package:yeka/localization/language_constants.dart';
 import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/util/color_resources.dart';
@@ -17,8 +18,9 @@ import '../product/product_detail_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   final int initialPage;
+  final ConsultingModel consultingModel;
 
-  AuthScreen({this.initialPage = 0});
+  AuthScreen({this.initialPage = 0, this.consultingModel});
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -208,7 +210,7 @@ class _AuthScreenState extends State<AuthScreen> {
             MaterialPageRoute(builder: (_) => HomePage()), (route) => true);
       } else if(widget.initialPage == 1) {
         Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (_) => AIResultPage()), (route) => true);
+            MaterialPageRoute(builder: (_) => AIResultPage(consultingModel: widget.consultingModel)), (route) => true);
       } else if(widget.initialPage == 2) {
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => ProductDetailPage()), (route) => true);

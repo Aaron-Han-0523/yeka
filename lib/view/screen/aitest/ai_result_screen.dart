@@ -675,7 +675,7 @@ class _AIResultPageState extends State<AIResultPage>
                                           await Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              AuthScreen(initialPage: 1),
+                                              AuthScreen(initialPage: 1, consultingModel: widget.consultingModel),
                                         ),
                                       );
 
