@@ -61,15 +61,21 @@ class _CommunityYoutubeDetailScreenState
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      widget.communityModel.community_link != null
+                      widget.communityModel.community_link != ""
                           ? YoutubePlayer(
                               controller: YoutubePlayerController(
                                 // initialVideoId: 'iLnmTe5Q2Qw',
                                 initialVideoId: YoutubeConverter.convertUrlToId(
                                     widget.communityModel.community_link),
-                                // flags: YoutubePLayerFlags(
-                                //   isLive: true,
-                                // ),
+                                flags: const YoutubePlayerFlags(
+                                  mute: false,
+                                  autoPlay: false,
+                                  disableDragSeek: true,
+                                  loop: false,
+                                  isLive: false,
+                                  forceHD: false,
+                                  enableCaption: true,
+                                ),
                               ),
                               liveUIColor: Colors.amber,
                             )

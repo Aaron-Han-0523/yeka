@@ -62,14 +62,17 @@ class _CommunityFreeBoardDetailScreenState
     return Container(
         width: MediaQuery.of(context).size.width * 0.6,
         child: FadeInImage.assetNetwork(
-          placeholder: Images.placeholder1,
-          image: url != null
-              ? AppConstants.BASE_URL + "/" + url
-              : AppConstants.BASE_URL,
-          fit: BoxFit.cover,
-          width: MediaQuery.of(context).size.width * 0.28,
-          height: MediaQuery.of(context).size.width * 0.28,
-        ));
+            placeholder: Images.placeholder1,
+            image: url != null
+                ? AppConstants.BASE_URL + "/" + url
+                : AppConstants.BASE_URL + "/placeholder_1x1.png",
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width * 0.28,
+            height: MediaQuery.of(context).size.width * 0.28,
+            imageErrorBuilder: (BuildContext context, Object exception,
+                StackTrace stackTrace) {
+              return Container();
+            }));
   }
 
   @override
@@ -87,15 +90,16 @@ class _CommunityFreeBoardDetailScreenState
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      widget.communityModel.community_link != null
+                      widget.communityModel.community_link != ""
                           ? YoutubePlayer(
                               controller: YoutubePlayerController(
                                 // initialVideoId: 'iLnmTe5Q2Qw',
                                 initialVideoId: YoutubeConverter.convertUrlToId(
                                     widget.communityModel.community_link),
-                                // flags: YoutubePLayerFlags(
-                                //   isLive: true,
-                                // ),
+                                flags: YoutubePlayerFlags(
+                                  autoPlay: false,
+                                  isLive: false,
+                                ),
                               ),
                               liveUIColor: Colors.amber,
                             )
@@ -305,7 +309,9 @@ class _CommunityFreeBoardDetailScreenState
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        CommunityFreeBoardDetailScreen(communityModel: communityNewsList[index],),
+                                        CommunityFreeBoardDetailScreen(
+                                      communityModel: communityNewsList[index],
+                                    ),
                                   ),
                                 );
                               },
@@ -323,13 +329,16 @@ class _CommunityFreeBoardDetailScreenState
                                               BorderRadius.circular(5),
                                           child: FadeInImage.assetNetwork(
                                             placeholder: Images.placeholder1,
-                                            image: YoutubeConverter.getYoutubeThumbnail(
+                                            image: YoutubeConverter
+                                                .getYoutubeThumbnail(
                                               "${communityNewsList[index].community_link ?? ""}",
                                             ),
                                             fit: BoxFit.fitWidth,
                                             width: 83,
-                                            imageErrorBuilder: (BuildContext context, Object exception,
-                                                StackTrace stackTrace) {
+                                            imageErrorBuilder:
+                                                (BuildContext context,
+                                                    Object exception,
+                                                    StackTrace stackTrace) {
                                               return Image.asset(
                                                 Images.placeholder1,
                                                 fit: BoxFit.fitHeight,
@@ -355,7 +364,8 @@ class _CommunityFreeBoardDetailScreenState
                                             ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text(
                                                   "${communityNewsList[index].writer ?? ""}${getTranslated('|', context)}${DateConverter.fromNowDuration(communityNewsList[index].create_date) ?? ""}",
