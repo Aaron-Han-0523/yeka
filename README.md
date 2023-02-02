@@ -71,7 +71,7 @@ dev : 52.79.240.88
 prd : not provisioning
 
 # 관리자 페이지 접속 정보
-admin / admin
+최고관리자 / 
 
 # 코딩 패턴1 (navigator)
 ```dart

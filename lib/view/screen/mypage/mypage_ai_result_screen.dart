@@ -36,6 +36,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     Map map = await Provider.of<AuthProvider>(context, listen: false).getUser();
+    imageModel = ImageModel(user_id: map["id"], image_type: 5);
 
     name = map['name'];
     var season = map["season"];
@@ -51,6 +52,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
     personalColorModel =
         await Provider.of<PersonalColorProvider>(context, listen: false)
             .personalColor;
+    Provider.of<CustomImageProvider>(context, listen: false).getUserImage(imageModel);
     imageModel = Provider.of<CustomImageProvider>(context, listen: false).image;
   }
 
