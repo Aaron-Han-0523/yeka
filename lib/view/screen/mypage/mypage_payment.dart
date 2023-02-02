@@ -191,7 +191,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                                                         .bold),
                                                           ),
                                                           Text(
-                                                            "${consultingList[index] != null ? DateConverter.stringToDateOnly(consultingList[index].payment_date) : ""}",
+                                                            "${consultingList[index].payment_date != null ? DateConverter.stringToDateOnly(consultingList[index].payment_date) : ""}",
                                                             style: TextStyle(
                                                               color: Color(
                                                                   0xff333333),
@@ -303,7 +303,7 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                                                                         .bold),
                                                           ),
                                                           Text(
-                                                            "${consultingList[index] != null ? consultingList[index].commission : ""}${getTranslated('PERCENT', context)}",
+                                                            "${consultingList[index].commission != null ? consultingList[index].commission : ""}${getTranslated('PERCENT', context)}",
                                                             style: TextStyle(
                                                               color: Color(
                                                                   0xff333333),
