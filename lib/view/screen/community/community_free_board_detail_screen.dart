@@ -66,7 +66,7 @@ class _CommunityFreeBoardDetailScreenState
             image: url != null
                 ? AppConstants.BASE_URL + "/" + url
                 : AppConstants.BASE_URL + "/placeholder_1x1.png",
-            fit: BoxFit.cover,
+            fit: BoxFit.fitHeight,
             width: MediaQuery.of(context).size.width * 0.28,
             height: MediaQuery.of(context).size.width * 0.28,
             imageErrorBuilder: (BuildContext context, Object exception,
