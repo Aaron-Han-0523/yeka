@@ -32,14 +32,14 @@ class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
 
         Provider.of<CommunityYoutubeProvider>(context, listen: false)
             .updateCommunity(latestCommunityModel);
-        final value = await Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => CommunityYoutubeDetailScreen(
-                communityModel: latestCommunityModel),
-          ),
-        ).then((value) {
-
-        });
+        final value = await Navigator.of(context)
+            .push(
+              MaterialPageRoute(
+                builder: (context) => CommunityYoutubeDetailScreen(
+                    communityModel: latestCommunityModel),
+              ),
+            )
+            .then((value) {});
 
         print(value);
 
@@ -49,12 +49,7 @@ class _CommunityYoutubeWidgetState extends State<CommunityYoutubeWidget> {
       },
       child: Container(
         decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(
-                    color: Color(0xffEEEEEE)
-                )
-            )
-        ),
+            border: Border(bottom: BorderSide(color: Color(0xffEEEEEE)))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
