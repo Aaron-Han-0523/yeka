@@ -35,7 +35,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           0.0,
           0.0,
         ),
-        child: widget.isHome
+        child: widget.isHome || widget.isLogoutHidden
             ? Container()
             : BackButton(
                 color: Colors.black,
@@ -141,7 +141,8 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
             child: InkWell(
-              onTap: () => {
+              onTap: () =>  {
+                Provider.of<AuthProvider>(context, listen: false).clearUser(),
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => AuthScreen(),

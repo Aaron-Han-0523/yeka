@@ -30,7 +30,6 @@ class _SeasonTestPageState extends State<SeasonTestPage> with TickerProviderStat
 
   List<bool> stageValues = [];
 
-  // 계절을 판단하는데 필요한 설문 데이터 리스트(1, 2, 3, 4) ===> 최다빈도가 그 시즌으로 결정
   List<int> seasonValues = [0, 0, 0, 0];
   List<int> detailSeasonValues = [0, 0, 0];
 
@@ -224,10 +223,6 @@ class _SeasonTestPageState extends State<SeasonTestPage> with TickerProviderStat
                                     stage++;
                                   });
                                 }
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ${seasonValues}');
-                                print(
-                                    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@=================>  ');
                               },
                               child: Text(
                                   seasonTestList[stage].split('|')[i] ?? ""),
