@@ -100,167 +100,210 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                         endIndent: 0,
                         color: Color(0xffeeeeee),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 30, 20, 4),
-                        child: Row(
-                          children: [
-                            Text(
-                              "${getTranslated('PICTURE', context)}",
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
+                      widget.communityModel.community_type != 1
+                          ? Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 30, 20, 4),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "${getTranslated('PICTURE', context)}",
+                                    style: TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.bold,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(2, 3, 0, 0),
+                                    child: Text(
+                                      "${getTranslated('ROUND_BRACKETS_SELECT', context)}",
+                                      style: TextStyle(
+                                        fontSize: 9.0,
+                                        fontWeight: FontWeight.bold,
+                                        overflow: TextOverflow.ellipsis,
+                                        color: Color(0xff999999),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(2, 3, 0, 0),
-                              child: Text(
-                                "${getTranslated('ROUND_BRACKETS_SELECT', context)}",
-                                style: TextStyle(
-                                  fontSize: 9.0,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis,
-                                  color: Color(0xff999999),
+                            )
+                          : Container(),
+                      widget.communityModel.community_type != 1
+                          ? Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
+                              child: Container(
+                                width: 500,
+                                child: Text(
+                                  "${getTranslated('UPLOAD_PICTURE', context)}",
+                                  style: TextStyle(
+                                    fontSize: 8.0,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
-                        child: Container(
-                          width: 500,
-                          child: Text(
-                            "${getTranslated('UPLOAD_PICTURE', context)}",
-                            style: TextStyle(
-                              fontSize: 8.0,
-                              fontWeight: FontWeight.bold,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              child: InkWell(
-                                onTap: () async {
-                                  thumbnailLists = [];
+                            )
+                          : Container(),
+                      widget.communityModel.community_type != 1
+                          ? Container(
+                              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    child: InkWell(
+                                      onTap: () async {
+                                        thumbnailLists = [];
 
-                                  List<Media> res = await ImagesPicker.pick(
-                                    count: 5,
-                                    pickType: PickType.all,
-                                    language: Language.System,
-                                    maxTime: 30,
-                                    // maxSize: 500,
-                                    cropOpt: CropOption(
-                                      // aspectRatio: CropAspectRatio.wh16x9,
-                                      cropType: CropType.circle,
-                                    ),
-                                  );
-                                  print(res);
-                                  if (res != null) {
-                                    print(res.map((e) => e.path).toList());
-
-                                    setState(() {
-                                      thumbnailLists =
-                                          res.map((e) => e.thumbPath).toList();
-                                    });
-                                    // bool status = await ImagesPicker.saveImageToAlbum(File(res[0]?.path));
-                                    // print(status);
-                                  }
-                                },
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        child: Container(
-                                          padding: const EdgeInsets.fromLTRB(
-                                            11.5,
-                                            11.5,
-                                            11.5,
-                                            20.0,
+                                        List<Media> res =
+                                            await ImagesPicker.pick(
+                                          count: 5,
+                                          pickType: PickType.all,
+                                          language: Language.System,
+                                          maxTime: 30,
+                                          // maxSize: 500,
+                                          cropOpt: CropOption(
+                                            // aspectRatio: CropAspectRatio.wh16x9,
+                                            cropType: CropType.circle,
                                           ),
-                                          width: 55,
+                                        );
+                                        print(res);
+                                        if (res != null) {
+                                          print(
+                                              res.map((e) => e.path).toList());
+
+                                          setState(() {
+                                            thumbnailLists = res
+                                                .map((e) => e.thumbPath)
+                                                .toList();
+                                          });
+                                          // bool status = await ImagesPicker.saveImageToAlbum(File(res[0]?.path));
+                                          // print(status);
+                                        }
+                                      },
+                                      child: Stack(
+                                        children: [
+                                          Positioned(
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                  11.5,
+                                                  11.5,
+                                                  11.5,
+                                                  20.0,
+                                                ),
+                                                width: 55,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xfff1f1f1),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: Image.asset(
+                                                  Images.upload,
+                                                  width: 30,
+                                                  height: 30,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            child: Container(
+                                              alignment: Alignment.bottomCenter,
+                                              child: Text(
+                                                "${thumbnailLists.length ?? 0}${getTranslated('PICTURE_MAX_LENGTH', context)}",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                  color: Color(0xff999999),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  for (var i = 0;
+                                      i < thumbnailLists.length;
+                                      i++)
+                                    Image.file(
+                                      File(thumbnailLists[i]),
+                                      fit: BoxFit.cover,
+                                      height: 60,
+                                      width: 60,
+                                      errorBuilder: (BuildContext context,
+                                          Object exception,
+                                          StackTrace stackTrace) {
+                                        return FadeInImage.assetNetwork(
+                                          placeholder: Images.placeholder1,
+                                          image: thumbnailLists[i] != null
+                                              ? AppConstants.BASE_URL +
+                                                  "/" +
+                                                  thumbnailLists[i]
+                                              : AppConstants.BASE_URL,
+                                          fit: BoxFit.cover,
+                                          width: 50,
                                           height: 50,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xfff1f1f1),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          child: Image.asset(
-                                            Images.upload,
-                                            width: 30,
-                                            height: 30,
-                                          ),
+                                          imageErrorBuilder:
+                                              (BuildContext context,
+                                                  Object exception,
+                                                  StackTrace stackTrace) {
+                                            return Container(
+                                              // padding: const EdgeInsets.all(10.0),
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                color: Color(0xfff1f1f1),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(12.0),
+                                                child: Image.asset(
+                                                  Images.upload,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  for (var i = thumbnailLists.length;
+                                      i < 5;
+                                      i++)
+                                    Container(
+                                      padding: const EdgeInsets.fromLTRB(
+                                        11.5,
+                                        11.5,
+                                        11.5,
+                                        20.0,
+                                      ),
+                                      width: 55,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                        color: Color(0xfff1f1f1),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Image.asset(
+                                          Images.upload,
                                         ),
                                       ),
                                     ),
-                                    Positioned(
-                                      child: Container(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Text(
-                                          "${thumbnailLists.length ?? 0}${getTranslated('PICTURE_MAX_LENGTH', context)}",
-                                          style: TextStyle(
-                                            fontSize: 10.0,
-                                            color: Color(0xff999999),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                ],
                               ),
-                            ),
-                            for (var i = 0; i < thumbnailLists.length; i++)
-                              Image.file(
-                                File(thumbnailLists[i]),
-                                fit: BoxFit.cover,
-                                height: 60,
-                                width: 60,
-                              ),
-                            for (var i = thumbnailLists.length; i < 5; i++)
-                              Container(
-                                padding: const EdgeInsets.fromLTRB(
-                                  11.5,
-                                  11.5,
-                                  11.5,
-                                  20.0,
-                                ),
-                                width: 55,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  color: Color(0xfff1f1f1),
-                                ),
-                                child: imageList[i] != null
-                                    ? FadeInImage.assetNetwork(
-                                        placeholder: Images.placeholder1,
-                                        image: imageList[i].path != null
-                                            ? AppConstants.BASE_URL +
-                                                "/" +
-                                                imageList[i].path
-                                            : AppConstants.BASE_URL,
-                                        fit: BoxFit.cover,
-                                        width: 30,
-                                        height: 30,
-                                      )
-                                    : Image.asset(
-                                        Images.upload,
-                                        width: 30,
-                                        height: 30,
-                                      ),
-                              ),
-                          ],
-                        ),
-                      ),
+                            )
+                          : Container(),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       CustomLabelTextField(
                         controller: _titleController,
@@ -318,6 +361,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                               ImageModel imageModel = ImageModel(
                                 community_id: communityModel.id,
                                 path: thumbnailLists[i],
+                                image_type: 7,
                                 create_date:
                                     DateConverter.formatDate(DateTime.now()),
                               );
@@ -326,6 +370,7 @@ class _CommunityCRUDScreenState extends State<CommunityCRUDScreen> {
                                       listen: false)
                                   .addImage(imageModel);
                             }
+                            Navigator.pop(context);
                           },
                           buttonText:
                               "${getTranslated('CONFIRMATION', context)}",
