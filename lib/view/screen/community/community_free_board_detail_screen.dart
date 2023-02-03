@@ -262,16 +262,25 @@ class _CommunityFreeBoardDetailScreenState
                                   onPressed: () {
                                     CommunityModel communityModel =
                                         CommunityModel(
-                                            community_type: 2,
-                                        );
-                                    if(widget.communityModel.writer == userName) {
+                                      id: widget.communityModel.id,
+                                      community_title:
+                                          widget.communityModel.community_title,
+                                      community_content: widget
+                                          .communityModel.community_content,
+                                      community_link:
+                                          widget.communityModel.community_link,
+                                      community_type: 2,
+                                      views: widget.communityModel.views,
+                                    );
+                                    if (widget.communityModel.writer ==
+                                        userName) {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   CommunityUpdateScreen(
                                                     communityModel:
-                                                    communityModel,
+                                                        communityModel,
                                                   )));
                                     }
                                   },

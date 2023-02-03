@@ -43,19 +43,19 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
         row.children.add(
           ClipRRect(
             child: Container(
-              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-              child: image != null
-                  ? FadeInImage.assetNetwork(
-                      placeholder: Images.placeholder1,
-                      image: image.path != null
-                          ? AppConstants.BASE_URL + "/" + image.path
-                          : AppConstants.BASE_URL + "/placeholder_1x1.png",
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width * 0.28,
-                      height: MediaQuery.of(context).size.width * 0.28,
-                    )
-                  : Container(),
-            ),
+                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                child: FadeInImage.assetNetwork(
+                    placeholder: Images.placeholder1,
+                    image: image.path != null
+                        ? AppConstants.BASE_URL + "/" + image.path
+                        : AppConstants.BASE_URL + "/placeholder_1x1.png",
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width * 0.28,
+                    height: MediaQuery.of(context).size.width * 0.28,
+                    imageErrorBuilder: (BuildContext context, Object exception,
+                        StackTrace stackTrace) {
+                      return Container();
+                    })),
           ),
         );
 

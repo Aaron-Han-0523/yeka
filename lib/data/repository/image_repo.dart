@@ -85,12 +85,11 @@ class ImageRepo {
 
   Future<ApiResponse> updateImage(ImageModel imageModel) async {
     Map<String, dynamic> _data = {
-      // 'clients_id': sharedPreferences.getInt("clients_id"),
-      // 'title': imageModel.title,
-      // 'content': imageModel.content,
-      // 'grade': imageModel.grade,
-      // 'image_id': imageModel.image_id,
-      // 'custom1': imageModel.custom1,
+      'id': imageModel.id,
+      'community_id': imageModel.community_id,
+      'path': imageModel.path,
+      'image_type': imageModel.image_type,
+      'update_date': imageModel.update_date,
     };
 
     try {

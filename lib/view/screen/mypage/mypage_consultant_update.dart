@@ -57,10 +57,13 @@ class _MyPageConsultantUpdateScreenState
   bool radioButton = false;
   List<String> thumbnailList = [];
   List<String> thumbnailList2 = [];
+  List<Media> resProfile;
+  List<Media> resPortfolio;
 
   List<MenuModel> menuList = [];
   List<ImageModel> imageList = [];
   Map map;
+  int menuCount = 0;
 
   @override
   void didChangeDependencies() async {
@@ -80,6 +83,7 @@ class _MyPageConsultantUpdateScreenState
         menuList[i].menu_amount,
         menuList[i].menu_content,
         menuList[i].menu_image,
+        menuCount,
       );
     }
 
@@ -125,7 +129,7 @@ class _MyPageConsultantUpdateScreenState
     setState(() {});
   }
 
-  void addMenu(menu_title, menu_amount, menu_content, menu_image) {
+  void addMenu(menu_title, menu_amount, menu_content, menu_image, menuCount) {
     if (menu_title == "")
       _menuTitleList.add(TextEditingController());
     else
@@ -145,6 +149,8 @@ class _MyPageConsultantUpdateScreenState
       _menuImageList.add(TextEditingController());
     else
       _menuImageList.add(TextEditingController(text: menu_image));
+
+    menuCount++;
   }
 
   Widget buildMenu(
@@ -172,11 +178,31 @@ class _MyPageConsultantUpdateScreenState
                       ),
                     ),
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        // 상담 메뉴 삭제
                         _menuTitleList.removeAt(index);
                         _menuAmountList.removeAt(index);
                         _menuContentList.removeAt(index);
                         _menuImageList.removeAt(index);
+
+                        MenuModel menuModel = MenuModel(
+                          id: menuList[index].id,
+                        );
+
+                        await Provider.of<MenuProvider>(context, listen: false)
+                            .deleteMenu(menuModel);
+
+                        ImageModel imageModel = ImageModel(
+                          image_type: 4,
+                          id: menuList[index].id,
+                          user_id: map["id"],
+                        );
+
+                        await Provider.of<CustomImageProvider>(context,
+                                listen: false)
+                            .deleteImage(imageModel);
+
+                        menuCount--;
 
                         setState(() {});
                       },
@@ -382,7 +408,7 @@ class _MyPageConsultantUpdateScreenState
                                   onTap: () async {
                                     thumbnailList = [];
 
-                                    List<Media> res = await ImagesPicker.pick(
+                                    resProfile = await ImagesPicker.pick(
                                       count: 5,
                                       pickType: PickType.image,
                                       language: Language.System,
@@ -394,12 +420,14 @@ class _MyPageConsultantUpdateScreenState
                                       ),
                                     );
 
-                                    if (res != null) {
-                                      print(res.map((e) => e.path).toList());
+                                    if (resProfile != null) {
+                                      print(resProfile
+                                          .map((e) => e.path)
+                                          .toList());
 
                                       setState(() {
-                                        if(thumbnailList.length < 5) {
-                                          thumbnailList = res
+                                        if (thumbnailList.length < 5) {
+                                          thumbnailList = resProfile
                                               .map((e) => e.thumbPath)
                                               .toList();
                                         }
@@ -667,7 +695,8 @@ class _MyPageConsultantUpdateScreenState
                                 ),
                               ),
                               InkWell(
-                                onTap: () {
+                                onTap: () async {
+                                  // 상담 메뉴 추가
                                   if (_menuTitleList.length > 2) {
                                     showDialog(
                                       context: context,
@@ -683,7 +712,36 @@ class _MyPageConsultantUpdateScreenState
                                       _menuAmountController.text,
                                       _menuContentController.text,
                                       _menuImageController.text,
+                                      menuCount++,
                                     );
+
+                                    MenuModel menuModel = MenuModel(
+                                      consultant_id: map["id"],
+                                      menu_title: _menuTitleList[menuCount].text,
+                                      menu_amount: int.parse(
+                                          _menuAmountList[menuCount].text),
+                                      menu_content:
+                                      _menuContentList[menuCount].text,
+                                      menu_image: _menuImageList[menuCount].text,
+                                    );
+
+                                    await Provider.of<MenuProvider>(context,
+                                        listen: false)
+                                        .addMenu(menuModel);
+
+                                    ImageModel imageModel = ImageModel(
+                                      image_type: 4,
+                                      consultant_id: map["id"],
+                                      path: _menuImageList[menuCount].text,
+                                      create_date: DateConverter.formatDate(
+                                          DateTime.now()),
+                                    );
+
+                                    await Provider.of<CustomImageProvider>(
+                                        context,
+                                        listen: false)
+                                        .addImage(imageModel);
+
                                   }
 
                                   _menuTitleController.text = "";
@@ -736,31 +794,6 @@ class _MyPageConsultantUpdateScreenState
                                   color: Color(0xff333333),
                                 ),
                               ),
-/*
-                              Row(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            SingleTextAlertDialog(
-                                              message: "포트폴리오는 최대 6개 까지 등록 가능합니다.",
-                                            ),
-                                      );
-                                    },
-                                    child: Text(
-                                      "${getTranslated('PLUS_ADD', context)}",
-                                      style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xff333333),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-*/
                             ],
                           ),
                         ),
@@ -782,7 +815,7 @@ class _MyPageConsultantUpdateScreenState
                                 onTap: () async {
                                   thumbnailList2 = [];
 
-                                  List<Media> res = await ImagesPicker.pick(
+                                  resPortfolio = await ImagesPicker.pick(
                                     count: 6,
                                     pickType: PickType.all,
                                     language: Language.System,
@@ -793,13 +826,16 @@ class _MyPageConsultantUpdateScreenState
                                       cropType: CropType.circle,
                                     ),
                                   );
-                                  print(res);
-                                  if (res != null) {
-                                    print(res.map((e) => e.path).toList());
+                                  print(resPortfolio);
+                                  if (resPortfolio != null) {
+                                    print(resPortfolio
+                                        .map((e) => e.path)
+                                        .toList());
 
                                     setState(() {
-                                      thumbnailList2 =
-                                          res.map((e) => e.thumbPath).toList();
+                                      thumbnailList2 = resPortfolio
+                                          .map((e) => e.thumbPath)
+                                          .toList();
                                     });
                                   }
                                 },
@@ -895,7 +931,7 @@ class _MyPageConsultantUpdateScreenState
                             onTap: () {
                               modify();
                               Navigator.pop(context);
-                              },
+                            },
                             buttonText:
                                 "${getTranslated('MODIFICATION', context)}",
                           ),
@@ -914,24 +950,6 @@ class _MyPageConsultantUpdateScreenState
   }
 
   modify() async {
-    for (var i = 0; i < imageList.length; i++) {
-      ImageModel imageModel = ImageModel(
-        id: imageList[i].id,
-      );
-
-      await Provider.of<CustomImageProvider>(context, listen: false)
-          .deleteImage(imageModel);
-    }
-
-    for (var i = 0; i < menuList.length; i++) {
-      MenuModel menuModel = MenuModel(
-        id: menuList[i].id,
-      );
-
-      await Provider.of<MenuProvider>(context, listen: false)
-          .deleteMenu(menuModel);
-    }
-
     UserModel userModel = UserModel(
       id: map["id"],
       hashtag:
@@ -943,58 +961,57 @@ class _MyPageConsultantUpdateScreenState
     await Provider.of<UserProvider>(context, listen: false)
         .updateUser(userModel);
 
-    map["hashtag"] = "${_hash1Controller.text},${_hash2Controller.text},${_hash3Controller.text},${_hash4Controller.text},${_hash5Controller.text},${_hash6Controller.text}";
+    map["hashtag"] =
+        "${_hash1Controller.text},${_hash2Controller.text},${_hash3Controller.text},${_hash4Controller.text},${_hash5Controller.text},${_hash6Controller.text}";
 
     await Provider.of<AuthProvider>(context, listen: false).saveUser(map);
 
     // 프로필
-    for (var i = 0; i < thumbnailList.length; i++) {
-      ImageModel imageModel = ImageModel(
-        image_type: 2,
-        consultant_id: map["id"],
-        path: thumbnailList[i],
-        create_date: DateConverter.formatDate(DateTime.now()),
-      );
+    if (resProfile != null) {
+      for (var i = 0; i < imageList.length; i++) {
+        ImageModel imageModel = ImageModel(
+          id: imageList[i].id,
+        );
 
-      await Provider.of<CustomImageProvider>(context, listen: false)
-          .addImage(imageModel);
-    }
+        await Provider.of<CustomImageProvider>(context, listen: false)
+            .deleteImage(imageModel);
+      }
 
-    // 메뉴
-    for (var i = 0; i < _menuTitleList.length; i++) {
-      MenuModel menuModel = MenuModel(
-        consultant_id: map["id"],
-        menu_title: _menuTitleList[i].text,
-        menu_amount: int.parse(_menuAmountList[i].text),
-        menu_content: _menuContentList[i].text,
-        menu_image: _menuImageList[i].text,
-      );
+      for (var i = 0; i < thumbnailList.length; i++) {
+        ImageModel imageModel = ImageModel(
+          image_type: 2,
+          consultant_id: map["id"],
+          path: thumbnailList[i],
+          create_date: DateConverter.formatDate(DateTime.now()),
+        );
 
-      await Provider.of<MenuProvider>(context, listen: false)
-          .addMenu(menuModel);
-
-      ImageModel imageModel = ImageModel(
-        image_type: 4,
-        consultant_id: map["id"],
-        path: _menuImageList[i].text,
-        create_date: DateConverter.formatDate(DateTime.now()),
-      );
-
-      await Provider.of<CustomImageProvider>(context, listen: false)
-          .addImage(imageModel);
+        await Provider.of<CustomImageProvider>(context, listen: false)
+            .addImage(imageModel);
+      }
     }
 
     // 포트폴리오
-    for (var i = 0; i < thumbnailList2.length; i++) {
-      ImageModel imageModel = ImageModel(
-        image_type: 3,
-        consultant_id: map["id"],
-        path: thumbnailList2[i],
-        create_date: DateConverter.formatDate(DateTime.now()),
-      );
+    if (resPortfolio != null) {
+      for (var i = 0; i < menuList.length; i++) {
+        MenuModel menuModel = MenuModel(
+          id: menuList[i].id,
+        );
 
-      await Provider.of<CustomImageProvider>(context, listen: false)
-          .addImage(imageModel);
+        await Provider.of<MenuProvider>(context, listen: false)
+            .deleteMenu(menuModel);
+      }
+
+      for (var i = 0; i < thumbnailList2.length; i++) {
+        ImageModel imageModel = ImageModel(
+          image_type: 3,
+          consultant_id: map["id"],
+          path: thumbnailList2[i],
+          create_date: DateConverter.formatDate(DateTime.now()),
+        );
+
+        await Provider.of<CustomImageProvider>(context, listen: false)
+            .addImage(imageModel);
+      }
     }
   }
 }
