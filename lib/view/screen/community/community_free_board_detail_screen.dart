@@ -5,6 +5,7 @@ import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 import 'package:yeka/data/model/response/community_model.dart';
 import 'package:yeka/data/model/response/image_model.dart';
 import 'package:yeka/helper/date_converter.dart';
+import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -36,8 +37,12 @@ class _CommunityFreeBoardDetailScreenState
   PageController _pageController = PageController();
   List<CommunityModel> communityNewsList = [];
   List<ImageModel> imageList = [];
+  Map userName;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
+    userName = await Provider.of<AuthProvider>(context, listen: false).getUser();
+    userName = userName["username"];
+
     await Provider.of<CommunityFreeBoardProvider>(context, listen: false)
         .getCommunityNewsList(widget.communityModel, context);
 
@@ -256,15 +261,16 @@ class _CommunityFreeBoardDetailScreenState
                                   onPressed: () {
                                     CommunityModel communityModel =
                                         CommunityModel(community_type: 2);
-
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                CommunityUpdateScreen(
-                                                  communityModel:
-                                                      communityModel,
-                                                )));
+                                    if(communityModel.writer == userName) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CommunityUpdateScreen(
+                                                    communityModel:
+                                                    communityModel,
+                                                  )));
+                                    }
                                   },
                                   child: Text(
                                     "${getTranslated('MODIFICATION', context)}",
