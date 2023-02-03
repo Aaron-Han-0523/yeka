@@ -16,6 +16,7 @@ import '../../../provider/image_provider.dart';
 import '../../../util//app_constants.dart';
 import '../../../util//images.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
+import 'community_update_screen.dart';
 
 class CommunityFreeBoardDetailScreen extends StatefulWidget {
   final CommunityModel communityModel;
@@ -159,7 +160,7 @@ class _CommunityFreeBoardDetailScreenState
 
                       Padding(
                         padding:
-                            const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 6.0),
+                            const EdgeInsets.fromLTRB(20.0, 15.0, 23.0, 6.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -171,96 +172,126 @@ class _CommunityFreeBoardDetailScreenState
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "${widget.communityModel.writer ?? ""}",
-                                    style: TextStyle(
-                                      fontSize: 8.0,
-                                      fontWeight: FontWeight.bold,
-                                      overflow: TextOverflow.ellipsis,
-                                      color: Color(0xff999999),
-                                    ),
-                                  ),
-                                  Text(
-                                    "${getTranslated('|', context)}",
-                                    style: TextStyle(
-                                      fontSize: 8.0,
-                                      fontWeight: FontWeight.bold,
-                                      overflow: TextOverflow.ellipsis,
-                                      color: Color(0xff999999),
-                                    ),
-                                  ),
-                                  Text(
-                                    "${widget.communityModel.create_date ?? ""}",
-                                    style: TextStyle(
-                                      fontSize: 8.0,
-                                      fontWeight: FontWeight.bold,
-                                      overflow: TextOverflow.ellipsis,
-                                      color: Color(0xff999999),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(160, 0, 0, 0),
-                                    child: Row(
-                                      children: [
-                                        Image.asset(
-                                          Images.eye1,
-                                          fit: BoxFit.cover,
-                                          width: 12,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "${widget.communityModel.writer ?? ""}",
+                                        style: TextStyle(
+                                          fontSize: 8.0,
+                                          fontWeight: FontWeight.bold,
+                                          overflow: TextOverflow.ellipsis,
+                                          color: Color(0xff999999),
                                         ),
-                                        Text(
-                                          " ${widget.communityModel.views ?? ""}${getTranslated('TIMES', context)}",
-                                          style: TextStyle(
-                                            fontSize: 8.0,
-                                            fontWeight: FontWeight.bold,
-                                            overflow: TextOverflow.ellipsis,
-                                            color: Color(0xff999999),
-                                          ),
+                                      ),
+                                      Text(
+                                        "${getTranslated('|', context)}",
+                                        style: TextStyle(
+                                          fontSize: 8.0,
+                                          fontWeight: FontWeight.bold,
+                                          overflow: TextOverflow.ellipsis,
+                                          color: Color(0xff999999),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      Text(
+                                        "${widget.communityModel.create_date ?? ""}",
+                                        style: TextStyle(
+                                          fontSize: 8.0,
+                                          fontWeight: FontWeight.bold,
+                                          overflow: TextOverflow.ellipsis,
+                                          color: Color(0xff999999),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 1,
-                        thickness: 1,
-                        indent: 20,
-                        endIndent: 20,
-                        color: Color(0xffEEEEEE),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 13, 20, 13),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 200,
-                              child: Text(
-                                "${widget.communityModel.community_content ?? ""}",
-                                style: TextStyle(
-                                  fontSize: 10.0,
                                 ),
-                              ),
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        Images.eye1,
+                                        fit: BoxFit.cover,
+                                        width: 12,
+                                      ),
+                                      Text(
+                                        " ${widget.communityModel.views ?? ""}${getTranslated('TIMES', context)}",
+                                        style: TextStyle(
+                                          fontSize: 8.0,
+                                          fontWeight: FontWeight.bold,
+                                          overflow: TextOverflow.ellipsis,
+                                          color: Color(0xff999999),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            const Divider(
+                              height: 1,
+                              thickness: 1,
+                              color: Color(0xffEEEEEE),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  child: Text(
+                                    "${widget.communityModel.community_content ?? ""}",
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    CommunityModel communityModel =
+                                        CommunityModel(community_type: 2);
+
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CommunityUpdateScreen(
+                                                  communityModel:
+                                                      communityModel,
+                                                )));
+                                  },
+                                  child: Text(
+                                    "${getTranslated('MODIFICATION', context)}",
+                                    style: TextStyle(
+                                      color: Color(0xff0123B4),
+                                      fontSize: 8,
+                                    ),
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    minimumSize: Size.zero,
+                                    padding: EdgeInsets.zero,
+                                    tapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            const Divider(
+                              height: 3,
+                              thickness: 1,
+                              color: Color(0xffEEEEEE),
                             ),
                           ],
                         ),
-                      ),
-                      const Divider(
-                        height: 3,
-                        thickness: 1,
-                        indent: 20,
-                        endIndent: 20,
-                        color: Color(0xffEEEEEE),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 13, 20, 10),
