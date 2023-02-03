@@ -129,7 +129,11 @@ class _ConsultantDetailPageState extends State<ConsultantDetailPage>
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: MediaQuery.of(context).size.width * 0.9,
                           child: PageView(
-                            children: consultantProfileItems,
+                            children: consultantProfileItems ?? Image.asset(
+                              Images.placeholder_1x1,
+                              fit: BoxFit.fitWidth,
+                              width: 30,
+                            ),
                             controller: _controller,
                           ),
                         ),
