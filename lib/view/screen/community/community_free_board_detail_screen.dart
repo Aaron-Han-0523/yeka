@@ -37,11 +37,12 @@ class _CommunityFreeBoardDetailScreenState
   PageController _pageController = PageController();
   List<CommunityModel> communityNewsList = [];
   List<ImageModel> imageList = [];
-  Map userName;
+  Map map;
+  String userName;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    userName = await Provider.of<AuthProvider>(context, listen: false).getUser();
-    userName = userName["username"];
+    map = await Provider.of<AuthProvider>(context, listen: false).getUser();
+    userName = map["name"];
 
     await Provider.of<CommunityFreeBoardProvider>(context, listen: false)
         .getCommunityNewsList(widget.communityModel, context);
@@ -260,8 +261,10 @@ class _CommunityFreeBoardDetailScreenState
                                 TextButton(
                                   onPressed: () {
                                     CommunityModel communityModel =
-                                        CommunityModel(community_type: 2);
-                                    if(communityModel.writer == userName) {
+                                        CommunityModel(
+                                            community_type: 2,
+                                        );
+                                    if(widget.communityModel.writer == userName) {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
