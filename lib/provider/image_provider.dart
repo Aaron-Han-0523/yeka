@@ -49,6 +49,11 @@ class CustomImageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteIdImage(ImageModel imageModel) {
+    imageRepo.deleteIdImage(imageModel);
+    notifyListeners();
+  }
+
   Future<ImageModel> getImage(ImageModel imageModel) async {
     ApiResponse apiResponse = await imageRepo.getImage(imageModel);
     _image = ImageModel.fromJson(apiResponse.response.data);

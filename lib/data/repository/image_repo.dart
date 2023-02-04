@@ -114,6 +114,18 @@ class ImageRepo {
     }
   }
 
+  Future<ApiResponse> deleteIdImage(ImageModel imageModel) async {
+    try {
+      final response = await dioClient.delete(
+        AppConstants.DELETE_IMAGE_URI +
+            "/${imageModel.id}",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   Future<ApiResponse> getImageListByProductId(ImageModel imageModel) async {
     try {
       final response = await dioClient.get(

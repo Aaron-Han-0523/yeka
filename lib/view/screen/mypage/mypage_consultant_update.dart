@@ -712,7 +712,7 @@ class _MyPageConsultantUpdateScreenState
                                       _menuAmountController.text,
                                       _menuContentController.text,
                                       _menuImageController.text,
-                                      menuCount++,
+                                      menuCount,
                                     );
 
                                     MenuModel menuModel = MenuModel(
@@ -743,6 +743,8 @@ class _MyPageConsultantUpdateScreenState
                                         .addImage(imageModel);
 
                                   }
+
+                                  menuCount++;
 
                                   _menuTitleController.text = "";
                                   _menuAmountController.text = "";
@@ -971,10 +973,13 @@ class _MyPageConsultantUpdateScreenState
       for (var i = 0; i < imageList.length; i++) {
         ImageModel imageModel = ImageModel(
           id: imageList[i].id,
+          image_type: imageList[i].image_type,
         );
 
-        await Provider.of<CustomImageProvider>(context, listen: false)
-            .deleteImage(imageModel);
+        if(imageModel.image_type == 2) {
+          await Provider.of<CustomImageProvider>(context, listen: false)
+              .deleteIdImage(imageModel);
+        }
       }
 
       for (var i = 0; i < thumbnailList.length; i++) {
@@ -992,13 +997,15 @@ class _MyPageConsultantUpdateScreenState
 
     // 포트폴리오
     if (resPortfolio != null) {
-      for (var i = 0; i < menuList.length; i++) {
-        MenuModel menuModel = MenuModel(
-          id: menuList[i].id,
+      for (var i = 0; i < imageList.length; i++) {
+        ImageModel imageModel = ImageModel(
+          id: imageList[i].id,
+          image_type: imageList[i].image_type,
         );
-
-        await Provider.of<MenuProvider>(context, listen: false)
-            .deleteMenu(menuModel);
+        if(imageModel.image_type == 3) {
+          await Provider.of<CustomImageProvider>(context, listen: false)
+              .deleteIdImage(imageModel);
+        }
       }
 
       for (var i = 0; i < thumbnailList2.length; i++) {
