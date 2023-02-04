@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/provider/image_provider.dart';
 
+import '../../../data/model/response/image_model.dart';
 import '../../../util//app_constants.dart';
 import '../../../util//dimensions.dart';
 import '../../../util//images.dart';
@@ -20,6 +21,8 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
   @override
   Widget build(BuildContext context) {
     int cnt = 0;
+    List<ImageModel> imageList =
+        Provider.of<CustomImageProvider>(context, listen: false).imageList;
 
     var column = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,8 +33,7 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
 
     var row;
 
-    for (var image
-        in Provider.of<CustomImageProvider>(context, listen: false).imageList) {
+    for (var image in imageList) {
       if (image.image_type == 3) {
         if (cnt % 3 == 0) {
           row = Row(
@@ -80,7 +82,9 @@ class _ConsultantPortfolioWidgetState extends State<ConsultantPortfolioWidget> {
       ),
     );
 */
-
+    if(imageList.length < 4) {
+      column.children.add(row);
+    }
     return column;
   }
 }
