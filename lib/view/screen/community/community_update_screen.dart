@@ -21,6 +21,7 @@ import '../../../util//app_constants.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/textarea/custom_textarea.dart';
 import '../../basewidget/textfield/custom_label_textfield.dart';
+import 'community_free_board_list_screen.dart';
 
 class CommunityUpdateScreen extends StatefulWidget {
   final CommunityModel communityModel;
@@ -332,7 +333,12 @@ class _CommunityUpdateScreenState extends State<CommunityUpdateScreen> {
                       child: CustomElevatedButton(
                         onTap: () async {
                           modify();
-                          Navigator.pop(context);
+                          Navigator.of(context)
+                              .push(
+                            MaterialPageRoute(
+                              builder: (context) => CommunityFreeBoardListScreen(),
+                            ),
+                          );
                         },
                         buttonText: "${getTranslated('CONFIRMATION', context)}",
                         fontSize: 10,
