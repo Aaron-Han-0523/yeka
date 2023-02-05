@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/provider/community_freeboard_provider.dart';
 import 'package:yeka/provider/community_notice_provider.dart';
@@ -36,6 +37,7 @@ Future<void> main() async {
   await FlutterDownloader.initialize();
   await di.init();
   int _orderID;
+  KakaoSdk.init(nativeAppKey: '17c176ca976f13ed6e8a47aac489aa2a');
 
   runApp(MultiProvider(
     providers: [

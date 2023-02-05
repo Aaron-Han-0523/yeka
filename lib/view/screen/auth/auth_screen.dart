@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/data/model/response/consulting_model.dart';
+import 'package:yeka/kakao_login.dart';
 import 'package:yeka/localization/language_constants.dart';
+import 'package:yeka/main_view_model.dart';
 import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
@@ -27,6 +29,8 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  final viewModel = MainViewModel(KakaoLogin());
+
   TextEditingController idController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -42,7 +46,11 @@ class _AuthScreenState extends State<AuthScreen> {
           child: CustomScrollView(
             slivers: [
               // App Bar
-              CustomSliverAppBar("${getTranslated('LOGIN', context)}", isMyPageHidden: true, isLogoutHidden: true,),
+              CustomSliverAppBar(
+                "${getTranslated('LOGIN', context)}",
+                isMyPageHidden: true,
+                isLogoutHidden: true,
+              ),
 
               SliverToBoxAdapter(
                 child: Container(
@@ -119,7 +127,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onChanged: (value) {},
                                 textAlignVertical: TextAlignVertical.bottom,
                                 focusNode: passwordFocus,
-                                style: TextStyle(fontSize: 13,),
+                                style: TextStyle(
+                                  fontSize: 13,
+                                ),
                                 decoration: InputDecoration(
                                   hintText:
                                       "${getTranslated('INSERT_PW', context)}",
@@ -180,14 +190,33 @@ class _AuthScreenState extends State<AuthScreen> {
                             const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
                         child: CustomOutlinedButton(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => JoinScreen()),
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => JoinScreen()),
                             );
                           },
                           buttonText:
                               "${getTranslated('MEMBER_JOIN', context)}",
                         ),
                       ),
+                      Image.network(
+                          viewModel.user != null ? viewModel.user.kakaoAccount.profile.profileImageUrl :
+                              ''),
+                      Text(
+                        '${viewModel.isLogined}',
+                      ),
+                      ElevatedButton(
+                          onPressed: () async {
+                            await viewModel.login();
+                            setState(() {});
+                          },
+                          child: Text('Login')),
+                      ElevatedButton(
+                          onPressed: () async {
+                            await viewModel.login();
+                            setState(() {});
+                          },
+                          child: Text('Logout')),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
@@ -205,19 +234,27 @@ class _AuthScreenState extends State<AuthScreen> {
 
   route(bool isRoute, String errorMessage) async {
     if (isRoute) {
-      if(widget.initialPage == 0) {
+      if (widget.initialPage == 0) {
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => HomePage()), (route) => true);
-      } else if(widget.initialPage == 1) {
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (_) => AIResultPage(consultingModel: widget.consultingModel)), (route) => true);
-      } else if(widget.initialPage == 2) {
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (_) => ProductDetailPage()), (route) => true);
+      } else if (widget.initialPage == 1) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (_) =>
+                    AIResultPage(consultingModel: widget.consultingModel)),
+            (route) => true);
+      } else if (widget.initialPage == 2) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => ProductDetailPage()),
+            (route) => true);
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("${getTranslated("CHECK_USER_INFO", context)}"), backgroundColor: Colors.red),
+        SnackBar(
+            content: Text("${getTranslated("CHECK_USER_INFO", context)}"),
+            backgroundColor: Colors.red),
       );
     }
   }
