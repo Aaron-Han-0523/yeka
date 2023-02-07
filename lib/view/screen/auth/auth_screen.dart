@@ -12,6 +12,7 @@ import 'package:yeka/util/images.dart';
 import 'package:yeka/view/screen/auth/join_screen.dart';
 
 import '../../../data/model/body/login_model.dart';
+import '../../../data/model/response/user_model.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
@@ -31,6 +32,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final viewModel = MainViewModel(KakaoLogin());
+  OAuthToken token;
 
   TextEditingController idController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -188,6 +190,80 @@ class _AuthScreenState extends State<AuthScreen> {
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                       Padding(
                         padding:
+                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+                        child: CustomOutlinedButton(
+                          backgroundColor: Colors.yellow,
+                          borderColor: Colors.white,
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => JoinScreen()),
+                            );
+                          },
+                          child: InkWell(
+                            onTap: () async {
+                              try {
+                                AccessTokenInfo tokenInfo =
+                                    await UserApi.instance.accessTokenInfo();
+                                print('${tokenInfo}');
+                                print('Kakao login success');
+                              } catch (error) {
+                                print('액세스 토큰이 존재하지 않습니다. 로그인을 시도합니다.');
+                                token = await viewModel.login();
+                                User user = await UserApi.instance.me();
+
+                                // 생성된 유저 정보를 서버로 보내야 함
+                                UserModel userModel = UserModel(
+                                  id: user.id,
+                                  // 10자리
+                                  name: user.kakaoAccount.name,
+                                  // 권한필요
+                                  email: user.kakaoAccount.email,
+                                  phone: user.kakaoAccount.phoneNumber,
+                                  // 권한필요, 국내 번호인 경우 +82 00-0000-0000 형식
+                                  gender: user.kakaoAccount.gender == 'male'
+                                      ? 0
+                                      : 1, // male, female
+                                );
+
+                                Provider.of<AuthProvider>(context,
+                                        listen: false)
+                                    .addCustomToken(userModel);
+
+                                if (UserApi.instance.accessTokenInfo() !=
+                                    null) {
+                                  await Navigator.of(context)
+                                      .pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                              builder: (_) => HomePage()),
+                                          (route) => false);
+                                }
+                              }
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  Images.kakao,
+                                  fit: BoxFit.fill,
+                                  height: 20,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "${getTranslated('LOGIN_WITH_KAKAOTALK', context)}",
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                      Padding(
+                        padding:
                             const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
                         child: CustomOutlinedButton(
                           onTap: () {
@@ -198,61 +274,6 @@ class _AuthScreenState extends State<AuthScreen> {
                           },
                           buttonText:
                               "${getTranslated('MEMBER_JOIN', context)}",
-                        ),
-                      ),
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.network(viewModel.user != null
-                                ? viewModel
-                                    .user.kakaoAccount.profile.profileImageUrl
-                                : ''),
-                            Text(
-                              '${viewModel.isLogined}',
-                              style: Theme.of(context).textTheme.headlineMedium,
-                            ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                try {
-                                  AccessTokenInfo tokenInfo =
-                                  await UserApi.instance.accessTokenInfo();
-                                  print(
-                                      '이미 액세스 토큰이 존재하므로 로그인을 시도하지 않습니다. ${tokenInfo}');
-
-                                  User user = await UserApi.instance.me();
-                                  print('사용자 정보 요청 성공'
-                                      '\n회원번호: ${user.id}'
-                                      '\n닉네임: ${user.kakaoAccount.profile.nickname}'
-                                      '\n이메일: ${user.kakaoAccount.email}');
-                                } catch (error) {
-                                  print('액세스 토큰이 존재하지 않습니다. 로그인을 시도합니다.');
-                                  OAuthToken token = await viewModel.login();
-                                  User user = await UserApi.instance.me();
-                                  if (token != null) {
-                                    print('사용자 정보 요청 성공'
-                                        '\n회원번호: ${user.id}'
-                                        '\n닉네임: ${user.kakaoAccount.profile.nickname}'
-                                        '\n이메일: ${user.kakaoAccount.email}');
-                                  }
-                                }
-
-                                setState(() {});
-
-                                // Navigator.of(context).push(
-                                //     MaterialPageRoute(
-                                //         builder: (context) => HomePage());
-                              },
-                              child: const Text('Login'),
-                            ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                await viewModel.logout();
-                                setState(() {});
-                              },
-                              child: const Text('Logout'),
-                            ),
-                          ],
                         ),
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),

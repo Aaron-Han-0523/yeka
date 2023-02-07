@@ -420,4 +420,26 @@ class AuthRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  // Kakao User Token
+  Future<ApiResponse> addCustomToken(UserModel userModel) async {
+    var formData = FormData.fromMap({
+      // 'files' : uploadFiles,
+      // 'title': userModel.title,
+      // 'content': userModel.content,
+      // 'grade': userModel.grade,
+      // 'clients_id': sharedPreferences.getInt("clients_id"),
+    });
+
+    try {
+      var response = await dioClient.post(
+        AppConstants.ADD_USER_URI,
+        data: formData,
+      );
+
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 }

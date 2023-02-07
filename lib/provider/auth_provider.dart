@@ -277,4 +277,9 @@ class AuthProvider with ChangeNotifier {
     }
     return responseModel;
   }
+
+  // Kakao User Token
+  Future<ApiResponse> addCustomToken(UserModel userModel) {
+    return authRepo.addCustomToken(userModel);
+  }
 }

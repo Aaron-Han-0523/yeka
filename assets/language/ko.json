@@ -38,9 +38,9 @@
   "PRIVACY_POLICY_AGREE": "개인정보처리방침에 동의합니다.",
   "ALL_AGREE": "필수 약관에 모두 동의합니다.",
   "FOOTER_TEXT1": "회사명 : 예카 | 대표이사 : 팽정은",
-  "FOOTER_TEXT2": "사업자 번호 : 123-45-67890",
+  "FOOTER_TEXT2": "사업자 번호 : 106-88-00761",
   "FOOTER_TEXT3": "대표전화 : 031-123-4567",
-  "FOOTER_TEXT4": "주소 : 서울시 강남구 OO로 OO",
+  "FOOTER_TEXT4": "주소 : 서울시 강남구 논현로 625 5층",
   "FOOTER_TEXT5": "COPYRIGHT YEKA.ALL RIGHTS RESERVED.",
 
   "CONSULTANT_LIST": "컨설턴트 목록",
@@ -385,6 +385,7 @@
   "FOR_RESULT" : "결과확인을 위해",
   "NEED_TO_LOGIN" : "로그인이 필요해요 :)",
   "NO_FAVORITE_PRODUCT" : "선택한 찜 상품이 없습니다.",
+  "LOGIN_WITH_KAKAOTALK" : "카카오톡으로 로그인",
 
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",
