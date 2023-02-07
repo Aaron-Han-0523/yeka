@@ -5,6 +5,7 @@ import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/view/screen/home/widget/footer_screens.dart';
 
 import '../../../data/model/response/community_model.dart';
+import '../../../data/model/response/user_model.dart';
 import '../../../helper/date_converter.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/community_notice_provider.dart';
@@ -221,7 +222,6 @@ class _MyPageNoticeBoardListScreenState
                                                                           width:
                                                                               4),
                                                                       Text(
-                                                                        //fixme 확인필요!!
                                                                         "${communityList[index].views}${getTranslated('TIMES', context)}",
                                                                         // "${communityList[index].views}"
                                                                         style:
