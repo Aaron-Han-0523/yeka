@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/data/model/response/consulting_model.dart';
 import 'package:yeka/kakao_login.dart';
@@ -199,24 +200,61 @@ class _AuthScreenState extends State<AuthScreen> {
                               "${getTranslated('MEMBER_JOIN', context)}",
                         ),
                       ),
-                      Image.network(
-                          viewModel.user != null ? viewModel.user.kakaoAccount.profile.profileImageUrl :
-                              ''),
-                      Text(
-                        '${viewModel.isLogined}',
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image.network(viewModel.user != null
+                                ? viewModel
+                                    .user.kakaoAccount.profile.profileImageUrl
+                                : ''),
+                            Text(
+                              '${viewModel.isLogined}',
+                              style: Theme.of(context).textTheme.headlineMedium,
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                try {
+                                  AccessTokenInfo tokenInfo =
+                                  await UserApi.instance.accessTokenInfo();
+                                  print(
+                                      '이미 액세스 토큰이 존재하므로 로그인을 시도하지 않습니다. ${tokenInfo}');
+
+                                  User user = await UserApi.instance.me();
+                                  print('사용자 정보 요청 성공'
+                                      '\n회원번호: ${user.id}'
+                                      '\n닉네임: ${user.kakaoAccount.profile.nickname}'
+                                      '\n이메일: ${user.kakaoAccount.email}');
+                                } catch (error) {
+                                  print('액세스 토큰이 존재하지 않습니다. 로그인을 시도합니다.');
+                                  OAuthToken token = await viewModel.login();
+                                  User user = await UserApi.instance.me();
+                                  if (token != null) {
+                                    print('사용자 정보 요청 성공'
+                                        '\n회원번호: ${user.id}'
+                                        '\n닉네임: ${user.kakaoAccount.profile.nickname}'
+                                        '\n이메일: ${user.kakaoAccount.email}');
+                                  }
+                                }
+
+                                setState(() {});
+
+                                // Navigator.of(context).push(
+                                //     MaterialPageRoute(
+                                //         builder: (context) => HomePage());
+                              },
+                              child: const Text('Login'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                await viewModel.logout();
+                                setState(() {});
+                              },
+                              child: const Text('Logout'),
+                            ),
+                          ],
+                        ),
                       ),
-                      ElevatedButton(
-                          onPressed: () async {
-                            await viewModel.login();
-                            setState(() {});
-                          },
-                          child: Text('Login')),
-                      ElevatedButton(
-                          onPressed: () async {
-                            await viewModel.login();
-                            setState(() {});
-                          },
-                          child: Text('Logout')),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
                       SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),

@@ -1,16 +1,17 @@
+
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:yeka/social_login.dart';
 
 class MainViewModel {
   final SocialLogin _socialLogin;
-  bool isLogined = false; // 처음에는 로그인이 안되어 있음
+  bool isLogined = false;
   User user;
 
   MainViewModel(this._socialLogin);
 
   Future login() async {
     isLogined = await _socialLogin.login();
-    if(isLogined) {
+    if (isLogined) {
       user = await UserApi.instance.me();
     }
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../kakao_login.dart';
+import '../../../main_view_model.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../util//images.dart';
 import '../../screen/auth/auth_screen.dart';
@@ -13,13 +15,20 @@ class CustomSliverAppBar extends StatefulWidget {
   final bool isMyPageHidden;
   final bool isLogoutHidden;
 
-  CustomSliverAppBar(this.titleText, {this.isHome = false, this.isMyPageHidden = false, this.isLogoutHidden = false,});
+  CustomSliverAppBar(
+    this.titleText, {
+    this.isHome = false,
+    this.isMyPageHidden = false,
+    this.isLogoutHidden = false,
+  });
 
   @override
   State<CustomSliverAppBar> createState() => _CustomSliverAppBarState();
 }
 
 class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
+  final viewModel = MainViewModel(KakaoLogin());
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -39,9 +48,9 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
             ? Container()
             : BackButton(
                 color: Colors.black,
-          onPressed: () {
-            Navigator.maybePop(context,"value");
-          },
+                onPressed: () {
+                  Navigator.maybePop(context, "value");
+                },
               ),
       ),
       title: Center(
@@ -66,7 +75,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
               onTap: () => {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) => HomePage()),
-                        (route) => false)
+                    (route) => false)
               },
               child: Icon(
                 Icons.home,
@@ -110,52 +119,59 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
         //     ),
         //   ),
         // ),
-        widget.isMyPageHidden ? Container() : Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
-            child: InkWell(
-              onTap: () {
-                if (Provider.of<AuthProvider>(context, listen: false)
-                    .isLoggedIn()) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => MyPageHomeScreen(),
+        widget.isMyPageHidden
+            ? Container()
+            : Center(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+                  child: InkWell(
+                    onTap: () {
+                      if (Provider.of<AuthProvider>(context, listen: false)
+                          .isLoggedIn()) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => MyPageHomeScreen(),
+                          ),
+                        );
+                      } else {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => AuthScreen(),
+                          ),
+                        );
+                      }
+                    },
+                    child: Image.asset(
+                      Images.login_id,
+                      height: 17,
                     ),
-                  );
-                } else {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => AuthScreen(),
-                    ),
-                  );
-                }
-              },
-              child: Image.asset(
-                Images.login_id,
-                height: 17,
-              ),
-            ),
-          ),
-        ),
-        widget.isLogoutHidden ? Container() : Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
-            child: InkWell(
-              onTap: () =>  {
-                Provider.of<AuthProvider>(context, listen: false).clearUser(),
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => AuthScreen(),
                   ),
-                )
-              },
-              child: Image.asset(
-                Images.mypage,
-                height: 17,
+                ),
               ),
-            ),
-          ),
-        ),
+        widget.isLogoutHidden
+            ? Container()
+            : Center(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
+                  child: InkWell(
+                    onTap: () async => {
+                      await viewModel.logout(),
+                      setState(() {}),
+                      Provider.of<AuthProvider>(context, listen: false)
+                          .clearUser(),
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => AuthScreen(),
+                        ),
+                      )
+                    },
+                    child: Image.asset(
+                      Images.mypage,
+                      height: 17,
+                    ),
+                  ),
+                ),
+              ),
       ],
     );
   }

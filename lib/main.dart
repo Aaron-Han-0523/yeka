@@ -37,7 +37,7 @@ Future<void> main() async {
   await FlutterDownloader.initialize();
   await di.init();
   int _orderID;
-  KakaoSdk.init(nativeAppKey: '17c176ca976f13ed6e8a47aac489aa2a');
+  KakaoSdk.init(nativeAppKey: 'ae1c5e51e527542235d86d44f3cbf726');
 
   runApp(MultiProvider(
     providers: [
