@@ -36,19 +36,21 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
   DateRangePickerController controller = DateRangePickerController();
   Map user = Map();
   String userImagePath;
+  List<bool> _selections1 = List.generate(6, (index) => false);
+  List<bool> _selections2 = List.generate(6, (index) => false);
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     user = Provider.of<AuthProvider>(context, listen: false).getUser();
     ImageModel imageModel = new ImageModel(user_id: user["id"], image_type: 5);
 
-    await Provider.of<CustomImageProvider>(context, listen: false).getUserImage(imageModel);
-    userImagePath = Provider.of<CustomImageProvider>(context, listen: false).image.path;
+    await Provider.of<CustomImageProvider>(context, listen: false)
+        .getUserImage(imageModel);
+    userImagePath =
+        Provider.of<CustomImageProvider>(context, listen: false).image.path;
   }
 
   @override
   void didChangeDependencies() {
-
-
     super.didChangeDependencies();
     _loadData(context, false);
   }
@@ -141,6 +143,12 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                           height: Dimensions.PADDING_SIZE_LARGE,
                         ),
 
+                        timeBuilder(),
+
+                        SizedBox(
+                          height: Dimensions.PADDING_SIZE_LARGE,
+                        ),
+
                         CustomElevatedButton(
                           onTap: () {
                             if (controller.selectedDate != null) {
@@ -215,6 +223,80 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget timeBuilder() {
+    List<String> morningTimeList = [
+      '07:00',
+      '08:00',
+      '09:00',
+      '10:00',
+      '11:00',
+      '12:00',
+    ];
+    List<String> afternoonTimeList = [
+      '13:00',
+      '14:00',
+      '15:00',
+      '16:00',
+      '17:00',
+      '18:00',
+    ];
+
+    // DateConverter.isoStringToLocalTimeOnly()
+    return Column(
+      children: [
+        Text(
+          "${getTranslated('MORNING', context)}",
+        ),
+        ToggleButtons(
+          children: [
+            for (String morningTime in morningTimeList) Text(morningTime),
+          ],
+          onPressed: (int index) {
+            setState(() {
+              _selections1[index] = !_selections1[index];
+            });
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          selectedBorderColor: Colors.green[700],
+          selectedColor: Colors.green[400],
+          fillColor: Colors.green[200],
+          color: Colors.green[400],
+          constraints: const BoxConstraints(
+            minHeight: 40.0,
+            minWidth: 60.0,
+          ),
+          isSelected: _selections1,
+        ),
+        SizedBox(
+          height: Dimensions.PADDING_SIZE_LARGE,
+        ),
+        Text(
+          "${getTranslated('AFTERNOON', context)}",
+        ),
+        ToggleButtons(
+          children: [
+            for (String afternoonTime in afternoonTimeList) Text(afternoonTime),
+          ],
+          onPressed: (int index) {
+            setState(() {
+              _selections2[index] = !_selections2[index];
+            });
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          selectedBorderColor: Colors.orange[700],
+          selectedColor: Colors.white,
+          fillColor: Colors.orange[200],
+          color: Colors.orange[400],
+          constraints: const BoxConstraints(
+            minHeight: 40.0,
+            minWidth: 60.0,
+          ),
+          isSelected: _selections2,
+        ),
+      ],
     );
   }
 }

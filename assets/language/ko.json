@@ -298,6 +298,9 @@
   "SOFT" : "소프트",
   "PALE" : "페일",
 
+  "MORNING" : "오전",
+  "AFTERNOON" : "오후",
+
   "SEASON_QNA1" : "나의 피부베이스 컬러는?|1) 옐로우 베이스|2) 핑크 베이스",
   "SEASON_QNA2" : "대체적으로 나는|1) 밝은 컬러가 어울린다|2) 어두운 컬러가 어울린다",
   "SEASON_QNA3" : "나의 피부결의 특징은?|1) 얇고 투명한 피부|2) 두텁고 단단한 피부",
@@ -386,6 +389,7 @@
   "NEED_TO_LOGIN" : "로그인이 필요해요 :)",
   "NO_FAVORITE_PRODUCT" : "선택한 찜 상품이 없습니다.",
   "LOGIN_WITH_KAKAOTALK" : "카카오톡으로 로그인",
+
 
 
   "TEMP_CODE": "${getTranslated('CONFIRM', context)}",

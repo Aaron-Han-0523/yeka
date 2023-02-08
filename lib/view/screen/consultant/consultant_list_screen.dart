@@ -28,7 +28,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
   String dongDropdownValue = null;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-    Provider.of<UserProvider>(context, listen: false)
+    await Provider.of<UserProvider>(context, listen: false)
         .getLatestConsultantList(0, context, reload: reload);
   }
 
@@ -50,6 +50,7 @@ class _ConsultantListScreenState extends State<ConsultantListScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     _loadData(context, false);
   }
 
