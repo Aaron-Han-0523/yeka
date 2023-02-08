@@ -243,27 +243,40 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
       '17:00',
       '18:00',
     ];
-
+    int state = 0;
     // DateConverter.isoStringToLocalTimeOnly()
     return Column(
       children: [
         Text(
           "${getTranslated('MORNING', context)}",
         ),
+
         ToggleButtons(
           children: [
             for (String morningTime in morningTimeList) Text(morningTime),
           ],
           onPressed: (int index) {
-            setState(() {
-              _selections1[index] = !_selections1[index];
-            });
-          },
+            state != 0 ?
+              setState(() {
+                _selections1[index] = !_selections1[index];
+              })
+            : null;
+            if(state == 0) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('이미 예약된 시간입니다.'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            }
+            },
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           selectedBorderColor: Colors.green[700],
           selectedColor: Colors.green[400],
           fillColor: Colors.green[200],
           color: Colors.green[400],
+          disabledColor: Colors.grey[400],
+          disabledBorderColor: Colors.grey[700],
           constraints: const BoxConstraints(
             minHeight: 40.0,
             minWidth: 60.0,
