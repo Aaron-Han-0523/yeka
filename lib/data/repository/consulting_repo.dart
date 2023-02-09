@@ -23,7 +23,7 @@ class ConsultingRepo {
 
     var formData = FormData.fromMap({
       'consultant_id': consultingModel.consultant_id,
-      'clients_id': consultingModel.client_id,
+      'client_id': consultingModel.client_id,
       'client_name': consultingModel.client_name,
       'client_image': consultingModel.client_image,
       'client_phone': consultingModel.client_phone,

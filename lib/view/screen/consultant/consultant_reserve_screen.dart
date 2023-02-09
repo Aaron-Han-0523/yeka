@@ -292,16 +292,19 @@ class _ConsultantReserveScreenState extends State<ConsultantReserveScreen>
                               onTap: () {
                                 // Todo DB 재설계 후 확인
 
-
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (_) => ConsultantMyReserveScreen(
-                                      userModel: widget.userModel,
-                                      menuModel: widget.menuModel,
-                                      consultingModel: widget.consultingModel,
+                                if(widget.consultingModel.payment_status != 0) {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          ConsultantMyReserveScreen(
+                                            userModel: widget.userModel,
+                                            menuModel: widget.menuModel,
+                                            consultingModel: widget
+                                                .consultingModel,
+                                          ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                }
                               },
                               buttonText:
                                   "${getTranslated('CONFIRMATION', context)}",

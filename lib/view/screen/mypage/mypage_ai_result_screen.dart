@@ -52,7 +52,7 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
     personalColorModel =
         await Provider.of<PersonalColorProvider>(context, listen: false)
             .personalColor;
-    Provider.of<CustomImageProvider>(context, listen: false).getUserImage(imageModel);
+    await Provider.of<CustomImageProvider>(context, listen: false).getUserImage(imageModel);
     imageModel = Provider.of<CustomImageProvider>(context, listen: false).image;
   }
 

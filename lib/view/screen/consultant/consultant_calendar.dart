@@ -151,7 +151,11 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
 
                         CustomElevatedButton(
                           onTap: () {
-                            if (controller.selectedDate != null) {
+                            if (controller.selectedDate != null &&
+                                (_selections1.contains(true) || _selections2.contains(true))
+                            ) {
+                              print(_selections1.contains(true));
+                              print(_selections2);
                               ConsultingModel consultingModel = ConsultingModel(
                                 consultant_id: widget.userModel.id,
                                 client_id: user["id"],
@@ -227,15 +231,13 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
   }
 
   Widget timeBuilder() {
-    List<String> morningTimeList = [
+    List<String> timeList = [
       '07:00',
       '08:00',
       '09:00',
       '10:00',
       '11:00',
       '12:00',
-    ];
-    List<String> afternoonTimeList = [
       '13:00',
       '14:00',
       '15:00',
@@ -243,6 +245,12 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
       '17:00',
       '18:00',
     ];
+    List<String> morningTimeList = [];
+    List<String> afternoonTimeList = [];
+
+    morningTimeList = timeList.sublist(0 , 6);
+    afternoonTimeList = timeList.sublist(6 , timeList.length);
+
     int state = 0;
     // DateConverter.isoStringToLocalTimeOnly()
     return Column(
@@ -259,6 +267,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
             state != 0 ?
               setState(() {
                 _selections1[index] = !_selections1[index];
+                print(_selections1[index]);
               })
             : null;
             if(state == 0) {
@@ -294,9 +303,20 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
             for (String afternoonTime in afternoonTimeList) Text(afternoonTime),
           ],
           onPressed: (int index) {
+            state != 1 ?
             setState(() {
               _selections2[index] = !_selections2[index];
-            });
+              print(_selections2[index]);
+            })
+                : null;
+            if(state == 1) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('이미 예약된 시간입니다.'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            }
           },
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           selectedBorderColor: Colors.orange[700],
