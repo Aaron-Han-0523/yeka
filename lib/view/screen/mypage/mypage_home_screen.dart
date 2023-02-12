@@ -48,9 +48,9 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
       client_id: map["id"],
     );
 
-    consultingModel =
-        await Provider.of<ConsultingProvider>(context, listen: false)
+    await Provider.of<ConsultingProvider>(context, listen: false)
             .getConsultingByClientId(consultingModel);
+    consultingModel = Provider.of<ConsultingProvider>(context, listen: false).consulting;
 
     await Provider.of<ConsultingProvider>(context, listen: false)
         .getLatestConsultingList(0, map["id"], context, reload: true);
@@ -82,6 +82,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
     super.didChangeDependencies();
 
     map = Provider.of<AuthProvider>(context, listen: false).getUser();
+    _loadData(context, false);
 
     if (map["user_type"] != null) {
       int user_type = map["user_type"]; // 0사용자, 1컨설턴트, 2협력사, 99관리자
@@ -104,7 +105,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
         myPageList.children.add(buildItem(
           "${getTranslated('MY_CONSULTING_RESULT', context)}",
           MyPageConsultantResultScreen(),
-          isCheck: consultingModel == null ? 2 : -1,
+          isCheck: consultingModel.consulting_status != 2 ? 2 : -1,
         ));
         myPageList.children.add(buildItem(
           "${getTranslated('ORDER_LIST', context)}",
@@ -147,7 +148,7 @@ class _MyPageHomeScreenState extends State<MyPageHomeScreen> {
       ));
     }
 
-    _loadData(context, false);
+
   }
 
   buildItem(String title, Widget targetWidget, {int isCheck = -1}) {
