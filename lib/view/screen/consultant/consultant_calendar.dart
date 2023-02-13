@@ -152,8 +152,8 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                         CustomElevatedButton(
                           onTap: () {
                             if (controller.selectedDate != null &&
-                                (_selections1.contains(true) || _selections2.contains(true))
-                            ) {
+                                (_selections1.contains(true) ||
+                                    _selections2.contains(true))) {
                               print(_selections1.contains(true));
                               print(_selections2);
                               ConsultingModel consultingModel = ConsultingModel(
@@ -248,8 +248,8 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
     List<String> morningTimeList = [];
     List<String> afternoonTimeList = [];
 
-    morningTimeList = timeList.sublist(0 , 6);
-    afternoonTimeList = timeList.sublist(6 , timeList.length);
+    morningTimeList = timeList.sublist(0, 6);
+    afternoonTimeList = timeList.sublist(6, timeList.length);
 
     int state = 0;
     // DateConverter.isoStringToLocalTimeOnly()
@@ -258,27 +258,33 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
         Text(
           "${getTranslated('MORNING', context)}",
         ),
-
         ToggleButtons(
           children: [
             for (String morningTime in morningTimeList) Text(morningTime),
           ],
           onPressed: (int index) {
-            state != 0 ?
+            if (_selections1[index] == true) {
               setState(() {
                 _selections1[index] = !_selections1[index];
-                print(_selections1[index]);
-              })
-            : null;
-            if(state == 0) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('이미 예약된 시간입니다.'),
-                  duration: Duration(seconds: 2),
-                ),
-              );
+              });
+            } else if (!_selections1.contains(true) &&
+                !_selections2.contains(true)) {
+              state != 1
+                  ? setState(() {
+                      _selections1[index] = !_selections1[index];
+                      print(_selections1[index]);
+                    })
+                  : null;
+              if (state == 1) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('이미 예약된 시간입니다.'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
             }
-            },
+          },
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           selectedBorderColor: Colors.green[700],
           selectedColor: Colors.green[400],
@@ -303,19 +309,26 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
             for (String afternoonTime in afternoonTimeList) Text(afternoonTime),
           ],
           onPressed: (int index) {
-            state != 1 ?
-            setState(() {
-              _selections2[index] = !_selections2[index];
-              print(_selections2[index]);
-            })
-                : null;
-            if(state == 1) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('이미 예약된 시간입니다.'),
-                  duration: Duration(seconds: 2),
-                ),
-              );
+            if (_selections2[index] == true) {
+              setState(() {
+                _selections2[index] = !_selections2[index];
+              });
+            } else if (!_selections1.contains(true) &&
+                !_selections2.contains(true)) {
+              state != 1
+                  ? setState(() {
+                      _selections2[index] = !_selections2[index];
+                      print(_selections2[index]);
+                    })
+                  : null;
+              if (state == 1) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('이미 예약된 시간입니다.'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
             }
           },
           borderRadius: const BorderRadius.all(Radius.circular(8)),
