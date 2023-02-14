@@ -71,6 +71,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.3.59
   syncfusion_flutter_sliders: ^20.4.38
   kakao_flutter_sdk_user: ^1.1.1
+  google_sign_in: ^5.4.1
 
 dev_dependencies:
   flutter_test:

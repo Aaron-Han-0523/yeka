@@ -2,12 +2,12 @@
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:yeka/social_login.dart';
 
-class MainViewModel {
+class KaKaoViewModel {
   final SocialLogin _socialLogin;
   bool isLogined = false;
   User user;
 
-  MainViewModel(this._socialLogin);
+  KaKaoViewModel(this._socialLogin);
 
   Future login() async {
     isLogined = await _socialLogin.login();

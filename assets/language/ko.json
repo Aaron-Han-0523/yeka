@@ -388,7 +388,8 @@
   "FOR_RESULT" : "결과확인을 위해",
   "NEED_TO_LOGIN" : "로그인이 필요해요 :)",
   "NO_FAVORITE_PRODUCT" : "선택한 찜 상품이 없습니다.",
-  "LOGIN_WITH_KAKAOTALK" : "카카오톡으로 로그인",
+  "LOGIN_WITH_KAKAOTALK" : "카카오로 로그인",
+  "LOGIN_WITH_GOOGLE" : "Google로 로그인",
 
 
 

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:yeka/google_login.dart';
+import 'package:yeka/google_view_Model.dart';
 
 import '../../../kakao_login.dart';
-import '../../../main_view_model.dart';
+import '../../../kakao_view_model.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../util//images.dart';
 import '../../screen/auth/auth_screen.dart';
@@ -27,7 +30,8 @@ class CustomSliverAppBar extends StatefulWidget {
 }
 
 class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
-  final viewModel = MainViewModel(KakaoLogin());
+  final kakaoViewModel = KaKaoViewModel(KakaoLogin());
+  final googleViewModel = GoogleViewModel(GoogleLogin());
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +159,10 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
                   padding: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
                   child: InkWell(
                     onTap: () async => {
-                      await viewModel.logout(),
+                      // kakao logout
+                      await kakaoViewModel.logout(),
+                      // google logout
+                      await googleViewModel.logout(),
                       setState(() {}),
                       Provider.of<AuthProvider>(context, listen: false)
                           .clearUser(),

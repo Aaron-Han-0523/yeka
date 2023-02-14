@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>CFBundleURLTypes</key>
+        <array>
+          <dict>
+          <key>CFBundleURLSchemes</key>
+          <array>
+            <!-- facebook login -->
+            <string>fbAPP-ID</string>
+
+            <!-- google login -->
+            <string>com.googleusercontent.apps.970313706873-vs34ttalp3gotuiasgd6331860d9hrvf
+</string>
+          </array>
+          </dict>
+        </array>
+
+
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

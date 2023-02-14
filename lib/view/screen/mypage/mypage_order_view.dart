@@ -105,7 +105,7 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                                     borderRadius: BorderRadius.circular(150.0),
                                     child: FadeInImage.assetNetwork(
                                       placeholder: Images.placeholder1,
-                                      image: orderList != null && orderList[index].image1 != null
+                                      image: orderList[index].image1 != null
                                           ? AppConstants.BASE_URL +
                                           "/" +
                                           orderList[index].image1
@@ -114,6 +114,23 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                                       fit: BoxFit.fill,
                                       width: 100,
                                       height: 100,
+                                      imageErrorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+                                        return Container(
+                                          // padding: const EdgeInsets.all(10.0),
+                                          width: 150,
+                                          height: 150,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(150.0),
+                                            color: Color(0xfff1f1f1),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(12.0),
+                                            child: Image.asset(
+                                              Images.upload,
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),
@@ -135,7 +152,7 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                                           Text(
                                             "${getTranslated('PAYMENT_COMPLETED', context)}",
                                             style: TextStyle(
-                                                color: Color(0xff0123B4),
+                                                color: Color(0xff7700FF),
                                                 fontSize: 10,
                                                 fontWeight: FontWeight.bold
                                             ),
@@ -156,10 +173,11 @@ class _MyPageOrderViewState extends State<MyPageOrderView> {
                                       ),
 
                                       Row(
-                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        // mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Container(
-                                            width: 120,
+                                            // width: 120,
                                             child: Text(
                                               "${getTranslated('COLOR_', context)}${orderList != null ? orderList[index].option : ""}",
                                               style: TextStyle(

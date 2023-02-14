@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:provider/provider.dart';
 import 'package:yeka/data/model/response/consulting_model.dart';
 import 'package:yeka/kakao_login.dart';
 import 'package:yeka/localization/language_constants.dart';
-import 'package:yeka/main_view_model.dart';
+import 'package:yeka/kakao_view_model.dart';
 import 'package:yeka/provider/auth_provider.dart';
 import 'package:yeka/util/color_resources.dart';
 import 'package:yeka/util/dimensions.dart';
@@ -13,6 +14,8 @@ import 'package:yeka/view/screen/auth/join_screen.dart';
 
 import '../../../data/model/body/login_model.dart';
 import '../../../data/model/response/user_model.dart';
+import '../../../google_login.dart';
+import '../../../google_view_Model.dart';
 import '../../basewidget/appbar/custom_sliver_app_bar.dart';
 import '../../basewidget/button/custom_elevated_button.dart';
 import '../../basewidget/button/custom_outlined_button.dart';
@@ -31,8 +34,12 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final viewModel = MainViewModel(KakaoLogin());
+  // Kakao
+  final kakaoViewModel = KaKaoViewModel(KakaoLogin());
   OAuthToken token;
+
+  // Google
+  final googleViewModel = GoogleViewModel(GoogleLogin());
 
   TextEditingController idController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -209,7 +216,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 print('Kakao login success');
                               } catch (error) {
                                 print('액세스 토큰이 존재하지 않습니다. 로그인을 시도합니다.');
-                                token = await viewModel.login();
+                                token = await kakaoViewModel.login();
                                 User user = await UserApi.instance.me();
 
                                 // 생성된 유저 정보를 서버로 보내야 함
@@ -253,6 +260,92 @@ class _AuthScreenState extends State<AuthScreen> {
                                 ),
                                 Text(
                                   "${getTranslated('LOGIN_WITH_KAKAOTALK', context)}",
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                      Padding(
+                        padding:
+                        const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+                        child: CustomOutlinedButton(
+                          backgroundColor: Colors.white,
+                          borderColor: Colors.grey[400],
+                          onTap: () {
+
+                          },
+                          child: InkWell(
+                            onTap: () async {
+                              await googleViewModel.login();
+
+                              if (googleViewModel.isLogined == true) {
+                                await Navigator.of(context)
+                                    .pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (_) => HomePage()),
+                                        (route) => false);
+                              }
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  Images.google,
+                                  fit: BoxFit.fill,
+                                  height: 20,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "${getTranslated('LOGIN_WITH_GOOGLE', context)}",
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                      Padding(
+                        padding:
+                        const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+                        child: CustomOutlinedButton(
+                          backgroundColor: Colors.white,
+                          borderColor: Colors.grey[400],
+                          onTap: () {
+
+                          },
+                          child: InkWell(
+                            onTap: () async {
+                              await googleViewModel.login();
+
+                              if (googleViewModel.isLogined == true) {
+                                await Navigator.of(context)
+                                    .pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (_) => HomePage()),
+                                        (route) => false);
+                              }
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  Images.google,
+                                  fit: BoxFit.fill,
+                                  height: 20,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "${getTranslated('LOGIN_WITH_GOOGLE', context)}",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.black),
                                 )
