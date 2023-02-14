@@ -9,25 +9,25 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity-3.0.6/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/file_picker-5.2.2/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_downloader-1.9.1/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.7.1+2/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_keyboard_visibility-5.4.0/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-9.9.1/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.7/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.1.1/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geocoding-2.0.5/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_android-0.8.5+3/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/images_picker-1.2.11/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/open_filex-4.3.1/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/package_info-2.0.2/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.21/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/share-2.0.4/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.14/android" />
-            <option value="$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.21/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/connectivity-3.0.6/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/file_picker-5.2.4/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/flutter_downloader-1.9.1/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.7.2+2/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/flutter_keyboard_visibility-5.4.0/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-9.9.1/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.7/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.1.2/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/geocoding-2.0.5/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/image_picker_android-0.8.5+3/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/images_picker-1.2.11/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/open_filex-4.3.2/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/package_info-2.0.2/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.22/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/share-2.0.4/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.14/android" />
+            <option value="$USER_HOME$/sdk/flutter_macos_3.3.5-stable/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.22/android" />
           </set>
         </option>
       </GradleProjectSettings>
