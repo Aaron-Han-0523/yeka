@@ -57,6 +57,7 @@ class Images {
   static const String google = 'assets/images/google.png';
   static const String facebook = 'assets/images/facebook.png';
   static const String kakao = 'assets/images/kakao.png';
+  static const String apple = 'assets/images/apple.png';
 
   //
   // static const String splash_logo = 'assets/images/logo.png';

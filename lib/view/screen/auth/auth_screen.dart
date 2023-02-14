@@ -12,6 +12,9 @@ import 'package:yeka/util/dimensions.dart';
 import 'package:yeka/util/images.dart';
 import 'package:yeka/view/screen/auth/join_screen.dart';
 
+import '../../../apple_login.dart';
+import '../../../apple_login_2.dart';
+import '../../../apple_view_model.dart';
 import '../../../data/model/body/login_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../google_login.dart';
@@ -37,9 +40,10 @@ class _AuthScreenState extends State<AuthScreen> {
   // Kakao
   final kakaoViewModel = KaKaoViewModel(KakaoLogin());
   OAuthToken token;
-
   // Google
   final googleViewModel = GoogleViewModel(GoogleLogin());
+  // apple
+  final appleViewModel = AppleViewModel(AppleLogin());
 
   TextEditingController idController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -275,9 +279,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: CustomOutlinedButton(
                           backgroundColor: Colors.white,
                           borderColor: Colors.grey[400],
-                          onTap: () {
-
-                          },
+                          onTap: () {},
                           child: InkWell(
                             onTap: () async {
                               await googleViewModel.login();
@@ -296,10 +298,10 @@ class _AuthScreenState extends State<AuthScreen> {
                                 Image.asset(
                                   Images.google,
                                   fit: BoxFit.fill,
-                                  height: 20,
+                                  height: 15,
                                 ),
                                 SizedBox(
-                                  width: 5,
+                                  width: 8,
                                 ),
                                 Text(
                                   "${getTranslated('LOGIN_WITH_GOOGLE', context)}",
@@ -316,20 +318,18 @@ class _AuthScreenState extends State<AuthScreen> {
                         padding:
                         const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
                         child: CustomOutlinedButton(
-                          backgroundColor: Colors.white,
-                          borderColor: Colors.grey[400],
-                          onTap: () {
-
-                          },
+                          backgroundColor: Colors.black,
+                          borderColor: Colors.black,
+                          onTap: () {},
                           child: InkWell(
                             onTap: () async {
-                              await googleViewModel.login();
+                              await appleViewModel.login();
 
                               if (googleViewModel.isLogined == true) {
                                 await Navigator.of(context)
                                     .pushAndRemoveUntil(
                                     MaterialPageRoute(
-                                        builder: (_) => HomePage()),
+                                        builder: (_) => SampleScreen()),
                                         (route) => false);
                               }
                             },
@@ -337,17 +337,17 @@ class _AuthScreenState extends State<AuthScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
-                                  Images.google,
+                                  Images.apple,
                                   fit: BoxFit.fill,
                                   height: 20,
                                 ),
                                 SizedBox(
-                                  width: 5,
+                                  // width: ,
                                 ),
                                 Text(
-                                  "${getTranslated('LOGIN_WITH_GOOGLE', context)}",
+                                  "${getTranslated('LOGIN_WITH_APPLE', context)}",
                                   style: TextStyle(
-                                      fontSize: 13, color: Colors.black),
+                                      fontSize: 13, color: Colors.white),
                                 )
                               ],
                             ),
