@@ -4,10 +4,12 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:yeka/data/model/response/image_model.dart';
 import 'package:yeka/helper/date_converter.dart';
 import 'package:yeka/provider/image_provider.dart';
+import 'package:yeka/provider/operation_setting_provider.dart';
 import 'package:yeka/util/dimensions.dart';
 
 import '../../../data/model/response/consulting_model.dart';
 import '../../../data/model/response/menu_model.dart';
+import '../../../data/model/response/operation_setting_model.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../../localization/language_constants.dart';
 import '../../../provider/auth_provider.dart';
@@ -36,8 +38,9 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
   DateRangePickerController controller = DateRangePickerController();
   Map user = Map();
   String userImagePath;
-  List<bool> _selections1 = List.generate(6, (index) => false);
-  List<bool> _selections2 = List.generate(6, (index) => false);
+  List<bool> _selections1 = List.generate(5, (index) => false, growable: true);
+  List<bool> _selections2 = List.generate(5, (index) => false, growable: true);
+  OperationSettingModel operationSetting;
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     user = Provider.of<AuthProvider>(context, listen: false).getUser();
@@ -47,6 +50,9 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
         .getUserImage(imageModel);
     userImagePath =
         Provider.of<CustomImageProvider>(context, listen: false).image.path;
+
+    await Provider.of<OperationSettingProvider>(context, listen: false).getOperationSetting();
+    operationSetting = Provider.of<OperationSettingProvider>(context, listen: false).operationSetting;
   }
 
   @override
@@ -60,6 +66,125 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
     setState(() {
       selectDate = args.value.toString().substring(0, 10);
     });
+  }
+  Widget timeBuilder() {
+    String week_setting = operationSetting != null ? operationSetting.week_setting : "0000000";
+    int start_time = int.parse(
+        operationSetting != null ? operationSetting.start_time : "9");
+    int end_time = int.parse(
+        operationSetting != null ? operationSetting.end_time : "18");
+    List<String> timeList = [];
+
+    // operation time Array
+    for(int i = start_time; i <= end_time; i++) {
+      if( i < 10) {
+        String time = '$i';
+        time = '0' + time;
+        timeList.add(time);
+      } else {
+        String time = '$i';
+        timeList.add(time);
+      }
+    }
+
+    int firstTimeRow = ((end_time - start_time) / 2).ceil();
+    int secondTimeRow = timeList.length - firstTimeRow;
+
+    List<String> firstTimeList = timeList.sublist(0, firstTimeRow);
+    List<String> secondTimeList = timeList.sublist(firstTimeRow, timeList.length);
+
+    print('@@@@@@@@@${firstTimeList} : ${secondTimeList}');
+    int state = 0;
+    // DateConverter.isoStringToLocalTimeOnly()
+    return Column(
+      children: [
+        Text(
+          "${getTranslated('MORNING', context)}",
+        ),
+        ToggleButtons(
+          children: [
+            for (String morningTime in firstTimeList) Text(morningTime),
+          ],
+          onPressed: (int index) {
+            if (_selections1[index] == true) {
+              setState(() {
+                _selections1[index] = !_selections1[index];
+              });
+            } else if (!_selections1.contains(true) &&
+                !_selections2.contains(true)) {
+              state != 1
+                  ? setState(() {
+                _selections1[index] = !_selections1[index];
+              })
+                  : null;
+              if (state == 1) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('이미 예약된 시간입니다.'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            }
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          selectedBorderColor: Colors.green[700],
+          selectedColor: Colors.green[400],
+          fillColor: Colors.green[200],
+          color: Colors.green[400],
+          disabledColor: Colors.grey[400],
+          disabledBorderColor: Colors.grey[700],
+          constraints: const BoxConstraints(
+            minHeight: 40.0,
+            minWidth: 60.0,
+          ),
+          isSelected: _selections1,
+        ),
+        SizedBox(
+          height: Dimensions.PADDING_SIZE_LARGE,
+        ),
+        Text(
+          "${getTranslated('AFTERNOON', context)}",
+        ),
+        ToggleButtons(
+          children: [
+            for (String afternoonTime in secondTimeList) Text(afternoonTime),
+          ],
+          onPressed: (int index) {
+            if (_selections2[index] == true) {
+              setState(() {
+                _selections2[index] = !_selections2[index];
+              });
+            } else if (!_selections1.contains(true) &&
+                !_selections2.contains(true)) {
+              state != 1
+                  ? setState(() {
+                _selections2[index] = !_selections2[index];
+              })
+                  : null;
+              if (state == 1) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('이미 예약된 시간입니다.'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            }
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          selectedBorderColor: Colors.orange[700],
+          selectedColor: Colors.white,
+          fillColor: Colors.orange[200],
+          color: Colors.orange[400],
+          constraints: const BoxConstraints(
+            minHeight: 40.0,
+            minWidth: 60.0,
+          ),
+          isSelected: _selections2,
+        ),
+      ],
+    );
   }
 
   @override
@@ -151,6 +276,8 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
 
                         CustomElevatedButton(
                           onTap: () {
+                            print("@@@@@@@@@@@@@@@@@@@$_selections1");
+                            print("@@@@@@@@@@@@@@@@@@@$_selections2");
                             if (controller.selectedDate != null &&
                                 (_selections1.contains(true) ||
                                     _selections2.contains(true))) {
@@ -230,119 +357,5 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
     );
   }
 
-  Widget timeBuilder() {
-    List<String> timeList = [
-      '07:00',
-      '08:00',
-      '09:00',
-      '10:00',
-      '11:00',
-      '12:00',
-      '13:00',
-      '14:00',
-      '15:00',
-      '16:00',
-      '17:00',
-      '18:00',
-    ];
-    List<String> morningTimeList = [];
-    List<String> afternoonTimeList = [];
 
-    morningTimeList = timeList.sublist(0, 6);
-    afternoonTimeList = timeList.sublist(6, timeList.length);
-
-    int state = 0;
-    // DateConverter.isoStringToLocalTimeOnly()
-    return Column(
-      children: [
-        Text(
-          "${getTranslated('MORNING', context)}",
-        ),
-        ToggleButtons(
-          children: [
-            for (String morningTime in morningTimeList) Text(morningTime),
-          ],
-          onPressed: (int index) {
-            if (_selections1[index] == true) {
-              setState(() {
-                _selections1[index] = !_selections1[index];
-              });
-            } else if (!_selections1.contains(true) &&
-                !_selections2.contains(true)) {
-              state != 1
-                  ? setState(() {
-                      _selections1[index] = !_selections1[index];
-                      print(_selections1[index]);
-                    })
-                  : null;
-              if (state == 1) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('이미 예약된 시간입니다.'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              }
-            }
-          },
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          selectedBorderColor: Colors.green[700],
-          selectedColor: Colors.green[400],
-          fillColor: Colors.green[200],
-          color: Colors.green[400],
-          disabledColor: Colors.grey[400],
-          disabledBorderColor: Colors.grey[700],
-          constraints: const BoxConstraints(
-            minHeight: 40.0,
-            minWidth: 60.0,
-          ),
-          isSelected: _selections1,
-        ),
-        SizedBox(
-          height: Dimensions.PADDING_SIZE_LARGE,
-        ),
-        Text(
-          "${getTranslated('AFTERNOON', context)}",
-        ),
-        ToggleButtons(
-          children: [
-            for (String afternoonTime in afternoonTimeList) Text(afternoonTime),
-          ],
-          onPressed: (int index) {
-            if (_selections2[index] == true) {
-              setState(() {
-                _selections2[index] = !_selections2[index];
-              });
-            } else if (!_selections1.contains(true) &&
-                !_selections2.contains(true)) {
-              state != 1
-                  ? setState(() {
-                      _selections2[index] = !_selections2[index];
-                      print(_selections2[index]);
-                    })
-                  : null;
-              if (state == 1) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('이미 예약된 시간입니다.'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              }
-            }
-          },
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          selectedBorderColor: Colors.orange[700],
-          selectedColor: Colors.white,
-          fillColor: Colors.orange[200],
-          color: Colors.orange[400],
-          constraints: const BoxConstraints(
-            minHeight: 40.0,
-            minWidth: 60.0,
-          ),
-          isSelected: _selections2,
-        ),
-      ],
-    );
-  }
 }

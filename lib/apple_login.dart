@@ -7,15 +7,15 @@ class AppleLogin implements SocialLogin {
     try {
       // apple 로그인
       final AuthorizationCredentialAppleID credential =
-      await SignInWithApple.getAppleIDCredential(
+          await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
         webAuthenticationOptions: WebAuthenticationOptions(
-          clientId: "Apple Developer 에서 설정한 Service ID",
+          clientId: "yeka.jsoftware.com",
           redirectUri: Uri.parse(
-            "Apple Developer 에서 설정한 redirectUri",
+            "https://burnt-unequaled-rooster.glitch.me/callbacks/sign_in_with_apple",
           ),
         ),
       );
@@ -42,5 +42,4 @@ class AppleLogin implements SocialLogin {
       return false;
     }
   }
-
 }

@@ -8,6 +8,7 @@ import 'package:yeka/data/repository/like_product_repo.dart';
 import 'package:yeka/data/repository/menu_repo.dart';
 import 'package:yeka/data/repository/notification_repo.dart';
 import 'package:yeka/data/repository/onboarding_repo.dart';
+import 'package:yeka/data/repository/operation_setting_repo.dart';
 import 'package:yeka/data/repository/option_repo.dart';
 import 'package:yeka/data/repository/order_repo.dart';
 import 'package:yeka/data/repository/personal_color_repo.dart';
@@ -27,6 +28,7 @@ import 'package:yeka/provider/localization_provider.dart';
 import 'package:yeka/provider/menu_provider.dart';
 import 'package:yeka/provider/notification_provider.dart';
 import 'package:yeka/provider/onboarding_provider.dart';
+import 'package:yeka/provider/operation_setting_provider.dart';
 import 'package:yeka/provider/option_provider.dart';
 import 'package:yeka/provider/order_provider.dart';
 import 'package:yeka/provider/personal_color_provider.dart';
@@ -69,6 +71,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => SplashRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => AuthRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => PersonalColorRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(() => OperationSettingRepo(sharedPreferences: sl(), dioClient: sl()));
 
   // Provider
   sl.registerFactory(() => OnBoardingProvider(onboardingRepo: sl()));
@@ -90,6 +93,7 @@ Future<void> init() async {
   sl.registerFactory(() => UserProvider(userRepo: sl()));
   sl.registerFactory(() => AuthProvider(authRepo: sl()));
   sl.registerFactory(() => PersonalColorProvider(personalColorRepo: sl()));
+  sl.registerFactory(() => OperationSettingProvider(operationSettingRepo: sl()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

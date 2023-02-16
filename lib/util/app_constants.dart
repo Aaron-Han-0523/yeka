@@ -110,6 +110,12 @@ class AppConstants {
   static const String GET_PERSONAL_COLOR_URI ="/api/personal_color";
   static const String GET_PERSONAL_COLOR_CONDITION_URI ="/api/personal_color/condition";
 
+  // LIKE_PRODUCT
+  static const String ADD_DATATIME_CONFIG_URI ="/api/datetime_config";
+  static const String UPDATE_DATATIME_CONFIG_URI ="/api/datetime_config";
+  static const String DELETE_DATATIME_CONFIG_URI ="/api/datetime_config";
+  static const String LIST_DATATIME_CONFIG_URI ="/api/datetime_config";
+  static const String GET_DATATIME_CONFIG_URI ="/api/datetime_config";
 
   static const String MAIN_BANNER_URI = '/api/imageSetting';
   static const String ADD_CLIENTS_URI = '/api/clients/add';
@@ -124,6 +130,13 @@ class AppConstants {
   static const String BASE_REVIEW_URI = '/api/review';
   static const String ADD_CAR_URI = '/api/carInfo/add';
   static const String BASE_CAR_URI = '/api/carInfo';
+
+  // OPERATION_SETTING
+  static const String ADD_OPERATION_SETTING_URI ="/api/operation_setting";
+  static const String UPDATE_OPERATION_SETTING_URI ="/api/operation_setting";
+  static const String DELETE_OPERATION_SETTING_URI ="/api/operation_setting";
+  static const String LIST_OPERATION_SETTING_URI ="/api/operation_setting";
+  static const String GET_OPERATION_SETTING_URI ="/api/operation_setting";
 
   // sharePreference
   static const String TOKEN = 'token';

@@ -13,7 +13,6 @@ import 'package:yeka/util/images.dart';
 import 'package:yeka/view/screen/auth/join_screen.dart';
 
 import '../../../apple_login.dart';
-import '../../../apple_login_2.dart';
 import '../../../apple_view_model.dart';
 import '../../../data/model/body/login_model.dart';
 import '../../../data/model/response/user_model.dart';
@@ -275,7 +274,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                       Padding(
                         padding:
-                        const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
                         child: CustomOutlinedButton(
                           backgroundColor: Colors.white,
                           borderColor: Colors.grey[400],
@@ -285,11 +284,10 @@ class _AuthScreenState extends State<AuthScreen> {
                               await googleViewModel.login();
 
                               if (googleViewModel.isLogined == true) {
-                                await Navigator.of(context)
-                                    .pushAndRemoveUntil(
+                                await Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
                                         builder: (_) => HomePage()),
-                                        (route) => false);
+                                    (route) => false);
                               }
                             },
                             child: Row(
@@ -316,7 +314,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                       Padding(
                         padding:
-                        const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+                            const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
                         child: CustomOutlinedButton(
                           backgroundColor: Colors.black,
                           borderColor: Colors.black,
@@ -325,12 +323,11 @@ class _AuthScreenState extends State<AuthScreen> {
                             onTap: () async {
                               await appleViewModel.login();
 
-                              if (googleViewModel.isLogined == true) {
-                                await Navigator.of(context)
-                                    .pushAndRemoveUntil(
+                              if (appleViewModel.isLogined == true) {
+                                await Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
-                                        builder: (_) => SampleScreen()),
-                                        (route) => false);
+                                        builder: (_) => HomePage()),
+                                    (route) => false);
                               }
                             },
                             child: Row(
@@ -342,8 +339,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                   height: 20,
                                 ),
                                 SizedBox(
-                                  // width: ,
-                                ),
+                                    // width: ,
+                                    ),
                                 Text(
                                   "${getTranslated('LOGIN_WITH_APPLE', context)}",
                                   style: TextStyle(

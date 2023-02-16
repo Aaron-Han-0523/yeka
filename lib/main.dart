@@ -14,6 +14,7 @@ import 'package:yeka/provider/like_product_provider.dart';
 import 'package:yeka/provider/localization_provider.dart';
 import 'package:yeka/provider/menu_provider.dart';
 import 'package:yeka/provider/onboarding_provider.dart';
+import 'package:yeka/provider/operation_setting_provider.dart';
 import 'package:yeka/provider/option_provider.dart';
 import 'package:yeka/provider/order_provider.dart';
 import 'package:yeka/provider/personal_color_provider.dart';
@@ -59,6 +60,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<LikeProductProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<PersonalColorProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<OperationSettingProvider>()),
     ],
     child: MyApp(orderId: _orderID),
   ));
