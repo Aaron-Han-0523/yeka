@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -19,12 +21,10 @@ import '../../basewidget/button/custom_elevated_button.dart';
 import 'consultant_reserve_screen.dart';
 
 class ConsultantCalendarScreen extends StatefulWidget {
-  final ConsultingModel consultingModel;
   final MenuModel menuModel;
   final UserModel userModel;
 
-  ConsultantCalendarScreen(
-      {this.consultingModel, this.menuModel, this.userModel});
+  ConsultantCalendarScreen({this.menuModel, this.userModel});
 
   @override
   State<ConsultantCalendarScreen> createState() =>
@@ -38,21 +38,33 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
   DateRangePickerController controller = DateRangePickerController();
   Map user = Map();
   String userImagePath;
-  List<bool> _selections1 = List.generate(5, (index) => false, growable: true);
-  List<bool> _selections2 = List.generate(5, (index) => false, growable: true);
+  List<ConsultingModel> consultingList = [];
   OperationSettingModel operationSetting;
+
 
   Future<void> _loadData(BuildContext context, bool reload) async {
     user = Provider.of<AuthProvider>(context, listen: false).getUser();
     ImageModel imageModel = new ImageModel(user_id: user["id"], image_type: 5);
+    ConsultingModel consultingModel =
+        new ConsultingModel(consultant_id: widget.menuModel.consultant_id);
 
     await Provider.of<CustomImageProvider>(context, listen: false)
         .getUserImage(imageModel);
     userImagePath =
         Provider.of<CustomImageProvider>(context, listen: false).image.path;
 
-    await Provider.of<OperationSettingProvider>(context, listen: false).getOperationSetting();
-    operationSetting = Provider.of<OperationSettingProvider>(context, listen: false).operationSetting;
+    await Provider.of<OperationSettingProvider>(context, listen: false)
+        .getOperationSetting();
+    operationSetting =
+        Provider.of<OperationSettingProvider>(context, listen: false)
+            .operationSetting;
+
+    await Provider.of<ConsultingProvider>(context, listen: false)
+        .getConsultingByClientIdList(consultingModel);
+    consultingList =
+        Provider.of<ConsultingProvider>(context, listen: false).consultingList;
+
+    setState(() {});
   }
 
   @override
@@ -62,22 +74,26 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
   }
 
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
-    print("${args.value}");
     setState(() {
       selectDate = args.value.toString().substring(0, 10);
     });
   }
+
   Widget timeBuilder() {
-    String week_setting = operationSetting != null ? operationSetting.week_setting : "0000000";
-    int start_time = int.parse(
-        operationSetting != null ? operationSetting.start_time : "9");
-    int end_time = int.parse(
-        operationSetting != null ? operationSetting.end_time : "18");
+
+    String week_setting =
+    operationSetting != null ? operationSetting.week_setting : "0000000";
+
+    // Set check box time
+    int start_time =
+    int.parse(operationSetting != null ? operationSetting.start_time : "9");
+    int end_time =
+    int.parse(operationSetting != null ? operationSetting.end_time : "18");
     List<String> timeList = [];
 
-    // operation time Array
-    for(int i = start_time; i <= end_time; i++) {
-      if( i < 10) {
+    // Make operation_time list
+    for (int i = start_time; i <= end_time; i++) {
+      if (i < 10) {
         String time = '$i';
         time = '0' + time;
         timeList.add(time);
@@ -87,44 +103,64 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
       }
     }
 
-    int firstTimeRow = ((end_time - start_time) / 2).ceil();
-    int secondTimeRow = timeList.length - firstTimeRow;
+    int firstTimeRow;
+    int secondTimeRow;
+    int thirdTimeRow = 0;
+    List<String> firstTimeList;
+    List<String> secondTimeList;
+    List<String> thirdTimeList;
 
-    List<String> firstTimeList = timeList.sublist(0, firstTimeRow);
-    List<String> secondTimeList = timeList.sublist(firstTimeRow, timeList.length);
+    if ((end_time - start_time) < 12) {
+      firstTimeRow = ((end_time - start_time) / 2).ceil();
+      secondTimeRow = timeList.length - firstTimeRow;
 
-    print('@@@@@@@@@${firstTimeList} : ${secondTimeList}');
+      firstTimeList = timeList.sublist(0, firstTimeRow);
+      secondTimeList = timeList.sublist(firstTimeRow, timeList.length);
+    } else {
+      firstTimeRow = 6;
+      secondTimeRow = 6;
+      thirdTimeRow = (end_time - start_time) - 12 + 1;
+      firstTimeList = timeList.sublist(0, 6);
+      secondTimeList = timeList.sublist(6, 12);
+      thirdTimeList = timeList.sublist(12, timeList.length);
+    }
+    // Make variable list
+    List<bool> _selections1 =
+    List.generate(firstTimeRow, (index) => false, growable: true);
+    List<bool> _selections2 =
+    List.generate(secondTimeRow, (index) => false, growable: true);
+    List<bool> _selections3 = [];
+    if (thirdTimeRow > 0) {
+      _selections3 =
+          List.generate(thirdTimeRow, (index) => false, growable: true);
+    }
+
     int state = 0;
-    // DateConverter.isoStringToLocalTimeOnly()
+
     return Column(
       children: [
-        Text(
-          "${getTranslated('MORNING', context)}",
-        ),
         ToggleButtons(
           children: [
-            for (String morningTime in firstTimeList) Text(morningTime),
+            for (String firstRow in firstTimeList) Text(firstRow),
           ],
           onPressed: (int index) {
-            if (_selections1[index] == true) {
+            // if (!_selections1.contains(true) &&
+            //     !_selections2.contains(true) &&
+            //     !_selections3.contains(true)) {
               setState(() {
                 _selections1[index] = !_selections1[index];
               });
-            } else if (!_selections1.contains(true) &&
-                !_selections2.contains(true)) {
-              state != 1
-                  ? setState(() {
-                _selections1[index] = !_selections1[index];
-              })
-                  : null;
-              if (state == 1) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('이미 예약된 시간입니다.'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              }
+            // }
+
+            print(_selections1);
+              print(_selections1+_selections2+_selections3);
+            if (state == 1) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('이미 예약된 시간입니다.'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
             }
           },
           borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -143,33 +179,28 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
         SizedBox(
           height: Dimensions.PADDING_SIZE_LARGE,
         ),
-        Text(
-          "${getTranslated('AFTERNOON', context)}",
-        ),
         ToggleButtons(
           children: [
-            for (String afternoonTime in secondTimeList) Text(afternoonTime),
+            for (String secondRow in secondTimeList) Text(secondRow),
           ],
           onPressed: (int index) {
-            if (_selections2[index] == true) {
+            // if (!_selections1.contains(true) &&
+            //     !_selections2.contains(true) &&
+            //     !_selections3.contains(true)) {
               setState(() {
                 _selections2[index] = !_selections2[index];
               });
-            } else if (!_selections1.contains(true) &&
-                !_selections2.contains(true)) {
-              state != 1
-                  ? setState(() {
-                _selections2[index] = !_selections2[index];
-              })
-                  : null;
-              if (state == 1) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('이미 예약된 시간입니다.'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              }
+            // }
+
+            print(_selections2);
+              print(_selections1+_selections2+_selections3);
+            if (state == 1) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('이미 예약된 시간입니다.'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
             }
           },
           borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -182,6 +213,107 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
             minWidth: 60.0,
           ),
           isSelected: _selections2,
+        ),
+        SizedBox(
+          height: Dimensions.PADDING_SIZE_LARGE,
+        ),
+        thirdTimeRow > 0
+            ? ToggleButtons(
+                children: [
+                  for (String thirdRow in thirdTimeList) Text(thirdRow),
+                ],
+                onPressed: (int index) {
+                  // if (!_selections1.contains(true) &&
+                  //     !_selections2.contains(true) &&
+                  //     !_selections3.contains(true)) {
+                    setState(() {
+                      _selections3[index] = !_selections3[index];
+                    });
+                  // }
+
+                  print(_selections3);
+                    print(_selections1+_selections2+_selections3);
+                  if (state == 1) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('이미 예약된 시간입니다.'),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  }
+                },
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                selectedBorderColor: Colors.orange[700],
+                selectedColor: Colors.white,
+                fillColor: Colors.orange[200],
+                color: Colors.orange[400],
+                constraints: const BoxConstraints(
+                  minHeight: 40.0,
+                  minWidth: 60.0,
+                ),
+                isSelected: _selections3,
+              )
+            : Container(),
+        thirdTimeRow > 0
+            ? SizedBox(
+                height: Dimensions.PADDING_SIZE_LARGE,
+              )
+            : Container(),
+        CustomElevatedButton(
+          onTap: () {
+            if (controller.selectedDate != null &&
+                (_selections1.contains(true) ||
+                    _selections2.contains(true) ||
+                    _selections3.contains(true))) {
+              ConsultingModel consultingModel = ConsultingModel(
+                consultant_id: widget.userModel.id,
+                client_id: user["id"],
+                client_name: user["name"],
+                client_image: userImagePath,
+                client_phone: user['phone'],
+                reservation_date: DateConverter.localDateToIsoString(
+                  controller.selectedDate,
+                ),
+                consulting_title: widget.menuModel.menu_title,
+                payment_status: 0,
+                consulting_status: 0,
+                season: user["season"],
+                detail_season_type: user["detail_season_type"],
+                payment_amount: widget.menuModel.menu_amount,
+                reservation_amount: widget.menuModel.menu_amount ~/ 10,
+                final_amount: widget.menuModel.menu_amount -
+                    widget.menuModel.menu_amount ~/ 10,
+              );
+
+              Provider.of<ConsultingProvider>(context, listen: false)
+                  .addConsulting(consultingModel);
+
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionDuration: Duration(milliseconds: 500),
+                  pageBuilder: (context, anim1, anim2) =>
+                      ConsultantReserveScreen(
+                    menuModel: widget.menuModel,
+                    userModel: widget.userModel,
+                    consultingModel: consultingModel,
+                  ),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                    content:
+                        Text("${getTranslated('PLEASE_SELECT_DATE', context)}"),
+                    backgroundColor: Colors.red),
+              );
+            }
+          },
+          buttonText: "${getTranslated('APPLY', context)}",
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+        ),
+        SizedBox(
+          height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
         ),
       ],
     );
@@ -270,74 +402,6 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
 
                         timeBuilder(),
 
-                        SizedBox(
-                          height: Dimensions.PADDING_SIZE_LARGE,
-                        ),
-
-                        CustomElevatedButton(
-                          onTap: () {
-                            print("@@@@@@@@@@@@@@@@@@@$_selections1");
-                            print("@@@@@@@@@@@@@@@@@@@$_selections2");
-                            if (controller.selectedDate != null &&
-                                (_selections1.contains(true) ||
-                                    _selections2.contains(true))) {
-                              print(_selections1.contains(true));
-                              print(_selections2);
-                              ConsultingModel consultingModel = ConsultingModel(
-                                consultant_id: widget.userModel.id,
-                                client_id: user["id"],
-                                client_name: user["name"],
-                                client_image: userImagePath,
-                                client_phone: user['phone'],
-                                reservation_date:
-                                    DateConverter.localDateToIsoString(
-                                  controller.selectedDate,
-                                ),
-                                consulting_title: widget.menuModel.menu_title,
-                                payment_status: 0,
-                                consulting_status: 0,
-                                season: user["season"],
-                                detail_season_type: user["detail_season_type"],
-                                payment_amount: widget.menuModel.menu_amount,
-                                reservation_amount:
-                                    widget.menuModel.menu_amount ~/ 10,
-                                final_amount: widget.menuModel.menu_amount -
-                                    widget.menuModel.menu_amount ~/ 10,
-                              );
-
-                              Provider.of<ConsultingProvider>(context,
-                                      listen: false)
-                                  .addConsulting(consultingModel);
-
-                              Navigator.push(
-                                context,
-                                PageRouteBuilder(
-                                  transitionDuration:
-                                      Duration(milliseconds: 500),
-                                  pageBuilder: (context, anim1, anim2) =>
-                                      ConsultantReserveScreen(
-                                    menuModel: widget.menuModel,
-                                    userModel: widget.userModel,
-                                    consultingModel: consultingModel,
-                                  ),
-                                ),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(
-                                        "${getTranslated('PLEASE_SELECT_DATE', context)}"),
-                                    backgroundColor: Colors.red),
-                              );
-                            }
-                          },
-                          buttonText: "${getTranslated('APPLY', context)}",
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                        ),
-
-                        SizedBox(
-                          height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                        ),
                         // SizedBox(
                         //   height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                         // ),
@@ -356,6 +420,4 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
       ),
     );
   }
-
-
 }

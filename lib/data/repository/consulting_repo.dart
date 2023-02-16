@@ -123,6 +123,17 @@ class ConsultingRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  Future<ApiResponse> getConsultingByClientIdList(ConsultingModel consultingModel) async {
+    try {
+      final response = await dioClient.get(
+        AppConstants.GET_CONSULTING_URI + "/list/${consultingModel.consultant_id}",
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 }
 
 // static const String ADD_CONSULTING_URI ="";
