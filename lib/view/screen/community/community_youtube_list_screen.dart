@@ -215,8 +215,15 @@ class _CommunityYoutubeListScreenState
                         : Container(),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                    FooterPage(),
+                    // FooterPage(),
                   ],
+                ),
+              ),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FooterPage(),
                 ),
               ),
             ],

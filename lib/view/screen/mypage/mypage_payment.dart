@@ -496,8 +496,15 @@ class _MyPagePaymentScreenState extends State<MyPagePaymentScreen> {
                           ],
                         ),
                       ),
-                      FooterPage(),
+                      // FooterPage(),
                     ],
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],

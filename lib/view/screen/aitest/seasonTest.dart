@@ -235,8 +235,15 @@ class _SeasonTestPageState extends State<SeasonTestPage> with TickerProviderStat
                     ],
                   ),
 
-                  FooterPage(),
+                  // FooterPage(),
                 ],
+              ),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: FooterPage(),
               ),
             ),
           ],

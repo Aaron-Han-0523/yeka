@@ -151,11 +151,18 @@ class _JoinScreenState extends State<JoinScreen> {
                           ],
                         ),
                       ),
-                      FooterPage(),
+                      // FooterPage(),
                     ],
                   ),
                 ),
-              )
+              ),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FooterPage(),
+                ),
+              ),
             ],
           ),
         ));

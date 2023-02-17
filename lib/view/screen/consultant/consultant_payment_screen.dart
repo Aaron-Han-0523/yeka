@@ -331,9 +331,16 @@ class _ConsultantPaymentScreenState extends State<ConsultantPaymentScreen>
                         buttonText:
                             "${getTranslated('CONFIRMATION', context)}"),
                     SizedBox(height: 150),
-                    FooterPage(),
+                    // FooterPage(),
                   ],
                 ),
+              ),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: FooterPage(),
               ),
             ),
           ],

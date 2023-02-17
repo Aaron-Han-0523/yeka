@@ -363,11 +363,18 @@ class _MyPageOrderDetailPageState extends State<MyPageOrderDetailPage>
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     SizedBox(height: Dimensions.PADDING_SIZE_Thirty_Five),
 
-                    FooterPage(),
+                    // FooterPage(),
                   ],
                 ),
               ),
-            )
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: FooterPage(),
+              ),
+            ),
           ],
         ),
         // Positioned(

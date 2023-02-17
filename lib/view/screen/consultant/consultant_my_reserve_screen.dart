@@ -468,9 +468,16 @@ class _ConsultantMyReserveScreenState extends State<ConsultantMyReserveScreen>
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                        FooterPage(),
+                        // FooterPage(),
                       ],
                     ),
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],

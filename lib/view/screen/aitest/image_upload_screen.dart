@@ -249,9 +249,16 @@ class _ImageUploadPageState extends State<ImageUploadPage>
                         ),
                       ),
                     ),
-                    FooterPage(),
+                    // FooterPage(),
                   ],
                 ),
+              ),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: FooterPage(),
               ),
             ),
           ],

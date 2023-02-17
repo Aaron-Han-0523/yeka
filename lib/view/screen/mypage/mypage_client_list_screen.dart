@@ -74,8 +74,15 @@ class _MyPageClientListScreenState extends State<MyPageClientListScreen> {
                           ],
                         ),
                       ),
-                      FooterPage(),
+                      // FooterPage(),
                     ],
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],

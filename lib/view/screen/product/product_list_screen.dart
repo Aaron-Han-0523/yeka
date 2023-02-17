@@ -162,8 +162,15 @@ class _ProductListScreenState extends State<ProductListScreen> {
                           ],
                         ),
                       ),
-                      FooterPage(),
+                      // FooterPage(),
                     ],
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],

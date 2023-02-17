@@ -6,6 +6,7 @@ String client_image
 String client_phone
 String payment_date
 String reservation_date
+String reservation_time
 String consulting_title
 int payment_status
 int consulting_status

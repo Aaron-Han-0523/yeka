@@ -393,10 +393,17 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         color: Colors.black,
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                      FooterPage(),
+                      // FooterPage(),
                     ],
                   ),
-                )
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
+                  ),
+                ),
               ],
             ),
           ],

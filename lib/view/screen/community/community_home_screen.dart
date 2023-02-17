@@ -370,8 +370,15 @@ class _CommunityHomeScreenState extends State<CommunityHomeScreen> {
                           ],
                         ),
                       ),
-                      FooterPage(),
+                      // FooterPage(),
                     ],
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],

@@ -142,12 +142,20 @@ class _MyPageCalendarScreenState extends State<MyPageCalendarScreen> {
                     ),
                   ),
                 ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
+                  ),
+                ),
               ],
             ),
-            Positioned(
-              bottom: 0,
-              child: FooterPage(),
-            ),
+            // Positioned(
+            //   bottom: 0,
+            //   child: FooterPage(),
+            // ),
+
           ],
         ),
       ),

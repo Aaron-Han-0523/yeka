@@ -627,11 +627,18 @@ class _ProductShippingPageState extends State<ProductShippingPage>
                         buttonText: "${getTranslated('GO_TO_PAY', context)}",
                       ),
                       SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                      FooterPage(),
+                      // FooterPage(),
                     ],
                   ),
                 ),
-              )
+              ),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FooterPage(),
+                ),
+              ),
             ],
           ),
         ));

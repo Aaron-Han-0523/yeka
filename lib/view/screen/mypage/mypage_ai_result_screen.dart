@@ -587,9 +587,16 @@ class _MyPageAIResultPageState extends State<MyPageAIResultPage>
 
                     SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
 
-                    FooterPage(),
+                    // FooterPage(),
                   ],
                 ),
+              ),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: FooterPage(),
               ),
             ),
           ],

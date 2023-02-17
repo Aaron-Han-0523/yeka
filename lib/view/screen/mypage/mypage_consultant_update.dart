@@ -938,9 +938,16 @@ class _MyPageConsultantUpdateScreenState
                                 "${getTranslated('MODIFICATION', context)}",
                           ),
                         ),
-                        FooterPage(),
+                        // FooterPage(),
                       ],
                     ),
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],

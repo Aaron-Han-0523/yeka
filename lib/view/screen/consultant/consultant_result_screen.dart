@@ -1088,9 +1088,16 @@ class _ConsultantResultScreenState extends State<ConsultantResultScreen>
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                         SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                        FooterPage(),
+                        // FooterPage(),
                       ],
                     ),
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],

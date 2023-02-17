@@ -7,6 +7,7 @@ class ConsultingModel {
   String _client_phone;
   String _payment_date;
   String _reservation_date;
+  String _reservation_time;
   String _consulting_title;
   int _payment_status;
   int _consulting_status;
@@ -36,6 +37,7 @@ class ConsultingModel {
     String client_phone,
     String payment_date,
     String reservation_date,
+    String reservation_time,
     String consulting_title,
     int payment_status,
     int consulting_status,
@@ -64,6 +66,7 @@ class ConsultingModel {
     this._client_phone = client_phone;
     this._payment_date = payment_date;
     this._reservation_date = reservation_date;
+    this._reservation_time = reservation_time;
     this._consulting_title = consulting_title;
     this._payment_status = payment_status;
     this._consulting_status = consulting_status;
@@ -94,6 +97,7 @@ class ConsultingModel {
     _client_phone = json['client_phone'];
     _payment_date = json['payment_date'];
     _reservation_date = json['reservation_date'];
+    _reservation_time = json['reservation_time'];
     _consulting_title = json['consulting_title'];
     _payment_status = json['payment_status'];
     _consulting_status = json['consulting_status'];
@@ -125,6 +129,7 @@ class ConsultingModel {
     data['client_phone'] = this.client_phone;
     data['payment_date'] = this.payment_date;
     data['reservation_date'] = this.reservation_date;
+    data['reservation_time'] = this.reservation_time;
     data['consulting_title'] = this.consulting_title;
     data['payment_status'] = this.payment_status;
     data['consulting_status'] = this.consulting_status;
@@ -158,6 +163,8 @@ class ConsultingModel {
     if (this.payment_date != null) data['payment_date'] = this.payment_date;
     if (this.reservation_date != null)
       data['reservation_date'] = this.reservation_date;
+    if (this.reservation_time != null)
+      data['reservation_time'] = this.reservation_time;
     if (this.consulting_title != null)
       data['consulting_title'] = this.consulting_title;
     if (this.payment_status != null)
@@ -202,6 +209,8 @@ class ConsultingModel {
   String get payment_date => _payment_date;
 
   String get reservation_date => _reservation_date;
+
+  String get reservation_time => _reservation_time;
 
   String get consulting_title => _consulting_title;
 
@@ -271,6 +280,10 @@ class ConsultingModel {
 
   set reservation_date(String value) {
     _reservation_date = value;
+  }
+
+  set reservation_time(String value) {
+    _reservation_time = value;
   }
 
   set consulting_title(String value) {

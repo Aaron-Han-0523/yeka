@@ -318,8 +318,15 @@ class _CommunityYoutubeDetailScreenState
                           );
                         },
                       ),
-                      FooterPage(),
+                      // FooterPage(),
                     ],
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],

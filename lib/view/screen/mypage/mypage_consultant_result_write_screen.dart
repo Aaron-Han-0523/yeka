@@ -433,9 +433,16 @@ class _MyPageConsultantResultWriteScreenState
                         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
                         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
                         SizedBox(height: Dimensions.PADDING_SIZE_Thirty_Five),
-                        FooterPage(),
+                        // FooterPage(),
                       ],
                     ),
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterPage(),
                   ),
                 ),
               ],
