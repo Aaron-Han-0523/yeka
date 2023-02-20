@@ -68,7 +68,7 @@ dependencies:
 #  downloads_path_provider_28: ^0.1.2
   scrolling_page_indicator: ^0.1.2
   youtube_player_flutter: ^8.1.1
-  syncfusion_flutter_datepicker: ^20.3.59
+  syncfusion_flutter_datepicker: ^20.4.50
   syncfusion_flutter_sliders: ^20.4.38
   kakao_flutter_sdk_user: ^1.1.1
   google_sign_in: ^5.4.1

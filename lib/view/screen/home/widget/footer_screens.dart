@@ -22,12 +22,13 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      width: MediaQuery.of(context).size.width + 100,
-      decoration: BoxDecoration(color: Color(0xFF121212),),
-      child: Padding(
+    return FittedBox(
+      fit: BoxFit.fitHeight,
+      child: Container(
+        alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width + 100,
         padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(color: Color(0xFF121212),),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -67,18 +68,8 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
                     fontSize: 6,
                   ),
                 ),
-                // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                // SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                // Text(
-                //   "${getTranslated('FOOTER_TEXT5', context)}",
-                //   style: TextStyle(
-                //     color: Color(0xFFFFFFFF),
-                //     fontSize: 10,
-                //   ),
-                // ),
                 SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
-                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
+                SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
               ],
             ),
             Padding(
