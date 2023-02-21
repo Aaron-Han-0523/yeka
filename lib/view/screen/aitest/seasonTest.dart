@@ -226,6 +226,13 @@ class _SeasonTestPageState extends State<SeasonTestPage> with TickerProviderStat
                               },
                               child: Text(
                                   seasonTestList[stage].split('|')[i] ?? ""),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green[400],
+                                foregroundColor: Colors.white70,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                ),
+                              ),
                             ),
                         ],
                       ),

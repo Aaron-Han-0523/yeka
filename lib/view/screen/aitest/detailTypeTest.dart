@@ -252,6 +252,13 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                               },
                               child: Text(
                                   springTestList[stage].split('|')[i] ?? ""),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.deepPurpleAccent[200],
+                                foregroundColor: Colors.white70,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                ),
+                              ),
                             ),
                         ],
                       ),
@@ -304,6 +311,13 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                               },
                               child: Text(
                                   summerTestList[stage].split('|')[i] ?? ""),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.deepOrangeAccent[200],
+                                foregroundColor: Colors.white70,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                ),
+                              ),
                             ),
                         ],
                       ),
@@ -355,6 +369,13 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                               },
                               child: Text(
                                   fallTestList[stage].split('|')[i] ?? ""),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.amber[400],
+                                foregroundColor: Colors.white70,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                ),
+                              ),
                             ),
                         ],
                       ),
@@ -406,6 +427,13 @@ class _DetailTypeTestState extends State<DetailTypeTestPage>
                               },
                               child: Text(
                                   winterTestList[stage].split('|')[i] ?? ""),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.cyan[300],
+                                foregroundColor: Colors.white70,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                ),
+                              ),
                             ),
                         ],
                       ),
