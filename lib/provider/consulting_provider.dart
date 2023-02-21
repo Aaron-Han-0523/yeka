@@ -108,8 +108,11 @@ class ConsultingProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> getConsultingByClientIdList(
-      ConsultingModel consultingModel) async {
+  Future<void> getConsultingByClientIdList(ConsultingModel consultingModel,
+      {bool reload = false}) async {
+    if (reload) {
+      _consultingList = [];
+    }
     ApiResponse apiResponse =
         await consultingRepo.getConsultingByClientIdList(consultingModel);
     if (apiResponse.response != null) {
@@ -118,5 +121,4 @@ class ConsultingProvider extends ChangeNotifier {
       return _consultingList;
     }
   }
-
 }

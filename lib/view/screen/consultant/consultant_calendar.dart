@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:yeka/data/model/response/image_model.dart';
@@ -57,30 +58,52 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
 
   String weekSetting;
 
+  void _loadDayData(BuildContext context, bool reload) {
+    checkList = [];
+
+    // checkList 예약시간 인덱스는 false 아니면 true
+    for (int i = 0; i < timeList.length; i++) {
+      checkList.add(true);
+    }
+
+    for (int i = 0; i < consultingList.length; i++) {
+      if(selectDate == reservation_date[i].substring(0, 10)) {
+        checkList[int.parse(reservation_time[i]) - start_time] = false;
+      }
+    }
+
+    setState(() {});
+  }
+
   Future<void> _loadData(BuildContext context, bool reload) async {
     user = Provider.of<AuthProvider>(context, listen: false).getUser();
     ImageModel imageModel = new ImageModel(user_id: user["id"], image_type: 5);
+
     ConsultingModel consultingModel =
         new ConsultingModel(consultant_id: widget.menuModel.consultant_id);
 
     await Provider.of<CustomImageProvider>(context, listen: false)
         .getUserImage(imageModel);
-    userImagePath =
-        Provider.of<CustomImageProvider>(context, listen: false).image.path;
+
+    await Provider.of<ConsultingProvider>(context, listen: false)
+        .getConsultingByClientIdList(consultingModel, reload: true);
 
     await Provider.of<OperationSettingProvider>(context, listen: false)
         .getOperationSetting();
 
-    await Provider.of<ConsultingProvider>(context, listen: false)
-        .getConsultingByClientIdList(consultingModel);
-    operationSetting =
-        Provider.of<OperationSettingProvider>(context, listen: false)
-            .operationSetting;
+    userImagePath =
+        Provider.of<CustomImageProvider>(context, listen: false).image.path;
+
     consultingList =
         Provider.of<ConsultingProvider>(context, listen: false).consultingList;
 
+    operationSetting =
+        Provider.of<OperationSettingProvider>(context, listen: false)
+            .operationSetting;
+
     start_time =
         int.parse(operationSetting != null ? operationSetting.start_time : "9");
+
     end_time =
         int.parse(operationSetting != null ? operationSetting.end_time : "18");
 
@@ -94,36 +117,16 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
       }
     }
 
-
     for (ConsultingModel consulting in consultingList) {
       reservation_date.add(consulting.reservation_date);
       reservation_time.add(consulting.reservation_time);
     }
-    
+
     // Make operation_time list
     for (int i = start_time; i <= end_time; i++) {
       String time = '$i';
       timeList.add(time);
     }
-
-    // 중복제거
-    reservation_time = reservation_time.toSet().toList();
-    
-    // checkList 예약시간 인덱스는 false 아니면 true
-    for (int i = 0; i < timeList.length; i++) {
-      for (int j = 0; j < reservation_time.length; j++) {
-        if (timeList[i] == reservation_time[j]) {
-          checkList.add(false);
-        }
-      }
-      checkList.add(true);
-    }
-    print(reservation_time);
-    print(checkList);
-
-
-
-
 
     setState(() {});
   }
@@ -131,15 +134,27 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
   // disable 할 날짜를 dates list에 담아 return
   List<DateTime> _getBlackoutDates() {
     final List<DateTime> dates = <DateTime>[];
-    // var day = DateFormat('EEEE').format(DateTime.now());
-    // weekSetting = operationSetting != null ? operationSetting.week_setting : "";
-    // if(day == "Friday") {
-    //   weekSetting[5] ?
-    // }
-    // for (int i = 0; i < reservation_date.length; i++) {
-    //   var dateType = DateTime.parse(reservation_date[i]);
-    //   dates.add(dateType);
-    // }
+    DateTime dateTime1 = DateTime.now();
+
+    weekSetting = operationSetting != null ? operationSetting.week_setting : "";
+    List<String> dayList = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+
+    for (int i = 0; i < 30; i++) {
+      DateTime dateTime2 = dateTime1.add(Duration(days: i));
+      var day = DateFormat('EEEE').format(dateTime2);
+
+      if(weekSetting[dayList.indexOf(day)] == "0") {
+        dates.add(dateTime2);
+      }
+    }
 
     return dates;
   }
@@ -155,6 +170,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
       selectDate = args.value.toString().substring(0, 10);
+      _loadDayData(context, true);
     });
   }
 
@@ -292,7 +308,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -388,7 +404,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -485,7 +501,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -582,7 +598,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -679,7 +695,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -779,7 +795,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -875,7 +891,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -972,7 +988,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -1069,7 +1085,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -1166,7 +1182,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -1267,7 +1283,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -1363,7 +1379,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -1460,7 +1476,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -1557,7 +1573,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -1654,7 +1670,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
                                     consultant_id: widget.userModel.id,
                                     client_id: user["id"],
                                     client_name: user["name"],
-                                    client_image: userImagePath,
+                                    client_image: userImagePath != null ? userImagePath : "",
                                     client_phone: user['phone'],
                                     reservation_date: DateConverter
                                         .localDateToIsoString(
@@ -1742,6 +1758,7 @@ class _ConsultantCalendarScreenState extends State<ConsultantCalendarScreen> {
         onSelectionChanged: _onSelectionChanged,
         selectionMode: DateRangePickerSelectionMode.single,
         enablePastDates: false,
+        maxDate: DateTime.now().add(Duration(days: 30)),
         monthViewSettings: DateRangePickerMonthViewSettings(
             showTrailingAndLeadingDates: true, blackoutDates: _blackoutDates),
       ),

@@ -52,7 +52,13 @@ class OperationSettingProvider extends ChangeNotifier {
 
   Future<OperationSettingModel> getOperationSetting() async {
     ApiResponse apiResponse = await operationSettingRepo.getOperationSetting();
-    _operationSetting = OperationSettingModel.fromJson(apiResponse.response.data);
+    if (apiResponse.response != null) {
+      _operationSetting =
+          OperationSettingModel.fromJson(apiResponse.response.data);
+    } else {
+      _operationSetting = OperationSettingModel();
+    }
+
     notifyListeners();
     return _operationSetting;
   }
